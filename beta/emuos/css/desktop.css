@@ -49,14 +49,19 @@
 }
 
 /*noinspection CssOverwrittenProperties,CssInvalidPropertyValue*/
-.icon img,
-.emuos-desktop-icon img {
+.emuos-desktop-icon i.icon {
 	/*background-color: #000;*/
 	/*background-color: rgba(0, 0, 0, 0.5);*/
 	display: block;
+	position: relative;
 	margin: 0 auto 5px;
 	width: 48px;
 	height: 48px;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 48px 48px;
+	text-decoration: none;
 	pointer-events: none;
 	/*image-rendering: optimizeSpeed;*/
 	/*image-rendering: -moz-crisp-edges;*/

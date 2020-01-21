@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'optional!moment-timezone', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
+		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
@@ -19,7 +19,7 @@
 	} else {
 		factory(jQuery);
 	}
-} (function ($, moment, Octokat, eSheep, clippy) {
+} (function ($, simplestorage, moment, Octokat, eSheep, clippy) {
 	var EmuOS = function (options) {
 		var self = this;
 
@@ -46,16 +46,17 @@
 			} , {
 				name: 'ÐeKaÐeNcE',
 				title: 'Under Development',
-				icon: 'https://launcher.dekadence.ro/favicon.ico',
+				icon: 'vfat/apps/dekadence/favicon.ico',
 				link: 'https://launcher.dekadence.ro',
 				width: 900,
 				height: 480
 			} , {
 				name: 'Windows 93',
 				icon: 'vfat/apps/windows93/favicon.ico',
-				link: 'https://v1.windows93.net/',
+				// link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ2MS53aW5kb3dzOTMubmV0JTJG',
+				link: 'https://v1.windows93.net',
 				width: 960,
-				height: 713
+				height: 734
 			} , {
 				name: '98.js',
 				icon: 'vfat/apps/98.js/favicon.ico',
@@ -98,13 +99,13 @@
 				name: 'Cookie Clicker<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/cookie-clicker/favicon.png',
-				link: 'https://explorer.emupedia.net/aHR0cHM6Ly9vcnRlaWwuZGFzaG5ldC5vcmcvY29va2llY2xpY2tlci8=',
+				link: 'https://orteil.dashnet.org/cookieclicker/',
 				width: 900,
 				height: 600
 			} , {
 				name: 'Flappy Bird',
-				icon: 'vfat/games/flappy-bird/favicon.png',
-				link: 'vfat/games/flappy-bird/index.html',
+				icon: 'https://emupedia.net/emupedia-game-flappy-bird/favicon.png',
+				link: 'https://emupedia.net/emupedia-game-flappy-bird/index.html',
 				width: 432,
 				height: 600
 			} , {
@@ -144,20 +145,20 @@
 				height: 480
 			} , {
 				name: 'Biolab Disaster',
-				icon: 'vfat/games/biolab-disaster/favicon.png',
-				link: 'vfat/games/biolab-disaster/index.html',
+				icon: 'https://emupedia.net/emupedia-game-biolab-disaster/favicon.png',
+				link: 'https://emupedia.net/emupedia-game-biolab-disaster/index.html',
 				width: 720,
 				height: 480
 			} , {
 				name: 'Super Blob Blaster',
-				icon: 'vfat/games/super-blob-blaster/favicon.png',
-				link: 'vfat/games/super-blob-blaster/index.html',
+				icon: 'https://emupedia.net/emupedia-game-super-blob-blaster/favicon.png',
+				link: 'https://emupedia.net/emupedia-game-super-blob-blaster/index.html',
 				width: 720,
 				height: 480
 			} , {
 				name: 'Pac-Man',
-				icon: 'vfat/games/pac-man/favicon.ico',
-				link: 'vfat/games/pac-man/index.html',
+				icon: 'https://emupedia.net/emupedia-game-pac-man/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-pac-man/index.html',
 				width: 1025,
 				height: 715
 			} , {
@@ -169,20 +170,20 @@
 			} , {
 				name: 'ASCIICKER',
 				title: 'Under Development',
-				icon: 'vfat/games/asciicker/favicon.ico',
-				link: 'vfat/games/asciicker/index.html',
+				icon: 'https://emupedia.net/emupedia-demo-asciicker/favicon.ico',
+				link: 'https://emupedia.net/emupedia-demo-asciicker/index.html',
 				width: 640,
 				height: 480
 			} , {
-				name: 'Spatial Audio (Demo)',
-				icon: 'vfat/games/spatial-audio/favicon.ico',
-				link: 'vfat/games/spatial-audio/index.html',
+				name: '3D Spatial Audio (Demo)',
+				icon: 'https://emupedia.net/emupedia-demo-3d-spatial-audio/favicon.ico',
+				link: 'https://emupedia.net/emupedia-demo-3d-spatial-audio/index.html',
 				width: 900,
 				height: 480
 			} , {
 				name: 'Voxel Space (Demo)',
-				icon: 'vfat/games/voxel-space/favicon.ico',
-				link: 'vfat/games/voxel-space/index.html',
+				icon: 'https://emupedia.net/emupedia-demo-voxel-space/favicon.ico',
+				link: 'https://emupedia.net/emupedia-demo-voxel-space/index.html',
 				width: 900,
 				height: 480
 			} , {
@@ -209,7 +210,7 @@
 				// name: 'Street Fighter Alpha: Warriors\' Dreams',
 				name: 'Street Fighter Alpha (Demo)',
 				title: 'Under Development',
-				icon: 'vfat/games/sfa/images/icons/' + function() {
+				icon: 'https://emupedia.net/emupedia-game-street-fighter-alpha/images/icons/' + function() {
 					var icons = [
 						'akuma',
 						'balrog',
@@ -227,13 +228,13 @@
 
 					return icons[Math.floor(Math.random() * icons.length)];
 				}() + '.ico',
-				link: 'vfat/games/sfa/index.html',
+				link: 'https://emupedia.net/emupedia-game-street-fighter-alpha/index.html',
 				width: 1068,
 				height: 576
 			} , {
 				name: 'Wolfenstein 3D',
-				icon: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/favicon.gif',
-				link: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/index.html',
+				icon: (SYSTEM_FEATURE_CANVAS ? 'https://emupedia.net/emupedia-game-wolfenstein-3d-canvas' : 'https://emupedia.net/emupedia-game-wolfenstein-3d') + '/favicon.gif',
+				link: (SYSTEM_FEATURE_CANVAS ? 'https://emupedia.net/emupedia-game-wolfenstein-3d-canvas' : 'https://emupedia.net/emupedia-game-wolfenstein-3d') + '/index.html',
 				width: SYSTEM_FEATURE_CANVAS ? 960 : 640,
 				height: SYSTEM_FEATURE_CANVAS ? 600 : 400
 			} , {
@@ -250,55 +251,55 @@
 				height: 400
 			} , {
 				name: 'Doom 3',
-				icon: 'vfat/games/doom3/favicon.ico',
-				link: 'vfat/games/doom3/index.html',
+				icon: 'https://emupedia.net/emupedia-game-doom3/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-doom3/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Quake 1',
-				icon: 'vfat/games/quake1/favicon.ico',
-				link: 'vfat/games/quake1/' + (SYSTEM_FEATURE_ES6 && SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'async.html' : 'index.html'),
+				icon: 'https://emupedia.net/emupedia-game-quake1/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-quake1/' + (SYSTEM_FEATURE_ES6 && SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'async.html' : 'index.html'),
 				width: 640,
 				height: 480
 			} , {
 				name: 'Quake 2',
-				icon: 'vfat/games/quake2/favicon.ico',
-				link: 'vfat/games/quake2/index.html',
+				icon: 'https://emupedia.net/emupedia-game-quake2/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-quake2/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Half-Life 1',
 				title: 'Under Development',
-				icon: 'vfat/games/half-life/favicon.ico',
-				link: 'vfat/games/half-life/index.html',
+				icon: 'https://emupedia.net/emupedia-game-half-life1/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-half-life1/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Diablo 1',
 				title: 'Under Development',
-				icon: 'vfat/games/diablo1/favicon.ico',
-				link: 'vfat/games/diablo1/index.html',
+				icon: 'https://emupedia.net/emupedia-game-diablo1/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-diablo1/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Dark Reign: The Future of War',
 				title: 'Under Development',
-				icon: 'vfat/games/darkreign/favicon.ico',
-				link: 'vfat/games/darkreign/index.html',
+				icon: 'https://emupedia.net/emupedia-game-dark-reign/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-dark-reign/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Command and Conquer',
 				title: 'Under Development',
-				icon: 'vfat/games/command-and-conquer/favicon.ico',
-				link: 'vfat/games/command-and-conquer/index.html',
+				icon: 'https://emupedia.net/emupedia-game-command-and-conquer1/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-command-and-conquer1/index.html',
 				width: 640,
 				height: 535
 			} , {
 				name: 'Minecraft',
 				title: 'Under Development',
-				icon: 'vfat/games/minecraft/favicon.ico',
-				link: 'vfat/games/minecraft/index.html',
+				icon: 'https://emupedia.net/emupedia-game-minecraft-classic/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-minecraft-classic/index.html',
 				width: 900,
 				height: 480
 			} , {
@@ -313,7 +314,7 @@
 				link: 'vfat/apps/notepad/index.html',
 				width: 900,
 				height: 480,
-				autostart: true
+				runonce: true
 			} , {
 				name: 'Paint',
 				icon: 'vfat/apps/paint/favicon.ico',
@@ -331,14 +332,22 @@
 				title: 'Under Development',
 				icon: 'vfat/apps/youtube/favicon.png',
 				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ5b3V0dWJlLmNvbSUyRg==',
+				width: 1020,
+				height: 630
+			} , {
+				name: 'EmuChat',
+				icon: 'vfat/apps/emuchat/favicon.ico',
+				link: 'vfat/apps/emuchat/index.html',
 				width: 900,
-				height: 582
+				height: 480,
+				singleinstance: true
 			} , {
 				name: 'Discord',
 				icon: 'vfat/apps/discord/favicon.ico',
 				link: 'https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/',
 				width: 900,
-				height: 480
+				height: 480,
+				singleinstance: true
 			}]
 		};
 
@@ -432,8 +441,8 @@
 			var icon_options = self.options.icons[j];
 
 			// noinspection JSUnfilteredForInLoop
-			var $icon = 	$('<a class="icon" href="javascript:"' + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
-								'<img src="' + icon_options['icon'] + '" alt="' + icon_options['name'] + '" />' +
+			var $icon = 	$('<a class="emuos-desktop-icon" href="javascript:"' + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
+								'<i class="icon badge" style="background-image: url(' + icon_options['icon'] + ');"></i>' +
 								'<span>' + icon_options['name'] + '</span>' +
 							'</a>');
 
@@ -468,6 +477,18 @@
 			}
 
 			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['runonce'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.attr('data-runonce', icon_options['runonce'] ? 'true' : 'false').data('runonce', icon_options['runonce']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['singleinstance'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.attr('data-singleinstance', icon_options['singleinstance'] ? 'true' : 'false').data('singleinstance', icon_options['singleinstance']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
 			self.$desktop.append($icon);
 
 			$icon.off('click').on('click', function(e) {
@@ -475,14 +496,27 @@
 			}).off('dblclick').on('dblclick', function() {
 				// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 				if (typeof $(this).data('link') !== 'undefined') {
-					// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
-					self.iframe({
-						title: $(this).data('name'),
-						icon :$(this).data('icon'),
-						src: $(this).data('link'),
-						width: $(this).data('width'),
-						height: $(this).data('height')
-					});
+					if (typeof $(this).data('singleinstance') !== 'undefined') {
+						if ($(this).data('singleinstance') && self.$body.find('[id^=' + $(this).data('name') + ']').length === 0) {
+							// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
+							self.iframe({
+								title: $(this).data('name'),
+								icon :$(this).data('icon'),
+								src: $(this).data('link'),
+								width: $(this).data('width'),
+								height: $(this).data('height')
+							});
+						}
+					} else {
+						// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
+						self.iframe({
+							title: $(this).data('name'),
+							icon :$(this).data('icon'),
+							src: $(this).data('link'),
+							width: $(this).data('width'),
+							height: $(this).data('height')
+						});
+					}
 				} else {
 					switch ($(this).data('name')) {
 						case 'eSheep':
@@ -691,21 +725,114 @@
 					getRemaining('12/25/' + currentYear, 'countdown', timer);
 				}
 
+				if (moment().date() >= 26) {
+					newyear += '<div class="newyear-countdown">' +
+									'<div class="newyear-box">' +
+										'<div id="days" class="num">00</div>' +
+										'<div id="days-text" class="text">Days</div>' +
+									'</div>' +
+									'<div class="newyear-box">' +
+										'<div id="hours" class="num">00</div>' +
+										'<div id="hours-text" class="text">Hours</div>' +
+									'</div>' +
+									'<div class="newyear-box">' +
+										'<div id="mins" class="num">00</div>' +
+										'<div id="mins-text" class="text">Minutes</div>' +
+									'</div>' +
+									'<div class="newyear-box">' +
+										'<div id="secs" class="num">00</div>' +
+										'<div id="secs-text" class="text">Seconds</div>' +
+									'</div>' +
+								'</div>';
+				}
+
 				if (moment().date() === 31) {
-					newyear += 	'<div class="fireworks">' +
+					newyear +=	'<div class="fireworks">' +
 									'<div class="fireworks-before"></div>' +
 									'<div class="fireworks-after"></div>' +
-								'</div>'
+								'</div>';
 				}
 
 				self.$desktop.prepend(newyear);
+
+				if (moment().date() >= 26) {
+					function timeLeft(endtime) {
+						// noinspection JSCheckFunctionSignatures
+						var t = Date.parse(endtime) - Date.parse(new Date());
+						var seconds = Math.floor( (t / 1000) % 60 );
+						var minutes = Math.floor( (t / 1000 / 60) % 60 );
+						var hours = Math.floor( (t / (1000 * 60 * 60)) % 24 );
+						var days = Math.floor( t / (1000 *60 * 60* 24) );
+
+						return {
+							total: t,
+							days: days,
+							hours: hours,
+							minutes: minutes,
+							seconds: seconds
+						};
+					}
+
+					function setClock(newyear) {
+						var timeinterval = setInterval(function() {
+							var t = timeLeft(newyear);
+
+							// noinspection JSJQueryEfficiency
+							$('#days').text(t.days);
+							// noinspection JSJQueryEfficiency
+							$('#hours').text(t.hours);
+							// noinspection JSJQueryEfficiency
+							$('#mins').text(('0' + t.minutes).slice(-2));
+							// noinspection JSJQueryEfficiency
+							$('#secs').text(('0' + t.seconds).slice(-2));
+
+							if (t.total <= 0) {
+								clearInterval(timeinterval);
+
+								var now = new Date();
+								var yearStr = now.getFullYear().toString();
+
+								$('#days').text(yearStr[0]);
+								$('#days-text').text('Happy');
+								$('#hours').text(yearStr[1]);
+								$('#hours-text').text('New');
+								$('#mins').text(yearStr[2]);
+								$('#mins-text').text('Year');
+								$('#secs').text(yearStr[3]);
+								$('#secs-text').text('!!!');
+							}
+						},1000);
+					}
+
+					var today = new Date();
+					var deadline = 'January 1 ' + (today.getFullYear() + 1) + ' 00:00:00';
+
+					if (today.getMonth() === 0 && today.getDate() === 1) {
+						deadline = 'January 1 ' + (today.getFullYear()) + ' 00:00:00';
+					}
+
+					setClock(deadline);
+				}
 			}
 		}
 
-		self.$desktop.find('[data-autostart="true"]').first().trigger('dblclick');
+		self.$desktop.find('[data-autostart="true"]').trigger('dblclick');
+
+		self.$desktop.find('[data-runonce="true"]').each(function() {
+			if (typeof simplestorage !== 'undefined') {
+				if (typeof simplestorage.get === 'function') {
+					if (typeof simplestorage.get($(this).data('name')) === 'undefined') {
+						if (typeof simplestorage.set === 'function') {
+							simplestorage.set($(this).data('name'), true);
+							$(this).trigger('dblclick');
+						}
+					}
+				}
+			}
+		});
 
 		self.$html.contextmenu({
-			delegate: 'body, .emuos-taskbar',
+			delegate: '.emuos-desktop, .emuos-taskbar',
 			menu: [{
 				title: 'Refresh',
 				cmd: 'refresh',
@@ -810,12 +937,12 @@
 		var icon	= typeof options.icon		!== 'undefined'	? options.icon		: '';
 		var content	= typeof options.content	!== 'undefined'	? options.content	: '';
 
-		var window	= $('<div class="window" data-title="'+ title +'">' + content + '</div>');
+		var win	= $('<div class="window" data-title="'+ title +'">' + content + '</div>');
 
-		self.$body.append(window);
+		self.$body.append(win);
 
 		// noinspection JSValidateTypes
-		window.window({
+		win.window({
 			icons: {
 				main: self.$html.hasClass('theme-basic') || self.$html.hasClass('theme-win9x') ? (icon !== '' ? icon : null) : ''
 			}
@@ -874,27 +1001,39 @@
 		});
 
 		// noinspection JSValidateTypes
-		return window.window('instance');
+		return win.window('instance');
 	};
 
 	// noinspection DuplicatedCode
 	EmuOS.prototype.iframe = function (options) {
 		var self = this;
 
-		var title		= typeof options.title		!== 'undefined' ? options.title		: '';
-		var icon		= typeof options.icon		!== 'undefined' ? options.icon		: '';
-		var src			= typeof options.src		!== 'undefined' ? options.src		: '';
-		var width		= typeof options.width		!== 'undefined' ? options.width		: 0;
-		var height		= typeof options.height		!== 'undefined' ? options.height	: 0;
+		var title		= typeof options.title	!== 'undefined' ? options.title		: '';
+		var icon		= typeof options.icon	!== 'undefined' ? options.icon		: '';
+		var src			= typeof options.src	!== 'undefined' ? options.src		: '';
+		var width		= typeof options.width	!== 'undefined' ? options.width		: 0;
+		var height		= typeof options.height	!== 'undefined' ? options.height	: 0;
+		var timestamp	= Math.floor(Date.now() / 1000);
 
 		// noinspection HtmlDeprecatedAttribute
-		var window	= $('<div class="iframe" data-title="'+ title +'"><iframe src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
+		var win	= $('<div class="iframe" data-title="'+ title +'"><iframe id="' + title + '-' + timestamp + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
 
-		self.$body.append(window);
-		self.$body.find('iframe').first().focus();
+		self.$body.append(win);
+
+		if (title === 'EmuChat') {
+			if (window.top === window) {
+				if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
+					if (typeof window['NETWORK_CONNECTION']['register_iframe'] === 'function') {
+						window['NETWORK_CONNECTION']['register_iframe'](title + '-' + timestamp);
+					}
+				}
+			}
+		}
+
+		self.$body.find('iframe').first().focus().get(0).contentWindow.focus();
 
 		// noinspection JSValidateTypes
-		window.window({
+		win.window({
 			embeddedContent: true,
 			width: width !== 0 ? width : 640,
 			height: height !== 0 ? height : 400,
@@ -962,7 +1101,7 @@
 		});
 
 		// noinspection JSValidateTypes
-		return window.window('instance');
+		return win.window('instance');
 	};
 
 	return EmuOS;

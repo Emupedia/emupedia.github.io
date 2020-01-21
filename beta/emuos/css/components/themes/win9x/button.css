@@ -1,0 +1,10 @@
+:host {
+}
+
+button {
+	display: inline-block;
+	margin: 2px;
+	width: 114px;
+	height: 16px;
+	text-align: center;
+}

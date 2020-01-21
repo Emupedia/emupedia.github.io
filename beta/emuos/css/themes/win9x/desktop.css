@@ -30,10 +30,10 @@
 	outline-offset: -1px;
 }
 
-.theme-win9x .emuos-desktop-icon.ui-sortable-helper img,
-.theme-win9x .emuos-desktop-icon.ui-draggable-dragging img,
-.theme-win9x .emuos-desktop-icon.ui-selecting img,
-.theme-win9x .emuos-desktop-icon.ui-selected img {
+.theme-win9x .emuos-desktop-icon.ui-sortable-helper i,
+.theme-win9x .emuos-desktop-icon.ui-draggable-dragging i,
+.theme-win9x .emuos-desktop-icon.ui-selecting i,
+.theme-win9x .emuos-desktop-icon.ui-selected i {
 	-webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
 	filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
 }

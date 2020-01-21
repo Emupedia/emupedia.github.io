@@ -2,7 +2,7 @@
 
 // region Console
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (typeof console !== 'undefined') {
 	if (!console.table) {
@@ -226,7 +226,7 @@ if (typeof Math.imul === 'undefined') {
 
 // region String
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 if (!String.prototype.startsWith) {
 	console.log('String.prototype.startsWith polyfill loaded!');
 	String.prototype.startsWith = function(search, pos) {
@@ -234,7 +234,7 @@ if (!String.prototype.startsWith) {
 	};
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!String.prototype.endsWith) {
 	console.log('String.prototype.endsWith polyfill loaded!');
@@ -247,7 +247,7 @@ if (!String.prototype.endsWith) {
 	};
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!String.prototype.repeat) {
 	console.log('String.prototype.repeat polyfill loaded!');
@@ -293,7 +293,7 @@ if (!String.prototype.repeat) {
 	}
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!String.prototype.padStart) {
 	console.log('String.prototype.padStart polyfill loaded!');
@@ -321,15 +321,17 @@ if (!String.prototype.padStart) {
 // region Array
 
 if (typeof Array.isArray === 'undefined') {
+	console.log('Array.isArray polyfill loaded!');
 	// noinspection JSValidateTypes
 	Array.isArray = function(arr) {
 		return Object.prototype.toString.call(arr) === '[object Array]';
 	}
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!Array.from) {
+	console.log('Array.from polyfill loaded!');
 	Array.from = (function() {
 		var toStr = Object.prototype.toString;
 		var isCallable = function (fn) {
@@ -408,7 +410,7 @@ if (!Array.from) {
 	}());
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!Array.prototype.fill) {
 	console.log('Array.prototype.fill polyfill loaded!');
@@ -458,6 +460,7 @@ if (!Array.prototype.fill) {
 // IE 7/8
 // noinspection DuplicatedCode
 if (!Object.keys) {
+	console.log('Object.keys polyfill loaded!');
 	// noinspection DuplicatedCode
 	Object.keys = (function() {
 		'use strict';
@@ -501,6 +504,7 @@ if (!Object.keys) {
 }
 
 if (!Object.assign) {
+	console.log('Object.assign polyfill loaded!');
 	var assign = function (target, source) {
 		var n$ = Object.getOwnPropertyNames(source);
 
@@ -523,6 +527,60 @@ if (!Object.assign) {
 
 		return target;
 	};
+}
+
+// IE 11.592.18362.0
+if (!Object.values) {
+	console.log('Object.values polyfill loaded!');
+	// noinspection DuplicatedCode
+	Object.values = function values(O) {
+		var ownKeys = function(O) {
+			// noinspection JSUnresolvedVariable
+			if (typeof Reflect === 'object' && typeof Reflect.ownKeys === 'function') {
+				// noinspection JSUnresolvedVariable,JSValidateTypes
+				return Reflect.ownKeys(O);
+			} else if (typeof Object.getOwnPropertySymbols === 'function') {
+				// noinspection JSValidateTypes
+				return (Object.getOwnPropertyNames(O).concat(Object.getOwnPropertySymbols(O)));
+			} else {
+				return Object.getOwnPropertyNames(O);
+			}
+		};
+		var reduce = Function.bind.call(Function.call, Array.prototype.reduce);
+		var isEnumerable = Function.bind.call(Function.call, Object.prototype.propertyIsEnumerable);
+		var concat = Function.bind.call(Function.call, Array.prototype.concat);
+
+		return reduce(ownKeys(O), function(v, k) {
+			return concat(v, typeof k === 'string' && isEnumerable(O, k) ? [O[k]] : []);
+		}, []);
+	}
+}
+
+// IE 11.592.18362.0
+if (!Object.entries) {
+	console.log('Object.entries polyfill loaded!');
+	// noinspection DuplicatedCode
+	Object.entries = function entries(O) {
+		var ownKeys = function(O) {
+			// noinspection JSUnresolvedVariable
+			if (typeof Reflect === 'object' && typeof Reflect.ownKeys === 'function') {
+				// noinspection JSUnresolvedVariable,JSValidateTypes
+				return Reflect.ownKeys(O);
+			} else if (typeof Object.getOwnPropertySymbols === 'function') {
+				// noinspection JSValidateTypes
+				return (Object.getOwnPropertyNames(O).concat(Object.getOwnPropertySymbols(O)));
+			} else {
+				return Object.getOwnPropertyNames(O);
+			}
+		};
+		var reduce = Function.bind.call(Function.call, Array.prototype.reduce);
+		var isEnumerable = Function.bind.call(Function.call, Object.prototype.propertyIsEnumerable);
+		var concat = Function.bind.call(Function.call, Array.prototype.concat);
+
+		return reduce(ownKeys(O), function (e, k) {
+			return concat(e, typeof k === 'string' && isEnumerable(O, k) ? [[k, O[k]]] : []);
+		}, []);
+	}
 }
 
 // endregion

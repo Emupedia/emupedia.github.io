@@ -67,7 +67,7 @@
                 if (!supported) {
                     return this;
                 }
-                this.sound.play().catch(function() {});
+                this.sound.play();
                 return this;
             };
             this.togglePlay = function() {
@@ -75,7 +75,7 @@
                     return this;
                 }
                 if (this.sound.paused) {
-                    this.sound.play().catch(function() {});
+                    this.sound.play();
                 } else {
                     this.sound.pause();
                 }

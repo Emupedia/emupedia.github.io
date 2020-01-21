@@ -4,6 +4,19 @@
 				'╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n' +
 				'╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
 
+	window.GoogleAnalyticsObject = '__ga__';
+	window.__ga__ = function() {
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+
+			if (arg.constructor === Object && arg.hitCallback) {
+				arg.hitCallback();
+			}
+		}
+	};
+	window.__ga__.q = [['create', 'UA-47896346-6', 'auto']];
+	window.__ga__.l = Date.now();
+
 	// noinspection JSUnusedLocalSymbols,DuplicatedCode
 	define('optional', [], {
 		load: function(name, req, onload, config) {
@@ -43,6 +56,7 @@
 			clippy: 'libraries/clippy-0.0.3',
 			desktop: 'desktop',
 			dropbox: 'libraries/dropbox-4.0.30.min',
+			emoticons: 'emoticons',
 			emuos: 'emuos',
 			es3base64: 'polyfills/es3-base64-1.0.1.min',
 			es6promise: 'polyfills/es6-promise-auto-4.2.8.min',
@@ -50,6 +64,7 @@
 			esheep: 'libraries/esheep-0.7.2.min',
 			filesystem: 'filesystem',
 			fingerprint: 'libraries/fingerprint-0.5.3',
+			ga: ['//www.google-analytics.com/analytics', 'data:application/javascript,'],
 			jquery: 'libraries/jquery-2.2.4.min',
 			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13',
 			jqueryui: 'libraries/jquery-ui-1.11.4.min',
@@ -66,9 +81,11 @@
 			chat: 'chat',
 			noext: 'libraries/requirejs-noext-1.0.3',
 			octokat: 'libraries/octokat-0.10.0',
+			simplestorage: 'libraries/simplestorage-0.2.1.min',
 			socketio: 'libraries/socket.io-2.3.0.min',
 			taskbar: 'taskbar',
 			text: 'libraries/requirejs-text-2.0.15',
+			twemoji: 'libraries/twemoji-12.1.4.min',
 			window: 'window'
 		},
 		shim: {
@@ -80,7 +97,7 @@
 				deps: ['window', 'lang', 'jqueryuicontextmenu']
 			},
 			chat: {
-				deps: ['jquery', 'fingerprint', 'network']
+				deps: ['jquery', 'simplestorage', 'fingerprint', 'network']
 			},
 			emuos: {
 				deps: ['desktop', 'filesystem']
@@ -93,6 +110,9 @@
 			},
 			fingerprint: {
 				exports: 'Fingerprint'
+			},
+			ga: {
+				exports: '__ga__'
 			},
 			jquerymousewheel: {
 				deps: ['jquery']
@@ -128,6 +148,9 @@
 			taskbar: {
 				deps: ['jqueryui']
 			},
+			twemoji: {
+				exports: 'twemoji'
+			},
 			window: {
 				deps: ['taskbar']
 			}
@@ -143,12 +166,17 @@
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	requirejs([
 		'jquery',
+		'json!config/desktop.json',
 		'chat',
 		'filesystem',
-		'network',
-		'emuos'
-	], function($, Chat, FileSystem, Network, EmuOS) {
+		'emuos',
+		'optional!ga'
+	], function($, desktop, Chat, FileSystem, EmuOS, ga) {
 		$(function() {
+			if (typeof ga === 'function') {
+				ga('send', 'pageview');
+			}
+
 			/*var filesystem = new FileSystem({
 				github: {
 					organization: 'Emupedia',
@@ -166,9 +194,15 @@
 			// var webamp = new Webamp({template: webamp_template});
 
 			// noinspection JSUnusedLocalSymbols
-			var desktop = new EmuOS({
+			new EmuOS({
 				filesystem: null,
-				theme: 'theme-win9x'
+				themes: {
+					basic: 'theme-basic',
+					win3x: 'theme-win3x',
+					win9x: 'theme-win9x'
+				},
+				theme: 'theme-win9x',
+				icons: [] //desktop.icons
 			});
 
 			// noinspection JSUnresolvedFunction

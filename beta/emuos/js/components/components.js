@@ -1,4 +1,7 @@
 (function() {
+	const define = $sys.api.hybrids.define;
+	const html = $sys.api.hybrids.html;
+
 	function increaseCount(host) {
 		host.count += 1;
 	}
@@ -10,7 +13,7 @@
 
 	define('simple-counter', SimpleCounter);
 
-	$sys.api.fetch('css/components/panel.css', function (e, style) {
+	$sys.api.fetch('css/components/themes/win9x/panel.css', (e, style) => {
 		const Panel = {
 			render: () => html`
 				<slot name="content">Content</slot>
@@ -20,17 +23,17 @@
 		define('emuos-panel', Panel);
 	});
 
-	$sys.api.fetch('css/components/button.css', function (e, style) {
+	$sys.api.fetch('css/components/themes/win9x/button.css', (e, style) => {
 		const Button = {
 			render: () => html`
-				<emuos-panel slot="content">x</emuos-panel>
+				<button type="button"><emuos-panel><span slot="content">Test</span></emuos-panel></button>
 			`.style(style)
 		};
 
 		define('emuos-button', Button);
 	});
 
-	$sys.api.fetch('css/components/titlebar.css', function (e, style) {
+	$sys.api.fetch('css/components/themes/win9x/titlebar.css', (e, style) => {
 		const TitleBar = {
 			render: () => html`
 				<slot name="title">Title</slot>
@@ -41,7 +44,7 @@
 		define('emuos-titlebar', TitleBar);
 	});
 
-	$sys.api.fetch('css/components/window.css', function (e, style) {
+	$sys.api.fetch('css/components/themes/win9x/window.css', (e, style) => {
 		const Window = {
 			render: () => html`
 				<emuos-panel>
@@ -58,7 +61,7 @@
 		define('emuos-window', Window);
 	});
 
-	$sys.api.fetch('css/components/taskbar.css', function (e, style) {
+	$sys.api.fetch('css/components/themes/win9x/taskbar.css', (e, style) => {
 		const Taskbar = {
 			render: () => html`
 				<emuos-button id="start">Start</emuos-button>
@@ -68,12 +71,10 @@
 		define('emuos-taskbar', Taskbar);
 	});
 
-	$sys.api.fetch('css/components/desktop.css', function (e, style) {
+	$sys.api.fetch('css/components/themes/win9x/desktop.css', (e, style) => {
 		const Desktop = {
 			render: () => html`
-				<simple-counter></simple-counter>
-				<emuos-window></emuos-window>
-				<emuos-taskbar></emuos-taskbar>
+				<emuos-button>Start</emuos-button>
 			`.style(style)
 		};
 

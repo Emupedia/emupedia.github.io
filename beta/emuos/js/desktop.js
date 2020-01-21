@@ -1,5 +1,6 @@
 ;(function ($, undefined) {
 	'use strict';
+
 	$.widget('emuos.desktop', {
 		version: '@emuos-main-version',
 		options: {
@@ -64,7 +65,7 @@
 			uiSelected: 'ui-selected',
 			uiSelectee: 'ui-selectee'
 		},
-		_create: function () {
+		_create: function() {
 			this.$elem = this.element;
 			var self = this;
 
@@ -103,12 +104,13 @@
 			});
 		},
 		// returns all icons
-		_icons: function () {
+		_icons: function() {
 			var $collection = $();
 
 			// noinspection JSUnusedLocalSymbols
 			$.each(this._cache.icons, function (index, elem) {
 				var $icon = $('#' + index);
+
 				if ($icon.length) {
 					$collection = $collection.add($icon);
 				}
@@ -117,7 +119,7 @@
 			return $collection;
 		},
 		// public method returning windows as jQuery collection
-		icons: function () {
+		icons: function() {
 			return this._icons();
 		},
 		_destroy: function() {

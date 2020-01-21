@@ -81,6 +81,256 @@ function getChecksum(file) {
 
 function install(install_directory, dependency, version) {
 	switch (dependency) {
+		case '@allmarkedup/purl':
+		case 'purl':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/purl.js', install_directory + libraries_directory + 'purl-' + version + '.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
+		case '@babel/polyfill':
+		case 'babel-polyfill':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/polyfill.min.js', install_directory + polyfills_directory + 'es7-babel-polyfill-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/polyfill.js', install_directory + polyfills_directory + 'es7-babel-polyfill-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
+				}
+			});
+			break;
+		case '@babel/standalone':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/babel.min.js', install_directory + libraries_directory + 'babel-standalone-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/babel.js', install_directory + libraries_directory + 'babel-standalone-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
+				}
+			});
+			break;
+		case '@coreui/coreui':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/js/coreui.min.js', install_directory + libraries_directory + 'coreui-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/js/coreui.js', install_directory + libraries_directory + 'coreui-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/scss/', install_directory + scss_directory + 'coreui-' + version, copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									// noinspection JSValidateTypes
+									replace({
+										files: install_directory + scss_directory + 'coreui-' + version + '/coreui.scss',
+										from: 'node_modules/bootstrap/scss/bootstrap',
+										to: 'bootstrap/bootstrap'
+									}, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case '@coreui/icons':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/css/coreui-icons.min.css', install_directory + css_directory + 'coreui-icons-' + version + '.min.css', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/css/coreui-icons.css', install_directory + css_directory + 'coreui-icons-' + version + '.css', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/scss/', install_directory + scss_directory + 'coreui-icons-' + version, copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/fonts/', install_directory + fonts_directory, copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case '@fortawesome/fontawesome-free':
+		case 'font-awesome':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/css/all.css', install_directory + css_directory + 'font-awesome-' + version + '.css', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + css_directory + 'font-awesome-' + version + '.css',
+						from: /\.\.\/webfonts\//gi,
+						to: '../fonts/'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/css/all.min.css', install_directory + css_directory + 'font-awesome-' + version + '.min.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									// noinspection JSValidateTypes
+									replace({
+										files: install_directory + css_directory + 'font-awesome-' + version + '.min.css',
+										from: /\.\.\/webfonts\//gi,
+										to: '../fonts/'
+									}, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/webfonts', install_directory + fonts_directory, copy_options, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													//noinspection JSUnresolvedFunction
+													fs.copy(nodemodules_directory + dependency + '/scss', install_directory + scss_directory + 'font-awesome-' + version, copy_options, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															log.log(dependency + ' version ' + version + ' installed!');
+														}
+													});
+												}
+											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case '@webcomponents/custom-elements':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js', install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js',
+						from: '//# sourceMappingURL=custom-elements.min.js.map',
+						to: '//# sourceMappingURL=es6-custom-elements-' + version + '.min.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js.map', install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case '@webcomponents/html-imports':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/html-imports.min.js', install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js',
+						from: '//# sourceMappingURL=html-imports.min.js.map',
+						to: '//# sourceMappingURL=es6-html-imports-' + version + '.min.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/html-imports.min.js.map', install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case '@webcomponents/webcomponentsjs':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js', install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js',
+						from: '//# sourceMappingURL=webcomponents-bundle.js.map',
+						to: '//# sourceMappingURL=es6-web-components-' + version + '.min.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js.map', install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'airview':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/js/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
@@ -207,41 +457,6 @@ function install(install_directory, dependency, version) {
 				} else {
 					//noinspection JSUnresolvedFunction
 					fs.copy(nodemodules_directory + dependency + '/animate.css', install_directory + css_directory + 'animate-' + version + '.css', copy_options, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							log.log(dependency + ' version ' + version + ' installed!');
-						}
-					});
-				}
-			});
-			break;
-		case '@babel/polyfill':
-		case 'babel-polyfill':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/dist/polyfill.min.js', install_directory + polyfills_directory + 'es7-babel-polyfill-' + version + '.min.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/polyfill.js', install_directory + polyfills_directory + 'es7-babel-polyfill-' + version + '.js', copy_options, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							log.log(dependency + ' version ' + version + ' installed!');
-						}
-					});
-				}
-			});
-			break;
-		case '@babel/standalone':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/babel.min.js', install_directory + libraries_directory + 'babel-standalone-' + version + '.min.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/babel.js', install_directory + libraries_directory + 'babel-standalone-' + version + '.js', copy_options, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
@@ -645,12 +860,34 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+						from: /\["catch"]\(function\(\){}\)/g,
+						to: ''
+					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							log.log(dependency + ' version ' + version + ' installed!');
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									// noinspection JSValidateTypes
+									replace({
+										files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+										from: /\.catch\(function\(\) {}\)/g,
+										to: ''
+									}, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
 						}
 					});
 				}
@@ -749,72 +986,6 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					log.log(dependency + ' version ' + version + ' installed!');
-				}
-			});
-			break;
-		case '@coreui/coreui':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/dist/js/coreui.min.js', install_directory + libraries_directory + 'coreui-' + version + '.min.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/js/coreui.js', install_directory + libraries_directory + 'coreui-' + version + '.js', copy_options, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/scss/', install_directory + scss_directory + 'coreui-' + version, copy_options, (error) => {
-								if (error) {
-									log.error('Error occurred:', error);
-								} else {
-									// noinspection JSValidateTypes
-									replace({
-										files: install_directory + scss_directory + 'coreui-' + version + '/coreui.scss',
-										from: 'node_modules/bootstrap/scss/bootstrap',
-										to: 'bootstrap/bootstrap'
-									}, (error) => {
-										if (error) {
-											log.error('Error occurred:', error);
-										} else {
-											log.log(dependency + ' version ' + version + ' installed!');
-										}
-									});
-								}
-							});
-						}
-					});
-				}
-			});
-			break;
-		case '@coreui/icons':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/css/coreui-icons.min.css', install_directory + css_directory + 'coreui-icons-' + version + '.min.css', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/css/coreui-icons.css', install_directory + css_directory + 'coreui-icons-' + version + '.css', copy_options, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/scss/', install_directory + scss_directory + 'coreui-icons-' + version, copy_options, (error) => {
-								if (error) {
-									log.error('Error occurred:', error);
-								} else {
-									//noinspection JSUnresolvedFunction
-									fs.copy(nodemodules_directory + dependency + '/fonts/', install_directory + fonts_directory, copy_options, (error) => {
-										if (error) {
-											log.error('Error occurred:', error);
-										} else {
-											log.log(dependency + ' version ' + version + ' installed!');
-										}
-									});
-								}
-							});
-						}
-					});
 				}
 			});
 			break;
@@ -1553,60 +1724,6 @@ function install(install_directory, dependency, version) {
 												}
 											});
 
-										}
-									});
-								}
-							});
-						}
-					});
-				}
-			});
-			break;
-		case 'font-awesome':
-		case '@fortawesome/fontawesome-free':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/css/all.css', install_directory + css_directory + 'font-awesome-' + version + '.css', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					// noinspection JSValidateTypes
-					replace({
-						files: install_directory + css_directory + 'font-awesome-' + version + '.css',
-						from: /\.\.\/webfonts\//gi,
-						to: '../fonts/'
-					}, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/css/all.min.css', install_directory + css_directory + 'font-awesome-' + version + '.min.css', copy_options, (error) => {
-								if (error) {
-									log.error('Error occurred:', error);
-								} else {
-									// noinspection JSValidateTypes
-									replace({
-										files: install_directory + css_directory + 'font-awesome-' + version + '.min.css',
-										from: /\.\.\/webfonts\//gi,
-										to: '../fonts/'
-									}, (error) => {
-										if (error) {
-											log.error('Error occurred:', error);
-										} else {
-											//noinspection JSUnresolvedFunction
-											fs.copy(nodemodules_directory + dependency + '/webfonts', install_directory + fonts_directory, copy_options, (error) => {
-												if (error) {
-													log.error('Error occurred:', error);
-												} else {
-													//noinspection JSUnresolvedFunction
-													fs.copy(nodemodules_directory + dependency + '/scss', install_directory + scss_directory + 'font-awesome-' + version, copy_options, (error) => {
-														if (error) {
-															log.error('Error occurred:', error);
-														} else {
-															log.log(dependency + ' version ' + version + ' installed!');
-														}
-													});
-												}
-											});
 										}
 									});
 								}
@@ -3200,17 +3317,6 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
-		case '@allmarkedup/purl':
-		case 'purl':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/purl.js', install_directory + libraries_directory + 'purl-' + version + '.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					log.log(dependency + ' version ' + version + ' installed!');
-				}
-			});
-			break;
 		case 'requirejs':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/require.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
@@ -3496,37 +3602,6 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
-		case 'toastr':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.min.css', install_directory + css_directory + dependency + '-' + version + '.min.css', copy_options, (error) => {
-								if (error) {
-									log.error('Error occurred:', error);
-								} else {
-									//noinspection JSUnresolvedFunction
-									fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.css', install_directory + css_directory + dependency + '-' + version + '.css', copy_options, (error) => {
-										if (error) {
-											log.error('Error occurred:', error);
-										} else {
-											log.log(dependency + ' version ' + version + ' installed!');
-										}
-									});
-								}
-							});
-						}
-					});
-				}
-			});
-			break;
 		case 'tempusdominus-bootstrap-4':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/build/js/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
@@ -3560,6 +3635,54 @@ function install(install_directory, dependency, version) {
 									});
 								}
 							});
+						}
+					});
+				}
+			});
+			break;
+		case 'toastr':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.min.css', install_directory + css_directory + dependency + '-' + version + '.min.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.css', install_directory + css_directory + dependency + '-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'twemoji':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
 						}
 					});
 				}
@@ -3647,90 +3770,6 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					log.log(dependency + ' version ' + version + ' installed!');
-				}
-			});
-			break;
-		case '@webcomponents/custom-elements':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js', install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					// noinspection JSValidateTypes
-					replace({
-						files: install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js',
-						from: '//# sourceMappingURL=custom-elements.min.js.map',
-						to: '//# sourceMappingURL=es6-custom-elements-' + version + '.min.js.map'
-					}, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js.map', install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js.map', copy_options, (error) => {
-								if (error) {
-									log.error('Error occurred:', error);
-								} else {
-									log.log(dependency + ' version ' + version + ' installed!');
-								}
-							});
-						}
-					});
-				}
-			});
-			break;
-		case '@webcomponents/html-imports':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/html-imports.min.js', install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					// noinspection JSValidateTypes
-					replace({
-						files: install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js',
-						from: '//# sourceMappingURL=html-imports.min.js.map',
-						to: '//# sourceMappingURL=es6-html-imports-' + version + '.min.js.map'
-					}, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/html-imports.min.js.map', install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js.map', copy_options, (error) => {
-								if (error) {
-									log.error('Error occurred:', error);
-								} else {
-									log.log(dependency + ' version ' + version + ' installed!');
-								}
-							});
-						}
-					});
-				}
-			});
-			break;
-		case '@webcomponents/webcomponentsjs':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js', install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					// noinspection JSValidateTypes
-					replace({
-						files: install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js',
-						from: '//# sourceMappingURL=webcomponents-bundle.js.map',
-						to: '//# sourceMappingURL=es6-web-components-' + version + '.min.js.map'
-					}, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js.map', install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js.map', copy_options, (error) => {
-								if (error) {
-									log.error('Error occurred:', error);
-								} else {
-									log.log(dependency + ' version ' + version + ' installed!');
-								}
-							});
-						}
-					});
 				}
 			});
 			break;

@@ -1,15 +1,27 @@
 .xmas-countdown {
-	width: 130px;
-	text-align: center;
 	position: absolute;
 	right: 10px;
 	bottom: 15px;
-	border: 2px #61AD65 solid;
+	background: #fff;
+	width: 130px;
+	text-align: center;
+	border: 2px #61ad65 solid;
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
 	border-radius: 3px;
-	background: white;
-	font-weight: 600;
+
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
+	-moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
+	-ms-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
+	-o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
+
 	font: 80%/1.25 Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-weight: 600;
+
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 }
@@ -22,24 +34,24 @@
 }
 
 .xmas-countdown svg .bow-shadow {
-	fill: #C13D2C;
+	fill: #c13d2c;
 }
 
 .xmas-countdown svg .bow {
-	fill: #E64E3D;
+	fill: #e64e3d;
 }
 
 .xmas-countdown .message {
 	font-size: 1.3em;
-	background: #61AD65;
-	color: white;
+	background: #61ad65;
+	color: #fff;
 	text-transform: uppercase;
 	padding: 5px 0;
-	text-shadow: 1px 1px 1px #5A5A5A;
+	text-shadow: 1px 1px 1px #5a5a5a;
 }
 
 .xmas-countdown .countdown {
 	font-size: 5em;
-	color: #E64E3D;
+	color: #e64e3d;
 	line-height: 60px;
 }

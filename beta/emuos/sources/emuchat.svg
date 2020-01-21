@@ -1,0 +1,18 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<title>background</title>
+		<rect fill="none" id="canvas_background" height="107.26212" width="107.26212" y="-1" x="-1"/>
+	</g>
+	<g>
+		<title>Layer 1</title>
+		<g id="svg_4">
+			<rect stroke="#000" id="svg_1" height="78" width="116" y="24.77118" x="24.5" stroke-width="1.5" fill="#BCBEC0"/>
+			<rect stroke="#000" id="svg_2" height="78" width="116" y="66.77118" x="59.5" stroke-width="1.5" fill="#1b75bc"/>
+			<path fill="#1b75bc" stroke="#000" stroke-width="1.5" stroke-opacity="null" d="m146.33945,143.81416l22.49975,31.41466l0.55555,-31.6666" id="svg_5"/>
+			<rect fill="#1b75bc" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="142.63018" y="127.26065" width="29.68747" height="16.66665" id="svg_3" stroke="#000"/>
+		</g>
+		<rect id="svg_8" height="16.66669" width="18.62748" y="94.82995" x="75.73525" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff"/>
+		<rect id="svg_9" height="16.66669" width="18.62748" y="97.77113" x="107.10786" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff"/>
+		<rect transform="translate(62.2550048828125,1.4705907106399536) " id="svg_10" height="16.66669" width="18.62748" y="94.82995" x="75.73525" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff"/>
+	</g>
+</svg>

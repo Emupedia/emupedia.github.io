@@ -10,9 +10,11 @@
 
 	-->
 	<head>
-		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: *; style-src 'self' 'unsafe-inline'; font-src 'self' data: *; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.google-analytics.com https://ssl.google-analytics.com; connect-src 'self' *; manifest-src 'self'; frame-src 'self' data: *;">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<meta charset="utf-8">
 		<meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui"/>
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,7 +36,7 @@
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:title" content="EmuOS" />
 		<meta name="twitter:url" content="https://emupedia.net/beta/emuos/" />
-		<meta name="twitter:image" content="https://emupedia.net/beta/emuos/images/emupedia-logo-xmas-256.png" />
+		<meta name="twitter:image" content="https://emupedia.net/beta/emuos/images/logo/emupedia-logo-256.png" />
 		<meta name="twitter:site" content="@EmupediaNet">
 		<meta name="twitter:creator" content="@EmupediaNet">
 
@@ -45,25 +47,25 @@
 		<meta property="og:description" content="The purpose of Emupedia is to serve as a nonprofit meta-resource, hub and community for those interested mainly in video game preservation which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly UI that simulates several retro operating systems for educational purposes.">
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://emupedia.net/beta/emuos/">
-		<meta property="og:image" content="https://emupedia.net/beta/emuos/images/emupedia-logo-xmas-256.png">
+		<meta property="og:image" content="https://emupedia.net/beta/emuos/images/logo/emupedia-logo-256.png">
 		<meta property="og:image:type" content="image/png" />
 		<meta property="og:image:width" content="256" />
 		<meta property="og:image:height" content="256" />
 
 		<title>EmuOS</title>
 
-		<link rel="manifest" href="js/config/manifest.json" />
+		<link rel="manifest" href="manifest.webmanifest" />
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link rel="icon" type="image/x-icon" href="favicon.ico" />
-		<link rel="apple-touch-icon" href="images/emupedia-logo-xmas-58.png" />
-		<link rel="apple-touch-icon" sizes="57x57" href="images/emupedia-logo-xmas-58.png" />
-		<link rel="apple-touch-icon" sizes="58x58" href="images/emupedia-logo-xmas-58.png" />
-		<link rel="apple-touch-icon" sizes="72x72" href="images/emupedia-logo-xmas-72.png" />
-		<link rel="apple-touch-icon" sizes="114x114" href="images/emupedia-logo-xmas-114.png" />
-		<link rel="apple-touch-icon" sizes="152x152" href="images/emupedia-logo-xmas-152.png" />
-		<link rel="apple-touch-icon" sizes="167x167" href="images/emupedia-logo-xmas-168.png" />
-		<link rel="apple-touch-icon" sizes="180x180" href="images/emupedia-logo-xmas-180.png" />
-		<link rel="apple-touch-startup-image" href="images/emupedia-logo-xmas-256.png" />
+		<link rel="apple-touch-icon" href="images/logo/emupedia-logo-58.png" />
+		<link rel="apple-touch-icon" sizes="57x57" href="images/logo/emupedia-logo-58.png" />
+		<link rel="apple-touch-icon" sizes="58x58" href="images/logo/emupedia-logo-58.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="images/logo/emupedia-logo-72.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="images/logo/emupedia-logo-114.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="images/logo/emupedia-logo-152.png" />
+		<link rel="apple-touch-icon" sizes="167x167" href="images/logo/emupedia-logo-168.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="images/logo/emupedia-logo-180.png" />
+		<link rel="apple-touch-startup-image" href="images/logo/emupedia-logo-256.png" />
 
 		<!--jQuery UI Base Theme-->
 		<link type="text/css" rel="stylesheet" href="css/libraries/jquery-ui.structure-1.11.4.min.css" />
@@ -79,17 +81,20 @@
 		<link type="text/css" rel="stylesheet" href="css/libraries/ionicons-4.6.3.min.css" />
 		<link type="text/css" rel="stylesheet" href="css/reset.css" />
 		<link type="text/css" rel="stylesheet" href="css/fonts.css" />
-		<link type="text/css" rel="stylesheet" href="css/label.css" />
 		<link type="text/css" rel="stylesheet" href="css/desktop.css" />
 		<link type="text/css" rel="stylesheet" href="css/taskbar.css" />
 		<link type="text/css" rel="stylesheet" href="css/window.css" />
+		<link type="text/css" rel="stylesheet" href="css/label.css" />
+		<link type="text/css" rel="stylesheet" href="css/badge.css" />
 		<link type="text/css" rel="stylesheet" href="css/tree.css" />
+		<link type="text/css" rel="stylesheet" href="css/emoticons.css" />
 		<link type="text/css" rel="stylesheet" href="css/chat.css" />
 
 		<!--EmuOS Seasonal Theme-->
-		<link type="text/css" rel="stylesheet" href="css/themes/seasonal/newyear/fireworks.css" />
 		<link type="text/css" rel="stylesheet" href="css/themes/seasonal/xmas/snowflakes.css" />
 		<link type="text/css" rel="stylesheet" href="css/themes/seasonal/xmas/countdown.css" />
+		<link type="text/css" rel="stylesheet" href="css/themes/seasonal/newyear/fireworks.css" />
+		<link type="text/css" rel="stylesheet" href="css/themes/seasonal/newyear/countdown.css" />
 
 		<!--EmuOS Win3x Theme-->
 		<link type="text/css" rel="stylesheet" href="css/themes/win3x/reset.css" />

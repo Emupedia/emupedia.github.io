@@ -1,5 +1,0 @@
-game.levels["imp1"] = {
-	name: 'RAID ON ALCINE',
-	info: 'In the early stages of the conflict, the Freedom Guard was limited to minor acts of sabotage against the Imperium. A young Freedom Guard officer, Jeb Radec, plotted a bold frontal raid on a sizable Imperium supply depot of pure water on the planet Alcine. The plan was considered a suicide mission by the fledgling Freedom Guard ruling Synod, but Radec ignored the Synod and led the assault with a small team of volunteers.',
-	objective: 'A potable water depot on Alcine has been seized by a group of insurgents. Attack the depot and destroy those who have challenged us. Demolish all water processing facilities.\n\nOBJECTIVES\n\n-->  Build a Training Facility and Assembly Plant\n-->  Eliminate all enemy resource Freighters and Water Launch Pads'
-};

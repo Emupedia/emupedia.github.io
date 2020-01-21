@@ -1,0 +1,298 @@
+{
+	"format": {
+		"version": "1.0"
+	},
+	"icons": [{
+		"name": "EmuOS v2.0",
+		"title": "Under Development",
+		"icon": "favicon.ico",
+		"link": "boot.html",
+		"width": 824,
+		"height": 624
+	} , {
+		"name": "ÐeKaÐeNcE",
+		"title": "Under Development",
+		"icon": "vfat/apps/dekadence/favicon.ico",
+		"link": "https://launcher.dekadence.ro",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Windows 93",
+		"icon": "vfat/apps/windows93/favicon.ico",
+		"link": "https://v1.windows93.net",
+		"width": 960,
+		"height": 734
+	} , {
+		"name": "98.js",
+		"icon": "vfat/apps/98.js/favicon.ico",
+		"link": "https://98.js.org/",
+		"width": 960,
+		"height": 713
+	} , {
+		"name": "Visual Studio Code",
+		"title": "Under Development",
+		"icon": "vfat/apps/vscode/favicon.ico",
+		"link": "vfat/apps/vscode/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Sandbox",
+		"title": "Under Development",
+		"icon": "vfat/apps/sandbox/favicon.ico",
+		"link": "vfat/apps/sandbox/index.html?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox/examples?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Microsoft Solitaire Collection",
+		"icon": "https://zone.msn.com/images/v9/en-us/game/msso/Solitaire_GameLogo_350x210_v1.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZjZG4uem9uZS5tc24uY29tJTJGYXNzZXRzJTJGZ2FtZXMlMkZtaWNyb3NvZnRzb2xpdGFpcmVjb2xsZWN0aW9uJTJGMjAxOSUyRjIwMTkwNzI5VDEyMTMwMF8xLjUuNC4xX3JlbGVhc2VfdjAwMDFfOWFmNjQzOTJfbXNuJTJGc29saXRhaXJlJTJGaW5kZXguaHRtbCUzRmhvc3RpbmdFbnZpcm9ubWVudCUzRHpvbmU=",
+		"width": 960,
+		"height": 540
+	} , {
+		"name": "Microsoft Mahjong",
+		"icon": "https://zone.msn.com/images/v9/en-us/game/msmj/Mahjong_GameLogo_250_150.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZjZG4uem9uZS5tc24uY29tJTJGYXNzZXRzJTJGZ2FtZXMlMkZtaWNyb3NvZnRtYWhqb25nJTJGMjAxOSUyRjIwMTkwODA1VDE4MDgwMF8xLjAuMl9yZWxlYXNlXzIwMTlfMDAyX2U1ODg2ZWRlX21zbiUyRmdhbWUuaHRtbCUzRmhvc3RpbmdFbnZpcm9ubWVudCUzRHpvbmU=",
+		"width": 960,
+		"height": 540
+	} , {
+		"name": "Microsoft Ultimate Word Games",
+		"icon": "https://zone.msn.com/images/v9/en-us/game/mscw/350x210_mscw.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZjZG4uem9uZS5tc24uY29tJTJGYXNzZXRzJTJGZ2FtZXMlMkZtaWNyb3NvZnR1bHRpbWF0ZXdvcmRnYW1lcyUyRjIwMTklMkYyMDE5MDgyMVQwOTU0MDRfMS4wLjVfZmVhdHVyZXNfMjAxOV9OYW1lQ2hhbmdlVG9Xb3JkVHdpc3Rlcl9mNzg2MmE4X21zbiUyRndvcmQtZ2FtZXMlMkZnYW1lLmh0bWwlM0ZnYW1lJTNEY3Jvc3N3b3JkJTI2aG9zdGluZ0Vudmlyb25tZW50JTNEem9uZQ==",
+		"width": 960,
+		"height": 552
+	} , {
+		"name": "Cookie Clicker<br/>BETA",
+		"title": "Under Development",
+		"icon": "vfat/games/cookie-clicker/favicon.png",
+		"link": "https://orteil.dashnet.org/cookieclicker/",
+		"width": 900,
+		"height": 600
+	} , {
+		"name": "Flappy Bird",
+		"icon": "https://emupedia.net/emupedia-game-flappy-bird/favicon.png",
+		"link": "https://emupedia.net/emupedia-game-flappy-bird/index.html",
+		"width": 432,
+		"height": 600
+	} , {
+		"name": "Geometry Dash",
+		"icon": "vfat/games/geometry-dash/favicon.png",
+		"link": "https://scratch.mit.edu/projects/105500895/embed",
+		"width": 900,
+		"height": 600
+	} , {
+		"name": "agar.io<br/>BETA",
+		"title": "Under Development",
+		"icon": "vfat/games/agar.io/favicon.png",
+		"link": "https://agasio.herokuapp.com/",
+		"width": 900,
+		"height": 600
+	} , {
+		"name": "slither.io<br/>BETA",
+		"title": "Under Development",
+		"icon": "vfat/games/slither.io/favicon.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZzbGl0aGVyLmlvJTJG",
+		"width": 900,
+		"height": 600
+	} , {
+		"name": "Wing 2.0<br/>Prototype",
+		"title": "Under Development",
+		"icon": "vfat/games/wing2/favicon.ico",
+		"link": "vfat/games/wing2/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Worms 2<br/>Prototype",
+		"title": "Under Development",
+		"icon": "vfat/games/worms2/favicon.ico",
+		"link": "vfat/games/worms2/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Biolab Disaster",
+		"icon": "https://emupedia.net/emupedia-game-biolab-disaster/favicon.png",
+		"link": "https://emupedia.net/emupedia-game-biolab-disaster/index.html",
+		"width": 720,
+		"height": 480
+	} , {
+		"name": "Super Blob Blaster",
+		"icon": "https://emupedia.net/emupedia-game-super-blob-blaster/favicon.png",
+		"link": "https://emupedia.net/emupedia-game-super-blob-blaster/index.html",
+		"width": 720,
+		"height": 480
+	} , {
+		"name": "Pac-Man",
+		"icon": "https://emupedia.net/emupedia-game-pac-man/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-pac-man/index.html",
+		"width": 1025,
+		"height": 715
+	} , {
+		"name": "Clippy",
+		"icon": "vfat/apps/clippy/favicon.png"
+	} , {
+		"name": "eSheep",
+		"icon": "vfat/apps/esheep/favicon.png"
+	} , {
+		"name": "ASCIICKER",
+		"title": "Under Development",
+		"icon": "https://emupedia.net/emupedia-demo-asciicker/favicon.ico",
+		"link": "https://emupedia.net/emupedia-demo-asciicker/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "3D Spatial Audio (Demo)",
+		"icon": "https://emupedia.net/emupedia-demo-3d-spatial-audio/favicon.ico",
+		"link": "https://emupedia.net/emupedia-demo-3d-spatial-audio/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Voxel Space (Demo)",
+		"icon": "https://emupedia.net/emupedia-demo-voxel-space/favicon.ico",
+		"link": "https://emupedia.net/emupedia-demo-voxel-space/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "8-bit Palette Color Cycling (Demo)",
+		"icon": "vfat/apps/palette/favicon.ico",
+		"link": "vfat/apps/palette/index.html",
+		"width": 900,
+		"height": 550
+	} , {
+		"name": "RomCenter",
+		"title": "Under Development",
+		"icon": "vfat/apps/romcenter/favicon.ico",
+		"link": "vfat/apps/romcenter/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "DOSBox",
+		"title": "Under Development",
+		"icon": "vfat/apps/dosbox/favicon.ico",
+		"link": "vfat/apps/dosbox/index.html",
+		"width": 640,
+		"height": 422
+	} , {
+		"name": "Street Fighter Alpha (Demo)",
+		"title": "Under Development",
+		"icon": ["akuma", "balrog", "blanka", "chunli", "dhalsim", "evilryu", "ken", "makoto", "ryu", "sagat", "sakura", "zangief"],
+		"link": "https://emupedia.net/emupedia-game-street-fighter-alpha/index.html",
+		"width": 1068,
+		"height": 576
+	} , {
+		"name": "Wolfenstein 3D",
+		"icon": "https://emupedia.net/emupedia-game-wolfenstein-3d-canvas/favicon.gif",
+		"link": "https://emupedia.net/emupedia-game-wolfenstein-3d-canvas/index.html",
+		"width": 960,
+		"height": 600
+	} , {
+		"name": "Doom 1",
+		"icon": "vfat/games/doom1/favicon.gif",
+		"link": "vfat/games/doom1/index.html",
+		"width": 640,
+		"height": 400
+	} , {
+		"name": "Doom 2: Hell on Earth",
+		"icon": "vfat/games/doom2/favicon.gif",
+		"link": "vfat/games/doom2/index.html",
+		"width": 640,
+		"height": 400
+	} , {
+		"name": "Doom 3",
+		"icon": "https://emupedia.net/emupedia-game-doom3/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-doom3/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Quake 1",
+		"icon": "https://emupedia.net/emupedia-game-quake1/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-quake1/async.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Quake 2",
+		"icon": "https://emupedia.net/emupedia-game-quake2/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-quake2/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Half-Life 1",
+		"title": "Under Development",
+		"icon": "https://emupedia.net/emupedia-game-half-life1/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-half-life1/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Diablo 1",
+		"title": "Under Development",
+		"icon": "https://emupedia.net/emupedia-game-diablo1/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-diablo1/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Dark Reign: The Future of War",
+		"title": "Under Development",
+		"icon": "https://emupedia.net/emupedia-game-dark-reign/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-dark-reign/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Command and Conquer",
+		"title": "Under Development",
+		"icon": "https://emupedia.net/emupedia-game-command-and-conquer1/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-command-and-conquer1/index.html",
+		"width": 640,
+		"height": 535
+	} , {
+		"name": "Minecraft",
+		"title": "Under Development",
+		"icon": "https://emupedia.net/emupedia-game-minecraft-classic/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-minecraft-classic/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Winamp",
+		"icon": "vfat/apps/webamp/favicon.ico",
+		"link": "vfat/apps/webamp/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Notepad",
+		"icon": "vfat/apps/notepad/favicon.ico",
+		"link": "vfat/apps/notepad/index.html",
+		"width": 900,
+		"height": 480,
+		"runonce": true
+	} , {
+		"name": "Paint",
+		"icon": "vfat/apps/paint/favicon.ico",
+		"link": "vfat/apps/paint/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "SVG Editor",
+		"icon": "vfat/apps/svg-editor/favicon.ico",
+		"link": "vfat/apps/svg-editor/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "YouTube<br/>BETA",
+		"title": "Under Development",
+		"icon": "vfat/apps/youtube/favicon.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ5b3V0dWJlLmNvbSUyRg==",
+		"width": 1020,
+		"height": 630
+	} , {
+		"name": "EmuChat",
+		"icon": "vfat/apps/emuchat/favicon.ico",
+		"link": "vfat/apps/emuchat/index.html",
+		"width": 900,
+		"height": 480,
+		"singleinstance": true
+	} , {
+		"name": "Discord",
+		"icon": "vfat/apps/discord/favicon.ico",
+		"link": "https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/",
+		"width": 900,
+		"height": 480,
+		"singleinstance": true
+	}]
+}

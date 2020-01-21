@@ -1,5 +1,6 @@
 html {
 	height: 100%;
+	line-height: 1;
 }
 
 body {
@@ -8,6 +9,10 @@ body {
 	padding: 0;
 	overflow: hidden;
 	cursor: inherit !important;
+}
+
+button, input, optgroup, select, textarea {
+	line-height: 1;
 }
 
 canvas:-moz-full-screen {
