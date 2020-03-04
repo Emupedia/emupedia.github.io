@@ -77,7 +77,7 @@
 			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
 			lang: 'lang-en',
 			moment: 'libraries/moment-2.24.0.min',
-			'moment-timezone': 'libraries/moment-timezone-0.5.27.min',
+			'moment-timezone': 'libraries/moment-timezone-0.5.28.min',
 			network: 'network',
 			noext: 'libraries/requirejs-noext-1.0.3',
 			octokat: 'libraries/octokat-0.10.0',
