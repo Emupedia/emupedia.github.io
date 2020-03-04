@@ -28,6 +28,7 @@ $(function() {
 
 	client.socket.on('room.info', function(data) {
 		client.preload.room_info = data;
+		console.log('opa')
 	});
 
 	client.socket.on('auth.info', function (data) {
