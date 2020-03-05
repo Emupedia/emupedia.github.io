@@ -3,7 +3,6 @@
 	text-decoration: none;
 }
 
-/*noinspection CssUnresolvedCustomProperty,CssOverwrittenProperties*/
 [data-title]:after {
 	content: attr(data-title);
 	background-color: #ffffe1;
@@ -11,11 +10,9 @@
 	font-size: 11px;
 	font-weight: normal;
 	position: absolute;
+	left: 0;
+	top: 0;
 	padding: 1px 5px 2px 5px;
-	left: 50%;
-	top: 50%;
-	left: calc(var(--mouse-x, 0) + 10px);
-	top: calc(var(--mouse-y, 0) - 20px);
 	white-space: nowrap;
 	border: 1px solid #000;
 	z-index: 99999;
@@ -26,7 +23,12 @@
 	visibility: hidden;
 }
 
+/*noinspection CssUnresolvedCustomProperty,CssOverwrittenProperties*/
 [data-title]:hover:after {
+	left: 50%;
+	top: 50%;
+	left: calc(var(--mouse-x, 0) + 10px);
+	top: calc(var(--mouse-y, 0) - 20px);
 	opacity: 1;
 	visibility: visible;
 }
