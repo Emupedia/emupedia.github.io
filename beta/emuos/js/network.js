@@ -140,19 +140,7 @@
 			var server = config.servers[config.server];
 
 			client = {
-				socket: io.connect(server, {
-					autoConnect: true,
-					reconnection: true,
-					reconnectionAttempts: Infinity,
-					reconnectionDelay: 5000,
-					reconnectionDelayMax : 60000,
-					randomizationFactor: 0.5,
-					timeout: 120000,
-					transports: ['websocket'],
-					rememberUpgrade: true,
-					rejectUnauthorized: true,
-					secure: true
-				}),
+				socket: io,
 				config: config,
 				server: server,
 				preload: {}
@@ -313,6 +301,20 @@
 				} catch (e) {
 					console.log(e);
 				}
+			});
+
+			client.socket.connect(server, {
+				autoConnect: true,
+				reconnection: true,
+				reconnectionAttempts: Infinity,
+				reconnectionDelay: 5000,
+				reconnectionDelayMax : 60000,
+				randomizationFactor: 0.5,
+				timeout: 120000,
+				transports: ['websocket'],
+				rememberUpgrade: true,
+				rejectUnauthorized: true,
+				secure: true
 			});
 		}
 
