@@ -10,6 +10,20 @@
 		"width": 824,
 		"height": 624
 	} , {
+		"name": "EmuChat",
+		"icon": "/emupedia-app-emuchat/favicon.ico",
+		"link": "/emupedia-app-emuchat/index.html",
+		"width": 900,
+		"height": 480,
+		"singleinstance": true
+	} , {
+		"name": "Discord",
+		"icon": "images/icons/discord.ico",
+		"link": "https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/",
+		"width": 900,
+		"height": 480,
+		"singleinstance": true
+	} , {
 		"name": "Windows 93",
 		"icon": "images/icons/windows93.ico",
 		"link": "https://v1.windows93.net",
@@ -271,19 +285,5 @@
 		"link": "/emupedia-app-svg-editor/index.html",
 		"width": 900,
 		"height": 480
-	} , {
-		"name": "EmuChat",
-		"icon": "/emupedia-app-emuchat/favicon.ico",
-		"link": "/emupedia-app-emuchat/index.html",
-		"width": 900,
-		"height": 480,
-		"singleinstance": true
-	} , {
-		"name": "Discord",
-		"icon": "images/icons/discord.ico",
-		"link": "https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/",
-		"width": 900,
-		"height": 480,
-		"singleinstance": true
 	}]
 }

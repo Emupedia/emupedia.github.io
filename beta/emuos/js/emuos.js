@@ -45,6 +45,20 @@
 				link: 'boot.html',
 				width: 824,
 				height: 624
+			} , {
+				name: 'EmuChat',
+				icon: '/emupedia-app-emuchat/favicon.ico',
+				link: '/emupedia-app-emuchat/index.html',
+				width: 900,
+				height: 480,
+				singleinstance: true
+			} , {
+				name: 'Discord',
+				icon: 'images/icons/discord.ico',
+				link: 'https://e.widgetbot.io/channels/510149138491506688/604419869345185884/',
+				width: 900,
+				height: 480,
+				singleinstance: true
 			/*} , {
 				name: 'ÐeKaÐeNcE',
 				title: 'Under Development',
@@ -339,20 +353,6 @@
 				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ5b3V0dWJlLmNvbSUyRg==',
 				width: 1020,
 				height: 630*/
-			} , {
-				name: 'EmuChat',
-				icon: '/emupedia-app-emuchat/favicon.ico',
-				link: '/emupedia-app-emuchat/index.html',
-				width: 900,
-				height: 480,
-				singleinstance: true
-			} , {
-				name: 'Discord',
-				icon: 'images/icons/discord.ico',
-				link: 'https://e.widgetbot.io/channels/510149138491506688/604419869345185884/',
-				width: 900,
-				height: 480,
-				singleinstance: true
 			}]
 		};
 

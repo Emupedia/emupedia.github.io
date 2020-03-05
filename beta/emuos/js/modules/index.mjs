@@ -1,10 +1,10 @@
 // noinspection JSFileReferences
-import {define, html} from 'https://unpkg.com/hybrids@4.1.5/src/index.js'
+import {define, html} from 'https://unpkg.com/hybrids@4.1.5/src/index.js';
 
 const load = async (host, event) => {
-	const pageUrl = event.target.getAttribute('page')
-	const pageName = (await import(pageUrl)).default
-	host.pageLoaded = `<${pageName}></${pageName}>`
+	const pageUrl = event.target.getAttribute('page');
+	const pageName = (await import(pageUrl)).default;
+	host.pageLoaded = `<${pageName}></${pageName}>`;
 }
 
 const HybridsApp = {
@@ -18,10 +18,10 @@ const HybridsApp = {
 				<p>Example of an unbundled Hybrids app with dynamic imports.</p>
 
 				<div>
-					<button onclick="${load}" page="./pages/Welcome.mjs">
+					<button onclick="${load}" page="./Welcome.mjs">
 						Welcome Page
 					</button>
-					<button onclick="${load}" page="./pages/Other.mjs">
+					<button onclick="${load}" page="./Other.mjs">
 						Other Page
 					</button>
 				</div>
@@ -44,7 +44,7 @@ const HybridsApp = {
 						</li>
 					</ul>
 				</footer>
-			</div>`,
+			</div>`
 }
 
-define('hybrids-app', HybridsApp)
+define('hybrids-app', HybridsApp);
