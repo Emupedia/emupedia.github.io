@@ -1,6 +1,4 @@
 ;(function ($, undefined) {
-	'use strict';
-
 	$.widget('emuos.desktop', {
 		version: '@emuos-main-version',
 		options: {

@@ -1,6 +1,6 @@
 (function() {
 	function start() {
-		if (!$sys.feature.SYSTEM_FEATURE_ES6) {
+		if (!$sys.feature.ES6) {
 			$sys.api.import('js/components/components.js', 'text/babel');
 
 			// noinspection JSUnresolvedVariable
@@ -20,30 +20,30 @@
 		}
 	}
 
-	if (typeof $lib !== 'undefined' && typeof $sys !== 'undefined') {
-		if (!$sys.feature.SYSTEM_FEATURE_ES6 && !$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
-			$sys.api.import($lib['babel-polyfill'], function() {
-				$sys.api.import($lib['babel-standalone'], function() {
-					$sys.api.import($lib['web-components'], function() {
-						$sys.api.import($lib['hybrids'], function() {
+	if (typeof $sys !== 'undefined') {
+		if (!$sys.feature['ES6'] && !$sys.feature['WEBCOMPONENTS_V1']) {
+			$sys.api.import($sys.lib['polyfill-es7-babel-polyfill'][0], function() {
+				$sys.api.import($sys.lib['babel-standalone'][0], function() {
+					$sys.api.import($sys.lib['polyfill-es6-web-components'][0], function() {
+						$sys.api.import($sys.lib['hybrids'][0], function() {
 							$sys.api.hybrids = hybrids;
 							start();
 						});
 					});
 				});
 			});
-		} else if (!$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
-			$sys.api.import($lib['web-components'], function() {
-				$sys.api.import($lib['hybrids'], function() {
+		} else if (!$sys.feature['WEBCOMPONENTS_V1']) {
+			$sys.api.import($sys.lib['polyfill-es6-web-components'][0], function() {
+				$sys.api.import($sys.lib['hybrids'][0], function() {
 					$sys.api.hybrids = hybrids;
 					start();
 				});
 			});
 		} else {
-			$sys.api.import($lib['hybrids'], function() {
+			$sys.api.import($sys.lib['hybrids'][0], function() {
 				$sys.api.hybrids = hybrids;
 				start();
 			});
 		}
 	}
-})();
+}());

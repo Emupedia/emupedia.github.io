@@ -1,5 +1,4 @@
 ;(function($, undefined) {
-	'use strict';
 	/*jshint laxbreak:true,-W030,maxcomplexity:60,smarttabs:true,-W004,-W044*/
 	// noinspection JSUnusedLocalSymbols
 	$.widget('emuos.taskbar', {

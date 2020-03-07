@@ -1,11 +1,7 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
 (function(global) {
-	console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗\n' +
-				'╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n' +
-				'╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
-
-	window.GoogleAnalyticsObject = '__ga__';
-	window.__ga__ = function() {
+	global.GoogleAnalyticsObject = '__ga__';
+	global.__ga__ = function() {
 		for (var i = 0; i < arguments.length; i++) {
 			var arg = arguments[i];
 
@@ -15,8 +11,8 @@
 			}
 		}
 	};
-	window.__ga__.q = [['create', 'UA-47896346-6', 'auto']];
-	window.__ga__.l = Date.now();
+	global.__ga__.q = [['create', 'UA-47896346-6', 'auto']];
+	global.__ga__.l = Date.now();
 
 	// noinspection JSUnusedLocalSymbols,DuplicatedCode
 	define('optional', [], {
@@ -27,7 +23,7 @@
 
 			var onLoadFailure = function(err) {
 				var failedId = err.requireModules && err.requireModules[0];
-				console.warn('Could not load optional module: ' + failedId);
+				global.console.warn('Could not load optional module: ' + failedId);
 
 				requirejs.undef(failedId);
 
@@ -52,50 +48,14 @@
 	requirejs.config({
 		urlArgs: 'rand=' + (new Date()).getTime(),
 		waitSeconds: 300,
-		paths: {
-			browserfs: 'libraries/browserfs-1.4.3.min',
-			clippy: 'libraries/clippy-0.0.3',
-			desktop: 'desktop',
-			dropbox: 'libraries/dropbox-4.0.30.min',
-			emoticons: 'emoticons',
-			emuos: 'emuos',
-			es3base64: 'polyfills/es3-base64-1.0.1.min',
-			es6promise: 'polyfills/es6-promise-auto-4.2.8.min',
-			es6fetch: 'polyfills/es6-fetch-3.0.0',
-			esheep: 'libraries/esheep-0.7.2.min',
-			filesystem: 'filesystem',
-			fingerprint: 'libraries/fingerprint-0.5.3',
-			ga: '//www.google-analytics.com/analytics',
-			jquery: 'libraries/jquery-2.2.4.min',
-			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13',
-			jqueryui: 'libraries/jquery-ui-1.11.4.min',
-			jqueryuicontextmenu: 'libraries/jquery-ui-contextmenu-1.18.1.min',
-			jqueryuitree: 'libraries/jquery-ui-tree-3.0.0.min',
-			jquerycustomscrollbar: 'libraries/jquery-customscrollbar-3.1.5.min',
-			jqyeryajaxretry: 'libraries/jquery-ajax-retry-0.2.8.min',
-			json: 'libraries/requirejs-json-1.0.3',
-			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
-			lang: 'lang-en',
-			moment: 'libraries/moment-2.24.0.min',
-			'moment-timezone': 'libraries/moment-timezone-0.5.28.min',
-			network: 'network',
-			noext: 'libraries/requirejs-noext-1.0.3',
-			octokat: 'libraries/octokat-0.10.0',
-			simplestorage: 'libraries/simplestorage-0.2.1.min',
-			socket: ['https://ws.emupedia.net/app/u_socket_es5', 'https://ws.emuos.net/app/u_socket_es5', 'socket'],
-			socketio: 'libraries/socket.io-2.3.0.min',
-			taskbar: 'taskbar',
-			text: 'libraries/requirejs-text-2.0.15',
-			twemoji: 'libraries/twemoji-12.1.5.min',
-			window: 'window'
-		},
+		paths: $sys.lib,
 		shim: {
 			clippy: {
 				exports: 'clippy',
 				deps: ['jquery']
 			},
 			desktop: {
-				deps: ['window', 'lang', 'jqueryuicontextmenu']
+				deps: ['window', 'lang', 'jquery-ui-contextmenu']
 			},
 			chat: {
 				deps: ['jquery', 'simplestorage', 'fingerprint', 'network']
@@ -107,7 +67,7 @@
 				exports: 'eSheep'
 			},
 			filesystem: {
-				deps: ['jqyeryajaxretry', 'jsrsasign', 'octokat']
+				deps: ['jquery-ajax-retry', 'jsrsasign-all', 'octokat']
 			},
 			fingerprint: {
 				exports: 'Fingerprint'
@@ -115,25 +75,34 @@
 			ga: {
 				exports: '__ga__'
 			},
-			jquerymousewheel: {
+			'jquery-1.x': {
+				exports: 'jQuery'
+			},
+			'jquery-2.x': {
+				exports: 'jQuery'
+			},
+			'jquery-3.x': {
+				exports: 'jQuery'
+			},
+			'jquery-mousewheel': {
 				deps: ['jquery']
 			},
-			jqueryui: {
+			'jquery-ui': {
 				deps: ['jquery']
 			},
-			jqueryuicontextmenu: {
-				deps: ['jqueryui']
+			'jquery-ui-contextmenu': {
+				deps: ['jquery-ui']
 			},
-			jqueryuitree: {
-				deps: ['jqueryui']
+			'jquery-ui-tree': {
+				deps: ['jquery-ui']
 			},
-			jquerycustomscrollbar: {
-				deps: ['jquerymousewheel']
+			'jquery-customscrollbar': {
+				deps: ['jquery-mousewheel']
 			},
-			jsrsasign: {
+			'jsrsasign-all': {
 				exports: 'KJUR'
 			},
-			lang: {
+			'lang-en': {
 				deps: ['taskbar']
 			},
 			network: {
@@ -144,10 +113,10 @@
 				deps: ['moment']
 			},
 			octokat: {
-				deps: ['es6promise', 'es6fetch', 'es3base64']
+				deps: ['polyfill-es6-promise', 'polyfill-es6-fetch']
 			},
 			taskbar: {
-				deps: ['jqueryui']
+				deps: ['jquery-ui']
 			},
 			twemoji: {
 				exports: 'twemoji'
@@ -156,7 +125,17 @@
 				deps: ['taskbar']
 			}
 		},
-		map: {}
+		map: {
+			'*': {
+				'jQuery': 'jquery-2.x',
+				'jquery': 'jquery-2.x',
+				'jqueryui': 'jquery-ui-1.11.x',
+				'jquery-ui': 'jquery-ui-1.11.x',
+				'lang': 'lang-en',
+				'json': 'requirejs-json',
+				'text': 'requirejs-text'
+			}
+		}
 	});
 
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
@@ -172,8 +151,8 @@
 			if (typeof ga === 'function') {
 				ga('send', {
 					hitType: 'pageview',
-					page: window.location.pathname,
-					title: window.location.href
+					page: global.location.pathname,
+					title: global.location.href
 				});
 			}
 
@@ -191,4 +170,4 @@
 			});
 		});
 	});
-} (this));
+}(this));

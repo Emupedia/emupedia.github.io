@@ -1,25 +1,25 @@
 // noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
+		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep'], factory);
 	} else { // noinspection DuplicatedCode
 		if (typeof module === 'object' && module.exports) {
-				module.exports = function(root, jQuery) {
-					if (jQuery === undefined) {
-						if (typeof window !== 'undefined') {
-							// noinspection NpmUsedModulesInstalled
-							jQuery = require('jquery');
-						} else {
-							// noinspection NpmUsedModulesInstalled
-							jQuery = require('jquery')(root);
-						}
+			module.exports = function(root, jQuery) {
+				if (jQuery === undefined) {
+					if (typeof window !== 'undefined') {
+						// noinspection NpmUsedModulesInstalled
+						jQuery = require('jquery');
+					} else {
+						// noinspection NpmUsedModulesInstalled
+						jQuery = require('jquery')(root);
 					}
-					factory(jQuery);
-					return jQuery;
-				};
-			} else {
+				}
 				factory(jQuery);
-			}
+				return jQuery;
+			};
+		} else {
+			factory(jQuery);
+		}
 	}
 } (function ($, simplestorage, moment, ga, Octokat, eSheep, clippy) {
 	var EmuOS = function (options) {
@@ -252,20 +252,20 @@
 				height: 576
 			} , {
 				name: 'Wolfenstein 3D',
-				icon: (SYSTEM_FEATURE_CANVAS ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/favicon.gif',
-				link: (SYSTEM_FEATURE_CANVAS ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/index.html',
-				width: SYSTEM_FEATURE_CANVAS ? 960 : 640,
-				height: SYSTEM_FEATURE_CANVAS ? 600 : 400
+				icon: ($sys.feature['CANVAS'] ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/favicon.gif',
+				link: ($sys.feature['CANVAS'] ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/index.html',
+				width: $sys.feature['CANVAS'] ? 960 : 640,
+				height: $sys.feature['CANVAS'] ? 600 : 400
 			} , {
 				name: 'Doom 1',
 				icon: '/emupedia-game-doom1/favicon.gif',
-				link: '/emupedia-game-doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html',
+				link: '/emupedia-game-doom1/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/') + 'index.html',
 				width: 640,
 				height: 400
 			} , {
 				name: 'Doom 2: Hell on Earth',
 				icon: '/emupedia-game-doom2/favicon.gif',
-				link: '/emupedia-game-doom2/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html',
+				link: '/emupedia-game-doom2/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/') + 'index.html',
 				width: 640,
 				height: 400
 			} , {
@@ -277,7 +277,7 @@
 			} , {
 				name: 'Quake 1',
 				icon: '/emupedia-game-quake1/favicon.ico',
-				link: '/emupedia-game-quake1/' + (SYSTEM_FEATURE_ES6 && SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'async.html' : 'index.html'),
+				link: '/emupedia-game-quake1/' + ($sys.feature['ES6'] && $sys.feature['ES7_ASYNC_AWAIT'] ? 'async.html' : 'index.html'),
 				width: 640,
 				height: 480
 			} , {
@@ -413,15 +413,15 @@
 
 		self.$html.addClass('emuos').addClass(self.options.theme);
 
-		if (isIE) {
+		if ($sys.browser.isIE) {
 			self.$html.addClass('browser-ie');
-		} else if (isEdge) {
+		} else if ($sys.browser.isEdge) {
 			self.$html.addClass('browser-edge');
-		} else if (isChrome || isOperaBlink) {
+		} else if ($sys.browser.isChrome || $sys.browser.isOperaBlink) {
 			self.$html.addClass('browser-chrome');
-		} else if (isSafari || isOperaPresto) {
+		} else if ($sys.browser.isSafari || $sys.browser.isOperaPresto) {
 			self.$html.addClass('browser-webkit');
-		} else if (isFirefox || isPaleMoon || isKMeleon || isNetscape) {
+		} else if ($sys.browser.isFirefox || $sys.browser.isPaleMoon || $sys.browser.isKMeleon || $sys.browser.isNetscape) {
 			self.$html.addClass('browser-firefox');
 		} else {
 			self.$html.addClass('browser-other');
@@ -860,8 +860,8 @@
 
 		if (typeof self.options.network.start === 'function') {
 			window['NETWORK_CONNECTION'] = self.options.network.start({
-				servers: ['wss://ws.emupedia.net', 'wss://ws.emuos.net'],
-				server: ~window.location.hostname.indexOf('emuos.net') ? 1 : 0,
+				servers: ['wss://ws.emupedia.net', 'wss://ws.emuos.net', 'wss://ws.emuos.org'],
+				server: ~window.location.hostname.indexOf('emuos.org') ? 2 : (~window.location.hostname.indexOf('emuos.net') ? 1 : 0),
 				mode: 0
 			});
 		}

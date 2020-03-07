@@ -1,32 +1,31 @@
 $(function() {
 	var $body = $('body');
 
-
 	$body.html(
-		'\t\t<div class="emuos-desktop">DESKTOP</div>\n' +
-		'\t\t<div class="emuos-window blur">\n' +
-		'\t\t\t<div class="emuos-window-container"></div>\n' +
-		'\t\t</div>\n' +
-		'\t\t<div class="emuos-taskbar-bg blur"></div>\n' +
-		'\t\t<div class="emuos-taskbar">\n' +
-		'\t\t\t<div class="emuos-taskbar-container">\n' +
-		'\t\t\t\t<div class="emuos-start"><button class="emuos-start-button"></button></div>\n' +
-		'\t\t\t\t<div class="emuos-apps">APPS</div>\n' +
-		'\t\t\t\t<div class="emuos-tray">TRAY</div>\n' +
-		'\t\t\t</div>\n' +
-		'\t\t</div>\n'
+		'<div class="emuos-desktop">DESKTOP</div>' +
+			'<div class="emuos-window blur">' +
+				'<div class="emuos-window-container"></div>' +
+			'</div>' +
+			'<div class="emuos-window blur">' +
+				'<div class="emuos-window-container"></div>' +
+			'</div>' +
+			'<div class="emuos-taskbar-bg blur"></div>' +
+			'<div class="emuos-taskbar">' +
+				'<div class="emuos-taskbar-container">' +
+				'<div class="emuos-start"><button class="emuos-start-button"></button></div>' +
+				'<div class="emuos-apps">APPS</div>' +
+				'<div class="emuos-tray">TRAY</div>' +
+			'</div>' +
+		'</div>'
 	);
 
-	$body.find('.emuos-window').first().draggable({
+	$body.find('.emuos-window').draggable({
 		iframeFix: true,
-		scroll: false
+		scroll: false,
 		// handle: '.chat-window-title',
 		// cancel: 'a',
 		// containment: 'document, body'
-		// stack: {
-		// 	group: '#window',
-		// 	min: 1
-		// }
+		stack: '.emuos-window'
 	}).resizable({
 		// containment: 'document, body',
 		// maxWidth: 640,
@@ -35,5 +34,4 @@ $(function() {
 		minHeight: 120,
 		handles: 'n,e,s,w,se,sw,ne,nw'
 	});
-
 });
