@@ -659,6 +659,9 @@
 				'//emuos.org/beta/emuos/network'
 		],
 		'socket': [
+				'//ws.emupedia.net/app/u_socket_es5',
+				'//ws.emuos.net/app/u_socket_es5',
+				'//ws.emuos.org/app/u_socket_es5',
 				'socket',
 				'/beta/emuos/socket',
 				'//emupedia.net/beta/emuos/socket',
