@@ -3588,7 +3588,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					libraries['socket.io'] = 'socket.io-' + version + '.min';
+					// libraries['socket.io'] = 'socket.io-' + version + '.min';
 					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + 'socket.io-' + version + '.min.js',

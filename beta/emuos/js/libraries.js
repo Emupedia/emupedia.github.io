@@ -595,13 +595,6 @@
 				'//emuos.net/beta/emuos/js/libraries/simplestorage-0.2.1.min',
 				'//emuos.org/beta/emuos/js/libraries/simplestorage-0.2.1.min'
 		],
-		'socket.io': [
-				'libraries/socket.io-2.3.0.min',
-				'/beta/emuos/js/libraries/socket.io-2.3.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/socket.io-2.3.0.min',
-				'//emuos.net/beta/emuos/js/libraries/socket.io-2.3.0.min',
-				'//emuos.org/beta/emuos/js/libraries/socket.io-2.3.0.min'
-		],
 		'twemoji': [
 				'libraries/twemoji-12.1.5.min',
 				'/beta/emuos/js/libraries/twemoji-12.1.5.min',
