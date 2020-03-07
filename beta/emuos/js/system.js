@@ -443,7 +443,15 @@
 	// noinspection JSUnresolvedVariable
 	$sys.feature.BATTERY								= !!global.navigator.getBattery ? true : !!global.navigator.battery || !!global.navigator.mozBattery;
 	// TODO: implement check for Generic Sensor API
-	$sys.feature.CSS_VARIABLES							= CSS && CSS.supports('color', 'var(--fake-var)');
+	$sys.feature.CSS_VARIABLES							= (function() {
+		if (typeof CSS !== 'undefined') {
+			if (typeof CSS.supports === 'function') {
+				return CSS.supports('color', 'var(--fake-var)');
+			}
+		}
+
+		return false;
+	})();
 	$sys.feature.ES3_BASE64								= 'btoa' in global && 'atob' in global;
 	$sys.feature.ES3									= $sys.feature.ES3_BASE64;
 	$sys.feature.ES5_STRICT_MODE						= (function() {'use strict'; return !this; })();
