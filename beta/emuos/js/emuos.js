@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep'], factory);
+		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
 	} else { // noinspection DuplicatedCode
 		if (typeof module === 'object' && module.exports) {
 			module.exports = function(root, jQuery) {
