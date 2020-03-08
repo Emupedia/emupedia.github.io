@@ -151,6 +151,12 @@
 		"width": 640,
 		"height": 480
 	} , {
+		"name": "ASCII PATROL",
+		"icon": "/emupedia-game-ascii-patrol/favicon.ico",
+		"link": "/emupedia-game-ascii-patrol/index.html",
+		"width": 640,
+		"height": 480
+	} , {
 		"name": "3D Spatial Audio<br />(Demo)",
 		"icon": "/emupedia-demo-3d-spatial-audio/favicon.ico",
 		"link": "/emupedia-demo-3d-spatial-audio/index.html",
