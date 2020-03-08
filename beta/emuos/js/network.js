@@ -243,6 +243,7 @@
 								case 'SG':
 								case 'SL':
 								case 'SR':
+								case 'T1':
 								case 'TT':
 								case 'UK':
 								case 'US':
