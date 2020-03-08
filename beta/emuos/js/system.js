@@ -1199,14 +1199,10 @@
 
 	// endregion
 
-	$sys.api.import('libraries');
-	$sys.api.import('defines');
-
 	$sys.api.banner();
 
 	if (global.location.hostname === 'localhost') {
 		$sys.api.dumpsystem();
-		global.console.log($sys);
 	}
 
 	var sysinit = $sys.api.get('#system');
