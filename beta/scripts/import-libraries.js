@@ -4046,7 +4046,7 @@ for (let i = 0; i < dependencies.length; i++) {
 						Object.keys(libraries).forEach(function(key) {
 							if (!Array.isArray(libraries[key])) {
 								libraries[key] = paths.map(function(path) {
-									return path + libraries[key];
+									return (path !== '' ? path + 'js/' : path) + libraries[key];
 								});
 							}
 						});

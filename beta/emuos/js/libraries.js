@@ -611,69 +611,69 @@
 		],
 		'desktop': [
 				'desktop',
-				'/beta/emuos/desktop',
-				'//emupedia.net/beta/emuos/desktop',
-				'//emuos.net/beta/emuos/desktop',
-				'//emuos.org/beta/emuos/desktop'
+				'/beta/emuos/js/desktop',
+				'//emupedia.net/beta/emuos/js/desktop',
+				'//emuos.net/beta/emuos/js/desktop',
+				'//emuos.org/beta/emuos/js/desktop'
 		],
 		'emoticons': [
 				'emoticons',
-				'/beta/emuos/emoticons',
-				'//emupedia.net/beta/emuos/emoticons',
-				'//emuos.net/beta/emuos/emoticons',
-				'//emuos.org/beta/emuos/emoticons'
+				'/beta/emuos/js/emoticons',
+				'//emupedia.net/beta/emuos/js/emoticons',
+				'//emuos.net/beta/emuos/js/emoticons',
+				'//emuos.org/beta/emuos/js/emoticons'
 		],
 		'emuos': [
 				'emuos',
-				'/beta/emuos/emuos',
-				'//emupedia.net/beta/emuos/emuos',
-				'//emuos.net/beta/emuos/emuos',
-				'//emuos.org/beta/emuos/emuos'
+				'/beta/emuos/js/emuos',
+				'//emupedia.net/beta/emuos/js/emuos',
+				'//emuos.net/beta/emuos/js/emuos',
+				'//emuos.org/beta/emuos/js/emuos'
 		],
 		'filesystem': [
 				'filesystem',
-				'/beta/emuos/filesystem',
-				'//emupedia.net/beta/emuos/filesystem',
-				'//emuos.net/beta/emuos/filesystem',
-				'//emuos.org/beta/emuos/filesystem'
+				'/beta/emuos/js/filesystem',
+				'//emupedia.net/beta/emuos/js/filesystem',
+				'//emuos.net/beta/emuos/js/filesystem',
+				'//emuos.org/beta/emuos/js/filesystem'
 		],
 		'lang-en': [
 				'lang-en',
-				'/beta/emuos/lang-en',
-				'//emupedia.net/beta/emuos/lang-en',
-				'//emuos.net/beta/emuos/lang-en',
-				'//emuos.org/beta/emuos/lang-en'
+				'/beta/emuos/js/lang-en',
+				'//emupedia.net/beta/emuos/js/lang-en',
+				'//emuos.net/beta/emuos/js/lang-en',
+				'//emuos.org/beta/emuos/js/lang-en'
 		],
 		'network': [
 				'network',
-				'/beta/emuos/network',
-				'//emupedia.net/beta/emuos/network',
-				'//emuos.net/beta/emuos/network',
-				'//emuos.org/beta/emuos/network'
+				'/beta/emuos/js/network',
+				'//emupedia.net/beta/emuos/js/network',
+				'//emuos.net/beta/emuos/js/network',
+				'//emuos.org/beta/emuos/js/network'
 		],
 		'socket': [
 				'//ws.emupedia.net/app/u_socket_es5',
 				'//ws.emuos.net/app/u_socket_es5',
 				'//ws.emuos.org/app/u_socket_es5',
 				'socket',
-				'/beta/emuos/socket',
-				'//emupedia.net/beta/emuos/socket',
-				'//emuos.net/beta/emuos/socket',
-				'//emuos.org/beta/emuos/socket'
+				'/beta/emuos/js/socket',
+				'//emupedia.net/beta/emuos/js/socket',
+				'//emuos.net/beta/emuos/js/socket',
+				'//emuos.org/beta/emuos/js/socket'
 		],
 		'taskbar': [
 				'taskbar',
-				'/beta/emuos/taskbar',
-				'//emupedia.net/beta/emuos/taskbar',
-				'//emuos.net/beta/emuos/taskbar',
-				'//emuos.org/beta/emuos/taskbar'
+				'/beta/emuos/js/taskbar',
+				'//emupedia.net/beta/emuos/js/taskbar',
+				'//emuos.net/beta/emuos/js/taskbar',
+				'//emuos.org/beta/emuos/js/taskbar'
 		],
 		'window': [
 				'window',
-				'/beta/emuos/window',
-				'//emupedia.net/beta/emuos/window',
-				'//emuos.net/beta/emuos/window',
-				'//emuos.org/beta/emuos/window'
+				'/beta/emuos/js/window',
+				'//emupedia.net/beta/emuos/js/window',
+				'//emuos.net/beta/emuos/js/window',
+				'//emuos.org/beta/emuos/js/window'
 		],
 		'ga': '//www.google-analytics.com/analytics'
 };
