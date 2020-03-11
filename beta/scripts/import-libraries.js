@@ -4039,7 +4039,6 @@ for (let i = 0; i < dependencies.length; i++) {
 						libraries['filesystem'] = 'filesystem';
 						libraries['lang-en'] = 'lang-en';
 						libraries['network'] = 'network';
-						libraries['socket'] = 'socket';
 						libraries['taskbar'] = 'taskbar';
 						libraries['window'] = 'window';
 
@@ -4051,10 +4050,7 @@ for (let i = 0; i < dependencies.length; i++) {
 							}
 						});
 
-						if (Array.isArray(libraries['socket'])) {
-							libraries['socket'].unshift('//ws.emupedia.net/app/u_socket_es5', '//ws.emuos.net/app/u_socket_es5', '//ws.emuos.org/app/u_socket_es5');
-						}
-
+						libraries['socket'] = ['//ws.emupedia.net/app/u_socket_es5', '//ws.emuos.net/app/u_socket_es5', '//ws.emuos.org/app/u_socket_es5'];
 						libraries['ga'] = '//www.google-analytics.com/analytics';
 
 						fs.writeFile(app_directory + js_directory + 'libraries.js',

@@ -654,12 +654,7 @@
 		'socket': [
 				'//ws.emupedia.net/app/u_socket_es5',
 				'//ws.emuos.net/app/u_socket_es5',
-				'//ws.emuos.org/app/u_socket_es5',
-				'socket',
-				'/beta/emuos/js/socket',
-				'//emupedia.net/beta/emuos/js/socket',
-				'//emuos.net/beta/emuos/js/socket',
-				'//emuos.org/beta/emuos/js/socket'
+				'//ws.emuos.org/app/u_socket_es5'
 		],
 		'taskbar': [
 				'taskbar',
