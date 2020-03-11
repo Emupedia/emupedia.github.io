@@ -41,208 +41,220 @@
 			icons: [{
 				name: 'EmuOS v2.0',
 				title: 'Under Development',
-				icon: 'favicon.ico',
+				icon: 'images/icons/desktop/emupedia',
 				link: 'boot.html',
 				width: 824,
 				height: 624
 			} , {
 				name: 'EmuChat',
-				icon: '/emupedia-app-emuchat/favicon.ico',
-				link: '/emupedia-app-emuchat/index.html',
+				icon: 'images/icons/desktop/emuchat',
+				link: '/emupedia-app-emuchat/',
 				width: 900,
 				height: 480,
 				singleinstance: true
 			} , {
 				name: 'Discord',
-				icon: 'images/icons/discord.ico',
+				icon: 'images/icons/desktop/discord',
 				link: 'https://e.widgetbot.io/channels/510149138491506688/604419869345185884/',
 				width: 900,
 				height: 480,
+				shortcut: true,
 				singleinstance: true
-			/*} , {
-				name: 'ÐeKaÐeNcE',
-				title: 'Under Development',
-				icon: 'images/icons/dekadence.ico',
-				link: 'https://launcher.dekadence.ro',
-				width: 900,
-				height: 480*/
 			} , {
 				name: 'Windows 93',
-				icon: 'images/icons/windows93.ico',
-				link: 'https://v1.windows93.net',
+				icon: 'images/icons/desktop/windows93',
+				link: 'https://v1.windows93.net/',
 				width: 960,
-				height: 734
+				height: 734,
+				shortcut: true
 			} , {
 				name: '98.js',
-				icon: 'images/icons/98.js.ico',
+				icon: 'images/icons/desktop/98.js',
 				link: 'https://98.js.org/',
 				width: 960,
-				height: 713
+				height: 713,
+				shortcut: true
 			} , {
 				name: 'No Clip',
 				title: 'Under Development',
-				icon: 'https://noclip.website/logo-40496a2270a69fdcb86b.png',
+				icon: 'images/icons/desktop/no-clip',
 				link: 'https://noclip.website/',
 				width: 900,
-				height: 552
+				height: 552,
+				shortcut: true
+				// new: true
 			} , {
 				name: 'Visual Studio Code',
 				title: 'Under Development',
-				icon: '/emupedia-app-vscode/favicon.ico',
-				link: '/emupedia-app-vscode/index.html',
+				icon: 'images/icons/desktop/visual-studio-code',
+				link: '/emupedia-app-vscode/',
 				width: 900,
 				height: 480
 			} , {
 				name: 'Sandbox',
 				title: 'Under Development',
-				icon: '/emupedia-app-sandbox/favicon.ico',
-				link: '/emupedia-app-sandbox/index.html?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=/emupedia-app-romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
+				icon: 'images/icons/desktop/sandbox',
+				link: '/emupedia-app-sandbox/?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=/emupedia-app-romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
 				width: 900,
 				height: 480
 			} , {
 				name: 'Microsoft Solitaire Collection',
-				icon: 'https://zone.msn.com/images/v9/en-us/game/msso/Solitaire_GameLogo_350x210_v1.png',
+				icon: 'images/icons/desktop/microsoft-solitaire',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2019/20190729T121300_1.5.4.1_release_v0001_9af64392_msn/solitaire/index.html?hostingEnvironment=zone',
 				width: 960,
-				height: 540
+				height: 540,
+				shortcut: true
 			} , {
 				name: 'Microsoft Mahjong',
-				icon: 'https://zone.msn.com/images/v9/en-us/game/msmj/Mahjong_GameLogo_250_150.png',
+				icon: 'images/icons/desktop/microsoft-mahjong',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftmahjong/2019/20190805T180800_1.0.2_release_2019_002_e5886ede_msn/game.html?hostingEnvironment=zone',
 				width: 960,
-				height: 540
+				height: 540,
+				shortcut: true
 			} , {
 				name: 'Microsoft Ultimate Word Games',
-				icon: 'https://zone.msn.com/images/v9/en-us/game/mscw/350x210_mscw.png',
+				icon: 'images/icons/desktop/microsoft-crosswords',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/2019/20190821T095404_1.0.5_features_2019_NameChangeToWordTwister_f7862a8_msn/word-games/game.html?game=crossword&hostingEnvironment=zone',
 				width: 960,
-				height: 552
+				height: 552,
+				shortcut: true
 			} , {
 				name: 'Cookie Clicker',
-				icon: '/emupedia-game-cookie-clicker/favicon.png',
-				link: '/emupedia-game-cookie-clicker/index.html',
+				icon: 'images/icons/desktop/cookie-clicker',
+				link: '/emupedia-game-cookie-clicker/',
 				width: 1090,
 				height: 600
 			} , {
 				name: 'Flappy Bird',
-				icon: '/emupedia-game-flappy-bird/favicon.png',
-				link: '/emupedia-game-flappy-bird/index.html',
+				icon: 'images/icons/desktop/flappy-bird',
+				link: '/emupedia-game-flappy-bird/',
 				width: 432,
 				height: 600
 			} , {
 				name: 'Geometry Dash',
-				icon: '/emupedia-game-geometry-dash/favicon.png',
-				link: '/emupedia-game-geometry-dash/index.html',
+				icon: 'images/icons/desktop/geometry-dash',
+				link: '/emupedia-game-geometry-dash/',
 				width: 480,
 				height: 392
+				// beta: true
 			} , {
-				name: 'agar.io<br/>BETA',
+				name: 'agar.io',
 				title: 'Under Development',
-				icon: 'images/icons/agar.io.png',
+				icon: 'images/icons/desktop/agar.io',
 				link: 'https://agasio.herokuapp.com/',
 				width: 900,
-				height: 600
+				height: 600,
+				shortcut: true
+				// beta: true
 			} , {
-				name: 'Raptor<br />(Prototype)',
+				name: 'Raptor',
 				title: 'Under Development',
-				icon: '/emupedia-game-raptor/favicon.ico',
-				link: '/emupedia-game-raptor/index.html',
+				icon: 'images/icons/desktop/raptor',
+				link: '/emupedia-game-raptor/',
 				width: 640,
 				height: 400
+				// prototype: true
 			} , {
-				name: 'Wings 2.0<br />(Prototype)',
+				name: 'Wings 2.0',
 				title: 'Under Development',
-				icon: '/emupedia-game-wings2/favicon.ico',
-				link: '/emupedia-game-wings2/index.html',
+				icon: 'images/icons/desktop/wings2',
+				link: '/emupedia-game-wings2/',
 				width: 900,
 				height: 480
+				// prototype: true
 			} , {
-				name: 'Worms 2<br />(Prototype)',
+				name: 'Worms 2',
 				title: 'Under Development',
-				icon: '/emupedia-game-worms2/favicon.ico',
-				link: '/emupedia-game-worms2/index.html',
+				icon: 'images/icons/desktop/worms2',
+				link: '/emupedia-game-worms2/',
 				width: 900,
 				height: 480
+				// prototype: true
 			} , {
 				name: 'Biolab Disaster',
-				icon: '/emupedia-game-biolab-disaster/favicon.png',
-				link: '/emupedia-game-biolab-disaster/index.html',
+				icon: 'images/icons/desktop/biolab-disaster',
+				link: '/emupedia-game-biolab-disaster/',
 				width: 720,
 				height: 480
 			} , {
 				name: 'Super Blob Blaster',
-				icon: '/emupedia-game-super-blob-blaster/favicon.png',
-				link: '/emupedia-game-super-blob-blaster/index.html',
+				icon: 'images/icons/desktop/super-blob-blaster',
+				link: '/emupedia-game-super-blob-blaster/',
 				width: 720,
 				height: 480
 			} , {
 				name: 'Pac-Man',
-				icon: '/emupedia-game-pac-man/favicon.ico',
-				link: '/emupedia-game-pac-man/index.html',
+				icon: 'images/icons/desktop/pac-man',
+				link: '/emupedia-game-pac-man/',
 				width: 1025,
 				height: 715
 			} , {
 				name: 'Clippy',
-				icon: 'images/icons/clippy.png'
+				icon: 'images/icons/desktop/clippy'
 			} , {
 				name: 'eSheep',
-				icon: 'images/icons/esheep.png'
+				icon: 'images/icons/desktop/esheep'
 			} , {
 				name: 'SkiFree',
-				icon: '/emupedia-game-skifree/favicon.ico',
-				link: '/emupedia-game-skifree/index.html',
+				icon: 'images/icons/desktop/skifree',
+				link: '/emupedia-game-skifree/',
 				width: 640,
 				height: 480
 			} , {
-				name: 'ASCIICKER<br />(Demo)',
+				name: 'ASCIICKER',
 				title: 'Under Development',
-				icon: '/emupedia-demo-asciicker/favicon.ico',
-				link: '/emupedia-demo-asciicker/index.html',
+				icon: 'images/icons/desktop/asciicker',
+				link: '/emupedia-demo-asciicker/',
 				width: 640,
 				height: 480
+				// demo: true
 			} , {
 				name: 'ASCII PATROL',
-				icon: '/emupedia-game-ascii-patrol/favicon.ico',
-				link: '/emupedia-game-ascii-patrol/index.html',
+				icon: 'images/icons/desktop/ascii-patrol',
+				link: '/emupedia-game-ascii-patrol/',
 				width: 900,
 				height: 480
 			} , {
-				name: '3D Spatial Audio<br />(Demo)',
-				icon: '/emupedia-demo-3d-spatial-audio/favicon.ico',
-				link: '/emupedia-demo-3d-spatial-audio/index.html',
+				name: '3D Spatial Audio',
+				icon: 'images/icons/desktop/joystick',
+				link: '/emupedia-demo-3d-spatial-audio/',
 				width: 900,
 				height: 480
+				// demo: true
 			} , {
-				name: 'Voxel Space<br />(Demo)',
-				icon: '/emupedia-demo-voxel-space/favicon.ico',
-				link: '/emupedia-demo-voxel-space/index.html',
+				name: 'Voxel Space',
+				icon: 'images/icons/desktop/joystick',
+				link: '/emupedia-demo-voxel-space/',
 				width: 900,
 				height: 480
+				// demo: true
 			} , {
-				name: '8-bit Palette Color Cycling<br />(Demo)',
-				icon: '/emupedia-app-8-bit-palette-color-cycling/favicon.ico',
-				link: '/emupedia-app-8-bit-palette-color-cycling/index.html',
+				name: '8-bit Palette Color Cycling',
+				icon: 'images/icons/desktop/joystick',
+				link: '/emupedia-app-8-bit-palette-color-cycling/',
 				width: 900,
 				height: 550
+				// demo: true
 			} , {
 				name: 'RomCenter',
 				title: 'Under Development',
-				icon: '/emupedia-app-romcenter/favicon.ico',
-				link: '/emupedia-app-romcenter/index.html',
+				icon: 'images/icons/desktop/romcenter',
+				link: '/emupedia-app-romcenter/',
 				width: 900,
 				height: 480
+				// prototype: true
 			} , {
 				name: 'DOSBox',
 				title: 'Under Development',
-				icon: '/emupedia-app-dosbox/favicon.ico',
-				link: '/emupedia-app-dosbox/index.html',
+				icon: 'images/icons/desktop/dosbox',
+				link: '/emupedia-app-dosbox/',
 				width: 640,
 				height: 422
 			} , {
 				// name: 'Street Fighter Alpha: Warriors\' Dreams',
-				name: 'Street Fighter Alpha<br />(Demo)',
+				name: 'Street Fighter Alpha',
 				title: 'Under Development',
-				icon: '/emupedia-game-street-fighter-alpha/images/icons/' + function() {
+				icon: 'images/icons/desktop/street-fighter/' + function() {
 					var icons = [
 						'akuma',
 						'balrog',
@@ -259,113 +271,107 @@
 					];
 
 					return icons[Math.floor(Math.random() * icons.length)];
-				}() + '.ico',
-				link: '/emupedia-game-street-fighter-alpha/index.html',
+				}(),
+				link: '/emupedia-game-street-fighter-alpha/',
 				width: 1068,
 				height: 576
+				// demo: true
 			} , {
 				name: 'Wolfenstein 3D',
-				icon: ($sys.feature['CANVAS'] ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/favicon.gif',
-				link: ($sys.feature['CANVAS'] ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/index.html',
+				icon: 'images/icons/desktop/wolfenstein-3d',
+				link: ($sys.feature['CANVAS'] ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/',
 				width: $sys.feature['CANVAS'] ? 960 : 640,
 				height: $sys.feature['CANVAS'] ? 600 : 400
 			} , {
 				name: 'Doom 1',
-				icon: '/emupedia-game-doom1/favicon.gif',
-				link: '/emupedia-game-doom1/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/') + 'index.html',
+				icon: 'images/icons/desktop/doom1',
+				link: '/emupedia-game-doom1/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/'),
 				width: 640,
 				height: 400
 			} , {
 				name: 'Doom 2: Hell on Earth',
-				icon: '/emupedia-game-doom2/favicon.gif',
-				link: '/emupedia-game-doom2/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/') + 'index.html',
+				icon: 'images/icons/desktop/doom2',
+				link: '/emupedia-game-doom2/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/'),
 				width: 640,
 				height: 400
 			} , {
 				name: 'Doom 3',
-				icon: '/emupedia-game-doom3/favicon.ico',
+				icon: 'images/icons/desktop/doom3',
 				link: '/emupedia-game-doom3/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Quake 1',
-				icon: '/emupedia-game-quake1/favicon.ico',
+				icon: 'images/icons/desktop/quake1',
 				link: '/emupedia-game-quake1/' + ($sys.feature['ES6'] && $sys.feature['ES7_ASYNC_AWAIT'] ? 'async.html' : 'index.html'),
 				width: 640,
 				height: 480
 			} , {
 				name: 'Quake 2',
-				icon: '/emupedia-game-quake2/favicon.ico',
-				link: '/emupedia-game-quake2/index.html',
+				icon: 'images/icons/desktop/quake2',
+				link: '/emupedia-game-quake2/',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Half-Life 1',
 				title: 'Under Development',
-				icon: '/emupedia-game-half-life1/favicon.ico',
-				link: '/emupedia-game-half-life1/index.html',
+				icon: 'images/icons/desktop/half-life1',
+				link: '/emupedia-game-half-life1/',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Diablo 1',
 				title: 'Under Development',
-				icon: '/emupedia-game-diablo1/favicon.ico',
-				link: '/emupedia-game-diablo1/index.html',
+				icon: 'images/icons/desktop/diablo1',
+				link: '/emupedia-game-diablo1/',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Dark Reign: The Future of War',
 				title: 'Under Development',
-				icon: '/emupedia-game-dark-reign/favicon.ico',
-				link: '/emupedia-game-dark-reign/index.html',
+				icon: 'images/icons/desktop/dark-reign',
+				link: '/emupedia-game-dark-reign/',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Command and Conquer',
 				title: 'Under Development',
-				icon: '/emupedia-game-command-and-conquer1/favicon.ico',
-				link: '/emupedia-game-command-and-conquer1/index.html',
+				icon: 'images/icons/desktop/command-and-conquer1',
+				link: '/emupedia-game-command-and-conquer1/',
 				width: 640,
 				height: 535
 			} , {
 				name: 'Minecraft',
 				title: 'Under Development',
-				icon: '/emupedia-game-minecraft-classic/favicon.ico',
-				link: '/emupedia-game-minecraft-classic/index.html',
+				icon: 'images/icons/desktop/minecraft-classic',
+				link: '/emupedia-game-minecraft-classic/',
 				width: 900,
 				height: 480
 			} , {
 				name: 'Winamp',
-				icon: '/emupedia-app-winamp/favicon.ico',
-				link: '/emupedia-app-winamp/index.html',
+				icon: 'images/icons/desktop/winamp-classic',
+				link: '/emupedia-app-winamp/',
 				width: 900,
 				height: 480
 			} , {
 				name: 'Notepad',
-				icon: '/emupedia-app-notepad/favicon.ico',
-				link: '/emupedia-app-notepad/index.html',
+				icon: 'images/icons/desktop/notepad',
+				link: '/emupedia-app-notepad/',
 				width: 900,
 				height: 480,
 				runonce: true
 			} , {
 				name: 'Paint',
-				icon: '/emupedia-app-paint/favicon.ico',
-				link: '/emupedia-app-paint/index.html',
+				icon: 'images/icons/desktop/paint',
+				link: '/emupedia-app-paint/',
 				width: 900,
 				height: 480
 			} , {
 				name: 'SVG Editor',
-				icon: '/emupedia-app-svg-editor/favicon.ico',
-				link: '/emupedia-app-svg-editor/index.html',
+				icon: 'images/icons/desktop/svg-editor',
+				link: '/emupedia-app-svg-editor/',
 				width: 900,
 				height: 480
-			/*} , {
-				name: 'YouTube<br/>BETA',
-				title: 'Under Development',
-				icon: 'images/icons/youtube.ico',
-				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ5b3V0dWJlLmNvbSUyRg==',
-				width: 1020,
-				height: 630*/
 			}]
 		};
 
@@ -464,7 +470,7 @@
 
 			// noinspection JSUnfilteredForInLoop
 			var $icon = 	$('<a class="emuos-desktop-icon" href="javascript:"' + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
-								'<i class="icon badge" style="background-image: url(' + icon_options['icon'] + ');"></i>' +
+								'<i class="icon overlay ribbon' + (icon_options['shortcut'] ? ' shortcut' : '') + (icon_options['prototype'] ? ' prototype' : '') + (icon_options['beta'] ? ' beta' : '') + (icon_options['new'] ? ' new' : '') + '" style="background-image: url(' + icon_options['icon'] + ($sys.browser.isIE ? '.png' : '.ico') + ');"></i>' +
 								'<span>' + icon_options['name'] + '</span>' +
 							'</a>');
 
@@ -887,7 +893,7 @@
 			height: 350,
 			right: 0,
 			bottom: 28,
-			content: '<iframe id="Chat" width="100%" height="100%" src="/emupedia-app-emuchat/index.html" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
+			content: '<iframe id="Chat" width="100%" height="100%" src="/emupedia-app-emuchat/index.html" frameborder="0" allowFullscreen="allowFullscreen" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
 		});
 
 		self.$html.contextmenu({

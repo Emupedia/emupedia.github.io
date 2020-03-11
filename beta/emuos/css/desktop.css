@@ -23,7 +23,7 @@
 	position: relative;
 	float: left;
 	width: 90px;
-	height: 95px;
+	height: 110px;
 	/*background-color: #fff;*/
 	/*background-color: rgba(255, 255, 255, 0.5);*/
 	border-radius: 5px;
@@ -56,12 +56,12 @@
 	display: block;
 	position: relative;
 	margin: 0 auto 5px;
-	width: 48px;
-	height: 48px;
+	width: 64px;
+	height: 64px;
 	background-color: transparent;
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 48px 48px;
+	background-size: 64px 64px;
 	text-decoration: none;
 	pointer-events: none;
 	/*image-rendering: optimizeSpeed;*/

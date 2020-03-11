@@ -1,4 +1,4 @@
-## <sub><img width="38" height="38" alt="" src="https://emupedia.net/emupedia-resources/logos/emupedia/emupedia-logo-48.png" /></sub> Emupedia [![Contribute](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/Emupedia/emupedia.github.io/pulls) [![Discord](https://img.shields.io/discord/510149138491506688.svg?logo=discord)](https://discord.gg/wXtGQ4p) [![Gitpod - Code Now](https://img.shields.io/badge/gitpod-code%20now-blue.svg)](https://gitpod.io#https://github.com/Emupedia/emupedia.github.io) [![GitHub last commit](https://img.shields.io/github/last-commit/Emupedia/emupedia.github.io.svg)](#-emupedia-----) [![GitHub repo size](https://img.shields.io/github/repo-size/Emupedia/emupedia.github.io.svg)](#-emupedia-----)
+## <sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Emupedia [![Contribute](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/Emupedia/emupedia.github.io/pulls) [![Discord](https://img.shields.io/discord/510149138491506688.svg?logo=discord)](https://discord.gg/wXtGQ4p) [![Gitpod - Code Now](https://img.shields.io/badge/gitpod-code%20now-blue.svg)](https://gitpod.io#https://github.com/Emupedia/emupedia.github.io) [![GitHub last commit](https://img.shields.io/github/last-commit/Emupedia/emupedia.github.io.svg)](#-emupedia-----) [![GitHub repo size](https://img.shields.io/github/repo-size/Emupedia/emupedia.github.io.svg)](#-emupedia-----)
 
 ---
 The purpose of Emupedia is to serve as a [nonprofit](https://en.wikipedia.org/wiki/Nonprofit_organization) meta-resource hub and community for those interested mainly in [video game preservation](https://en.wikipedia.org/wiki/Video_game_preservation) and computer history which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly [UI](https://en.wikipedia.org/wiki/User_interface) that [simulates](https://difference.guru/difference-between-simulator-and-emulator) several retro operating systems for educational purposes.
@@ -23,17 +23,17 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 ## 💬 <sub>Join us on Discord</sub>
 
-<sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/discord-logo-48.png" /></sub> [Discord](https://discord.gg/wXtGQ4p)
+<sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/discord-48.png" /></sub> [Discord](https://discord.gg/wXtGQ4p)
 
 ## 👀 <sub>View a Live Demo</sub>
 [![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/under-development.svg)](#-view-a-live-demo)
 
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/emupedia-resources/logos/emupedia/emupedia-logo-48.png" /></sub> Primary  [https://emupedia.net/beta/emuos/](https://emupedia.net/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/emupedia-resources/logos/emupedia/emupedia-logo-48.png" /></sub> Mirror 1 [https://emuos.net/beta/emuos/](https://emuos.net/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/emupedia-resources/logos/emupedia/emupedia-logo-48.png" /></sub> Mirror 2 [https://emuos.org/beta/emuos/](https://emuos.org/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/emupedia-resources/logos/emupedia/emupedia-logo-48.png" /></sub> Mirror 3 [https://emuos.redirectme.net/beta/emuos/](https://emuos.redirectme.net/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/emupedia-resources/logos/emupedia/emupedia-logo-48.png" /></sub> Mirror 4 [https://emu.bounceme.net/beta/emuos/](https://emu.bounceme.net/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/emupedia-resources/logos/emupedia/emupedia-logo-48.png" /></sub> Mirror 5 [https://emu.webhop.me/beta/emuos/](https://emu.webhop.me/beta/emuos/)
+* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Primary  [https://emupedia.net/beta/emuos/](https://emupedia.net/beta/emuos/)
+* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 1 [https://emuos.net/beta/emuos/](https://emuos.net/beta/emuos/)
+* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 2 [https://emuos.org/beta/emuos/](https://emuos.org/beta/emuos/)
+* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 3 [https://emuos.redirectme.net/beta/emuos/](https://emuos.redirectme.net/beta/emuos/)
+* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 4 [https://emu.bounceme.net/beta/emuos/](https://emu.bounceme.net/beta/emuos/)
+* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 5 [https://emu.webhop.me/beta/emuos/](https://emu.webhop.me/beta/emuos/)
 
 ## 🌍 <sub>Browser support</sub>
 <details>

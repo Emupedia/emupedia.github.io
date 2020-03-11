@@ -14,6 +14,7 @@
 		environment: {},
 		browser: {},
 		feature: {},
+		lib: global.$sys ? global.$sys.lib || {} : {},
 		info: {}
 	};
 

@@ -12,6 +12,7 @@
 	} , {
 		"name": "EmuChat",
 		"icon": "/emupedia-app-emuchat/favicon.ico",
+		"icon-local": "images/icons/emuchat.ico",
 		"link": "/emupedia-app-emuchat/index.html",
 		"width": 900,
 		"height": 480,
@@ -46,6 +47,7 @@
 		"name": "Visual Studio Code",
 		"title": "Under Development",
 		"icon": "/emupedia-app-vscode/favicon.ico",
+		"icon-local": "images/icons/vscode.ico",
 		"link": "/emupedia-app-vscode/index.html",
 		"width": 900,
 		"height": 480
@@ -53,6 +55,7 @@
 		"name": "Sandbox",
 		"title": "Under Development",
 		"icon": "/emupedia-app-sandbox/favicon.ico",
+		"icon-local": "images/icons/sandbox.ico",
 		"link": "/emupedia-app-sandbox/index.html?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=/emupedia-app-romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E",
 		"width": 900,
 		"height": 480
@@ -103,6 +106,7 @@
 		"name": "Raptor<br />(Prototype)",
 		"title": "Under Development",
 		"icon": "/emupedia-game-raptor/favicon.ico",
+		"icon-local": "images/icons/raptor.ico",
 		"link": "/emupedia-game-raptor/index.html",
 		"width": 640,
 		"height": 400
@@ -110,6 +114,7 @@
 		"name": "Wings 2.0<br />(Prototype)",
 		"title": "Under Development",
 		"icon": "/emupedia-game-wings2/favicon.ico",
+		"icon-local": "images/icons/wings2.ico",
 		"link": "/emupedia-game-wings2/index.html",
 		"width": 900,
 		"height": 480
@@ -117,6 +122,7 @@
 		"name": "Worms 2<br />(Prototype)",
 		"title": "Under Development",
 		"icon": "/emupedia-game-worms2/favicon.ico",
+		"icon-local": "images/icons/worms2.ico",
 		"link": "/emupedia-game-worms2/index.html",
 		"width": 900,
 		"height": 480
@@ -135,6 +141,7 @@
 	} , {
 		"name": "Pac-Man",
 		"icon": "/emupedia-game-pac-man/favicon.ico",
+		"icon-local": "images/icons/pacman.ico",
 		"link": "/emupedia-game-pac-man/index.html",
 		"width": 1025,
 		"height": 715
@@ -147,6 +154,7 @@
 	} , {
 		"name": "SkiFree",
 		"icon": "/emupedia-game-skifree/favicon.ico",
+		"icon-local": "images/icons/skifree.ico",
 		"link": "/emupedia-game-skifree/index.html",
 		"width": 640,
 		"height": 480
@@ -154,30 +162,35 @@
 		"name": "ASCIICKER<br />(Demo)",
 		"title": "Under Development",
 		"icon": "/emupedia-demo-asciicker/favicon.ico",
+		"icon-local": "images/icons/asciicker.ico",
 		"link": "/emupedia-demo-asciicker/index.html",
 		"width": 640,
 		"height": 480
 	} , {
 		"name": "ASCII PATROL",
 		"icon": "/emupedia-game-ascii-patrol/favicon.ico",
+		"icon-local": "images/icons/ascii-patrol.ico",
 		"link": "/emupedia-game-ascii-patrol/index.html",
 		"width": 900,
 		"height": 480
 	} , {
 		"name": "3D Spatial Audio<br />(Demo)",
 		"icon": "/emupedia-demo-3d-spatial-audio/favicon.ico",
+		"icon-local": "images/icons/3d-spatial-audio.ico",
 		"link": "/emupedia-demo-3d-spatial-audio/index.html",
 		"width": 900,
 		"height": 480
 	} , {
 		"name": "Voxel Space<br />(Demo)",
 		"icon": "/emupedia-demo-voxel-space/favicon.ico",
+		"icon-local": "images/icons/win95-joystick.ico",
 		"link": "/emupedia-demo-voxel-space/index.html",
 		"width": 900,
 		"height": 480
 	} , {
 		"name": "8-bit Palette Color Cycling<br />(Demo)",
 		"icon": "/emupedia-app-8-bit-palette-color-cycling/favicon.ico",
+		"icon-local": "images/icons/win95-joystick.ico",
 		"link": "/emupedia-app-8-bit-palette-color-cycling/index.html",
 		"width": 900,
 		"height": 550
@@ -185,6 +198,7 @@
 		"name": "RomCenter",
 		"title": "Under Development",
 		"icon": "/emupedia-app-romcenter/favicon.ico",
+		"icon-local": "images/icons/romcenter.ico",
 		"link": "/emupedia-app-romcenter/index.html",
 		"width": 900,
 		"height": 480
@@ -192,6 +206,7 @@
 		"name": "DOSBox",
 		"title": "Under Development",
 		"icon": "/emupedia-app-dosbox/favicon.ico",
+		"icon-local": "images/icons/dosbox.ico",
 		"link": "/emupedia-app-dosbox/index.html",
 		"width": 640,
 		"height": 422
@@ -204,37 +219,42 @@
 		"height": 576
 	} , {
 		"name": "Wolfenstein 3D",
-		"icon": "/emupedia-game-wolfenstein-3d-canvas/favicon.gif",
+		"icon": "/emupedia-game-wolfenstein-3d-canvas/wolfenstein-3d.png",
 		"link": "/emupedia-game-wolfenstein-3d-canvas/index.html",
 		"width": 960,
 		"height": 600
 	} , {
 		"name": "Doom 1",
-		"icon": "/emupedia-game-doom1/favicon.gif",
+		"icon": "/emupedia-game-doom1/favicon.ico",
+		"icon-local": "images/icons/doom1.ico",
 		"link": "/emupedia-game-doom1/index.html",
 		"width": 640,
 		"height": 400
 	} , {
 		"name": "Doom 2: Hell on Earth",
-		"icon": "/emupedia-game-doom2/favicon.gif",
+		"icon": "/emupedia-game-doom2/favicon.ico",
+		"icon-local": "images/icons/doom2.ico",
 		"link": "/emupedia-game-doom2/index.html",
 		"width": 640,
 		"height": 400
 	} , {
 		"name": "Doom 3",
 		"icon": "/emupedia-game-doom3/favicon.ico",
+		"icon-local": "images/icons/doom3.ico",
 		"link": "/emupedia-game-doom3/index.html",
 		"width": 640,
 		"height": 480
 	} , {
 		"name": "Quake 1",
 		"icon": "/emupedia-game-quake1/favicon.ico",
+		"icon-local": "images/icons/quake1.ico",
 		"link": "/emupedia-game-quake1/async.html",
 		"width": 640,
 		"height": 480
 	} , {
 		"name": "Quake 2",
 		"icon": "/emupedia-game-quake2/favicon.ico",
+		"icon-local": "images/icons/quake2.ico",
 		"link": "/emupedia-game-quake2/index.html",
 		"width": 640,
 		"height": 480
@@ -242,6 +262,7 @@
 		"name": "Half-Life 1",
 		"title": "Under Development",
 		"icon": "/emupedia-game-half-life1/favicon.ico",
+		"icon-local": "images/icons/halflife1.ico",
 		"link": "/emupedia-game-half-life1/index.html",
 		"width": 640,
 		"height": 480
@@ -249,6 +270,7 @@
 		"name": "Diablo 1",
 		"title": "Under Development",
 		"icon": "/emupedia-game-diablo1/favicon.ico",
+		"icon-local": "images/icons/diablo1.ico",
 		"link": "/emupedia-game-diablo1/index.html",
 		"width": 640,
 		"height": 480
