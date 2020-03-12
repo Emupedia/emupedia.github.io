@@ -160,9 +160,10 @@
 /*noinspection CssUnknownTarget*/
 .theme-win9x .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-icon-primary {
 	left: 3px;
-	background-image: url(/emupedia-resources/icons/win95/start.png);
+	background-image: url(../../../images/icons/desktop/emupedia.ico);
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: 16px 16px;
 }
 
 /*noinspection CssReplaceWithShorthandSafely*/

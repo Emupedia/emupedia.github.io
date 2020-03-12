@@ -30,7 +30,7 @@
 	padding: 0;
 	margin: 0;
 	background-color: #c0c0c0 !important;
-	background-image: url(/emupedia-resources/icons/win31/menu.png) !important;
+	background-image: url(../../../images/themes/icons/windows-3x/menu.png) !important;
 	background-repeat: no-repeat !important;
 	background-position: center !important;
 	background-size: auto !important;
@@ -45,7 +45,7 @@
 .theme-win3x .emuos-window .emuos-window-icon:active,
 .theme-win3x .emuos-window .emuos-window-icon:focus {
 	background-color: #3f3f3f !important;
-	background-image: url(/emupedia-resources/icons/win31/menu-pressed.png) !important;
+	background-image: url(../../../images/themes/icons/windows-3x/menu-pressed.png) !important;
 	background-repeat: no-repeat !important;
 	background-position: center !important;
 	background-size: auto !important;
@@ -124,7 +124,7 @@
 	border-right: 1px solid #808080;
 	border-bottom: 1px solid #808080;
 	background-color: #c0c0c0;
-	background-image: url(/emupedia-resources/icons/win31/maximize.png);
+	background-image: url(../../../images/themes/icons/windows-3x/maximize.png);
 	background-position: 4px 5px;
 	background-repeat: no-repeat;
 	/*image-rendering: -moz-crisp-edges;*/
@@ -137,7 +137,7 @@
 /*noinspection CssUnknownTarget*/
 .theme-win3x .emuos-window.emuos-window-maximized.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-text {
 	background-color: #c0c0c0;
-	background-image: url(/emupedia-resources/icons/win31/restore.png);
+	background-image: url(../../../images/themes/icons/windows-3x/restore.png);
 	background-position: 4px 3px;
 	background-repeat: no-repeat;
 }
@@ -181,7 +181,7 @@
 	border-right: 1px solid #808080;
 	border-bottom: 1px solid #808080;
 	background-color: #c0c0c0;
-	background-image: url(/emupedia-resources/icons/win31/minimize.png);
+	background-image: url(../../../images/themes/icons/windows-3x/minimize.png);
 	background-position: 4px 6px;
 	background-repeat: no-repeat;
 	/*image-rendering: -moz-crisp-edges;*/

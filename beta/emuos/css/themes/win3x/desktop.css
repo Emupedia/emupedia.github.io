@@ -1,10 +1,10 @@
 /*noinspection CssOverwrittenProperties,CssUnknownTarget*/
 .theme-win3x .emuos-desktop {
 	background-color: #008080;
-	background: url(/emupedia-resources/wallpapers/win31/castle.bmp);
-	background: url(/emupedia-resources/logos/windows/winlogo.svg) center no-repeat, url(/emupedia-resources/wallpapers/win31/castle.bmp);
+	background: url(../../../images/themes/wallpapers/windows-3x/castle.bmp);
+	background: url(../../../images/themes/wallpapers/windows-3x/winlogo.svg) center no-repeat, url(../../../images/themes/wallpapers/windows-3x/castle.bmp);
 	background-size: auto;
-	background-size: 40%, auto;
+	background-size: 40% 40%, auto;
 }
 
 .theme-win3x .emuos-desktop-icon {

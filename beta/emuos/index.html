@@ -79,12 +79,23 @@
 				height: 100%;
 				margin: 0;
 				padding: 0;
+				overflow: hidden;
+			}
+
+			body.windows-95 {
 				background-color: #76abd5;
-				background-image: url(/emupedia-resources/boot/win95/emuos-boot.png), url(/emupedia-resources/wallpapers/win95/windows-95-clouds-remastered-1680x1050.png);
+				background-image: url(images/themes/boot/windows-95/emuos-95-transparent.png), url(images/themes/wallpapers/windows-95/windows-95-remastered-1680x1050.png);
 				background-repeat: no-repeat, no-repeat;
 				background-position: center, center;
 				background-size: contain, cover;
-				overflow: hidden;
+			}
+
+			body.windows-me {
+				background-color: #fff;
+				background-image: url(images/themes/boot/windows-me/emuos-me-transparent.png);
+				background-repeat: no-repeat, no-repeat;
+				background-position: center, center;
+				background-size: contain, cover;
 			}
 
 			body::after {
@@ -214,7 +225,7 @@
 		<link type="text/css" rel="stylesheet" href="css/themes/seasonal/newyear/countdown.css" />
 		<link type="text/css" rel="stylesheet" href="css/themes/seasonal/valentines/background.css" />
 	</head>
-	<body>
+	<body class="windows-me">
 		<script type="text/javascript" src="js/polyfills.js"></script>
 		<script type="text/javascript" src="js/system.js"></script>
 		<script type="text/javascript" src="js/libraries.js"></script>

@@ -1,10 +1,18 @@
 /*noinspection CssOverwrittenProperties,CssUnknownTarget*/
-.theme-win9x .emuos-desktop {
+.theme-win9x .windows-95 .emuos-desktop {
 	background-color: #76abd5;
-	background-image: url(/emupedia-resources/wallpapers/win95/windows-95-clouds-remastered-1680x1050.png);
+	background-image: url(../../../images/themes/wallpapers/windows-95/windows-95-remastered-1680x1050.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+}
+
+.theme-win9x .windows-me .emuos-desktop {
+	background-color: #3b6ea5;
+	background-image: url(../../../images/themes/wallpapers/windows-me/windows-me-remastered-1920x1080.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 }
 
 .theme-win9x .emuos-desktop-icon {

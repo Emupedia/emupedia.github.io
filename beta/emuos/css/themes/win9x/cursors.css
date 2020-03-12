@@ -1,11 +1,11 @@
 /*noinspection CssUnknownTarget*/
 html.theme-win9x {
-	cursor: url(/emupedia-resources/cursors/win95/default.cur), default;
+	cursor: url(../../../images/themes/cursors/windows-9x/default.cur), default;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x p {
-	cursor: url(/emupedia-resources/cursors/win95/text.cur), text;
+	cursor: url(../../../images/themes/cursors/windows-9x/text.cur), text;
 }
 
 /*noinspection CssUnknownTarget*/
@@ -15,57 +15,57 @@ html.theme-win9x {
 .theme-win9x .mCustomScrollBox .mCSB_dragger .mCSB_dragger_bar,
 .theme-win9x .mCustomScrollBox .mCSB_buttonUp,
 .theme-win9x .mCustomScrollBox .mCSB_buttonDown {
-	cursor: url(/emupedia-resources/cursors/win95/pointer.cur), pointer;
+	cursor: url(../../../images/themes/cursors/windows-9x/pointer.cur), pointer;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .emuos-taskbar-windows-containment,
 .theme-win9x .emuos-taskbar-window-copy,
 .theme-win9x .emuos-taskbar-resizable.emuos-taskbar-resizable-disabled .ui-resizable-handle {
-	cursor: url(/emupedia-resources/cursors/win95/default.cur), default;
+	cursor: url(../../../images/themes/cursors/windows-9x/default.cur), default;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .ui-draggable .ui-dialog-titlebar {
-	cursor: url(/emupedia-resources/cursors/win95/move.cur), move;
+	cursor: url(../../../images/themes/cursors/windows-9x/move.cur), move;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .ui-resizable-n {
-	cursor: url(/emupedia-resources/cursors/win95/vertical.cur), n-resize;
+	cursor: url(../../../images/themes/cursors/windows-9x/vertical.cur), n-resize;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .ui-resizable-e {
-	cursor: url(/emupedia-resources/cursors/win95/horizontal.cur), e-resize;
+	cursor: url(../../../images/themes/cursors/windows-9x/horizontal.cur), e-resize;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .ui-resizable-s {
-	cursor: url(/emupedia-resources/cursors/win95/vertical.cur), s-resize;
+	cursor: url(../../../images/themes/cursors/windows-9x/vertical.cur), s-resize;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .ui-resizable-w {
-	cursor: url(/emupedia-resources/cursors/win95/horizontal.cur), w-resize;
+	cursor: url(../../../images/themes/cursors/windows-9x/horizontal.cur), w-resize;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .ui-resizable-nw {
-	cursor: url(/emupedia-resources/cursors/win95/diagonal1.cur), nw-resize;
+	cursor: url(../../../images/themes/cursors/windows-9x/diagonal1.cur), nw-resize;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .ui-resizable-ne {
-	cursor: url(/emupedia-resources/cursors/win95/diagonal2.cur), ne-resize;
+	cursor: url(../../../images/themes/cursors/windows-9x/diagonal2.cur), ne-resize;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .ui-resizable-sw {
-	cursor: url(/emupedia-resources/cursors/win95/diagonal2.cur), sw-resize;
+	cursor: url(../../../images/themes/cursors/windows-9x/diagonal2.cur), sw-resize;
 }
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .ui-resizable-se {
-	cursor: url(/emupedia-resources/cursors/win95/diagonal1.cur), se-resize;
+	cursor: url(../../../images/themes/cursors/windows-9x/diagonal1.cur), se-resize;
 }

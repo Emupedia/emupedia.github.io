@@ -911,12 +911,16 @@
 					cmd: 'basic',
 					uiIcon: 'ui-icon-clipboard'
 				} , {
-					title: 'Windows 3.x',
-					cmd: 'win3x',
+					title: 'Windows 3.1',
+					cmd: 'windows-3x',
 					uiIcon: 'ui-icon-scissors'
 				} , {
-					title: 'Windows 9x',
-					cmd: 'win9x',
+					title: 'Windows 95',
+					cmd: 'windows-95',
+					uiIcon: 'ui-icon-clipboard'
+				} , {
+					title: 'Windows ME',
+					cmd: 'windows-me',
 					uiIcon: 'ui-icon-clipboard'
 				}]
 			}],
@@ -934,8 +938,9 @@
 						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
-					case 'win3x':
+					case 'windows-3x':
 						self.$html.removeClass('theme-basic theme-win9x').addClass('theme-win3x');
+						self.$body.attr('class', '');
 						// noinspection JSJQueryEfficiency
 						if (typeof $('.emuos-window .window.emuos-window-content').mCustomScrollbar === 'function') {
 							// noinspection JSJQueryEfficiency
@@ -965,8 +970,18 @@
 						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
-					case 'win9x':
+					case 'windows-95':
 						self.$html.removeClass('theme-basic theme-win3x').addClass('theme-win9x');
+						self.$body.attr('class', 'windows-95');
+						// noinspection JSJQueryEfficiency
+						if (typeof $('.emuos-window .window.emuos-window-content').mCustomScrollbar === 'function') {
+							$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
+						}
+						self.$taskbar.taskbar('option', 'resizableHandleOffset', 1).taskbar('instance')._refresh();
+						break;
+					case 'windows-me':
+						self.$html.removeClass('theme-basic theme-win3x').addClass('theme-win9x');
+						self.$body.attr('class', 'windows-me');
 						// noinspection JSJQueryEfficiency
 						if (typeof $('.emuos-window .window.emuos-window-content').mCustomScrollbar === 'function') {
 							$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
