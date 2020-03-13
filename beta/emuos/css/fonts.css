@@ -1,12 +1,14 @@
 /*noinspection CssUnknownTarget*/
 @font-face {
 	font-family: 'EmuOS';
-	src: url(/emupedia-resources/fonts/emuos.svg);
-	src: url(/emupedia-resources/fonts/emuos.eot?#iefix) format('embedded-opentype'),
-		 url(/emupedia-resources/fonts/emuos.woff2) format('woff2'),
-		 url(/emupedia-resources/fonts/emuos.woff) format('woff'),
-		 url(/emupedia-resources/fonts/emuos.ttf) format('truetype'),
-		 url(/emupedia-resources/fonts/emuos.svg#EmuOS) format('svg');
+	src: url(../fonts/emuos.eot);
+	src: local('Microsoft Sans Serif'),
+		 url(../fonts/emuos.eot?#iefix) format('embedded-opentype'),
+		 url(../fonts/emuos.woff2) format('woff2'),
+		 url(../fonts/emuos.woff) format('woff'),
+		 url(../fonts/emuos.ttf) format('truetype'),
+		 url(../fonts/emuos.svg#EmuOS) format('svg');
+	font-display: swap;
 	font-weight: normal;
 	font-style: normal;
 }

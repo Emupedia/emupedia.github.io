@@ -48,6 +48,7 @@
 .theme-win9x .emuos-desktop-icon:hover {
 	background-color: transparent;
 	border: none;
+	box-shadow: none;
 }
 
 .theme-win9x .emuos-desktop-icon.ui-sortable-helper,

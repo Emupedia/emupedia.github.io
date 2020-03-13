@@ -40,6 +40,7 @@
 .theme-win3x .emuos-desktop-icon:hover {
 	background-color: transparent;
 	border: none;
+	box-shadow: none;
 }
 
 .theme-win3x .emuos-desktop-icon.ui-sortable-helper,

@@ -11,16 +11,18 @@
 
 	-->
 	<head>
+		<meta charset="utf-8" />
+
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data: *; style-src 'self' 'unsafe-inline'; font-src 'self' *; script-src 'self' 'unsafe-eval' 'unsafe-inline' emupedia.net *.emupedia.net emuos.net *.emuos.net emuos.org *.emuos.org google-analytics.com *.google-analytics.com googletagmanager.com *.googletagmanager.com doubleclick.net *.doubleclick.net; connect-src 'self' emupedia.net *.emupedia.net emuos.net *.emuos.net emuos.org *.emuos.org *; manifest-src 'self'; frame-src 'self' *;" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-		<meta charset="utf-8" />
-		<meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="theme-color" content="#3b6ea5" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="msapplication-tap-highlight" content="no" />
 		<meta name="description" content="The purpose of Emupedia is to serve as a nonprofit meta-resource, hub and community for those interested mainly in video game preservation which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly UI that simulates several retro operating systems for educational purposes." />
@@ -58,15 +60,34 @@
 		<link rel="manifest" href="manifest.webmanifest" />
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link rel="icon" type="image/x-icon" href="favicon.ico" />
-		<link rel="apple-touch-icon" href="/emupedia-resources/logos/emupedia-logo-58.png" />
-		<link rel="apple-touch-icon" sizes="57x57" href="/emupedia-resources/logos/emupedia/emupedia-logo-58.png" />
-		<link rel="apple-touch-icon" sizes="58x58" href="/emupedia-resources/logos/emupedia/emupedia-logo-58.png" />
-		<link rel="apple-touch-icon" sizes="72x72" href="/emupedia-resources/logos/emupedia/emupedia-logo-72.png" />
-		<link rel="apple-touch-icon" sizes="114x114" href="/emupedia-resources/logos/emupedia/-logo-114.png" />
-		<link rel="apple-touch-icon" sizes="152x152" href="/emupedia-resources/logos/emupedia/emupedia-logo-152.png" />
-		<link rel="apple-touch-icon" sizes="167x167" href="/emupedia-resources/logos/emupedia/emupedia-logo-168.png" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/emupedia-resources/logos/emupedia/emupedia-logo-180.png" />
-		<link rel="apple-touch-startup-image" href="/emupedia-resources/logos/emupedia/emupedia-logo-256.png" />
+		<link rel="apple-touch-icon" href="images/logos/emupedia-logo-58.png" />
+		<link rel="apple-touch-icon" sizes="57x57" href="images/logos/emupedia/emupedia-logo-58.png" />
+		<link rel="apple-touch-icon" sizes="58x58" href="images/logos/emupedia/emupedia-logo-58.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="images/logos/emupedia/emupedia-logo-72.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="images/logos/emupedia/-logo-114.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="images/logos/emupedia/emupedia-logo-152.png" />
+		<link rel="apple-touch-icon" sizes="167x167" href="images/logos/emupedia/emupedia-logo-168.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="images/logos/emupedia/emupedia-logo-180.png" />
+		<link rel="apple-touch-startup-image" href="images/logos/emupedia/emupedia-logo-256.png" />
+
+		<!-- DNS Prefetch -->
+		<link rel="dns-prefetch" href="https://ws.emupedia.net" />
+		<link rel="dns-prefetch" href="https://ws.emuos.net" />
+		<link rel="dns-prefetch" href="https://ws.emuos.org" />
+		<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+		<link rel="dns-prefetch" href="https://twemoji.maxcdn.com" />
+		<link rel="dns-prefetch" href="https://cloudflare.net" />
+
+		<!-- Preconnect -->
+		<link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" />
+		<link rel="preconnect" href="https://twemoji.maxcdn.com" crossorigin="anonymous" />
+		<link rel="preconnect" href="https://cloudflare.net" crossorigin="anonymous" />
+
+		<!-- Preload -->
+		<link rel="preload" href="images/themes/boot/windows-95/emuos-95-transparent.png" as="image" crossorigin="anonymous" />
+		<link rel="preload" href="images/themes/boot/windows-me/emuos-me-transparent.png" as="image" crossorigin="anonymous" />
+		<link rel="preload" href="images/themes/wallpapers/windows-95/windows-95-remastered-1680x1050.png" as="image" crossorigin="anonymous" />
+		<link rel="preload" href="images/themes/wallpapers/windows-me/windows-me-remastered-1920x1080.jpg" as="image" crossorigin="anonymous" />
 
 		<!--Boot Theme-->
 		<style type="text/css">
@@ -231,5 +252,6 @@
 		<script type="text/javascript" src="js/libraries.js"></script>
 		<script type="text/javascript" src="js/defines.js"></script>
 		<script type="text/javascript" src="js/libraries/requirejs-2.3.6.js" data-main="js/main" defer="defer"></script>
+		<noscript>Your browser does not support JavaScript!</noscript>
 	</body>
 </html>

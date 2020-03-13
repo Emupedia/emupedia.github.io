@@ -901,27 +901,23 @@
 			menu: [{
 				title: 'Refresh',
 				cmd: 'refresh',
-				uiIcon: 'ui-icon-copy'
+				uiIcon: 'ui-icon-refresh'
 			} , {
 				title: '----'
 			} , {
 				title: 'Themes',
 				children: [{
 					title: 'Basic',
-					cmd: 'basic',
-					uiIcon: 'ui-icon-clipboard'
+					cmd: 'basic'
 				} , {
 					title: 'Windows 3.1',
-					cmd: 'windows-3x',
-					uiIcon: 'ui-icon-scissors'
+					cmd: 'windows-3x'
 				} , {
 					title: 'Windows 95',
-					cmd: 'windows-95',
-					uiIcon: 'ui-icon-clipboard'
+					cmd: 'windows-95'
 				} , {
 					title: 'Windows ME',
-					cmd: 'windows-me',
-					uiIcon: 'ui-icon-clipboard'
+					cmd: 'windows-me'
 				}]
 			}],
 			select: function(e, ui) {
