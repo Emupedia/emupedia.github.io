@@ -21902,6 +21902,9 @@
   function TSUnionType$1(node, parent) {
     return isTSArrayType(parent) || isTSOptionalType(parent) || isTSIntersectionType(parent) || isTSUnionType(parent) || isTSRestType(parent);
   }
+  function TSInferType$1(node, parent) {
+    return isTSArrayType(parent) || isTSOptionalType(parent);
+  }
   function BinaryExpression$1(node, parent) {
     return node.operator === "in" && (isVariableDeclarator(parent) || isFor(parent));
   }
@@ -22033,6 +22036,7 @@
     TSTypeAssertion: TSTypeAssertion$1,
     TSUnionType: TSUnionType$1,
     TSIntersectionType: TSUnionType$1,
+    TSInferType: TSInferType$1,
     BinaryExpression: BinaryExpression$1,
     SequenceExpression: SequenceExpression$1,
     YieldExpression: YieldExpression$1,
@@ -26580,7 +26584,7 @@
     this.space();
     this.print(node.falseType);
   }
-  function TSInferType$1(node) {
+  function TSInferType$2(node) {
     this.token("infer");
     this.space();
     this.print(node.typeParameter);
@@ -27118,7 +27122,7 @@
     TSIntersectionType: TSIntersectionType$1,
     tsPrintUnionOrIntersectionType: tsPrintUnionOrIntersectionType,
     TSConditionalType: TSConditionalType$1,
-    TSInferType: TSInferType$1,
+    TSInferType: TSInferType$2,
     TSParenthesizedType: TSParenthesizedType$1,
     TSTypeOperator: TSTypeOperator$1,
     TSIndexedAccessType: TSIndexedAccessType$1,
@@ -38062,8 +38066,7 @@
       this.context = [types$1.braceStatement];
       this.exprAllowed = true;
       this.containsEsc = false;
-      this.containsOctal = false;
-      this.octalPosition = null;
+      this.octalPositions = [];
       this.exportedIdentifiers = [];
       this.tokensLength = 0;
     }
@@ -38219,8 +38222,7 @@
     _proto.nextToken = function nextToken() {
       var curContext = this.curContext();
       if (!curContext || !curContext.preserveSpace) this.skipSpace();
-      this.state.containsOctal = false;
-      this.state.octalPosition = null;
+      this.state.octalPositions = [];
       this.state.start = this.state.pos;
       this.state.startLoc = this.state.curPosition();
 
@@ -38899,7 +38901,7 @@
 
       if (octal) {
         if (this.state.strict) {
-          this.raise(start, "Legacy octal literals are not allowed in strict mode");
+          this.raise(start, Errors.StrictOctalLiteral);
         }
 
         if (/[89]/.test(this.input.slice(start, this.state.pos))) {
@@ -39161,9 +39163,8 @@
                 return null;
               } else if (this.state.strict) {
                 this.raise(codePos, Errors.StrictOctalLiteral);
-              } else if (!this.state.containsOctal) {
-                this.state.containsOctal = true;
-                this.state.octalPosition = codePos;
+              } else {
+                this.state.octalPositions.push(codePos);
               }
             }
 
@@ -39306,8 +39307,6 @@
     return Tokenizer;
   }(LocationParser);
 
-  var literal = /^('|")((?:\\?.)*?)\1/;
-
   var UtilParser = function (_Tokenizer) {
     _inheritsLoose(UtilParser, _Tokenizer);
 
@@ -39444,25 +39443,6 @@
       if (this.state.awaitPos !== -1) {
         this.raise(this.state.awaitPos, "Await cannot be used as name inside an async function");
       }
-    };
-
-    _proto.strictDirective = function strictDirective(start) {
-      for (;;) {
-        skipWhiteSpace.lastIndex = start;
-        start += skipWhiteSpace.exec(this.input)[0].length;
-        var match = literal.exec(this.input.slice(start));
-        if (!match) break;
-        if (match[2] === "use strict") return true;
-        start += match[0].length;
-        skipWhiteSpace.lastIndex = start;
-        start += skipWhiteSpace.exec(this.input)[0].length;
-
-        if (this.input[start] === ";") {
-          start++;
-        }
-      }
-
-      return false;
     };
 
     _proto.tryParse = function tryParse(fn, oldState) {
@@ -39973,12 +39953,7 @@
 
         default:
           {
-            if (contextDescription) {
-              this.raise(expr.start, bindingType === BIND_NONE ? Errors.InvalidLhs : Errors.InvalidLhsBinding, contextDescription);
-            } else {
-              var message = (bindingType === BIND_NONE ? "Invalid" : "Binding invalid") + " left-hand side expression";
-              this.raise(expr.start, message);
-            }
+            this.raise(expr.start, bindingType === BIND_NONE ? Errors.InvalidLhs : Errors.InvalidLhsBinding, contextDescription);
           }
       }
     };
@@ -41324,13 +41299,13 @@
     };
 
     _proto.parseFunctionBody = function parseFunctionBody(node, allowExpression, isMethod) {
+      var _this2 = this;
+
       if (isMethod === void 0) {
         isMethod = false;
       }
 
       var isExpression = allowExpression && !this.match(types.braceL);
-      var oldStrict = this.state.strict;
-      var useStrict = false;
       var oldInParameters = this.state.inParameters;
       this.state.inParameters = false;
 
@@ -41338,34 +41313,32 @@
         node.body = this.parseMaybeAssign();
         this.checkParams(node, false, allowExpression, false);
       } else {
-        var nonSimple = !this.isSimpleParamList(node.params);
-
-        if (!oldStrict || nonSimple) {
-          useStrict = this.strictDirective(this.state.end);
-
-          if (useStrict && nonSimple) {
-            var errorPos = (node.kind === "method" || node.kind === "constructor") && !!node.key ? node.key.end : node.start;
-            this.raise(errorPos, Errors.IllegalLanguageModeDirective);
-          }
-        }
-
+        var oldStrict = this.state.strict;
         var oldLabels = this.state.labels;
         this.state.labels = [];
-        if (useStrict) this.state.strict = true;
-        this.checkParams(node, !oldStrict && !useStrict && !allowExpression && !isMethod && !nonSimple, allowExpression, !oldStrict && useStrict);
         this.prodParam.enter(this.prodParam.currentFlags() | PARAM_RETURN);
-        node.body = this.parseBlock(true, false);
+        node.body = this.parseBlock(true, false, function (hasStrictModeDirective) {
+          var nonSimple = !_this2.isSimpleParamList(node.params);
+
+          if (hasStrictModeDirective && nonSimple) {
+            var errorPos = (node.kind === "method" || node.kind === "constructor") && !!node.key ? node.key.end : node.start;
+
+            _this2.raise(errorPos, Errors.IllegalLanguageModeDirective);
+          }
+
+          var strictModeChanged = !oldStrict && _this2.state.strict;
+
+          _this2.checkParams(node, !_this2.state.strict && !allowExpression && !isMethod && !nonSimple, allowExpression, strictModeChanged);
+
+          if (_this2.state.strict && node.id) {
+            _this2.checkLVal(node.id, BIND_OUTSIDE, undefined, "function name", undefined, strictModeChanged);
+          }
+        });
         this.prodParam.exit();
         this.state.labels = oldLabels;
       }
 
       this.state.inParameters = oldInParameters;
-
-      if (this.state.strict && node.id) {
-        this.checkLVal(node.id, BIND_OUTSIDE, undefined, "function name", undefined, !oldStrict && useStrict);
-      }
-
-      this.state.strict = oldStrict;
     };
 
     _proto.isSimpleParamList = function isSimpleParamList(params) {
@@ -42363,7 +42336,7 @@
       return this.finishNode(node, "ExpressionStatement");
     };
 
-    _proto.parseBlock = function parseBlock(allowDirectives, createNewLexicalScope) {
+    _proto.parseBlock = function parseBlock(allowDirectives, createNewLexicalScope, afterBlockParse) {
       if (allowDirectives === void 0) {
         allowDirectives = false;
       }
@@ -42379,7 +42352,7 @@
         this.scope.enter(SCOPE_OTHER);
       }
 
-      this.parseBlockBody(node, allowDirectives, false, types.braceR);
+      this.parseBlockBody(node, allowDirectives, false, types.braceR, afterBlockParse);
 
       if (createNewLexicalScope) {
         this.scope.exit();
@@ -42392,20 +42365,20 @@
       return stmt.type === "ExpressionStatement" && stmt.expression.type === "StringLiteral" && !stmt.expression.extra.parenthesized;
     };
 
-    _proto.parseBlockBody = function parseBlockBody(node, allowDirectives, topLevel, end) {
+    _proto.parseBlockBody = function parseBlockBody(node, allowDirectives, topLevel, end, afterBlockParse) {
       var body = node.body = [];
       var directives = node.directives = [];
-      this.parseBlockOrModuleBlockBody(body, allowDirectives ? directives : undefined, topLevel, end);
+      this.parseBlockOrModuleBlockBody(body, allowDirectives ? directives : undefined, topLevel, end, afterBlockParse);
     };
 
-    _proto.parseBlockOrModuleBlockBody = function parseBlockOrModuleBlockBody(body, directives, topLevel, end) {
+    _proto.parseBlockOrModuleBlockBody = function parseBlockOrModuleBlockBody(body, directives, topLevel, end, afterBlockParse) {
+      var octalPositions = [];
       var parsedNonDirective = false;
-      var oldStrict;
-      var octalPosition;
+      var oldStrict = null;
 
       while (!this.eat(end)) {
-        if (!parsedNonDirective && this.state.containsOctal && !octalPosition) {
-          octalPosition = this.state.octalPosition;
+        if (!parsedNonDirective && this.state.octalPositions.length) {
+          octalPositions.push.apply(octalPositions, this.state.octalPositions);
         }
 
         var stmt = this.parseStatement(null, topLevel);
@@ -42414,13 +42387,9 @@
           var directive = this.stmtToDirective(stmt);
           directives.push(directive);
 
-          if (oldStrict === undefined && directive.value.value === "use strict") {
+          if (oldStrict === null && directive.value.value === "use strict") {
             oldStrict = this.state.strict;
             this.setStrict(true);
-
-            if (octalPosition) {
-              this.raise(octalPosition, Errors.StrictOctalLiteral);
-            }
           }
 
           continue;
@@ -42428,6 +42397,17 @@
 
         parsedNonDirective = true;
         body.push(stmt);
+      }
+
+      if (this.state.strict && octalPositions.length) {
+        for (var _i6 = 0; _i6 < octalPositions.length; _i6++) {
+          var pos = octalPositions[_i6];
+          this.raise(pos, Errors.StrictOctalLiteral);
+        }
+      }
+
+      if (afterBlockParse) {
+        afterBlockParse.call(this, oldStrict !== null);
       }
 
       if (oldStrict === false) {
@@ -43105,8 +43085,8 @@
         if (isDefault) {
           this.checkDuplicateExports(node, "default");
         } else if (node.specifiers && node.specifiers.length) {
-          for (var _i6 = 0, _node$specifiers3 = node.specifiers; _i6 < _node$specifiers3.length; _i6++) {
-            var specifier = _node$specifiers3[_i6];
+          for (var _i8 = 0, _node$specifiers3 = node.specifiers; _i8 < _node$specifiers3.length; _i8++) {
+            var specifier = _node$specifiers3[_i8];
             this.checkDuplicateExports(specifier, specifier.exported.name);
 
             if (!isFrom && specifier.local) {
@@ -43120,8 +43100,8 @@
             if (!id) throw new Error("Assertion failure");
             this.checkDuplicateExports(node, id.name);
           } else if (node.declaration.type === "VariableDeclaration") {
-            for (var _i8 = 0, _node$declaration$dec2 = node.declaration.declarations; _i8 < _node$declaration$dec2.length; _i8++) {
-              var declaration = _node$declaration$dec2[_i8];
+            for (var _i10 = 0, _node$declaration$dec2 = node.declaration.declarations; _i10 < _node$declaration$dec2.length; _i10++) {
+              var declaration = _node$declaration$dec2[_i10];
               this.checkDeclaration(declaration.id);
             }
           }
@@ -43145,13 +43125,13 @@
       if (node.type === "Identifier") {
         this.checkDuplicateExports(node, node.name);
       } else if (node.type === "ObjectPattern") {
-        for (var _i10 = 0, _node$properties2 = node.properties; _i10 < _node$properties2.length; _i10++) {
-          var prop = _node$properties2[_i10];
+        for (var _i12 = 0, _node$properties2 = node.properties; _i12 < _node$properties2.length; _i12++) {
+          var prop = _node$properties2[_i12];
           this.checkDeclaration(prop);
         }
       } else if (node.type === "ArrayPattern") {
-        for (var _i12 = 0, _node$elements2 = node.elements; _i12 < _node$elements2.length; _i12++) {
-          var elem = _node$elements2[_i12];
+        for (var _i14 = 0, _node$elements2 = node.elements; _i14 < _node$elements2.length; _i14++) {
+          var elem = _node$elements2[_i14];
 
           if (elem) {
             this.checkDeclaration(elem);
@@ -57972,7 +57952,16 @@
     };
   });
 
-  var syntaxExportNamespaceFrom = declare(function (api) {
+  var lib$2 = createCommonjsModule(function (module, exports) {
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = void 0;
+
+
+
+  var _default = (0, _helperPluginUtils.declare)(function (api) {
     api.assertVersion(7);
     return {
       name: "syntax-export-namespace-from",
@@ -57981,6 +57970,11 @@
       }
     };
   });
+
+  exports["default"] = _default;
+  });
+
+  var syntaxExportNamespaceFrom = unwrapExports(lib$2);
 
   var syntaxFlow = declare(function (api, options) {
     api.assertVersion(7);
@@ -58058,7 +58052,7 @@
     };
   });
 
-  var lib$2 = createCommonjsModule(function (module, exports) {
+  var lib$3 = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -58080,9 +58074,9 @@
   exports["default"] = _default;
   });
 
-  var syntaxObjectRestSpread = unwrapExports(lib$2);
+  var syntaxObjectRestSpread = unwrapExports(lib$3);
 
-  var lib$3 = createCommonjsModule(function (module, exports) {
+  var lib$4 = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -58104,7 +58098,7 @@
   exports["default"] = _default;
   });
 
-  var syntaxOptionalCatchBinding = unwrapExports(lib$3);
+  var syntaxOptionalCatchBinding = unwrapExports(lib$4);
 
   var proposals = ["minimal", "smart", "fsharp"];
   var syntaxPipelineOperator = declare(function (api, _ref) {
@@ -58319,7 +58313,7 @@
     }
   }
 
-  var lib$4 = createCommonjsModule(function (module, exports) {
+  var lib$5 = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -58341,7 +58335,7 @@
   exports["default"] = _default;
   });
 
-  var syntaxAsyncGenerators$1 = unwrapExports(lib$4);
+  var syntaxAsyncGenerators$1 = unwrapExports(lib$5);
 
   var buildForAwait = template("\n  async function wrapper() {\n    var ITERATOR_COMPLETION = true;\n    var ITERATOR_HAD_ERROR_KEY = false;\n    var ITERATOR_ERROR_KEY;\n    try {\n      for (\n        var ITERATOR_KEY = GET_ITERATOR(OBJECT), STEP_KEY, STEP_VALUE;\n        (\n          STEP_KEY = await ITERATOR_KEY.next(),\n          ITERATOR_COMPLETION = STEP_KEY.done,\n          STEP_VALUE = await STEP_KEY.value,\n          !ITERATOR_COMPLETION\n        );\n        ITERATOR_COMPLETION = true) {\n      }\n    } catch (err) {\n      ITERATOR_HAD_ERROR_KEY = true;\n      ITERATOR_ERROR_KEY = err;\n    } finally {\n      try {\n        if (!ITERATOR_COMPLETION && ITERATOR_KEY.return != null) {\n          await ITERATOR_KEY.return();\n        }\n      } finally {\n        if (ITERATOR_HAD_ERROR_KEY) {\n          throw ITERATOR_ERROR_KEY;\n        }\n      }\n    }\n  }\n");
   function rewriteForAwait (path, _ref) {
@@ -60271,7 +60265,7 @@
     };
   });
 
-  var lib$5 = createCommonjsModule(function (module, exports) {
+  var lib$6 = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -60293,7 +60287,7 @@
   exports["default"] = _default;
   });
 
-  var syntaxDynamicImport$1 = unwrapExports(lib$5);
+  var syntaxDynamicImport$1 = unwrapExports(lib$6);
 
   var version$4 = "7.8.3";
 
@@ -60348,11 +60342,35 @@
     };
   });
 
+  var lib$7 = createCommonjsModule(function (module, exports) {
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = void 0;
+
+
+
+  var _default = (0, _helperPluginUtils.declare)(function (api) {
+    api.assertVersion(7);
+    return {
+      name: "syntax-export-namespace-from",
+      manipulateOptions: function manipulateOptions(opts, parserOpts) {
+        parserOpts.plugins.push("exportNamespaceFrom");
+      }
+    };
+  });
+
+  exports["default"] = _default;
+  });
+
+  var syntaxExportNamespaceFrom$1 = unwrapExports(lib$7);
+
   var proposalExportNamespaceFrom = declare(function (api) {
     api.assertVersion(7);
     return {
       name: "proposal-export-namespace-from",
-      inherits: syntaxExportNamespaceFrom,
+      inherits: syntaxExportNamespaceFrom$1,
       visitor: {
         ExportNamedDeclaration: function ExportNamedDeclaration$1(path) {
           var node = path.node,
@@ -60491,7 +60509,7 @@
     };
   });
 
-  var lib$6 = createCommonjsModule(function (module, exports) {
+  var lib$8 = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -60513,7 +60531,7 @@
   exports["default"] = _default;
   });
 
-  var syntaxJsonStrings = unwrapExports(lib$6);
+  var syntaxJsonStrings = unwrapExports(lib$8);
 
   var proposalJsonStrings = declare(function (api) {
     api.assertVersion(7);
@@ -60595,7 +60613,7 @@
     };
   });
 
-  var lib$7 = createCommonjsModule(function (module, exports) {
+  var lib$9 = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -60617,7 +60635,7 @@
   exports["default"] = _default;
   });
 
-  var syntaxNullishCoalescingOperator = unwrapExports(lib$7);
+  var syntaxNullishCoalescingOperator = unwrapExports(lib$9);
 
   var proposalNullishCoalescingOperator = declare(function (api, _ref) {
     var _ref$loose = _ref.loose,
@@ -60679,7 +60697,7 @@
     };
   });
 
-  var lib$8 = createCommonjsModule(function (module, exports) {
+  var lib$a = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -60701,7 +60719,7 @@
   exports["default"] = _default;
   });
 
-  var syntaxObjectRestSpread$1 = unwrapExports(lib$8);
+  var syntaxObjectRestSpread$1 = unwrapExports(lib$a);
 
   var ZERO_REFS = function () {
     var node = Identifier("a");
@@ -61120,7 +61138,7 @@
     };
   });
 
-  var lib$9 = createCommonjsModule(function (module, exports) {
+  var lib$b = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -61142,7 +61160,7 @@
   exports["default"] = _default;
   });
 
-  var syntaxOptionalCatchBinding$1 = unwrapExports(lib$9);
+  var syntaxOptionalCatchBinding$1 = unwrapExports(lib$b);
 
   var proposalOptionalCatchBinding = declare(function (api) {
     api.assertVersion(7);
@@ -61161,7 +61179,7 @@
     };
   });
 
-  var lib$a = createCommonjsModule(function (module, exports) {
+  var lib$c = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -61183,7 +61201,7 @@
   exports["default"] = _default;
   });
 
-  var syntaxOptionalChaining = unwrapExports(lib$a);
+  var syntaxOptionalChaining = unwrapExports(lib$c);
 
   var proposalOptionalChaining = declare(function (api, options) {
     api.assertVersion(7);
@@ -61905,14 +61923,6 @@
         var first = _char.charCodeAt(0);
 
         if (hasUnicodeFlag) {
-          if (_char === '}') {
-            bail("unescaped or unmatched closing brace");
-          }
-
-          if (_char === ']') {
-            bail("unescaped or unmatched closing bracket");
-          }
-
           var second;
 
           if (_char.length === 1 && first >= 0xD800 && first <= 0xDBFF) {
@@ -61972,22 +61982,6 @@
           type: 'group',
           behavior: behavior,
           body: disjunction,
-          range: [from, to]
-        });
-      }
-
-      function createQuantifier(min, max, from, to) {
-        if (to == null) {
-          from = pos - 1;
-          to = pos;
-        }
-
-        return addRaw({
-          type: 'quantifier',
-          min: min,
-          max: max,
-          greedy: true,
-          body: null,
           range: [from, to]
         });
       }
@@ -62118,18 +62112,10 @@
           return anchor;
         }
 
-        var atom = parseAtom();
+        var atom = parseAtomAndExtendedAtom();
 
         if (!atom) {
           bail('Expected atom');
-        }
-
-        var quantifier = parseQuantifier() || false;
-
-        if (quantifier) {
-          quantifier.body = flattenBody(atom);
-          updateRawStart(quantifier, atom.range[0]);
-          return quantifier;
         }
 
         return atom;
@@ -62184,49 +62170,12 @@
         }
       }
 
-      function parseQuantifier() {
-        var res,
-            from = pos;
-        var quantifier;
-        var min, max;
-
-        if (match('*')) {
-          quantifier = createQuantifier(0);
-        } else if (match('+')) {
-          quantifier = createQuantifier(1);
-        } else if (match('?')) {
-          quantifier = createQuantifier(0, 1);
-        } else if (res = matchReg(/^\{([0-9]+)\}/)) {
-          min = parseInt(res[1], 10);
-          quantifier = createQuantifier(min, min, res.range[0], res.range[1]);
-        } else if (res = matchReg(/^\{([0-9]+),\}/)) {
-          min = parseInt(res[1], 10);
-          quantifier = createQuantifier(min, undefined, res.range[0], res.range[1]);
-        } else if (res = matchReg(/^\{([0-9]+),([0-9]+)\}/)) {
-          min = parseInt(res[1], 10);
-          max = parseInt(res[2], 10);
-
-          if (min > max) {
-            bail('numbers out of order in {} quantifier', '', from, pos);
-          }
-
-          quantifier = createQuantifier(min, max, res.range[0], res.range[1]);
-        }
-
-        if (quantifier) {
-          if (match('?')) {
-            quantifier.greedy = false;
-            quantifier.range[1] += 1;
-          }
-        }
-
-        return quantifier;
-      }
-
-      function parseAtom() {
+      function parseAtomAndExtendedAtom() {
         var res;
 
-        if (res = matchReg(/^[^^$\\.*+?(){[|]/)) {
+        if (res = matchReg(/^[^^$\\.*+?()[\]{}|]/)) {
+          return createCharacter(res);
+        } else if (!hasUnicodeFlag && (res = matchReg(/^(?:]|})/))) {
           return createCharacter(res);
         } else if (match('.')) {
           return createDot();
@@ -63627,7 +63576,7 @@
 
   var unicodeCanonicalPropertyNamesEcmascript = new Set(['General_Category', 'Script', 'Script_Extensions', 'Alphabetic', 'Any', 'ASCII', 'ASCII_Hex_Digit', 'Assigned', 'Bidi_Control', 'Bidi_Mirrored', 'Case_Ignorable', 'Cased', 'Changes_When_Casefolded', 'Changes_When_Casemapped', 'Changes_When_Lowercased', 'Changes_When_NFKC_Casefolded', 'Changes_When_Titlecased', 'Changes_When_Uppercased', 'Dash', 'Default_Ignorable_Code_Point', 'Deprecated', 'Diacritic', 'Emoji', 'Emoji_Component', 'Emoji_Modifier', 'Emoji_Modifier_Base', 'Emoji_Presentation', 'Extended_Pictographic', 'Extender', 'Grapheme_Base', 'Grapheme_Extend', 'Hex_Digit', 'ID_Continue', 'ID_Start', 'Ideographic', 'IDS_Binary_Operator', 'IDS_Trinary_Operator', 'Join_Control', 'Logical_Order_Exception', 'Lowercase', 'Math', 'Noncharacter_Code_Point', 'Pattern_Syntax', 'Pattern_White_Space', 'Quotation_Mark', 'Radical', 'Regional_Indicator', 'Sentence_Terminal', 'Soft_Dotted', 'Terminal_Punctuation', 'Unified_Ideograph', 'Uppercase', 'Variation_Selector', 'White_Space', 'XID_Continue', 'XID_Start']);
 
-  var unicodePropertyAliasesEcmascript = new Map([['scx', 'Script_Extensions'], ['sc', 'Script'], ['gc', 'General_Category'], ['AHex', 'ASCII_Hex_Digit'], ['Alpha', 'Alphabetic'], ['Bidi_C', 'Bidi_Control'], ['Bidi_M', 'Bidi_Mirrored'], ['Cased', 'Cased'], ['CI', 'Case_Ignorable'], ['CWCF', 'Changes_When_Casefolded'], ['CWCM', 'Changes_When_Casemapped'], ['CWKCF', 'Changes_When_NFKC_Casefolded'], ['CWL', 'Changes_When_Lowercased'], ['CWT', 'Changes_When_Titlecased'], ['CWU', 'Changes_When_Uppercased'], ['Dash', 'Dash'], ['Dep', 'Deprecated'], ['DI', 'Default_Ignorable_Code_Point'], ['Dia', 'Diacritic'], ['Ext', 'Extender'], ['Gr_Base', 'Grapheme_Base'], ['Gr_Ext', 'Grapheme_Extend'], ['Hex', 'Hex_Digit'], ['IDC', 'ID_Continue'], ['Ideo', 'Ideographic'], ['IDS', 'ID_Start'], ['IDSB', 'IDS_Binary_Operator'], ['IDST', 'IDS_Trinary_Operator'], ['Join_C', 'Join_Control'], ['LOE', 'Logical_Order_Exception'], ['Lower', 'Lowercase'], ['Math', 'Math'], ['NChar', 'Noncharacter_Code_Point'], ['Pat_Syn', 'Pattern_Syntax'], ['Pat_WS', 'Pattern_White_Space'], ['QMark', 'Quotation_Mark'], ['Radical', 'Radical'], ['RI', 'Regional_Indicator'], ['SD', 'Soft_Dotted'], ['STerm', 'Sentence_Terminal'], ['Term', 'Terminal_Punctuation'], ['UIdeo', 'Unified_Ideograph'], ['Upper', 'Uppercase'], ['VS', 'Variation_Selector'], ['WSpace', 'White_Space'], ['space', 'White_Space'], ['XIDC', 'XID_Continue'], ['XIDS', 'XID_Start']]);
+  var unicodePropertyAliasesEcmascript = new Map([['scx', 'Script_Extensions'], ['sc', 'Script'], ['gc', 'General_Category'], ['AHex', 'ASCII_Hex_Digit'], ['Alpha', 'Alphabetic'], ['Bidi_C', 'Bidi_Control'], ['Bidi_M', 'Bidi_Mirrored'], ['Cased', 'Cased'], ['CI', 'Case_Ignorable'], ['CWCF', 'Changes_When_Casefolded'], ['CWCM', 'Changes_When_Casemapped'], ['CWKCF', 'Changes_When_NFKC_Casefolded'], ['CWL', 'Changes_When_Lowercased'], ['CWT', 'Changes_When_Titlecased'], ['CWU', 'Changes_When_Uppercased'], ['Dash', 'Dash'], ['Dep', 'Deprecated'], ['DI', 'Default_Ignorable_Code_Point'], ['Dia', 'Diacritic'], ['EBase', 'Emoji_Modifier_Base'], ['EComp', 'Emoji_Component'], ['EMod', 'Emoji_Modifier'], ['Emoji', 'Emoji'], ['EPres', 'Emoji_Presentation'], ['Ext', 'Extender'], ['ExtPict', 'Extended_Pictographic'], ['Gr_Base', 'Grapheme_Base'], ['Gr_Ext', 'Grapheme_Extend'], ['Hex', 'Hex_Digit'], ['IDC', 'ID_Continue'], ['Ideo', 'Ideographic'], ['IDS', 'ID_Start'], ['IDSB', 'IDS_Binary_Operator'], ['IDST', 'IDS_Trinary_Operator'], ['Join_C', 'Join_Control'], ['LOE', 'Logical_Order_Exception'], ['Lower', 'Lowercase'], ['Math', 'Math'], ['NChar', 'Noncharacter_Code_Point'], ['Pat_Syn', 'Pattern_Syntax'], ['Pat_WS', 'Pattern_White_Space'], ['QMark', 'Quotation_Mark'], ['Radical', 'Radical'], ['RI', 'Regional_Indicator'], ['SD', 'Soft_Dotted'], ['STerm', 'Sentence_Terminal'], ['Term', 'Terminal_Punctuation'], ['UIdeo', 'Unified_Ideograph'], ['Upper', 'Uppercase'], ['VS', 'Variation_Selector'], ['WSpace', 'White_Space'], ['space', 'White_Space'], ['XIDC', 'XID_Continue'], ['XIDS', 'XID_Start']]);
 
   var matchProperty = function matchProperty(property) {
     if (unicodeCanonicalPropertyNamesEcmascript.has(property)) {
@@ -63643,7 +63592,7 @@
 
   var unicodeMatchPropertyEcmascript = matchProperty;
 
-  var mappings = new Map([['General_Category', new Map([['C', 'Other'], ['Cc', 'Control'], ['cntrl', 'Control'], ['Cf', 'Format'], ['Cn', 'Unassigned'], ['Co', 'Private_Use'], ['Cs', 'Surrogate'], ['L', 'Letter'], ['LC', 'Cased_Letter'], ['Ll', 'Lowercase_Letter'], ['Lm', 'Modifier_Letter'], ['Lo', 'Other_Letter'], ['Lt', 'Titlecase_Letter'], ['Lu', 'Uppercase_Letter'], ['M', 'Mark'], ['Combining_Mark', 'Mark'], ['Mc', 'Spacing_Mark'], ['Me', 'Enclosing_Mark'], ['Mn', 'Nonspacing_Mark'], ['N', 'Number'], ['Nd', 'Decimal_Number'], ['digit', 'Decimal_Number'], ['Nl', 'Letter_Number'], ['No', 'Other_Number'], ['P', 'Punctuation'], ['punct', 'Punctuation'], ['Pc', 'Connector_Punctuation'], ['Pd', 'Dash_Punctuation'], ['Pe', 'Close_Punctuation'], ['Pf', 'Final_Punctuation'], ['Pi', 'Initial_Punctuation'], ['Po', 'Other_Punctuation'], ['Ps', 'Open_Punctuation'], ['S', 'Symbol'], ['Sc', 'Currency_Symbol'], ['Sk', 'Modifier_Symbol'], ['Sm', 'Math_Symbol'], ['So', 'Other_Symbol'], ['Z', 'Separator'], ['Zl', 'Line_Separator'], ['Zp', 'Paragraph_Separator'], ['Zs', 'Space_Separator'], ['Other', 'Other'], ['Control', 'Control'], ['Format', 'Format'], ['Unassigned', 'Unassigned'], ['Private_Use', 'Private_Use'], ['Surrogate', 'Surrogate'], ['Letter', 'Letter'], ['Cased_Letter', 'Cased_Letter'], ['Lowercase_Letter', 'Lowercase_Letter'], ['Modifier_Letter', 'Modifier_Letter'], ['Other_Letter', 'Other_Letter'], ['Titlecase_Letter', 'Titlecase_Letter'], ['Uppercase_Letter', 'Uppercase_Letter'], ['Mark', 'Mark'], ['Spacing_Mark', 'Spacing_Mark'], ['Enclosing_Mark', 'Enclosing_Mark'], ['Nonspacing_Mark', 'Nonspacing_Mark'], ['Number', 'Number'], ['Decimal_Number', 'Decimal_Number'], ['Letter_Number', 'Letter_Number'], ['Other_Number', 'Other_Number'], ['Punctuation', 'Punctuation'], ['Connector_Punctuation', 'Connector_Punctuation'], ['Dash_Punctuation', 'Dash_Punctuation'], ['Close_Punctuation', 'Close_Punctuation'], ['Final_Punctuation', 'Final_Punctuation'], ['Initial_Punctuation', 'Initial_Punctuation'], ['Other_Punctuation', 'Other_Punctuation'], ['Open_Punctuation', 'Open_Punctuation'], ['Symbol', 'Symbol'], ['Currency_Symbol', 'Currency_Symbol'], ['Modifier_Symbol', 'Modifier_Symbol'], ['Math_Symbol', 'Math_Symbol'], ['Other_Symbol', 'Other_Symbol'], ['Separator', 'Separator'], ['Line_Separator', 'Line_Separator'], ['Paragraph_Separator', 'Paragraph_Separator'], ['Space_Separator', 'Space_Separator']])], ['Script', new Map([['Adlm', 'Adlam'], ['Aghb', 'Caucasian_Albanian'], ['Ahom', 'Ahom'], ['Arab', 'Arabic'], ['Armi', 'Imperial_Aramaic'], ['Armn', 'Armenian'], ['Avst', 'Avestan'], ['Bali', 'Balinese'], ['Bamu', 'Bamum'], ['Bass', 'Bassa_Vah'], ['Batk', 'Batak'], ['Beng', 'Bengali'], ['Bhks', 'Bhaiksuki'], ['Bopo', 'Bopomofo'], ['Brah', 'Brahmi'], ['Brai', 'Braille'], ['Bugi', 'Buginese'], ['Buhd', 'Buhid'], ['Cakm', 'Chakma'], ['Cans', 'Canadian_Aboriginal'], ['Cari', 'Carian'], ['Cham', 'Cham'], ['Cher', 'Cherokee'], ['Copt', 'Coptic'], ['Qaac', 'Coptic'], ['Cprt', 'Cypriot'], ['Cyrl', 'Cyrillic'], ['Deva', 'Devanagari'], ['Dogr', 'Dogra'], ['Dsrt', 'Deseret'], ['Dupl', 'Duployan'], ['Egyp', 'Egyptian_Hieroglyphs'], ['Elba', 'Elbasan'], ['Elym', 'Elymaic'], ['Ethi', 'Ethiopic'], ['Geor', 'Georgian'], ['Glag', 'Glagolitic'], ['Gong', 'Gunjala_Gondi'], ['Gonm', 'Masaram_Gondi'], ['Goth', 'Gothic'], ['Gran', 'Grantha'], ['Grek', 'Greek'], ['Gujr', 'Gujarati'], ['Guru', 'Gurmukhi'], ['Hang', 'Hangul'], ['Hani', 'Han'], ['Hano', 'Hanunoo'], ['Hatr', 'Hatran'], ['Hebr', 'Hebrew'], ['Hira', 'Hiragana'], ['Hluw', 'Anatolian_Hieroglyphs'], ['Hmng', 'Pahawh_Hmong'], ['Hmnp', 'Nyiakeng_Puachue_Hmong'], ['Hrkt', 'Katakana_Or_Hiragana'], ['Hung', 'Old_Hungarian'], ['Ital', 'Old_Italic'], ['Java', 'Javanese'], ['Kali', 'Kayah_Li'], ['Kana', 'Katakana'], ['Khar', 'Kharoshthi'], ['Khmr', 'Khmer'], ['Khoj', 'Khojki'], ['Knda', 'Kannada'], ['Kthi', 'Kaithi'], ['Lana', 'Tai_Tham'], ['Laoo', 'Lao'], ['Latn', 'Latin'], ['Lepc', 'Lepcha'], ['Limb', 'Limbu'], ['Lina', 'Linear_A'], ['Linb', 'Linear_B'], ['Lisu', 'Lisu'], ['Lyci', 'Lycian'], ['Lydi', 'Lydian'], ['Mahj', 'Mahajani'], ['Maka', 'Makasar'], ['Mand', 'Mandaic'], ['Mani', 'Manichaean'], ['Marc', 'Marchen'], ['Medf', 'Medefaidrin'], ['Mend', 'Mende_Kikakui'], ['Merc', 'Meroitic_Cursive'], ['Mero', 'Meroitic_Hieroglyphs'], ['Mlym', 'Malayalam'], ['Modi', 'Modi'], ['Mong', 'Mongolian'], ['Mroo', 'Mro'], ['Mtei', 'Meetei_Mayek'], ['Mult', 'Multani'], ['Mymr', 'Myanmar'], ['Nand', 'Nandinagari'], ['Narb', 'Old_North_Arabian'], ['Nbat', 'Nabataean'], ['Newa', 'Newa'], ['Nkoo', 'Nko'], ['Nshu', 'Nushu'], ['Ogam', 'Ogham'], ['Olck', 'Ol_Chiki'], ['Orkh', 'Old_Turkic'], ['Orya', 'Oriya'], ['Osge', 'Osage'], ['Osma', 'Osmanya'], ['Palm', 'Palmyrene'], ['Pauc', 'Pau_Cin_Hau'], ['Perm', 'Old_Permic'], ['Phag', 'Phags_Pa'], ['Phli', 'Inscriptional_Pahlavi'], ['Phlp', 'Psalter_Pahlavi'], ['Phnx', 'Phoenician'], ['Plrd', 'Miao'], ['Prti', 'Inscriptional_Parthian'], ['Rjng', 'Rejang'], ['Rohg', 'Hanifi_Rohingya'], ['Runr', 'Runic'], ['Samr', 'Samaritan'], ['Sarb', 'Old_South_Arabian'], ['Saur', 'Saurashtra'], ['Sgnw', 'SignWriting'], ['Shaw', 'Shavian'], ['Shrd', 'Sharada'], ['Sidd', 'Siddham'], ['Sind', 'Khudawadi'], ['Sinh', 'Sinhala'], ['Sogd', 'Sogdian'], ['Sogo', 'Old_Sogdian'], ['Sora', 'Sora_Sompeng'], ['Soyo', 'Soyombo'], ['Sund', 'Sundanese'], ['Sylo', 'Syloti_Nagri'], ['Syrc', 'Syriac'], ['Tagb', 'Tagbanwa'], ['Takr', 'Takri'], ['Tale', 'Tai_Le'], ['Talu', 'New_Tai_Lue'], ['Taml', 'Tamil'], ['Tang', 'Tangut'], ['Tavt', 'Tai_Viet'], ['Telu', 'Telugu'], ['Tfng', 'Tifinagh'], ['Tglg', 'Tagalog'], ['Thaa', 'Thaana'], ['Thai', 'Thai'], ['Tibt', 'Tibetan'], ['Tirh', 'Tirhuta'], ['Ugar', 'Ugaritic'], ['Vaii', 'Vai'], ['Wara', 'Warang_Citi'], ['Wcho', 'Wancho'], ['Xpeo', 'Old_Persian'], ['Xsux', 'Cuneiform'], ['Yiii', 'Yi'], ['Zanb', 'Zanabazar_Square'], ['Zinh', 'Inherited'], ['Qaai', 'Inherited'], ['Zyyy', 'Common'], ['Zzzz', 'Unknown'], ['Adlam', 'Adlam'], ['Caucasian_Albanian', 'Caucasian_Albanian'], ['Arabic', 'Arabic'], ['Imperial_Aramaic', 'Imperial_Aramaic'], ['Armenian', 'Armenian'], ['Avestan', 'Avestan'], ['Balinese', 'Balinese'], ['Bamum', 'Bamum'], ['Bassa_Vah', 'Bassa_Vah'], ['Batak', 'Batak'], ['Bengali', 'Bengali'], ['Bhaiksuki', 'Bhaiksuki'], ['Bopomofo', 'Bopomofo'], ['Brahmi', 'Brahmi'], ['Braille', 'Braille'], ['Buginese', 'Buginese'], ['Buhid', 'Buhid'], ['Chakma', 'Chakma'], ['Canadian_Aboriginal', 'Canadian_Aboriginal'], ['Carian', 'Carian'], ['Cherokee', 'Cherokee'], ['Coptic', 'Coptic'], ['Cypriot', 'Cypriot'], ['Cyrillic', 'Cyrillic'], ['Devanagari', 'Devanagari'], ['Dogra', 'Dogra'], ['Deseret', 'Deseret'], ['Duployan', 'Duployan'], ['Egyptian_Hieroglyphs', 'Egyptian_Hieroglyphs'], ['Elbasan', 'Elbasan'], ['Elymaic', 'Elymaic'], ['Ethiopic', 'Ethiopic'], ['Georgian', 'Georgian'], ['Glagolitic', 'Glagolitic'], ['Gunjala_Gondi', 'Gunjala_Gondi'], ['Masaram_Gondi', 'Masaram_Gondi'], ['Gothic', 'Gothic'], ['Grantha', 'Grantha'], ['Greek', 'Greek'], ['Gujarati', 'Gujarati'], ['Gurmukhi', 'Gurmukhi'], ['Hangul', 'Hangul'], ['Han', 'Han'], ['Hanunoo', 'Hanunoo'], ['Hatran', 'Hatran'], ['Hebrew', 'Hebrew'], ['Hiragana', 'Hiragana'], ['Anatolian_Hieroglyphs', 'Anatolian_Hieroglyphs'], ['Pahawh_Hmong', 'Pahawh_Hmong'], ['Nyiakeng_Puachue_Hmong', 'Nyiakeng_Puachue_Hmong'], ['Katakana_Or_Hiragana', 'Katakana_Or_Hiragana'], ['Old_Hungarian', 'Old_Hungarian'], ['Old_Italic', 'Old_Italic'], ['Javanese', 'Javanese'], ['Kayah_Li', 'Kayah_Li'], ['Katakana', 'Katakana'], ['Kharoshthi', 'Kharoshthi'], ['Khmer', 'Khmer'], ['Khojki', 'Khojki'], ['Kannada', 'Kannada'], ['Kaithi', 'Kaithi'], ['Tai_Tham', 'Tai_Tham'], ['Lao', 'Lao'], ['Latin', 'Latin'], ['Lepcha', 'Lepcha'], ['Limbu', 'Limbu'], ['Linear_A', 'Linear_A'], ['Linear_B', 'Linear_B'], ['Lycian', 'Lycian'], ['Lydian', 'Lydian'], ['Mahajani', 'Mahajani'], ['Makasar', 'Makasar'], ['Mandaic', 'Mandaic'], ['Manichaean', 'Manichaean'], ['Marchen', 'Marchen'], ['Medefaidrin', 'Medefaidrin'], ['Mende_Kikakui', 'Mende_Kikakui'], ['Meroitic_Cursive', 'Meroitic_Cursive'], ['Meroitic_Hieroglyphs', 'Meroitic_Hieroglyphs'], ['Malayalam', 'Malayalam'], ['Mongolian', 'Mongolian'], ['Mro', 'Mro'], ['Meetei_Mayek', 'Meetei_Mayek'], ['Multani', 'Multani'], ['Myanmar', 'Myanmar'], ['Nandinagari', 'Nandinagari'], ['Old_North_Arabian', 'Old_North_Arabian'], ['Nabataean', 'Nabataean'], ['Nko', 'Nko'], ['Nushu', 'Nushu'], ['Ogham', 'Ogham'], ['Ol_Chiki', 'Ol_Chiki'], ['Old_Turkic', 'Old_Turkic'], ['Oriya', 'Oriya'], ['Osage', 'Osage'], ['Osmanya', 'Osmanya'], ['Palmyrene', 'Palmyrene'], ['Pau_Cin_Hau', 'Pau_Cin_Hau'], ['Old_Permic', 'Old_Permic'], ['Phags_Pa', 'Phags_Pa'], ['Inscriptional_Pahlavi', 'Inscriptional_Pahlavi'], ['Psalter_Pahlavi', 'Psalter_Pahlavi'], ['Phoenician', 'Phoenician'], ['Miao', 'Miao'], ['Inscriptional_Parthian', 'Inscriptional_Parthian'], ['Rejang', 'Rejang'], ['Hanifi_Rohingya', 'Hanifi_Rohingya'], ['Runic', 'Runic'], ['Samaritan', 'Samaritan'], ['Old_South_Arabian', 'Old_South_Arabian'], ['Saurashtra', 'Saurashtra'], ['SignWriting', 'SignWriting'], ['Shavian', 'Shavian'], ['Sharada', 'Sharada'], ['Siddham', 'Siddham'], ['Khudawadi', 'Khudawadi'], ['Sinhala', 'Sinhala'], ['Sogdian', 'Sogdian'], ['Old_Sogdian', 'Old_Sogdian'], ['Sora_Sompeng', 'Sora_Sompeng'], ['Soyombo', 'Soyombo'], ['Sundanese', 'Sundanese'], ['Syloti_Nagri', 'Syloti_Nagri'], ['Syriac', 'Syriac'], ['Tagbanwa', 'Tagbanwa'], ['Takri', 'Takri'], ['Tai_Le', 'Tai_Le'], ['New_Tai_Lue', 'New_Tai_Lue'], ['Tamil', 'Tamil'], ['Tangut', 'Tangut'], ['Tai_Viet', 'Tai_Viet'], ['Telugu', 'Telugu'], ['Tifinagh', 'Tifinagh'], ['Tagalog', 'Tagalog'], ['Thaana', 'Thaana'], ['Tibetan', 'Tibetan'], ['Tirhuta', 'Tirhuta'], ['Ugaritic', 'Ugaritic'], ['Vai', 'Vai'], ['Warang_Citi', 'Warang_Citi'], ['Wancho', 'Wancho'], ['Old_Persian', 'Old_Persian'], ['Cuneiform', 'Cuneiform'], ['Yi', 'Yi'], ['Zanabazar_Square', 'Zanabazar_Square'], ['Inherited', 'Inherited'], ['Common', 'Common'], ['Unknown', 'Unknown']])], ['Script_Extensions', new Map([['Adlm', 'Adlam'], ['Aghb', 'Caucasian_Albanian'], ['Ahom', 'Ahom'], ['Arab', 'Arabic'], ['Armi', 'Imperial_Aramaic'], ['Armn', 'Armenian'], ['Avst', 'Avestan'], ['Bali', 'Balinese'], ['Bamu', 'Bamum'], ['Bass', 'Bassa_Vah'], ['Batk', 'Batak'], ['Beng', 'Bengali'], ['Bhks', 'Bhaiksuki'], ['Bopo', 'Bopomofo'], ['Brah', 'Brahmi'], ['Brai', 'Braille'], ['Bugi', 'Buginese'], ['Buhd', 'Buhid'], ['Cakm', 'Chakma'], ['Cans', 'Canadian_Aboriginal'], ['Cari', 'Carian'], ['Cham', 'Cham'], ['Cher', 'Cherokee'], ['Copt', 'Coptic'], ['Qaac', 'Coptic'], ['Cprt', 'Cypriot'], ['Cyrl', 'Cyrillic'], ['Deva', 'Devanagari'], ['Dogr', 'Dogra'], ['Dsrt', 'Deseret'], ['Dupl', 'Duployan'], ['Egyp', 'Egyptian_Hieroglyphs'], ['Elba', 'Elbasan'], ['Elym', 'Elymaic'], ['Ethi', 'Ethiopic'], ['Geor', 'Georgian'], ['Glag', 'Glagolitic'], ['Gong', 'Gunjala_Gondi'], ['Gonm', 'Masaram_Gondi'], ['Goth', 'Gothic'], ['Gran', 'Grantha'], ['Grek', 'Greek'], ['Gujr', 'Gujarati'], ['Guru', 'Gurmukhi'], ['Hang', 'Hangul'], ['Hani', 'Han'], ['Hano', 'Hanunoo'], ['Hatr', 'Hatran'], ['Hebr', 'Hebrew'], ['Hira', 'Hiragana'], ['Hluw', 'Anatolian_Hieroglyphs'], ['Hmng', 'Pahawh_Hmong'], ['Hmnp', 'Nyiakeng_Puachue_Hmong'], ['Hrkt', 'Katakana_Or_Hiragana'], ['Hung', 'Old_Hungarian'], ['Ital', 'Old_Italic'], ['Java', 'Javanese'], ['Kali', 'Kayah_Li'], ['Kana', 'Katakana'], ['Khar', 'Kharoshthi'], ['Khmr', 'Khmer'], ['Khoj', 'Khojki'], ['Knda', 'Kannada'], ['Kthi', 'Kaithi'], ['Lana', 'Tai_Tham'], ['Laoo', 'Lao'], ['Latn', 'Latin'], ['Lepc', 'Lepcha'], ['Limb', 'Limbu'], ['Lina', 'Linear_A'], ['Linb', 'Linear_B'], ['Lisu', 'Lisu'], ['Lyci', 'Lycian'], ['Lydi', 'Lydian'], ['Mahj', 'Mahajani'], ['Maka', 'Makasar'], ['Mand', 'Mandaic'], ['Mani', 'Manichaean'], ['Marc', 'Marchen'], ['Medf', 'Medefaidrin'], ['Mend', 'Mende_Kikakui'], ['Merc', 'Meroitic_Cursive'], ['Mero', 'Meroitic_Hieroglyphs'], ['Mlym', 'Malayalam'], ['Modi', 'Modi'], ['Mong', 'Mongolian'], ['Mroo', 'Mro'], ['Mtei', 'Meetei_Mayek'], ['Mult', 'Multani'], ['Mymr', 'Myanmar'], ['Nand', 'Nandinagari'], ['Narb', 'Old_North_Arabian'], ['Nbat', 'Nabataean'], ['Newa', 'Newa'], ['Nkoo', 'Nko'], ['Nshu', 'Nushu'], ['Ogam', 'Ogham'], ['Olck', 'Ol_Chiki'], ['Orkh', 'Old_Turkic'], ['Orya', 'Oriya'], ['Osge', 'Osage'], ['Osma', 'Osmanya'], ['Palm', 'Palmyrene'], ['Pauc', 'Pau_Cin_Hau'], ['Perm', 'Old_Permic'], ['Phag', 'Phags_Pa'], ['Phli', 'Inscriptional_Pahlavi'], ['Phlp', 'Psalter_Pahlavi'], ['Phnx', 'Phoenician'], ['Plrd', 'Miao'], ['Prti', 'Inscriptional_Parthian'], ['Rjng', 'Rejang'], ['Rohg', 'Hanifi_Rohingya'], ['Runr', 'Runic'], ['Samr', 'Samaritan'], ['Sarb', 'Old_South_Arabian'], ['Saur', 'Saurashtra'], ['Sgnw', 'SignWriting'], ['Shaw', 'Shavian'], ['Shrd', 'Sharada'], ['Sidd', 'Siddham'], ['Sind', 'Khudawadi'], ['Sinh', 'Sinhala'], ['Sogd', 'Sogdian'], ['Sogo', 'Old_Sogdian'], ['Sora', 'Sora_Sompeng'], ['Soyo', 'Soyombo'], ['Sund', 'Sundanese'], ['Sylo', 'Syloti_Nagri'], ['Syrc', 'Syriac'], ['Tagb', 'Tagbanwa'], ['Takr', 'Takri'], ['Tale', 'Tai_Le'], ['Talu', 'New_Tai_Lue'], ['Taml', 'Tamil'], ['Tang', 'Tangut'], ['Tavt', 'Tai_Viet'], ['Telu', 'Telugu'], ['Tfng', 'Tifinagh'], ['Tglg', 'Tagalog'], ['Thaa', 'Thaana'], ['Thai', 'Thai'], ['Tibt', 'Tibetan'], ['Tirh', 'Tirhuta'], ['Ugar', 'Ugaritic'], ['Vaii', 'Vai'], ['Wara', 'Warang_Citi'], ['Wcho', 'Wancho'], ['Xpeo', 'Old_Persian'], ['Xsux', 'Cuneiform'], ['Yiii', 'Yi'], ['Zanb', 'Zanabazar_Square'], ['Zinh', 'Inherited'], ['Qaai', 'Inherited'], ['Zyyy', 'Common'], ['Zzzz', 'Unknown'], ['Adlam', 'Adlam'], ['Caucasian_Albanian', 'Caucasian_Albanian'], ['Arabic', 'Arabic'], ['Imperial_Aramaic', 'Imperial_Aramaic'], ['Armenian', 'Armenian'], ['Avestan', 'Avestan'], ['Balinese', 'Balinese'], ['Bamum', 'Bamum'], ['Bassa_Vah', 'Bassa_Vah'], ['Batak', 'Batak'], ['Bengali', 'Bengali'], ['Bhaiksuki', 'Bhaiksuki'], ['Bopomofo', 'Bopomofo'], ['Brahmi', 'Brahmi'], ['Braille', 'Braille'], ['Buginese', 'Buginese'], ['Buhid', 'Buhid'], ['Chakma', 'Chakma'], ['Canadian_Aboriginal', 'Canadian_Aboriginal'], ['Carian', 'Carian'], ['Cherokee', 'Cherokee'], ['Coptic', 'Coptic'], ['Cypriot', 'Cypriot'], ['Cyrillic', 'Cyrillic'], ['Devanagari', 'Devanagari'], ['Dogra', 'Dogra'], ['Deseret', 'Deseret'], ['Duployan', 'Duployan'], ['Egyptian_Hieroglyphs', 'Egyptian_Hieroglyphs'], ['Elbasan', 'Elbasan'], ['Elymaic', 'Elymaic'], ['Ethiopic', 'Ethiopic'], ['Georgian', 'Georgian'], ['Glagolitic', 'Glagolitic'], ['Gunjala_Gondi', 'Gunjala_Gondi'], ['Masaram_Gondi', 'Masaram_Gondi'], ['Gothic', 'Gothic'], ['Grantha', 'Grantha'], ['Greek', 'Greek'], ['Gujarati', 'Gujarati'], ['Gurmukhi', 'Gurmukhi'], ['Hangul', 'Hangul'], ['Han', 'Han'], ['Hanunoo', 'Hanunoo'], ['Hatran', 'Hatran'], ['Hebrew', 'Hebrew'], ['Hiragana', 'Hiragana'], ['Anatolian_Hieroglyphs', 'Anatolian_Hieroglyphs'], ['Pahawh_Hmong', 'Pahawh_Hmong'], ['Nyiakeng_Puachue_Hmong', 'Nyiakeng_Puachue_Hmong'], ['Katakana_Or_Hiragana', 'Katakana_Or_Hiragana'], ['Old_Hungarian', 'Old_Hungarian'], ['Old_Italic', 'Old_Italic'], ['Javanese', 'Javanese'], ['Kayah_Li', 'Kayah_Li'], ['Katakana', 'Katakana'], ['Kharoshthi', 'Kharoshthi'], ['Khmer', 'Khmer'], ['Khojki', 'Khojki'], ['Kannada', 'Kannada'], ['Kaithi', 'Kaithi'], ['Tai_Tham', 'Tai_Tham'], ['Lao', 'Lao'], ['Latin', 'Latin'], ['Lepcha', 'Lepcha'], ['Limbu', 'Limbu'], ['Linear_A', 'Linear_A'], ['Linear_B', 'Linear_B'], ['Lycian', 'Lycian'], ['Lydian', 'Lydian'], ['Mahajani', 'Mahajani'], ['Makasar', 'Makasar'], ['Mandaic', 'Mandaic'], ['Manichaean', 'Manichaean'], ['Marchen', 'Marchen'], ['Medefaidrin', 'Medefaidrin'], ['Mende_Kikakui', 'Mende_Kikakui'], ['Meroitic_Cursive', 'Meroitic_Cursive'], ['Meroitic_Hieroglyphs', 'Meroitic_Hieroglyphs'], ['Malayalam', 'Malayalam'], ['Mongolian', 'Mongolian'], ['Mro', 'Mro'], ['Meetei_Mayek', 'Meetei_Mayek'], ['Multani', 'Multani'], ['Myanmar', 'Myanmar'], ['Nandinagari', 'Nandinagari'], ['Old_North_Arabian', 'Old_North_Arabian'], ['Nabataean', 'Nabataean'], ['Nko', 'Nko'], ['Nushu', 'Nushu'], ['Ogham', 'Ogham'], ['Ol_Chiki', 'Ol_Chiki'], ['Old_Turkic', 'Old_Turkic'], ['Oriya', 'Oriya'], ['Osage', 'Osage'], ['Osmanya', 'Osmanya'], ['Palmyrene', 'Palmyrene'], ['Pau_Cin_Hau', 'Pau_Cin_Hau'], ['Old_Permic', 'Old_Permic'], ['Phags_Pa', 'Phags_Pa'], ['Inscriptional_Pahlavi', 'Inscriptional_Pahlavi'], ['Psalter_Pahlavi', 'Psalter_Pahlavi'], ['Phoenician', 'Phoenician'], ['Miao', 'Miao'], ['Inscriptional_Parthian', 'Inscriptional_Parthian'], ['Rejang', 'Rejang'], ['Hanifi_Rohingya', 'Hanifi_Rohingya'], ['Runic', 'Runic'], ['Samaritan', 'Samaritan'], ['Old_South_Arabian', 'Old_South_Arabian'], ['Saurashtra', 'Saurashtra'], ['SignWriting', 'SignWriting'], ['Shavian', 'Shavian'], ['Sharada', 'Sharada'], ['Siddham', 'Siddham'], ['Khudawadi', 'Khudawadi'], ['Sinhala', 'Sinhala'], ['Sogdian', 'Sogdian'], ['Old_Sogdian', 'Old_Sogdian'], ['Sora_Sompeng', 'Sora_Sompeng'], ['Soyombo', 'Soyombo'], ['Sundanese', 'Sundanese'], ['Syloti_Nagri', 'Syloti_Nagri'], ['Syriac', 'Syriac'], ['Tagbanwa', 'Tagbanwa'], ['Takri', 'Takri'], ['Tai_Le', 'Tai_Le'], ['New_Tai_Lue', 'New_Tai_Lue'], ['Tamil', 'Tamil'], ['Tangut', 'Tangut'], ['Tai_Viet', 'Tai_Viet'], ['Telugu', 'Telugu'], ['Tifinagh', 'Tifinagh'], ['Tagalog', 'Tagalog'], ['Thaana', 'Thaana'], ['Tibetan', 'Tibetan'], ['Tirhuta', 'Tirhuta'], ['Ugaritic', 'Ugaritic'], ['Vai', 'Vai'], ['Warang_Citi', 'Warang_Citi'], ['Wancho', 'Wancho'], ['Old_Persian', 'Old_Persian'], ['Cuneiform', 'Cuneiform'], ['Yi', 'Yi'], ['Zanabazar_Square', 'Zanabazar_Square'], ['Inherited', 'Inherited'], ['Common', 'Common'], ['Unknown', 'Unknown']])]]);
+  var mappings = new Map([['General_Category', new Map([['C', 'Other'], ['Cc', 'Control'], ['cntrl', 'Control'], ['Cf', 'Format'], ['Cn', 'Unassigned'], ['Co', 'Private_Use'], ['Cs', 'Surrogate'], ['L', 'Letter'], ['LC', 'Cased_Letter'], ['Ll', 'Lowercase_Letter'], ['Lm', 'Modifier_Letter'], ['Lo', 'Other_Letter'], ['Lt', 'Titlecase_Letter'], ['Lu', 'Uppercase_Letter'], ['M', 'Mark'], ['Combining_Mark', 'Mark'], ['Mc', 'Spacing_Mark'], ['Me', 'Enclosing_Mark'], ['Mn', 'Nonspacing_Mark'], ['N', 'Number'], ['Nd', 'Decimal_Number'], ['digit', 'Decimal_Number'], ['Nl', 'Letter_Number'], ['No', 'Other_Number'], ['P', 'Punctuation'], ['punct', 'Punctuation'], ['Pc', 'Connector_Punctuation'], ['Pd', 'Dash_Punctuation'], ['Pe', 'Close_Punctuation'], ['Pf', 'Final_Punctuation'], ['Pi', 'Initial_Punctuation'], ['Po', 'Other_Punctuation'], ['Ps', 'Open_Punctuation'], ['S', 'Symbol'], ['Sc', 'Currency_Symbol'], ['Sk', 'Modifier_Symbol'], ['Sm', 'Math_Symbol'], ['So', 'Other_Symbol'], ['Z', 'Separator'], ['Zl', 'Line_Separator'], ['Zp', 'Paragraph_Separator'], ['Zs', 'Space_Separator'], ['Other', 'Other'], ['Control', 'Control'], ['Format', 'Format'], ['Unassigned', 'Unassigned'], ['Private_Use', 'Private_Use'], ['Surrogate', 'Surrogate'], ['Letter', 'Letter'], ['Cased_Letter', 'Cased_Letter'], ['Lowercase_Letter', 'Lowercase_Letter'], ['Modifier_Letter', 'Modifier_Letter'], ['Other_Letter', 'Other_Letter'], ['Titlecase_Letter', 'Titlecase_Letter'], ['Uppercase_Letter', 'Uppercase_Letter'], ['Mark', 'Mark'], ['Spacing_Mark', 'Spacing_Mark'], ['Enclosing_Mark', 'Enclosing_Mark'], ['Nonspacing_Mark', 'Nonspacing_Mark'], ['Number', 'Number'], ['Decimal_Number', 'Decimal_Number'], ['Letter_Number', 'Letter_Number'], ['Other_Number', 'Other_Number'], ['Punctuation', 'Punctuation'], ['Connector_Punctuation', 'Connector_Punctuation'], ['Dash_Punctuation', 'Dash_Punctuation'], ['Close_Punctuation', 'Close_Punctuation'], ['Final_Punctuation', 'Final_Punctuation'], ['Initial_Punctuation', 'Initial_Punctuation'], ['Other_Punctuation', 'Other_Punctuation'], ['Open_Punctuation', 'Open_Punctuation'], ['Symbol', 'Symbol'], ['Currency_Symbol', 'Currency_Symbol'], ['Modifier_Symbol', 'Modifier_Symbol'], ['Math_Symbol', 'Math_Symbol'], ['Other_Symbol', 'Other_Symbol'], ['Separator', 'Separator'], ['Line_Separator', 'Line_Separator'], ['Paragraph_Separator', 'Paragraph_Separator'], ['Space_Separator', 'Space_Separator']])], ['Script', new Map([['Adlm', 'Adlam'], ['Aghb', 'Caucasian_Albanian'], ['Ahom', 'Ahom'], ['Arab', 'Arabic'], ['Armi', 'Imperial_Aramaic'], ['Armn', 'Armenian'], ['Avst', 'Avestan'], ['Bali', 'Balinese'], ['Bamu', 'Bamum'], ['Bass', 'Bassa_Vah'], ['Batk', 'Batak'], ['Beng', 'Bengali'], ['Bhks', 'Bhaiksuki'], ['Bopo', 'Bopomofo'], ['Brah', 'Brahmi'], ['Brai', 'Braille'], ['Bugi', 'Buginese'], ['Buhd', 'Buhid'], ['Cakm', 'Chakma'], ['Cans', 'Canadian_Aboriginal'], ['Cari', 'Carian'], ['Cham', 'Cham'], ['Cher', 'Cherokee'], ['Chrs', 'Chorasmian'], ['Copt', 'Coptic'], ['Qaac', 'Coptic'], ['Cprt', 'Cypriot'], ['Cyrl', 'Cyrillic'], ['Deva', 'Devanagari'], ['Diak', 'Dives_Akuru'], ['Dogr', 'Dogra'], ['Dsrt', 'Deseret'], ['Dupl', 'Duployan'], ['Egyp', 'Egyptian_Hieroglyphs'], ['Elba', 'Elbasan'], ['Elym', 'Elymaic'], ['Ethi', 'Ethiopic'], ['Geor', 'Georgian'], ['Glag', 'Glagolitic'], ['Gong', 'Gunjala_Gondi'], ['Gonm', 'Masaram_Gondi'], ['Goth', 'Gothic'], ['Gran', 'Grantha'], ['Grek', 'Greek'], ['Gujr', 'Gujarati'], ['Guru', 'Gurmukhi'], ['Hang', 'Hangul'], ['Hani', 'Han'], ['Hano', 'Hanunoo'], ['Hatr', 'Hatran'], ['Hebr', 'Hebrew'], ['Hira', 'Hiragana'], ['Hluw', 'Anatolian_Hieroglyphs'], ['Hmng', 'Pahawh_Hmong'], ['Hmnp', 'Nyiakeng_Puachue_Hmong'], ['Hrkt', 'Katakana_Or_Hiragana'], ['Hung', 'Old_Hungarian'], ['Ital', 'Old_Italic'], ['Java', 'Javanese'], ['Kali', 'Kayah_Li'], ['Kana', 'Katakana'], ['Khar', 'Kharoshthi'], ['Khmr', 'Khmer'], ['Khoj', 'Khojki'], ['Kits', 'Khitan_Small_Script'], ['Knda', 'Kannada'], ['Kthi', 'Kaithi'], ['Lana', 'Tai_Tham'], ['Laoo', 'Lao'], ['Latn', 'Latin'], ['Lepc', 'Lepcha'], ['Limb', 'Limbu'], ['Lina', 'Linear_A'], ['Linb', 'Linear_B'], ['Lisu', 'Lisu'], ['Lyci', 'Lycian'], ['Lydi', 'Lydian'], ['Mahj', 'Mahajani'], ['Maka', 'Makasar'], ['Mand', 'Mandaic'], ['Mani', 'Manichaean'], ['Marc', 'Marchen'], ['Medf', 'Medefaidrin'], ['Mend', 'Mende_Kikakui'], ['Merc', 'Meroitic_Cursive'], ['Mero', 'Meroitic_Hieroglyphs'], ['Mlym', 'Malayalam'], ['Modi', 'Modi'], ['Mong', 'Mongolian'], ['Mroo', 'Mro'], ['Mtei', 'Meetei_Mayek'], ['Mult', 'Multani'], ['Mymr', 'Myanmar'], ['Nand', 'Nandinagari'], ['Narb', 'Old_North_Arabian'], ['Nbat', 'Nabataean'], ['Newa', 'Newa'], ['Nkoo', 'Nko'], ['Nshu', 'Nushu'], ['Ogam', 'Ogham'], ['Olck', 'Ol_Chiki'], ['Orkh', 'Old_Turkic'], ['Orya', 'Oriya'], ['Osge', 'Osage'], ['Osma', 'Osmanya'], ['Palm', 'Palmyrene'], ['Pauc', 'Pau_Cin_Hau'], ['Perm', 'Old_Permic'], ['Phag', 'Phags_Pa'], ['Phli', 'Inscriptional_Pahlavi'], ['Phlp', 'Psalter_Pahlavi'], ['Phnx', 'Phoenician'], ['Plrd', 'Miao'], ['Prti', 'Inscriptional_Parthian'], ['Rjng', 'Rejang'], ['Rohg', 'Hanifi_Rohingya'], ['Runr', 'Runic'], ['Samr', 'Samaritan'], ['Sarb', 'Old_South_Arabian'], ['Saur', 'Saurashtra'], ['Sgnw', 'SignWriting'], ['Shaw', 'Shavian'], ['Shrd', 'Sharada'], ['Sidd', 'Siddham'], ['Sind', 'Khudawadi'], ['Sinh', 'Sinhala'], ['Sogd', 'Sogdian'], ['Sogo', 'Old_Sogdian'], ['Sora', 'Sora_Sompeng'], ['Soyo', 'Soyombo'], ['Sund', 'Sundanese'], ['Sylo', 'Syloti_Nagri'], ['Syrc', 'Syriac'], ['Tagb', 'Tagbanwa'], ['Takr', 'Takri'], ['Tale', 'Tai_Le'], ['Talu', 'New_Tai_Lue'], ['Taml', 'Tamil'], ['Tang', 'Tangut'], ['Tavt', 'Tai_Viet'], ['Telu', 'Telugu'], ['Tfng', 'Tifinagh'], ['Tglg', 'Tagalog'], ['Thaa', 'Thaana'], ['Thai', 'Thai'], ['Tibt', 'Tibetan'], ['Tirh', 'Tirhuta'], ['Ugar', 'Ugaritic'], ['Vaii', 'Vai'], ['Wara', 'Warang_Citi'], ['Wcho', 'Wancho'], ['Xpeo', 'Old_Persian'], ['Xsux', 'Cuneiform'], ['Yezi', 'Yezidi'], ['Yiii', 'Yi'], ['Zanb', 'Zanabazar_Square'], ['Zinh', 'Inherited'], ['Qaai', 'Inherited'], ['Zyyy', 'Common'], ['Zzzz', 'Unknown'], ['Adlam', 'Adlam'], ['Caucasian_Albanian', 'Caucasian_Albanian'], ['Arabic', 'Arabic'], ['Imperial_Aramaic', 'Imperial_Aramaic'], ['Armenian', 'Armenian'], ['Avestan', 'Avestan'], ['Balinese', 'Balinese'], ['Bamum', 'Bamum'], ['Bassa_Vah', 'Bassa_Vah'], ['Batak', 'Batak'], ['Bengali', 'Bengali'], ['Bhaiksuki', 'Bhaiksuki'], ['Bopomofo', 'Bopomofo'], ['Brahmi', 'Brahmi'], ['Braille', 'Braille'], ['Buginese', 'Buginese'], ['Buhid', 'Buhid'], ['Chakma', 'Chakma'], ['Canadian_Aboriginal', 'Canadian_Aboriginal'], ['Carian', 'Carian'], ['Cherokee', 'Cherokee'], ['Chorasmian', 'Chorasmian'], ['Coptic', 'Coptic'], ['Cypriot', 'Cypriot'], ['Cyrillic', 'Cyrillic'], ['Devanagari', 'Devanagari'], ['Dives_Akuru', 'Dives_Akuru'], ['Dogra', 'Dogra'], ['Deseret', 'Deseret'], ['Duployan', 'Duployan'], ['Egyptian_Hieroglyphs', 'Egyptian_Hieroglyphs'], ['Elbasan', 'Elbasan'], ['Elymaic', 'Elymaic'], ['Ethiopic', 'Ethiopic'], ['Georgian', 'Georgian'], ['Glagolitic', 'Glagolitic'], ['Gunjala_Gondi', 'Gunjala_Gondi'], ['Masaram_Gondi', 'Masaram_Gondi'], ['Gothic', 'Gothic'], ['Grantha', 'Grantha'], ['Greek', 'Greek'], ['Gujarati', 'Gujarati'], ['Gurmukhi', 'Gurmukhi'], ['Hangul', 'Hangul'], ['Han', 'Han'], ['Hanunoo', 'Hanunoo'], ['Hatran', 'Hatran'], ['Hebrew', 'Hebrew'], ['Hiragana', 'Hiragana'], ['Anatolian_Hieroglyphs', 'Anatolian_Hieroglyphs'], ['Pahawh_Hmong', 'Pahawh_Hmong'], ['Nyiakeng_Puachue_Hmong', 'Nyiakeng_Puachue_Hmong'], ['Katakana_Or_Hiragana', 'Katakana_Or_Hiragana'], ['Old_Hungarian', 'Old_Hungarian'], ['Old_Italic', 'Old_Italic'], ['Javanese', 'Javanese'], ['Kayah_Li', 'Kayah_Li'], ['Katakana', 'Katakana'], ['Kharoshthi', 'Kharoshthi'], ['Khmer', 'Khmer'], ['Khojki', 'Khojki'], ['Khitan_Small_Script', 'Khitan_Small_Script'], ['Kannada', 'Kannada'], ['Kaithi', 'Kaithi'], ['Tai_Tham', 'Tai_Tham'], ['Lao', 'Lao'], ['Latin', 'Latin'], ['Lepcha', 'Lepcha'], ['Limbu', 'Limbu'], ['Linear_A', 'Linear_A'], ['Linear_B', 'Linear_B'], ['Lycian', 'Lycian'], ['Lydian', 'Lydian'], ['Mahajani', 'Mahajani'], ['Makasar', 'Makasar'], ['Mandaic', 'Mandaic'], ['Manichaean', 'Manichaean'], ['Marchen', 'Marchen'], ['Medefaidrin', 'Medefaidrin'], ['Mende_Kikakui', 'Mende_Kikakui'], ['Meroitic_Cursive', 'Meroitic_Cursive'], ['Meroitic_Hieroglyphs', 'Meroitic_Hieroglyphs'], ['Malayalam', 'Malayalam'], ['Mongolian', 'Mongolian'], ['Mro', 'Mro'], ['Meetei_Mayek', 'Meetei_Mayek'], ['Multani', 'Multani'], ['Myanmar', 'Myanmar'], ['Nandinagari', 'Nandinagari'], ['Old_North_Arabian', 'Old_North_Arabian'], ['Nabataean', 'Nabataean'], ['Nko', 'Nko'], ['Nushu', 'Nushu'], ['Ogham', 'Ogham'], ['Ol_Chiki', 'Ol_Chiki'], ['Old_Turkic', 'Old_Turkic'], ['Oriya', 'Oriya'], ['Osage', 'Osage'], ['Osmanya', 'Osmanya'], ['Palmyrene', 'Palmyrene'], ['Pau_Cin_Hau', 'Pau_Cin_Hau'], ['Old_Permic', 'Old_Permic'], ['Phags_Pa', 'Phags_Pa'], ['Inscriptional_Pahlavi', 'Inscriptional_Pahlavi'], ['Psalter_Pahlavi', 'Psalter_Pahlavi'], ['Phoenician', 'Phoenician'], ['Miao', 'Miao'], ['Inscriptional_Parthian', 'Inscriptional_Parthian'], ['Rejang', 'Rejang'], ['Hanifi_Rohingya', 'Hanifi_Rohingya'], ['Runic', 'Runic'], ['Samaritan', 'Samaritan'], ['Old_South_Arabian', 'Old_South_Arabian'], ['Saurashtra', 'Saurashtra'], ['SignWriting', 'SignWriting'], ['Shavian', 'Shavian'], ['Sharada', 'Sharada'], ['Siddham', 'Siddham'], ['Khudawadi', 'Khudawadi'], ['Sinhala', 'Sinhala'], ['Sogdian', 'Sogdian'], ['Old_Sogdian', 'Old_Sogdian'], ['Sora_Sompeng', 'Sora_Sompeng'], ['Soyombo', 'Soyombo'], ['Sundanese', 'Sundanese'], ['Syloti_Nagri', 'Syloti_Nagri'], ['Syriac', 'Syriac'], ['Tagbanwa', 'Tagbanwa'], ['Takri', 'Takri'], ['Tai_Le', 'Tai_Le'], ['New_Tai_Lue', 'New_Tai_Lue'], ['Tamil', 'Tamil'], ['Tangut', 'Tangut'], ['Tai_Viet', 'Tai_Viet'], ['Telugu', 'Telugu'], ['Tifinagh', 'Tifinagh'], ['Tagalog', 'Tagalog'], ['Thaana', 'Thaana'], ['Tibetan', 'Tibetan'], ['Tirhuta', 'Tirhuta'], ['Ugaritic', 'Ugaritic'], ['Vai', 'Vai'], ['Warang_Citi', 'Warang_Citi'], ['Wancho', 'Wancho'], ['Old_Persian', 'Old_Persian'], ['Cuneiform', 'Cuneiform'], ['Yezidi', 'Yezidi'], ['Yi', 'Yi'], ['Zanabazar_Square', 'Zanabazar_Square'], ['Inherited', 'Inherited'], ['Common', 'Common'], ['Unknown', 'Unknown']])], ['Script_Extensions', new Map([['Adlm', 'Adlam'], ['Aghb', 'Caucasian_Albanian'], ['Ahom', 'Ahom'], ['Arab', 'Arabic'], ['Armi', 'Imperial_Aramaic'], ['Armn', 'Armenian'], ['Avst', 'Avestan'], ['Bali', 'Balinese'], ['Bamu', 'Bamum'], ['Bass', 'Bassa_Vah'], ['Batk', 'Batak'], ['Beng', 'Bengali'], ['Bhks', 'Bhaiksuki'], ['Bopo', 'Bopomofo'], ['Brah', 'Brahmi'], ['Brai', 'Braille'], ['Bugi', 'Buginese'], ['Buhd', 'Buhid'], ['Cakm', 'Chakma'], ['Cans', 'Canadian_Aboriginal'], ['Cari', 'Carian'], ['Cham', 'Cham'], ['Cher', 'Cherokee'], ['Chrs', 'Chorasmian'], ['Copt', 'Coptic'], ['Qaac', 'Coptic'], ['Cprt', 'Cypriot'], ['Cyrl', 'Cyrillic'], ['Deva', 'Devanagari'], ['Diak', 'Dives_Akuru'], ['Dogr', 'Dogra'], ['Dsrt', 'Deseret'], ['Dupl', 'Duployan'], ['Egyp', 'Egyptian_Hieroglyphs'], ['Elba', 'Elbasan'], ['Elym', 'Elymaic'], ['Ethi', 'Ethiopic'], ['Geor', 'Georgian'], ['Glag', 'Glagolitic'], ['Gong', 'Gunjala_Gondi'], ['Gonm', 'Masaram_Gondi'], ['Goth', 'Gothic'], ['Gran', 'Grantha'], ['Grek', 'Greek'], ['Gujr', 'Gujarati'], ['Guru', 'Gurmukhi'], ['Hang', 'Hangul'], ['Hani', 'Han'], ['Hano', 'Hanunoo'], ['Hatr', 'Hatran'], ['Hebr', 'Hebrew'], ['Hira', 'Hiragana'], ['Hluw', 'Anatolian_Hieroglyphs'], ['Hmng', 'Pahawh_Hmong'], ['Hmnp', 'Nyiakeng_Puachue_Hmong'], ['Hrkt', 'Katakana_Or_Hiragana'], ['Hung', 'Old_Hungarian'], ['Ital', 'Old_Italic'], ['Java', 'Javanese'], ['Kali', 'Kayah_Li'], ['Kana', 'Katakana'], ['Khar', 'Kharoshthi'], ['Khmr', 'Khmer'], ['Khoj', 'Khojki'], ['Kits', 'Khitan_Small_Script'], ['Knda', 'Kannada'], ['Kthi', 'Kaithi'], ['Lana', 'Tai_Tham'], ['Laoo', 'Lao'], ['Latn', 'Latin'], ['Lepc', 'Lepcha'], ['Limb', 'Limbu'], ['Lina', 'Linear_A'], ['Linb', 'Linear_B'], ['Lisu', 'Lisu'], ['Lyci', 'Lycian'], ['Lydi', 'Lydian'], ['Mahj', 'Mahajani'], ['Maka', 'Makasar'], ['Mand', 'Mandaic'], ['Mani', 'Manichaean'], ['Marc', 'Marchen'], ['Medf', 'Medefaidrin'], ['Mend', 'Mende_Kikakui'], ['Merc', 'Meroitic_Cursive'], ['Mero', 'Meroitic_Hieroglyphs'], ['Mlym', 'Malayalam'], ['Modi', 'Modi'], ['Mong', 'Mongolian'], ['Mroo', 'Mro'], ['Mtei', 'Meetei_Mayek'], ['Mult', 'Multani'], ['Mymr', 'Myanmar'], ['Nand', 'Nandinagari'], ['Narb', 'Old_North_Arabian'], ['Nbat', 'Nabataean'], ['Newa', 'Newa'], ['Nkoo', 'Nko'], ['Nshu', 'Nushu'], ['Ogam', 'Ogham'], ['Olck', 'Ol_Chiki'], ['Orkh', 'Old_Turkic'], ['Orya', 'Oriya'], ['Osge', 'Osage'], ['Osma', 'Osmanya'], ['Palm', 'Palmyrene'], ['Pauc', 'Pau_Cin_Hau'], ['Perm', 'Old_Permic'], ['Phag', 'Phags_Pa'], ['Phli', 'Inscriptional_Pahlavi'], ['Phlp', 'Psalter_Pahlavi'], ['Phnx', 'Phoenician'], ['Plrd', 'Miao'], ['Prti', 'Inscriptional_Parthian'], ['Rjng', 'Rejang'], ['Rohg', 'Hanifi_Rohingya'], ['Runr', 'Runic'], ['Samr', 'Samaritan'], ['Sarb', 'Old_South_Arabian'], ['Saur', 'Saurashtra'], ['Sgnw', 'SignWriting'], ['Shaw', 'Shavian'], ['Shrd', 'Sharada'], ['Sidd', 'Siddham'], ['Sind', 'Khudawadi'], ['Sinh', 'Sinhala'], ['Sogd', 'Sogdian'], ['Sogo', 'Old_Sogdian'], ['Sora', 'Sora_Sompeng'], ['Soyo', 'Soyombo'], ['Sund', 'Sundanese'], ['Sylo', 'Syloti_Nagri'], ['Syrc', 'Syriac'], ['Tagb', 'Tagbanwa'], ['Takr', 'Takri'], ['Tale', 'Tai_Le'], ['Talu', 'New_Tai_Lue'], ['Taml', 'Tamil'], ['Tang', 'Tangut'], ['Tavt', 'Tai_Viet'], ['Telu', 'Telugu'], ['Tfng', 'Tifinagh'], ['Tglg', 'Tagalog'], ['Thaa', 'Thaana'], ['Thai', 'Thai'], ['Tibt', 'Tibetan'], ['Tirh', 'Tirhuta'], ['Ugar', 'Ugaritic'], ['Vaii', 'Vai'], ['Wara', 'Warang_Citi'], ['Wcho', 'Wancho'], ['Xpeo', 'Old_Persian'], ['Xsux', 'Cuneiform'], ['Yezi', 'Yezidi'], ['Yiii', 'Yi'], ['Zanb', 'Zanabazar_Square'], ['Zinh', 'Inherited'], ['Qaai', 'Inherited'], ['Zyyy', 'Common'], ['Zzzz', 'Unknown'], ['Adlam', 'Adlam'], ['Caucasian_Albanian', 'Caucasian_Albanian'], ['Arabic', 'Arabic'], ['Imperial_Aramaic', 'Imperial_Aramaic'], ['Armenian', 'Armenian'], ['Avestan', 'Avestan'], ['Balinese', 'Balinese'], ['Bamum', 'Bamum'], ['Bassa_Vah', 'Bassa_Vah'], ['Batak', 'Batak'], ['Bengali', 'Bengali'], ['Bhaiksuki', 'Bhaiksuki'], ['Bopomofo', 'Bopomofo'], ['Brahmi', 'Brahmi'], ['Braille', 'Braille'], ['Buginese', 'Buginese'], ['Buhid', 'Buhid'], ['Chakma', 'Chakma'], ['Canadian_Aboriginal', 'Canadian_Aboriginal'], ['Carian', 'Carian'], ['Cherokee', 'Cherokee'], ['Chorasmian', 'Chorasmian'], ['Coptic', 'Coptic'], ['Cypriot', 'Cypriot'], ['Cyrillic', 'Cyrillic'], ['Devanagari', 'Devanagari'], ['Dives_Akuru', 'Dives_Akuru'], ['Dogra', 'Dogra'], ['Deseret', 'Deseret'], ['Duployan', 'Duployan'], ['Egyptian_Hieroglyphs', 'Egyptian_Hieroglyphs'], ['Elbasan', 'Elbasan'], ['Elymaic', 'Elymaic'], ['Ethiopic', 'Ethiopic'], ['Georgian', 'Georgian'], ['Glagolitic', 'Glagolitic'], ['Gunjala_Gondi', 'Gunjala_Gondi'], ['Masaram_Gondi', 'Masaram_Gondi'], ['Gothic', 'Gothic'], ['Grantha', 'Grantha'], ['Greek', 'Greek'], ['Gujarati', 'Gujarati'], ['Gurmukhi', 'Gurmukhi'], ['Hangul', 'Hangul'], ['Han', 'Han'], ['Hanunoo', 'Hanunoo'], ['Hatran', 'Hatran'], ['Hebrew', 'Hebrew'], ['Hiragana', 'Hiragana'], ['Anatolian_Hieroglyphs', 'Anatolian_Hieroglyphs'], ['Pahawh_Hmong', 'Pahawh_Hmong'], ['Nyiakeng_Puachue_Hmong', 'Nyiakeng_Puachue_Hmong'], ['Katakana_Or_Hiragana', 'Katakana_Or_Hiragana'], ['Old_Hungarian', 'Old_Hungarian'], ['Old_Italic', 'Old_Italic'], ['Javanese', 'Javanese'], ['Kayah_Li', 'Kayah_Li'], ['Katakana', 'Katakana'], ['Kharoshthi', 'Kharoshthi'], ['Khmer', 'Khmer'], ['Khojki', 'Khojki'], ['Khitan_Small_Script', 'Khitan_Small_Script'], ['Kannada', 'Kannada'], ['Kaithi', 'Kaithi'], ['Tai_Tham', 'Tai_Tham'], ['Lao', 'Lao'], ['Latin', 'Latin'], ['Lepcha', 'Lepcha'], ['Limbu', 'Limbu'], ['Linear_A', 'Linear_A'], ['Linear_B', 'Linear_B'], ['Lycian', 'Lycian'], ['Lydian', 'Lydian'], ['Mahajani', 'Mahajani'], ['Makasar', 'Makasar'], ['Mandaic', 'Mandaic'], ['Manichaean', 'Manichaean'], ['Marchen', 'Marchen'], ['Medefaidrin', 'Medefaidrin'], ['Mende_Kikakui', 'Mende_Kikakui'], ['Meroitic_Cursive', 'Meroitic_Cursive'], ['Meroitic_Hieroglyphs', 'Meroitic_Hieroglyphs'], ['Malayalam', 'Malayalam'], ['Mongolian', 'Mongolian'], ['Mro', 'Mro'], ['Meetei_Mayek', 'Meetei_Mayek'], ['Multani', 'Multani'], ['Myanmar', 'Myanmar'], ['Nandinagari', 'Nandinagari'], ['Old_North_Arabian', 'Old_North_Arabian'], ['Nabataean', 'Nabataean'], ['Nko', 'Nko'], ['Nushu', 'Nushu'], ['Ogham', 'Ogham'], ['Ol_Chiki', 'Ol_Chiki'], ['Old_Turkic', 'Old_Turkic'], ['Oriya', 'Oriya'], ['Osage', 'Osage'], ['Osmanya', 'Osmanya'], ['Palmyrene', 'Palmyrene'], ['Pau_Cin_Hau', 'Pau_Cin_Hau'], ['Old_Permic', 'Old_Permic'], ['Phags_Pa', 'Phags_Pa'], ['Inscriptional_Pahlavi', 'Inscriptional_Pahlavi'], ['Psalter_Pahlavi', 'Psalter_Pahlavi'], ['Phoenician', 'Phoenician'], ['Miao', 'Miao'], ['Inscriptional_Parthian', 'Inscriptional_Parthian'], ['Rejang', 'Rejang'], ['Hanifi_Rohingya', 'Hanifi_Rohingya'], ['Runic', 'Runic'], ['Samaritan', 'Samaritan'], ['Old_South_Arabian', 'Old_South_Arabian'], ['Saurashtra', 'Saurashtra'], ['SignWriting', 'SignWriting'], ['Shavian', 'Shavian'], ['Sharada', 'Sharada'], ['Siddham', 'Siddham'], ['Khudawadi', 'Khudawadi'], ['Sinhala', 'Sinhala'], ['Sogdian', 'Sogdian'], ['Old_Sogdian', 'Old_Sogdian'], ['Sora_Sompeng', 'Sora_Sompeng'], ['Soyombo', 'Soyombo'], ['Sundanese', 'Sundanese'], ['Syloti_Nagri', 'Syloti_Nagri'], ['Syriac', 'Syriac'], ['Tagbanwa', 'Tagbanwa'], ['Takri', 'Takri'], ['Tai_Le', 'Tai_Le'], ['New_Tai_Lue', 'New_Tai_Lue'], ['Tamil', 'Tamil'], ['Tangut', 'Tangut'], ['Tai_Viet', 'Tai_Viet'], ['Telugu', 'Telugu'], ['Tifinagh', 'Tifinagh'], ['Tagalog', 'Tagalog'], ['Thaana', 'Thaana'], ['Tibetan', 'Tibetan'], ['Tirhuta', 'Tirhuta'], ['Ugaritic', 'Ugaritic'], ['Vai', 'Vai'], ['Warang_Citi', 'Warang_Citi'], ['Wancho', 'Wancho'], ['Old_Persian', 'Old_Persian'], ['Cuneiform', 'Cuneiform'], ['Yezidi', 'Yezidi'], ['Yi', 'Yi'], ['Zanabazar_Square', 'Zanabazar_Square'], ['Inherited', 'Inherited'], ['Common', 'Common'], ['Unknown', 'Unknown']])]]);
 
   var matchPropertyValue = function matchPropertyValue(property, value) {
     var aliasToValue = mappings.get(property);
@@ -63887,7 +63836,10 @@
         break;
 
       case 'unicodePropertyEscape':
-        update(item, getUnicodePropertyEscapeSet(item.value, item.negative).toString(regenerateOptions));
+        if (config$1.unicodePropertyEscape) {
+          update(item, getUnicodePropertyEscapeSet(item.value, item.negative).toString(regenerateOptions));
+        }
+
         break;
 
       case 'characterClassEscape':
@@ -63899,7 +63851,7 @@
           groups.lastIndex++;
         }
 
-        if (item.name) {
+        if (item.name && config$1.namedGroup) {
           var name = item.name.value;
 
           if (groups.names[name]) {
@@ -63980,20 +63932,24 @@
     'ignoreCase': false,
     'unicode': false,
     'dotAll': false,
-    'useUnicodeFlag': false
+    'useUnicodeFlag': false,
+    'unicodePropertyEscape': false,
+    'namedGroup': false
   };
 
   var rewritePattern = function rewritePattern(pattern, flags, options) {
+    config$1.unicode = flags && flags.includes('u');
     var regjsparserFeatures = {
-      'unicodePropertyEscape': options && options.unicodePropertyEscape,
-      'namedGroups': options && options.namedGroup,
+      'unicodePropertyEscape': config$1.unicode,
+      'namedGroups': true,
       'lookbehind': options && options.lookbehind
     };
     config$1.ignoreCase = flags && flags.includes('i');
-    config$1.unicode = flags && flags.includes('u');
     var supportDotAllFlag = options && options.dotAllFlag;
     config$1.dotAll = supportDotAllFlag && flags && flags.includes('s');
+    config$1.namedGroup = options && options.namedGroup;
     config$1.useUnicodeFlag = options && options.useUnicodeFlag;
+    config$1.unicodePropertyEscape = options && options.unicodePropertyEscape;
     var regenerateOptions = {
       'hasUnicodeFlag': config$1.useUnicodeFlag,
       'bmpOnly': !config$1.unicode
@@ -64073,7 +64029,7 @@
   }
 
   var name$1 = "@babel/helper-create-regexp-features-plugin";
-  var version$5 = "7.8.6";
+  var version$5 = "7.8.8";
   var author$1 = "The Babel Team (https://babeljs.io/team)";
   var license$1 = "MIT";
   var description$1 = "Compile ESNext Regular Expressions to ES5";
@@ -64093,7 +64049,7 @@
   var dependencies$1 = {
   	"@babel/helper-annotate-as-pure": "^7.8.3",
   	"@babel/helper-regex": "^7.8.3",
-  	"regexpu-core": "^4.6.0"
+  	"regexpu-core": "^4.7.0"
   };
   var peerDependencies$1 = {
   	"@babel/core": "^7.0.0"
@@ -64102,6 +64058,7 @@
   	"@babel/core": "^7.8.6",
   	"@babel/helper-plugin-test-runner": "^7.8.3"
   };
+  var gitHead = "c831a2450dbf252c75750a455c63e1016c2f2244";
   var pkg$1 = {
   	name: name$1,
   	version: version$5,
@@ -64114,7 +64071,8 @@
   	keywords: keywords$2,
   	dependencies: dependencies$1,
   	peerDependencies: peerDependencies$1,
-  	devDependencies: devDependencies$1
+  	devDependencies: devDependencies$1,
+  	gitHead: gitHead
   };
 
   function baseIndexOfWith(array, value, fromIndex, comparator) {
@@ -69612,6 +69570,7 @@
           }
 
           path.replaceWithMultiple(nodes);
+          path.scope.crawl();
         },
         VariableDeclaration: function VariableDeclaration(path) {
           var _this4 = this;
@@ -73332,12 +73291,13 @@
             switch (_node.type) {
               case "VariableDeclarator":
                 if (_node.init === null) {
-                  redeclarator.remove();
-                } else {
-                  state.iife = true;
-                }
+                  var declaration = redeclarator.parentPath;
 
-                break;
+                  if (!declaration.parentPath.isFor() || declaration.parentPath.get("body") === declaration) {
+                    redeclarator.remove();
+                    break;
+                  }
+                }
 
               case "FunctionDeclaration":
                 state.iife = true;
@@ -76162,7 +76122,7 @@
   	getVisitor: getVisitor
   };
 
-  var lib$b = createCommonjsModule(function (module, exports) {
+  var lib$d = createCommonjsModule(function (module, exports) {
 
   exports.__esModule = true;
   exports["default"] = _default;
@@ -76183,7 +76143,7 @@
   }
   });
 
-  var transformRegenerator = unwrapExports(lib$b);
+  var transformRegenerator = unwrapExports(lib$d);
 
   var transformReservedWords = declare(function (api) {
     api.assertVersion(7);
@@ -81098,6 +81058,13 @@
   		date: "2020-02-18",
   		lts: false,
   		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.10.0",
+  		date: "2020-03-03",
+  		lts: false,
+  		security: false
   	}
   ];
 
@@ -81158,18 +81125,18 @@
     E: "8",
     F: "7",
     G: "4",
-    H: "15",
-    I: "16",
+    H: "16",
+    I: "6",
     J: "17",
     K: "18",
-    L: "80",
-    M: "13",
-    N: "6",
-    O: "46",
-    P: "12.1",
+    L: "11.1",
+    M: "80",
+    N: "13",
+    O: "15",
+    P: "46",
     Q: "68",
-    R: "14",
-    S: "66",
+    R: "66",
+    S: "12.1",
     T: "5",
     U: "19",
     V: "20",
@@ -81198,7 +81165,7 @@
     s: "43",
     t: "44",
     u: "45",
-    v: "11.1",
+    v: "14",
     w: "47",
     x: "48",
     y: "49",
@@ -81218,21 +81185,21 @@
     MB: "73",
     NB: "74",
     OB: "75",
-    PB: "59",
-    QB: "79",
-    RB: "10.1",
-    SB: "3.2",
-    TB: "9.0-9.2",
-    UB: "78",
-    VB: "82",
+    PB: "76",
+    QB: "59",
+    RB: "79",
+    SB: "10.1",
+    TB: "3.2",
+    UB: "9.3",
+    VB: "81",
     WB: "83",
     XB: "3.1",
-    YB: "77",
+    YB: "78",
     ZB: "5.1",
     aB: "6.1",
     bB: "7.1",
     cB: "9.1",
-    dB: "76",
+    dB: "77",
     eB: "3.6",
     fB: "5.5",
     gB: "TP",
@@ -81248,8 +81215,8 @@
     qB: "6.0-6.1",
     rB: "7.0-7.1",
     sB: "8.1-8.4",
-    tB: "81",
-    uB: "9.3",
+    tB: "9.0-9.2",
+    uB: "82",
     vB: "10.0-10.2",
     wB: "10.3",
     xB: "11.0-11.2",
@@ -81292,20 +81259,20 @@
   var agents = {
     A: {
       A: {
-        N: 0.00940789,
-        F: 0.00470395,
-        E: 0.0987829,
-        D: 0.0376316,
-        A: 0.0329276,
-        B: 1.5523,
+        I: 0.00478465,
+        F: 0.00478465,
+        E: 0.100478,
+        D: 0.157894,
+        A: 0.0382772,
+        B: 1.39233,
         fB: 0.009298
       },
       B: "ms",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "fB", "N", "F", "E", "D", "A", "B", "", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "fB", "I", "F", "E", "D", "A", "B", "", "", ""],
       E: "IE",
       F: {
         fB: 962323200,
-        N: 998870400,
+        I: 998870400,
         F: 1161129600,
         E: 1237420800,
         D: 1300060800,
@@ -81315,73 +81282,73 @@
     },
     B: {
       A: {
-        C: 0.009064,
-        M: 0.009064,
-        R: 0.018128,
-        H: 0.018128,
-        I: 0.040788,
-        J: 0.140492,
-        K: 1.90344,
-        QB: 0,
-        L: 0
+        C: 0.009132,
+        N: 0.009132,
+        v: 0.013698,
+        O: 0.013698,
+        H: 0.036528,
+        J: 0.123282,
+        K: 1.93142,
+        RB: 0,
+        M: 0
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "C", "M", "R", "H", "I", "J", "K", "QB", "L", "", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "C", "N", "v", "O", "H", "J", "K", "RB", "M", "", "", ""],
       E: "Edge",
       F: {
         C: 1438128000,
-        M: 1447286400,
-        R: 1470096000,
-        H: 1491868800,
-        I: 1508198400,
+        N: 1447286400,
+        v: 1470096000,
+        O: 1491868800,
+        H: 1508198400,
         J: 1525046400,
         K: 1542067200,
-        QB: 1579046400,
-        L: 1581033600
+        RB: 1579046400,
+        M: 1581033600
       },
       D: {
         C: "ms",
-        M: "ms",
-        R: "ms",
+        N: "ms",
+        v: "ms",
+        O: "ms",
         H: "ms",
-        I: "ms",
         J: "ms",
         K: "ms"
       }
     },
     C: {
       A: {
-        "0": 0.009064,
-        "1": 0.149556,
-        "2": 0.004532,
-        "3": 0.013596,
-        "4": 0.009064,
-        "5": 0.027192,
-        "6": 0.013596,
-        "7": 0.031724,
-        "8": 0.049852,
-        "9": 0.049852,
+        "0": 0.009132,
+        "1": 0.13698,
+        "2": 0.02283,
+        "3": 0.013698,
+        "4": 0.009132,
+        "5": 0.027396,
+        "6": 0.009132,
+        "7": 0.009132,
+        "8": 0.050226,
+        "9": 0.031962,
         oB: 0.004827,
         FB: 0.00487,
         G: 0.00974,
         T: 0.004879,
-        N: 0.020136,
+        I: 0.020136,
         F: 0.005725,
         E: 0.004525,
         D: 0.00533,
         A: 0.004283,
         B: 0.009042,
         C: 0.004471,
-        M: 0.004486,
-        R: 0.00453,
-        H: 0.004465,
-        I: 0.004417,
+        N: 0.004486,
+        v: 0.00453,
+        O: 0.004465,
+        H: 0.004417,
         J: 0.008922,
         K: 0.004393,
         U: 0.004443,
         V: 0.004283,
         W: 0.013596,
-        X: 0.004393,
+        X: 0.013698,
         Y: 0.004525,
         Z: 0.008786,
         a: 0.004403,
@@ -81392,44 +81359,45 @@
         f: 0.004403,
         g: 0.008928,
         h: 0.004471,
-        i: 0.004532,
+        i: 0.013698,
         j: 0.004707,
-        k: 0.013596,
+        k: 0.009132,
         l: 0.004465,
         m: 0.004783,
-        n: 0.009064,
+        n: 0.02283,
         o: 0.004783,
         p: 0.00487,
         q: 0.005029,
         r: 0.0047,
-        s: 0.009064,
-        t: 0.009064,
-        u: 0.013596,
-        O: 0.004525,
-        w: 0.018128,
-        x: 0.031724,
-        y: 0.004532,
-        z: 0.018128,
-        PB: 0.009064,
-        EB: 0.009064,
-        BB: 0.009064,
-        CB: 0.018128,
-        AB: 0.018128,
-        S: 0.04532,
-        GB: 0.02266,
-        Q: 0.185812,
-        IB: 0.04532,
-        JB: 0.06798,
-        KB: 0.992508,
-        LB: 2.3929,
-        MB: 0.054384,
-        NB: 0,
+        s: 0.009132,
+        t: 0.009132,
+        u: 0.009132,
+        P: 0.004525,
+        w: 0.018264,
+        x: 0.031962,
+        y: 0.009132,
+        z: 0.009132,
+        QB: 0.009132,
+        EB: 0.009132,
+        BB: 0.009132,
+        CB: 0.018264,
+        AB: 0.018264,
+        R: 0.04566,
+        GB: 0.018264,
+        Q: 0.150678,
+        IB: 0.027396,
+        JB: 0.036528,
+        KB: 0.054792,
+        LB: 2.05013,
+        MB: 1.29218,
+        NB: 0.041094,
         OB: 0,
+        PB: 0,
         lB: 0.008786,
         eB: 0.00487
       },
       B: "moz",
-      C: ["", "", "", "oB", "FB", "lB", "eB", "G", "T", "N", "F", "E", "D", "A", "B", "C", "M", "R", "H", "I", "J", "K", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "O", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "PB", "9", "EB", "BB", "CB", "AB", "8", "S", "GB", "Q", "IB", "JB", "KB", "LB", "MB", "NB", "OB", ""],
+      C: ["", "", "oB", "FB", "lB", "eB", "G", "T", "I", "F", "E", "D", "A", "B", "C", "N", "v", "O", "H", "J", "K", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "P", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "QB", "9", "EB", "BB", "CB", "AB", "8", "R", "GB", "Q", "IB", "JB", "KB", "LB", "MB", "NB", "OB", "PB", ""],
       E: "Firefox",
       F: {
         "0": 1485216000,
@@ -81448,17 +81416,17 @@
         eB: 1264032000,
         G: 1300752000,
         T: 1308614400,
-        N: 1313452800,
+        I: 1313452800,
         F: 1317081600,
         E: 1317081600,
         D: 1320710400,
         A: 1324339200,
         B: 1327968000,
         C: 1331596800,
-        M: 1335225600,
-        R: 1338854400,
-        H: 1342483200,
-        I: 1346112000,
+        N: 1335225600,
+        v: 1338854400,
+        O: 1342483200,
+        H: 1346112000,
         J: 1349740800,
         K: 1353628800,
         U: 1357603200,
@@ -81488,17 +81456,17 @@
         s: 1450137600,
         t: 1453852800,
         u: 1457395200,
-        O: 1461628800,
+        P: 1461628800,
         w: 1465257600,
         x: 1470096000,
         y: 1474329600,
         z: 1479168000,
-        PB: 1520985600,
+        QB: 1520985600,
         EB: 1529971200,
         BB: 1536105600,
         CB: 1540252800,
         AB: 1544486400,
-        S: 1552953600,
+        R: 1552953600,
         GB: 1558396800,
         Q: 1562630400,
         IB: 1567468800,
@@ -81506,95 +81474,96 @@
         KB: 1575331200,
         LB: 1578355200,
         MB: 1581379200,
-        NB: null,
-        OB: null
+        NB: 1583798400,
+        OB: null,
+        PB: null
       }
     },
     D: {
       A: {
-        "0": 0.009064,
+        "0": 0.013698,
         "1": 0.004403,
-        "2": 0.027192,
-        "3": 0.018128,
-        "4": 0.031724,
-        "5": 0.031724,
-        "6": 0.063448,
-        "7": 0.031724,
-        "8": 0.054384,
-        "9": 0.027192,
+        "2": 0.027396,
+        "3": 0.013698,
+        "4": 0.031962,
+        "5": 0.031962,
+        "6": 0.054792,
+        "7": 0.027396,
+        "8": 0.050226,
+        "9": 0.027396,
         G: 0.004706,
         T: 0.004879,
-        N: 0.004879,
+        I: 0.004879,
         F: 0.005591,
         E: 0.005591,
         D: 0.005591,
         A: 0.004534,
         B: 0.004464,
         C: 0.010424,
-        M: 0.004532,
-        R: 0.004706,
-        H: 0.015087,
-        I: 0.004393,
+        N: 0.004566,
+        v: 0.004706,
+        O: 0.015087,
+        H: 0.004393,
         J: 0.004393,
         K: 0.008652,
         U: 0.004418,
         V: 0.004393,
         W: 0.004317,
-        X: 0.004465,
+        X: 0.004566,
         Y: 0.008786,
-        Z: 0.004532,
+        Z: 0.004566,
         a: 0.004461,
-        b: 0.004532,
+        b: 0.004566,
         c: 0.004326,
         d: 0.0047,
         e: 0.004461,
         f: 0.004403,
-        g: 0.013596,
-        h: 0.004465,
-        i: 0.013596,
-        j: 0.009064,
-        k: 0.004532,
-        l: 0.009064,
+        g: 0.013698,
+        h: 0.004566,
+        i: 0.013698,
+        j: 0.009132,
+        k: 0.004566,
+        l: 0.004566,
         m: 0.004464,
-        n: 0.02266,
+        n: 0.02283,
         o: 0.004464,
-        p: 0.02266,
-        q: 0.009064,
+        p: 0.013698,
+        q: 0.004566,
         r: 0.004403,
-        s: 0.018128,
+        s: 0.018264,
         t: 0.004465,
-        u: 0.004532,
-        O: 0.004532,
-        w: 0.009064,
-        x: 0.031724,
-        y: 0.516648,
-        z: 0.009064,
-        PB: 0.02266,
-        EB: 0.031724,
-        BB: 0.027192,
-        CB: 0.253792,
-        AB: 0.013596,
-        S: 0.036256,
-        GB: 0.058916,
-        Q: 0.04532,
-        IB: 0.15862,
-        JB: 0.117832,
-        KB: 0.154088,
-        LB: 0.172216,
-        MB: 0.15862,
-        NB: 0.20394,
-        OB: 0.244728,
-        dB: 0.267388,
-        YB: 0.276452,
-        UB: 0.865612,
-        QB: 26.1904,
-        L: 0.058916,
-        tB: 0.036256,
-        VB: 0,
+        u: 0.009132,
+        P: 0.004566,
+        w: 0.009132,
+        x: 0.036528,
+        y: 0.474864,
+        z: 0.009132,
+        QB: 0.018264,
+        EB: 0.031962,
+        BB: 0.02283,
+        CB: 0.27396,
+        AB: 0.018264,
+        R: 0.031962,
+        GB: 0.059358,
+        Q: 0.031962,
+        IB: 0.15981,
+        JB: 0.095886,
+        KB: 0.123282,
+        LB: 0.150678,
+        MB: 0.13698,
+        NB: 0.18264,
+        OB: 0.200904,
+        PB: 0.196338,
+        dB: 0.219168,
+        YB: 0.429204,
+        RB: 16.8622,
+        M: 10.657,
+        VB: 0.036528,
+        uB: 0.018264,
         WB: 0
       },
       B: "webkit",
-      C: ["G", "T", "N", "F", "E", "D", "A", "B", "C", "M", "R", "H", "I", "J", "K", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "O", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "PB", "9", "EB", "BB", "CB", "AB", "8", "S", "GB", "Q", "IB", "JB", "KB", "LB", "MB", "NB", "OB", "dB", "YB", "UB", "QB", "L", "tB", "VB", "WB"],
+      C: ["G", "T", "I", "F", "E", "D", "A", "B", "C", "N", "v", "O", "H", "J", "K", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "P", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "QB", "9", "EB", "BB", "CB", "AB", "8", "R", "GB", "Q", "IB", "JB", "KB", "LB", "MB", "NB", "OB", "PB", "dB", "YB", "RB", "M", "VB", "uB", "WB"],
       E: "Chrome",
       F: {
         "0": 1464134400,
@@ -81609,17 +81578,17 @@
         "9": 1500940800,
         G: 1264377600,
         T: 1274745600,
-        N: 1283385600,
+        I: 1283385600,
         F: 1287619200,
         E: 1291248000,
         D: 1296777600,
         A: 1299542400,
         B: 1303862400,
         C: 1307404800,
-        M: 1312243200,
-        R: 1316131200,
-        H: 1316131200,
-        I: 1319500800,
+        N: 1312243200,
+        v: 1316131200,
+        O: 1316131200,
+        H: 1319500800,
         J: 1323734400,
         K: 1328659200,
         U: 1332892800,
@@ -81649,17 +81618,17 @@
         s: 1432080000,
         t: 1437523200,
         u: 1441152000,
-        O: 1444780800,
+        P: 1444780800,
         w: 1449014400,
         x: 1453248000,
         y: 1456963200,
         z: 1460592000,
-        PB: 1496707200,
+        QB: 1496707200,
         EB: 1504569600,
         BB: 1508198400,
         CB: 1512518400,
         AB: 1516752000,
-        S: 1523923200,
+        R: 1523923200,
         GB: 1527552000,
         Q: 1532390400,
         IB: 1536019200,
@@ -81669,49 +81638,49 @@
         MB: 1552348800,
         NB: 1555977600,
         OB: 1559606400,
-        dB: 1564444800,
-        YB: 1568073600,
-        UB: 1571702400,
-        QB: 1575936000,
-        L: 1580860800,
-        tB: null,
+        PB: 1564444800,
+        dB: 1568073600,
+        YB: 1571702400,
+        RB: 1575936000,
+        M: 1580860800,
         VB: null,
+        uB: null,
         WB: null
       }
     },
     E: {
       A: {
         G: 0,
-        T: 0.004532,
-        N: 0.004349,
+        T: 0.004566,
+        I: 0.009132,
         F: 0.004465,
-        E: 0.027192,
-        D: 0.013596,
-        A: 0.013596,
-        B: 0.036256,
-        C: 0.122364,
-        M: 2.64669,
+        E: 0.02283,
+        D: 0.013698,
+        A: 0.013698,
+        B: 0.031962,
+        C: 0.11415,
+        N: 2.84918,
         XB: 0,
-        SB: 0.008692,
-        ZB: 0.312708,
+        TB: 0.008692,
+        ZB: 0.09132,
         aB: 0.00456,
         bB: 0.004283,
-        cB: 0.040788,
-        RB: 0.09064,
-        v: 0.18128,
-        P: 0.403348,
+        cB: 0.04566,
+        SB: 0.09132,
+        L: 0.18264,
+        S: 0.38811,
         gB: 0
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "XB", "SB", "G", "T", "ZB", "N", "aB", "F", "bB", "E", "D", "cB", "A", "RB", "B", "v", "C", "P", "M", "gB", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "XB", "TB", "G", "T", "ZB", "I", "aB", "F", "bB", "E", "D", "cB", "A", "SB", "B", "L", "C", "S", "N", "gB", "", ""],
       E: "Safari",
       F: {
         XB: 1205798400,
-        SB: 1226534400,
+        TB: 1226534400,
         G: 1244419200,
         T: 1275868800,
         ZB: 1311120000,
-        N: 1343174400,
+        I: 1343174400,
         aB: 1382400000,
         F: 1382400000,
         bB: 1410998400,
@@ -81719,12 +81688,12 @@
         D: 1443657600,
         cB: 1458518400,
         A: 1474329600,
-        RB: 1490572800,
+        SB: 1490572800,
         B: 1505779200,
-        v: 1522281600,
+        L: 1522281600,
         C: 1537142400,
-        P: 1553472000,
-        M: 1568851200,
+        S: 1553472000,
+        N: 1568851200,
         gB: null
       }
     },
@@ -81735,16 +81704,16 @@
         "2": 0.008922,
         "3": 0.014349,
         "4": 0.004725,
-        "5": 0.004532,
+        "5": 0.004566,
         "6": 0.004532,
-        "7": 0.009064,
-        "8": 0,
+        "7": 0.004566,
+        "8": 0.02283,
         "9": 0.004403,
         D: 0.0082,
         B: 0.016581,
         C: 0.004317,
+        O: 0.00685,
         H: 0.00685,
-        I: 0.00685,
         J: 0.00685,
         K: 0.005014,
         U: 0.006015,
@@ -81759,12 +81728,12 @@
         d: 0.008652,
         e: 0.004879,
         f: 0.004879,
-        g: 0.009064,
+        g: 0.009132,
         h: 0.005152,
         i: 0.005014,
         j: 0.009758,
         k: 0.004879,
-        l: 0.013596,
+        l: 0.009132,
         m: 0.004283,
         n: 0.004367,
         o: 0.004534,
@@ -81774,26 +81743,26 @@
         s: 0.009042,
         t: 0.004227,
         u: 0.004725,
-        O: 0.004417,
+        P: 0.004417,
         w: 0.008942,
         x: 0.004707,
         y: 0.004827,
         z: 0.004707,
         BB: 0.004532,
-        CB: 0.009064,
-        AB: 0.072512,
-        S: 0,
+        CB: 0.004566,
+        AB: 0.02283,
+        R: 0.894936,
         hB: 0.00685,
         iB: 0,
         jB: 0.008392,
         kB: 0.004706,
-        v: 0.006229,
+        L: 0.006229,
         DB: 0.004879,
         mB: 0.008786,
-        P: 0.009064
+        S: 0.009132
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "D", "hB", "iB", "jB", "kB", "B", "v", "DB", "mB", "C", "P", "H", "I", "J", "K", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "O", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "9", "BB", "CB", "AB", "8", "S", "", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "D", "hB", "iB", "jB", "kB", "B", "L", "DB", "mB", "C", "S", "O", "H", "J", "K", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "P", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "9", "BB", "CB", "AB", "8", "R", "", "", ""],
       E: "Opera",
       F: {
         "0": 1517961600,
@@ -81812,13 +81781,13 @@
         jB: 1267488000,
         kB: 1277942400,
         B: 1292457600,
-        v: 1302566400,
+        L: 1302566400,
         DB: 1309219200,
         mB: 1323129600,
         C: 1323129600,
-        P: 1352073600,
-        H: 1372723200,
-        I: 1377561600,
+        S: 1352073600,
+        O: 1372723200,
+        H: 1377561600,
         J: 1381104000,
         K: 1386288000,
         U: 1390867200,
@@ -81848,7 +81817,7 @@
         s: 1486425600,
         t: 1490054400,
         u: 1494374400,
-        O: 1498003200,
+        P: 1498003200,
         w: 1502236800,
         x: 1506470400,
         y: 1510099200,
@@ -81856,7 +81825,7 @@
         BB: 1561593600,
         CB: 1566259200,
         AB: 1570406400,
-        S: 1578441600
+        R: 1578441600
       },
       D: {
         D: "o",
@@ -81866,39 +81835,39 @@
         iB: "o",
         jB: "o",
         kB: "o",
-        v: "o",
+        L: "o",
         DB: "o",
         mB: "o",
-        P: "o"
+        S: "o"
       }
     },
     G: {
       A: {
-        E: 0.00124904,
-        SB: 0.00124904,
-        nB: 0.00249808,
-        HB: 0,
-        pB: 0.00749423,
-        qB: 0.00374711,
-        rB: 0.0099923,
-        sB: 0.0187356,
-        TB: 0.0162375,
-        uB: 0.154881,
-        vB: 0.0487125,
-        wB: 0.171118,
-        xB: 0.137394,
-        yB: 0.23357,
-        zB: 0.314757,
-        "0B": 1.88105,
-        "1B": 0.86933,
-        "2B": 0.365968,
-        "3B": 8.24864
+        E: 0,
+        TB: 0.0012907,
+        nB: 0.0012907,
+        HB: 0.0012907,
+        pB: 0.00903488,
+        qB: 0.00645349,
+        rB: 0.0141977,
+        sB: 0.0245233,
+        tB: 0.0154884,
+        UB: 0.165209,
+        vB: 0.0503372,
+        wB: 0.170372,
+        xB: 0.13036,
+        yB: 0.219419,
+        zB: 0.317512,
+        "0B": 1.65596,
+        "1B": 0.555,
+        "2B": 0.247814,
+        "3B": 9.29302
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "SB", "nB", "HB", "pB", "qB", "rB", "E", "sB", "TB", "uB", "vB", "wB", "xB", "yB", "zB", "0B", "1B", "2B", "3B", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "TB", "nB", "HB", "pB", "qB", "rB", "E", "sB", "tB", "UB", "vB", "wB", "xB", "yB", "zB", "0B", "1B", "2B", "3B", "", "", ""],
       E: "iOS Safari",
       F: {
-        SB: 1270252800,
+        TB: 1270252800,
         nB: 1283904000,
         HB: 1299628800,
         pB: 1331078400,
@@ -81906,8 +81875,8 @@
         rB: 1394409600,
         E: 1410912000,
         sB: 1413763200,
-        TB: 1442361600,
-        uB: 1458518400,
+        tB: 1442361600,
+        UB: 1458518400,
         vB: 1473724800,
         wB: 1490572800,
         xB: 1505779200,
@@ -81916,12 +81885,12 @@
         "0B": 1553472000,
         "1B": 1568851200,
         "2B": 1572220800,
-        "3B": null
+        "3B": 1580169600
       }
     },
     H: {
       A: {
-        "4B": 1.10762
+        "4B": 0.895153
       },
       B: "o",
       C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "4B", "", "", ""],
@@ -81932,19 +81901,19 @@
     },
     I: {
       A: {
-        FB: 0.000288116,
-        G: 0.00288116,
-        L: 0,
+        FB: 0.00039504,
+        G: 0.0039504,
+        M: 0,
         "5B": 0,
-        "6B": 0.000864348,
-        "7B": 0.000288116,
-        "8B": 0.00489797,
-        HB: 0.127347,
+        "6B": 0.000790081,
+        "7B": 0.00039504,
+        "8B": 0.00592561,
+        HB: 0.129968,
         "9B": 0,
-        AC: 0.082113
+        AC: 0.103106
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "5B", "6B", "7B", "FB", "G", "8B", "HB", "9B", "AC", "L", "", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "5B", "6B", "7B", "FB", "G", "8B", "HB", "9B", "AC", "M", "", "", ""],
       E: "Android Browser",
       F: {
         "5B": 1256515200,
@@ -81956,13 +81925,13 @@
         HB: 1374624000,
         "9B": 1386547200,
         AC: 1401667200,
-        L: 1581984000
+        M: 1581984000
       }
     },
     J: {
       A: {
         F: 0,
-        A: 0.010934
+        A: 0.010868
       },
       B: "webkit",
       C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "F", "A", "", "", ""],
@@ -81977,41 +81946,41 @@
         A: 0,
         B: 0,
         C: 0,
-        O: 0.0111391,
-        v: 0,
+        P: 0.0111391,
+        L: 0,
         DB: 0,
-        P: 0
+        S: 0
       },
       B: "o",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "A", "B", "v", "DB", "C", "P", "O", "", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "A", "B", "L", "DB", "C", "S", "P", "", "", ""],
       E: "Opera Mobile",
       F: {
         A: 1287100800,
         B: 1300752000,
-        v: 1314835200,
+        L: 1314835200,
         DB: 1318291200,
         C: 1330300800,
-        P: 1349740800,
-        O: 1474588800
+        S: 1349740800,
+        P: 1474588800
       },
       D: {
-        O: "webkit"
+        P: "webkit"
       }
     },
     L: {
       A: {
-        L: 34.4223
+        M: 34.2581
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "L", "", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "M", "", "", ""],
       E: "Chrome for Android",
       F: {
-        L: null
+        M: null
       }
     },
     M: {
       A: {
-        Q: 0.21868
+        Q: 0.222794
       },
       B: "moz",
       C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Q", "", "", ""],
@@ -82023,7 +81992,7 @@
     N: {
       A: {
         A: 0.0115934,
-        B: 0.049203
+        B: 0.043472
       },
       B: "ms",
       C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "A", "B", "", "", ""],
@@ -82035,7 +82004,7 @@
     },
     O: {
       A: {
-        BC: 2.61869
+        BC: 2.20077
       },
       B: "webkit",
       C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "BC", "", "", ""],
@@ -82049,16 +82018,17 @@
     },
     P: {
       A: {
-        G: 0.28116,
-        CC: 0.0208267,
-        DC: 0.0208267,
-        EC: 0.114547,
-        FC: 0.0416533,
-        GC: 0.270747,
-        RB: 2.59292
+        G: 0.287499,
+        CC: 0.0205357,
+        DC: 0.0205357,
+        EC: 0.112946,
+        FC: 0.0308035,
+        GC: 0.23616,
+        SB: 2.42321,
+        L: 0.308035
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "G", "CC", "DC", "EC", "FC", "GC", "RB", "", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "G", "CC", "DC", "EC", "FC", "GC", "SB", "L", "", "", ""],
       E: "Samsung Internet",
       F: {
         G: 1461024000,
@@ -82067,12 +82037,13 @@
         EC: 1528329600,
         FC: 1546128000,
         GC: 1554163200,
-        RB: 1567900800
+        SB: 1567900800,
+        L: 1582588800
       }
     },
     Q: {
       A: {
-        HC: 0.202279
+        HC: 0.24453
       },
       B: "webkit",
       C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "HC", "", "", ""],
@@ -82094,7 +82065,7 @@
     },
     S: {
       A: {
-        JC: 0.114807
+        JC: 0.10868
       },
       B: "moz",
       C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "JC", "", "", ""],
@@ -82201,7 +82172,7 @@
   var v10 = {
   	start: "2018-04-24",
   	lts: "2018-10-30",
-  	maintenance: "2020-04-01",
+  	maintenance: "2020-04-30",
   	end: "2021-04-30",
   	codename: "Dubnium"
   };
@@ -82213,7 +82184,7 @@
   var v12 = {
   	start: "2019-04-23",
   	lts: "2019-10-21",
-  	maintenance: "2020-10-21",
+  	maintenance: "2020-10-20",
   	end: "2022-04-30",
   	codename: "Erbium"
   };
@@ -82225,7 +82196,7 @@
   var v14 = {
   	start: "2020-04-21",
   	lts: "2020-10-20",
-  	maintenance: "2021-10-20",
+  	maintenance: "2021-10-19",
   	end: "2023-04-30",
   	codename: ""
   };
@@ -82269,6 +82240,7 @@
 
   var versions$1 = {
     "9.0": "82",
+    "8.1": "80",
     "8.0": "79",
     "7.1": "78",
     "7.0": "78",
@@ -89207,7 +89179,7 @@
 
   var corejs2BuiltIns$2 = require$$0$4;
 
-  var lib$c = createCommonjsModule(function (module, exports) {
+  var lib$e = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -89229,9 +89201,9 @@
   exports["default"] = _default;
   });
 
-  var syntaxAsyncGenerators$2 = unwrapExports(lib$c);
+  var syntaxAsyncGenerators$2 = unwrapExports(lib$e);
 
-  var lib$d = createCommonjsModule(function (module, exports) {
+  var lib$f = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -89253,9 +89225,9 @@
   exports["default"] = _default;
   });
 
-  var syntaxDynamicImport$2 = unwrapExports(lib$d);
+  var syntaxDynamicImport$2 = unwrapExports(lib$f);
 
-  var lib$e = createCommonjsModule(function (module, exports) {
+  var lib$g = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -89277,9 +89249,9 @@
   exports["default"] = _default;
   });
 
-  var syntaxJsonStrings$1 = unwrapExports(lib$e);
+  var syntaxJsonStrings$1 = unwrapExports(lib$g);
 
-  var lib$f = createCommonjsModule(function (module, exports) {
+  var lib$h = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -89301,9 +89273,9 @@
   exports["default"] = _default;
   });
 
-  var syntaxNullishCoalescingOperator$1 = unwrapExports(lib$f);
+  var syntaxNullishCoalescingOperator$1 = unwrapExports(lib$h);
 
-  var lib$g = createCommonjsModule(function (module, exports) {
+  var lib$i = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -89325,9 +89297,9 @@
   exports["default"] = _default;
   });
 
-  var syntaxObjectRestSpread$2 = unwrapExports(lib$g);
+  var syntaxObjectRestSpread$2 = unwrapExports(lib$i);
 
-  var lib$h = createCommonjsModule(function (module, exports) {
+  var lib$j = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -89349,9 +89321,9 @@
   exports["default"] = _default;
   });
 
-  var syntaxOptionalCatchBinding$2 = unwrapExports(lib$h);
+  var syntaxOptionalCatchBinding$2 = unwrapExports(lib$j);
 
-  var lib$i = createCommonjsModule(function (module, exports) {
+  var lib$k = createCommonjsModule(function (module, exports) {
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -89373,7 +89345,7 @@
   exports["default"] = _default;
   });
 
-  var syntaxOptionalChaining$1 = unwrapExports(lib$i);
+  var syntaxOptionalChaining$1 = unwrapExports(lib$k);
 
   var availablePlugins = {
     "proposal-async-generator-functions": proposalAsyncGeneratorFunctions,

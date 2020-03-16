@@ -8,11 +8,11 @@
 
 	global['$sys']['lib'] = {
 		'babel-standalone': [
-				'libraries/babel-standalone-7.8.7.min',
-				'/beta/emuos/js/libraries/babel-standalone-7.8.7.min',
-				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.8.7.min',
-				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.8.7.min',
-				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.8.7.min'
+				'libraries/babel-standalone-7.8.8.min',
+				'/beta/emuos/js/libraries/babel-standalone-7.8.8.min',
+				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.8.8.min',
+				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.8.8.min',
+				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.8.8.min'
 		],
 		'bootstrap': [
 				'libraries/bootstrap-4.4.1.min',
@@ -651,11 +651,6 @@
 				'//emuos.net/beta/emuos/js/network',
 				'//emuos.org/beta/emuos/js/network'
 		],
-		'socket': [
-				'//ws.emupedia.net/app/u_socket_es5',
-				'//ws.emuos.net/app/u_socket_es5',
-				'//ws.emuos.org/app/u_socket_es5'
-		],
 		'taskbar': [
 				'taskbar',
 				'/beta/emuos/js/taskbar',
@@ -669,6 +664,11 @@
 				'//emupedia.net/beta/emuos/js/window',
 				'//emuos.net/beta/emuos/js/window',
 				'//emuos.org/beta/emuos/js/window'
+		],
+		'socket': [
+				'//ws.emupedia.net/app/u_socket_es5',
+				'//ws.emuos.net/app/u_socket_es5',
+				'//ws.emuos.org/app/u_socket_es5'
 		],
 		'ga': '//www.google-analytics.com/analytics'
 };
