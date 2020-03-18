@@ -80,10 +80,9 @@
 				name: 'No Clip',
 				title: 'Under Development',
 				icon: 'images/icons/desktop/no-clip',
-				link: 'https://noclip.website/',
+				link: root + '/emupedia-app-noclip/',
 				width: 900,
-				height: 552,
-				shortcut: true
+				height: 552
 				// new: true
 			} , {
 				name: 'Visual Studio Code',

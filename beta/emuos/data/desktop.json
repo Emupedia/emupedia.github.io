@@ -39,8 +39,8 @@
 	} , {
 		"name": "No Clip",
 		"title": "Under Development",
-		"icon": "https://noclip.website/logo-40496a2270a69fdcb86b.png",
-		"link": "https://noclip.website/",
+		"icon": "/emupedia-app-noclip/logo-40496a2270a69fdcb86b.png",
+		"link": "/emupedia-app-noclip/index.html",
 		"width": 900,
 		"height": 552
 	} , {
