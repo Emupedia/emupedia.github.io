@@ -28,12 +28,18 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## 👀 <sub>View a Live Demo</sub>
 [![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/under-development.svg)](#-view-a-live-demo)
 
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Primary  [https://emupedia.net/beta/emuos/](https://emupedia.net/beta/emuos/)
+* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> [https://emupedia.net/beta/emuos/](https://emupedia.net/beta/emuos/)
+
+<details>
+<summary>Mirrors</summary>
+
 * <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 1 [https://emuos.net/beta/emuos/](https://emuos.net/beta/emuos/)
 * <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 2 [https://emuos.org/beta/emuos/](https://emuos.org/beta/emuos/)
 * <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 3 [https://emuos.redirectme.net/beta/emuos/](https://emuos.redirectme.net/beta/emuos/)
 * <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 4 [https://emu.bounceme.net/beta/emuos/](https://emu.bounceme.net/beta/emuos/)
 * <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/icons/desktop/emupedia-48.png" /></sub> Mirror 5 [https://emu.webhop.me/beta/emuos/](https://emu.webhop.me/beta/emuos/)
+
+</details>
 
 ## 🌍 <sub>Browser support</sub>
 <details>
