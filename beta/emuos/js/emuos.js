@@ -48,6 +48,13 @@
 				width: 824,
 				height: 624
 			} , {
+				name: 'GitHub Project',
+				title: 'Under Development',
+				icon: 'images/icons/desktop/github',
+				link: 'https://github.com/Emupedia/emupedia.github.io/',
+				target: '_blank',
+				shortcut: true
+			} , {
 				name: 'EmuChat',
 				icon: 'images/icons/desktop/emuchat',
 				link: root + '/emupedia-app-emuchat/',
@@ -473,12 +480,13 @@
 		for (var j in self.options.icons) {
 			// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
 			var icon_options = self.options.icons[j];
+			var href = typeof icon_options['target'] !== 'undefined' ? ' href="' + icon_options['link'] + '" target="' + icon_options['target'] + '" ' : ' href="javascript:" ';
 
 			// noinspection JSUnfilteredForInLoop
-			var $icon = 	$('<a class="emuos-desktop-icon" href="javascript:"' + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
-								'<i class="icon overlay ribbon' + (icon_options['shortcut'] ? ' shortcut' : '') + (icon_options['prototype'] ? ' prototype' : '') + (icon_options['beta'] ? ' beta' : '') + (icon_options['new'] ? ' new' : '') + '" style="background-image: url(' + icon_options['icon'] + ($sys.browser.isIE ? '.png' : '.ico') + ');"></i>' +
-								'<span>' + icon_options['name'] + '</span>' +
-							'</a>');
+			var $icon = $('<a class="emuos-desktop-icon"'+ href + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
+							'<i class="icon overlay ribbon' + (icon_options['shortcut'] ? ' shortcut' : '') + (icon_options['prototype'] ? ' prototype' : '') + (icon_options['beta'] ? ' beta' : '') + (icon_options['new'] ? ' new' : '') + '" style="background-image: url(' + icon_options['icon'] + ($sys.browser.isIE ? '.png' : '.ico') + ');"></i>' +
+							'<span>' + icon_options['name'] + '</span>' +
+						'</a>');
 
 			// noinspection JSUnfilteredForInLoop
 			$icon.data('name', icon_options['name']);
@@ -490,6 +498,12 @@
 			if (typeof icon_options['link'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
 				$icon.data('link', icon_options['link']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['target'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('target', icon_options['target']);
 			}
 
 			// noinspection JSUnfilteredForInLoop
@@ -526,7 +540,9 @@
 			self.$desktop.append($icon);
 
 			$icon.off('click').on('click', function(e) {
-				e.preventDefault();
+				if (typeof $(this).data('target') === 'undefined') {
+					e.preventDefault();
+				}
 			}).off('dblclick').on('dblclick', function() {
 				// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 				if (typeof $(this).data('link') !== 'undefined') {
