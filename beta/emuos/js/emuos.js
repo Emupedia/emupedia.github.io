@@ -49,7 +49,6 @@
 				height: 624
 			} , {
 				name: 'GitHub Project',
-				title: 'Under Development',
 				icon: 'images/icons/desktop/github',
 				link: 'https://github.com/Emupedia/emupedia.github.io/',
 				target: '_blank',
