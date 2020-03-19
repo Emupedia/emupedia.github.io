@@ -56,6 +56,7 @@
 				singleinstance: true
 			} , {
 				name: 'Discord',
+				title: 'External',
 				icon: 'images/icons/desktop/discord',
 				link: 'https://e.widgetbot.io/channels/510149138491506688/604419869345185884/',
 				width: 900,
@@ -64,6 +65,7 @@
 				singleinstance: true
 			} , {
 				name: 'Windows 93',
+				title: 'External',
 				icon: 'images/icons/desktop/windows93',
 				link: 'https://v1.windows93.net/',
 				width: 960,
@@ -71,19 +73,12 @@
 				shortcut: true
 			} , {
 				name: '98.js',
+				title: 'External',
 				icon: 'images/icons/desktop/98.js',
 				link: 'https://98.js.org/',
 				width: 960,
 				height: 713,
 				shortcut: true
-			} , {
-				name: 'No Clip',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/no-clip',
-				link: root + '/emupedia-app-noclip/',
-				width: 900,
-				height: 552
-				// new: true
 			} , {
 				name: 'Visual Studio Code',
 				title: 'Under Development',
@@ -100,6 +95,7 @@
 				height: 480
 			} , {
 				name: 'Microsoft Solitaire Collection',
+				title: 'External',
 				icon: 'images/icons/desktop/microsoft-solitaire',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2019/20190729T121300_1.5.4.1_release_v0001_9af64392_msn/solitaire/index.html?hostingEnvironment=zone',
 				width: 960,
@@ -107,6 +103,7 @@
 				shortcut: true
 			} , {
 				name: 'Microsoft Mahjong',
+				title: 'External',
 				icon: 'images/icons/desktop/microsoft-mahjong',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftmahjong/2019/20190805T180800_1.0.2_release_2019_002_e5886ede_msn/game.html?hostingEnvironment=zone',
 				width: 960,
@@ -114,6 +111,7 @@
 				shortcut: true
 			} , {
 				name: 'Microsoft Ultimate Word Games',
+				title: 'External',
 				icon: 'images/icons/desktop/microsoft-crosswords',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/2019/20190821T095404_1.0.5_features_2019_NameChangeToWordTwister_f7862a8_msn/word-games/game.html?game=crossword&hostingEnvironment=zone',
 				width: 960,
@@ -140,7 +138,7 @@
 				// beta: true
 			} , {
 				name: 'agar.io',
-				title: 'Under Development',
+				title: 'External',
 				icon: 'images/icons/desktop/agar.io',
 				link: 'https://agasio.herokuapp.com/',
 				width: 900,
