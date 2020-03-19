@@ -37,13 +37,6 @@
 		"width": 960,
 		"height": 713
 	} , {
-		"name": "No Clip",
-		"title": "Under Development",
-		"icon": "/emupedia-app-noclip/logo-40496a2270a69fdcb86b.png",
-		"link": "/emupedia-app-noclip/index.html",
-		"width": 900,
-		"height": 552
-	} , {
 		"name": "Visual Studio Code",
 		"title": "Under Development",
 		"icon": "/emupedia-app-vscode/favicon.ico",
