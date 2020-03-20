@@ -38,6 +38,7 @@
 			height: 'auto',
 			hide: false,
 			icons: {
+				help: 'ui-icon-help',
 				close: 'ui-icon-closethick',
 				confirmClose: 'ui-icon-help',
 				main: null,
@@ -114,6 +115,7 @@
 		},
 
 		_titlebarButtons: [
+			'help',
 			'close',
 			'minimize',
 			'maximize'
@@ -126,6 +128,7 @@
 		],
 
 		classes: {
+			buttonHelp: 'emuos-window-button-help',
 			buttonMinimize: 'emuos-window-button-minimize',
 			buttonMaximize: 'emuos-window-button-maximize-restore',
 			windowMaximized: 'emuos-window-maximized',
@@ -159,6 +162,8 @@
 			titlebarButtonIcon: 'emuos-window-titlebar-button-icon',
 			bodyOverlay: 'emuos-window-body-overlay',
 			bodyOverlayed: 'emuos-window-body-overlayed',
+			help: 'emuos-window-type-help',
+			helpText: 'emuos-window-type-help-text',
 			confirmClose: 'emuos-window-type-confirm-close',
 			confirmCloseText: 'emuos-window-type-confirm-close-text',
 			confirmCloseYes: 'emuos-window-type-confirm-close-yes',
@@ -333,8 +338,8 @@
 			this._checkForInvalidOptions($.emuos.window.prototype.options, this.options, true);
 
 			this._setIcon({
-							  button: 'close'
-						  });
+				button: 'close'
+			});
 
 			// store instance
 			this.$window.data(this._cnst.dataPrefix + 'window', this);
@@ -634,11 +639,7 @@
 
 			// bind ESC blocker for when "closable" option is set to false
 			this.uiDialog.on('keydown.' + this._cache.uep, function(event) {
-				if (
-					!self.options.closable
-					&& self.options.closeOnEscape
-					&& event.keyCode === $.ui.keyCode.ESCAPE
-				) {
+				if (!self.options.closable && self.options.closeOnEscape && event.keyCode === $.ui.keyCode.ESCAPE) {
 					event.preventDefault();
 				}
 			});
@@ -854,16 +855,22 @@
 					var change = false;
 
 					// correct top/left edge overflow
+					// noinspection TypeScriptValidateTypes,TypeScriptValidateJSTypes,JSValidateTypes
 					if (diffs[edge] + scroll < 0 && direction === 'more') {
 						change = true;
+						// noinspection TypeScriptValidateTypes,TypeScriptValidateJSTypes,JSValidateTypes
 						val -= diffs[edge] + scroll;
+						// noinspection TypeScriptValidateTypes,TypeScriptValidateJSTypes,JSValidateTypes
 						size += diffs[edge] + scroll;
 					}
 
 					// correct bottom/right edge overflow
+					// noinspection TypeScriptValidateTypes,TypeScriptValidateJSTypes,JSValidateTypes
 					if (diffs[end] < 0 && direction === 'less') {
 						change = true;
+						// noinspection TypeScriptValidateTypes,TypeScriptValidateJSTypes,JSValidateTypes
 						val += diffs[end];
+						// noinspection TypeScriptValidateTypes,TypeScriptValidateJSTypes,JSValidateTypes
 						size -= diffs[end];
 					}
 
@@ -1338,10 +1345,81 @@
 			}
 		},
 
+		// open help window
+		_openHelp: function() {
+			var self = this, o = this.options;
+
+			if (o.help) {
+				if (!this._cache.progress.help) {
+					this._placeOverlay({
+						window: true
+					});
+
+					this.$helpWindow = $('<div></div>');
+
+					this.$helpWindow.addClass(this.classes.help).append($('<p>' + o.help + '</p>').addClass(this.classes.helpText)).window({
+						// options that propagate from main window
+						taskbar: this.$taskbar,
+						minimizable: false,
+						modal: true,
+						containment: o.containment,
+						durations: o.durations,
+						icons: {
+							main: o.icons.help
+						},
+						// end of options that propagate from main window
+						title: self._i18n('helpTitle', {
+							title: o.realTitle
+						}),
+						closeOnEscape: true,
+						maximizable: false,
+						resizable: false,
+						width: 400,
+						height: 'auto',
+						minHeight: null,
+						// let's have it here so calling close() on this window, don't break anything
+						close: function() {
+							self._unblock();
+						}
+					});
+
+					// this._afterConfirmCloseButtonsBuild();
+
+					this._removeTopClasses();
+					this.$helpWindow.window('moveToTop');
+
+					// position window on the center of it's parent window
+					var $helpWindowParent = this.$helpWindow.parent(),
+						taskbar = this._getTaskbarInstance(),
+						pd = taskbar._extendedPosition.call($helpWindowParent, 'offset'),
+						wd = taskbar._extendedPosition.call(this.$elem, 'offset'),
+						css = {},
+						scroll = this._getWindowScroll();
+
+					// calculate window center
+					css.top = wd.top - scroll.y;
+					css.left = wd.left - scroll.x;
+					css.top -= (pd.height - wd.height) / 2;
+					css.left -= (pd.width - wd.width) / 2;
+
+					$helpWindowParent.css(css).attr('data-help-window-for', self.$elem.attr('id'));
+
+					// refresh position for those rare cases,
+					// where positioning on center of parent window
+					// would move confirm close window outside the containment
+					this.$helpWindow.window('refreshPosition');
+					//this._cache.progress.help = true;
+
+					return true;
+				}
+			}
+
+			return false;
+		},
+
 		// open confirm close window
 		_openConfirmClose: function() {
-			var self = this,
-				o = this.options;
+			var self = this, o = this.options;
 
 			if (o.confirmClose.confirm) {
 				if (!this._cache.progress.close) {
@@ -1351,9 +1429,7 @@
 
 					this.$confirmCloseWindow = $('<div></div>');
 
-					this.$confirmCloseWindow.addClass(this.classes.confirmClose).append(
-						$('<p>' + this._buildConfirmCloseText('text') + '</p>').addClass(this.classes.confirmCloseText)
-					).window({
+					this.$confirmCloseWindow.addClass(this.classes.confirmClose).append($('<p>' + this._buildConfirmCloseText('text') + '</p>').addClass(this.classes.confirmCloseText)).window({
 						// options that propagate from main window
 						taskbar: this.$taskbar,
 						minimizable: o.confirmClose.minimizable,
@@ -1362,7 +1438,7 @@
 						durations: o.durations,
 						icons: {
 							 main: o.icons.confirmClose
-						 },
+						},
 						// end of options that propagate from main window
 						title: this._buildConfirmCloseText('title'),
 						buttons: this._confirmCloseButtonsConfig(),
@@ -1372,16 +1448,15 @@
 						height: 'auto',
 						minHeight: null,
 						beforeMinimize: function() {
-							 self._cache.confirmCloseMinimizing = true;
-						 },
+							self._cache.confirmCloseMinimizing = true;
+						},
 						minimize: function() {
-							 self._cache.confirmCloseMinimizing = false;
-						 },
-						// let's have it here so calling close() on this window
-						// don't break anything
+							self._cache.confirmCloseMinimizing = false;
+						},
+						// let's have it here so calling close() on this window, don't break anything
 						close: function() {
-							 self._unblock();
-						 }
+							self._unblock();
+						}
 					 });
 
 					this._afterConfirmCloseButtonsBuild();
@@ -1389,15 +1464,11 @@
 					this._removeTopClasses();
 					this.$confirmCloseWindow.window('moveToTop');
 
-					// position window on the coenter of it's parent window
+					// position window on the center of it's parent window
 					var $confirmCloseWindowParent = this.$confirmCloseWindow.parent(),
 						taskbar = this._getTaskbarInstance(),
-						pd = taskbar._extendedPosition.call(
-							$confirmCloseWindowParent, 'offset'
-						),
-						wd = taskbar._extendedPosition.call(
-							this.$elem, 'offset'
-						),
+						pd = taskbar._extendedPosition.call($confirmCloseWindowParent, 'offset'),
+						wd = taskbar._extendedPosition.call(this.$elem, 'offset'),
 						css = {},
 						scroll = this._getWindowScroll();
 
@@ -1427,24 +1498,21 @@
 		_confirmCloseButtonsConfig: function() {
 			var self = this;
 
-			return [
-				{
-					text: this._buildConfirmCloseText('no'),
-					click: function() {
-						self.$confirmCloseWindow.window('close');
-					}
-				},
-				{
-					text: this._buildConfirmCloseText('yes'),
-					click: function() {
-						// closing the parent window, so we don't need
-						// to unblock or move it to the top anymore
-						self.close();
-
-						self._closeConfirmCloseWindow();
-					}
+			return [{
+				text: this._buildConfirmCloseText('no'),
+				click: function() {
+					self.$confirmCloseWindow.window('close');
 				}
-			];
+			} , {
+				text: this._buildConfirmCloseText('yes'),
+				click: function() {
+					// closing the parent window, so we don't need
+					// to unblock or move it to the top anymore
+					self.close();
+
+					self._closeConfirmCloseWindow();
+				}
+			}];
 		},
 
 		_afterConfirmCloseButtonsBuild: function() {
@@ -1643,6 +1711,7 @@
 
 			this.$elem = this.uiDialog.closest('.' + this.classes.uiDialog);
 
+			this._createButton('help');
 			this._createButton('maximize');
 			this._createButton('minimize');
 
@@ -1650,10 +1719,7 @@
 			this.uiDialogTitlebar.on('dblclick.' + this._cache.uep, function(event) {
 				// only titlebar and title can trigger the behaviour,
 				// no icon or buttons
-				if (
-					!$(event.target).hasClass(self.classes.uiDialogTitlebar)
-					&& !$(event.target).hasClass(self.classes.uiDialogTitle)
-				) {
+				if (!$(event.target).hasClass(self.classes.uiDialogTitlebar) && !$(event.target).hasClass(self.classes.uiDialogTitle)) {
 					return false;
 				}
 
@@ -1673,10 +1739,7 @@
 
 			this._addButtonClasses(this.uiDialogTitlebarClose);
 
-			this.uiDialogTitlebarClose.toggleClass(
-				this.classes.hidden,
-				!this.options.closable
-			);
+			this.uiDialogTitlebarClose.toggleClass(this.classes.hidden, !this.options.closable);
 
 			this._enumerateTitlebarButtons();
 		},
@@ -1692,15 +1755,13 @@
 				};
 			}
 
-			var b = options.button,
-				B = this._ucFirst(b);
+			var b = options.button, B = this._ucFirst(b);
 
 			// remove the old one
 			this.$elem.find('.' + this.classes['button' + B]).remove();
 
-			// don't create minimize/maximize buttons
-			// if window is not minimizable/maximizable
-			if (b === 'maximize' && !this.options.maximizable || b === 'minimize' && !this.options.minimizable) {
+			// don't create minimize/maximize buttons if window is not minimizable/maximizable
+			if (b === 'help' && !this.options.help || b === 'maximize' && !this.options.maximizable || b === 'minimize' && !this.options.minimizable) {
 				this._enumerateTitlebarButtons();
 
 				return;
@@ -1709,7 +1770,17 @@
 			this['$' + b] = $('<button></button>').button({text: false}).attr('data-button-name', b).addClass(this.classes['button' + B] + ' ' + this.classes.button).on({
 				click: function() {
 					// trigger action
-					b === 'minimize' ? self[b]() : self._toggleMaximized();
+					if (b === 'help') {
+						self._openHelp();
+					}
+
+					if (b === 'minimize') {
+						self[b]();
+					}
+
+					if (b === 'maximize') {
+						self._toggleMaximized();
+					}
 
 					if (b === 'minimize') {
 						this.blur();
@@ -1727,15 +1798,15 @@
 			 });
 
 			this._setIcon({
-							  button: b
-						  });
+				button: b
+			});
 
 			this._setButtonText({
-									button: b
-								});
+				button: b
+			});
 
 			// insert into right position
-			if (b === 'minimize') {
+			if (b === 'help') {
 				this['$' + b].appendTo(this.uiDialogTitlebar);
 			} else {
 				this['$' + b].insertAfter(this.uiDialogTitlebarClose);
@@ -1792,10 +1863,7 @@
 
 				// remove confirm close window from set of windows to blur,
 				// it will be later moved to top by handler on bind to overlat
-				if (
-					!this._cache.confirmCloseMinimizing
-					&& self.$confirmCloseWindow.length
-				) {
+				if (!this._cache.confirmCloseMinimizing && self.$confirmCloseWindow.length) {
 					$skipCloseWindow = $skipCloseWindow.add(self.$confirmCloseWindow);
 				}
 			}
@@ -1813,9 +1881,7 @@
 				var instance = $taskbar.data(self._cnst.dataPrefix + 'taskbar');
 
 				// find modals on top
-				$modals = $modals.add(
-					instance.windows().parent().filter('.' + self.classes.modal).filter('.' + self.classes.windowTop).not('.' + self.classes.windowMinimizing).filter(':visible')
-				);
+				$modals = $modals.add(instance.windows().parent().filter('.' + self.classes.modal).filter('.' + self.classes.windowTop).not('.' + self.classes.windowMinimizing).filter(':visible'));
 			});
 
 			$modals = $modals.not($elem);
@@ -1834,8 +1900,8 @@
 			if ($elem === this.$elem && !skipThis && this.options.modal) {
 				this._revertActiveModalZIndexes();
 				this._minimizeOtherModals({
-											  skipZIndexRevert: true
-										  });
+					skipZIndexRevert: true
+				});
 			}
 
 			this._removeTopClasses(
@@ -1846,8 +1912,8 @@
 			// autodetect if they should be created
 			$otherWindows.each(function() {
 				$(this).children('.' + self.classes.windowContent).data(self._cnst.dataPrefix + 'window')._placeOverlay({
-																															window: 'auto'
-																														});
+					window: 'auto'
+				});
 			});
 
 			// set new z-indexes
@@ -1884,11 +1950,7 @@
 
 						// focus element is this window was not on top,
 						// and the move to top didn't come from user action
-						if (
-							!thisHadWindowTopClasses
-							&& !silent
-							&& (isEventTriggered || !thisWasFocused)
-						) {
+						if (!thisHadWindowTopClasses && !silent && (isEventTriggered || !thisWasFocused)) {
 							this._focusTabbable();
 							this._trigger('focus', settings);
 						}
@@ -1898,8 +1960,8 @@
 						// were reverted eariler)
 						if (this.options.modal) {
 							this._modalZIndexes({
-													revertActive: false
-												});
+								revertActive: false
+							});
 						}
 
 						// set window button state, also set state for window
@@ -1915,9 +1977,8 @@
 					// prevents infinite loop with only one window and it's
 					// close window present; there's should be a better way
 					// to deal with it than a last minute hack
-					if (
-						$elem[0].id !== this.$elem.attr('data-close-window-for')
-					) {
+					// noinspection TypeScriptValidateTypes,TypeScriptValidateJSTypes,JSValidateTypes
+					if ($elem[0].id !== this.$elem.attr('data-close-window-for')) {
 						move = true;
 					}
 				}
@@ -1939,19 +2000,15 @@
 			// cause if it is, confirm close is in progress
 			if (!this.$elem.hasClass(this.classes.bodyOverlay)) {
 				this._placeOverlay({
-									   destroy: true
-								   });
+					destroy: true
+				});
 			}
 
 			if (!blurModals && $elem !== this.$elem) {
 				this._setTopModalState($elem);
 			}
 
-			if (
-				$elem === this.$elem
-				&& !wasOnTop
-				&& !this._cache.progress.close
-			) {
+			if ($elem === this.$elem && !wasOnTop && !this._cache.progress.close) {
 				this._trigger('moveToTop', settings);
 			}
 
@@ -1968,31 +2025,25 @@
 
 			$this.addClass(this.classes.windowTop).children('.' + this.classes.uiDialogTitlebar).addClass(this.classes.uiStateActive);
 
-			this._setConnectedButtonsState(
-				$this.children('.' + this.classes.windowContent)
-			);
+			this._setConnectedButtonsState($this.children('.' + this.classes.windowContent));
 		},
 
 		// remove classes for window on top,
 		// and trigger "moveToBackground" event
 		// on windows that were on top
 		_removeTopClasses: function($elem) {
-			var $this = $elem ? $elem : this.$elem,
-				self = this;
+			var $this = $elem ? $elem : this.$elem, self = this;
 
 			$this.each(function() {
 				var $this = $(this);
 
 				if ($this.hasClass(self.classes.windowTop)) {
 					$this.removeClass(self.classes.windowTop).children('.' + self.classes.uiDialogTitlebar).removeClass(self.classes.uiStateActive);
-
 					$this.children('.' + self.classes.windowContent).data(self._cnst.dataPrefix + 'window')._trigger('moveToBackground', {}, {});
 				}
 			});
 
-			this._setConnectedButtonsState(
-				$this.children('.' + this.classes.windowContent)
-			);
+			this._setConnectedButtonsState($this.children('.' + this.classes.windowContent));
 		},
 
 		// trigger internal function on passed instances
@@ -2227,11 +2278,7 @@
 
 			// don't minimize when animation if in progress and minimize
 			// isn't forced
-			if (
-				this._animationProgress()
-				&& !quick
-				&& !this._isMinimizeAllInProgress()
-			) {
+			if (this._animationProgress() && !quick && !this._isMinimizeAllInProgress()) {
 				return;
 			}
 
@@ -2247,10 +2294,7 @@
 				};
 
 			// respect prevetion of "beforeMinimize" event
-			if (
-				!this._cache.suppressEvents
-				&& this._trigger('beforeMinimize', {}, beforeUi) === false
-			) {
+			if (!this._cache.suppressEvents && this._trigger('beforeMinimize', {}, beforeUi) === false) {
 				return;
 			}
 
@@ -2258,14 +2302,9 @@
 
 			// propagate minimize duration to confirm close window
 			if (this._cache.progress.close) {
-				var minimizeDuration = self.$confirmCloseWindow.window(
-					'option', 'durations.minimize'
-				);
+				var minimizeDuration = self.$confirmCloseWindow.window('option', 'durations.minimize');
 
-				self.$confirmCloseWindow.window('option', 'durations.minimize', quick
-																				? false
-																				: self.options.durations.minimize
-				).window('minimize').window('option', 'durations.minimize', minimizeDuration);
+				self.$confirmCloseWindow.window('option', 'durations.minimize', quick ? false : self.options.durations.minimize).window('minimize').window('option', 'durations.minimize', minimizeDuration);
 			}
 
 			if (!skipZIndexRevert) {
@@ -2290,14 +2329,12 @@
 
 			if (skipZIndexRevert) {
 				this._revertModalZIndexes({
-											  $elem: this.$elem
-										  });
+					$elem: this.$elem
+				});
 			}
 
 			var props = this._getButtonCoordinates(),
-				duration = quick
-						   ? false
-						   : parsedDuration || this.options.durations.minimize;
+				duration = quick ? false  : parsedDuration || this.options.durations.minimize;
 
 			this.$elem.stop(true, quick);
 
@@ -2365,36 +2402,22 @@
 			// interaction is in progress, call this function on interaction end,
 			// restore() could also be called during drag, in which case pass
 			// the execution along
-			if (
-				!this._cache.progress.restoreMaximizedDraggable
-				&& this._onInteractionEnd(action, event) === true
-			) {
+			if (!this._cache.progress.restoreMaximizedDraggable && this._onInteractionEnd(action, event) === true) {
 				return;
 			}
 
 			var self = this,
 				progress = maximize ? 'maximizing' : 'restoring',
 				progressInverted = maximize ? 'restoring' : 'maximizing',
-				inProgress =
-					action === 'restore' && this._cache.maximizing
-					|| action === 'maximize' && this._cache.restoring
-					|| this._cache.minimizing
-					|| this._cache.showing,
+				inProgress = action === 'restore' && this._cache.maximizing || action === 'maximize' && this._cache.restoring || this._cache.minimizing || this._cache.showing,
 				animationProgress = this._cache.animationProgress;
 
-			if (
-				this._animationProgress()
-				&& !this._animationProgress(progressInverted)
-				&& !quick
-			) {
+			if (this._animationProgress() && !this._animationProgress(progressInverted) && !quick) {
 				return;
 			}
 
 			// respect prevetion of "beforeRestore"/"beforeMaximize" event
-			if (
-				!this._cache.suppressEvents
-				&& this._trigger(beforeEvent, {}, ui) === false
-			) {
+			if (!this._cache.suppressEvents && this._trigger(beforeEvent, {}, ui) === false) {
 				return;
 			}
 
@@ -2407,9 +2430,7 @@
 				// cache current durations
 				var durations = $.extend(true, {}, this.options.durations);
 				// use false to skip animations
-				this.options.durations = $.extend(
-					true, {}, this._noAnimationDurations()
-				);
+				this.options.durations = $.extend(true, {}, this._noAnimationDurations());
 				// now we're to use existing API to switch window into right state,
 				// so let's show it, maximize or restore it, and minimize it again,
 				// this way the last show called after durations has been reverted
@@ -2424,11 +2445,7 @@
 
 				this.minimize();
 
-				this.$elem.addClass(
-					maximize
-					? this.classes.windowMaximizing
-					: this.classes.windowRestoring
-				);
+				this.$elem.addClass(maximize ? this.classes.windowMaximizing : this.classes.windowRestoring);
 
 				this.options.durations = durations;
 
@@ -2452,10 +2469,7 @@
 			// this._cache.maximized = false;
 			this._cache.minimized = false;
 
-			this.$elem.find(
-				'.' + this.classes.uiDialogTitlebar +
-				' .' + this.classes.uiButton
-			).removeClass(this.classes.uiStateHover);
+			this.$elem.find('.' + this.classes.uiDialogTitlebar + ' .' + this.classes.uiButton).removeClass(this.classes.uiStateHover);
 
 			if (!maximize) {
 				this.$elem.removeClass(this.classes.windowMaximized);
@@ -2466,27 +2480,21 @@
 			this._cache[progress] = true;
 			this._cache[progressInverted] = false;
 
-			if (
-				this.$maximize
-				&& this.$maximize.length
-				&& this.$maximize.closest(this.uiDialogTitlebar).length
-			) {
+			if (this.$maximize && this.$maximize.length && this.$maximize.closest(this.uiDialogTitlebar).length) {
 				this._setButtonText({
-										button: 'maximize',
-										label: action
-									});
+					button: 'maximize',
+					label: action
+				});
 
 				this._setIcon({
-								  icon: action,
-								  button: 'maximize'
-							  });
+					icon: action,
+					button: 'maximize'
+				});
 			}
 
 			this._interactionsState(false);
 
-			var props = maximize
-						? this._cache.sizes.containment
-						: this._cache.sizes.self;
+			var props = maximize ? this._cache.sizes.containment : this._cache.sizes.self;
 
 			this._deleteBottomRight(props);
 
@@ -2494,9 +2502,7 @@
 			// so opacity is needed too
 			props.opacity = 1;
 
-			var duration = inProgress
-						   ? this._speedUpAnimation(actionInverted, animationProgress)
-						   : this.options.durations[actionInverted];
+			var duration = inProgress ? this._speedUpAnimation(actionInverted, animationProgress) : this.options.durations[actionInverted];
 
 			var animation = {
 				duration: quick ? false : parsedDuration || duration,
@@ -2576,10 +2582,7 @@
 		_enumerateTitlebarButtons: function() {
 			this.uiDialogTitlebar.children('.' + this.classes.uiButton).removeAttr('data-button-order');
 
-			this.uiDialogTitlebar.children(
-				'.' + this.classes.uiButton
-				+ ':not(.' + this.classes.hidden + ')'
-			).each(function(index) {
+			this.uiDialogTitlebar.children('.' + this.classes.uiButton + ':not(.' + this.classes.hidden + ')').each(function(index) {
 				$(this).attr('data-button-order', index);
 			});
 		},
@@ -2665,17 +2668,21 @@
 		// helper for refreshing all button icons
 		_refreshButtonIcons: function() {
 			this._setIcon({
-							  button: 'close'
-						  });
+				button: 'help'
+			});
 
 			this._setIcon({
-							  button: 'minimize'
-						  });
+				button: 'close'
+			});
 
 			this._setIcon({
-							  icon: this._cache.maximized ? 'restore' : 'maximize',
-							  button: 'maximize'
-						  });
+				button: 'minimize'
+			});
+
+			this._setIcon({
+				icon: this._cache.maximized ? 'restore' : 'maximize',
+				button: 'maximize'
+			});
 		},
 
 		// sets labels for buttons
@@ -2685,33 +2692,20 @@
 			$.each(this._titlebarButtons, function(index, button) {
 				var $button = self['$' + button];
 
-				if (
-					$button
-					&& $button.length
-					&& $button.hasClass(self.classes.uiButton)
-				) {
+				if ($button && $button.length && $button.hasClass(self.classes.uiButton)) {
 					self._setButtonText({
-											button: button,
-											// maximize/restore has custom label,
-											// other buttons use their names as label keys
-											label: button === 'maximize'
-												   ? self._cache.maximized
-													 ? 'maximize'
-													 : 'restore'
-												   : undefined
-										});
+						button: button,
+						// maximize/restore has custom label,
+						// other buttons use their names as label keys
+						label: button === 'maximize' ? self._cache.maximized ? 'maximize' : 'restore' : undefined
+					});
 				}
 			});
 		},
 
 		// set text to button, use label or button name as dictionary key
 		_setButtonText: function(options) {
-			this['$' + options.button].button(
-				'option',
-				'label',
-				this._i18n(options.label || options.button)
-			);
-
+			this['$' + options.button].button('option', 'label', this._i18n(options.label || options.button));
 			this._addButtonClasses(this['$' + options.button]);
 		},
 
@@ -2723,10 +2717,7 @@
 		// of determining that this is part of window is required;
 		// this class is the way do to it
 		_addButtonClasses: function($button) {
-			$button.find(
-				'.' + this.classes.uiButtonIconPrimary +
-				', .' + this.classes.uiButtonText
-			).addClass(this.classes.titlebarButtonIcon);
+			$button.find('.' + this.classes.uiButtonIconPrimary + ', .' + this.classes.uiButtonText).addClass(this.classes.titlebarButtonIcon);
 		},
 
 		// set state (enabled/disabled) of user interaction
@@ -4269,14 +4260,12 @@
 
 			if (key === 'title') {
 				this._cacheTitle(value);
-
 			} else if (key === 'taskbar') {
 				this._taskbarUnbind();
-
 			} else if (key === 'modal' || key === 'modalOverlay') {
 				this._revertModalZIndexes({
-											  force: true
-										  });
+					force: true
+				});
 				this._destroyOverlay();
 			}
 
@@ -4284,13 +4273,8 @@
 				this.uiDialog.removeClass(this.options.widgetClass).addClass(value);
 			}
 
-			if (
-				// set the closeText without executing parent,
-			// so the debug can be generated if it's not false
-				key !== 'closeText'
-				// window has own setter for "position"
-				&& key !== 'position'
-			) {
+			// set the closeText without executing parent, so the debug can be generated if it's not false, window has own setter for "position"
+			if (key !== 'closeText' && key !== 'position') {
 				this._superApply(arguments);
 			} else {
 				this.options[key] = value;
@@ -4304,69 +4288,52 @@
 
 			if (key === 'maximizable') {
 				this._createButton('maximize');
-
 			} else if (key === 'minimizable') {
 				this._createButton('minimize');
-
 			} else if (key === 'icons') {
 				this._setWindowIcon();
 				this._refreshButtonIcons();
 				this._propagateConfirmCloseOptions(key, prev);
-
 			} else if (key === 'titleLocalized' || key === 'title') {
 				this._createTitleForEmpty();
 				this._title();
 				this._propagateConfirmCloseOptions(key, prev);
-
 			} else if (key === 'maximized') {
 				this._toggleMaximized(value);
-
 			} else if (key === 'containment') {
 				this._setContainment();
 				this.refreshPosition();
-
 			} else if (key === 'position') {
 				this._position();
 				this._setRestoreSize();
 				this.refreshPosition();
-
 			} else if (key === 'width' || key === 'maxWidth') {
 				this._setWidth();
 				this.refreshPosition();
-
 			} else if (key === 'height' || key === 'maxHeight') {
 				this._setHeight();
 				this.refreshPosition();
-
 			} else if (key === 'modal' || key === 'modalOverlay') {
 				this._createOverlay();
 				this._modalZIndexes({
-										revertActive: false
-									});
-
+					revertActive: false
+				});
 			} else if (key === 'closable') {
 				this._setButtonCloseState();
-
 			} else if (key === 'buttons') {
 				this.refreshPosition();
-
 			} else if (key === 'taskbar') {
 				this._rebindTaskbar();
 				this._propagateConfirmCloseOptions(key, prev);
-
 			} else if (key === 'confirmClose' || key === 'durations') {
 				this._propagateConfirmCloseOptions(key, prev);
-
 			} else if (key === 'embeddedContent') {
 				this._placeOverlay();
-
 			} else if (key === 'group') {
 				this._refreshGroup();
-
 			} else if ($.inArray(key, this._unsupportedOptions) > -1) {
 				this._debugUnsupportedOptions();
 				this._resetUnsupportedOptions();
-
 			} else if (key === 'appendTo' && this.overlay) {
 				// this.uiDialog.appendTo( this._appendTo() )
 				// is covered by this._superApply( arguments );
@@ -4438,10 +4405,13 @@
 	// and the current instances
 	$.emuos.windowSetup = function(propagateToInstances, options) {
 		options = arguments.length === 1 ? propagateToInstances : options;
+
 		if (propagateToInstances === true && arguments.length > 1) {
 			$('.' + $.emuos.window.prototype.classes.windowContent).window('option', options);
 		}
+
 		var o = $.emuos.window.prototype.options;
+
 		return options ? $.extend(true, o, options) : o;
 	};
 })(jQuery);

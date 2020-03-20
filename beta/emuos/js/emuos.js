@@ -33,6 +33,9 @@
 		self.$html		= $('html');
 		self.$body		= $('body');
 
+		self.disclaimer = '<br /><br />Disclaimer<hr />This software does not represent in anyway the original product, it only represents an attempt to recreate the original look &amp; feel of the product using modern web technologies for educational and digital archiving purposes.<br /><br />The author(s) and/or any of it\'s maintainers are in no way associated with or endorsed by the copyright holders.';
+		self.disclaimer_abandoned = '<br /><br />Disclaimer<hr />This software does not represent in anyway the original product, it only represents an attempt to recreate the original look &amp; feel of the product using modern web technologies for educational and digital archiving purposes, because the original product no longer works on modern computer hardware without modifications.<br /><br />The author(s) and/or any of it\'s maintainers are in no way associated with or endorsed by the copyright holders.';
+
 		self.options = {
 			theme: 'theme-win3x',
 			themes: {
@@ -49,6 +52,7 @@
 				height: 624
 			} , {
 				name: 'GitHub Project',
+				title: 'External Website',
 				icon: 'images/icons/desktop/github',
 				link: 'https://github.com/Emupedia/emupedia.github.io/',
 				target: '_blank',
@@ -62,7 +66,7 @@
 				singleinstance: true
 			} , {
 				name: 'Discord',
-				title: 'External',
+				title: 'External Website',
 				icon: 'images/icons/desktop/discord',
 				link: 'https://e.widgetbot.io/channels/510149138491506688/604419869345185884/',
 				width: 900,
@@ -71,7 +75,7 @@
 				singleinstance: true
 			} , {
 				name: 'Windows 93',
-				title: 'External',
+				title: 'External Website',
 				icon: 'images/icons/desktop/windows93',
 				link: 'https://v1.windows93.net/',
 				width: 960,
@@ -79,7 +83,7 @@
 				shortcut: true
 			} , {
 				name: '98.js',
-				title: 'External',
+				title: 'External Website',
 				icon: 'images/icons/desktop/98.js',
 				link: 'https://98.js.org/',
 				width: 960,
@@ -101,7 +105,7 @@
 				height: 480
 			} , {
 				name: 'Microsoft Solitaire Collection',
-				title: 'External',
+				title: 'External Website',
 				icon: 'images/icons/desktop/microsoft-solitaire',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2019/20190729T121300_1.5.4.1_release_v0001_9af64392_msn/solitaire/index.html?hostingEnvironment=zone',
 				width: 960,
@@ -109,7 +113,7 @@
 				shortcut: true
 			} , {
 				name: 'Microsoft Mahjong',
-				title: 'External',
+				title: 'External Website',
 				icon: 'images/icons/desktop/microsoft-mahjong',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftmahjong/2019/20190805T180800_1.0.2_release_2019_002_e5886ede_msn/game.html?hostingEnvironment=zone',
 				width: 960,
@@ -117,7 +121,7 @@
 				shortcut: true
 			} , {
 				name: 'Microsoft Ultimate Word Games',
-				title: 'External',
+				title: 'External Website',
 				icon: 'images/icons/desktop/microsoft-crosswords',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/2019/20190821T095404_1.0.5_features_2019_NameChangeToWordTwister_f7862a8_msn/word-games/game.html?game=crossword&hostingEnvironment=zone',
 				width: 960,
@@ -144,7 +148,7 @@
 				// beta: true
 			} , {
 				name: 'agar.io',
-				title: 'External',
+				title: 'External Website',
 				icon: 'images/icons/desktop/agar.io',
 				link: 'https://agasio.herokuapp.com/',
 				width: 900,
@@ -285,36 +289,42 @@
 				name: 'Wolfenstein 3D',
 				icon: 'images/icons/desktop/wolfenstein-3d',
 				link: root + ($sys.feature['CANVAS'] ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/',
+				credits: 'HTML5 Port<hr />Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />License: <a href="http://users.atw.hu/wolf3d/COPYING.txt" target="_blank">GPLv2</a><br /><br />HTML Port<hr />Author: <a href="https://github.com/id-Software" target="_blank">github.com/id-Software</a><br />Repository: <a href="https://github.com/id-Software/wolf3d-browser" target="_blank">github.com/id-Software/wolf3d-browser</a><br />License: <a href="https://github.com/id-Software/wolf3d-browser/blob/master/COPYING.txt" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
 				width: $sys.feature['CANVAS'] ? 960 : 640,
 				height: $sys.feature['CANVAS'] ? 600 : 400
 			} , {
 				name: 'Doom 1',
 				icon: 'images/icons/desktop/doom1',
 				link: root + '/emupedia-game-doom1/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/'),
+				credits: 'Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />Repository: <a href="https://github.com/lazarv/wasm-doom" target="_blank">github.com/lazarv/wasm-doom</a><br />License: <a href="https://github.com/lazarv/wasm-doom/blob/master/COPYING.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 400
 			} , {
 				name: 'Doom 2: Hell on Earth',
 				icon: 'images/icons/desktop/doom2',
 				link: root + '/emupedia-game-doom2/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/'),
+				credits: 'Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />Repository: <a href="https://github.com/lazarv/wasm-doom" target="_blank">github.com/lazarv/wasm-doom</a><br />License: <a href="https://github.com/lazarv/wasm-doom/blob/master/COPYING.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 400
 			} , {
 				name: 'Doom 3',
 				icon: 'images/icons/desktop/doom3',
 				link: root + '/emupedia-game-doom3/index.html',
+				credits: 'Author: <a href="https://github.com/gabrielcuvillier" target="_blank">github.com/gabrielcuvillier</a><br />Repository: <a href="https://github.com/gabrielcuvillier/d3wasm" target="_blank">github.com/gabrielcuvillier/d3wasm</a><br />License: <a href="https://github.com/gabrielcuvillier/d3wasm/blob/master/COPYING.txt" target="_blank">GPLv3</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer,
 				width: 640,
 				height: 480
 			} , {
 				name: 'Quake 1',
 				icon: 'images/icons/desktop/quake1',
 				link: root + '/emupedia-game-quake1/' + ($sys.feature['ES6'] && $sys.feature['ES7_ASYNC_AWAIT'] ? 'async.html' : 'index.html'),
+				credits: 'Author: <a href="https://github.com/triang3l" target="_blank">github.com/triang3l</a><br />Repository: <a href="https://github.com/triang3l/webquake" target="_blank">github.com/triang3l/webquake</a><br />License: <a href="https://github.com/triang3l/webquake/blob/master/GNU.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
 				name: 'Quake 2',
 				icon: 'images/icons/desktop/quake2',
 				link: root + '/emupedia-game-quake2/',
+				credits: 'HTML5 Port<hr />Author: <a href="https://github.com/stefanhaustein" target="_blank">github.com/stefanhaustein</a><br />Repository: <a href="https://github.com/stefanhaustein/quake2-playn-port" target="_blank">github.com/stefanhaustein/quake2-playn-port</a><br />License: <a href="https://github.com/id-Software/Quake-2/blob/master/gnu.txt" target="_blank">GPLv2</a><br /><br />Game Engine<hr />Author(s): <a href="https://sourceforge.net/projects/jake2" target="_blank">sourceforge.net/projects/jake2</a><br />Repository: <a href="https://sourceforge.net/p/jake2/git/ci/master/tree/" target="_blank">https://sourceforge.net/p/jake2</a><br />License: <a href="https://github.com/id-Software/Quake-2/blob/master/gnu.txt" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
@@ -322,6 +332,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/half-life1',
 				link: root + '/emupedia-game-half-life1/',
+				credits: 'Author(s): <a href="https://github.com/FWGS" target="_blank">github.com/FWGS</a><br />Repository: <a href="https://github.com/FWGS/xash3d" target="_blank">github.com/FWGS/xash3d</a><br />License: <a href="https://github.com/FWGS/xash3d/blob/master/COPYING" target="_blank">GPLv3</a><br /><br />All other assets<hr />Copyright Valve Software (formerly Sierra Studios)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
@@ -329,6 +340,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/diablo1',
 				link: root + '/emupedia-game-diablo1/',
+				credits: 'HTML5 Port<hr />Author: <a href="https://github.com/d07RiV" target="_blank">github.com/d07RiV</a><br />Repository: <a href="https://github.com/d07RiV/diabloweb" target="_blank">github.com/d07RiV/diabloweb</a><br />License: not specified<br /><br />Game Engine<hr />Author(s): <a href="https://github.com/diasurgical/devilution#credits" target="_blank">github.com/diasurgical/devilution#credits</a><br />Repository: <a href="https://github.com/diasurgical/devilution" target="_blank">github.com/diasurgical/devilution</a><br />License: <a href="https://github.com/diasurgical/devilution/blob/master/LICENSE" target="_blank">Public domain</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Blizzard Entertainment)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
@@ -336,6 +348,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/dark-reign',
 				link: root + '/emupedia-game-dark-reign/',
+				credits: 'Author: <a href="https://github.com/qmegas" target="_blank">github.com/qmegas</a><br />Repository: <a href="https://github.com/qmegas/Dark-Reign---HTML5-Version" target="_blank">github.com/qmegas/Dark-Reign---HTML5-Version</a><br />License: <a href="https://github.com/qmegas/Dark-Reign---HTML5-Version/blob/master/README.md#license" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Activision) and<br />N3V Games (formerly Auran Development)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
@@ -343,6 +356,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/command-and-conquer1',
 				link: root + '/emupedia-game-command-and-conquer1/',
+				credits: 'Author: <a href="https://github.com/adityaravishankar" target="_blank">github.com/adityaravishankar</a><br />Repository: <a href="https://github.com/adityaravishankar/command-and-conquer" target="_blank">github.com/adityaravishankar/command-and-conquer</a><br />License: not specified<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 535
 			} , {
@@ -350,6 +364,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/red-alert2',
 				link: root + '/emupedia-game-ra2/',
+				credits: 'Author: Võ Thành Đạt<br />License: not specified<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)' + self.disclaimer,
 				width: 900,
 				height: 550
 			} , {
@@ -357,18 +372,24 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/minecraft-classic',
 				link: root + '/emupedia-game-minecraft-classic/',
+				credits: 'Author: <a href="https://github.com/andyhall" target="_blank">github.com/andyhall</a><br />Repository: <a href="https://github.com/andyhall/noa" target="_blank">github.com/andyhall/noa</a><br />License: <a href="https://github.com/andyhall/noa/blob/master/LICENSE.txt" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)' + self.disclaimer,
 				width: 900,
 				height: 480
 			} , {
 				name: 'Winamp',
 				icon: 'images/icons/desktop/winamp-classic',
 				link: root + '/emupedia-app-winamp/',
-				width: 900,
-				height: 480
+				credits: 'Author: <a href="https://github.com/captbaritone" target="_blank">github.com/captbaritone</a><br />Repository: <a href="https://github.com/captbaritone/webamp" target="_blank">github.com/captbaritone/webamp</a><br />License: <a href="https://github.com/captbaritone/webamp/blob/master/LICENSE.txt" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright AudioValley (formerly Nullsoft)' + self.disclaimer,
+				width: 275,
+				height: 354,
+				top: 'calc(50% - 165.5px)',
+				left: 'calc(50% - 174px)',
+				widget: false
 			} , {
 				name: 'Notepad',
 				icon: 'images/icons/desktop/notepad',
 				link: root + '/emupedia-app-notepad/',
+				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/98/tree/master/programs/notepad" target="_blank">github.com/1j01/98</a><br />License: not specified<br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
 				width: 900,
 				height: 480,
 				runonce: true
@@ -376,12 +397,14 @@
 				name: 'Paint',
 				icon: 'images/icons/desktop/paint',
 				link: root + '/emupedia-app-paint/',
+				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/jspaint" target="_blank">github.com/1j01/jspaint</a><br />License: not specified<br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
 				width: 900,
 				height: 480
 			} , {
 				name: 'SVG Editor',
 				icon: 'images/icons/desktop/svg-editor',
 				link: root + '/emupedia-app-svg-editor/',
+				credits: 'Author: <a href="https://github.com/methodofaction" target="_blank">github.com/methodofaction</a><br />Repository: <a href="https://github.com/methodofaction/Method-Draw" target="_blank">github.com/methodofaction/Method-Draw</a><br />License: <a href="https://github.com/methodofaction/Method-Draw/blob/master/LICENSE" target="_blank">MIT</a><br /><br />Original Project<hr />Author: <a href="https://github.com/SVG-Edit" target="_blank">github.com/SVG-Edit</a><br />Repository: <a href="https://github.com/SVG-Edit/svgedit" target="_blank">github.com/SVG-Edit/svgedit</a><br />License: <a href="https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt" target="_blank">MIT</a>',
 				width: 900,
 				height: 480
 			}]
@@ -506,6 +529,12 @@
 			}
 
 			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['credits'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('credits', icon_options['credits']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
 			if (typeof icon_options['width'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
 				$icon.data('width', icon_options['width']);
@@ -515,6 +544,36 @@
 			if (typeof icon_options['height'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
 				$icon.data('height', icon_options['height']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['top'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('top', icon_options['top']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['left'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('left', icon_options['left']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['right'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('right', icon_options['right']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['bottom'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('bottom', icon_options['bottom']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['widget'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.attr('data-widget', icon_options['widget'] ? 'true' : 'false').data('widget', icon_options['widget']);
 			}
 
 			// noinspection JSUnfilteredForInLoop
@@ -558,20 +617,35 @@
 							// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 							self.iframe({
 								title: $(this).data('name'),
-								icon :$(this).data('icon'),
+								credits: $(this).data('credits'),
+								icon: $(this).data('icon'),
 								src: $(this).data('link'),
 								width: $(this).data('width'),
 								height: $(this).data('height')
 							});
 						}
+					} else if ($(this).data('widget')) {
+						// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
+						self.widget({
+							title: $(this).data('name'),
+							icon: $(this).data('icon'),
+							content: '<iframe id="' + $(this).data('name') + '" width="100%" height="100%" src="' + $(this).data('link') + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>',
+							width: $(this).data('width'),
+							height: $(this).data('height'),
+							top: $(this).data('top'),
+							left: $(this).data('left'),
+							right: $(this).data('right'),
+							bottom: $(this).data('bottom')
+						});
 					} else {
 						// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 						self.iframe({
 							title: $(this).data('name'),
-							icon :$(this).data('icon'),
+							icon: $(this).data('icon'),
 							src: $(this).data('link'),
 							width: $(this).data('width'),
-							height: $(this).data('height')
+							height: $(this).data('height'),
+							credits: $(this).data('credits')
 						});
 					}
 				} else {
@@ -912,8 +986,8 @@
 			hidden: true,
 			width: 640,
 			height: 350,
-			right: 0,
-			bottom: 28,
+			right: '0px',
+			bottom: '28px',
 			content: '<iframe id="Chat" width="100%" height="100%" src="' + root + '/emupedia-app-emuchat/index.html" frameborder="0" allowFullscreen="allowFullscreen" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
 		});
 
@@ -1033,7 +1107,7 @@
 		var left		= typeof options.left		!== 'undefined' ? options.left		: null;
 		var right		= typeof options.right		!== 'undefined' ? options.right		: null;
 		var bottom		= typeof options.bottom		!== 'undefined' ? options.bottom	: null;
-		var position	= (top !== null ? 'top: ' + top + 'px; ' : '') + (left !== null ? 'left: ' + left + 'px; ' : '') + (right !== null ? 'right: ' + right + 'px; ' : '') + (bottom !== null ? 'bottom: ' + bottom + 'px; ' : '');
+		var position	= (top !== null ? 'top: ' + top + '; ' : '') + (left !== null ? 'left: ' + left + '; ' : '') + (right !== null ? 'right: ' + right + '; ' : '') + (bottom !== null ? 'bottom: ' + bottom + '; ' : '');
 
 		var widget = $('<div class="widget" style="display: ' + (hidden ? 'none' : 'block') +  '; position: absolute; ' + position + ' width: ' + width + 'px; height: ' + height + 'px;">' + content + '</div>');
 
@@ -1167,11 +1241,12 @@
 	EmuOS.prototype.iframe = function (options) {
 		var self = this;
 
-		var title		= typeof options.title	!== 'undefined' ? options.title		: '';
-		var icon		= typeof options.icon	!== 'undefined' ? options.icon		: '';
-		var src			= typeof options.src	!== 'undefined' ? options.src		: '';
-		var width		= typeof options.width	!== 'undefined' ? options.width		: 640;
-		var height		= typeof options.height	!== 'undefined' ? options.height	: 400;
+		var title		= typeof options.title		!== 'undefined' ? options.title		: '';
+		var icon		= typeof options.icon		!== 'undefined' ? options.icon		: '';
+		var src			= typeof options.src		!== 'undefined' ? options.src		: '';
+		var width		= typeof options.width		!== 'undefined' ? options.width		: 640;
+		var height		= typeof options.height		!== 'undefined' ? options.height	: 400;
+		var credits		= typeof options.credits	!== 'undefined' ? options.credits	: '';
 		var timestamp	= Math.floor(Date.now() / 1000);
 
 		// noinspection HtmlDeprecatedAttribute
@@ -1202,6 +1277,7 @@
 
 		// noinspection JSValidateTypes
 		win.window({
+			help: credits,
 			embeddedContent: true,
 			// group: title,
 			width: width,

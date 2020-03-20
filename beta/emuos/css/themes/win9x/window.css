@@ -59,6 +59,10 @@
 	right: 36px !important;
 }
 
+.theme-win9x .emuos-window.ui-dialog .emuos-window-button-help {
+	right: 56px !important;
+}
+
 /*noinspection CssOverwrittenProperties*/
 .theme-win9x .emuos-window.ui-dialog .ui-button-icon-primary {
 	width: 16px;
@@ -89,6 +93,13 @@
 /*noinspection CssOverwrittenProperties,CssUnknownTarget*/
 .theme-win9x .emuos-window.ui-dialog .emuos-window-button-minimize .ui-icon-minusthick {
 	background-image: url(../../../images/themes/icons/windows-9x/minimize.gif) !important;
+	background-position: 1px 2px !important;
+	background-repeat: no-repeat !important;
+}
+
+/*noinspection CssUnknownTarget*/
+.theme-win9x .emuos-window.ui-dialog .emuos-window-button-help .ui-icon-help {
+	background-image: url(../../../images/themes/icons/windows-9x/help.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
@@ -132,8 +143,13 @@
 	font-size: 13px;
 	line-height: 16px;
 	height: calc(100% - 19px) !important;
-	max-height: calc(100% - 19px) !important;
+	/*max-height: calc(100% - 19px) !important;*/
 	background-color: #fff;
+}
+
+.theme-win9x .emuos-window .emuos-window-content.emuos-window-type-help {
+	background-color: #c0c0c0;
+	padding: 10px;
 }
 
 .theme-win9x .emuos-window .emuos-window-content p {

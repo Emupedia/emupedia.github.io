@@ -11,6 +11,8 @@
 			clockTimeFormat: 'HH:mm',
 			clockAmSymbol: 'AM',
 			clockPmSymbol: 'PM',
+			help: 'Help',
+			helpTitle: 'About :title',
 			close: 'Close',
 			confirmCloseTitle: 'Confirm closing of “:title”',
 			confirmCloseNo: 'No',
