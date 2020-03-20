@@ -148,7 +148,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/flappy-bird',
 				link: root + '/emupedia-game-flappy-bird/',
-				credits: 'Website: <a href="https://playcanv.as/p/2OlkUaxF/" target="_blank">playcanvas.com</a>' + self.disclaimer,
+				credits: 'Website: <a href="https://playcanv.as/p/2OlkUaxF/" target="_blank">playcanvas.com</a><br /><br />Original project<hr />Website: <a href="https://www.dotgears.com/apps/app_flappy.html" target="_blank">dotgears.com</a><br />Copyright: .GEARS' + self.disclaimer,
 				width: 432,
 				height: 600,
 				shortcut: true
@@ -157,7 +157,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/geometry-dash',
 				link: root + '/emupedia-game-geometry-dash/',
-				credits: 'Website: <a href="https://scratch.mit.edu/search/projects?q=Geometry+Dash" target="_blank">scratch.mit.edu</a>' + self.disclaimer,
+				credits: 'Website: <a href="https://scratch.mit.edu/search/projects?q=Geometry+Dash" target="_blank">scratch.mit.edu</a><br /><br />Original project<hr />Website: <a href="http://www.robtopgames.com" target="_blank">robtopgames.com</a><br />Copyright: RobTop Games' + self.disclaimer,
 				width: 480,
 				height: 392,
 				shortcut: true
@@ -167,7 +167,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/agar.io',
 				link: 'https://agasio.herokuapp.com/',
-				credits: 'Website: <a href="https://agasio.herokuapp.com" target="_blank">agasio.herokuapp.com</a>' + self.disclaimer,
+				credits: 'Website: <a href="https://agasio.herokuapp.com" target="_blank">agasio.herokuapp.com</a><br /><br />Original project<hr />Website: <a href="https://agar.io" target="_blank">agar.io</a><br />Copyright: Miniclip' + self.disclaimer,
 				width: 900,
 				height: 600,
 				shortcut: true
