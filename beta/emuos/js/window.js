@@ -36,6 +36,7 @@
 			embeddedContent: false,
 			group: null,
 			height: 'auto',
+			help: false,
 			hide: false,
 			icons: {
 				help: 'ui-icon-help',
@@ -565,24 +566,19 @@
 			var o = this.options;
 
 			// minWidth should not be higher than maxWidth
-			if (o.minWidth > o.maxWidth
-				&& o.minWidth !== null && o.maxWidth !== null) {
-				this._debugLogAdd('"minWidth" option should not be higher ' +
-									  'than "maxWidth" option.', 1, 2);
+			if (o.minWidth > o.maxWidth && o.minWidth !== null && o.maxWidth !== null) {
+				this._debugLogAdd('"minWidth" option should not be higher than "maxWidth" option.', 1, 2);
 			}
 
 			// minHeight should not be higher than maxHeight
-			if (o.minHeight > o.maxHeight
-				&& o.minHeight !== null && o.maxHeight !== null) {
-				this._debugLogAdd('"minHeight" option should not be higher ' +
-									  'than "maxHeight" option.', 1, 2);
+			if (o.minHeight > o.maxHeight && o.minHeight !== null && o.maxHeight !== null) {
+				this._debugLogAdd('"minHeight" option should not be higher than "maxHeight" option.', 1, 2);
 			}
 
 			// in dialog, show was an object describing showing animation,
 			// when in window it's handler for when window is being shown
 			if (typeof o.show !== 'function' && o.show !== null) {
-				this._debugLogAdd('option "show" should either be ' +
-									  'a function or null.', 1, 2);
+				this._debugLogAdd('option "show" should either be a function or null.', 1, 2);
 			}
 		},
 
@@ -900,110 +896,106 @@
 			};
 
 			this.uiDialog.resizable({
-										cancel: '.' + this.classes.uiDialogContent,
-										alsoResize: null,
-										aspectRatio: false,
-										maxWidth: options.maxWidth,
-										maxHeight: options.maxHeight,
-										minWidth: options.minWidth,
-										minHeight: this._minHeight(),
-										handles: resizeHandles,
-										start: function(event, ui) {
-											self._interactionInProgress(true);
-											self._hideTaskbarsSubordinates();
-											self._freezeBodyScrollbars();
+				cancel: '.' + this.classes.uiDialogContent,
+				alsoResize: null,
+				aspectRatio: false,
+				maxWidth: options.maxWidth,
+				maxHeight: options.maxHeight,
+				minWidth: options.minWidth,
+				minHeight: this._minHeight(),
+				handles: resizeHandles,
+				start: function(event, ui) {
+					self._interactionInProgress(true);
+					self._hideTaskbarsSubordinates();
+					self._freezeBodyScrollbars();
 
-											// _blockFrames/_unblockFrames was introduced
-											// in jQuery UI Dialog 1.10.1
-											if (self._versionOf('dialog', '>=', '1.10.1')) {
-												self._blockFrames();
-											}
+					// _blockFrames/_unblockFrames was introduced
+					// in jQuery UI Dialog 1.10.1
+					if (self._versionOf('dialog', '>=', '1.10.1')) {
+						self._blockFrames();
+					}
 
-											originalOffset = self._getDimensions.call(self.$elem, {
-												outer: true
-											});
+					originalOffset = self._getDimensions.call(self.$elem, {
+						outer: true
+					});
 
-											var $this = $(this);
+					var $this = $(this);
 
-											if (self.options.embeddedContent) {
-												self.$window.find('iframe').css('pointer-events', 'none');
-											}
+					if (self.options.embeddedContent) {
+						self.$window.find('iframe').css('pointer-events', 'none');
+					}
 
-											resizableInstance = $this.data(self.classes.uiResizable);
+					resizableInstance = $this.data(self.classes.uiResizable);
 
-											$this.addClass(self.classes.uiDialogResizing);
+					$this.addClass(self.classes.uiDialogResizing);
 
-											// convert position to absolute
-											var scroll = self._getWindowScroll(),
-												top = Math.round(
-													parseFloat($this.css('top'))
-												) + scroll.y,
-												left = Math.round(
-													parseFloat($this.css('left'))
-												) + scroll.x;
+					// convert position to absolute
+					var scroll = self._getWindowScroll(),
+						top = Math.round(parseFloat($this.css('top'))) + scroll.y,
+						left = Math.round(parseFloat($this.css('left'))) + scroll.x;
 
-											$this.css({
-														  top: top,
-														  left: left,
-														  position: 'absolute'
-													  });
+					$this.css({
+						top: top,
+						left: left,
+						position: 'absolute'
+					});
 
-											self._trigger('resizeStart', event, filteredUi(ui));
-										},
-										stop: function(event, ui) {
-											var $this = $(this);
+					self._trigger('resizeStart', event, filteredUi(ui));
+				},
+				stop: function(event, ui) {
+					var $this = $(this);
 
-											options.height = $this.height();
-											options.width = $this.width();
+					options.height = $this.height();
+					options.width = $this.width();
 
-											$this.removeClass(self.classes.uiDialogResizing);
+					$this.removeClass(self.classes.uiDialogResizing);
 
-											if (self.options.embeddedContent) {
-												self.$window.find('iframe').removeAttr('style');
-											}
+					if (self.options.embeddedContent) {
+						self.$window.find('iframe').removeAttr('style');
+					}
 
-											// since version 1.11.1 draggable won't respect
-											// size set via css() in resize event, so we need to correct
-											// the size/dimensions once again
-											if (self._versionOf('resizable', '>=', '1.11.1')) {
-												correct.call(this, event, ui, resizableInstance);
-											}
+					// since version 1.11.1 draggable won't respect
+					// size set via css() in resize event, so we need to correct
+					// the size/dimensions once again
+					if (self._versionOf('resizable', '>=', '1.11.1')) {
+						correct.call(this, event, ui, resizableInstance);
+					}
 
-											// convert position to fixed
-											var scroll = self._getWindowScroll(),
-												top = Math.round(parseFloat($this.css('top'))) - scroll.y,
-												left = Math.round(parseFloat($this.css('left'))) - scroll.x;
+					// convert position to fixed
+					var scroll = self._getWindowScroll(),
+						top = Math.round(parseFloat($this.css('top'))) - scroll.y,
+						left = Math.round(parseFloat($this.css('left'))) - scroll.x;
 
-											$this.css({
-														  top: top,
-														  left: left,
-														  position: 'fixed'
-													  });
+					$this.css({
+						top: top,
+						left: left,
+						position: 'fixed'
+					});
 
-											self._interactionInProgress(false);
-											self._revertBodyScrollbars();
-											// _blockFrames/_unblockFrames was introduced
-											// in jQuery UI Dialog 1.10.1
-											if (self._versionOf('dialog', '>=', '1.10.1')) {
-												self._unblockFrames();
-											}
-											self._fullPxPosition();
-											self._refreshPositionOption();
-											self._setRestoreSize();
-											self._setContainment();
+					self._interactionInProgress(false);
+					self._revertBodyScrollbars();
+					// _blockFrames/_unblockFrames was introduced
+					// in jQuery UI Dialog 1.10.1
+					if (self._versionOf('dialog', '>=', '1.10.1')) {
+						self._unblockFrames();
+					}
+					self._fullPxPosition();
+					self._refreshPositionOption();
+					self._setRestoreSize();
+					self._setContainment();
 
-											self._trigger('resizeStop', event, filteredUi(ui));
-										},
-										resize: function(event, ui) {
-											correct.call(this, event, ui, resizableInstance);
+					self._trigger('resizeStop', event, filteredUi(ui));
+				},
+				resize: function(event, ui) {
+					correct.call(this, event, ui, resizableInstance);
 
-											self._fixTitlebarTitleWidth();
-											self._fullPxPosition();
-											self._setContentHeight();
+					self._fixTitlebarTitleWidth();
+					self._fullPxPosition();
+					self._setContentHeight();
 
-											self._trigger('resize', event, filteredUi(ui));
-										}
-									});
+					self._trigger('resize', event, filteredUi(ui));
+				}
+			});
 
 			// by default, resizable will threat pressed shift key the same way
 			// as "aspectRatio": true, and there no exposed way of preventing
@@ -1374,6 +1366,7 @@
 						closeOnEscape: true,
 						maximizable: false,
 						resizable: false,
+						// maxWidth: 400,
 						width: 400,
 						height: 'auto',
 						minHeight: null,
@@ -2634,9 +2627,7 @@
 				this.$elem.css(name, '');
 				this.$window.css(maxKey, '');
 
-				current = Math.round(parseFloat(
-					window.getComputedStyle(this.$elem[0])[name]
-				));
+				current = Math.round(parseFloat(window.getComputedStyle(this.$elem[0])[name]));
 			}
 
 			dimension = this._cache.maximized ? containment[name] : dimension === parseInt(dimension, 10) ? Math.max(min, dimension) : Math.max(min, current);

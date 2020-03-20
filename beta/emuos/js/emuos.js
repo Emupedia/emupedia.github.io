@@ -94,6 +94,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/visual-studio-code',
 				link: root + '/emupedia-app-vscode/',
+				credits: 'Author: <a href="https://github.com/Microsoft" target="_blank">github.com/Microsoft</a><br />Repository: <a href="https://github.com/Microsoft/vscode" target="_blank">github.com/Microsoft/vscode</a><br />License: <a href="https://github.com/microsoft/vscode/blob/master/LICENSE.txt" target="_blank">MIT</a>',
 				width: 900,
 				height: 480
 			} , {
@@ -129,22 +130,28 @@
 				shortcut: true
 			} , {
 				name: 'Cookie Clicker',
+				title: 'External Website',
 				icon: 'images/icons/desktop/cookie-clicker',
 				link: root + '/emupedia-game-cookie-clicker/',
 				width: 1090,
-				height: 600
+				height: 600,
+				shortcut: true
 			} , {
 				name: 'Flappy Bird',
+				title: 'External Website',
 				icon: 'images/icons/desktop/flappy-bird',
 				link: root + '/emupedia-game-flappy-bird/',
 				width: 432,
-				height: 600
+				height: 600,
+				shortcut: true
 			} , {
 				name: 'Geometry Dash',
+				title: 'External Website',
 				icon: 'images/icons/desktop/geometry-dash',
 				link: root + '/emupedia-game-geometry-dash/',
 				width: 480,
-				height: 392
+				height: 392,
+				shortcut: true
 				// beta: true
 			} , {
 				name: 'agar.io',
@@ -160,6 +167,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/raptor',
 				link: root + '/emupedia-game-raptor/',
+				credits: 'Author: <a href="https://github.com/robgietema" target="_blank">github.com/robgietema</a><br />Repository: <a href="https://github.com/robgietema/raptor" target="_blank">github.com/robgietema/raptor</a><br />License: not specified',
 				width: 640,
 				height: 400
 				// prototype: true
@@ -168,6 +176,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/wings2',
 				link: root + '/emupedia-game-wings2/',
+				credits: 'Author: <a href="https://github.com/ZaDarkSide" target="_blank">github.com/ZaDarkSide</a><br />License: 😁 Permission granted from the author(s) 👍',
 				width: 900,
 				height: 480
 				// prototype: true
@@ -176,6 +185,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/worms2',
 				link: root + '/emupedia-game-worms2/',
+				credits: 'Author: <a href="https://github.com/SFera" target="_blank">github.com/SFera</a><br />License: 😁 Permission granted from the author(s) 👍',
 				width: 900,
 				height: 480
 				// prototype: true
@@ -183,18 +193,21 @@
 				name: 'Biolab Disaster',
 				icon: 'images/icons/desktop/biolab-disaster',
 				link: root + '/emupedia-game-biolab-disaster/',
+				credits: 'Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br />Website: <a href="https://playbiolab.com" target="_blank">playbiolab.com</a><br />License: 😁 Permission granted from the author(s) 👍',
 				width: 720,
 				height: 480
 			} , {
 				name: 'Super Blob Blaster',
 				icon: 'images/icons/desktop/super-blob-blaster',
 				link: root + '/emupedia-game-super-blob-blaster/',
+				credits: 'Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br />Repository: <a href="https://github.com/phoboslab/twopointfive" target="_blank">github.com/phoboslab/twopointfive</a><br />License: <a href="https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE" target="_blank">MIT</a>',
 				width: 720,
 				height: 480
 			} , {
 				name: 'Pac-Man',
 				icon: 'images/icons/desktop/pac-man',
 				link: root + '/emupedia-game-pac-man/',
+				credits: 'Author: <a href="https://github.com/luciopanepinto" target="_blank">github.com/luciopanepinto</a><br />Repository: <a href="https://github.com/luciopanepinto/pacman" target="_blank">github.com/luciopanepinto/pacman</a><br />License: <a href="https://github.com/luciopanepinto/pacman/blob/master/LICENSE" target="_blank">GPLv3</a>',
 				width: 1025,
 				height: 715
 			} , {
@@ -664,7 +677,7 @@
 								if (typeof eSheep.prototype.Start === 'function') {
 									var pets = ['esheep64', 'green_sheep', 'neko', 'pingus', 'ssj-goku'];
 									var pet = pets[~~(Math.random() * pets.length)];
-									var path = '/emupedia-app-esheep/pets/' + pet + '/animations.xml';
+									var path = root + '/emupedia-app-esheep/pets/' + pet + '/animations.xml';
 
 									if (path) {
 										new eSheep({
@@ -729,7 +742,7 @@
 										/*setInterval(function() {
 											move();
 										}, 3000 + (Math.random() * 4000));*/
-									}, undefined, '/emupedia-app-clippy/agents/');
+									}, undefined, root + '/emupedia-app-clippy/agents/');
 								}
 							}
 							break;

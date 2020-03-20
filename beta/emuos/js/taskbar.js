@@ -7328,9 +7328,7 @@
 		// checks for invalid options and events
 		_checkForInvalidOptions: function(options, key, initialization) {
 			// use options prototype if set; undefined -use taskbar prototype
-			var proto = typeof options === 'object'
-						? options
-						: $.emuos.taskbar.prototype.options;
+			var proto = typeof options === 'object' ? options : $.emuos.taskbar.prototype.options;
 
 			var protoKeys = Object.keys(proto);
 
@@ -7385,10 +7383,8 @@
 
 			// itterate over calculated distances to find best matches
 			$.each(levenshteins, function(index, set) {
-				var matches = [],
-					bestMatches;
+				var matches = [], bestMatches;
 
-				//
 				$.each(set, function(index2, elem2) {
 					var withPadding = '"' + index2 + '"';
 
@@ -7401,9 +7397,7 @@
 
 					// if current match is as good as matches we already have,
 					// prepend it to the list of best matches
-					if (
-						elem2 === min
-						&& $.inArray(withPadding, matches) === -1
+					if (elem2 === min && $.inArray(withPadding, matches) === -1
 					) {
 						matches.push(withPadding);
 					}
@@ -7424,15 +7418,7 @@
 				// generate debug with info if it was set on widget initialization
 				// or later, and optionally, with findings of Levenshtein distance
 				// calculation
-				self._debugLogAdd(
-					'Unkown option or event "' + invalidNames[index] + '"'
-					+ (initialization ? ' set on initialization.' : '.')
-					+ (
-						matches.length
-						? ' Did you mean ' + bestMatches + '?'
-						: ''
-					), 1, 2
-				);
+				self._debugLogAdd('Unkown option or event "' + invalidNames[index] + '"' + (initialization ? ' set on initialization.' : '.') + (matches.length ? ' Did you mean ' + bestMatches + '?' : ''), 1, 2);
 			});
 		},
 
