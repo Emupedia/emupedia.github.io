@@ -207,6 +207,7 @@
 				name: 'SkiFree',
 				icon: 'images/icons/desktop/skifree',
 				link: root + '/emupedia-game-skifree/',
+				credits: 'Author: <a href="https://github.com/basicallydan" target="_blank">github.com/basicallydan</a><br />Repository: <a href="https://github.com/basicallydan/skifree.js" target="_blank">github.com/basicallydan/skifree.js</a><br />License: <a href="https://github.com/basicallydan/skifree.js/blob/master/license.md" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright <a href="http://ski.ihoc.net/" target="_blank">Chris Pirih</a>' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
@@ -214,6 +215,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/asciicker',
 				link: root + '/emupedia-demo-asciicker/',
+				credits: 'Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br />Website: <a href="http://asciicker.com" target="_blank">asciicker.com</a><br />License: 😁 Permission granted from the author(s) 👍',
 				width: 640,
 				height: 480
 				// demo: true
@@ -221,12 +223,14 @@
 				name: 'ASCII PATROL',
 				icon: 'images/icons/desktop/ascii-patrol',
 				link: root + '/emupedia-game-ascii-patrol/',
+				credits: 'Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br />Repository: <a href="https://github.com/msokalski/ascii-patrol" target="_blank">github.com/msokalski/ascii-patrol</a><br />License: <a href="https://github.com/msokalski/ascii-patrol/blob/master/LICENSE" target="_blank">GPLv3</a><br />Additional license: 😁 Permission granted from the author(s) 👍',
 				width: 900,
 				height: 480
 			} , {
 				name: '3D Spatial Audio',
 				icon: 'images/icons/desktop/joystick',
 				link: root + '/emupedia-demo-3d-spatial-audio/',
+				credits: 'Author: <a href="https://github.com/goldfire" target="_blank">github.com/goldfire</a><br />Repository: <a href="https://github.com/goldfire/howler.js/tree/master/examples/3d" target="_blank">github.com/goldfire/howler.js</a><br />License: <a href="https://github.com/goldfire/howler.js/blob/master/LICENSE.md" target="_blank">MIT</a>',
 				width: 900,
 				height: 480
 				// demo: true
@@ -242,7 +246,7 @@
 				name: '8-bit Palette Color Cycling',
 				icon: 'images/icons/desktop/joystick',
 				link: root + '/emupedia-app-8-bit-palette-color-cycling/',
-				credits: 'Author: <a href="https://github.com/jhuckaby" target="_blank">github.com/jhuckaby</a><br />Source Code: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html" target="_blank">effectgames.com</a><br />License: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href="http://www.markferrari.com/" target="_blank">Mark J. Ferrari</a>',
+				credits: 'Author: <a href="https://github.com/jhuckaby" target="_blank">github.com/jhuckaby</a><br />Source Code: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">effectgames.com</a><br />License: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href="http://www.markferrari.com/" target="_blank">Mark J. Ferrari</a>',
 				width: 900,
 				height: 550
 				// demo: true
