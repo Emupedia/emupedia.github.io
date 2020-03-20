@@ -88,7 +88,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/98.js',
 				link: 'https://98.js.org/',
-				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Website: <a href="https://98.js.org" target="_blank">98.js.org</a><br />Repository: <a href="https://github.com/1j01/98" target="_blank">github.com/1j01/98</a><br />License: not specified' + self.disclaimer_abandoned,
+				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Website: <a href="https://98.js.org" target="_blank">98.js.org</a><br />Repository: <a href="https://github.com/1j01/98" target="_blank">github.com/1j01/98</a>' + self.disclaimer_abandoned,
 				width: 960,
 				height: 713,
 				shortcut: true
