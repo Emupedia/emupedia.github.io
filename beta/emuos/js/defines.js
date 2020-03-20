@@ -11,6 +11,8 @@
 	}
 
 	if (externallyFramed) {
-		global.top.location = global.location;
+		try {
+			global.top.location = global.location;
+		} catch (e) {}
 	}
 }(this));

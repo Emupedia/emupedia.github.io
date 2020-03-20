@@ -234,6 +234,7 @@
 				name: 'Voxel Space',
 				icon: 'images/icons/desktop/joystick',
 				link: root + '/emupedia-demo-voxel-space/',
+				credits: 'Author: <a href="https://github.com/s-macke" target="_blank">github.com/s-macke</a><br />Repository: <a href="https://github.com/s-macke/VoxelSpace" target="_blank">github.com/s-macke/VoxelSpace</a><br />License: <a href="https://github.com/s-macke/VoxelSpace/blob/master/LICENSE" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright THQ Nordic (formerly NovaLogic)',
 				width: 900,
 				height: 480
 				// demo: true
@@ -241,6 +242,7 @@
 				name: '8-bit Palette Color Cycling',
 				icon: 'images/icons/desktop/joystick',
 				link: root + '/emupedia-app-8-bit-palette-color-cycling/',
+				credits: 'Author: <a href="https://github.com/jhuckaby" target="_blank">github.com/jhuckaby</a><br />Source Code: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html" target="_blank">effectgames.com</a><br />License: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href="http://www.markferrari.com/" target="_blank">Mark J. Ferrari</a>',
 				width: 900,
 				height: 550
 				// demo: true
@@ -249,6 +251,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/romcenter',
 				link: root + '/emupedia-app-romcenter/',
+				credits: 'HTML5 Port<hr />Author: Emupedia<br /><br />Original project<hr />Author: Eric Bole-Feysot<br />Website: <a href="https://www.romcenter.com" target="_blank">romcenter.com</a>',
 				width: 900,
 				height: 480
 				// prototype: true
@@ -257,11 +260,12 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/dosbox',
 				link: root + '/emupedia-app-dosbox/',
+				credits: 'JS-DOS<hr />Author: <a href="https://github.com/caiiiycuk" target="_blank">github.com/caiiiycuk</a><br />Repository: <a href="https://github.com/caiiiycuk/js-dos" target="_blank">github.com/caiiiycuk/js-dos</a><br />License: <a href="https://github.com/db48x/emularity/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />Emularity<hr />Author: <a href="https://github.com/db48x" target="_blank">github.com/db48x</a><br />Repository: <a href="https://github.com/db48x/emularity" target="_blank">github.com/db48x/emularity</a><br />License: <a href="https://github.com/db48x/emularity/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />HTML5 Port<hr />Author: <a href="https://github.com/dreamlayers" target="_blank">github.com/dreamlayers</a><br />Repository: <a href="https://github.com/dreamlayers/em-dosbox" target="_blank">github.com/dreamlayers/em-dosbox</a><br />License: <a href="https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING" target="_blank">GPLv2</a><br /><br />Original Project<hr />Author(s): <a href="https://sourceforge.net/projects/dosbox" target="_blank">sourceforge.net/projects/dosbox</a><br />Repository: <a href="https://sourceforge.net/p/dosbox/code-0/HEAD/tree" target="_blank">sourceforge.net/p/dosbox</a><br />License: <a href="https://sourceforge.net/projects/dosbox" target="_blank">GPLv2</a>',
 				width: 640,
 				height: 422
 			} , {
-				// name: 'Street Fighter Alpha: Warriors\' Dreams',
 				name: 'Street Fighter Alpha',
+				altname: 'Street Fighter Alpha: Warriors\' Dreams',
 				title: 'Under Development',
 				icon: 'images/icons/desktop/street-fighter/' + function() {
 					var icons = [
@@ -282,6 +286,7 @@
 					return icons[Math.floor(Math.random() * icons.length)];
 				}(),
 				link: root + '/emupedia-game-street-fighter-alpha/',
+				credits: 'Author: <a href="https://github.com/gamedev8" target="_blank">github.com/gamedev8</a><br />Repository: <a href="https://github.com/gamedev8/js-sfa" target="_blank">github.com/gamedev8/js-sfa</a><br />License: not specified<br /><br />All other assets<hr />Copyright Capcom' + self.disclaimer_abandoned,
 				width: 1068,
 				height: 576
 				// demo: true
@@ -379,7 +384,7 @@
 				name: 'Winamp',
 				icon: 'images/icons/desktop/winamp-classic',
 				link: root + '/emupedia-app-winamp/',
-				credits: 'Author: <a href="https://github.com/captbaritone" target="_blank">github.com/captbaritone</a><br />Repository: <a href="https://github.com/captbaritone/webamp" target="_blank">github.com/captbaritone/webamp</a><br />License: <a href="https://github.com/captbaritone/webamp/blob/master/LICENSE.txt" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright AudioValley (formerly Nullsoft)' + self.disclaimer,
+				credits: 'Author: <a href="https://github.com/captbaritone" target="_blank">github.com/captbaritone</a><br />Repository: <a href="https://github.com/captbaritone/webamp" target="_blank">github.com/captbaritone/webamp</a><br />License: <a href="https://github.com/captbaritone/webamp/blob/master/LICENSE.txt" target="_blank">MIT</a><br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright AudioValley (formerly Nullsoft)' + self.disclaimer,
 				width: 275,
 				height: 354,
 				top: 'calc(50% - 165.5px)',
