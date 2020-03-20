@@ -90,6 +90,7 @@
 				'room.user_info',
 				'room.user_join',
 				'room.user_leave',
+				'room.data',
 				'room.msg',
 				'rooms.list',
 				'silent.msg',
