@@ -69,6 +69,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/discord',
 				link: 'https://e.widgetbot.io/channels/510149138491506688/604419869345185884/',
+				credits: 'Website: <a href="https://widgetbot.io" target="_blank">widgetbot.io</a>',
 				width: 900,
 				height: 480,
 				shortcut: true,
@@ -78,6 +79,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/windows93',
 				link: 'https://v1.windows93.net/',
+				credits: 'Author(s): <a href="http://jankenpopp.com" target="_blank">Jankenpopp</a> &amp; <a href="http://zombect.ro" target="_blank">Zombectro</a><br />Website: <a href="https://windows93.net" target="_blank">windows93.net</a><br />License: <a href="https://www.windows93.net/#!/c/TOS.html" target="_blank">CC BY-NC 4.0</a>',
 				width: 960,
 				height: 734,
 				shortcut: true
@@ -86,6 +88,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/98.js',
 				link: 'https://98.js.org/',
+				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Website: <a href="https://98.js.org" target="_blank">98.js.org</a><br />Repository: <a href="https://github.com/1j01/98" target="_blank">github.com/1j01/98</a><br />License: not specified' + self.disclaimer_abandoned,
 				width: 960,
 				height: 713,
 				shortcut: true
@@ -109,6 +112,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/microsoft-solitaire',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2019/20190729T121300_1.5.4.1_release_v0001_9af64392_msn/solitaire/index.html?hostingEnvironment=zone',
+				credits: 'Website: <a href="https://zone.msn.com/en/mssolitairecollection/default.htm" target="_blank">zone.msn.com/en/mssolitairecollection</a>',
 				width: 960,
 				height: 540,
 				shortcut: true
@@ -117,6 +121,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/microsoft-mahjong',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftmahjong/2019/20190805T180800_1.0.2_release_2019_002_e5886ede_msn/game.html?hostingEnvironment=zone',
+				credits: 'Website: <a href="https://zone.msn.com/en/msmahjong/default.htm" target="_blank">zone.msn.com/en/msmahjong</a>',
 				width: 960,
 				height: 540,
 				shortcut: true
@@ -125,6 +130,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/microsoft-crosswords',
 				link: 'https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/2019/20190821T095404_1.0.5_features_2019_NameChangeToWordTwister_f7862a8_msn/word-games/game.html?game=crossword&hostingEnvironment=zone',
+				credits: 'Website: <a href="https://zone.msn.com/en/msultimateword/default.htm" target="_blank">zone.msn.com/en/msultimateword</a>',
 				width: 960,
 				height: 552,
 				shortcut: true
@@ -133,6 +139,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/cookie-clicker',
 				link: root + '/emupedia-game-cookie-clicker/',
+				credits: 'Author(s): <a href="https://orteil.dashnet.org/" target="_blank">Orteil</a> &amp; <a href="https://orteil.dashnet.org/" target="_blank">Opti</a><br />Website: <a href="https://orteil.dashnet.org/cookieclicker/" target="_blank">orteil.dashnet.org/cookieclicker</a>',
 				width: 1090,
 				height: 600,
 				shortcut: true
@@ -141,6 +148,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/flappy-bird',
 				link: root + '/emupedia-game-flappy-bird/',
+				credits: 'Website: <a href="https://playcanv.as/p/2OlkUaxF/" target="_blank">playcanvas.com</a>' + self.disclaimer,
 				width: 432,
 				height: 600,
 				shortcut: true
@@ -149,6 +157,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/geometry-dash',
 				link: root + '/emupedia-game-geometry-dash/',
+				credits: 'Website: <a href="https://scratch.mit.edu/search/projects?q=Geometry+Dash" target="_blank">scratch.mit.edu</a>' + self.disclaimer,
 				width: 480,
 				height: 392,
 				shortcut: true
@@ -158,6 +167,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/agar.io',
 				link: 'https://agasio.herokuapp.com/',
+				credits: 'Website: <a href="https://agasio.herokuapp.com" target="_blank">agasio.herokuapp.com</a>' + self.disclaimer,
 				width: 900,
 				height: 600,
 				shortcut: true
@@ -167,7 +177,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/raptor',
 				link: root + '/emupedia-game-raptor/',
-				credits: 'Author: <a href="https://github.com/robgietema" target="_blank">github.com/robgietema</a><br />Repository: <a href="https://github.com/robgietema/raptor" target="_blank">github.com/robgietema/raptor</a><br />License: not specified',
+				credits: 'Author: <a href="https://github.com/robgietema" target="_blank">github.com/robgietema</a><br />Repository: <a href="https://github.com/robgietema/raptor" target="_blank">github.com/robgietema/raptor</a><br />License: not specified<br /><br />All other assets<hr />Copyright Apogee Software' + self.disclaimer_abandoned,
 				width: 640,
 				height: 400
 				// prototype: true
@@ -185,7 +195,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/worms2',
 				link: root + '/emupedia-game-worms2/',
-				credits: 'Author: <a href="https://github.com/SFera" target="_blank">github.com/SFera</a><br />License: 😁 Permission granted from the author(s) 👍',
+				credits: 'Author: <a href="https://github.com/SFera" target="_blank">github.com/SFera</a><br />License: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Team17' + self.disclaimer_abandoned,
 				width: 900,
 				height: 480
 				// prototype: true
