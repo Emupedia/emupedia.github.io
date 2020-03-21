@@ -79,7 +79,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/windows93',
 				link: 'https://v1.windows93.net/',
-				credits: 'Author(s): <a href="http://jankenpopp.com" target="_blank">Jankenpopp</a> &amp; <a href="http://zombect.ro" target="_blank">Zombectro</a><br />Website: <a href="https://windows93.net" target="_blank">windows93.net</a><br />License: <a href="https://www.windows93.net/#!/c/TOS.html" target="_blank">CC BY-NC 4.0</a>',
+				credits: 'Website: <a href="https://windows93.net" target="_blank">windows93.net</a><br /><br />Author(s): <a href="http://jankenpopp.com" target="_blank">Jankenpopp</a> &amp; <a href="http://zombect.ro" target="_blank">Zombectro</a><br />License: <a href="https://www.windows93.net/#!/c/TOS.html" target="_blank">CC BY-NC 4.0</a>',
 				width: 960,
 				height: 734,
 				shortcut: true
@@ -88,7 +88,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/98.js',
 				link: 'https://98.js.org/',
-				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Website: <a href="https://98.js.org" target="_blank">98.js.org</a><br />Repository: <a href="https://github.com/1j01/98" target="_blank">github.com/1j01/98</a>' + self.disclaimer_abandoned,
+				credits: 'Website: <a href="https://98.js.org" target="_blank">98.js.org</a><br /><br />Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/98" target="_blank">github.com/1j01/98</a>' + self.disclaimer_abandoned,
 				width: 960,
 				height: 713,
 				shortcut: true
@@ -97,7 +97,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/visual-studio-code',
 				link: root + '/emupedia-app-vscode/',
-				credits: 'Author: <a href="https://github.com/Microsoft" target="_blank">github.com/Microsoft</a><br />Repository: <a href="https://github.com/Microsoft/vscode" target="_blank">github.com/Microsoft/vscode</a><br />License: <a href="https://github.com/microsoft/vscode/blob/master/LICENSE.txt" target="_blank">MIT</a>',
+				credits: 'Website: <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a><br /><br />Author: <a href="https://github.com/Microsoft" target="_blank">github.com/Microsoft</a><br />Repository: <a href="https://github.com/Microsoft/vscode" target="_blank">github.com/Microsoft/vscode</a><br />License: <a href="https://github.com/microsoft/vscode/blob/master/LICENSE.txt" target="_blank">MIT</a>',
 				width: 900,
 				height: 480
 			} , {
@@ -139,7 +139,7 @@
 				title: 'External Website',
 				icon: 'images/icons/desktop/cookie-clicker',
 				link: root + '/emupedia-game-cookie-clicker/',
-				credits: 'Author(s): <a href="https://orteil.dashnet.org/" target="_blank">Orteil</a> &amp; <a href="https://orteil.dashnet.org/" target="_blank">Opti</a><br />Website: <a href="https://orteil.dashnet.org/cookieclicker/" target="_blank">orteil.dashnet.org/cookieclicker</a>',
+				credits: 'Website: <a href="https://orteil.dashnet.org/cookieclicker/" target="_blank">orteil.dashnet.org/cookieclicker</a><br /><br />Author(s): <a href="https://orteil.dashnet.org/" target="_blank">Orteil</a> &amp; <a href="https://orteil.dashnet.org/" target="_blank">Opti</a>',
 				width: 1090,
 				height: 600,
 				shortcut: true
@@ -203,21 +203,21 @@
 				name: 'Biolab Disaster',
 				icon: 'images/icons/desktop/biolab-disaster',
 				link: root + '/emupedia-game-biolab-disaster/',
-				credits: 'Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br />Website: <a href="https://playbiolab.com" target="_blank">playbiolab.com</a><br />License: 😁 Permission granted from the author(s) 👍',
+				credits: 'Website: <a href="https://playbiolab.com" target="_blank">playbiolab.com</a><br /><br />Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br />License: 😁 Permission granted from the author(s) 👍',
 				width: 720,
 				height: 480
 			} , {
 				name: 'Super Blob Blaster',
 				icon: 'images/icons/desktop/super-blob-blaster',
 				link: root + '/emupedia-game-super-blob-blaster/',
-				credits: 'Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br />Repository: <a href="https://github.com/phoboslab/twopointfive" target="_blank">github.com/phoboslab/twopointfive</a><br />License: <a href="https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE" target="_blank">MIT</a>',
+				credits: 'Website: <a href="https://phoboslab.org/twopointfive/" target="_blank">phoboslab.org/twopointfive</a><br /><br />Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br />Repository: <a href="https://github.com/phoboslab/twopointfive" target="_blank">github.com/phoboslab/twopointfive</a><br />License: <a href="https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE" target="_blank">MIT</a>',
 				width: 720,
 				height: 480
 			} , {
 				name: 'Pac-Man',
 				icon: 'images/icons/desktop/pac-man',
 				link: root + '/emupedia-game-pac-man/',
-				credits: 'Author: <a href="https://github.com/luciopanepinto" target="_blank">github.com/luciopanepinto</a><br />Repository: <a href="https://github.com/luciopanepinto/pacman" target="_blank">github.com/luciopanepinto/pacman</a><br />License: <a href="https://github.com/luciopanepinto/pacman/blob/master/LICENSE" target="_blank">GPLv3</a>',
+				credits: 'Website: <a href="https://pacman-e281c.firebaseapp.com/" target="_blank">pacman-e281c.firebaseapp.com</a><br /><br />Author: <a href="https://github.com/luciopanepinto" target="_blank">github.com/luciopanepinto</a><br />Repository: <a href="https://github.com/luciopanepinto/pacman" target="_blank">github.com/luciopanepinto/pacman</a><br />License: <a href="https://github.com/luciopanepinto/pacman/blob/master/LICENSE" target="_blank">GPLv3</a>',
 				width: 1025,
 				height: 715
 			} , {
@@ -230,7 +230,7 @@
 				name: 'SkiFree',
 				icon: 'images/icons/desktop/skifree',
 				link: root + '/emupedia-game-skifree/',
-				credits: 'Author: <a href="https://github.com/basicallydan" target="_blank">github.com/basicallydan</a><br />Repository: <a href="https://github.com/basicallydan/skifree.js" target="_blank">github.com/basicallydan/skifree.js</a><br />License: <a href="https://github.com/basicallydan/skifree.js/blob/master/license.md" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright <a href="http://ski.ihoc.net/" target="_blank">Chris Pirih</a>' + self.disclaimer_abandoned,
+				credits: 'Website: <a href="http://basicallydan.github.io/skifree.js/" target="_blank">basicallydan.github.io/skifree.js</a><br /><br />Author: <a href="https://github.com/basicallydan" target="_blank">github.com/basicallydan</a><br />Repository: <a href="https://github.com/basicallydan/skifree.js" target="_blank">github.com/basicallydan/skifree.js</a><br />License: <a href="https://github.com/basicallydan/skifree.js/blob/master/license.md" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright <a href="http://ski.ihoc.net/" target="_blank">Chris Pirih</a>' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
@@ -238,7 +238,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/asciicker',
 				link: root + '/emupedia-demo-asciicker/',
-				credits: 'Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br />Website: <a href="http://asciicker.com" target="_blank">asciicker.com</a><br />License: 😁 Permission granted from the author(s) 👍',
+				credits: 'Website: <a href="http://asciicker.com/" target="_blank">asciicker.com</a><br /><br />Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br />License: 😁 Permission granted from the author(s) 👍',
 				width: 640,
 				height: 480
 				// demo: true
@@ -246,7 +246,7 @@
 				name: 'ASCII PATROL',
 				icon: 'images/icons/desktop/ascii-patrol',
 				link: root + '/emupedia-game-ascii-patrol/',
-				credits: 'Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br />Repository: <a href="https://github.com/msokalski/ascii-patrol" target="_blank">github.com/msokalski/ascii-patrol</a><br />License: <a href="https://github.com/msokalski/ascii-patrol/blob/master/LICENSE" target="_blank">GPLv3</a><br />Additional license: 😁 Permission granted from the author(s) 👍',
+				credits: 'Website: <a href="https://ascii-patrol.com/" target="_blank">ascii-patrol.com</a><br /><br />Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br />Repository: <a href="https://github.com/msokalski/ascii-patrol" target="_blank">github.com/msokalski/ascii-patrol</a><br />License: <a href="https://github.com/msokalski/ascii-patrol/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />Additional license: 😁 Permission granted from the author(s) 👍',
 				width: 900,
 				height: 480
 			} , {
@@ -278,7 +278,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/romcenter',
 				link: root + '/emupedia-app-romcenter/',
-				credits: 'HTML5 Port<hr />Author: Emupedia<br /><br />Original project<hr />Author: Eric Bole-Feysot<br />Website: <a href="https://www.romcenter.com" target="_blank">romcenter.com</a>',
+				credits: 'HTML5 Port<hr />Author: Emupedia<br /><br />Original project<hr />Website: <a href="https://www.romcenter.com" target="_blank">romcenter.com</a><br /><br />Author: Eric Bole-Feysot',
 				width: 900,
 				height: 480
 				// prototype: true
@@ -411,7 +411,7 @@
 				name: 'Winamp',
 				icon: 'images/icons/desktop/winamp-classic',
 				link: root + '/emupedia-app-winamp/',
-				credits: 'Author: <a href="https://github.com/captbaritone" target="_blank">github.com/captbaritone</a><br />Repository: <a href="https://github.com/captbaritone/webamp" target="_blank">github.com/captbaritone/webamp</a><br />License: <a href="https://github.com/captbaritone/webamp/blob/master/LICENSE.txt" target="_blank">MIT</a><br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright AudioValley (formerly Nullsoft)' + self.disclaimer,
+				credits: 'Author: <a href="https://github.com/captbaritone" target="_blank">github.com/captbaritone</a><br />Repository: <a href="https://github.com/captbaritone/webamp" target="_blank">github.com/captbaritone/webamp</a><br />License: <a href="https://github.com/captbaritone/webamp/blob/master/LICENSE.txt" target="_blank">MIT</a><br /><br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright AudioValley (formerly Nullsoft)' + self.disclaimer,
 				width: 275,
 				height: 354,
 				top: 'calc(50% - 165.5px)',
@@ -421,7 +421,7 @@
 				name: 'Notepad',
 				icon: 'images/icons/desktop/notepad',
 				link: root + '/emupedia-app-notepad/',
-				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/98/tree/master/programs/notepad" target="_blank">github.com/1j01/98</a><br />License: not specified<br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
+				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/98/tree/master/programs/notepad" target="_blank">github.com/1j01/98</a><br />License: not specified<br /><br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
 				width: 900,
 				height: 480,
 				runonce: true
@@ -429,16 +429,27 @@
 				name: 'Paint',
 				icon: 'images/icons/desktop/paint',
 				link: root + '/emupedia-app-paint/',
-				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/jspaint" target="_blank">github.com/1j01/jspaint</a><br />License: not specified<br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
+				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/jspaint" target="_blank">github.com/1j01/jspaint</a><br />License: not specified<br /><br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
 				width: 900,
 				height: 480
 			} , {
 				name: 'SVG Editor',
+				title: 'External Website',
 				icon: 'images/icons/desktop/svg-editor',
 				link: root + '/emupedia-app-svg-editor/',
-				credits: 'Author: <a href="https://github.com/methodofaction" target="_blank">github.com/methodofaction</a><br />Repository: <a href="https://github.com/methodofaction/Method-Draw" target="_blank">github.com/methodofaction/Method-Draw</a><br />License: <a href="https://github.com/methodofaction/Method-Draw/blob/master/LICENSE" target="_blank">MIT</a><br /><br />Original Project<hr />Author: <a href="https://github.com/SVG-Edit" target="_blank">github.com/SVG-Edit</a><br />Repository: <a href="https://github.com/SVG-Edit/svgedit" target="_blank">github.com/SVG-Edit/svgedit</a><br />License: <a href="https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt" target="_blank">MIT</a>',
+				credits: 'Website: <a href="https://editor.method.ac/" target="_blank">editor.method.ac</a><br /><br />Author: <a href="https://github.com/methodofaction" target="_blank">github.com/methodofaction</a><br />Repository: <a href="https://github.com/methodofaction/Method-Draw" target="_blank">github.com/methodofaction/Method-Draw</a><br />License: <a href="https://github.com/methodofaction/Method-Draw/blob/master/LICENSE" target="_blank">MIT</a><br /><br />Original Project<hr />Author: <a href="https://github.com/SVG-Edit" target="_blank">github.com/SVG-Edit</a><br />Repository: <a href="https://github.com/SVG-Edit/svgedit" target="_blank">github.com/SVG-Edit/svgedit</a><br />License: <a href="https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt" target="_blank">MIT</a>',
 				width: 900,
-				height: 480
+				height: 480,
+				shortcut: true
+			} , {
+				name: 'Photopea',
+				title: 'External Website',
+				icon: 'images/icons/desktop/photopea',
+				link: 'https://photopea.com/',
+				credits: 'Website: <a href="https://photopea.com/" target="_blank">photopea.com</a><br /><br />Author: <a href="https://github.com/photopea" target="_blank">github.com/photopea</a><br />Repository: <a href="https://github.com/photopea/photopea" target="_blank">github.com/photopea/photopea</a>',
+				width: 900,
+				height: 610,
+				shortcut: true
 			}]
 		};
 
