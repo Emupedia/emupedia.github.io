@@ -804,7 +804,24 @@
 			languageSelect: false,
 			toggleFullscreen: true,
 			networkMonitor: true,
-			clock: true
+			clock: true,
+			buttons: {
+				chat: {
+					label: 'Chat',
+					text: false,
+					icons: {
+						primary: 'ui-icon-comment'
+					}
+				}
+			},
+			systemButtonsOrder: [
+				'chat',
+				'languageSelect',
+				'networkMonitor',
+				'toggleFullscreen',
+				'clock',
+				'minimizeAll'
+			]
 		});
 
 		// noinspection JSUnresolvedFunction
@@ -1155,6 +1172,7 @@
 		var widget = $('<div class="widget" style="display: ' + (hidden ? 'none' : 'block') +  '; position: absolute; ' + position + ' width: ' + width + 'px; height: ' + height + 'px;">' + content + '</div>');
 
 		self.$body.append(widget);
+		self.$taskbar = $('.taskbar').first();
 
 		widget.find('iframe').off('load').on('load', function() {
 			if (title === 'Chat') {
@@ -1185,6 +1203,10 @@
 
 							widget.slideToggle(300);
 						};
+
+						self.$taskbar.taskbar('option', 'buttons.chat').$element.on('click', function() {
+							net.toggle();
+						});
 
 						self.$body.on('keydown', function (e) {
 							// noinspection JSRedundantSwitchStatement

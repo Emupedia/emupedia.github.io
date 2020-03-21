@@ -58,6 +58,12 @@ canvas:fullscreen {
 	user-select: none;
 }
 
+.ui-button-icon-only .ui-button-text,
+.ui-button-icons-only .ui-button-text {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
 .emuos-taskbar-windows-containment {
 	z-index: auto !important;
 }

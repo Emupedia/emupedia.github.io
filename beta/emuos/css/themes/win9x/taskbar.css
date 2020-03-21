@@ -93,6 +93,7 @@
 
 .theme-win9x.browser-firefox .emuos-taskbar .ui-button {
 	font-size: 12px;
+	background-color: #c0c0c0;
 }
 
 .theme-win9x .emuos-taskbar .ui-button.ui-state-active {
@@ -126,6 +127,11 @@
 	padding-bottom: 1px;
 	background-color: #c0c0c0;
 	color: #000;
+}
+
+.theme-win9x .emuos-taskbar .ui-button.ui-button-icon-only .ui-button-text,
+.theme-win9x .emuos-taskbar .ui-button.ui-button-icons-only .ui-button-text {
+	color: transparent;
 }
 
 /*noinspection CssReplaceWithShorthandSafely,CssUnknownTarget*/
