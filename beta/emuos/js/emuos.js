@@ -177,7 +177,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/raptor',
 				link: root + '/emupedia-game-raptor/',
-				credits: 'Author: <a href="https://github.com/robgietema" target="_blank">github.com/robgietema</a><br />Repository: <a href="https://github.com/robgietema/raptor" target="_blank">github.com/robgietema/raptor</a><br />License: not specified<br /><br />All other assets<hr />Copyright Apogee Software' + self.disclaimer_abandoned,
+				credits: 'Author: <a href="https://github.com/robgietema" target="_blank">github.com/robgietema</a><br />Repository: <a href="https://github.com/robgietema/raptor" target="_blank">github.com/robgietema/raptor</a><br /><br />All other assets<hr />Copyright Apogee Software' + self.disclaimer_abandoned,
 				width: 640,
 				height: 400
 				// prototype: true
@@ -186,7 +186,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/wings2',
 				link: root + '/emupedia-game-wings2/',
-				credits: 'Author: <a href="https://github.com/ZaDarkSide" target="_blank">github.com/ZaDarkSide</a><br />License: 😁 Permission granted from the author(s) 👍',
+				credits: 'Author: <a href="https://github.com/ZaDarkSide" target="_blank">github.com/ZaDarkSide</a><br /><br />License: 😁 Permission granted from the author(s) 👍',
 				width: 900,
 				height: 480
 				// prototype: true
@@ -195,7 +195,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/worms2',
 				link: root + '/emupedia-game-worms2/',
-				credits: 'Author: <a href="https://github.com/SFera" target="_blank">github.com/SFera</a><br />License: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Team17' + self.disclaimer_abandoned,
+				credits: 'Author: <a href="https://github.com/SFera" target="_blank">github.com/SFera</a><br /><br />License: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Team17' + self.disclaimer_abandoned,
 				width: 900,
 				height: 480
 				// prototype: true
@@ -203,7 +203,7 @@
 				name: 'Biolab Disaster',
 				icon: 'images/icons/desktop/biolab-disaster',
 				link: root + '/emupedia-game-biolab-disaster/',
-				credits: 'Website: <a href="https://playbiolab.com" target="_blank">playbiolab.com</a><br /><br />Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br />License: 😁 Permission granted from the author(s) 👍',
+				credits: 'Website: <a href="https://playbiolab.com" target="_blank">playbiolab.com</a><br /><br />Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br /><br />License: 😁 Permission granted from the author(s) 👍',
 				width: 720,
 				height: 480
 			} , {
@@ -238,7 +238,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/asciicker',
 				link: root + '/emupedia-demo-asciicker/',
-				credits: 'Website: <a href="http://asciicker.com/" target="_blank">asciicker.com</a><br /><br />Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br />License: 😁 Permission granted from the author(s) 👍',
+				credits: 'Website: <a href="http://asciicker.com/" target="_blank">asciicker.com</a><br /><br />Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br /><br />License: 😁 Permission granted from the author(s) 👍',
 				width: 640,
 				height: 480
 				// demo: true
@@ -253,7 +253,7 @@
 				name: '3D Spatial Audio',
 				icon: 'images/icons/desktop/joystick',
 				link: root + '/emupedia-demo-3d-spatial-audio/',
-				credits: 'Author: <a href="https://github.com/goldfire" target="_blank">github.com/goldfire</a><br />Repository: <a href="https://github.com/goldfire/howler.js/tree/master/examples/3d" target="_blank">github.com/goldfire/howler.js</a><br />License: <a href="https://github.com/goldfire/howler.js/blob/master/LICENSE.md" target="_blank">MIT</a>',
+				credits: 'Website: <a href="https://howlerjs.com/#spatial" target="_blank">howlerjs.com/#spatial</a><br /><br />Author: <a href="https://github.com/goldfire" target="_blank">github.com/goldfire</a><br />Repository: <a href="https://github.com/goldfire/howler.js/tree/master/examples/3d" target="_blank">github.com/goldfire/howler.js</a><br />License: <a href="https://github.com/goldfire/howler.js/blob/master/LICENSE.md" target="_blank">MIT</a>',
 				width: 900,
 				height: 480
 				// demo: true
@@ -261,7 +261,7 @@
 				name: 'Voxel Space',
 				icon: 'images/icons/desktop/joystick',
 				link: root + '/emupedia-demo-voxel-space/',
-				credits: 'Author: <a href="https://github.com/s-macke" target="_blank">github.com/s-macke</a><br />Repository: <a href="https://github.com/s-macke/VoxelSpace" target="_blank">github.com/s-macke/VoxelSpace</a><br />License: <a href="https://github.com/s-macke/VoxelSpace/blob/master/LICENSE" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright THQ Nordic (formerly NovaLogic)',
+				credits: 'Website: <a href="https://s-macke.github.io/VoxelSpace/VoxelSpace.html" target="_blank">s-macke.github.io/VoxelSpace</a><br /><br />Author: <a href="https://github.com/s-macke" target="_blank">github.com/s-macke</a><br />Repository: <a href="https://github.com/s-macke/VoxelSpace" target="_blank">github.com/s-macke/VoxelSpace</a><br />License: <a href="https://github.com/s-macke/VoxelSpace/blob/master/LICENSE" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright THQ Nordic (formerly NovaLogic)',
 				width: 900,
 				height: 480
 				// demo: true
@@ -269,7 +269,7 @@
 				name: '8-bit Palette Color Cycling',
 				icon: 'images/icons/desktop/joystick',
 				link: root + '/emupedia-app-8-bit-palette-color-cycling/',
-				credits: 'Author: <a href="https://github.com/jhuckaby" target="_blank">github.com/jhuckaby</a><br />Source Code: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">effectgames.com</a><br />License: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href="http://www.markferrari.com/" target="_blank">Mark J. Ferrari</a>',
+				credits: 'Website: <a href="http://effectgames.com/demos/canvascycle/" target="_blank">effectgames.com/demos/canvascycle</a><br /><br />Author: <a href="https://github.com/jhuckaby" target="_blank">github.com/jhuckaby</a><br />Source Code: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">effectgames.com</a><br />License: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href="http://www.markferrari.com/" target="_blank">Mark J. Ferrari</a>',
 				width: 900,
 				height: 550
 				// demo: true
@@ -287,7 +287,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/dosbox',
 				link: root + '/emupedia-app-dosbox/',
-				credits: 'JS-DOS<hr />Author: <a href="https://github.com/caiiiycuk" target="_blank">github.com/caiiiycuk</a><br />Repository: <a href="https://github.com/caiiiycuk/js-dos" target="_blank">github.com/caiiiycuk/js-dos</a><br />License: <a href="https://github.com/db48x/emularity/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />Emularity<hr />Author: <a href="https://github.com/db48x" target="_blank">github.com/db48x</a><br />Repository: <a href="https://github.com/db48x/emularity" target="_blank">github.com/db48x/emularity</a><br />License: <a href="https://github.com/db48x/emularity/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />HTML5 Port<hr />Author: <a href="https://github.com/dreamlayers" target="_blank">github.com/dreamlayers</a><br />Repository: <a href="https://github.com/dreamlayers/em-dosbox" target="_blank">github.com/dreamlayers/em-dosbox</a><br />License: <a href="https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING" target="_blank">GPLv2</a><br /><br />Original Project<hr />Author(s): <a href="https://sourceforge.net/projects/dosbox" target="_blank">sourceforge.net/projects/dosbox</a><br />Repository: <a href="https://sourceforge.net/p/dosbox/code-0/HEAD/tree" target="_blank">sourceforge.net/p/dosbox</a><br />License: <a href="https://sourceforge.net/projects/dosbox" target="_blank">GPLv2</a>',
+				credits: 'JS-DOS<hr />Website: <a href="https://js-dos.com/" target="_blank">js-dos.com</a><br /><br />Author: <a href="https://github.com/caiiiycuk" target="_blank">github.com/caiiiycuk</a><br />Repository: <a href="https://github.com/caiiiycuk/js-dos" target="_blank">github.com/caiiiycuk/js-dos</a><br />License: <a href="https://github.com/db48x/emularity/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />Emularity<hr />Author: <a href="https://github.com/db48x" target="_blank">github.com/db48x</a><br />Repository: <a href="https://github.com/db48x/emularity" target="_blank">github.com/db48x/emularity</a><br />License: <a href="https://github.com/db48x/emularity/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />HTML5 Port<hr />Author: <a href="https://github.com/dreamlayers" target="_blank">github.com/dreamlayers</a><br />Repository: <a href="https://github.com/dreamlayers/em-dosbox" target="_blank">github.com/dreamlayers/em-dosbox</a><br />License: <a href="https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING" target="_blank">GPLv2</a><br /><br />Original Project<hr />Website: <a href="https://dosbox.com/" target="_blank">dosbox.com</a><br /><br />Author(s): <a href="https://sourceforge.net/projects/dosbox" target="_blank">sourceforge.net/projects/dosbox</a><br />Repository: <a href="https://sourceforge.net/p/dosbox/code-0/HEAD/tree" target="_blank">sourceforge.net/p/dosbox</a><br />License: <a href="https://sourceforge.net/projects/dosbox" target="_blank">GPLv2</a>',
 				width: 640,
 				height: 422
 			} , {
@@ -313,7 +313,7 @@
 					return icons[Math.floor(Math.random() * icons.length)];
 				}(),
 				link: root + '/emupedia-game-street-fighter-alpha/',
-				credits: 'Author: <a href="https://github.com/gamedev8" target="_blank">github.com/gamedev8</a><br />Repository: <a href="https://github.com/gamedev8/js-sfa" target="_blank">github.com/gamedev8/js-sfa</a><br />License: not specified<br /><br />All other assets<hr />Copyright Capcom' + self.disclaimer_abandoned,
+				credits: 'Website: <a href="https://gamedev8.github.io/js-sfa/default.htm" target="_blank">gamedev8.github.io/js-sfa</a><br /><br />Author: <a href="https://github.com/gamedev8" target="_blank">github.com/gamedev8</a><br />Repository: <a href="https://github.com/gamedev8/js-sfa" target="_blank">github.com/gamedev8/js-sfa</a><br /><br />All other assets<hr />Copyright Capcom' + self.disclaimer_abandoned,
 				width: 1068,
 				height: 576
 				// demo: true
@@ -321,28 +321,28 @@
 				name: 'Wolfenstein 3D',
 				icon: 'images/icons/desktop/wolfenstein-3d',
 				link: root + ($sys.feature['CANVAS'] ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/',
-				credits: 'HTML5 Port<hr />Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />License: <a href="http://users.atw.hu/wolf3d/COPYING.txt" target="_blank">GPLv2</a><br /><br />HTML Port<hr />Author: <a href="https://github.com/id-Software" target="_blank">github.com/id-Software</a><br />Repository: <a href="https://github.com/id-Software/wolf3d-browser" target="_blank">github.com/id-Software/wolf3d-browser</a><br />License: <a href="https://github.com/id-Software/wolf3d-browser/blob/master/COPYING.txt" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
+				credits: 'HTML5 Port<hr />Website: <a href="http://users.atw.hu/wolf3d/" target="_blank">users.atw.hu/wolf3d</a><br /><br />Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />License: <a href="http://users.atw.hu/wolf3d/COPYING.txt" target="_blank">GPLv2</a><br /><br />HTML Port<hr />Author: <a href="https://github.com/id-Software" target="_blank">github.com/id-Software</a><br />Repository: <a href="https://github.com/id-Software/wolf3d-browser" target="_blank">github.com/id-Software/wolf3d-browser</a><br />License: <a href="https://github.com/id-Software/wolf3d-browser/blob/master/COPYING.txt" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
 				width: $sys.feature['CANVAS'] ? 960 : 640,
 				height: $sys.feature['CANVAS'] ? 600 : 400
 			} , {
 				name: 'Doom 1',
 				icon: 'images/icons/desktop/doom1',
 				link: root + '/emupedia-game-doom1/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/'),
-				credits: 'Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />Repository: <a href="https://github.com/lazarv/wasm-doom" target="_blank">github.com/lazarv/wasm-doom</a><br />License: <a href="https://github.com/lazarv/wasm-doom/blob/master/COPYING.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
+				credits: 'Website: <a href="https://wadcmd.com/" target="_blank">wadcmd.com</a><br /><br />Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />Repository: <a href="https://github.com/lazarv/wasm-doom" target="_blank">github.com/lazarv/wasm-doom</a><br />License: <a href="https://github.com/lazarv/wasm-doom/blob/master/COPYING.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 400
 			} , {
 				name: 'Doom 2: Hell on Earth',
 				icon: 'images/icons/desktop/doom2',
 				link: root + '/emupedia-game-doom2/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/'),
-				credits: 'Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />Repository: <a href="https://github.com/lazarv/wasm-doom" target="_blank">github.com/lazarv/wasm-doom</a><br />License: <a href="https://github.com/lazarv/wasm-doom/blob/master/COPYING.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
+				credits: 'Website: <a href="https://wadcmd.com/" target="_blank">wadcmd.com</a><br /><br />Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />Repository: <a href="https://github.com/lazarv/wasm-doom" target="_blank">github.com/lazarv/wasm-doom</a><br />License: <a href="https://github.com/lazarv/wasm-doom/blob/master/COPYING.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 400
 			} , {
 				name: 'Doom 3',
 				icon: 'images/icons/desktop/doom3',
 				link: root + '/emupedia-game-doom3/index.html',
-				credits: 'Author: <a href="https://github.com/gabrielcuvillier" target="_blank">github.com/gabrielcuvillier</a><br />Repository: <a href="https://github.com/gabrielcuvillier/d3wasm" target="_blank">github.com/gabrielcuvillier/d3wasm</a><br />License: <a href="https://github.com/gabrielcuvillier/d3wasm/blob/master/COPYING.txt" target="_blank">GPLv3</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer,
+				credits: 'Website: <a href="http://www.continuation-labs.com/projects/d3wasm/" target="_blank">continuation-labs.com/projects/d3wasm</a><br /><br />Author: <a href="https://github.com/gabrielcuvillier" target="_blank">github.com/gabrielcuvillier</a><br />Repository: <a href="https://github.com/gabrielcuvillier/d3wasm" target="_blank">github.com/gabrielcuvillier/d3wasm</a><br />License: <a href="https://github.com/gabrielcuvillier/d3wasm/blob/master/COPYING.txt" target="_blank">GPLv3</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer,
 				width: 640,
 				height: 480
 			} , {
@@ -356,7 +356,7 @@
 				name: 'Quake 2',
 				icon: 'images/icons/desktop/quake2',
 				link: root + '/emupedia-game-quake2/',
-				credits: 'HTML5 Port<hr />Author: <a href="https://github.com/stefanhaustein" target="_blank">github.com/stefanhaustein</a><br />Repository: <a href="https://github.com/stefanhaustein/quake2-playn-port" target="_blank">github.com/stefanhaustein/quake2-playn-port</a><br />License: <a href="https://github.com/id-Software/Quake-2/blob/master/gnu.txt" target="_blank">GPLv2</a><br /><br />Game Engine<hr />Author(s): <a href="https://sourceforge.net/projects/jake2" target="_blank">sourceforge.net/projects/jake2</a><br />Repository: <a href="https://sourceforge.net/p/jake2/git/ci/master/tree/" target="_blank">https://sourceforge.net/p/jake2</a><br />License: <a href="https://github.com/id-Software/Quake-2/blob/master/gnu.txt" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
+				credits: 'Website: <a href="http://quake2playn.appspot.com/" target="_blank">quake2playn.appspot.com</a><br /><br />Author: <a href="https://github.com/stefanhaustein" target="_blank">github.com/stefanhaustein</a><br />Repository: <a href="https://github.com/stefanhaustein/quake2-playn-port" target="_blank">github.com/stefanhaustein/quake2-playn-port</a><br />License: <a href="https://github.com/id-Software/Quake-2/blob/master/gnu.txt" target="_blank">GPLv2</a><br /><br />Game Engine<hr />Author(s): <a href="https://sourceforge.net/projects/jake2" target="_blank">sourceforge.net/projects/jake2</a><br />Repository: <a href="https://sourceforge.net/p/jake2/git/ci/master/tree/" target="_blank">https://sourceforge.net/p/jake2</a><br />License: <a href="https://github.com/id-Software/Quake-2/blob/master/gnu.txt" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
@@ -372,7 +372,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/diablo1',
 				link: root + '/emupedia-game-diablo1/',
-				credits: 'HTML5 Port<hr />Author: <a href="https://github.com/d07RiV" target="_blank">github.com/d07RiV</a><br />Repository: <a href="https://github.com/d07RiV/diabloweb" target="_blank">github.com/d07RiV/diabloweb</a><br />License: not specified<br /><br />Game Engine<hr />Author(s): <a href="https://github.com/diasurgical/devilution#credits" target="_blank">github.com/diasurgical/devilution#credits</a><br />Repository: <a href="https://github.com/diasurgical/devilution" target="_blank">github.com/diasurgical/devilution</a><br />License: <a href="https://github.com/diasurgical/devilution/blob/master/LICENSE" target="_blank">Public domain</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Blizzard Entertainment)' + self.disclaimer_abandoned,
+				credits: 'Website: <a href="https://d07riv.github.io/diabloweb/" target="_blank">d07riv.github.io/diabloweb</a><br /><br />HTML5 Port<hr />Author: <a href="https://github.com/d07RiV" target="_blank">github.com/d07RiV</a><br />Repository: <a href="https://github.com/d07RiV/diabloweb" target="_blank">github.com/d07RiV/diabloweb</a><br /><br />Game Engine<hr />Author(s): <a href="https://github.com/diasurgical/devilution#credits" target="_blank">github.com/diasurgical/devilution#credits</a><br />Repository: <a href="https://github.com/diasurgical/devilution" target="_blank">github.com/diasurgical/devilution</a><br />License: <a href="https://github.com/diasurgical/devilution/blob/master/LICENSE" target="_blank">Public domain</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Blizzard Entertainment)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
@@ -380,7 +380,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/dark-reign',
 				link: root + '/emupedia-game-dark-reign/',
-				credits: 'Author: <a href="https://github.com/qmegas" target="_blank">github.com/qmegas</a><br />Repository: <a href="https://github.com/qmegas/Dark-Reign---HTML5-Version" target="_blank">github.com/qmegas/Dark-Reign---HTML5-Version</a><br />License: <a href="https://github.com/qmegas/Dark-Reign---HTML5-Version/blob/master/README.md#license" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Activision) and<br />N3V Games (formerly Auran Development)' + self.disclaimer_abandoned,
+				credits: 'Website: <a href="http://qmegas.info/dark-reign-html5/" target="_blank">qmegas.info/dark-reign-html5</a><br /><br />Author: <a href="https://github.com/qmegas" target="_blank">github.com/qmegas</a><br />Repository: <a href="https://github.com/qmegas/Dark-Reign---HTML5-Version" target="_blank">github.com/qmegas/Dark-Reign---HTML5-Version</a><br />License: <a href="https://github.com/qmegas/Dark-Reign---HTML5-Version/blob/master/README.md#license" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Activision) and<br />N3V Games (formerly Auran Development)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 480
 			} , {
@@ -388,7 +388,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/command-and-conquer1',
 				link: root + '/emupedia-game-command-and-conquer1/',
-				credits: 'Author: <a href="https://github.com/adityaravishankar" target="_blank">github.com/adityaravishankar</a><br />Repository: <a href="https://github.com/adityaravishankar/command-and-conquer" target="_blank">github.com/adityaravishankar/command-and-conquer</a><br />License: not specified<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)' + self.disclaimer_abandoned,
+				credits: 'Website: <a href="https://www.adityaravishankar.com/projects/games/command-and-conquer/" target="_blank">adityaravishankar.com/projects/games/command-and-conquer</a><br /><br />Author: <a href="https://github.com/adityaravishankar" target="_blank">github.com/adityaravishankar</a><br />Repository: <a href="https://github.com/adityaravishankar/command-and-conquer" target="_blank">github.com/adityaravishankar/command-and-conquer</a><br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)' + self.disclaimer_abandoned,
 				width: 640,
 				height: 535
 			} , {
@@ -396,7 +396,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/red-alert2',
 				link: root + '/emupedia-game-ra2/',
-				credits: 'Author: Võ Thành Đạt<br />License: not specified<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)' + self.disclaimer,
+				credits: 'Author: Võ Thành Đạt<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)' + self.disclaimer,
 				width: 900,
 				height: 550
 			} , {
@@ -404,7 +404,7 @@
 				title: 'Under Development',
 				icon: 'images/icons/desktop/minecraft-classic',
 				link: root + '/emupedia-game-minecraft-classic/',
-				credits: 'Author: <a href="https://github.com/andyhall" target="_blank">github.com/andyhall</a><br />Repository: <a href="https://github.com/andyhall/noa" target="_blank">github.com/andyhall/noa</a><br />License: <a href="https://github.com/andyhall/noa/blob/master/LICENSE.txt" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)' + self.disclaimer,
+				credits: 'Website: <a href="https://classic.minecraft.net/" target="_blank">classic.minecraft.net</a><br /><br />Author: <a href="https://github.com/andyhall" target="_blank">github.com/andyhall</a><br />Repository: <a href="https://github.com/andyhall/noa" target="_blank">github.com/andyhall/noa</a><br />License: <a href="https://github.com/andyhall/noa/blob/master/LICENSE.txt" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)' + self.disclaimer,
 				width: 900,
 				height: 480
 			} , {
@@ -421,7 +421,7 @@
 				name: 'Notepad',
 				icon: 'images/icons/desktop/notepad',
 				link: root + '/emupedia-app-notepad/',
-				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/98/tree/master/programs/notepad" target="_blank">github.com/1j01/98</a><br />License: not specified<br /><br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
+				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/98/tree/master/programs/notepad" target="_blank">github.com/1j01/98</a><br /><br />License: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
 				width: 900,
 				height: 480,
 				runonce: true
@@ -429,7 +429,7 @@
 				name: 'Paint',
 				icon: 'images/icons/desktop/paint',
 				link: root + '/emupedia-app-paint/',
-				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/jspaint" target="_blank">github.com/1j01/jspaint</a><br />License: not specified<br /><br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
+				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/jspaint" target="_blank">github.com/1j01/jspaint</a><br /><br />License: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
 				width: 900,
 				height: 480
 			} , {
