@@ -2262,7 +2262,7 @@
 				if (self._fullscreenEnabled()) {
 					self._fullscreenLeave();
 				} else {
-					self._fullscreenEnter(self.$elem.get(0));
+					self._fullscreenEnter(self.$window.get(0));
 				}
 			}
 		},
