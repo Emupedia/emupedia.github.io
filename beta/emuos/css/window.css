@@ -51,6 +51,18 @@
 	right: calc(20px * 2 + .3em * 3);
 }
 
+.emuos-window.ui-dialog .ui-dialog-titlebar > .ui-button[data-button-order="3"] {
+	right: -webkit-calc(20px * 3 + .3em * 4);
+	right: -moz-calc(20px * 3 + .3em * 4);
+	right: calc(20px * 3 + .3em * 4);
+}
+
+.emuos-window.ui-dialog .ui-dialog-titlebar > .ui-button[data-button-order="4"] {
+	right: -webkit-calc(20px * 4 + .3em * 5);
+	right: -moz-calc(20px * 4 + .3em * 5);
+	right: calc(20px * 4 + .3em * 5);
+}
+
 .emuos-window.ui-draggable.ui-draggable-disabled .ui-dialog-titlebar {
 	cursor: auto;
 }
@@ -77,7 +89,7 @@
 	/*display: inline-block;*/
 	/*top: 50%;*/
 	/*margin-top: -8px;*/
-	cursor: default;
+	cursor: pointer;
 }
 
 .emuos-window-mask {

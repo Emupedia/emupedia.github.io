@@ -1343,6 +1343,7 @@
 		// noinspection JSValidateTypes
 		win.window({
 			help: credits,
+			fullscreen: true,
 			embeddedContent: true,
 			// group: title,
 			width: width,

@@ -10,6 +10,7 @@ html.theme-win9x {
 
 /*noinspection CssUnknownTarget*/
 .theme-win9x .emuos-desktop-icon,
+.theme-win9x .emuos-window .emuos-window-icon,
 .theme-win9x .ui-button,
 .theme-win9x .ui-menu .ui-menu-item,
 .theme-win9x .mCustomScrollBox .mCSB_dragger .mCSB_dragger_bar,

@@ -37,10 +37,12 @@
 			group: null,
 			height: 'auto',
 			help: false,
+			fullscreen: false,
 			hide: false,
 			icons: {
 				help: 'ui-icon-help',
 				close: 'ui-icon-closethick',
+				fullscreen: 'ui-icon-arrow-4-diag',
 				confirmClose: 'ui-icon-help',
 				main: null,
 				maximize: 'ui-icon-arrow-4-diag',
@@ -115,21 +117,13 @@
 			dimensions: ['width', 'height']
 		},
 
-		_titlebarButtons: [
-			'help',
-			'close',
-			'minimize',
-			'maximize'
-		],
+		_titlebarButtons: ['help', 'fullscreen', 'close', 'minimize', 'maximize'],
 
-		_unsupportedOptions: [
-			'autoOpen',
-			'closeText',
-			'hide'
-		],
+		_unsupportedOptions: ['autoOpen', 'closeText', 'hide'],
 
 		classes: {
 			buttonHelp: 'emuos-window-button-help',
+			buttonFullscreen: 'emuos-window-button-fullscreen',
 			buttonMinimize: 'emuos-window-button-minimize',
 			buttonMaximize: 'emuos-window-button-maximize-restore',
 			windowMaximized: 'emuos-window-maximized',
@@ -374,14 +368,14 @@
 
 			this._setRestoreSize();
 			this.refreshPosition({
-									 skipOnFit: true
-								 });
+				skipOnFit: true
+			});
 			this._setRestoreSize();
 
 			this.$window.css({
-								 minWidth: '',
-								 minHeight: ''
-							 });
+				minWidth: '',
+				minHeight: ''
+			});
 
 			this._setMinimizableMaximizableClasses();
 
@@ -409,9 +403,7 @@
 			});
 
 			this._cache.initialized = true;
-
 			this._triggerInternal('afterTaskbarBind');
-
 			this._preventGlobalWindowClick();
 
 			this._delay(function() {
@@ -435,7 +427,6 @@
 			}
 
 			this._bindTaskbar(this.$taskbar);
-
 			this._setConnectedButtonTitle();
 			this._setConnectedButtonState();
 			this._languageChange();
@@ -449,7 +440,6 @@
 			}
 
 			taskbar._bind(this.$window);
-
 			this.$elem.add(this.overlay).attr('data-taskbar-uuid', this._getTaskbarInstance().uuid);
 		},
 
@@ -531,16 +521,7 @@
 							// window not rebinded is less severe,
 							// so let's generate warning on initial taskbar
 							// missing and warning for rebind
-							settings.rebind
-							? (
-								console && console.warn
-								? console.warn(errorUi.message)
-								: null
-							)
-							: (console && console.error
-							   ? console.error(errorUi.message)
-							   : null
-							);
+							settings.rebind ? (console && console.warn ? console.warn(errorUi.message) : null) : (console && console.error ? console.error(errorUi.message) : null);
 						}
 					});
 				}
@@ -594,12 +575,13 @@
 			// generate debug messages for unsupported options
 			$.each(this._unsupportedOptions, function(index, elem) {
 				if (self.options[elem] !== false) {
-					var msg = '"' + elem + '" option is not supported ' +
-						'and will be set to false.';
+					var msg = '"' + elem + '" option is not supported and will be set to false.';
+
 					if (index === 'closeText') {
 						// close window text was delegated to i18n
 						msg += ' Use built in localization instead.';
 					}
+
 					self._debugLogAdd(msg, 1, 2);
 				}
 			});
@@ -657,15 +639,10 @@
 			// the function it suppose to block, we have to swap functions,
 			// then blocking function will have the ability to prevent the other one
 			$.each(keydown, function(index, event) {
-				if (
-					typeof index === 'number'
-					&& keydown.hasOwnProperty(index)
-					&& event.namespace.indexOf(self._cache.uep) !== -1
-				) {
+				if (typeof index === 'number' && keydown.hasOwnProperty(index) && event.namespace.indexOf(self._cache.uep) !== -1) {
 					// swap values; one liner taken from
 					// https://twitter.com/izs/statuses/17744109574
-					keydown[index] =
-						[keydown[0], keydown[0] = keydown[index]][0];
+					keydown[index] = [keydown[0], keydown[0] = keydown[index]][0];
 
 					// break here
 					return false;
@@ -677,9 +654,7 @@
 		// otherwise changing position from fixed to absolute could trigger
 		// scrollbar apperance, when body has overflow: auto, and if ofter do
 		_freezeBodyScrollbars: function() {
-			var $body = $('body'),
-				d = document.documentElement,
-				c = this._cache;
+			var $body = $('body'), d = document.documentElement, c = this._cache;
 
 			c.resizable.hasScrollX = d.scrollWidth !== d.clientWidth;
 			c.resizable.hasScrollY = d.scrollHeight !== d.clientHeight;
@@ -702,14 +677,13 @@
 
 		// this function will revert window scrolls to state before drag
 		_revertBodyScrollbars: function() {
-			var r = this._cache.resizable,
-				$body = $('body');
+			var r = this._cache.resizable, $body = $('body');
 
 			$body.css({
-						  overflow: r.hasInlineCSS ? r.inlineCSS : '',
-						  overflowX: r.hasInlineCSSX ? r.inlineCSSX : '',
-						  overflowY: r.hasInlineCSSY ? r.inlineCSSY : ''
-					  });
+				overflow: r.hasInlineCSS ? r.inlineCSS : '',
+				overflowX: r.hasInlineCSSX ? r.inlineCSSX : '',
+				overflowY: r.hasInlineCSSY ? r.inlineCSSY : ''
+			});
 		},
 
 		// make resizable window
@@ -753,21 +727,17 @@
 						outer: true
 					}),
 					c = self._cache.sizes.containment,
-					cc = self._getDimensions.call(
-						$('.' + self.classes.taskbarWindowCopy), {
-							outer: true
-						}
-					),
+					cc = self._getDimensions.call($('.' + self.classes.taskbarWindowCopy), {
+						outer: true
+					}),
 					margins = self._cache.sizes.margins;
 
 				var taskbar = self._getTaskbarInstance();
 
 				if (taskbar) {
-					var wc = self._getDimensions.call(
-						taskbar.$windowsContainment, {
-							outer: true
-						}
-					);
+					var wc = self._getDimensions.call(taskbar.$windowsContainment, {
+						outer: true
+					});
 				}
 
 				$.each(['top', 'left'], function(index, edge) {
@@ -793,21 +763,15 @@
 
 					// correct top left overflow
 					val = Math.round(Math.max(val, scroll + c[edge]));
-
 					valDiff = val - valPrev;
 
 					if (valDiff !== 0) {
 						$this.css(edge, val);
-
 						ui.position[edge] = val;
 					}
 
-					size = c[dimension]
-						- Math.max(val - c[edge], 0)
-						- (c[end] - s[end]);
-
+					size = c[dimension] - Math.max(val - c[edge], 0) - (c[end] - s[end]);
 					size += scroll;
-
 					size = Math.round(size - Math.max(overflow, 0)) + valDiff;
 
 					// apply property first, so outerHeight()/outerWidth
@@ -816,14 +780,12 @@
 
 					// account for bottom/right overflow
 					if (wc) {
-						var currSize = $this
-							['outer' + self._ucFirst(dimension)]();
+						var currSize = $this['outer' + self._ucFirst(dimension)]();
 						var endDiff = Math.min(0, wc[end] - (currSize + val));
 						size += endDiff;
 					}
 
 					$this.css(dimension, size);
-
 					ui.size[dimension] = size;
 				});
 			};
@@ -944,10 +906,8 @@
 				},
 				stop: function(event, ui) {
 					var $this = $(this);
-
 					options.height = $this.height();
 					options.width = $this.width();
-
 					$this.removeClass(self.classes.uiDialogResizing);
 
 					if (self.options.embeddedContent) {
@@ -962,9 +922,7 @@
 					}
 
 					// convert position to fixed
-					var scroll = self._getWindowScroll(),
-						top = Math.round(parseFloat($this.css('top'))) - scroll.y,
-						left = Math.round(parseFloat($this.css('left'))) - scroll.x;
+					var scroll = self._getWindowScroll(), top = Math.round(parseFloat($this.css('top'))) - scroll.y, left = Math.round(parseFloat($this.css('left'))) - scroll.x;
 
 					$this.css({
 						top: top,
@@ -976,23 +934,22 @@
 					self._revertBodyScrollbars();
 					// _blockFrames/_unblockFrames was introduced
 					// in jQuery UI Dialog 1.10.1
+
 					if (self._versionOf('dialog', '>=', '1.10.1')) {
 						self._unblockFrames();
 					}
+
 					self._fullPxPosition();
 					self._refreshPositionOption();
 					self._setRestoreSize();
 					self._setContainment();
-
 					self._trigger('resizeStop', event, filteredUi(ui));
 				},
 				resize: function(event, ui) {
 					correct.call(this, event, ui, resizableInstance);
-
 					self._fixTitlebarTitleWidth();
 					self._fullPxPosition();
 					self._setContentHeight();
-
 					self._trigger('resize', event, filteredUi(ui));
 				}
 			});
@@ -1033,16 +990,12 @@
 
 		// this function will revert scrolls after drag
 		_revertBodyScrolls: function() {
-			window.scroll(
-				this._cache.draggable.scrollX,
-				this._cache.draggable.scrollY
-			);
+			window.scroll(this._cache.draggable.scrollX, this._cache.draggable.scrollY);
 		},
 
 		// sets correction position option after resize/drag
 		_refreshPositionOption: function() {
-			var options = this.options,
-				$this = this.$elem;
+			var options = this.options, $this = this.$elem;
 
 			// jQuery UI 1.10 and before
 			options.position = [
@@ -1052,13 +1005,11 @@
 
 			// jQuery UI 1.11+
 			if (this._versionOf('dialog', '>=', '1.11.0')) {
-				var left = options.position[1] - $(window).scrollLeft(),
-					top = options.position[0] - $(window).scrollTop();
+				var left = options.position[1] - $(window).scrollLeft(), top = options.position[0] - $(window).scrollTop();
 
 				options.position = {
 					my: 'left top',
-					at: 'left' + (left >= 0 ? '+' : '') + left + ' ' +
-						'top' + (top >= 0 ? '+' : '') + top,
+					at: 'left' + (left >= 0 ? '+' : '') + left + ' top' + (top >= 0 ? '+' : '') + top,
 					of: window
 				};
 			}
@@ -1069,49 +1020,29 @@
 			this._super();
 
 			// noinspection JSUnusedLocalSymbols
-			var self = this,
-				$elem = this.uiDialog,
-				options = this.options,
-				originalOffset = {},
-				originalPosition = {};
+			var self = this, $elem = this.uiDialog, options = this.options, originalOffset = {}, originalPosition = {};
 
 			// this function will allow restore on maximized window,
 			// when drag started on it
 			function restoreMaximizedDraggable(event, ui) {
 				self._cache.progress.restoreMaximizedDraggable = true;
-
 				var draggable = $elem.data(self.classes.uiDraggable);
 				var taskbar = self._getTaskbarInstance();
-
 				var $title = self.uiDialogTitlebar.find('.' + self.classes.uiDialogTitle);
 				var $lastButton = $title.siblings('.' + self.classes.uiButton + ':visible:eq(0)');
-
 				// noinspection JSUnusedLocalSymbols
 				var draggableBefore = $.extend(true, {}, draggable);
-
 				// restore without animation
 				self.restore(false);
-
 				// stop draggable, so some calculations and window moves can be done
 				draggable._mouseStop(event);
-
-				var td = taskbar._extendedPosition.call($elem, 'offset'),
-					tdt = taskbar._extendedPosition.call($title, 'offset'),
-					bt = taskbar._extendedPosition.call(
-						$lastButton.length ? $lastButton : $title, 'offset'
-					);
-
+				var td = taskbar._extendedPosition.call($elem, 'offset'), tdt = taskbar._extendedPosition.call($title, 'offset'), bt = taskbar._extendedPosition.call($lastButton.length ? $lastButton : $title, 'offset');
 				var diffs = {};
-
 				var scroll = self._getWindowScroll();
-
 				// calculate top: take it from the current position
-				var top = parseFloat($elem.css('top'))
-					- (td.top - ui.originalPosition.top) + scroll.y;
-
+				var top = parseFloat($elem.css('top')) - (td.top - ui.originalPosition.top) + scroll.y;
 				diffs.left = event.pageX - bt.right;
 				diffs.right = event.pageX - tdt.left;
-
 				var change = 0;
 
 				// calculate left change to match cursor position
@@ -1125,28 +1056,24 @@
 
 				// set new dimensions to dialog
 				$elem.css({
-							  top: top,
-							  left: left
-						  });
+					top: top,
+					left: left
+				});
 
 				// restart draggable
 				draggable._mouseStart(event);
-
 				// restart again...
 				// fixes tests/unit/windowOptions.html:
 				// "maximizedDraggable" vs containment:
 				// Widget touches right edge of containment.
 				draggable._mouseStop(event);
 				draggable._mouseStart(event);
-
 				// noinspection JSUnusedLocalSymbols
 				var draggableAfter = $.extend(true, {}, draggable);
-
 				// set changed values to ui object, so they can be written
 				// to draggable.position by draggable _mouseDrag() function
 				ui.position.top = draggable.offset.top - $(window).scrollTop();
 				ui.position.left = draggable.offset.left - $(window).scrollLeft();
-
 				self._cache.progress.restoreMaximizedDraggable = false;
 			}
 
@@ -1171,12 +1098,10 @@
 				distance: 1, // 0 would collide with "maximizedDraggable": true
 				iframeFix: true, //just to be safe
 				start: function(event, ui) {
-					self.$elem.data(
-						self._cnst.dataPrefix + 'window-scrolls', {
-							x: $(window).scrollLeft(),
-							y: $(window).scrollTop()
-						}
-					);
+					self.$elem.data(self._cnst.dataPrefix + 'window-scrolls', {
+						x: $(window).scrollLeft(),
+						y: $(window).scrollTop()
+					});
 					// _blockFrames/_unblockFrames was introduced
 					// in jQuery UI Dialog 1.10.1
 					if (self._versionOf('dialog', '>=', '1.10.1')) {
@@ -1186,15 +1111,12 @@
 					self._interactionsState(true);
 					self._hideTaskbarsSubordinates();
 					self._freezeBodyScrolls();
-
 					originalOffset = self.$elem.offset();
 					originalPosition = self.$elem.position();
-
 					self._trigger('dragStart', event, draggableUi(ui));
 				},
 				stop: function(event, ui) {
 					$(this).removeClass(self.classes.uiDialogDragging);
-
 					self._interactionInProgress(false);
 					// _blockFrames/_unblockFrames was introduced
 					// in jQuery UI Dialog 1.10.1
@@ -1205,9 +1127,7 @@
 					self._refreshPositionOption();
 					self._setRestoreSize();
 					self._revertBodyScrolls();
-
 					self.$elem.removeData(self._cnst.dataPrefix + 'window-scrolls');
-
 					self._trigger('dragStop', event, draggableUi(ui));
 				},
 				drag: function(event, ui) {
@@ -1216,14 +1136,10 @@
 					}
 
 					fixFloatingPosition(event, ui);
-
 					// correct position by scrolls saved on start,
 					// this allow mousewheel event not to be prevented
 					if (self._versionOf('dialog', '>=', '1.11.0')) {
-						var scrolls = self.$elem.data(
-							self._cnst.dataPrefix + 'window-scrolls'
-						);
-
+						var scrolls = self.$elem.data(self._cnst.dataPrefix + 'window-scrolls');
 						ui.position.left += scrolls.x - $(window).scrollLeft();
 						ui.position.top += scrolls.y - $(window).scrollTop();
 					}
@@ -1239,7 +1155,6 @@
 		// returns real containment, taking "inherit" into account
 		_getRealContainment: function() {
 			var taskbar = this._getTaskbarInstance();
-
 			return this.options.containment === 'inherit' && taskbar ? taskbar.options.windowsContainment : this.options.containment;
 		},
 
@@ -1250,15 +1165,10 @@
 		// calculate and return containment for windows with
 		// containment option set to visible
 		_getVisibleContainmentArray: function() {
-			var taskbar = this._getTaskbarInstance(),
-				containment;
-
+			var taskbar = this._getTaskbarInstance(), containment;
 			var x1, x2, y1, y2;
-
 			this._refreshTaskbarMargins();
-
 			var margins = this._cache.sizes.margins;
-
 			var $elem;
 
 			if (this.bindings[0].length) {
@@ -1272,14 +1182,8 @@
 			}
 
 			var ed = taskbar._extendedPosition.call($elem),
-				cd = taskbar._extendedPosition.call(
-					this._getRealContainmentObject(),
-					'offset'
-				),
-				tdt = taskbar._extendedPosition.call(
-					this.uiDialogTitlebar.find('.' + this.classes.uiDialogTitle),
-					'offset'
-				),
+				cd = taskbar._extendedPosition.call(this._getRealContainmentObject(), 'offset'),
+				tdt = taskbar._extendedPosition.call(this.uiDialogTitlebar.find('.' + this.classes.uiDialogTitle), 'offset'),
 				r = this._bringIntoViewReserve(),
 				scroll = this._getWindowScroll();
 
@@ -1352,8 +1256,7 @@
 					this.$helpWindow.addClass(this.classes.help).append($('<p>' + o.help + '</p>').addClass(this.classes.helpText)).window({
 						// options that propagate from main window
 						taskbar: this.$taskbar,
-						minimizable: false,
-						modal: true,
+
 						containment: o.containment,
 						durations: o.durations,
 						icons: {
@@ -1364,8 +1267,12 @@
 							title: o.realTitle
 						}),
 						closeOnEscape: true,
+						modal: true,
+						minimizable: false,
 						maximizable: false,
 						resizable: false,
+						fullscreen: false,
+						help: false,
 						// maxWidth: 400,
 						width: 400,
 						height: 'auto',
@@ -1438,6 +1345,8 @@
 						closeOnEscape: true,
 						maximizable: false,
 						resizable: false,
+						fullscreen: false,
+						help: false,
 						height: 'auto',
 						minHeight: null,
 						beforeMinimize: function() {
@@ -1502,17 +1411,13 @@
 					// closing the parent window, so we don't need
 					// to unblock or move it to the top anymore
 					self.close();
-
 					self._closeConfirmCloseWindow();
 				}
 			}];
 		},
 
 		_afterConfirmCloseButtonsBuild: function() {
-			var buttonClasses = [
-				this.classes.confirmCloseNo,
-				this.classes.confirmCloseYes
-			];
+			var buttonClasses = [this.classes.confirmCloseNo, this.classes.confirmCloseYes];
 
 			// add no/yes classes based on buttons order;
 			// no always go first, because it receives default focus
@@ -1536,13 +1441,10 @@
 		// this function keep those options up to date
 		_propagateConfirmCloseOptions: function(key, prev) {
 			var self = this;
-
-			var options,
-				force;
+			var options, force;
 
 			if (typeof key !== 'object') {
 				options = {};
-
 				options[key] = prev;
 			} else {
 				options = key;
@@ -1572,35 +1474,24 @@
 					if (key === 'confirmClose') {
 						var o = self.options.confirmClose;
 
-						var simpleOptions = ['modal', 'minimizable'],
-							textsOptions = ['title'],
-							textsBody = ['text'],
-							textsButtons = ['yes', 'no'];
+						var simpleOptions = ['modal', 'minimizable'], textsOptions = ['title'], textsBody = ['text'], textsButtons = ['yes', 'no'];
 
 						// options that should be passed 1:1
 						$.each(simpleOptions, function(index, value) {
 							if (prev[value] !== o[value] || force) {
-								self.$confirmCloseWindow.window(
-									'option', value, o[value]
-								);
+								self.$confirmCloseWindow.window('option', value, o[value]);
 							}
 						});
 
 						// check of text really changed
 						var textChanged = function(value) {
-							return prev[value] !== o[value]
-								|| prev[value + 'Localized'] !== o[value + 'Localized']
-								|| force;
+							return prev[value] !== o[value] || prev[value + 'Localized'] !== o[value + 'Localized'] || force;
 						};
 
 						// window title
 						$.each(textsOptions, function(index, value) {
 							if (textChanged(value)) {
-								self.$confirmCloseWindow.window(
-									'option',
-									value,
-									self._buildConfirmCloseText(value)
-								);
+								self.$confirmCloseWindow.window('option', value, self._buildConfirmCloseText(value));
 							}
 						});
 
@@ -1616,10 +1507,7 @@
 						// yes/no buttons
 						$.each(textsButtons, function(index, value) {
 							if (textChanged(value)) {
-								self.$confirmCloseWindow.window(
-									'option', 'buttons', self._confirmCloseButtonsConfig()
-								);
-
+								self.$confirmCloseWindow.window('option', 'buttons', self._confirmCloseButtonsConfig());
 								self._afterConfirmCloseButtonsBuild();
 							}
 						});
@@ -1662,9 +1550,9 @@
 
 			// destroy window overlay
 			this._placeOverlay({
-								   destroy: true,
-								   window: true
-							   });
+				destroy: true,
+				window: true
+			});
 
 			this._cache.progress.close = false;
 		},
@@ -1705,6 +1593,7 @@
 			this.$elem = this.uiDialog.closest('.' + this.classes.uiDialog);
 
 			this._createButton('help');
+			this._createButton('fullscreen');
 			this._createButton('maximize');
 			this._createButton('minimize');
 
@@ -1721,7 +1610,6 @@
 				}
 
 				self._blurActiveElement(true);
-
 				self._toggleMaximized();
 			});
 		},
@@ -1729,11 +1617,8 @@
 		// set label and visibility to close button
 		_setButtonCloseState: function() {
 			this.uiDialogTitlebarClose.button('option', 'label', this._i18n('close'));
-
 			this._addButtonClasses(this.uiDialogTitlebarClose);
-
 			this.uiDialogTitlebarClose.toggleClass(this.classes.hidden, !this.options.closable);
-
 			this._enumerateTitlebarButtons();
 		},
 
@@ -1754,7 +1639,7 @@
 			this.$elem.find('.' + this.classes['button' + B]).remove();
 
 			// don't create minimize/maximize buttons if window is not minimizable/maximizable
-			if (b === 'help' && !this.options.help || b === 'maximize' && !this.options.maximizable || b === 'minimize' && !this.options.minimizable) {
+			if (b === 'help' && !this.options.help || b === 'fullscreen' && !this.options.fullscreen || b === 'maximize' && !this.options.maximizable || b === 'minimize' && !this.options.minimizable) {
 				this._enumerateTitlebarButtons();
 
 				return;
@@ -1765,6 +1650,10 @@
 					// trigger action
 					if (b === 'help') {
 						self._openHelp();
+					}
+
+					if (b === 'fullscreen') {
+						self._toggleFullscreen();
 					}
 
 					if (b === 'minimize') {
@@ -1799,7 +1688,7 @@
 			});
 
 			// insert into right position
-			if (b === 'help') {
+			if (b === 'fullscreen') {
 				this['$' + b].appendTo(this.uiDialogTitlebar);
 			} else {
 				this['$' + b].insertAfter(this.uiDialogTitlebarClose);
@@ -1813,9 +1702,7 @@
 		// so reverting it to a previous state would take about the same
 		// time as passed from first animation start
 		_speedUpAnimation: function(action, animationProgress) {
-			return typeof (this.options.durations[action]) === 'string'
-				   ? $.fx[this.options.durations[action]]
-				   : this.options.durations[action] * animationProgress;
+			return typeof (this.options.durations[action]) === 'string' ? $.fx[this.options.durations[action]] : this.options.durations[action] * animationProgress;
 		},
 
 		// this is main function for manipulation windows order
@@ -1870,7 +1757,6 @@
 
 			$('.' + this.classes.taskbar).each(function() {
 				var $taskbar = $(this);
-
 				var instance = $taskbar.data(self._cnst.dataPrefix + 'taskbar');
 
 				// find modals on top
@@ -1922,8 +1808,7 @@
 					// move element only if it's this instance window,
 					if ($elem === this.$elem) {
 						// noinspection JSCheckFunctionSignatures
-						var thisWasFocused = activeElement === this.$elem[0] || $.contains(this.$elem[0], activeElement),
-							thisHadWindowTopClasses = this.$elem.hasClass(this.classes.windowTop);
+						var thisWasFocused = activeElement === this.$elem[0] || $.contains(this.$elem[0], activeElement), thisHadWindowTopClasses = this.$elem.hasClass(this.classes.windowTop);
 
 						// Math.max account for cases when top window is modal;
 						// z-index cannot go lower than z-index set by modal logic
@@ -2015,9 +1900,7 @@
 		// set classes for window on top
 		_setTopClasses: function($elem) {
 			var $this = $elem ? $elem : this.$elem;
-
 			$this.addClass(this.classes.windowTop).children('.' + this.classes.uiDialogTitlebar).addClass(this.classes.uiStateActive);
-
 			this._setConnectedButtonsState($this.children('.' + this.classes.windowContent));
 		},
 
@@ -2100,27 +1983,20 @@
 
 			// now the close couldn't not be canceled
 			this._cache.closeInevitable = true;
-
 			this._clearTimeouts();
 
 			// is confirm close window was already opened,
 			// second call of _close() function closes window
 			// along with it confirm close window
 			this._closeConfirmCloseWindow();
-
 			this._taskbarUnbind();
-
 			this._revertModalZIndexes({force: true});
 
 			// this is for overlay so it will hide instantaneously
 			this.options.durations = {minimize: false};
-
 			this._hideOverlay();
-
 			this._isOpen = false;
-
 			this._destroyOverlay();
-
 			this.destroy();
 
 			if (!this.opener.filter(':focusable').focus().length) {
@@ -2136,20 +2012,11 @@
 		// main function for showing
 		// it's complicated tomove it to _show() because of dialog inheritance
 		show: function(event) {
-			var quick = event === false,
-				parsedDuration = this._parseDuration(event);
+			var quick = event === false, parsedDuration = this._parseDuration(event);
 
 			// don't show if animations is already in progress,
 			// and it's not dblclick/force show
-			if (
-				this._animationProgress()
-				&& (
-					!event
-					|| !parsedDuration
-					|| (event && event.type !== 'dblclick')
-				)
-				&& !quick
-			) {
+			if (this._animationProgress() && (!event || !parsedDuration || (event && event.type !== 'dblclick')) && !quick) {
 				return;
 			}
 
@@ -2161,10 +2028,7 @@
 			var ui = {};
 
 			// respect prevetion of "beforeShow" event
-			if (
-				!this._cache.suppressEvents
-				&& this._trigger('beforeShow', event, ui) === false
-			) {
+			if (!this._cache.suppressEvents && this._trigger('beforeShow', event, ui) === false) {
 				return;
 			}
 
@@ -2174,7 +2038,7 @@
 				// move to the right position before showing
 				this.$elem.css(this._getButtonCoordinates());
 			}
-			// +
+
 			if (!this._cache.showing) {
 				this.$elem.stop(true, quick);
 			}
@@ -2183,42 +2047,23 @@
 			this._cache.showing = true;
 
 			// cache current values
-			var animationProgress = this._cache.animationProgress,
-				minimizing = this._cache.minimizing
-							 ? this.options.durations.minimize
-							 : undefined,
-				speedUpDuration;
-
+			var animationProgress = this._cache.animationProgress, minimizing = this._cache.minimizing ? this.options.durations.minimize : undefined, speedUpDuration;
 			this.moveToTop();
-
-			var self = this,
-				props = this._cache.maximized
-						? this._cache.sizes.containment
-						: this._cache.sizes.self;
+			var self = this, props = this._cache.maximized ? this._cache.sizes.containment : this._cache.sizes.self;
 
 			if (minimizing !== undefined) {
 				// if there was minimize in progress, the current progress of it
 				// is used to shorten show animation, so it is has the same speed
 				// as minimize; otherwise reverting minimize in progress would
 				// seem slow
-				speedUpDuration = this._speedUpAnimation(
-					'minimize', animationProgress
-				);
+				speedUpDuration = this._speedUpAnimation('minimize', animationProgress);
 			}
 
 			props.opacity = 1;
-
 			this._deleteBottomRight(props);
-
 			this.$elem.show().addClass(this.classes.windowShowing);
-
 			this._interactionsState(false);
-
-			var duration =
-				this._cache.shown || event && event.type === 'dblclick' || quick
-				? false
-				: speedUpDuration || parsedDuration || this.options.durations.show;
-			// +
+			var duration = this._cache.shown || event && event.type === 'dblclick' || quick ? false : speedUpDuration || parsedDuration || this.options.durations.show;
 			this._cache.shown = true;
 
 			var animation = {
@@ -2227,14 +2072,13 @@
 					self._fixTitlebarTitleWidth();
 					self._setContentHeight();
 					self._focusTabbable();
+
 					if (self.$elem.hasClass(self.classes.windowTop)) {
 						self._trigger('focus');
 					}
 				},
 				progress: function() {
-					self._fixTitlebarTitleWidthDuringAnimation.apply(
-						self, arguments
-					);
+					self._fixTitlebarTitleWidthDuringAnimation.apply(self, arguments);
 					self._setContentHeight();
 				},
 				always: function() {
@@ -2266,8 +2110,7 @@
 		},
 
 		_minimize: function(event) {
-			var quick = event === false,
-				parsedDuration = this._parseDuration(event);
+			var quick = event === false, parsedDuration = this._parseDuration(event);
 
 			// don't minimize when animation if in progress and minimize
 			// isn't forced
@@ -2280,8 +2123,7 @@
 				return;
 			}
 
-			var self = this,
-				skipZIndexRevert = event && event.skipZIndexRevert,
+			var self = this, skipZIndexRevert = event && event.skipZIndexRevert,
 				beforeUi = {
 					minimizeAllInProgress: this._isMinimizeAllInProgress()
 				};
@@ -2296,7 +2138,6 @@
 			// propagate minimize duration to confirm close window
 			if (this._cache.progress.close) {
 				var minimizeDuration = self.$confirmCloseWindow.window('option', 'durations.minimize');
-
 				self.$confirmCloseWindow.window('option', 'durations.minimize', quick ? false : self.options.durations.minimize).window('minimize').window('option', 'durations.minimize', minimizeDuration);
 			}
 
@@ -2310,8 +2151,8 @@
 			// +
 			if (!this._isMinimizeAllInProgress() && !skipZIndexRevert) {
 				this._moveToTop({
-									highest: true
-								});
+					highest: true
+				});
 			}
 
 			// moveToTop was not called when minimize all was in progress,
@@ -2342,9 +2183,7 @@
 					self._setContentHeight();
 				},
 				progress: function() {
-					self._fixTitlebarTitleWidthDuringAnimation.apply(
-						self, arguments
-					);
+					self._fixTitlebarTitleWidthDuringAnimation.apply(self, arguments);
 					self._setContentHeight();
 				},
 				always: function() {
@@ -2355,8 +2194,8 @@
 					self._cache.shown = false;
 
 					self._destroyOverlay({
-											 justDestroy: true
-										 });
+						justDestroy: true
+					});
 
 					var ui = {
 						minimizeAllInProgress: self._isMinimizeAllInProgress()
@@ -2373,6 +2212,59 @@
 			this._hideOverlay();
 
 			this._animate.call(this.$elem, props, animation);
+		},
+
+		// functions for fullscreen API,
+		// taken almost witouth changes from http://davidwalsh.name/fullscreen
+		// detect if the fullscreen is available in user browser
+		_fullscreenAvailable: function() {
+			var element = document.documentElement;
+			// noinspection JSUnresolvedVariable
+			var request = document.fullscreenEnabled || document.FullScreenEnabled || document.FullscreenEnabled || element.requestFullscreen || element.requestFullScreen || element.webkitRequestFullscreen || element.webkitRequestFullScreen || element.mozRequestFullscreen || element.mozRequestFullScreen || element.msRequestFullscreen || element.msRequestFullScreen;
+
+			return !!request;
+		},
+
+		// detect if the browser is in fullscreen mode now;
+		// this function will never fire if fullscreen is not available
+		_fullscreenEnabled: function() {
+			// noinspection JSUnresolvedVariable
+			var fullscreenElement = document.fullscreenElement || document.FullScreenElement || document.FullscreenElement || document.mozFullScreenElement || document.mozFullscreenElement || document.webkitFullScreenElement || document.webkitFullscreenElement || document.msFullScreenElement || document.msFullscreenElement;
+
+			return !!fullscreenElement;
+		},
+
+		// request fullscreen
+		_fullscreenEnter: function(element) {
+			// noinspection JSUnresolvedVariable
+			var request = element.requestFullscreen || element.requestFullScreen || element.webkitRequestFullscreen || element.webkitRequestFullScreen || element.mozRequestFullscreen || element.mozRequestFullScreen || element.msRequestFullscreen || element.msRequestFullScreen;
+
+			if (request) {
+				request.call(element);
+			}
+		},
+
+		// exits fullscreen
+		_fullscreenLeave: function() {
+			// noinspection JSUnresolvedVariable
+			var exit = document.exitFullscreen || document.exitFullScreen || document.webkitExitFullscreen || document.webkitExitFullScreen || document.webkitCancelFullscreen || document.webkitCancelFullScreen || document.mozCancelFullscreen || document.mozCancelFullScreen || document.mozExitFullscreen || document.mozExitFullScreen || document.msExitFullscreen || document.msExitFullScreen;
+
+			if (exit) {
+				exit.call(document);
+			}
+		},
+
+		// sets/restores fullscreen state
+		_toggleFullscreen: function(maximize, event) {
+			var self = this;
+
+			if (self._fullscreenAvailable()) {
+				if (self._fullscreenEnabled()) {
+					self._fullscreenLeave();
+				} else {
+					self._fullscreenEnter(self.$elem.get(0));
+				}
+			}
 		},
 
 		// sets restored/maximized state
@@ -2504,9 +2396,7 @@
 					self._setContentHeight();
 				},
 				progress: function() {
-					self._fixTitlebarTitleWidthDuringAnimation.apply(
-						self, arguments
-					);
+					self._fixTitlebarTitleWidthDuringAnimation.apply(self, arguments);
 					self._setContentHeight();
 				},
 				start: function() {
@@ -2517,18 +2407,11 @@
 					self._cache[progressInverted] = false;
 					self._cache[state] = true;
 					self._cache[stateInverted] = false;
-
-					self.$elem.removeClass(self.classes.window + '-' + progress).toggleClass(self.classes.windowMaximized, maximize)
-					// remove opacity, so it won't interfere with
-					// minimize all button hover opacity change
-						 .css('opacity', '');
-
+					// remove opacity, so it won't interfere with minimize all button hover opacity change
+					self.$elem.removeClass(self.classes.window + '-' + progress).toggleClass(self.classes.windowMaximized, maximize).css('opacity', '');
 					self._interactionsState(!maximize);
-
 					var ui = {};
-
 					self._triggerInternal('afterWindowAnimationStop');
-
 					self._fullPxPosition();
 
 					if (!maximize && !inProgress) {
@@ -2553,10 +2436,7 @@
 				return this._cache[key];
 			}
 
-			return this._cache.showing
-				|| this._cache.maximizing
-				|| this._cache.minimizing
-				|| this._cache.restoring;
+			return this._cache.showing || this._cache.maximizing || this._cache.minimizing || this._cache.restoring;
 		},
 
 		// helper for quick changing window state
@@ -2574,7 +2454,6 @@
 		// so they'll be in the right distance from the right widget edge
 		_enumerateTitlebarButtons: function() {
 			this.uiDialogTitlebar.children('.' + this.classes.uiButton).removeAttr('data-button-order');
-
 			this.uiDialogTitlebar.children('.' + this.classes.uiButton + ':not(.' + this.classes.hidden + ')').each(function(index) {
 				$(this).attr('data-button-order', index);
 			});
@@ -2762,9 +2641,9 @@
 		_onInteractionEnd: function(action, quick) {
 			if (this._interactionInProgress() === true) {
 				this._cache.onInteractionEnd.push({
-													  action: action,
-													  quick: quick
-												  });
+					action: action,
+					quick: quick
+				});
 
 				return true;
 			}
@@ -2776,12 +2655,7 @@
 				// draggable is available anyway on fully maximized window with
 				// "maximizedDraggable" option set to true, otherwise take
 				// the passed param into account
-				var maximizedDraggableAvailable = this.options.maximizedDraggable
-					&& this._cache.maximized
-					&& !this._animationProgress(),
-					draggable = (state || maximizedDraggableAvailable)
-						&& this.options.draggable;
-
+				var maximizedDraggableAvailable = this.options.maximizedDraggable && this._cache.maximized && !this._animationProgress(), draggable = (state || maximizedDraggableAvailable) && this.options.draggable;
 				// noinspection JSValidateTypes
 				this.$elem.draggable(draggable ? 'enable' : 'disable');
 			}
@@ -2791,11 +2665,7 @@
 
 		_resizableState: function(state) {
 			if (this.$elem.hasClass(this.classes.uiResizable)) {
-				this.$elem.resizable(
-					state && this.options.resizable
-					? 'enable'
-					: 'disable'
-				);
+				this.$elem.resizable(state && this.options.resizable ? 'enable' : 'disable');
 			}
 
 			this._removeClassDisabled();
@@ -2837,10 +2707,9 @@
 		},
 
 		_refreshContainmentSize: function() {
-			this._cache.sizes.containment = this._getDimensions.call(
-				this._getRealContainmentObject(), {
-					position: true
-				});
+			this._cache.sizes.containment = this._getDimensions.call(this._getRealContainmentObject(), {
+				position: true
+			});
 
 			this._refreshTaskbarMargins();
 
@@ -2907,7 +2776,6 @@
 		// main function get refreshing window position
 		_refreshPosition: function(options) {
 			var self = this;
-
 			options = options || {};
 
 			if (this._cache.minimized && !this._cache.minimizing) {
@@ -2920,31 +2788,17 @@
 			// skipOnFit let's skip the operation if window if withing containment
 			// and the "containment" option value didn't change since last refresh,
 			// and it's not "viewport", which is more restrict than "visible"
-			if (
-				options
-				&& options.skipOnFit
-				&& currentContainment === this._cache.refreshPositionContainment
-				&& currentContainment !== 'viewport'
-			) {
+			if (options && options.skipOnFit && currentContainment === this._cache.refreshPositionContainment && currentContainment !== 'viewport') {
 				var taskbar = this._getTaskbarInstance();
 
 				if (!taskbar) {
 					return;
 				}
 
-				var containmentPosition = taskbar._extendedPosition.call(
-					taskbar.$windowsContainment, 'offset'
-				);
-				var windowPosition = taskbar._extendedPosition.call(
-					this.$elem, 'offset'
-				);
+				var containmentPosition = taskbar._extendedPosition.call(taskbar.$windowsContainment, 'offset');
+				var windowPosition = taskbar._extendedPosition.call(this.$elem, 'offset');
 
-				if (
-					windowPosition.right <= containmentPosition.right
-					&& windowPosition.bottom <= containmentPosition.bottom
-					&& windowPosition.top >= containmentPosition.top
-					&& windowPosition.left >= containmentPosition.left
-				) {
+				if (windowPosition.right <= containmentPosition.right && windowPosition.bottom <= containmentPosition.bottom && windowPosition.top >= containmentPosition.top && windowPosition.left >= containmentPosition.left) {
 					return;
 				}
 			}
@@ -2959,14 +2813,10 @@
 			}
 
 			this._cache.progress.refreshPosition = true;
-
 			this.$elem.stop(true, true);
-
 			this._refreshContainmentSize();
 			this._setContainment();
-
-			var c = this._cache.sizes.containment,
-				e = this._cache.sizes.self;
+			var c = this._cache.sizes.containment, e = this._cache.sizes.self;
 
 			// maximized window should stretch to container and that's it
 			if (this.maximized()) {
@@ -2977,12 +2827,12 @@
 				// refresh existing overlays
 				if (this.$windowOverlay.hasClass(this.classes.contentOverlay)) {
 					this._placeOverlay({
-										   content: true
-									   });
+						content: true
+					});
 				} else {
 					this._placeOverlay({
-										   window: true
-									   });
+						window: true
+					});
 				}
 			}
 
@@ -2992,13 +2842,9 @@
 			if (this._cache.refreshPositionContainment === 'visible') {
 				this._setWidth();
 				this._setHeight();
-
 				this._moveIntoView();
-
 				this._setRestoreSize();
-
 				this._cache.progress.refreshPosition = false;
-
 				this._refreshPositionOption();
 
 				return;
@@ -3007,21 +2853,13 @@
 			e.width = Math.min(e.width, c.width);
 			e.height = Math.min(e.height, c.height);
 
-			var wasntRestored = false,
-				wasMaximized = this.maximized(),
-				wasMinimized = this.minimized(),
-				durations;
+			var wasntRestored = false, wasMaximized = this.maximized(), wasMinimized = this.minimized(), durations;
 
 			if (wasMaximized || wasMinimized) {
 				wasntRestored = true;
-
 				this._cache.suppressEvents = true;
-
 				durations = $.extend(true, {}, this.options.durations);
-
-				this.options.durations = $.extend(
-					true, {}, this._noAnimationDurations()
-				);
+				this.options.durations = $.extend(true, {}, this._noAnimationDurations());
 				this.restore();
 			}
 
@@ -3055,11 +2893,8 @@
 			this._moveIntoView();
 			this._fixTitlebarTitleWidth();
 			this._setContentHeight();
-
 			this._setRestoreSize();
-
 			this._refreshPositionOption();
-
 			this._cache.progress.refreshPosition = false;
 
 			return this;
@@ -3085,8 +2920,7 @@
 			// noinspection JSUnusedLocalSymbols
 			var tp = window.getComputedStyle(this.$title[0]);
 
-			var diffs = {},
-				realDiffs = {};
+			var diffs = {}, realDiffs = {};
 
 			realDiffs.top = (cd.top - (td.bottom - r)) * -1;
 			realDiffs.bottom = cd.bottom - (td.top + r);
@@ -3126,59 +2960,53 @@
 
 		_fixPosition: function(e) {
 			this._refreshContainmentSize();
-
-			var realContainment = this._getRealContainment(),
-				c = this._cache.sizes.containment,
-				self = this;
-
+			var realContainment = this._getRealContainment(), c = this._cache.sizes.containment, self = this;
 			e = e || $.extend({}, this._cache.sizes.self);
-
 			this._deleteBottomRight(e);
 
 			// itterate over pair of top/left and height/width properties
 			$.each([{
-					edge: 'top',
-					dimension: 'height'
-				} , {
-					edge: 'left',
-					dimension: 'width'
-				}], function(index, set) {
-					if (realContainment === 'viewport') {
-						// constraint window to viewport: if it's over top/left edge,
-						// correct that, and if it's wider/higher than containment,
-						// correct that to match containment dimensions
-						if (e[set.edge] !== (e[set.edge] = Math.max(e [set.edge], c[set.edge]))) {
-							e[set.dimension] = Math.min(e[set.dimension], c[set.dimension]);
-						}
-
-						// constraint window to viewport: if it's over bottom/right edge,
-						// calculate diff, then if diff is greater than top/left value,
-						// extract it from top/left value, otherwise extract diff from
-						// top/left value, then extract edge value from dimensions value
-						if (e[set.edge] + e[set.dimension] > c[set.edge] + c[set.dimension]) {
-							var diff = (e[set.edge] + e[set.dimension]) - (c[set.edge] + c[set.dimension]);
-
-							if (e[set.edge] >= diff) {
-								e[set.edge] -= diff;
-							} else {
-								e[set.edge] -= diff;
-								e[set.dimension] -= Math.abs(e[set.edge]);
-								e[set.edge] = 0;
-							}
-						}
+				edge: 'top',
+				dimension: 'height'
+			} , {
+				edge: 'left',
+				dimension: 'width'
+			}], function(index, set) {
+				if (realContainment === 'viewport') {
+					// constraint window to viewport: if it's over top/left edge,
+					// correct that, and if it's wider/higher than containment,
+					// correct that to match containment dimensions
+					if (e[set.edge] !== (e[set.edge] = Math.max(e [set.edge], c[set.edge]))) {
+						e[set.dimension] = Math.min(e[set.dimension], c[set.dimension]);
 					}
 
-					var min = 'min' + self._ucFirst(set.dimension);
-					// noinspection JSUnusedLocalSymbols
-					var max = 'max' + self._ucFirst(set.dimension);
+					// constraint window to viewport: if it's over bottom/right edge,
+					// calculate diff, then if diff is greater than top/left value,
+					// extract it from top/left value, otherwise extract diff from
+					// top/left value, then extract edge value from dimensions value
+					if (e[set.edge] + e[set.dimension] > c[set.edge] + c[set.dimension]) {
+						var diff = (e[set.edge] + e[set.dimension]) - (c[set.edge] + c[set.dimension]);
 
-					// if current height/width is lower than minHeight/minWidth,
-					// set width/height as high as possible
-					if (self.options[min] > e[set.dimension]) {
-						e[set.dimension] = Math.min(self.options[min], c[set.dimension]);
+						if (e[set.edge] >= diff) {
+							e[set.edge] -= diff;
+						} else {
+							e[set.edge] -= diff;
+							e[set.dimension] -= Math.abs(e[set.edge]);
+							e[set.edge] = 0;
+						}
 					}
 				}
-			);
+
+				var min = 'min' + self._ucFirst(set.dimension);
+				// noinspection JSUnusedLocalSymbols
+				var max = 'max' + self._ucFirst(set.dimension);
+
+				// if current height/width is lower than minHeight/minWidth,
+				// set width/height as high as possible
+				if (self.options[min] > e[set.dimension]) {
+					e[set.dimension] = Math.min(self.options[min], c[set.dimension]);
+				}
+			});
 
 			return e;
 		},
@@ -3196,10 +3024,7 @@
 		// find by how much should the tolerance by for draggable
 		// handle visibility, based on titlebar font-size
 		_bringIntoViewReserve: function() {
-			return parseInt(
-				this.uiDialogTitlebar.find('.' + this.classes.uiDialogTitle).css('fontSize'),
-				10
-			);
+			return parseInt(this.uiDialogTitlebar.find('.' + this.classes.uiDialogTitle).css('fontSize'), 10);
 		},
 
 		_moveIntoView: function() {
@@ -3229,27 +3054,21 @@
 		_fullPxPosition: function(props) {
 			var self = this;
 
-			$.each(props || ['top', 'left', 'width', 'height'],
-				   function(index, pos) {
-					   self.$elem.css(pos, Math.round(
-						   parseFloat(self.$elem.css(pos))
-					   ));
-				   });
+			$.each(props || ['top', 'left', 'width', 'height'], function(index, pos) {
+				self.$elem.css(pos, Math.round(parseFloat(self.$elem.css(pos))));
+			});
 		},
 
 		// sets calculated width of titlebar,
 		// this function is usually called during resize and animations
 		_fixTitlebarTitleWidth: function() {
-			var $lastButton = this.$elem.find('.' + this.classes.uiDialogTitlebar + ' .' + this.classes.uiButton + ':last'),
-				$lastButtonPrev = $lastButton.prev('.' + this.classes.uiButton);
+			var $lastButton = this.$elem.find('.' + this.classes.uiDialogTitlebar + ' .' + this.classes.uiButton + ':last'), $lastButtonPrev = $lastButton.prev('.' + this.classes.uiButton);
 
 			if (!$lastButton.length || !$lastButtonPrev.length) {
 				return;
 			}
 
-			var $title = this.$elem.find('.' + this.classes.uiDialogTitle),
-				space = $lastButtonPrev.offset().left - $lastButton.offset().left - $lastButton.outerWidth();
-
+			var $title = this.$elem.find('.' + this.classes.uiDialogTitle), space = $lastButtonPrev.offset().left - $lastButton.offset().left - $lastButton.outerWidth();
 			$title.css('width', $lastButton.offset().left - $title.offset().left - space);
 		},
 
@@ -3257,6 +3076,7 @@
 			if (typeof (arguments[1]) === 'number') {
 				this._cache.animationProgress = arguments[1];
 			}
+
 			this._fixTitlebarTitleWidth();
 		},
 
@@ -3268,7 +3088,6 @@
 			}
 
 			this.uiDialogTitlebar.removeClass(this.classes.titlebarIcon);
-
 			var taskbar = this._getTaskbarInstance();
 
 			if (!taskbar) {
@@ -3276,7 +3095,6 @@
 			}
 
 			var $button = taskbar.$elem.find('[data-window-id=' + this.$window[0].id + ']');
-
 			taskbar._refreshWindowButtonIcon.call($button, taskbar);
 
 			if (this.options.icons.main === null) {
@@ -3292,15 +3110,13 @@
 
 			if (this.options.icons.main.indexOf('/') !== -1 || this.options.icons.main.indexOf('.') !== -1) {
 				$icon.css({
-							  'background-image': 'url(' + this.options.icons.main + ')',
-							  'background-repeat': 'no-repeat',
-							  'background-position': 'center',
-							  'background-size': 'cover'
-						  }).addClass(this.classes.uiIcon + ' ' + this.classes.icon);
+					'background-image': 'url(' + this.options.icons.main + ')',
+					'background-repeat': 'no-repeat',
+					'background-position': 'center',
+					'background-size': 'cover'
+				}).addClass(this.classes.uiIcon + ' ' + this.classes.icon);
 			} else {
-				$icon
-				//.removeAttr("class")
-				.addClass(this.classes.uiIcon + ' ' + this.classes.icon + ' ' + this.options.icons.main);
+				$icon.addClass(this.classes.uiIcon + ' ' + this.classes.icon + ' ' + this.options.icons.main);
 			}
 
 			var self = this;
@@ -3349,20 +3165,13 @@
 			if (this._hasTaskbar()) {
 				if (this.options.title === null) {
 					var $containment = this.$taskbar.data(this._cnst.dataPrefix + 'taskbar').$windowsContainment;
-
 					var newWindowsCount = $containment.data(this._cnst.dataPrefix + 'taskbarNewWindowsCount') || 0;
-
-					var number = typeof this._cache.newWindowNumber === 'number'
-								 ? this._cache.newWindowNumber
-								 : ++newWindowsCount;
+					var number = typeof this._cache.newWindowNumber === 'number' ? this._cache.newWindowNumber : ++newWindowsCount;
 
 					this._cache.newWindowNumber = number;
 					this._setNewWindowTitle(number);
 
-					$containment.data(
-						this._cnst.dataPrefix + 'taskbarNewWindowsCount',
-						newWindowsCount
-					);
+					$containment.data(this._cnst.dataPrefix + 'taskbarNewWindowsCount', newWindowsCount);
 				}
 			}
 		},
@@ -3373,15 +3182,8 @@
 					this._setTitle(this._i18n(this.options.titleLocalized));
 				} else {
 					this._setTitle(this._cache.title);
-
 					var taskbar = this._getTaskbarInstance();
-
-					this._debugLogAdd(
-						'Missing translation for window title ' +
-						'with key "' + this.options.titleLocalized
-						+ '" in language "' + taskbar.options.language + '".',
-						2, 1
-					);
+					this._debugLogAdd('Missing translation for window title with key "' + this.options.titleLocalized+ '" in language "' + taskbar.options.language + '".', 2, 1);
 				}
 			} else {
 				// null === createTitleForEmpty set the title already
@@ -3392,11 +3194,9 @@
 		},
 
 		_setNewWindowTitle: function(number) {
-			this._setTitle(number === 1
-						   ? this._i18n('newWindow')
-						   : this._i18n('newWindowNext', {
-					counter: number
-				}));
+			this._setTitle(number === 1 ? this._i18n('newWindow') : this._i18n('newWindowNext', {
+				counter: number
+			}));
 		},
 
 		_setTitle: function(title) {
@@ -3420,9 +3220,7 @@
 		},
 
 		_setConnectedButtonTitle: function() {
-			var title = this._cache.realTitle,
-				taskbar = this._getTaskbarInstance(),
-				$button;
+			var title = this._cache.realTitle, taskbar = this._getTaskbarInstance(), $button;
 
 			if (!taskbar) {
 				return;
@@ -3438,12 +3236,9 @@
 
 			if ($button.attr('data-group-name')) {
 				var $menuItem = taskbar.connectedElement($button).filter('.' + this.classes.uiMenu).find('[data-window-id="' + this.$window[0].id + '"]');
-
 				taskbar._refreshWindowButtonIcon.call($menuItem, taskbar);
 			} else {
-				taskbar._buttonSetTitle.call(
-					$button, title, this._getTaskbarInstance()
-				);
+				taskbar._buttonSetTitle.call($button, title, this._getTaskbarInstance());
 			}
 		},
 
@@ -3466,7 +3261,6 @@
 			$elems.each(function() {
 				// we either have numeric zIndex or use faked zIndex
 				var zIndex = parseInt($(this).css('zIndex'), 10) || ++c;
-
 				windows.push([zIndex, $(this)]);
 			});
 
@@ -3498,7 +3292,6 @@
 			}
 
 			var self = this;
-
 			this.$elem.addClass(this.classes.modal);
 
 			// noinspection JSUnusedLocalSymbols
@@ -3512,42 +3305,30 @@
 
 			if (modalOverlay === 'all') {
 				$setCover = $setCover.add($taskbars).add($windows);
-
 				$setNoCover = $();
 			} else if (modalOverlay === 'viewport') {
 				$setCover = $setCover.add($windows);
-
 				$setNoCover = $setNoCover.add($taskbars);
 			} else if (modalOverlay instanceof $) {
 				$setCover = $setCover.add($taskbars).add($windows).not(modalOverlay);
-
 				$setNoCover = modalOverlay;
 			} else {
 				return;
 			}
 
 			$setCover = $setCover.not(this.$elem).not('.' + this.classes.modal + '.' + this.classes.windowTop);
-
 			$setNoCover = $setNoCover.not(this.$elem).not('.' + this.classes.modal + '.' + this.classes.windowTop);
-
 			var ui = {};
-
 			ui.$setCover = $setCover;
 			ui.$setNoCover = $setNoCover;
-
 			this._trigger('modalOverlaySetsCreated', {}, ui);
-
 			$setCover = ui.$setCover;
 			$setNoCover = ui.$setNoCover;
 
 			var set = function(covered) {
-				var $this = $(this),
-					selfZIndex = parseInt($this.css('zIndex'), 10);
-
+				var $this = $(this), selfZIndex = parseInt($this.css('zIndex'), 10);
 				zIndex = Math.max(selfZIndex, zIndex);
-
 				var inlineZIndex = self._hasInlineProperty($this, 'z-index');
-
 				var className = covered ? self.classes.coveredByOverlay + self.uuid : self.classes.notCoveredByOverlay + self.uuid;
 
 				if (!$this.hasClass(className)) {
@@ -3561,7 +3342,6 @@
 				});
 
 				$setCover = this._sortByZIndex($setCover, 'desc');
-
 				var zIndexDown = zIndex;
 
 				$setCover.each(function() {
@@ -3604,6 +3384,7 @@
 			if (!options || options.revertActive !== false) {
 				this._revertActiveModalZIndexes();
 			}
+
 			this._revertModalZIndexes();
 			this._setModalZIndexes();
 		},
@@ -3625,19 +3406,12 @@
 			var revert = function() {
 				var $this = $(this);
 
-				if (
-					$this.hasClass(self.classes.modal)
-					&& $this.hasClass(self.classes.windowTop) && !force
-				) {
+				if ($this.hasClass(self.classes.modal) && $this.hasClass(self.classes.windowTop) && !force) {
 					return true;
 				}
 
-				var zIndex = $this.data(
-					self._cnst.dataPrefix + 'previousZIndex' + self.uuid
-					),
-					inlineZIndex = $this.data(
-						self._cnst.dataPrefix + 'inlineZIndex' + self.uuid
-					),
+				var zIndex = $this.data(self._cnst.dataPrefix + 'previousZIndex' + self.uuid),
+					inlineZIndex = $this.data(self._cnst.dataPrefix + 'inlineZIndex' + self.uuid),
 					revertZIndex = inlineZIndex ? zIndex : '';
 
 				$this.removeData(self._cnst.dataPrefix + 'previousZIndex' + self.uuid).removeData(self._cnst.dataPrefix + 'inlineZIndex' + self.uuid).removeClass(self.classes.coveredByOverlay + self.uuid).removeClass(self.classes.notCoveredByOverlay + self.uuid).css('zIndex', revertZIndex);
@@ -3655,18 +3429,15 @@
 
 		_revertActiveModalZIndexes: function() {
 			var $activeModals = this._getAllModals();
-
 			var self = this;
 
 			if ($activeModals.length) {
 				$activeModals.children('.' + this.classes.windowContent).each(function() {
 					var $this = $(this);
-
 					var instance = $this.data(self._cnst.dataPrefix + 'window');
-
 					instance._revertModalZIndexes({
-													  force: true
-												  });
+						force: true
+					});
 				});
 			}
 		},
@@ -3681,10 +3452,7 @@
 
 			$modal = $modal.filter('.' + this.classes.windowTop);
 
-			if (
-				$modal.length
-				&& (!$elem || $modal.attr('id') !== $elem.attr('id'))
-			) {
+			if ($modal.length && (!$elem || $modal.attr('id') !== $elem.attr('id'))) {
 				$modal.children('.' + this.classes.windowContent).window('moveToTop', null, true);
 			}
 		},
@@ -3737,7 +3505,6 @@
 			}
 
 			this._super();
-
 			var self = this;
 
 			// mimics
@@ -3746,14 +3513,11 @@
 				this.overlay.appendTo(this._appendTo());
 			}
 
-			this.overlay.addClass(this.classes.dialogOverlay).css('zIndex', this._cache.modalOverlayZIndex).attr('data-taskbar-uuid', this._getTaskbarInstance().uuid).attr('data-window-uuid', this.uuid).on(
-				'click.' + this._cache.uep +
-				' dblclick.' + this._cache.uep,
-				function(event) {
-					if (self.options.minimizable) {
-						self.minimize(event.type === 'dblclick' ? false : undefined);
-					}
-				});
+			this.overlay.addClass(this.classes.dialogOverlay).css('zIndex', this._cache.modalOverlayZIndex).attr('data-taskbar-uuid', this._getTaskbarInstance().uuid).attr('data-window-uuid', this.uuid).on('click.' + this._cache.uep +' dblclick.' + this._cache.uep, function(event) {
+				if (self.options.minimizable) {
+					self.minimize(event.type === 'dblclick' ? false : undefined);
+				}
+			});
 		},
 
 		_destroyOverlay: function(options) {
@@ -3783,7 +3547,6 @@
 			}
 
 			var opacity = this._getTaskbarInstance()._styleIndicator(this.classes.uiWidgetOverlay, 'opacity').opacity;
-
 			this.overlay.show().stop(false, true);
 
 			var props = {
@@ -3868,11 +3631,8 @@
 				}
 
 				this.$windowOverlay = $('<div></div>').addClass(this.classes.windowOverlay + ' ' + this.classes.uiWidgetOverlay).addClass(options.content ? this.classes.contentOverlay : this.classes.bodyOverlay);
-
 				this.$elem.find('.' + this.classes.windowOverlay).remove();
-
 				this.$elem.prepend(this.$windowOverlay);
-
 				this.$elem.addClass(options.content ? this.classes.contentOverlayed : this.classes.bodyOverlayed);
 			}
 
@@ -3902,11 +3662,8 @@
 
 			// number of global clicks to block equals number of taskbar instances
 			var current = taskbar.$windowsContainment.data(this._cnst.dataPrefix + 'taskbars') || 0;
-
 			var prev = taskbar.$windowsContainment.data(this._cnst.dataPrefix + 'preventClicks') || 0;
-
 			this._cache.taskbarsOnClickPrevention = current;
-
 			taskbar.$windowsContainment.data(this._cnst.dataPrefix + 'preventClicks', current + prev);
 		},
 
@@ -3918,17 +3675,13 @@
 			}
 
 			var prev = taskbar.$windowsContainment.data(this._cnst.dataPrefix + 'preventClicks');
-
 			var current = this._cache.taskbarsOnClickPrevention;
-
 			var newClicks = Math.max(prev - current, 0);
-
 			taskbar.$windowsContainment.data(this._cnst.dataPrefix + 'preventClicks', newClicks);
 		},
 
 		_createButtons: function() {
 			this._super();
-
 			var self = this;
 
 			if (this.uiDialog.hasClass(this.classes.uiDialogButtons)) {
@@ -3962,12 +3715,9 @@
 		_languageChange: function() {
 			this._createTitleForEmpty();
 			this._title();
-
 			this._propagateConfirmCloseOptions({confirmClose: {}, title: null});
-
 			// refresh titlebar buttons texts
 			this._setButtonsTexts();
-
 			// refresh buttonset button's labels
 			this._createButtons();
 		},
@@ -4015,8 +3765,7 @@
 		},
 
 		_blurActiveElement: function(any) {
-			var element = this.document[0].activeElement,
-				wrapper = this.bindings[0];
+			var element = this.document[0].activeElement, wrapper = this.bindings[0];
 
 			// if no other focusable element is present inside of the dialog,
 			// focus is set to the close button; let's revert this, because windows
@@ -4037,10 +3786,7 @@
 		// used in deciding behaviour/hacks/flow
 		_versionOf: function(widget, operator, compare) {
 			// return $.emuos.taskbar.prototype._versionOf.call(null, widget, operator, compare);
-
-			var version = (widget ? $.ui[widget] : $.ui).version.split('.'),
-				compareTo = compare.split('.'),
-				results = [];
+			var version = (widget ? $.ui[widget] : $.ui).version.split('.'), compareTo = compare.split('.'), results = [];
 
 			$.each(compareTo, function(index, part) {
 				var againsts = parseInt(part, 10),
@@ -4203,10 +3949,7 @@
 		},
 
 		_setOptions: function(options) {
-			var self = this,
-				resize = false,
-				refreshPosition = false,
-				resizableOptions = {};
+			var self = this, resize = false, refreshPosition = false, resizableOptions = {};
 
 			$.each(options, function(key, value) {
 				self._setOption(key, value);
@@ -4352,11 +4095,8 @@
 			}
 
 			var self = this;
-
 			this._cache.destroyed = true;
-
 			this._clearTimeouts();
-
 			this._preventGlobalWindowClick();
 
 			// we have to remove modal classes before
@@ -4364,20 +4104,13 @@
 			// stay blurred, because windows should be blurred
 			// when modal is on top
 			this.$elem.removeClass(this.classes.modal);
-			// +
 			this._moveToTop({
-								highest: true
-							});
+				highest: true
+			});
 
-			this.$window.removeUniqueId().removeClass(
-				this.classes.windowContent
-				+ ' ' + this.classes.confirmClose
-			).removeData(this._cnst.dataPrefix + 'window');
-
+			this.$window.removeUniqueId().removeClass(this.classes.windowContent + ' ' + this.classes.confirmClose).removeData(this._cnst.dataPrefix + 'window');
 			this.$elem.stop(true, true).removeClass(this.classes.window);
-
 			this._super();
-
 			this.$window.attr('style', this._cache.inlineCSS);
 
 			// remove empty attributes
