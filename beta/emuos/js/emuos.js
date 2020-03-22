@@ -668,7 +668,7 @@
 							});
 						}
 					} else if ($(this).data('widget')) {
-						// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
+						// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure,HtmlDeprecatedAttribute
 						self.widget({
 							title: $(this).data('name'),
 							icon: $(this).data('icon'),
@@ -800,6 +800,7 @@
 			// buttonsTooltips: true,
 			// propagateWindowBlur: true,
 			// startButtons: true,
+			menuAutoOpenOnBrowse: false,
 			minimizeAll: true,
 			languageSelect: false,
 			toggleFullscreen: true,

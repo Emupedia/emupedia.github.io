@@ -2255,7 +2255,7 @@
 		},
 
 		// sets/restores fullscreen state
-		_toggleFullscreen: function(maximize, event) {
+		_toggleFullscreen: function() {
 			var self = this;
 
 			if (self._fullscreenAvailable()) {

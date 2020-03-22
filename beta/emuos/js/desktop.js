@@ -1,4 +1,5 @@
-;(function ($, undefined) {
+;// noinspection JSUnusedLocalSymbols
+(function ($, undefined) {
 	$.widget('emuos.desktop', {
 		version: '@emuos-main-version',
 		options: {
@@ -65,7 +66,6 @@
 		},
 		_create: function() {
 			this.$elem = this.element;
-			var self = this;
 
 			if (!this.$elem.parents().length) {
 				this.$elem.prependTo('body');
@@ -88,17 +88,27 @@
 
 			this._cache.icons = this.$elem.children(this.options.iconClass);
 			this._cache.icons.addClass(this.classes.desktopIcon);
+		},
+		_init: function() {
+			var self = this;
 
+			// noinspection JSUnusedLocalSymbols
 			self.$elem.sortable({
 				containment: 'parent',
 				items: '> .' + self.classes.desktopIcon,
 				opacity: 0.8,
 				scroll: false,
 				revert: true,
-				helper: 'clone'
+				helper: 'clone',
+				start: function(event, ui) {
+					self.$elem.parent().trigger('click');
+				}
 			}).selectable({
 				filter: '> .' + self.classes.desktopIcon,
-				tolerance: 'touch'
+				tolerance: 'touch',
+				start: function(event, ui) {
+					self.$elem.parent().trigger('click');
+				}
 			});
 		},
 		// returns all icons

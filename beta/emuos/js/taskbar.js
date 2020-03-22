@@ -1982,10 +1982,10 @@
 				containment = this._getContainment(),
 				// default sticks for droppable edges
 				sticks = {
-					'top': 'top left',
-					'right': 'right top',
-					'bottom': 'bottom left',
-					'left': 'left top'
+					top: 'top left',
+					right: 'right top',
+					bottom: 'bottom left',
+					left: 'left top'
 				},
 				_cache = this._cache,
 				horizontal,
@@ -1999,8 +1999,7 @@
 				// create droppables and keep their jQuery objects
 				self['$droppable' + upperKey] = $elem = self._factory('droppable').data(self._cnst.dataPrefix + 'droppable-edge', position).uniqueId().appendTo($container);
 
-				// use the same function that is used for
-				// calculating taskbar dimensions
+				// use the same function that is used for calculating taskbar dimensions
 				_cache = self._setDimensions({
 					elem: $elem,
 					orientation: horizontal ? 'horizontal' : 'vertical',
@@ -2068,7 +2067,7 @@
 					}
 
 					for (var i in classes) {
-						// noinspection JSUnusedAssignment
+						// noinspection JSUnusedAssignment,JSUnfilteredForInLoop
 						if ($.inArray(classes[i], ['right', 'left']) > -1 && orientation === 'horizontal') {
 							requestedStick = event.clientX > containment.width / 2 ? 'right' : 'left';
 
@@ -2078,17 +2077,17 @@
 									return false;
 								}
 
-								// if taskbar is not draggable between edges,
-								// take the original stick
+								// if taskbar is not draggable between edges, take the original stick
+								// noinspection JSUnfilteredForInLoop
 								classes[i] = options.horizontalStick.replace(/(bottom|top)/, '');
 							} else {
-								// if taskbar is draggable between edges,
-								// rely on mouse position
+								// if taskbar is draggable between edges, rely on mouse position
+								// noinspection JSUnfilteredForInLoop
 								classes[i] = requestedStick;
 							}
 						}
 
-						// noinspection JSUnusedAssignment
+						// noinspection JSUnusedAssignment,JSUnfilteredForInLoop
 						if ($.inArray(classes[i], ['top', 'bottom']) > -1 && orientation === 'vertical') {
 							requestedStick = event.clientY > containment.height / 2 ? 'bottom' : 'top';
 
@@ -2098,12 +2097,12 @@
 									return false;
 								}
 
-								// if taskbar is not draggable between edges,
-								// take the original stick
+								// if taskbar is not draggable between edges, take the original stick
+								// noinspection JSUnfilteredForInLoop
 								classes[i] = options.verticalStick.replace(/(left|right)/, '');
 							} else {
-								// if taskbar is draggable between edges,
-								// rely on mouse position
+								// if taskbar is draggable between edges rely on mouse position
+								// noinspection JSUnfilteredForInLoop
 								classes[i] = requestedStick;
 							}
 						}
@@ -4547,7 +4546,7 @@
 					hour = 12;
 				}
 
-				return String(hour);
+				return hour + '';
 			};
 
 			// noinspection JSCheckFunctionSignatures
