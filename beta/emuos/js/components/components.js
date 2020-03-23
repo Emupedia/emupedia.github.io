@@ -18,7 +18,7 @@
 	$sys.api.fetch('css/components/themes/win9x/panel.css', (e, style) => {
 		const Panel = {
 			render: () => html`
-				<slot name="content">Content</slot>
+				<slot name="panel-content">Panel</slot>
 			`.style(style)
 		};
 
@@ -28,7 +28,13 @@
 	$sys.api.fetch('css/components/themes/win9x/button.css', (e, style) => {
 		const Button = {
 			render: () => html`
-				<button type="button"><emuos-panel><span slot="content">Test</span></emuos-panel></button>
+				<button type="button">
+					<emuos-panel>
+						<span slot="panel-content">
+							<slot name="button-text">Button</slot>
+						</span>
+					</emuos-panel>
+				</button>
 			`.style(style)
 		};
 
@@ -38,8 +44,7 @@
 	$sys.api.fetch('css/components/themes/win9x/titlebar.css', (e, style) => {
 		const TitleBar = {
 			render: () => html`
-				<slot name="title">Title</slot>
-				<slot name="content">Content</slot>
+				<slot name="titlebar-content">Title</slot>
 			`.style(style)
 		};
 
@@ -50,10 +55,14 @@
 		const Window = {
 			render: () => html`
 				<emuos-panel>
-					<div slot="content">
+					<div slot="panel-content">
 						<emuos-titlebar>
-							<span slot="title">New clock settings</span>
-							<emuos-button id="close" class="disabled">x</emuos-button>
+							<span slot="titlebar-content">
+								<span>New clock settings</span>
+								<emuos-button id="close" class="disabled">
+									<span slot="button-text">x</span>
+								</emuos-button>
+							</span>
 						</emuos-titlebar>
 					</div>
 				</emuos-panel>
@@ -66,7 +75,15 @@
 	$sys.api.fetch('css/components/themes/win9x/taskbar.css', (e, style) => {
 		const Taskbar = {
 			render: () => html`
-				<emuos-button id="start">Start</emuos-button>
+				<emuos-button id="start">
+					<span slot="button-text">Start</span>
+				</emuos-button>
+				<emuos-button id="a" class="down">
+					<span slot="button-text">A</span>
+				</emuos-button>
+				<emuos-button id="b">
+					<span slot="button-text">B</span>
+				</emuos-button>
 			`.style(style)
 		};
 
@@ -76,7 +93,8 @@
 	$sys.api.fetch('css/components/themes/win9x/desktop.css', (e, style) => {
 		const Desktop = {
 			render: () => html`
-				<emuos-button>Start</emuos-button>
+				<emuos-window></emuos-window>
+				<emuos-taskbar class="bottom"></emuos-taskbar>
 			`.style(style)
 		};
 

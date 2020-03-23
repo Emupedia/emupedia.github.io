@@ -31,10 +31,34 @@
 .theme-win9x .emuos-desktop-icon.ui-draggable-dragging span,
 .theme-win9x .emuos-desktop-icon.ui-selecting span,
 .theme-win9x .emuos-desktop-icon.ui-selected span {
+	position: relative;
 	background-color: #000080;
 	color: #fff;
+}
+
+.theme-win9x .emuos-desktop-icon.ui-sortable-helper span:after,
+.theme-win9x .emuos-desktop-icon.ui-draggable-dragging span:after,
+.theme-win9x .emuos-desktop-icon.ui-selecting span:after,
+.theme-win9x .emuos-desktop-icon.ui-selected span:after {
+	position: absolute;
+	display: block;
+	content: '';
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
 	outline: 1px dotted #ffff7f;
 	outline-offset: -1px;
+}
+
+@supports (mix-blend-mode: difference) {
+	.theme-win9x .emuos-desktop-icon.ui-sortable-helper span:after,
+	.theme-win9x .emuos-desktop-icon.ui-draggable-dragging span:after,
+	.theme-win9x .emuos-desktop-icon.ui-selecting span:after,
+	.theme-win9x .emuos-desktop-icon.ui-selected span:after {
+		outline-color: #fff;
+		mix-blend-mode: difference;
+	}
 }
 
 .theme-win9x .emuos-desktop-icon.ui-sortable-helper i,

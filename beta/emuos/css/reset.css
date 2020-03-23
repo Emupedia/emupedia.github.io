@@ -69,6 +69,12 @@ canvas:fullscreen {
 }
 
 .ui-selectable-helper {
-	border: 1px dotted white;
-	mix-blend-mode: difference;
+	border-color: #ffff7f;
+}
+
+@supports (mix-blend-mode: difference) {
+	.ui-selectable-helper {
+		border-color: #fff;
+		mix-blend-mode: difference;
+	}
 }

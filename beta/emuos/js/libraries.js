@@ -8,11 +8,11 @@
 
 	global['$sys']['lib'] = {
 		'babel-standalone': [
-				'libraries/babel-standalone-7.8.8.min',
-				'/beta/emuos/js/libraries/babel-standalone-7.8.8.min',
-				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.8.8.min',
-				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.8.8.min',
-				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.8.8.min'
+				'libraries/babel-standalone-7.9.3.min',
+				'/beta/emuos/js/libraries/babel-standalone-7.9.3.min',
+				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.9.3.min',
+				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.9.3.min',
+				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.9.3.min'
 		],
 		'bootstrap': [
 				'libraries/bootstrap-4.4.1.min',
@@ -232,11 +232,11 @@
 				'//emuos.org/beta/emuos/js/libraries/hybrids-4.1.6.min'
 		],
 		'i18next': [
-				'libraries/i18next-19.3.2.min',
-				'/beta/emuos/js/libraries/i18next-19.3.2.min',
-				'//emupedia.net/beta/emuos/js/libraries/i18next-19.3.2.min',
-				'//emuos.net/beta/emuos/js/libraries/i18next-19.3.2.min',
-				'//emuos.org/beta/emuos/js/libraries/i18next-19.3.2.min'
+				'libraries/i18next-19.3.3.min',
+				'/beta/emuos/js/libraries/i18next-19.3.3.min',
+				'//emupedia.net/beta/emuos/js/libraries/i18next-19.3.3.min',
+				'//emuos.net/beta/emuos/js/libraries/i18next-19.3.3.min',
+				'//emuos.org/beta/emuos/js/libraries/i18next-19.3.3.min'
 		],
 		'jquery-1.x': [
 				'libraries/jquery-1.12.4.min',
@@ -343,69 +343,6 @@
 				'//emuos.net/beta/emuos/js/libraries/jszip-3.2.2.min',
 				'//emuos.org/beta/emuos/js/libraries/jszip-3.2.2.min'
 		],
-		'lightgallery': [
-				'libraries/lightgallery-1.6.12.min',
-				'/beta/emuos/js/libraries/lightgallery-1.6.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/lightgallery-1.6.12.min',
-				'//emuos.net/beta/emuos/js/libraries/lightgallery-1.6.12.min',
-				'//emuos.org/beta/emuos/js/libraries/lightgallery-1.6.12.min'
-		],
-		'lightgallery-autoplay': [
-				'libraries/lightgallery-autoplay-1.6.12.min',
-				'/beta/emuos/js/libraries/lightgallery-autoplay-1.6.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/lightgallery-autoplay-1.6.12.min',
-				'//emuos.net/beta/emuos/js/libraries/lightgallery-autoplay-1.6.12.min',
-				'//emuos.org/beta/emuos/js/libraries/lightgallery-autoplay-1.6.12.min'
-		],
-		'lightgallery-fullscreen': [
-				'libraries/lightgallery-fullscreen-1.6.12.min',
-				'/beta/emuos/js/libraries/lightgallery-fullscreen-1.6.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/lightgallery-fullscreen-1.6.12.min',
-				'//emuos.net/beta/emuos/js/libraries/lightgallery-fullscreen-1.6.12.min',
-				'//emuos.org/beta/emuos/js/libraries/lightgallery-fullscreen-1.6.12.min'
-		],
-		'lightgallery-hash': [
-				'libraries/lightgallery-hash-1.6.12.min',
-				'/beta/emuos/js/libraries/lightgallery-hash-1.6.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/lightgallery-hash-1.6.12.min',
-				'//emuos.net/beta/emuos/js/libraries/lightgallery-hash-1.6.12.min',
-				'//emuos.org/beta/emuos/js/libraries/lightgallery-hash-1.6.12.min'
-		],
-		'lightgallery-pager': [
-				'libraries/lightgallery-pager-1.6.12.min',
-				'/beta/emuos/js/libraries/lightgallery-pager-1.6.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/lightgallery-pager-1.6.12.min',
-				'//emuos.net/beta/emuos/js/libraries/lightgallery-pager-1.6.12.min',
-				'//emuos.org/beta/emuos/js/libraries/lightgallery-pager-1.6.12.min'
-		],
-		'lightgallery-share': [
-				'libraries/lightgallery-share-1.6.12.min',
-				'/beta/emuos/js/libraries/lightgallery-share-1.6.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/lightgallery-share-1.6.12.min',
-				'//emuos.net/beta/emuos/js/libraries/lightgallery-share-1.6.12.min',
-				'//emuos.org/beta/emuos/js/libraries/lightgallery-share-1.6.12.min'
-		],
-		'lightgallery-thumbnail': [
-				'libraries/lightgallery-thumbnail-1.6.12.min',
-				'/beta/emuos/js/libraries/lightgallery-thumbnail-1.6.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/lightgallery-thumbnail-1.6.12.min',
-				'//emuos.net/beta/emuos/js/libraries/lightgallery-thumbnail-1.6.12.min',
-				'//emuos.org/beta/emuos/js/libraries/lightgallery-thumbnail-1.6.12.min'
-		],
-		'lightgallery-video': [
-				'libraries/lightgallery-video-1.6.12.min',
-				'/beta/emuos/js/libraries/lightgallery-video-1.6.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/lightgallery-video-1.6.12.min',
-				'//emuos.net/beta/emuos/js/libraries/lightgallery-video-1.6.12.min',
-				'//emuos.org/beta/emuos/js/libraries/lightgallery-video-1.6.12.min'
-		],
-		'lightgallery-zoom': [
-				'libraries/lightgallery-zoom-1.6.12.min',
-				'/beta/emuos/js/libraries/lightgallery-zoom-1.6.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/lightgallery-zoom-1.6.12.min',
-				'//emuos.net/beta/emuos/js/libraries/lightgallery-zoom-1.6.12.min',
-				'//emuos.org/beta/emuos/js/libraries/lightgallery-zoom-1.6.12.min'
-		],
 		'lightslider': [
 				'libraries/lightslider-1.1.6.min',
 				'/beta/emuos/js/libraries/lightslider-1.1.6.min',
@@ -491,11 +428,11 @@
 				'//emuos.org/beta/emuos/js/libraries/phaser-arcade-physics-3.22.0.min'
 		],
 		'polyfill-es6-custom-elements': [
-				'libraries/polyfill-es6-custom-elements-1.4.0.min',
-				'/beta/emuos/js/libraries/polyfill-es6-custom-elements-1.4.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/polyfill-es6-custom-elements-1.4.0.min',
-				'//emuos.net/beta/emuos/js/libraries/polyfill-es6-custom-elements-1.4.0.min',
-				'//emuos.org/beta/emuos/js/libraries/polyfill-es6-custom-elements-1.4.0.min'
+				'libraries/polyfill-es6-custom-elements-1.4.1.min',
+				'/beta/emuos/js/libraries/polyfill-es6-custom-elements-1.4.1.min',
+				'//emupedia.net/beta/emuos/js/libraries/polyfill-es6-custom-elements-1.4.1.min',
+				'//emuos.net/beta/emuos/js/libraries/polyfill-es6-custom-elements-1.4.1.min',
+				'//emuos.org/beta/emuos/js/libraries/polyfill-es6-custom-elements-1.4.1.min'
 		],
 		'polyfill-es6-custom-event': [
 				'libraries/polyfill-es6-custom-event-1.0.7',
@@ -512,11 +449,11 @@
 				'//emuos.org/beta/emuos/js/libraries/polyfill-es6-fetch-3.0.0'
 		],
 		'polyfill-es6-html-imports': [
-				'libraries/polyfill-es6-html-imports-1.2.3.min',
-				'/beta/emuos/js/libraries/polyfill-es6-html-imports-1.2.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/polyfill-es6-html-imports-1.2.3.min',
-				'//emuos.net/beta/emuos/js/libraries/polyfill-es6-html-imports-1.2.3.min',
-				'//emuos.org/beta/emuos/js/libraries/polyfill-es6-html-imports-1.2.3.min'
+				'libraries/polyfill-es6-html-imports-1.2.4.min',
+				'/beta/emuos/js/libraries/polyfill-es6-html-imports-1.2.4.min',
+				'//emupedia.net/beta/emuos/js/libraries/polyfill-es6-html-imports-1.2.4.min',
+				'//emuos.net/beta/emuos/js/libraries/polyfill-es6-html-imports-1.2.4.min',
+				'//emuos.org/beta/emuos/js/libraries/polyfill-es6-html-imports-1.2.4.min'
 		],
 		'polyfill-es6-promise': [
 				'libraries/polyfill-es6-promise-4.2.8.min',
@@ -526,11 +463,11 @@
 				'//emuos.org/beta/emuos/js/libraries/polyfill-es6-promise-4.2.8.min'
 		],
 		'polyfill-es6-web-components': [
-				'libraries/polyfill-es6-web-components-2.4.2.min',
-				'/beta/emuos/js/libraries/polyfill-es6-web-components-2.4.2.min',
-				'//emupedia.net/beta/emuos/js/libraries/polyfill-es6-web-components-2.4.2.min',
-				'//emuos.net/beta/emuos/js/libraries/polyfill-es6-web-components-2.4.2.min',
-				'//emuos.org/beta/emuos/js/libraries/polyfill-es6-web-components-2.4.2.min'
+				'libraries/polyfill-es6-web-components-2.4.3.min',
+				'/beta/emuos/js/libraries/polyfill-es6-web-components-2.4.3.min',
+				'//emupedia.net/beta/emuos/js/libraries/polyfill-es6-web-components-2.4.3.min',
+				'//emuos.net/beta/emuos/js/libraries/polyfill-es6-web-components-2.4.3.min',
+				'//emuos.org/beta/emuos/js/libraries/polyfill-es6-web-components-2.4.3.min'
 		],
 		'polyfill-es7-babel-polyfill': [
 				'libraries/polyfill-es7-babel-polyfill-7.8.7.min',

@@ -125,12 +125,34 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					libraries['babel-standalone'] = 'babel-standalone-' + version + '.min';
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/babel.js', install_directory + libraries_directory + 'babel-standalone-' + version + '.js', copy_options, (error) => {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + 'babel-standalone-' + version + '.min.js',
+						from: '(function(e){"use strict";',
+						to: '(function(e){'
+					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							log.log(dependency + ' version ' + version + ' installed!');
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/babel.js', install_directory + libraries_directory + 'babel-standalone-' + version + '.js', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									// noinspection JSValidateTypes
+									replace({
+										files: install_directory + libraries_directory + 'babel-standalone-' + version + '.js',
+										from: '(function (exports) { \'use strict\';',
+										to: '(function (exports) {'
+									}, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
 						}
 					});
 				}
