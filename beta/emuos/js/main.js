@@ -166,7 +166,7 @@
 					win9x: 'theme-win9x'
 				},
 				theme: 'theme-win9x',
-				icons: [] //desktop.icons
+				icons: desktop.icons
 			});
 		});
 	});

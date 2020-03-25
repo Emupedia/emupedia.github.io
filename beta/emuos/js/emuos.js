@@ -36,424 +36,7 @@
 		self.disclaimer = '<br /><br />Disclaimer<hr />This software does not represent in anyway the original product, it only represents an attempt to recreate the original look &amp; feel of the product using modern web technologies for educational and digital archiving purposes.<br /><br />The author(s) and/or any of it\'s maintainers are in no way associated with or endorsed by the copyright holders.';
 		self.disclaimer_abandoned = '<br /><br />Disclaimer<hr />This software does not represent in anyway the original product, it only represents an attempt to recreate the original look &amp; feel of the product using modern web technologies for educational and digital archiving purposes, because the original product no longer works on modern computer hardware without modifications.<br /><br />The author(s) and/or any of it\'s maintainers are in no way associated with or endorsed by the copyright holders.';
 
-		self.options = {
-			theme: 'theme-win3x',
-			themes: {
-				basic: 'theme-basic',
-				win3x: 'theme-win3x',
-				win9x: 'theme-win9x'
-			},
-			icons: [{
-				name: 'EmuOS v2.0',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/emupedia',
-				link: 'boot.html',
-				width: 824,
-				height: 624
-			} , {
-				name: 'GitHub Project',
-				title: 'External Website',
-				icon: 'images/icons/desktop/github',
-				link: 'https://github.com/Emupedia/emupedia.github.io/',
-				target: '_blank',
-				shortcut: true
-			} , {
-				name: 'EmuChat',
-				icon: 'images/icons/desktop/emuchat',
-				link: root + '/emupedia-app-emuchat/',
-				width: 900,
-				height: 480,
-				singleinstance: true
-			} , {
-				name: 'Discord',
-				title: 'External Website',
-				icon: 'images/icons/desktop/discord',
-				link: 'https://e.widgetbot.io/channels/510149138491506688/604419869345185884/',
-				credits: 'Website: <a href="https://widgetbot.io" target="_blank">widgetbot.io</a>',
-				width: 900,
-				height: 480,
-				shortcut: true,
-				singleinstance: true
-			} , {
-				name: 'Windows 93',
-				title: 'External Website',
-				icon: 'images/icons/desktop/windows93',
-				link: 'https://v1.windows93.net/',
-				credits: 'Website: <a href="https://windows93.net" target="_blank">windows93.net</a><br /><br />Author(s): <a href="http://jankenpopp.com" target="_blank">Jankenpopp</a> &amp; <a href="http://zombect.ro" target="_blank">Zombectro</a><br />License: <a href="https://www.windows93.net/#!/c/TOS.html" target="_blank">CC BY-NC 4.0</a>',
-				width: 960,
-				height: 734,
-				shortcut: true
-			} , {
-				name: '98.js',
-				title: 'External Website',
-				icon: 'images/icons/desktop/98.js',
-				link: 'https://98.js.org/',
-				credits: 'Website: <a href="https://98.js.org" target="_blank">98.js.org</a><br /><br />Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/98" target="_blank">github.com/1j01/98</a>' + self.disclaimer_abandoned,
-				width: 960,
-				height: 713,
-				shortcut: true
-			} , {
-				name: 'Visual Studio Code',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/visual-studio-code',
-				link: root + '/emupedia-app-vscode/',
-				credits: 'Website: <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a><br /><br />Author: <a href="https://github.com/Microsoft" target="_blank">github.com/Microsoft</a><br />Repository: <a href="https://github.com/Microsoft/vscode" target="_blank">github.com/Microsoft/vscode</a><br />License: <a href="https://github.com/microsoft/vscode/blob/master/LICENSE.txt" target="_blank">MIT</a>',
-				width: 900,
-				height: 480
-			} , {
-				name: 'Sandbox',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/sandbox',
-				link: root + '/emupedia-app-sandbox/?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=/emupedia-app-romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
-				width: 900,
-				height: 480
-			} , {
-				name: 'Microsoft Solitaire Collection',
-				title: 'External Website',
-				icon: 'images/icons/desktop/microsoft-solitaire',
-				link: 'https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2019/20190729T121300_1.5.4.1_release_v0001_9af64392_msn/solitaire/index.html?hostingEnvironment=zone',
-				credits: 'Website: <a href="https://zone.msn.com/en/mssolitairecollection/default.htm" target="_blank">zone.msn.com/en/mssolitairecollection</a>',
-				width: 960,
-				height: 540,
-				shortcut: true
-			} , {
-				name: 'Microsoft Mahjong',
-				title: 'External Website',
-				icon: 'images/icons/desktop/microsoft-mahjong',
-				link: 'https://cdn.zone.msn.com/assets/games/microsoftmahjong/2019/20190805T180800_1.0.2_release_2019_002_e5886ede_msn/game.html?hostingEnvironment=zone',
-				credits: 'Website: <a href="https://zone.msn.com/en/msmahjong/default.htm" target="_blank">zone.msn.com/en/msmahjong</a>',
-				width: 960,
-				height: 540,
-				shortcut: true
-			} , {
-				name: 'Microsoft Ultimate Word Games',
-				title: 'External Website',
-				icon: 'images/icons/desktop/microsoft-crosswords',
-				link: 'https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/2019/20190821T095404_1.0.5_features_2019_NameChangeToWordTwister_f7862a8_msn/word-games/game.html?game=crossword&hostingEnvironment=zone',
-				credits: 'Website: <a href="https://zone.msn.com/en/msultimateword/default.htm" target="_blank">zone.msn.com/en/msultimateword</a>',
-				width: 960,
-				height: 552,
-				shortcut: true
-			} , {
-				name: 'Cookie Clicker',
-				title: 'External Website',
-				icon: 'images/icons/desktop/cookie-clicker',
-				link: root + '/emupedia-game-cookie-clicker/',
-				credits: 'Website: <a href="https://orteil.dashnet.org/cookieclicker/" target="_blank">orteil.dashnet.org/cookieclicker</a><br /><br />Author(s): <a href="https://orteil.dashnet.org/" target="_blank">Orteil</a> &amp; <a href="https://orteil.dashnet.org/" target="_blank">Opti</a>',
-				width: 1090,
-				height: 600,
-				shortcut: true
-			} , {
-				name: 'Flappy Bird',
-				title: 'External Website',
-				icon: 'images/icons/desktop/flappy-bird',
-				link: root + '/emupedia-game-flappy-bird/',
-				credits: 'Website: <a href="https://playcanv.as/p/2OlkUaxF/" target="_blank">playcanvas.com</a><br /><br />Original project<hr />Website: <a href="https://www.dotgears.com/apps/app_flappy.html" target="_blank">dotgears.com</a><br />Copyright: .GEARS' + self.disclaimer,
-				width: 432,
-				height: 600,
-				shortcut: true
-			} , {
-				name: 'Geometry Dash',
-				title: 'External Website',
-				icon: 'images/icons/desktop/geometry-dash',
-				link: root + '/emupedia-game-geometry-dash/',
-				credits: 'Website: <a href="https://scratch.mit.edu/search/projects?q=Geometry+Dash" target="_blank">scratch.mit.edu</a><br /><br />Original project<hr />Website: <a href="http://www.robtopgames.com" target="_blank">robtopgames.com</a><br />Copyright: RobTop Games' + self.disclaimer,
-				width: 480,
-				height: 392,
-				shortcut: true
-				// beta: true
-			} , {
-				name: 'agar.io',
-				title: 'External Website',
-				icon: 'images/icons/desktop/agar.io',
-				link: 'https://agasio.herokuapp.com/',
-				credits: 'Website: <a href="https://agasio.herokuapp.com" target="_blank">agasio.herokuapp.com</a><br /><br />Original project<hr />Website: <a href="https://agar.io" target="_blank">agar.io</a><br />Copyright: Miniclip' + self.disclaimer,
-				width: 900,
-				height: 600,
-				shortcut: true
-				// beta: true
-			} , {
-				name: 'Raptor',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/raptor',
-				link: root + '/emupedia-game-raptor/',
-				credits: 'Author: <a href="https://github.com/robgietema" target="_blank">github.com/robgietema</a><br />Repository: <a href="https://github.com/robgietema/raptor" target="_blank">github.com/robgietema/raptor</a><br /><br />All other assets<hr />Copyright Apogee Software' + self.disclaimer_abandoned,
-				width: 640,
-				height: 400
-				// prototype: true
-			} , {
-				name: 'Wings 2.0',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/wings2',
-				link: root + '/emupedia-game-wings2/',
-				credits: 'Author: <a href="https://github.com/ZaDarkSide" target="_blank">github.com/ZaDarkSide</a><br /><br />License: 😁 Permission granted from the author(s) 👍',
-				width: 900,
-				height: 480
-				// prototype: true
-			} , {
-				name: 'Worms 2',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/worms2',
-				link: root + '/emupedia-game-worms2/',
-				credits: 'Author: <a href="https://github.com/SFera" target="_blank">github.com/SFera</a><br /><br />License: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Team17' + self.disclaimer_abandoned,
-				width: 900,
-				height: 480
-				// prototype: true
-			} , {
-				name: 'Biolab Disaster',
-				icon: 'images/icons/desktop/biolab-disaster',
-				link: root + '/emupedia-game-biolab-disaster/',
-				credits: 'Website: <a href="https://playbiolab.com" target="_blank">playbiolab.com</a><br /><br />Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br /><br />License: 😁 Permission granted from the author(s) 👍',
-				width: 720,
-				height: 480
-			} , {
-				name: 'Super Blob Blaster',
-				icon: 'images/icons/desktop/super-blob-blaster',
-				link: root + '/emupedia-game-super-blob-blaster/',
-				credits: 'Website: <a href="https://phoboslab.org/twopointfive/" target="_blank">phoboslab.org/twopointfive</a><br /><br />Author: <a href="https://github.com/phoboslab" target="_blank">github.com/phoboslab</a><br />Repository: <a href="https://github.com/phoboslab/twopointfive" target="_blank">github.com/phoboslab/twopointfive</a><br />License: <a href="https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE" target="_blank">MIT</a>',
-				width: 720,
-				height: 480
-			} , {
-				name: 'Pac-Man',
-				icon: 'images/icons/desktop/pac-man',
-				link: root + '/emupedia-game-pac-man/',
-				credits: 'Website: <a href="https://pacman-e281c.firebaseapp.com/" target="_blank">pacman-e281c.firebaseapp.com</a><br /><br />Author: <a href="https://github.com/luciopanepinto" target="_blank">github.com/luciopanepinto</a><br />Repository: <a href="https://github.com/luciopanepinto/pacman" target="_blank">github.com/luciopanepinto/pacman</a><br />License: <a href="https://github.com/luciopanepinto/pacman/blob/master/LICENSE" target="_blank">GPLv3</a>',
-				width: 1025,
-				height: 715
-			} , {
-				name: 'Clippy',
-				icon: 'images/icons/desktop/clippy'
-			} , {
-				name: 'eSheep',
-				icon: 'images/icons/desktop/esheep'
-			} , {
-				name: 'SkiFree',
-				icon: 'images/icons/desktop/skifree',
-				link: root + '/emupedia-game-skifree/',
-				credits: 'Website: <a href="http://basicallydan.github.io/skifree.js/" target="_blank">basicallydan.github.io/skifree.js</a><br /><br />Author: <a href="https://github.com/basicallydan" target="_blank">github.com/basicallydan</a><br />Repository: <a href="https://github.com/basicallydan/skifree.js" target="_blank">github.com/basicallydan/skifree.js</a><br />License: <a href="https://github.com/basicallydan/skifree.js/blob/master/license.md" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright <a href="http://ski.ihoc.net/" target="_blank">Chris Pirih</a>' + self.disclaimer_abandoned,
-				width: 640,
-				height: 480
-			} , {
-				name: 'ASCIICKER',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/asciicker',
-				link: root + '/emupedia-demo-asciicker/',
-				credits: 'Website: <a href="http://asciicker.com/" target="_blank">asciicker.com</a><br /><br />Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br /><br />License: 😁 Permission granted from the author(s) 👍',
-				width: 640,
-				height: 480
-				// demo: true
-			} , {
-				name: 'ASCII PATROL',
-				icon: 'images/icons/desktop/ascii-patrol',
-				link: root + '/emupedia-game-ascii-patrol/',
-				credits: 'Website: <a href="https://ascii-patrol.com/" target="_blank">ascii-patrol.com</a><br /><br />Author: <a href="https://github.com/msokalski" target="_blank">github.com/msokalski</a><br />Repository: <a href="https://github.com/msokalski/ascii-patrol" target="_blank">github.com/msokalski/ascii-patrol</a><br />License: <a href="https://github.com/msokalski/ascii-patrol/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />Additional license: 😁 Permission granted from the author(s) 👍',
-				width: 900,
-				height: 480
-			} , {
-				name: '3D Spatial Audio',
-				icon: 'images/icons/desktop/joystick',
-				link: root + '/emupedia-demo-3d-spatial-audio/',
-				credits: 'Website: <a href="https://howlerjs.com/#spatial" target="_blank">howlerjs.com/#spatial</a><br /><br />Author: <a href="https://github.com/goldfire" target="_blank">github.com/goldfire</a><br />Repository: <a href="https://github.com/goldfire/howler.js/tree/master/examples/3d" target="_blank">github.com/goldfire/howler.js</a><br />License: <a href="https://github.com/goldfire/howler.js/blob/master/LICENSE.md" target="_blank">MIT</a>',
-				width: 900,
-				height: 480
-				// demo: true
-			} , {
-				name: 'Voxel Space',
-				icon: 'images/icons/desktop/joystick',
-				link: root + '/emupedia-demo-voxel-space/',
-				credits: 'Website: <a href="https://s-macke.github.io/VoxelSpace/VoxelSpace.html" target="_blank">s-macke.github.io/VoxelSpace</a><br /><br />Author: <a href="https://github.com/s-macke" target="_blank">github.com/s-macke</a><br />Repository: <a href="https://github.com/s-macke/VoxelSpace" target="_blank">github.com/s-macke/VoxelSpace</a><br />License: <a href="https://github.com/s-macke/VoxelSpace/blob/master/LICENSE" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright THQ Nordic (formerly NovaLogic)',
-				width: 900,
-				height: 480
-				// demo: true
-			} , {
-				name: '8-bit Palette Color Cycling',
-				icon: 'images/icons/desktop/joystick',
-				link: root + '/emupedia-app-8-bit-palette-color-cycling/',
-				credits: 'Website: <a href="http://effectgames.com/demos/canvascycle/" target="_blank">effectgames.com/demos/canvascycle</a><br /><br />Author: <a href="https://github.com/jhuckaby" target="_blank">github.com/jhuckaby</a><br />Source Code: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">effectgames.com</a><br />License: <a href="http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6" target="_blank">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href="http://www.markferrari.com/" target="_blank">Mark J. Ferrari</a>',
-				width: 900,
-				height: 550
-				// demo: true
-			} , {
-				name: 'RomCenter',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/romcenter',
-				link: root + '/emupedia-app-romcenter/',
-				credits: 'HTML5 Port<hr />Author: Emupedia<br /><br />Original project<hr />Website: <a href="https://www.romcenter.com" target="_blank">romcenter.com</a><br /><br />Author: Eric Bole-Feysot',
-				width: 900,
-				height: 480
-				// prototype: true
-			} , {
-				name: 'DOSBox',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/dosbox',
-				link: root + '/emupedia-app-dosbox/',
-				credits: 'JS-DOS<hr />Website: <a href="https://js-dos.com/" target="_blank">js-dos.com</a><br /><br />Author: <a href="https://github.com/caiiiycuk" target="_blank">github.com/caiiiycuk</a><br />Repository: <a href="https://github.com/caiiiycuk/js-dos" target="_blank">github.com/caiiiycuk/js-dos</a><br />License: <a href="https://github.com/db48x/emularity/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />Emularity<hr />Author: <a href="https://github.com/db48x" target="_blank">github.com/db48x</a><br />Repository: <a href="https://github.com/db48x/emularity" target="_blank">github.com/db48x/emularity</a><br />License: <a href="https://github.com/db48x/emularity/blob/master/LICENSE" target="_blank">GPLv3</a><br /><br />HTML5 Port<hr />Author: <a href="https://github.com/dreamlayers" target="_blank">github.com/dreamlayers</a><br />Repository: <a href="https://github.com/dreamlayers/em-dosbox" target="_blank">github.com/dreamlayers/em-dosbox</a><br />License: <a href="https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING" target="_blank">GPLv2</a><br /><br />Original Project<hr />Website: <a href="https://dosbox.com/" target="_blank">dosbox.com</a><br /><br />Author(s): <a href="https://sourceforge.net/projects/dosbox" target="_blank">sourceforge.net/projects/dosbox</a><br />Repository: <a href="https://sourceforge.net/p/dosbox/code-0/HEAD/tree" target="_blank">sourceforge.net/p/dosbox</a><br />License: <a href="https://sourceforge.net/projects/dosbox" target="_blank">GPLv2</a>',
-				width: 640,
-				height: 422
-			} , {
-				name: 'Street Fighter Alpha',
-				altname: 'Street Fighter Alpha: Warriors\' Dreams',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/street-fighter/' + function() {
-					var icons = [
-						'akuma',
-						'balrog',
-						'blanka',
-						'chunli',
-						'dhalsim',
-						'evilryu',
-						'ken',
-						'makoto',
-						'ryu',
-						'sagat',
-						'sakura',
-						'zangief'
-					];
-
-					return icons[Math.floor(Math.random() * icons.length)];
-				}(),
-				link: root + '/emupedia-game-street-fighter-alpha/',
-				credits: 'Website: <a href="https://gamedev8.github.io/js-sfa/default.htm" target="_blank">gamedev8.github.io/js-sfa</a><br /><br />Author: <a href="https://github.com/gamedev8" target="_blank">github.com/gamedev8</a><br />Repository: <a href="https://github.com/gamedev8/js-sfa" target="_blank">github.com/gamedev8/js-sfa</a><br /><br />All other assets<hr />Copyright Capcom' + self.disclaimer_abandoned,
-				width: 1068,
-				height: 576
-				// demo: true
-			} , {
-				name: 'Wolfenstein 3D',
-				icon: 'images/icons/desktop/wolfenstein-3d',
-				link: root + ($sys.feature['CANVAS'] ? '/emupedia-game-wolfenstein-3d-canvas' : '/emupedia-game-wolfenstein-3d') + '/',
-				credits: 'HTML5 Port<hr />Website: <a href="http://users.atw.hu/wolf3d/" target="_blank">users.atw.hu/wolf3d</a><br /><br />Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />License: <a href="http://users.atw.hu/wolf3d/COPYING.txt" target="_blank">GPLv2</a><br /><br />HTML Port<hr />Author: <a href="https://github.com/id-Software" target="_blank">github.com/id-Software</a><br />Repository: <a href="https://github.com/id-Software/wolf3d-browser" target="_blank">github.com/id-Software/wolf3d-browser</a><br />License: <a href="https://github.com/id-Software/wolf3d-browser/blob/master/COPYING.txt" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
-				width: $sys.feature['CANVAS'] ? 960 : 640,
-				height: $sys.feature['CANVAS'] ? 600 : 400
-			} , {
-				name: 'Doom 1',
-				icon: 'images/icons/desktop/doom1',
-				link: root + '/emupedia-game-doom1/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/'),
-				credits: 'Website: <a href="https://wadcmd.com/" target="_blank">wadcmd.com</a><br /><br />Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />Repository: <a href="https://github.com/lazarv/wasm-doom" target="_blank">github.com/lazarv/wasm-doom</a><br />License: <a href="https://github.com/lazarv/wasm-doom/blob/master/COPYING.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
-				width: 640,
-				height: 400
-			} , {
-				name: 'Doom 2: Hell on Earth',
-				icon: 'images/icons/desktop/doom2',
-				link: root + '/emupedia-game-doom2/' + ($sys.feature['WEBASSEMBLY'] ? '/' : 'asmjs/'),
-				credits: 'Website: <a href="https://wadcmd.com/" target="_blank">wadcmd.com</a><br /><br />Author: <a href="https://github.com/lazarv" target="_blank">github.com/lazarv</a><br />Repository: <a href="https://github.com/lazarv/wasm-doom" target="_blank">github.com/lazarv/wasm-doom</a><br />License: <a href="https://github.com/lazarv/wasm-doom/blob/master/COPYING.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
-				width: 640,
-				height: 400
-			} , {
-				name: 'Doom 3',
-				icon: 'images/icons/desktop/doom3',
-				link: root + '/emupedia-game-doom3/index.html',
-				credits: 'Website: <a href="http://www.continuation-labs.com/projects/d3wasm/" target="_blank">continuation-labs.com/projects/d3wasm</a><br /><br />Author: <a href="https://github.com/gabrielcuvillier" target="_blank">github.com/gabrielcuvillier</a><br />Repository: <a href="https://github.com/gabrielcuvillier/d3wasm" target="_blank">github.com/gabrielcuvillier/d3wasm</a><br />License: <a href="https://github.com/gabrielcuvillier/d3wasm/blob/master/COPYING.txt" target="_blank">GPLv3</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer,
-				width: 640,
-				height: 480
-			} , {
-				name: 'Quake 1',
-				icon: 'images/icons/desktop/quake1',
-				link: root + '/emupedia-game-quake1/' + ($sys.feature['ES6'] && $sys.feature['ES7_ASYNC_AWAIT'] ? 'async.html' : 'index.html'),
-				credits: 'Author: <a href="https://github.com/triang3l" target="_blank">github.com/triang3l</a><br />Repository: <a href="https://github.com/triang3l/webquake" target="_blank">github.com/triang3l/webquake</a><br />License: <a href="https://github.com/triang3l/webquake/blob/master/GNU.md" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
-				width: 640,
-				height: 480
-			} , {
-				name: 'Quake 2',
-				icon: 'images/icons/desktop/quake2',
-				link: root + '/emupedia-game-quake2/',
-				credits: 'Website: <a href="http://quake2playn.appspot.com/" target="_blank">quake2playn.appspot.com</a><br /><br />Author: <a href="https://github.com/stefanhaustein" target="_blank">github.com/stefanhaustein</a><br />Repository: <a href="https://github.com/stefanhaustein/quake2-playn-port" target="_blank">github.com/stefanhaustein/quake2-playn-port</a><br />License: <a href="https://github.com/id-Software/Quake-2/blob/master/gnu.txt" target="_blank">GPLv2</a><br /><br />Game Engine<hr />Author(s): <a href="https://sourceforge.net/projects/jake2" target="_blank">sourceforge.net/projects/jake2</a><br />Repository: <a href="https://sourceforge.net/p/jake2/git/ci/master/tree/" target="_blank">https://sourceforge.net/p/jake2</a><br />License: <a href="https://github.com/id-Software/Quake-2/blob/master/gnu.txt" target="_blank">GPLv2</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)' + self.disclaimer_abandoned,
-				width: 640,
-				height: 480
-			} , {
-				name: 'Half-Life 1',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/half-life1',
-				link: root + '/emupedia-game-half-life1/',
-				credits: 'Author(s): <a href="https://github.com/FWGS" target="_blank">github.com/FWGS</a><br />Repository: <a href="https://github.com/FWGS/xash3d" target="_blank">github.com/FWGS/xash3d</a><br />License: <a href="https://github.com/FWGS/xash3d/blob/master/COPYING" target="_blank">GPLv3</a><br /><br />All other assets<hr />Copyright Valve Software (formerly Sierra Studios)' + self.disclaimer_abandoned,
-				width: 640,
-				height: 480
-			} , {
-				name: 'Diablo 1',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/diablo1',
-				link: root + '/emupedia-game-diablo1/',
-				credits: 'Website: <a href="https://d07riv.github.io/diabloweb/" target="_blank">d07riv.github.io/diabloweb</a><br /><br />HTML5 Port<hr />Author: <a href="https://github.com/d07RiV" target="_blank">github.com/d07RiV</a><br />Repository: <a href="https://github.com/d07RiV/diabloweb" target="_blank">github.com/d07RiV/diabloweb</a><br /><br />Game Engine<hr />Author(s): <a href="https://github.com/diasurgical/devilution#credits" target="_blank">github.com/diasurgical/devilution#credits</a><br />Repository: <a href="https://github.com/diasurgical/devilution" target="_blank">github.com/diasurgical/devilution</a><br />License: <a href="https://github.com/diasurgical/devilution/blob/master/LICENSE" target="_blank">Public domain</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Blizzard Entertainment)' + self.disclaimer_abandoned,
-				width: 640,
-				height: 480
-			} , {
-				name: 'Dark Reign: The Future of War',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/dark-reign',
-				link: root + '/emupedia-game-dark-reign/',
-				credits: 'Website: <a href="http://qmegas.info/dark-reign-html5/" target="_blank">qmegas.info/dark-reign-html5</a><br /><br />Author: <a href="https://github.com/qmegas" target="_blank">github.com/qmegas</a><br />Repository: <a href="https://github.com/qmegas/Dark-Reign---HTML5-Version" target="_blank">github.com/qmegas/Dark-Reign---HTML5-Version</a><br />License: <a href="https://github.com/qmegas/Dark-Reign---HTML5-Version/blob/master/README.md#license" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Activision) and<br />N3V Games (formerly Auran Development)' + self.disclaimer_abandoned,
-				width: 640,
-				height: 480
-			} , {
-				name: 'Command and Conquer 1',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/command-and-conquer1',
-				link: root + '/emupedia-game-command-and-conquer1/',
-				credits: 'Website: <a href="https://www.adityaravishankar.com/projects/games/command-and-conquer/" target="_blank">adityaravishankar.com/projects/games/command-and-conquer</a><br /><br />Author: <a href="https://github.com/adityaravishankar" target="_blank">github.com/adityaravishankar</a><br />Repository: <a href="https://github.com/adityaravishankar/command-and-conquer" target="_blank">github.com/adityaravishankar/command-and-conquer</a><br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)' + self.disclaimer_abandoned,
-				width: 640,
-				height: 535
-			} , {
-				name: 'Command and Conquer: Red Alert 2',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/red-alert2',
-				link: root + '/emupedia-game-ra2/',
-				credits: 'Author: Võ Thành Đạt<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)' + self.disclaimer,
-				width: 900,
-				height: 550
-			} , {
-				name: 'Minecraft',
-				title: 'Under Development',
-				icon: 'images/icons/desktop/minecraft-classic',
-				link: root + '/emupedia-game-minecraft-classic/',
-				credits: 'Website: <a href="https://classic.minecraft.net/" target="_blank">classic.minecraft.net</a><br /><br />Author: <a href="https://github.com/andyhall" target="_blank">github.com/andyhall</a><br />Repository: <a href="https://github.com/andyhall/noa" target="_blank">github.com/andyhall/noa</a><br />License: <a href="https://github.com/andyhall/noa/blob/master/LICENSE.txt" target="_blank">MIT</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)' + self.disclaimer,
-				width: 900,
-				height: 480
-			} , {
-				name: 'Winamp',
-				icon: 'images/icons/desktop/winamp-classic',
-				link: root + '/emupedia-app-winamp/',
-				credits: 'Author: <a href="https://github.com/captbaritone" target="_blank">github.com/captbaritone</a><br />Repository: <a href="https://github.com/captbaritone/webamp" target="_blank">github.com/captbaritone/webamp</a><br />License: <a href="https://github.com/captbaritone/webamp/blob/master/LICENSE.txt" target="_blank">MIT</a><br /><br />Additional license: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright AudioValley (formerly Nullsoft)' + self.disclaimer,
-				width: 275,
-				height: 354,
-				top: 'calc(50% - 165.5px)',
-				left: 'calc(50% - 174px)',
-				widget: false
-			} , {
-				name: 'Notepad',
-				icon: 'images/icons/desktop/notepad',
-				link: root + '/emupedia-app-notepad/',
-				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/98/tree/master/programs/notepad" target="_blank">github.com/1j01/98</a><br /><br />License: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
-				width: 900,
-				height: 480,
-				runonce: true
-			} , {
-				name: 'Paint',
-				icon: 'images/icons/desktop/paint',
-				link: root + '/emupedia-app-paint/',
-				credits: 'Author: <a href="https://github.com/1j01" target="_blank">github.com/1j01</a><br />Repository: <a href="https://github.com/1j01/jspaint" target="_blank">github.com/1j01/jspaint</a><br /><br />License: 😁 Permission granted from the author(s) 👍<br /><br />All other assets<hr />Copyright Microsoft' + self.disclaimer,
-				width: 900,
-				height: 480
-			} , {
-				name: 'SVG Editor',
-				title: 'External Website',
-				icon: 'images/icons/desktop/svg-editor',
-				link: root + '/emupedia-app-svg-editor/',
-				credits: 'Website: <a href="https://editor.method.ac/" target="_blank">editor.method.ac</a><br /><br />Author: <a href="https://github.com/methodofaction" target="_blank">github.com/methodofaction</a><br />Repository: <a href="https://github.com/methodofaction/Method-Draw" target="_blank">github.com/methodofaction/Method-Draw</a><br />License: <a href="https://github.com/methodofaction/Method-Draw/blob/master/LICENSE" target="_blank">MIT</a><br /><br />Original Project<hr />Author: <a href="https://github.com/SVG-Edit" target="_blank">github.com/SVG-Edit</a><br />Repository: <a href="https://github.com/SVG-Edit/svgedit" target="_blank">github.com/SVG-Edit/svgedit</a><br />License: <a href="https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt" target="_blank">MIT</a>',
-				width: 900,
-				height: 480,
-				shortcut: true
-			} , {
-				name: 'Photopea',
-				title: 'External Website',
-				icon: 'images/icons/desktop/photopea',
-				link: 'https://photopea.com/',
-				credits: 'Website: <a href="https://photopea.com/" target="_blank">photopea.com</a><br /><br />Author: <a href="https://github.com/photopea" target="_blank">github.com/photopea</a><br />Repository: <a href="https://github.com/photopea/photopea" target="_blank">github.com/photopea/photopea</a>',
-				width: 900,
-				height: 610,
-				shortcut: true
-			}]
-		};
-
-		self.options = $.extend(true, self.options, options);
+		self.options = $.extend(true, {}, options);
 
 		// noinspection FallThroughInSwitchStatementJS
 		switch (self.options.theme) {
@@ -545,11 +128,39 @@
 		for (var j in self.options.icons) {
 			// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
 			var icon_options = self.options.icons[j];
-			var href = typeof icon_options['target'] !== 'undefined' ? ' href="' + icon_options['link'] + '" target="' + icon_options['target'] + '" ' : ' href="javascript:" ';
+
+			if (typeof icon_options['requires'] === 'object') {
+				var reqs = Object.keys(icon_options['requires']);
+
+				for (req in reqs) {
+					var required = reqs[req].toUpperCase();
+
+					if (typeof $sys.feature[required] !== 'undefined') {
+						if ($sys.feature[required] === true) {
+							$.extend(true, icon_options, icon_options['requires'][reqs[req]]);
+						}
+					}
+				}
+			}
+
+			if (typeof icon_options['disclaimer_abandoned'] !== 'undefined') {
+				if (icon_options['disclaimer_abandoned'] === true) {
+					icon_options['credits'] = icon_options['credits'] + self.disclaimer_abandoned;
+				}
+			}
+
+			if (typeof icon_options['disclaimer'] !== 'undefined') {
+				if (icon_options['disclaimer'] === true) {
+					icon_options['credits'] = icon_options['credits'] + self.disclaimer;
+				}
+			}
+
+			var href = typeof icon_options['target'] !== 'undefined' ? ' href="' + (icon_options['link'].indexOf('http') === 0 ? icon_options['link'] : root + icon_options['link']) + '" target="' + icon_options['target'] + '" ' : ' href="javascript:" ';
+			var icon = typeof icon_options['icon'] !== 'undefined' ? (Array.isArray(icon_options['icon']) ? icon_options['icon'][Math.floor(Math.random() * icon_options['icon'].length)] : icon_options['icon']) : 'images/icons/desktop/joystick';
 
 			// noinspection JSUnfilteredForInLoop
 			var $icon = $('<a class="emuos-desktop-icon"'+ href + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
-							'<i class="icon overlay ribbon' + (icon_options['shortcut'] ? ' shortcut' : '') + (icon_options['prototype'] ? ' prototype' : '') + (icon_options['beta'] ? ' beta' : '') + (icon_options['new'] ? ' new' : '') + '" style="background-image: url(' + icon_options['icon'] + ($sys.browser.isIE ? '.png' : '.ico') + ');"></i>' +
+							'<i class="icon overlay ribbon' + (icon_options['shortcut'] ? ' shortcut' : '') + (icon_options['prototype'] ? ' prototype' : '') + (icon_options['beta'] ? ' beta' : '') + (icon_options['new'] ? ' new' : '') + '" style="background-image: url(' + icon  + ($sys.browser.isIE ? '.png' : '.ico') + ');"></i>' +
 							'<span>' + icon_options['name'] + '</span>' +
 						'</a>');
 
@@ -562,7 +173,7 @@
 			// noinspection JSUnfilteredForInLoop
 			if (typeof icon_options['link'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
-				$icon.data('link', icon_options['link']);
+				$icon.data('link', icon_options['link'].indexOf('http') === 0 ? icon_options['link'] : root + icon_options['link']);
 			}
 
 			// noinspection JSUnfilteredForInLoop
@@ -1049,7 +660,7 @@
 			height: 350,
 			right: '0px',
 			bottom: '28px',
-			content: '<iframe id="Chat" width="100%" height="100%" src="' + root + '/emupedia-app-emuchat/index.html" frameborder="0" allowFullscreen="allowFullscreen" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
+			content: '<iframe id="Chat" width="100%" height="100%" src="' + root + '/emupedia-app-emuchat/" frameborder="0" allowFullscreen="allowFullscreen" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
 		});
 
 		self.$html.contextmenu({
