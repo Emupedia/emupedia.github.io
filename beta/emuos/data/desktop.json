@@ -364,6 +364,24 @@
 		"width": 640,
 		"height": 535
 	} , {
+		"name": "Command and Conquer: Red Alert 2",
+		"title": "Under Development",
+		"icon": "images/icons/desktop/red-alert2",
+		"link": "/emupedia-game-ra2/",
+		"credits": "Website: <a href=\"https://ra2html5.surge.sh/\" target=\"_blank\">xproger.info/projects/OpenLara</a><br /><br />Author: Võ Thành Đạt<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)",
+		"disclaimer": true,
+		"width": 900,
+		"height": 550
+	} , {
+		"name": "Tomb Raider",
+		"title": "Under Development",
+		"icon": "images/icons/desktop/tomb-raider1",
+		"link": "/emupedia-game-tomb-raider/",
+		"credits": "Website: <a href=\"http://xproger.info/projects/OpenLara/\" target=\"_blank\">xproger.info/projects/OpenLara</a><br /><br />Author: <a href=\"https://github.com/XProger\" target=\"_blank\">github.com/XProger</a><br />Repository: <a href=\"https://github.com/XProger/OpenLara\" target=\"_blank\">github.com/XProger/OpenLara</a><br />License: <a href=\"https://github.com/XProger/OpenLara/blob/master/LICENSE\" target=\"_blank\">BSD-2-Clause</a><br /><br />Original Project<hr />Website: <a href=\"http://opentomb.github.io\" target=\"_blank\">opentomb.github.io</a><br /><br />Author: <a href=\"https://github.com/opentomb\" target=\"_blank\">github.com/opentomb</a><br />Repository: <a href=\"https://github.com/opentomb/OpenTomb\" target=\"_blank\">github.com/opentomb/OpenTomb</a><br />License: <a href=\"https://github.com/opentomb/OpenTomb/blob/master/LICENSE\" target=\"_blank\">LGPL-3.0</a><br /><br />All other assets<hr />Copyright Square Enix (formerly Eidos Interactive)",
+		"disclaimer_abandoned": true,
+		"width": 900,
+		"height": 550
+	} , {
 		"name": "Minecraft",
 		"title": "Under Development",
 		"icon": "images/icons/desktop/minecraft-classic",
