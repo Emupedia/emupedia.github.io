@@ -2241,16 +2241,35 @@
 
 			if (request) {
 				request.call(element);
+
+				setTimeout(function() {
+					element.focus();
+					var iframe = $(element).find('iframe').first().get(0);
+
+					if (iframe) {
+						iframe.contentWindow.focus();
+					}
+				}, 100);
 			}
 		},
 
 		// exits fullscreen
-		_fullscreenLeave: function() {
+		_fullscreenLeave: function(element) {
 			// noinspection JSUnresolvedVariable
 			var exit = document.exitFullscreen || document.exitFullScreen || document.webkitExitFullscreen || document.webkitExitFullScreen || document.webkitCancelFullscreen || document.webkitCancelFullScreen || document.mozCancelFullscreen || document.mozCancelFullScreen || document.mozExitFullscreen || document.mozExitFullScreen || document.msExitFullscreen || document.msExitFullScreen;
 
 			if (exit) {
 				exit.call(document);
+
+				setTimeout(function() {
+					element.focus();
+
+					var iframe = $(element).find('iframe').first().get(0);
+
+					if (iframe) {
+						iframe.contentWindow.focus();
+					}
+				}, 100);
 			}
 		},
 
@@ -2260,7 +2279,7 @@
 
 			if (self._fullscreenAvailable()) {
 				if (self._fullscreenEnabled()) {
-					self._fullscreenLeave();
+					self._fullscreenLeave(self.$window.get(0));
 				} else {
 					self._fullscreenEnter(self.$window.get(0));
 				}
