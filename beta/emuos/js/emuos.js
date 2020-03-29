@@ -769,8 +769,6 @@
 		Router.config({mode: 'hash', root: root});
 		Router.navigate('/');
 		Router.add(/(.*)/, function(route) {
-			console.log('route');
-			console.log(route);
 			for (var j in self.options.icons) {
 				// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
 				var icon_options = self.options.icons[j];
