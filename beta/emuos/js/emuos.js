@@ -1,7 +1,7 @@
-// noinspection DuplicatedCode,JSUnusedLocalSymbols
+// noinspection DuplicatedCode
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
+		define(['jquery', 'router', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
 	} else { // noinspection DuplicatedCode
 		if (typeof module === 'object' && module.exports) {
 			module.exports = function(root, jQuery) {
@@ -21,11 +21,12 @@
 			factory(jQuery);
 		}
 	}
-} (function ($, simplestorage, moment, ga, Octokat, eSheep, clippy) {
+} (function ($, Router, simplestorage, moment, ga, Octokat, eSheep, clippy) {
+	var root = location.hostname === 'localhost' ? 'https://emupedia.net' : '';
+	var hash = location.hash.toString();
+
 	var EmuOS = function (options) {
 		var self = this;
-
-		var root = location.hostname === 'localhost' ? 'https://emupedia.net' : '';
 
 		// noinspection JSUnusedGlobalSymbols
 		self.$document	= $(document);
@@ -764,6 +765,36 @@
 			self.$html.get(0).style.setProperty('--mouse-x', relX + 'px');
 			self.$html.get(0).style.setProperty('--mouse-y', relY + 'px');
 		});
+
+		Router.config({mode: 'hash', root: root});
+		Router.navigate('/');
+		Router.add(/(.*)/, function(route) {
+			console.log('route');
+			console.log(route);
+			for (var j in self.options.icons) {
+				// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
+				var icon_options = self.options.icons[j];
+
+				if (typeof icon_options['link'] !== 'undefined') {
+					if (!~icon_options['link'].indexOf('http')) {
+						var icon_link = icon_options['link'].slice(1, -1);
+
+						if (route === icon_link) {
+							self.$desktop.find('a.emuos-desktop-icon span:contains("' + icon_options['name'] + '")').first().trigger('dblclick');
+							break;
+						}
+					}
+				}
+			}
+		}).listen();
+
+		if (hash.indexOf('#') === 0) {
+			hash = hash.slice(1);
+
+			if (hash !== '') {
+				Router.navigate(hash);
+			}
+		}
 	};
 
 	// noinspection DuplicatedCode

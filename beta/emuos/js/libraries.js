@@ -8,11 +8,11 @@
 
 	global['$sys']['lib'] = {
 		'babel-standalone': [
-				'libraries/babel-standalone-7.9.3.min',
-				'/beta/emuos/js/libraries/babel-standalone-7.9.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.9.3.min',
-				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.9.3.min',
-				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.9.3.min'
+				'libraries/babel-standalone-7.9.4.min',
+				'/beta/emuos/js/libraries/babel-standalone-7.9.4.min',
+				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.9.4.min',
+				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.9.4.min',
+				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.9.4.min'
 		],
 		'bootstrap': [
 				'libraries/bootstrap-4.4.1.min',
@@ -232,11 +232,11 @@
 				'//emuos.org/beta/emuos/js/libraries/hybrids-4.1.6.min'
 		],
 		'i18next': [
-				'libraries/i18next-19.3.3.min',
-				'/beta/emuos/js/libraries/i18next-19.3.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/i18next-19.3.3.min',
-				'//emuos.net/beta/emuos/js/libraries/i18next-19.3.3.min',
-				'//emuos.org/beta/emuos/js/libraries/i18next-19.3.3.min'
+				'libraries/i18next-19.3.4.min',
+				'/beta/emuos/js/libraries/i18next-19.3.4.min',
+				'//emupedia.net/beta/emuos/js/libraries/i18next-19.3.4.min',
+				'//emuos.net/beta/emuos/js/libraries/i18next-19.3.4.min',
+				'//emuos.org/beta/emuos/js/libraries/i18next-19.3.4.min'
 		],
 		'jquery-1.x': [
 				'libraries/jquery-1.12.4.min',
@@ -566,6 +566,13 @@
 				'//emupedia.net/beta/emuos/js/emuos',
 				'//emuos.net/beta/emuos/js/emuos',
 				'//emuos.org/beta/emuos/js/emuos'
+		],
+		'router': [
+				'router',
+				'/beta/emuos/js/router',
+				'//emupedia.net/beta/emuos/js/router',
+				'//emuos.net/beta/emuos/js/router',
+				'//emuos.org/beta/emuos/js/router'
 		],
 		'filesystem': [
 				'filesystem',

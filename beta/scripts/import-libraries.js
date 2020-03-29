@@ -4058,6 +4058,7 @@ for (let i = 0; i < dependencies.length; i++) {
 						libraries['desktop'] = 'desktop';
 						libraries['emoticons'] = 'emoticons';
 						libraries['emuos'] = 'emuos';
+						libraries['router'] = 'router';
 						libraries['filesystem'] = 'filesystem';
 						libraries['lang-en'] = 'lang-en';
 						libraries['network'] = 'network';
@@ -4075,6 +4076,7 @@ for (let i = 0; i < dependencies.length; i++) {
 						libraries['socket'] = ['//ws.emupedia.net/app/u_socket_es5', '//ws.emuos.net/app/u_socket_es5', '//ws.emuos.org/app/u_socket_es5'];
 						libraries['ga'] = '//www.google-analytics.com/analytics';
 
+						// noinspection JSUnresolvedFunction
 						fs.writeFile(app_directory + js_directory + 'libraries.js',
 `// noinspection ThisExpressionReferencesGlobalObjectJS
 (function(global) {
