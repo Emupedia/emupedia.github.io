@@ -144,15 +144,24 @@
 				}
 			}
 
-			if (typeof icon_options['disclaimer_abandoned'] !== 'undefined') {
-				if (icon_options['disclaimer_abandoned'] === true) {
-					icon_options['credits'] = icon_options['credits'] + self.disclaimer_abandoned;
+			if (typeof icon_options['credits'] !== 'undefined') {
+				if (typeof icon_options['link'] !== 'undefined') {
+					if (!~icon_options['link'].indexOf('http')) {
+						var share_link = location.origin.toString() + location.pathname.toString() + '#/' + icon_options['link'].slice(1, -1);
+						icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'].slice(1, -1) + '</a><br /><br />' + icon_options['credits'];
+					}
 				}
-			}
 
-			if (typeof icon_options['disclaimer'] !== 'undefined') {
-				if (icon_options['disclaimer'] === true) {
-					icon_options['credits'] = icon_options['credits'] + self.disclaimer;
+				if (typeof icon_options['disclaimer_abandoned'] !== 'undefined') {
+					if (icon_options['disclaimer_abandoned'] === true) {
+						icon_options['credits'] += self.disclaimer_abandoned;
+					}
+				}
+
+				if (typeof icon_options['disclaimer'] !== 'undefined') {
+					if (icon_options['disclaimer'] === true) {
+						icon_options['credits'] += self.disclaimer;
+					}
 				}
 			}
 
@@ -810,7 +819,7 @@
 		var bottom		= typeof options.bottom		!== 'undefined' ? options.bottom	: null;
 		var position	= (top !== null ? 'top: ' + top + '; ' : '') + (left !== null ? 'left: ' + left + '; ' : '') + (right !== null ? 'right: ' + right + '; ' : '') + (bottom !== null ? 'bottom: ' + bottom + '; ' : '');
 
-		var widget = $('<div class="widget" style="display: ' + (hidden ? 'none' : 'block') +  '; position: absolute; ' + position + ' width: ' + width + 'px; height: ' + height + 'px;">' + content + '</div>');
+		var widget = $('<div class="emuos-widget" style="display: ' + (hidden ? 'none' : 'block') +  '; position: absolute; ' + position + ' width: ' + width + 'px; height: ' + height + 'px; z-index: 9999;">' + content + '</div>');
 
 		self.$body.append(widget);
 		self.$taskbar = $('.taskbar').first();
