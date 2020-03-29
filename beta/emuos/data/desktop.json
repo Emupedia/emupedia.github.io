@@ -391,6 +391,15 @@
 		"width": 900,
 		"height": 550
 	} , {
+		"name": "X-COM: UFO Defense",
+		"title": "Under Development",
+		"icon": "images/icons/desktop/xcom1",
+		"link": "/emupedia-game-xcom/",
+		"credits": "Website: <a href=\"https://epicport.com/en/xcom/\" target=\"_blank\">epicport.com/en/xcom</a><br /><br />Author: <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repository: <a href=\"https://github.com/caiiiycuk/epicport\" target=\"_blank\">github.com/caiiiycuk/epicport</a><br />License: <a href=\"https://github.com/caiiiycuk/epicport/blob/master/LICENSE\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Website: <a href=\"https://openxcom.org/\" target=\"_blank\">openxcom.org</a><br /><br />Author: <a href=\"https://github.com/OpenXcom\" target=\"_blank\">github.com/OpenXcom</a><br />Repository: <a href=\"https://github.com/OpenXcom/OpenXcom/\" target=\"_blank\">github.com/OpenXcom/OpenXcom</a><br />License: <a href=\"https://github.com/OpenXcom/OpenXcom/blob/master/LICENSE.txt\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright MicroProse",
+		"disclaimer_abandoned": true,
+		"width": 960,
+		"height": 600
+	} , {
 		"name": "Minecraft",
 		"title": "Under Development",
 		"icon": "images/icons/desktop/minecraft-classic",
