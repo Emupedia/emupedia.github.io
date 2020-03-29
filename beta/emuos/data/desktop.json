@@ -6,7 +6,7 @@
 		"name": "EmuOS v2.0",
 		"title": "Under Development",
 		"icon": "images/icons/desktop/emupedia",
-		"link": "boot.html",
+		"link": "/beta/emuos/boot.html",
 		"width": 824,
 		"height": 624
 	} , {
