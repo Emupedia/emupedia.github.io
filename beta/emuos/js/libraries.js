@@ -8,11 +8,11 @@
 
 	global['$sys']['lib'] = {
 		'babel-standalone': [
-				'libraries/babel-standalone-7.9.4.min',
-				'/beta/emuos/js/libraries/babel-standalone-7.9.4.min',
-				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.9.4.min',
-				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.9.4.min',
-				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.9.4.min'
+				'libraries/babel-standalone-7.9.5.min',
+				'/beta/emuos/js/libraries/babel-standalone-7.9.5.min',
+				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.9.5.min',
+				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.9.5.min',
+				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.9.5.min'
 		],
 		'bootstrap': [
 				'libraries/bootstrap-4.4.1.min',
@@ -225,18 +225,18 @@
 				'//emuos.org/beta/emuos/js/libraries/howler-spatial-2.1.3.min'
 		],
 		'hybrids': [
-				'libraries/hybrids-4.1.6.min',
-				'/beta/emuos/js/libraries/hybrids-4.1.6.min',
-				'//emupedia.net/beta/emuos/js/libraries/hybrids-4.1.6.min',
-				'//emuos.net/beta/emuos/js/libraries/hybrids-4.1.6.min',
-				'//emuos.org/beta/emuos/js/libraries/hybrids-4.1.6.min'
+				'libraries/hybrids-4.1.7.min',
+				'/beta/emuos/js/libraries/hybrids-4.1.7.min',
+				'//emupedia.net/beta/emuos/js/libraries/hybrids-4.1.7.min',
+				'//emuos.net/beta/emuos/js/libraries/hybrids-4.1.7.min',
+				'//emuos.org/beta/emuos/js/libraries/hybrids-4.1.7.min'
 		],
 		'i18next': [
-				'libraries/i18next-19.3.4.min',
-				'/beta/emuos/js/libraries/i18next-19.3.4.min',
-				'//emupedia.net/beta/emuos/js/libraries/i18next-19.3.4.min',
-				'//emuos.net/beta/emuos/js/libraries/i18next-19.3.4.min',
-				'//emuos.org/beta/emuos/js/libraries/i18next-19.3.4.min'
+				'libraries/i18next-19.4.3.min',
+				'/beta/emuos/js/libraries/i18next-19.4.3.min',
+				'//emupedia.net/beta/emuos/js/libraries/i18next-19.4.3.min',
+				'//emuos.net/beta/emuos/js/libraries/i18next-19.4.3.min',
+				'//emuos.org/beta/emuos/js/libraries/i18next-19.4.3.min'
 		],
 		'jquery-1.x': [
 				'libraries/jquery-1.12.4.min',
@@ -274,11 +274,11 @@
 				'//emuos.org/beta/emuos/js/libraries/jquery-i18next-1.2.1.min'
 		],
 		'jquery-migrate': [
-				'libraries/jquery-migrate-3.1.0.min',
-				'/beta/emuos/js/libraries/jquery-migrate-3.1.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/jquery-migrate-3.1.0.min',
-				'//emuos.net/beta/emuos/js/libraries/jquery-migrate-3.1.0.min',
-				'//emuos.org/beta/emuos/js/libraries/jquery-migrate-3.1.0.min'
+				'libraries/jquery-migrate-3.2.0.min',
+				'/beta/emuos/js/libraries/jquery-migrate-3.2.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/jquery-migrate-3.2.0.min',
+				'//emuos.net/beta/emuos/js/libraries/jquery-migrate-3.2.0.min',
+				'//emuos.org/beta/emuos/js/libraries/jquery-migrate-3.2.0.min'
 		],
 		'jquery-mousewheel': [
 				'libraries/jquery-mousewheel-3.1.13',
@@ -330,18 +330,18 @@
 				'//emuos.org/beta/emuos/js/libraries/jsonpath-1.0.2.min'
 		],
 		'jsrsasign-all': [
-				'libraries/jsrsasign-all-8.0.12.min',
-				'/beta/emuos/js/libraries/jsrsasign-all-8.0.12.min',
-				'//emupedia.net/beta/emuos/js/libraries/jsrsasign-all-8.0.12.min',
-				'//emuos.net/beta/emuos/js/libraries/jsrsasign-all-8.0.12.min',
-				'//emuos.org/beta/emuos/js/libraries/jsrsasign-all-8.0.12.min'
+				'libraries/jsrsasign-all-8.0.15.min',
+				'/beta/emuos/js/libraries/jsrsasign-all-8.0.15.min',
+				'//emupedia.net/beta/emuos/js/libraries/jsrsasign-all-8.0.15.min',
+				'//emuos.net/beta/emuos/js/libraries/jsrsasign-all-8.0.15.min',
+				'//emuos.org/beta/emuos/js/libraries/jsrsasign-all-8.0.15.min'
 		],
 		'jszip': [
-				'libraries/jszip-3.2.2.min',
-				'/beta/emuos/js/libraries/jszip-3.2.2.min',
-				'//emupedia.net/beta/emuos/js/libraries/jszip-3.2.2.min',
-				'//emuos.net/beta/emuos/js/libraries/jszip-3.2.2.min',
-				'//emuos.org/beta/emuos/js/libraries/jszip-3.2.2.min'
+				'libraries/jszip-3.4.0.min',
+				'/beta/emuos/js/libraries/jszip-3.4.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/jszip-3.4.0.min',
+				'//emuos.net/beta/emuos/js/libraries/jszip-3.4.0.min',
+				'//emuos.org/beta/emuos/js/libraries/jszip-3.4.0.min'
 		],
 		'lightslider': [
 				'libraries/lightslider-1.1.6.min',
@@ -540,11 +540,11 @@
 				'//emuos.org/beta/emuos/js/libraries/twemoji-12.1.5.min'
 		],
 		'xterm': [
-				'libraries/xterm-4.4.0.min',
-				'/beta/emuos/js/libraries/xterm-4.4.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/xterm-4.4.0.min',
-				'//emuos.net/beta/emuos/js/libraries/xterm-4.4.0.min',
-				'//emuos.org/beta/emuos/js/libraries/xterm-4.4.0.min'
+				'libraries/xterm-4.5.0.min',
+				'/beta/emuos/js/libraries/xterm-4.5.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/xterm-4.5.0.min',
+				'//emuos.net/beta/emuos/js/libraries/xterm-4.5.0.min',
+				'//emuos.org/beta/emuos/js/libraries/xterm-4.5.0.min'
 		],
 		'desktop': [
 				'desktop',

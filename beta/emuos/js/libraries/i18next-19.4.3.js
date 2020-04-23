@@ -433,6 +433,7 @@
 
     return data;
   }
+  var isIE10 = typeof window !== 'undefined' && window.navigator && window.navigator.userAgent && window.navigator.userAgent.indexOf('MSIE') > -1;
 
   var ResourceStore =
   /*#__PURE__*/
@@ -450,7 +451,10 @@
       _classCallCheck(this, ResourceStore);
 
       _this = _possibleConstructorReturn(this, _getPrototypeOf(ResourceStore).call(this));
-      EventEmitter.call(_assertThisInitialized(_this)); // <=IE10 fix (unable to call parent constructor)
+
+      if (isIE10) {
+        EventEmitter.call(_assertThisInitialized(_this)); // <=IE10 fix (unable to call parent constructor)
+      }
 
       _this.data = data || {};
       _this.options = options;
@@ -625,7 +629,10 @@
       _classCallCheck(this, Translator);
 
       _this = _possibleConstructorReturn(this, _getPrototypeOf(Translator).call(this));
-      EventEmitter.call(_assertThisInitialized(_this)); // <=IE10 fix (unable to call parent constructor)
+
+      if (isIE10) {
+        EventEmitter.call(_assertThisInitialized(_this)); // <=IE10 fix (unable to call parent constructor)
+      }
 
       copy(['resourceStore', 'languageUtils', 'pluralResolver', 'interpolator', 'backendConnector', 'i18nFormat', 'utils'], services, _assertThisInitialized(_this));
       _this.options = options;
@@ -1043,6 +1050,7 @@
         var found = fallbacks[code];
         if (!found) found = fallbacks[this.getScriptPartFromCode(code)];
         if (!found) found = fallbacks[this.formatLanguageCode(code)];
+        if (!found) found = fallbacks[this.getLanguagePartFromCode(code)];
         if (!found) found = fallbacks["default"];
         return found || [];
       }
@@ -1356,6 +1364,18 @@
     return PluralResolver;
   }();
 
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  }
+
+  function _toArray(arr) {
+    return _arrayWithHoles(arr) || _iterableToArray(arr) || _nonIterableRest();
+  }
+
   var Interpolator =
   /*#__PURE__*/
   function () {
@@ -1505,6 +1525,8 @@
     }, {
       key: "nest",
       value: function nest(str, fc) {
+        var _this2 = this;
+
         var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
         var match;
         var value;
@@ -1540,6 +1562,31 @@
 
 
         while (match = this.nestingRegexp.exec(str)) {
+          var formatters = [];
+          /**
+           * If there is more than one parameter (contains the format separator). E.g.:
+           *   - t(a, b)
+           *   - t(a, b, c)
+           *
+           * And those parameters are not dynamic values (parameters do not include curly braces). E.g.:
+           *   - Not t(a, { "key": "{{variable}}" })
+           *   - Not t(a, b, {"keyA": "valueA", "keyB": "valueB"})
+           */
+
+          var doReduce = false;
+
+          if (match[0].includes(this.formatSeparator) && !/{.*}/.test(match[1])) {
+            var _match$1$split$map = match[1].split(this.formatSeparator).map(function (elem) {
+              return elem.trim();
+            });
+
+            var _match$1$split$map2 = _toArray(_match$1$split$map);
+
+            match[1] = _match$1$split$map2[0];
+            formatters = _match$1$split$map2.slice(1);
+            doReduce = true;
+          }
+
           value = fc(handleHasOptions.call(this, match[1].trim(), clonedOptions), clonedOptions); // is only the nesting key (key1 = '$(key2)') return the value without stringify
 
           if (value && match[0] === str && typeof value !== 'string') return value; // no string to include or empty
@@ -1549,6 +1596,12 @@
           if (!value) {
             this.logger.warn("missed to resolve ".concat(match[1], " for nesting ").concat(str));
             value = '';
+          }
+
+          if (doReduce) {
+            value = formatters.reduce(function (v, f) {
+              return _this2.format(v, f, options.lng, options);
+            }, value.trim());
           } // Nested keys should not be escaped by default #854
           // value = this.escapeValue ? regexSafe(utils.escape(value)) : regexSafe(value);
 
@@ -1563,10 +1616,6 @@
 
     return Interpolator;
   }();
-
-  function _arrayWithHoles(arr) {
-    if (Array.isArray(arr)) return arr;
-  }
 
   function _iterableToArrayLimit(arr, i) {
     var _arr = [];
@@ -1592,10 +1641,6 @@
     }
 
     return _arr;
-  }
-
-  function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance");
   }
 
   function _slicedToArray(arr, i) {
@@ -1624,7 +1669,10 @@
       _classCallCheck(this, Connector);
 
       _this = _possibleConstructorReturn(this, _getPrototypeOf(Connector).call(this));
-      EventEmitter.call(_assertThisInitialized(_this)); // <=IE10 fix (unable to call parent constructor)
+
+      if (isIE10) {
+        EventEmitter.call(_assertThisInitialized(_this)); // <=IE10 fix (unable to call parent constructor)
+      }
 
       _this.backend = backend;
       _this.store = store;
@@ -1976,7 +2024,10 @@
       _classCallCheck(this, I18n);
 
       _this = _possibleConstructorReturn(this, _getPrototypeOf(I18n).call(this));
-      EventEmitter.call(_assertThisInitialized(_this)); // <=IE10 fix (unable to call parent constructor)
+
+      if (isIE10) {
+        EventEmitter.call(_assertThisInitialized(_this)); // <=IE10 fix (unable to call parent constructor)
+      }
 
       _this.options = transformOptions(options);
       _this.services = {};
@@ -2183,6 +2234,9 @@
     }, {
       key: "use",
       value: function use(module) {
+        if (!module) throw new Error('You are passing an undefined module! Please check the object you are passing to i18next.use()');
+        if (!module.type) throw new Error('You are passing a wrong module! Please check the object you are passing to i18next.use()');
+
         if (module.type === 'backend') {
           this.modules.backend = module;
         }

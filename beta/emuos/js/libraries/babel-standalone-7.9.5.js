@@ -5845,7 +5845,7 @@
       }
     }
 
-    return true;
+    return !isFirst;
   }
 
   var reservedWords = {
@@ -5903,6 +5903,8 @@
   var NUMBER_BINARY_OPERATORS = ["-", "/", "%", "*", "**", "&", "|", ">>", ">>>", "<<", "^"];
   var BINARY_OPERATORS = ["+"].concat(NUMBER_BINARY_OPERATORS, BOOLEAN_BINARY_OPERATORS);
   var ASSIGNMENT_OPERATORS = ["=", "+="].concat(NUMBER_BINARY_OPERATORS.map(function (op) {
+    return op + "=";
+  }), LOGICAL_OPERATORS.map(function (op) {
     return op + "=";
   }));
   var BOOLEAN_UNARY_OPERATORS = ["delete", "!"];
@@ -18366,6 +18368,37 @@
           path.scope.getBlockParent().registerDeclaration(bodyPath);
         }
       }
+    },
+    CatchClause: function CatchClause(path) {
+      path.scope.registerBinding("let", path);
+    },
+    Function: function Function(path) {
+      if (path.isFunctionExpression() && path.has("id") && !path.get("id").node[NOT_LOCAL_BINDING]) {
+        path.scope.registerBinding("local", path.get("id"), path);
+      }
+
+      var params = path.get("params");
+
+      for (var _iterator3 = params, _isArray3 = Array.isArray(_iterator3), _i7 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+        var _ref3;
+
+        if (_isArray3) {
+          if (_i7 >= _iterator3.length) break;
+          _ref3 = _iterator3[_i7++];
+        } else {
+          _i7 = _iterator3.next();
+          if (_i7.done) break;
+          _ref3 = _i7.value;
+        }
+
+        var param = _ref3;
+        path.scope.registerBinding("param", param);
+      }
+    },
+    ClassExpression: function ClassExpression(path) {
+      if (path.has("id") && !path.get("id").node[NOT_LOCAL_BINDING]) {
+        path.scope.registerBinding("local", path);
+      }
     }
   };
   var uid = 0;
@@ -18384,6 +18417,7 @@
       this.block = node;
       this.path = path;
       this.labels = new Map();
+      this.inited = false;
     }
 
     var _proto = Scope.prototype;
@@ -18511,8 +18545,8 @@
       do {
         console.log("#", scope.block.type);
 
-        for (var _i7 = 0, _Object$keys2 = Object.keys(scope.bindings); _i7 < _Object$keys2.length; _i7++) {
-          var name = _Object$keys2[_i7];
+        for (var _i8 = 0, _Object$keys2 = Object.keys(scope.bindings); _i8 < _Object$keys2.length; _i8++) {
+          var name = _Object$keys2[_i8];
           var binding = scope.bindings[name];
           console.log(" -", name, {
             constant: binding.constant,
@@ -18580,8 +18614,8 @@
       } else if (path.isVariableDeclaration()) {
         var declarations = path.get("declarations");
 
-        for (var _i8 = 0, _arr4 = declarations; _i8 < _arr4.length; _i8++) {
-          var declar = _arr4[_i8];
+        for (var _i9 = 0, _arr4 = declarations; _i9 < _arr4.length; _i9++) {
+          var declar = _arr4[_i9];
           this.registerBinding(path.node.kind, declar);
         }
       } else if (path.isClassDeclaration()) {
@@ -18589,8 +18623,8 @@
       } else if (path.isImportDeclaration()) {
         var specifiers = path.get("specifiers");
 
-        for (var _i9 = 0, _arr5 = specifiers; _i9 < _arr5.length; _i9++) {
-          var specifier = _arr5[_i9];
+        for (var _i10 = 0, _arr5 = specifiers; _i10 < _arr5.length; _i10++) {
+          var specifier = _arr5[_i10];
           this.registerBinding("module", specifier);
         }
       } else if (path.isExportDeclaration()) {
@@ -18611,8 +18645,8 @@
     _proto.registerConstantViolation = function registerConstantViolation(path) {
       var ids = path.getBindingIdentifiers();
 
-      for (var _i10 = 0, _Object$keys3 = Object.keys(ids); _i10 < _Object$keys3.length; _i10++) {
-        var name = _Object$keys3[_i10];
+      for (var _i11 = 0, _Object$keys3 = Object.keys(ids); _i11 < _Object$keys3.length; _i11++) {
+        var name = _Object$keys3[_i11];
         var binding = this.getBinding(name);
         if (binding) binding.reassign(path);
       }
@@ -18628,19 +18662,19 @@
       if (path.isVariableDeclaration()) {
         var declarators = path.get("declarations");
 
-        for (var _iterator3 = declarators, _isArray3 = Array.isArray(_iterator3), _i11 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
-          var _ref3;
+        for (var _iterator4 = declarators, _isArray4 = Array.isArray(_iterator4), _i12 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
+          var _ref4;
 
-          if (_isArray3) {
-            if (_i11 >= _iterator3.length) break;
-            _ref3 = _iterator3[_i11++];
+          if (_isArray4) {
+            if (_i12 >= _iterator4.length) break;
+            _ref4 = _iterator4[_i12++];
           } else {
-            _i11 = _iterator3.next();
-            if (_i11.done) break;
-            _ref3 = _i11.value;
+            _i12 = _iterator4.next();
+            if (_i12.done) break;
+            _ref4 = _i12.value;
           }
 
-          var declar = _ref3;
+          var declar = _ref4;
           this.registerBinding(kind, declar);
         }
 
@@ -18650,19 +18684,18 @@
       var parent = this.getProgramParent();
       var ids = path.getOuterBindingIdentifiers(true);
 
-      for (var _i12 = 0, _Object$keys4 = Object.keys(ids); _i12 < _Object$keys4.length; _i12++) {
-        var name = _Object$keys4[_i12];
+      for (var _i13 = 0, _Object$keys4 = Object.keys(ids); _i13 < _Object$keys4.length; _i13++) {
+        var name = _Object$keys4[_i13];
+        parent.references[name] = true;
 
-        for (var _i13 = 0, _arr6 = ids[name]; _i13 < _arr6.length; _i13++) {
-          var id = _arr6[_i13];
+        for (var _i14 = 0, _arr6 = ids[name]; _i14 < _arr6.length; _i14++) {
+          var id = _arr6[_i14];
           var local = this.getOwnBinding(name);
 
           if (local) {
             if (local.identifier === id) continue;
             this.checkBlockScopedCollisions(local, kind, name, id);
           }
-
-          parent.references[name] = true;
 
           if (local) {
             this.registerConstantViolation(bindingPath);
@@ -18703,13 +18736,7 @@
     };
 
     _proto.hasReference = function hasReference(name) {
-      var scope = this;
-
-      do {
-        if (scope.references[name]) return true;
-      } while (scope = scope.parent);
-
-      return false;
+      return !!this.getProgramParent().references[name];
     };
 
     _proto.isPure = function isPure(node, constantsOnly) {
@@ -18725,19 +18752,19 @@
 
         return this.isPure(node.body, constantsOnly);
       } else if (isClassBody(node)) {
-        for (var _iterator4 = node.body, _isArray4 = Array.isArray(_iterator4), _i14 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
-          var _ref4;
+        for (var _iterator5 = node.body, _isArray5 = Array.isArray(_iterator5), _i15 = 0, _iterator5 = _isArray5 ? _iterator5 : _iterator5[Symbol.iterator]();;) {
+          var _ref5;
 
-          if (_isArray4) {
-            if (_i14 >= _iterator4.length) break;
-            _ref4 = _iterator4[_i14++];
+          if (_isArray5) {
+            if (_i15 >= _iterator5.length) break;
+            _ref5 = _iterator5[_i15++];
           } else {
-            _i14 = _iterator4.next();
-            if (_i14.done) break;
-            _ref4 = _i14.value;
+            _i15 = _iterator5.next();
+            if (_i15.done) break;
+            _ref5 = _i15.value;
           }
 
-          var method = _ref4;
+          var method = _ref5;
           if (!this.isPure(method, constantsOnly)) return false;
         }
 
@@ -18745,15 +18772,15 @@
       } else if (isBinary(node)) {
         return this.isPure(node.left, constantsOnly) && this.isPure(node.right, constantsOnly);
       } else if (isArrayExpression(node)) {
-        for (var _i15 = 0, _arr7 = node.elements; _i15 < _arr7.length; _i15++) {
-          var elem = _arr7[_i15];
+        for (var _i16 = 0, _arr7 = node.elements; _i16 < _arr7.length; _i16++) {
+          var elem = _arr7[_i16];
           if (!this.isPure(elem, constantsOnly)) return false;
         }
 
         return true;
       } else if (isObjectExpression(node)) {
-        for (var _i16 = 0, _arr8 = node.properties; _i16 < _arr8.length; _i16++) {
-          var prop = _arr8[_i16];
+        for (var _i17 = 0, _arr8 = node.properties; _i17 < _arr8.length; _i17++) {
+          var prop = _arr8[_i17];
           if (!this.isPure(prop, constantsOnly)) return false;
         }
 
@@ -18770,8 +18797,8 @@
       } else if (isTaggedTemplateExpression(node)) {
         return matchesPattern(node.tag, "String.raw") && !this.hasBinding("String", true) && this.isPure(node.quasi, constantsOnly);
       } else if (isTemplateLiteral(node)) {
-        for (var _i17 = 0, _arr9 = node.expressions; _i17 < _arr9.length; _i17++) {
-          var expression = _arr9[_i17];
+        for (var _i18 = 0, _arr9 = node.expressions; _i18 < _arr9.length; _i18++) {
+          var expression = _arr9[_i18];
           if (!this.isPure(expression, constantsOnly)) return false;
         }
 
@@ -18804,7 +18831,10 @@
     };
 
     _proto.init = function init() {
-      if (!this.references) this.crawl();
+      if (!this.inited) {
+        this.inited = true;
+        this.crawl();
+      }
     };
 
     _proto.crawl = function crawl() {
@@ -18815,52 +18845,32 @@
       this.uids = Object.create(null);
       this.data = Object.create(null);
 
-      if (path.isLoop()) {
-        for (var _i18 = 0, _arr10 = FOR_INIT_KEYS; _i18 < _arr10.length; _i18++) {
-          var key = _arr10[_i18];
-          var node = path.get(key);
-          if (node.isBlockScoped()) this.registerBinding(node.node.kind, node);
-        }
-      }
-
-      if (path.isFunctionExpression() && path.has("id")) {
-        if (!path.get("id").node[NOT_LOCAL_BINDING]) {
+      if (path.isFunction()) {
+        if (path.isFunctionExpression() && path.has("id") && !path.get("id").node[NOT_LOCAL_BINDING]) {
           this.registerBinding("local", path.get("id"), path);
         }
-      }
 
-      if (path.isClassExpression() && path.has("id")) {
-        if (!path.get("id").node[NOT_LOCAL_BINDING]) {
-          this.registerBinding("local", path);
-        }
-      }
-
-      if (path.isFunction()) {
         var params = path.get("params");
 
-        for (var _iterator5 = params, _isArray5 = Array.isArray(_iterator5), _i19 = 0, _iterator5 = _isArray5 ? _iterator5 : _iterator5[Symbol.iterator]();;) {
-          var _ref5;
+        for (var _iterator6 = params, _isArray6 = Array.isArray(_iterator6), _i19 = 0, _iterator6 = _isArray6 ? _iterator6 : _iterator6[Symbol.iterator]();;) {
+          var _ref6;
 
-          if (_isArray5) {
-            if (_i19 >= _iterator5.length) break;
-            _ref5 = _iterator5[_i19++];
+          if (_isArray6) {
+            if (_i19 >= _iterator6.length) break;
+            _ref6 = _iterator6[_i19++];
           } else {
-            _i19 = _iterator5.next();
+            _i19 = _iterator6.next();
             if (_i19.done) break;
-            _ref5 = _i19.value;
+            _ref6 = _i19.value;
           }
 
-          var param = _ref5;
+          var param = _ref6;
           this.registerBinding("param", param);
         }
       }
 
-      if (path.isCatchClause()) {
-        this.registerBinding("let", path);
-      }
-
-      var parent = this.getProgramParent();
-      if (parent.crawling) return;
+      var programParent = this.getProgramParent();
+      if (programParent.crawling) return;
       var state = {
         references: [],
         constantViolations: [],
@@ -18870,69 +18880,66 @@
       path.traverse(collectorVisitor, state);
       this.crawling = false;
 
-      for (var _iterator6 = state.assignments, _isArray6 = Array.isArray(_iterator6), _i20 = 0, _iterator6 = _isArray6 ? _iterator6 : _iterator6[Symbol.iterator]();;) {
-        var _ref6;
+      for (var _iterator7 = state.assignments, _isArray7 = Array.isArray(_iterator7), _i20 = 0, _iterator7 = _isArray7 ? _iterator7 : _iterator7[Symbol.iterator]();;) {
+        var _ref7;
 
-        if (_isArray6) {
-          if (_i20 >= _iterator6.length) break;
-          _ref6 = _iterator6[_i20++];
+        if (_isArray7) {
+          if (_i20 >= _iterator7.length) break;
+          _ref7 = _iterator7[_i20++];
         } else {
-          _i20 = _iterator6.next();
+          _i20 = _iterator7.next();
           if (_i20.done) break;
-          _ref6 = _i20.value;
+          _ref7 = _i20.value;
         }
 
-        var _path = _ref6;
+        var _path = _ref7;
 
         var ids = _path.getBindingIdentifiers();
-
-        var programParent = void 0;
 
         for (var _i23 = 0, _Object$keys5 = Object.keys(ids); _i23 < _Object$keys5.length; _i23++) {
           var name = _Object$keys5[_i23];
           if (_path.scope.getBinding(name)) continue;
-          programParent = programParent || _path.scope.getProgramParent();
           programParent.addGlobal(ids[name]);
         }
 
         _path.scope.registerConstantViolation(_path);
       }
 
-      for (var _iterator7 = state.references, _isArray7 = Array.isArray(_iterator7), _i21 = 0, _iterator7 = _isArray7 ? _iterator7 : _iterator7[Symbol.iterator]();;) {
-        var _ref7;
+      for (var _iterator8 = state.references, _isArray8 = Array.isArray(_iterator8), _i21 = 0, _iterator8 = _isArray8 ? _iterator8 : _iterator8[Symbol.iterator]();;) {
+        var _ref8;
 
-        if (_isArray7) {
-          if (_i21 >= _iterator7.length) break;
-          _ref7 = _iterator7[_i21++];
+        if (_isArray8) {
+          if (_i21 >= _iterator8.length) break;
+          _ref8 = _iterator8[_i21++];
         } else {
-          _i21 = _iterator7.next();
+          _i21 = _iterator8.next();
           if (_i21.done) break;
-          _ref7 = _i21.value;
+          _ref8 = _i21.value;
         }
 
-        var ref = _ref7;
+        var ref = _ref8;
         var binding = ref.scope.getBinding(ref.node.name);
 
         if (binding) {
           binding.reference(ref);
         } else {
-          ref.scope.getProgramParent().addGlobal(ref.node);
+          programParent.addGlobal(ref.node);
         }
       }
 
-      for (var _iterator8 = state.constantViolations, _isArray8 = Array.isArray(_iterator8), _i22 = 0, _iterator8 = _isArray8 ? _iterator8 : _iterator8[Symbol.iterator]();;) {
-        var _ref8;
+      for (var _iterator9 = state.constantViolations, _isArray9 = Array.isArray(_iterator9), _i22 = 0, _iterator9 = _isArray9 ? _iterator9 : _iterator9[Symbol.iterator]();;) {
+        var _ref9;
 
-        if (_isArray8) {
-          if (_i22 >= _iterator8.length) break;
-          _ref8 = _iterator8[_i22++];
+        if (_isArray9) {
+          if (_i22 >= _iterator9.length) break;
+          _ref9 = _iterator9[_i22++];
         } else {
-          _i22 = _iterator8.next();
+          _i22 = _iterator9.next();
           if (_i22.done) break;
-          _ref8 = _i22.value;
+          _ref9 = _i22.value;
         }
 
-        var _path2 = _ref8;
+        var _path2 = _ref9;
 
         _path2.scope.registerConstantViolation(_path2);
       }
@@ -19026,8 +19033,8 @@
     _proto.getAllBindingsOfKind = function getAllBindingsOfKind() {
       var ids = Object.create(null);
 
-      for (var _i24 = 0, _arr11 = arguments; _i24 < _arr11.length; _i24++) {
-        var kind = _arr11[_i24];
+      for (var _i24 = 0, _arr10 = arguments; _i24 < _arr10.length; _i24++) {
+        var kind = _arr10[_i24];
         var scope = this;
 
         do {
@@ -21607,13 +21614,13 @@
       state = {};
     }
 
-    if (isMemberExpression(node)) {
+    if (isMemberExpression(node) || isOptionalMemberExpression(node)) {
       crawl(node.object, state);
       if (node.computed) crawl(node.property, state);
     } else if (isBinary(node) || isAssignmentExpression(node)) {
       crawl(node.left, state);
       crawl(node.right, state);
-    } else if (isCallExpression(node)) {
+    } else if (isCallExpression(node) || isOptionalCallExpression(node)) {
       state.hasCall = true;
       crawl(node.callee, state);
     } else if (isFunction(node)) {
@@ -21676,6 +21683,14 @@
     },
     CallExpression: function CallExpression(node) {
       if (isFunction(node.callee) || isHelper(node)) {
+        return {
+          before: true,
+          after: true
+        };
+      }
+    },
+    OptionalCallExpression: function OptionalCallExpression(node) {
+      if (isFunction(node.callee)) {
         return {
           before: true,
           after: true
@@ -45060,7 +45075,9 @@
           return;
         }
       }
-    } else if (isAssignmentExpression(parent)) {
+    } else if (isAssignmentExpression(parent, {
+      operator: "="
+    })) {
       id = parent.left;
     } else if (!id) {
       return;
@@ -62539,7 +62556,9 @@
     }
 
     var classDecorators = takeDecorators(node);
-    var definitions = ArrayExpression(elements.map(extractElementDescriptor.bind(file, node.id, superId)));
+    var definitions = ArrayExpression(elements.filter(function (element) {
+      return !element.node["abstract"];
+    }).map(extractElementDescriptor.bind(file, node.id, superId)));
     var replacement = template.expression.ast(_templateObject2$3(), addDecorateHelper(file), classDecorators || NullLiteral(), initializeId, superClass ? superId : null, node, cloneNode(node.id), definitions, superClass);
     var classPathDesc = "arguments.1.body.body.0";
 
@@ -62735,7 +62754,7 @@
   }
 
   var name = "@babel/helper-create-class-features-plugin";
-  var version$2 = "7.8.6";
+  var version$2 = "7.9.5";
   var author = "The Babel Team (https://babeljs.io/team)";
   var license = "MIT";
   var description = "Compile class public and private fields, private methods and decorators to ES6";
@@ -62749,7 +62768,7 @@
   	"babel-plugin"
   ];
   var dependencies = {
-  	"@babel/helper-function-name": "^7.8.3",
+  	"@babel/helper-function-name": "^7.9.5",
   	"@babel/helper-member-expression-to-functions": "^7.8.3",
   	"@babel/helper-optimise-call-expression": "^7.8.3",
   	"@babel/helper-plugin-utils": "^7.8.3",
@@ -62763,6 +62782,7 @@
   	"@babel/core": "^7.8.6",
   	"@babel/helper-plugin-test-runner": "^7.8.3"
   };
+  var gitHead = "5b97e77e030cf3853a147fdff81844ea4026219d";
   var pkg = {
   	name: name,
   	version: version$2,
@@ -62775,7 +62795,8 @@
   	keywords: keywords$2,
   	dependencies: dependencies,
   	peerDependencies: peerDependencies,
-  	devDependencies: devDependencies
+  	devDependencies: devDependencies,
+  	gitHead: gitHead
   };
 
   var version$3 = pkg.version.split(".").reduce(function (v, x) {
@@ -63650,6 +63671,546 @@
 
   var syntaxObjectRestSpread$1 = unwrapExports(lib$a);
 
+  var buildDefaultParam = template("\n  let VARIABLE_NAME =\n    arguments.length > ARGUMENT_KEY && arguments[ARGUMENT_KEY] !== undefined ?\n      arguments[ARGUMENT_KEY]\n    :\n      DEFAULT_VALUE;\n");
+  var buildLooseDefaultParam = template("\n  if (ASSIGNMENT_IDENTIFIER === UNDEFINED) {\n    ASSIGNMENT_IDENTIFIER = DEFAULT_VALUE;\n  }\n");
+  var buildLooseDestructuredDefaultParam = template("\n  let ASSIGNMENT_IDENTIFIER = PARAMETER_NAME === UNDEFINED ? DEFAULT_VALUE : PARAMETER_NAME ;\n");
+  var buildSafeArgumentsAccess = template("\n  let $0 = arguments.length > $1 ? arguments[$1] : undefined;\n");
+  var iifeVisitor = {
+    "ReferencedIdentifier|BindingIdentifier": function ReferencedIdentifierBindingIdentifier(path, state) {
+      var scope = path.scope,
+          node = path.node;
+      var name = node.name;
+
+      if (name === "eval" || scope.getBinding(name) === state.scope.parent.getBinding(name) && state.scope.hasOwnBinding(name)) {
+        state.needsOuterBinding = true;
+        path.stop();
+      }
+    },
+    "TypeAnnotation|TSTypeAnnotation|TypeParameterDeclaration|TSTypeParameterDeclaration": function TypeAnnotationTSTypeAnnotationTypeParameterDeclarationTSTypeParameterDeclaration(path) {
+      return path.skip();
+    }
+  };
+  function convertFunctionParams(path, loose, shouldTransformParam, replaceRestElement) {
+    var params = path.get("params");
+    var isSimpleParameterList = params.every(function (param) {
+      return param.isIdentifier();
+    });
+    if (isSimpleParameterList) return false;
+    var node = path.node,
+        scope = path.scope;
+    var state = {
+      stop: false,
+      needsOuterBinding: false,
+      scope: scope
+    };
+    var body = [];
+    var shadowedParams = new Set();
+
+    for (var _iterator = params, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+      var _ref;
+
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref = _i.value;
+      }
+
+      var _param2 = _ref;
+
+      for (var _i4 = 0, _Object$keys = Object.keys(_param2.getBindingIdentifiers()); _i4 < _Object$keys.length; _i4++) {
+        var _scope$bindings$name;
+
+        var name = _Object$keys[_i4];
+        var constantViolations = (_scope$bindings$name = scope.bindings[name]) == null ? void 0 : _scope$bindings$name.constantViolations;
+
+        if (constantViolations) {
+          for (var _iterator4 = constantViolations, _isArray4 = Array.isArray(_iterator4), _i5 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
+            var _ref4;
+
+            if (_isArray4) {
+              if (_i5 >= _iterator4.length) break;
+              _ref4 = _iterator4[_i5++];
+            } else {
+              _i5 = _iterator4.next();
+              if (_i5.done) break;
+              _ref4 = _i5.value;
+            }
+
+            var redeclarator = _ref4;
+            var _node = redeclarator.node;
+
+            switch (_node.type) {
+              case "VariableDeclarator":
+                {
+                  if (_node.init === null) {
+                    var declaration = redeclarator.parentPath;
+
+                    if (!declaration.parentPath.isFor() || declaration.parentPath.get("body") === declaration) {
+                      redeclarator.remove();
+                      break;
+                    }
+                  }
+
+                  shadowedParams.add(name);
+                  break;
+                }
+
+              case "FunctionDeclaration":
+                shadowedParams.add(name);
+                break;
+            }
+          }
+        }
+      }
+    }
+
+    if (shadowedParams.size === 0) {
+      for (var _iterator2 = params, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+        var _ref2;
+
+        if (_isArray2) {
+          if (_i2 >= _iterator2.length) break;
+          _ref2 = _iterator2[_i2++];
+        } else {
+          _i2 = _iterator2.next();
+          if (_i2.done) break;
+          _ref2 = _i2.value;
+        }
+
+        var param = _ref2;
+        if (!param.isIdentifier()) param.traverse(iifeVisitor, state);
+        if (state.needsOuterBinding) break;
+      }
+    }
+
+    var firstOptionalIndex = null;
+
+    for (var i = 0; i < params.length; i++) {
+      var _param = params[i];
+
+      if (shouldTransformParam && !shouldTransformParam(i)) {
+        continue;
+      }
+
+      var transformedRestNodes = [];
+
+      if (replaceRestElement) {
+        replaceRestElement(_param.parentPath, _param, transformedRestNodes);
+      }
+
+      var paramIsAssignmentPattern = _param.isAssignmentPattern();
+
+      if (paramIsAssignmentPattern && (loose || node.kind === "set")) {
+        var left = _param.get("left");
+
+        var right = _param.get("right");
+
+        var undefinedNode = scope.buildUndefinedNode();
+
+        if (left.isIdentifier()) {
+          body.push(buildLooseDefaultParam({
+            ASSIGNMENT_IDENTIFIER: cloneNode(left.node),
+            DEFAULT_VALUE: right.node,
+            UNDEFINED: undefinedNode
+          }));
+
+          _param.replaceWith(left.node);
+        } else if (left.isObjectPattern() || left.isArrayPattern()) {
+          var paramName = scope.generateUidIdentifier();
+          body.push(buildLooseDestructuredDefaultParam({
+            ASSIGNMENT_IDENTIFIER: left.node,
+            DEFAULT_VALUE: right.node,
+            PARAMETER_NAME: cloneNode(paramName),
+            UNDEFINED: undefinedNode
+          }));
+
+          _param.replaceWith(paramName);
+        }
+      } else if (paramIsAssignmentPattern) {
+        if (firstOptionalIndex === null) firstOptionalIndex = i;
+
+        var _left = _param.get("left");
+
+        var _right = _param.get("right");
+
+        var defNode = buildDefaultParam({
+          VARIABLE_NAME: _left.node,
+          DEFAULT_VALUE: _right.node,
+          ARGUMENT_KEY: NumericLiteral(i)
+        });
+        body.push(defNode);
+      } else if (firstOptionalIndex !== null) {
+        var _defNode = buildSafeArgumentsAccess([_param.node, NumericLiteral(i)]);
+
+        body.push(_defNode);
+      } else if (_param.isObjectPattern() || _param.isArrayPattern()) {
+        var uid = path.scope.generateUidIdentifier("ref");
+
+        var _defNode2 = VariableDeclaration("let", [VariableDeclarator(_param.node, uid)]);
+
+        body.push(_defNode2);
+
+        _param.replaceWith(cloneNode(uid));
+      }
+
+      if (transformedRestNodes) {
+        for (var _iterator3 = transformedRestNodes, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+          var _ref3;
+
+          if (_isArray3) {
+            if (_i3 >= _iterator3.length) break;
+            _ref3 = _iterator3[_i3++];
+          } else {
+            _i3 = _iterator3.next();
+            if (_i3.done) break;
+            _ref3 = _i3.value;
+          }
+
+          var transformedNode = _ref3;
+          body.push(transformedNode);
+        }
+      }
+    }
+
+    if (firstOptionalIndex !== null) {
+      node.params = node.params.slice(0, firstOptionalIndex);
+    }
+
+    path.ensureBlock();
+
+    if (state.needsOuterBinding || shadowedParams.size > 0) {
+      body.push(buildScopeIIFE(shadowedParams, path.get("body").node));
+      path.set("body", BlockStatement(body));
+      var bodyPath = path.get("body.body");
+      var arrowPath = bodyPath[bodyPath.length - 1].get("argument.callee");
+      arrowPath.arrowFunctionToExpression();
+      arrowPath.node.generator = path.node.generator;
+      arrowPath.node.async = path.node.async;
+      path.node.generator = false;
+    } else {
+      path.get("body").unshiftContainer("body", body);
+    }
+
+    return true;
+  }
+
+  function buildScopeIIFE(shadowedParams, body) {
+    var args = [];
+    var params = [];
+
+    for (var _iterator5 = shadowedParams, _isArray5 = Array.isArray(_iterator5), _i6 = 0, _iterator5 = _isArray5 ? _iterator5 : _iterator5[Symbol.iterator]();;) {
+      var _ref5;
+
+      if (_isArray5) {
+        if (_i6 >= _iterator5.length) break;
+        _ref5 = _iterator5[_i6++];
+      } else {
+        _i6 = _iterator5.next();
+        if (_i6.done) break;
+        _ref5 = _i6.value;
+      }
+
+      var name = _ref5;
+      args.push(Identifier(name));
+      params.push(Identifier(name));
+    }
+
+    return ReturnStatement(CallExpression(ArrowFunctionExpression(params, body), params));
+  }
+
+  var buildRest = template("\n  for (var LEN = ARGUMENTS.length,\n           ARRAY = new Array(ARRAY_LEN),\n           KEY = START;\n       KEY < LEN;\n       KEY++) {\n    ARRAY[ARRAY_KEY] = ARGUMENTS[KEY];\n  }\n");
+  var restIndex = template("\n  (INDEX < OFFSET || ARGUMENTS.length <= INDEX) ? undefined : ARGUMENTS[INDEX]\n");
+  var restIndexImpure = template("\n  REF = INDEX, (REF < OFFSET || ARGUMENTS.length <= REF) ? undefined : ARGUMENTS[REF]\n");
+  var restLength = template("\n  ARGUMENTS.length <= OFFSET ? 0 : ARGUMENTS.length - OFFSET\n");
+
+  function referencesRest(path, state) {
+    if (path.node.name === state.name) {
+      return path.scope.bindingIdentifierEquals(state.name, state.outerBinding);
+    }
+
+    return false;
+  }
+
+  var memberExpressionOptimisationVisitor = {
+    Scope: function Scope(path, state) {
+      if (!path.scope.bindingIdentifierEquals(state.name, state.outerBinding)) {
+        path.skip();
+      }
+    },
+    Flow: function Flow(path) {
+      if (path.isTypeCastExpression()) return;
+      path.skip();
+    },
+    Function: function Function(path, state) {
+      var oldNoOptimise = state.noOptimise;
+      state.noOptimise = true;
+      path.traverse(memberExpressionOptimisationVisitor, state);
+      state.noOptimise = oldNoOptimise;
+      path.skip();
+    },
+    ReferencedIdentifier: function ReferencedIdentifier(path, state) {
+      var node = path.node;
+
+      if (node.name === "arguments") {
+        state.deopted = true;
+      }
+
+      if (!referencesRest(path, state)) return;
+
+      if (state.noOptimise) {
+        state.deopted = true;
+      } else {
+        var parentPath = path.parentPath;
+
+        if (parentPath.listKey === "params" && parentPath.key < state.offset) {
+          return;
+        }
+
+        if (parentPath.isMemberExpression({
+          object: node
+        })) {
+          var grandparentPath = parentPath.parentPath;
+          var argsOptEligible = !state.deopted && !(grandparentPath.isAssignmentExpression() && parentPath.node === grandparentPath.node.left || grandparentPath.isLVal() || grandparentPath.isForXStatement() || grandparentPath.isUpdateExpression() || grandparentPath.isUnaryExpression({
+            operator: "delete"
+          }) || (grandparentPath.isCallExpression() || grandparentPath.isNewExpression()) && parentPath.node === grandparentPath.node.callee);
+
+          if (argsOptEligible) {
+            if (parentPath.node.computed) {
+              if (parentPath.get("property").isBaseType("number")) {
+                state.candidates.push({
+                  cause: "indexGetter",
+                  path: path
+                });
+                return;
+              }
+            } else if (parentPath.node.property.name === "length") {
+              state.candidates.push({
+                cause: "lengthGetter",
+                path: path
+              });
+              return;
+            }
+          }
+        }
+
+        if (state.offset === 0 && parentPath.isSpreadElement()) {
+          var call = parentPath.parentPath;
+
+          if (call.isCallExpression() && call.node.arguments.length === 1) {
+            state.candidates.push({
+              cause: "argSpread",
+              path: path
+            });
+            return;
+          }
+        }
+
+        state.references.push(path);
+      }
+    },
+    BindingIdentifier: function BindingIdentifier(path, state) {
+      if (referencesRest(path, state)) {
+        state.deopted = true;
+      }
+    }
+  };
+
+  function getParamsCount(node) {
+    var count = node.params.length;
+
+    if (count > 0 && isIdentifier(node.params[0], {
+      name: "this"
+    })) {
+      count -= 1;
+    }
+
+    return count;
+  }
+
+  function hasRest(node) {
+    var length = node.params.length;
+    return length > 0 && isRestElement(node.params[length - 1]);
+  }
+
+  function optimiseIndexGetter(path, argsId, offset) {
+    var offsetLiteral = NumericLiteral(offset);
+    var index;
+
+    if (isNumericLiteral(path.parent.property)) {
+      index = NumericLiteral(path.parent.property.value + offset);
+    } else if (offset === 0) {
+      index = path.parent.property;
+    } else {
+      index = BinaryExpression("+", path.parent.property, cloneNode(offsetLiteral));
+    }
+
+    var scope = path.scope;
+
+    if (!scope.isPure(index)) {
+      var temp = scope.generateUidIdentifierBasedOnNode(index);
+      scope.push({
+        id: temp,
+        kind: "var"
+      });
+      path.parentPath.replaceWith(restIndexImpure({
+        ARGUMENTS: argsId,
+        OFFSET: offsetLiteral,
+        INDEX: index,
+        REF: cloneNode(temp)
+      }));
+    } else {
+      var parentPath = path.parentPath;
+      parentPath.replaceWith(restIndex({
+        ARGUMENTS: argsId,
+        OFFSET: offsetLiteral,
+        INDEX: index
+      }));
+      var offsetTestPath = parentPath.get("test").get("left");
+      var valRes = offsetTestPath.evaluate();
+
+      if (valRes.confident) {
+        if (valRes.value === true) {
+          parentPath.replaceWith(parentPath.scope.buildUndefinedNode());
+        } else {
+          parentPath.get("test").replaceWith(parentPath.get("test").get("right"));
+        }
+      }
+    }
+  }
+
+  function optimiseLengthGetter(path, argsId, offset) {
+    if (offset) {
+      path.parentPath.replaceWith(restLength({
+        ARGUMENTS: argsId,
+        OFFSET: NumericLiteral(offset)
+      }));
+    } else {
+      path.replaceWith(argsId);
+    }
+  }
+
+  function convertFunctionRest(path) {
+    var node = path.node,
+        scope = path.scope;
+    if (!hasRest(node)) return false;
+    var rest = node.params.pop().argument;
+    var argsId = Identifier("arguments");
+
+    if (isPattern(rest)) {
+      var pattern = rest;
+      rest = scope.generateUidIdentifier("ref");
+      var declar = VariableDeclaration("let", [VariableDeclarator(pattern, rest)]);
+      node.body.body.unshift(declar);
+    }
+
+    var paramsCount = getParamsCount(node);
+    var state = {
+      references: [],
+      offset: paramsCount,
+      argumentsNode: argsId,
+      outerBinding: scope.getBindingIdentifier(rest.name),
+      candidates: [],
+      name: rest.name,
+      deopted: false
+    };
+    path.traverse(memberExpressionOptimisationVisitor, state);
+
+    if (!state.deopted && !state.references.length) {
+      for (var _i = 0, _arr = state.candidates; _i < _arr.length; _i++) {
+        var _arr$_i = _arr[_i],
+            _path = _arr$_i.path,
+            cause = _arr$_i.cause;
+        var clonedArgsId = cloneNode(argsId);
+
+        switch (cause) {
+          case "indexGetter":
+            optimiseIndexGetter(_path, clonedArgsId, state.offset);
+            break;
+
+          case "lengthGetter":
+            optimiseLengthGetter(_path, clonedArgsId, state.offset);
+            break;
+
+          default:
+            _path.replaceWith(clonedArgsId);
+
+        }
+      }
+
+      return true;
+    }
+
+    state.references = state.references.concat(state.candidates.map(function (_ref) {
+      var path = _ref.path;
+      return path;
+    }));
+    var start = NumericLiteral(paramsCount);
+    var key = scope.generateUidIdentifier("key");
+    var len = scope.generateUidIdentifier("len");
+    var arrKey, arrLen;
+
+    if (paramsCount) {
+      arrKey = BinaryExpression("-", cloneNode(key), cloneNode(start));
+      arrLen = ConditionalExpression(BinaryExpression(">", cloneNode(len), cloneNode(start)), BinaryExpression("-", cloneNode(len), cloneNode(start)), NumericLiteral(0));
+    } else {
+      arrKey = Identifier(key.name);
+      arrLen = Identifier(len.name);
+    }
+
+    var loop = buildRest({
+      ARGUMENTS: argsId,
+      ARRAY_KEY: arrKey,
+      ARRAY_LEN: arrLen,
+      START: start,
+      ARRAY: rest,
+      KEY: key,
+      LEN: len
+    });
+
+    if (state.deopted) {
+      node.body.body.unshift(loop);
+    } else {
+      var target = path.getEarliestCommonAncestorFrom(state.references).getStatementParent();
+      target.findParent(function (path) {
+        if (path.isLoop()) {
+          target = path;
+        } else {
+          return path.isFunction();
+        }
+      });
+      target.insertBefore(loop);
+    }
+
+    return true;
+  }
+
+  var transformParameters = declare(function (api, options) {
+    api.assertVersion(7);
+    var loose = options.loose;
+    return {
+      name: "transform-parameters",
+      visitor: {
+        Function: function Function(path) {
+          if (path.isArrowFunctionExpression() && path.get("params").some(function (param) {
+            return param.isRestElement() || param.isAssignmentPattern();
+          })) {
+            path.arrowFunctionToExpression();
+          }
+
+          var convertedRest = convertFunctionRest(path);
+          var convertedParams = convertFunctionParams(path, loose);
+
+          if (convertedRest || convertedParams) {
+            path.scope.crawl();
+          }
+        }
+      }
+    };
+  });
+
   var ZERO_REFS = function () {
     var node = Identifier("a");
     var property = ObjectProperty(Identifier("key"), node);
@@ -63834,9 +64395,9 @@
       return [impureComputedPropertyDeclarators, restElement.argument, CallExpression(file.addHelper("objectWithoutProperties" + (loose ? "Loose" : "")), [cloneNode(objRef), keyExpression])];
     }
 
-    function replaceRestElement(parentPath, paramPath) {
+    function replaceRestElement(parentPath, paramPath, container) {
       if (paramPath.isAssignmentPattern()) {
-        replaceRestElement(parentPath, paramPath.get("left"));
+        replaceRestElement(parentPath, paramPath.get("left"), container);
         return;
       }
 
@@ -63844,15 +64405,21 @@
         var elements = paramPath.get("elements");
 
         for (var i = 0; i < elements.length; i++) {
-          replaceRestElement(parentPath, elements[i]);
+          replaceRestElement(parentPath, elements[i], container);
         }
       }
 
       if (paramPath.isObjectPattern() && hasRestElement(paramPath)) {
         var uid = parentPath.scope.generateUidIdentifier("ref");
         var declar = VariableDeclaration("let", [VariableDeclarator(paramPath.node, uid)]);
-        parentPath.ensureBlock();
-        parentPath.get("body").unshiftContainer("body", declar);
+
+        if (container) {
+          container.push(declar);
+        } else {
+          parentPath.ensureBlock();
+          parentPath.get("body").unshiftContainer("body", declar);
+        }
+
         paramPath.replaceWith(cloneNode(uid));
       }
     }
@@ -63863,9 +64430,66 @@
       visitor: {
         Function: function Function(path) {
           var params = path.get("params");
+          var paramsWithRestElement = new Set();
+          var idsInRestParams = new Set();
 
-          for (var i = params.length - 1; i >= 0; i--) {
-            replaceRestElement(params[i].parentPath, params[i]);
+          for (var _i4 = 0; _i4 < params.length; ++_i4) {
+            var param = params[_i4];
+
+            if (hasRestElement(param)) {
+              paramsWithRestElement.add(_i4);
+
+              for (var _i5 = 0, _Object$keys = Object.keys(param.getBindingIdentifiers()); _i5 < _Object$keys.length; _i5++) {
+                var name = _Object$keys[_i5];
+                idsInRestParams.add(name);
+              }
+            }
+          }
+
+          var idInRest = false;
+
+          var IdentifierHandler = function IdentifierHandler(path, functionScope) {
+            var name = path.node.name;
+
+            if (path.scope.getBinding(name) === functionScope.getBinding(name) && idsInRestParams.has(name)) {
+              idInRest = true;
+              path.stop();
+            }
+          };
+
+          var i;
+
+          for (i = 0; i < params.length && !idInRest; ++i) {
+            var _param = params[i];
+
+            if (!paramsWithRestElement.has(i)) {
+              if (_param.isReferencedIdentifier() || _param.isBindingIdentifier()) {
+                IdentifierHandler(path, path.scope);
+              } else {
+                _param.traverse({
+                  "Scope|TypeAnnotation|TSTypeAnnotation": function ScopeTypeAnnotationTSTypeAnnotation(path) {
+                    return path.skip();
+                  },
+                  "ReferencedIdentifier|BindingIdentifier": IdentifierHandler
+                }, path.scope);
+              }
+            }
+          }
+
+          if (!idInRest) {
+            for (var _i6 = 0; _i6 < params.length; ++_i6) {
+              var _param2 = params[_i6];
+
+              if (paramsWithRestElement.has(_i6)) {
+                replaceRestElement(_param2.parentPath, _param2);
+              }
+            }
+          } else {
+            var shouldTransformParam = function shouldTransformParam(idx) {
+              return idx >= i - 1 || paramsWithRestElement.has(idx);
+            };
+
+            convertFunctionParams(path, loose, shouldTransformParam, replaceRestElement);
           }
         },
         VariableDeclarator: function VariableDeclarator$1(path, file) {
@@ -63939,8 +64563,8 @@
           if (!hasRest) return;
           var specifiers = [];
 
-          for (var _i4 = 0, _Object$keys = Object.keys(path.getOuterBindingIdentifiers(path)); _i4 < _Object$keys.length; _i4++) {
-            var name = _Object$keys[_i4];
+          for (var _i7 = 0, _Object$keys2 = Object.keys(path.getOuterBindingIdentifiers(path)); _i7 < _Object$keys2.length; _i7++) {
+            var name = _Object$keys2[_i7];
             specifiers.push(ExportSpecifier(Identifier(name), Identifier(name)));
           }
 
@@ -64033,8 +64657,8 @@
             props = [];
           }
 
-          for (var _i5 = 0, _arr = path.node.properties; _i5 < _arr.length; _i5++) {
-            var prop = _arr[_i5];
+          for (var _i8 = 0, _arr = path.node.properties; _i8 < _arr.length; _i8++) {
+            var prop = _arr[_i8];
 
             if (isSpreadElement(prop)) {
               push();
@@ -69898,13 +70522,13 @@
   }
   var helperIDs = new WeakMap();
   function addCreateSuperHelper(file) {
-    try {
-      return file.addHelper("createSuper");
-    } catch (_unused) {}
-
     if (helperIDs.has(file)) {
       return (cloneNode || clone$1)(helperIDs.get(file));
     }
+
+    try {
+      return file.addHelper("createSuper");
+    } catch (_unused) {}
 
     var id = file.scope.generateUidIdentifier("createSuper");
     helperIDs.set(file, id);
@@ -70410,7 +71034,12 @@
         pushedInherits: true,
         superFnId: superFnId
       });
-      classState.body.unshift(ExpressionStatement(CallExpression(classState.file.addHelper(classState.isLoose ? "inheritsLoose" : "inherits"), [cloneNode(classState.classRef), cloneNode(classState.superName)])), VariableDeclaration("var", [VariableDeclarator(superFnId, CallExpression(addCreateSuperHelper(classState.file), [cloneNode(classState.classRef)]))]));
+
+      if (!classState.isLoose) {
+        classState.body.unshift(VariableDeclaration("var", [VariableDeclarator(superFnId, CallExpression(addCreateSuperHelper(classState.file), [cloneNode(classState.classRef)]))]));
+      }
+
+      classState.body.unshift(ExpressionStatement(CallExpression(classState.file.addHelper(classState.isLoose ? "inheritsLoose" : "inherits"), [cloneNode(classState.classRef), cloneNode(classState.superName)])));
     }
 
     function setupClosureParamsArgs() {
@@ -70894,7 +71523,7 @@
           var patternId;
           var node;
 
-          if (this.kind === "const") {
+          if (this.kind === "const" || this.kind === "let") {
             patternId = this.scope.generateUidIdentifier(tempId.name);
             node = this.buildVariableDeclaration(patternId, tempConditional);
           } else {
@@ -73551,512 +74180,6 @@
     };
   });
 
-  var buildDefaultParam = template("\n  let VARIABLE_NAME =\n    arguments.length > ARGUMENT_KEY && arguments[ARGUMENT_KEY] !== undefined ?\n      arguments[ARGUMENT_KEY]\n    :\n      DEFAULT_VALUE;\n");
-  var buildLooseDefaultParam = template("\n  if (ASSIGNMENT_IDENTIFIER === UNDEFINED) {\n    ASSIGNMENT_IDENTIFIER = DEFAULT_VALUE;\n  }\n");
-  var buildLooseDestructuredDefaultParam = template("\n  let ASSIGNMENT_IDENTIFIER = PARAMETER_NAME === UNDEFINED ? DEFAULT_VALUE : PARAMETER_NAME ;\n");
-  var buildSafeArgumentsAccess = template("\n  let $0 = arguments.length > $1 ? arguments[$1] : undefined;\n");
-  var iifeVisitor = {
-    "ReferencedIdentifier|BindingIdentifier": function ReferencedIdentifierBindingIdentifier(path, state) {
-      var scope = path.scope,
-          node = path.node;
-      var name = node.name;
-
-      if (name === "eval" || scope.getBinding(name) === state.scope.parent.getBinding(name) && state.scope.hasOwnBinding(name)) {
-        state.needsOuterBinding = true;
-        path.stop();
-      }
-    }
-  };
-  function convertFunctionParams(path, loose) {
-    var params = path.get("params");
-    var isSimpleParameterList = params.every(function (param) {
-      return param.isIdentifier();
-    });
-    if (isSimpleParameterList) return false;
-    var node = path.node,
-        scope = path.scope;
-    var state = {
-      stop: false,
-      needsOuterBinding: false,
-      scope: scope
-    };
-    var body = [];
-    var shadowedParams = new Set();
-
-    for (var _iterator = params, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-      var _ref;
-
-      if (_isArray) {
-        if (_i >= _iterator.length) break;
-        _ref = _iterator[_i++];
-      } else {
-        _i = _iterator.next();
-        if (_i.done) break;
-        _ref = _i.value;
-      }
-
-      var _param2 = _ref;
-
-      for (var _i3 = 0, _Object$keys = Object.keys(_param2.getBindingIdentifiers()); _i3 < _Object$keys.length; _i3++) {
-        var _scope$bindings$name;
-
-        var name = _Object$keys[_i3];
-        var constantViolations = (_scope$bindings$name = scope.bindings[name]) == null ? void 0 : _scope$bindings$name.constantViolations;
-
-        if (constantViolations) {
-          for (var _iterator3 = constantViolations, _isArray3 = Array.isArray(_iterator3), _i4 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
-            var _ref3;
-
-            if (_isArray3) {
-              if (_i4 >= _iterator3.length) break;
-              _ref3 = _iterator3[_i4++];
-            } else {
-              _i4 = _iterator3.next();
-              if (_i4.done) break;
-              _ref3 = _i4.value;
-            }
-
-            var redeclarator = _ref3;
-            var _node = redeclarator.node;
-
-            switch (_node.type) {
-              case "VariableDeclarator":
-                {
-                  if (_node.init === null) {
-                    var declaration = redeclarator.parentPath;
-
-                    if (!declaration.parentPath.isFor() || declaration.parentPath.get("body") === declaration) {
-                      redeclarator.remove();
-                      break;
-                    }
-                  }
-
-                  shadowedParams.add(name);
-                  break;
-                }
-
-              case "FunctionDeclaration":
-                shadowedParams.add(name);
-                break;
-            }
-          }
-        }
-      }
-    }
-
-    if (shadowedParams.size === 0) {
-      for (var _iterator2 = params, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-        var _ref2;
-
-        if (_isArray2) {
-          if (_i2 >= _iterator2.length) break;
-          _ref2 = _iterator2[_i2++];
-        } else {
-          _i2 = _iterator2.next();
-          if (_i2.done) break;
-          _ref2 = _i2.value;
-        }
-
-        var param = _ref2;
-        if (!param.isIdentifier()) param.traverse(iifeVisitor, state);
-        if (state.needsOuterBinding) break;
-      }
-    }
-
-    var firstOptionalIndex = null;
-
-    for (var i = 0; i < params.length; i++) {
-      var _param = params[i];
-
-      var paramIsAssignmentPattern = _param.isAssignmentPattern();
-
-      if (paramIsAssignmentPattern && (loose || node.kind === "set")) {
-        var left = _param.get("left");
-
-        var right = _param.get("right");
-
-        var undefinedNode = scope.buildUndefinedNode();
-
-        if (left.isIdentifier()) {
-          body.push(buildLooseDefaultParam({
-            ASSIGNMENT_IDENTIFIER: cloneNode(left.node),
-            DEFAULT_VALUE: right.node,
-            UNDEFINED: undefinedNode
-          }));
-
-          _param.replaceWith(left.node);
-        } else if (left.isObjectPattern() || left.isArrayPattern()) {
-          var paramName = scope.generateUidIdentifier();
-          body.push(buildLooseDestructuredDefaultParam({
-            ASSIGNMENT_IDENTIFIER: left.node,
-            DEFAULT_VALUE: right.node,
-            PARAMETER_NAME: cloneNode(paramName),
-            UNDEFINED: undefinedNode
-          }));
-
-          _param.replaceWith(paramName);
-        }
-      } else if (paramIsAssignmentPattern) {
-        if (firstOptionalIndex === null) firstOptionalIndex = i;
-
-        var _left = _param.get("left");
-
-        var _right = _param.get("right");
-
-        var defNode = buildDefaultParam({
-          VARIABLE_NAME: _left.node,
-          DEFAULT_VALUE: _right.node,
-          ARGUMENT_KEY: NumericLiteral(i)
-        });
-        body.push(defNode);
-      } else if (firstOptionalIndex !== null) {
-        var _defNode = buildSafeArgumentsAccess([_param.node, NumericLiteral(i)]);
-
-        body.push(_defNode);
-      } else if (_param.isObjectPattern() || _param.isArrayPattern()) {
-        var uid = path.scope.generateUidIdentifier("ref");
-
-        var _defNode2 = VariableDeclaration("let", [VariableDeclarator(_param.node, uid)]);
-
-        body.push(_defNode2);
-
-        _param.replaceWith(cloneNode(uid));
-      }
-    }
-
-    if (firstOptionalIndex !== null) {
-      node.params = node.params.slice(0, firstOptionalIndex);
-    }
-
-    path.ensureBlock();
-
-    if (state.needsOuterBinding || shadowedParams.size > 0) {
-      body.push(buildScopeIIFE(shadowedParams, path.get("body").node));
-      path.set("body", BlockStatement(body));
-      var bodyPath = path.get("body.body");
-      var arrowPath = bodyPath[bodyPath.length - 1].get("argument.callee");
-      arrowPath.arrowFunctionToExpression();
-    } else {
-      path.get("body").unshiftContainer("body", body);
-    }
-
-    return true;
-  }
-
-  function buildScopeIIFE(shadowedParams, body) {
-    var args = [];
-    var params = [];
-
-    for (var _iterator4 = shadowedParams, _isArray4 = Array.isArray(_iterator4), _i5 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
-      var _ref4;
-
-      if (_isArray4) {
-        if (_i5 >= _iterator4.length) break;
-        _ref4 = _iterator4[_i5++];
-      } else {
-        _i5 = _iterator4.next();
-        if (_i5.done) break;
-        _ref4 = _i5.value;
-      }
-
-      var name = _ref4;
-      args.push(Identifier(name));
-      params.push(Identifier(name));
-    }
-
-    return ReturnStatement(CallExpression(ArrowFunctionExpression(params, body), params));
-  }
-
-  var buildRest = template("\n  for (var LEN = ARGUMENTS.length,\n           ARRAY = new Array(ARRAY_LEN),\n           KEY = START;\n       KEY < LEN;\n       KEY++) {\n    ARRAY[ARRAY_KEY] = ARGUMENTS[KEY];\n  }\n");
-  var restIndex = template("\n  (INDEX < OFFSET || ARGUMENTS.length <= INDEX) ? undefined : ARGUMENTS[INDEX]\n");
-  var restIndexImpure = template("\n  REF = INDEX, (REF < OFFSET || ARGUMENTS.length <= REF) ? undefined : ARGUMENTS[REF]\n");
-  var restLength = template("\n  ARGUMENTS.length <= OFFSET ? 0 : ARGUMENTS.length - OFFSET\n");
-
-  function referencesRest(path, state) {
-    if (path.node.name === state.name) {
-      return path.scope.bindingIdentifierEquals(state.name, state.outerBinding);
-    }
-
-    return false;
-  }
-
-  var memberExpressionOptimisationVisitor = {
-    Scope: function Scope(path, state) {
-      if (!path.scope.bindingIdentifierEquals(state.name, state.outerBinding)) {
-        path.skip();
-      }
-    },
-    Flow: function Flow(path) {
-      if (path.isTypeCastExpression()) return;
-      path.skip();
-    },
-    Function: function Function(path, state) {
-      var oldNoOptimise = state.noOptimise;
-      state.noOptimise = true;
-      path.traverse(memberExpressionOptimisationVisitor, state);
-      state.noOptimise = oldNoOptimise;
-      path.skip();
-    },
-    ReferencedIdentifier: function ReferencedIdentifier(path, state) {
-      var node = path.node;
-
-      if (node.name === "arguments") {
-        state.deopted = true;
-      }
-
-      if (!referencesRest(path, state)) return;
-
-      if (state.noOptimise) {
-        state.deopted = true;
-      } else {
-        var parentPath = path.parentPath;
-
-        if (parentPath.listKey === "params" && parentPath.key < state.offset) {
-          return;
-        }
-
-        if (parentPath.isMemberExpression({
-          object: node
-        })) {
-          var grandparentPath = parentPath.parentPath;
-          var argsOptEligible = !state.deopted && !(grandparentPath.isAssignmentExpression() && parentPath.node === grandparentPath.node.left || grandparentPath.isLVal() || grandparentPath.isForXStatement() || grandparentPath.isUpdateExpression() || grandparentPath.isUnaryExpression({
-            operator: "delete"
-          }) || (grandparentPath.isCallExpression() || grandparentPath.isNewExpression()) && parentPath.node === grandparentPath.node.callee);
-
-          if (argsOptEligible) {
-            if (parentPath.node.computed) {
-              if (parentPath.get("property").isBaseType("number")) {
-                state.candidates.push({
-                  cause: "indexGetter",
-                  path: path
-                });
-                return;
-              }
-            } else if (parentPath.node.property.name === "length") {
-              state.candidates.push({
-                cause: "lengthGetter",
-                path: path
-              });
-              return;
-            }
-          }
-        }
-
-        if (state.offset === 0 && parentPath.isSpreadElement()) {
-          var call = parentPath.parentPath;
-
-          if (call.isCallExpression() && call.node.arguments.length === 1) {
-            state.candidates.push({
-              cause: "argSpread",
-              path: path
-            });
-            return;
-          }
-        }
-
-        state.references.push(path);
-      }
-    },
-    BindingIdentifier: function BindingIdentifier(path, state) {
-      if (referencesRest(path, state)) {
-        state.deopted = true;
-      }
-    }
-  };
-
-  function getParamsCount(node) {
-    var count = node.params.length;
-
-    if (count > 0 && isIdentifier(node.params[0], {
-      name: "this"
-    })) {
-      count -= 1;
-    }
-
-    return count;
-  }
-
-  function hasRest(node) {
-    var length = node.params.length;
-    return length > 0 && isRestElement(node.params[length - 1]);
-  }
-
-  function optimiseIndexGetter(path, argsId, offset) {
-    var offsetLiteral = NumericLiteral(offset);
-    var index;
-
-    if (isNumericLiteral(path.parent.property)) {
-      index = NumericLiteral(path.parent.property.value + offset);
-    } else if (offset === 0) {
-      index = path.parent.property;
-    } else {
-      index = BinaryExpression("+", path.parent.property, cloneNode(offsetLiteral));
-    }
-
-    var scope = path.scope;
-
-    if (!scope.isPure(index)) {
-      var temp = scope.generateUidIdentifierBasedOnNode(index);
-      scope.push({
-        id: temp,
-        kind: "var"
-      });
-      path.parentPath.replaceWith(restIndexImpure({
-        ARGUMENTS: argsId,
-        OFFSET: offsetLiteral,
-        INDEX: index,
-        REF: cloneNode(temp)
-      }));
-    } else {
-      var parentPath = path.parentPath;
-      parentPath.replaceWith(restIndex({
-        ARGUMENTS: argsId,
-        OFFSET: offsetLiteral,
-        INDEX: index
-      }));
-      var offsetTestPath = parentPath.get("test").get("left");
-      var valRes = offsetTestPath.evaluate();
-
-      if (valRes.confident) {
-        if (valRes.value === true) {
-          parentPath.replaceWith(parentPath.scope.buildUndefinedNode());
-        } else {
-          parentPath.get("test").replaceWith(parentPath.get("test").get("right"));
-        }
-      }
-    }
-  }
-
-  function optimiseLengthGetter(path, argsId, offset) {
-    if (offset) {
-      path.parentPath.replaceWith(restLength({
-        ARGUMENTS: argsId,
-        OFFSET: NumericLiteral(offset)
-      }));
-    } else {
-      path.replaceWith(argsId);
-    }
-  }
-
-  function convertFunctionRest(path) {
-    var node = path.node,
-        scope = path.scope;
-    if (!hasRest(node)) return false;
-    var rest = node.params.pop().argument;
-    var argsId = Identifier("arguments");
-
-    if (isPattern(rest)) {
-      var pattern = rest;
-      rest = scope.generateUidIdentifier("ref");
-      var declar = VariableDeclaration("let", [VariableDeclarator(pattern, rest)]);
-      node.body.body.unshift(declar);
-    }
-
-    var paramsCount = getParamsCount(node);
-    var state = {
-      references: [],
-      offset: paramsCount,
-      argumentsNode: argsId,
-      outerBinding: scope.getBindingIdentifier(rest.name),
-      candidates: [],
-      name: rest.name,
-      deopted: false
-    };
-    path.traverse(memberExpressionOptimisationVisitor, state);
-
-    if (!state.deopted && !state.references.length) {
-      for (var _i = 0, _arr = state.candidates; _i < _arr.length; _i++) {
-        var _arr$_i = _arr[_i],
-            _path = _arr$_i.path,
-            cause = _arr$_i.cause;
-        var clonedArgsId = cloneNode(argsId);
-
-        switch (cause) {
-          case "indexGetter":
-            optimiseIndexGetter(_path, clonedArgsId, state.offset);
-            break;
-
-          case "lengthGetter":
-            optimiseLengthGetter(_path, clonedArgsId, state.offset);
-            break;
-
-          default:
-            _path.replaceWith(clonedArgsId);
-
-        }
-      }
-
-      return true;
-    }
-
-    state.references = state.references.concat(state.candidates.map(function (_ref) {
-      var path = _ref.path;
-      return path;
-    }));
-    var start = NumericLiteral(paramsCount);
-    var key = scope.generateUidIdentifier("key");
-    var len = scope.generateUidIdentifier("len");
-    var arrKey, arrLen;
-
-    if (paramsCount) {
-      arrKey = BinaryExpression("-", cloneNode(key), cloneNode(start));
-      arrLen = ConditionalExpression(BinaryExpression(">", cloneNode(len), cloneNode(start)), BinaryExpression("-", cloneNode(len), cloneNode(start)), NumericLiteral(0));
-    } else {
-      arrKey = Identifier(key.name);
-      arrLen = Identifier(len.name);
-    }
-
-    var loop = buildRest({
-      ARGUMENTS: argsId,
-      ARRAY_KEY: arrKey,
-      ARRAY_LEN: arrLen,
-      START: start,
-      ARRAY: rest,
-      KEY: key,
-      LEN: len
-    });
-
-    if (state.deopted) {
-      node.body.body.unshift(loop);
-    } else {
-      var target = path.getEarliestCommonAncestorFrom(state.references).getStatementParent();
-      target.findParent(function (path) {
-        if (path.isLoop()) {
-          target = path;
-        } else {
-          return path.isFunction();
-        }
-      });
-      target.insertBefore(loop);
-    }
-
-    return true;
-  }
-
-  var transformParameters = declare(function (api, options) {
-    api.assertVersion(7);
-    var loose = options.loose;
-    return {
-      name: "transform-parameters",
-      visitor: {
-        Function: function Function(path) {
-          if (path.isArrowFunctionExpression() && path.get("params").some(function (param) {
-            return param.isRestElement() || param.isAssignmentPattern();
-          })) {
-            path.arrowFunctionToExpression();
-          }
-
-          var convertedRest = convertFunctionRest(path);
-          var convertedParams = convertFunctionParams(path, loose);
-
-          if (convertedRest || convertedParams) {
-            path.scope.crawl();
-          }
-        }
-      }
-    };
-  });
-
   var transformPropertyLiterals = declare(function (api) {
     api.assertVersion(7);
     return {
@@ -74945,9 +75068,7 @@
         "JSXElement|JSXFragment": function JSXElementJSXFragment(path) {
           if (path.type === "JSXFragment") imports.add("Fragment");
           var openingPath = path.get("openingElement");
-          var validChildren = openingPath.parent.children.filter(function (child) {
-            return !isJSXEmptyExpression(child) && !(isJSXText(child) && child.value.trim() === "");
-          });
+          var validChildren = react.buildChildren(openingPath.parent);
           var importName;
 
           if (path.type === "JSXElement" && shouldUseCreateElement(path)) {
@@ -82212,6 +82333,13 @@
   		date: "2020-03-12",
   		lts: false,
   		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.12.0",
+  		date: "2020-03-26",
+  		lts: false,
+  		security: false
   	}
   ];
 
@@ -83393,6 +83521,7 @@
 
   var versions$1 = {
     "9.0": "82",
+    "8.2": "80",
     "8.1": "80",
     "8.0": "79",
     "7.2": "78",
@@ -91104,7 +91233,7 @@
       modulesOpt = ModulesOption.auto;
     }
 
-    browser$8(ModulesOption[modulesOpt.toString()] || ModulesOption[modulesOpt.toString()] === ModulesOption["false"], "Invalid Option: The 'modules' option must be one of \n" + " - 'false' to indicate no module processing\n" + " - a specific module type: 'commonjs', 'amd', 'umd', 'systemjs'" + " - 'auto' (default) which will automatically select 'false' if the current\n" + "   process is known to support ES module syntax, or \"commonjs\" otherwise\n");
+    browser$8(ModulesOption[modulesOpt.toString()] || modulesOpt === ModulesOption["false"], "Invalid Option: The 'modules' option must be one of \n" + " - 'false' to indicate no module processing\n" + " - a specific module type: 'commonjs', 'amd', 'umd', 'systemjs'" + " - 'auto' (default) which will automatically select 'false' if the current\n" + "   process is known to support ES module syntax, or \"commonjs\" otherwise\n");
     return modulesOpt;
   };
   var validateUseBuiltInsOption = function validateUseBuiltInsOption(builtInsOpt) {
@@ -91112,7 +91241,7 @@
       builtInsOpt = false;
     }
 
-    browser$8(UseBuiltInsOption[builtInsOpt.toString()] || UseBuiltInsOption[builtInsOpt.toString()] === UseBuiltInsOption["false"], "Invalid Option: The 'useBuiltIns' option must be either\n    'false' (default) to indicate no polyfill,\n    '\"entry\"' to indicate replacing the entry polyfill, or\n    '\"usage\"' to import only used polyfills per file");
+    browser$8(UseBuiltInsOption[builtInsOpt.toString()] || builtInsOpt === UseBuiltInsOption["false"], "Invalid Option: The 'useBuiltIns' option must be either\n    'false' (default) to indicate no polyfill,\n    '\"entry\"' to indicate replacing the entry polyfill, or\n    '\"usage\"' to import only used polyfills per file");
     return builtInsOpt;
   };
   function normalizeCoreJSOption(corejs, useBuiltIns) {
