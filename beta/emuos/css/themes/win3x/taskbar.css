@@ -2,19 +2,19 @@
 	background-color: #c0c0c0;
 }
 
-.theme-win9x .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-bottom {
+.theme-win3x .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-bottom {
 	border-top: 1px solid #000;
 }
 
-.theme-win9x .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-top {
+.theme-win3x .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-top {
 	border-bottom: 1px solid #000;
 }
 
-.theme-win9x .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-left {
+.theme-win3x .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-left {
 	border-right: 1px solid #000;
 }
 
-.theme-win9x .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-right {
+.theme-win3x .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-right {
 	border-left: 1px solid #000;
 }
 

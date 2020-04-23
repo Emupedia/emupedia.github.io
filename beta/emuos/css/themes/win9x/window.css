@@ -163,6 +163,11 @@
 	padding: 10px;
 }
 
+.theme-win9x .emuos-window .emuos-window-content hr {
+	border-top-color: #9a9a9a;
+	border-bottom-color: #eee;
+}
+
 .theme-win9x .emuos-window .emuos-window-content p {
 	margin: 0;
 	padding: 0;
