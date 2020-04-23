@@ -11,7 +11,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 32px 32px;
-	z-index: 99998;
+	/*z-index: 99998;*/
 	transition: all 0.1s ease 0.5s;
 	transition-property: opacity;
 	pointer-events: none;
@@ -39,7 +39,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 34px 34px;
-	z-index: 99998;
+	/*z-index: 99998;*/
 	transition: all 0.1s ease 0.5s;
 	transition-property: opacity;
 	pointer-events: none;
@@ -81,7 +81,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 16px 16px;
-	z-index: 99999;
+	/*z-index: 99999;*/
 	transition: all 0.1s ease 0.5s;
 	transition-property: opacity;
 	pointer-events: none;
