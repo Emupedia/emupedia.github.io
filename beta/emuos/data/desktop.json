@@ -261,7 +261,7 @@
 		"title": "Under Development",
 		"icon": ["images/icons/desktop/street-fighter/akuma", "images/icons/desktop/street-fighter/balrog", "images/icons/desktop/street-fighter/blanka", "images/icons/desktop/street-fighter/chunli", "images/icons/desktop/street-fighter/dhalsim", "images/icons/desktop/street-fighter/evilryu", "images/icons/desktop/street-fighter/ken", "images/icons/desktop/street-fighter/makoto", "images/icons/desktop/street-fighter/ryu", "images/icons/desktop/street-fighter/sagat", "images/icons/desktop/street-fighter/sakura", "images/icons/desktop/street-fighter/zangief"],
 		"link": "/emupedia-game-street-fighter-alpha/",
-		"credits": "Website: <a href=\"https://gamedev8.github.io/js-sfa/default.htm\" target=\"_blank\">gamedev8.github.io/js-sfa</a><br /><br />Author: <a href=\"https://github.com/gamedev8\" target=\"_blank\">github.com/gamedev8</a><br />Repository: <a href=\"https://github.com/gamedev8/js-sfa\" target=\"_blank\">github.com/gamedev8/js-sfa</a><br /><br />All other assets<hr />Copyright Capcom",
+		"credits": "Website: <a href=\"https://gamedev8.github.io/js-sfa/default.htm\" target=\"_blank\">gamedev8.github.io/js-sfa</a><br /><br />Author: <a href=\"https://github.com/gamedev8\" target=\"_blank\">github.com/gamedev8</a><br />Repository: <a href=\"https://github.com/gamedev8/js-sfa\" target=\"_blank\">github.com/gamedev8/js-sfa</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />All other assets<hr />Copyright Capcom",
 		"disclaimer_abandoned": true,
 		"width": 1068,
 		"height": 576
