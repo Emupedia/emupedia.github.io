@@ -610,6 +610,7 @@
 				'//emuos.org/beta/emuos/js/window'
 		],
 		'socket': [
+				'socket',
 				'//ws.emupedia.net/app/u_socket_es5',
 				'//ws.emuos.net/app/u_socket_es5',
 				'//ws.emuos.org/app/u_socket_es5'

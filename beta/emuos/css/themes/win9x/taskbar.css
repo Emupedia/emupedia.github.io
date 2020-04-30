@@ -136,7 +136,7 @@
 
 /*noinspection CssReplaceWithShorthandSafely,CssUnknownTarget*/
 .theme-win9x .emuos-taskbar .emuos-taskbar-window-button.ui-button.ui-state-active .ui-button-text {
-	background-image: url(/emupedia-resources/images/transparent.png);
+	/*background-image: url(/emupedia-resources/images/transparent.png);*/
 }
 
 /*noinspection CssReplaceWithShorthandSafely*/

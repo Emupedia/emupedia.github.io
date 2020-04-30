@@ -21,9 +21,7 @@ body {
 }*/
 
 div.menu ul.menu-items {
-	/*padding: 0 0 2px;*/
 	background-color: #c0c0c0;
-	/*box-shadow: inset 0 -1px 0 #000, inset 0 -2px 0 #808080;*/
 	height: 17px;
 	overflow: hidden;
 }
@@ -68,7 +66,7 @@ div.menu li ul {
 div.menu li li.check:before {
 	content: '';
 	position: absolute;
-	left: 4px;
+	left: 0;
 	top: 0;
 	display: block;
 	width: 16px;
@@ -79,17 +77,51 @@ div.menu li li.check:before {
 	pointer-events: none;
 }
 
-div.menu ul > li.check:before:hover li:hover {
+div.menu li li.check:hover:before {
 	background-image: url(../../../beta/emuos/images/themes/icons/windows-9x/menu-check-white.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
-/*div.menu li li.check:before:hover {
-	background-image: url(../../../beta/emuos/images/themes/icons/windows-9x/menu-check-white.png);
+div.menu li li.dot:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 16px;
+	height: 16px;
+	background-image: url(../../../beta/emuos/images/themes/icons/windows-9x/menu-dot-black.png);
 	background-repeat: no-repeat;
 	background-position: center;
-}*/
+	pointer-events: none;
+}
+
+div.menu li li.dot:hover:before {
+	background-image: url(../../../beta/emuos/images/themes/icons/windows-9x/menu-dot-white.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+div.menu li li.child:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: block;
+	width: 40px;
+	height: 16px;
+	background-image: url(../../../beta/emuos/images/themes/icons/windows-9x/menu-arrow-black.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	pointer-events: none;
+}
+
+div.menu li li.child:hover:after {
+	background-image: url(../../../beta/emuos/images/themes/icons/windows-9x/menu-arrow-white.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+}
 
 div.menu ul.menu-items > li > button:hover {
 	box-shadow: 1px 1px 0 #fff inset, -1px -1px 0 #808080 inset;
@@ -124,7 +156,7 @@ div.menu ul > li:hover li:hover {
 }
 
 div.menu ul li li {
-	padding: 0 40px 0 22px;
+	padding: 0 50px 0 22px;
 	margin-left: 3px;
 	margin-right: 3px;
 }
