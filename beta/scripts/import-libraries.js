@@ -4064,6 +4064,7 @@ for (let i = 0; i < dependencies.length; i++) {
 						libraries['network'] = 'network';
 						libraries['taskbar'] = 'taskbar';
 						libraries['window'] = 'window';
+						libraries['socket'] = 'socket';
 
 						Object.keys(libraries).forEach(function(key) {
 							if (!Array.isArray(libraries[key])) {
@@ -4073,7 +4074,7 @@ for (let i = 0; i < dependencies.length; i++) {
 							}
 						});
 
-						libraries['socket'] = ['//ws.emupedia.net/app/u_socket_es5', '//ws.emuos.net/app/u_socket_es5', '//ws.emuos.org/app/u_socket_es5'];
+						//libraries['socket'] = ['//ws.emupedia.net/app/u_socket_es5', '//ws.emuos.net/app/u_socket_es5', '//ws.emuos.org/app/u_socket_es5'];
 						libraries['ga'] = '//www.google-analytics.com/analytics';
 
 						// noinspection JSUnresolvedFunction

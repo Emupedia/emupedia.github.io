@@ -8,11 +8,11 @@
 
 	global['$sys']['lib'] = {
 		'babel-standalone': [
-				'libraries/babel-standalone-7.9.5.min',
-				'/beta/emuos/js/libraries/babel-standalone-7.9.5.min',
-				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.9.5.min',
-				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.9.5.min',
-				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.9.5.min'
+				'libraries/babel-standalone-7.9.6.min',
+				'/beta/emuos/js/libraries/babel-standalone-7.9.6.min',
+				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.9.6.min',
+				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.9.6.min',
+				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.9.6.min'
 		],
 		'bootstrap': [
 				'libraries/bootstrap-4.4.1.min',
@@ -225,18 +225,18 @@
 				'//emuos.org/beta/emuos/js/libraries/howler-spatial-2.1.3.min'
 		],
 		'hybrids': [
-				'libraries/hybrids-4.1.7.min',
-				'/beta/emuos/js/libraries/hybrids-4.1.7.min',
-				'//emupedia.net/beta/emuos/js/libraries/hybrids-4.1.7.min',
-				'//emuos.net/beta/emuos/js/libraries/hybrids-4.1.7.min',
-				'//emuos.org/beta/emuos/js/libraries/hybrids-4.1.7.min'
+				'libraries/hybrids-4.1.8.min',
+				'/beta/emuos/js/libraries/hybrids-4.1.8.min',
+				'//emupedia.net/beta/emuos/js/libraries/hybrids-4.1.8.min',
+				'//emuos.net/beta/emuos/js/libraries/hybrids-4.1.8.min',
+				'//emuos.org/beta/emuos/js/libraries/hybrids-4.1.8.min'
 		],
 		'i18next': [
-				'libraries/i18next-19.4.3.min',
-				'/beta/emuos/js/libraries/i18next-19.4.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/i18next-19.4.3.min',
-				'//emuos.net/beta/emuos/js/libraries/i18next-19.4.3.min',
-				'//emuos.org/beta/emuos/js/libraries/i18next-19.4.3.min'
+				'libraries/i18next-19.4.4.min',
+				'/beta/emuos/js/libraries/i18next-19.4.4.min',
+				'//emupedia.net/beta/emuos/js/libraries/i18next-19.4.4.min',
+				'//emuos.net/beta/emuos/js/libraries/i18next-19.4.4.min',
+				'//emuos.org/beta/emuos/js/libraries/i18next-19.4.4.min'
 		],
 		'jquery-1.x': [
 				'libraries/jquery-1.12.4.min',
@@ -253,11 +253,11 @@
 				'//emuos.org/beta/emuos/js/libraries/jquery-2.2.4.min'
 		],
 		'jquery-3.x': [
-				'libraries/jquery-3.4.1.min',
-				'/beta/emuos/js/libraries/jquery-3.4.1.min',
-				'//emupedia.net/beta/emuos/js/libraries/jquery-3.4.1.min',
-				'//emuos.net/beta/emuos/js/libraries/jquery-3.4.1.min',
-				'//emuos.org/beta/emuos/js/libraries/jquery-3.4.1.min'
+				'libraries/jquery-3.5.0.min',
+				'/beta/emuos/js/libraries/jquery-3.5.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/jquery-3.5.0.min',
+				'//emuos.net/beta/emuos/js/libraries/jquery-3.5.0.min',
+				'//emuos.org/beta/emuos/js/libraries/jquery-3.5.0.min'
 		],
 		'jquery-ajax-retry': [
 				'libraries/jquery-ajax-retry-0.2.8.min',
@@ -365,11 +365,11 @@
 				'//emuos.org/beta/emuos/js/libraries/localforage-nopromise-1.7.3.min'
 		],
 		'moment': [
-				'libraries/moment-2.24.0.min',
-				'/beta/emuos/js/libraries/moment-2.24.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/moment-2.24.0.min',
-				'//emuos.net/beta/emuos/js/libraries/moment-2.24.0.min',
-				'//emuos.org/beta/emuos/js/libraries/moment-2.24.0.min'
+				'libraries/moment-2.25.1.min',
+				'/beta/emuos/js/libraries/moment-2.25.1.min',
+				'//emupedia.net/beta/emuos/js/libraries/moment-2.25.1.min',
+				'//emuos.net/beta/emuos/js/libraries/moment-2.25.1.min',
+				'//emuos.org/beta/emuos/js/libraries/moment-2.25.1.min'
 		],
 		'moment-holiday': [
 				'libraries/moment-holiday-1.5.1.min',
@@ -414,18 +414,18 @@
 				'//emuos.org/beta/emuos/js/libraries/perfect-scrollbar-1.5.0.min'
 		],
 		'phaser': [
-				'libraries/phaser-3.22.0.min',
-				'/beta/emuos/js/libraries/phaser-3.22.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/phaser-3.22.0.min',
-				'//emuos.net/beta/emuos/js/libraries/phaser-3.22.0.min',
-				'//emuos.org/beta/emuos/js/libraries/phaser-3.22.0.min'
+				'libraries/phaser-3.23.0.min',
+				'/beta/emuos/js/libraries/phaser-3.23.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/phaser-3.23.0.min',
+				'//emuos.net/beta/emuos/js/libraries/phaser-3.23.0.min',
+				'//emuos.org/beta/emuos/js/libraries/phaser-3.23.0.min'
 		],
 		'phaser-arcade-physics': [
-				'libraries/phaser-arcade-physics-3.22.0.min',
-				'/beta/emuos/js/libraries/phaser-arcade-physics-3.22.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/phaser-arcade-physics-3.22.0.min',
-				'//emuos.net/beta/emuos/js/libraries/phaser-arcade-physics-3.22.0.min',
-				'//emuos.org/beta/emuos/js/libraries/phaser-arcade-physics-3.22.0.min'
+				'libraries/phaser-arcade-physics-3.23.0.min',
+				'/beta/emuos/js/libraries/phaser-arcade-physics-3.23.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/phaser-arcade-physics-3.23.0.min',
+				'//emuos.net/beta/emuos/js/libraries/phaser-arcade-physics-3.23.0.min',
+				'//emuos.org/beta/emuos/js/libraries/phaser-arcade-physics-3.23.0.min'
 		],
 		'polyfill-es6-custom-elements': [
 				'libraries/polyfill-es6-custom-elements-1.4.1.min',
@@ -533,11 +533,11 @@
 				'//emuos.org/beta/emuos/js/libraries/simplestorage-0.2.1.min'
 		],
 		'twemoji': [
-				'libraries/twemoji-12.1.5.min',
-				'/beta/emuos/js/libraries/twemoji-12.1.5.min',
-				'//emupedia.net/beta/emuos/js/libraries/twemoji-12.1.5.min',
-				'//emuos.net/beta/emuos/js/libraries/twemoji-12.1.5.min',
-				'//emuos.org/beta/emuos/js/libraries/twemoji-12.1.5.min'
+				'libraries/twemoji-12.1.6.min',
+				'/beta/emuos/js/libraries/twemoji-12.1.6.min',
+				'//emupedia.net/beta/emuos/js/libraries/twemoji-12.1.6.min',
+				'//emuos.net/beta/emuos/js/libraries/twemoji-12.1.6.min',
+				'//emuos.org/beta/emuos/js/libraries/twemoji-12.1.6.min'
 		],
 		'xterm': [
 				'libraries/xterm-4.5.0.min',
@@ -611,9 +611,10 @@
 		],
 		'socket': [
 				'socket',
-				'//ws.emupedia.net/app/u_socket_es5',
-				'//ws.emuos.net/app/u_socket_es5',
-				'//ws.emuos.org/app/u_socket_es5'
+				'/beta/emuos/js/socket',
+				'//emupedia.net/beta/emuos/js/socket',
+				'//emuos.net/beta/emuos/js/socket',
+				'//emuos.org/beta/emuos/js/socket'
 		],
 		'ga': '//www.google-analytics.com/analytics'
 };
