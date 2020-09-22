@@ -1,5 +1,5 @@
 /* Set Background slightly darker than white */
-html {
+#body {
 background-color: gray
 }
 
