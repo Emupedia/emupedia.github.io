@@ -1,11 +1,30 @@
 <!--suppress HtmlUnknownTarget -->
 
 <!-- Style contributed by: TheGreatFoxxy; He tried to make it look good. -->
-<style src="/style/beta.css"></style>
+<style>
+/* Set Background slightly darker than white */
+#body {
+background-color: gray
+}
+
+/* Set Background color to transperent, for inheiritance reasons, trying to imitate windows app footer */
+a {
+background-color: transparent;
+color: white;
+}
+
+/* Set hovering action, again to imitate windows app footer */
+a:hover {
+background-color: blue;
+text-decoration: underline;
+}
+</style>
 
 <div id="body">
 	
-<iframe src="/sounds/boot.wav" allow="autoplay" id="audio" style="display:none"></iframe>
+	<!-- Set a cool little boot sound -->
+	
+<audio src="/sounds/boot.wav" allow="autoplay" id="audio" style="display:none"></audio>
 
 <h1>Desktop</h1>
 
