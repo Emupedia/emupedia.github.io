@@ -1,4 +1,4 @@
-## <sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/emupedia-48.png" /></sub> Emupedia [![Contribute](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/Emupedia/emupedia.github.io/pulls) [![Discord](https://img.shields.io/discord/510149138491506688.svg?logo=discord)](https://discord.gg/wXtGQ4p) [![Gitpod - Code Now](https://img.shields.io/badge/gitpod-code%20now-blue.svg)](https://gitpod.io#https://github.com/Emupedia/emupedia.github.io) [![GitHub last commit](https://img.shields.io/github/last-commit/Emupedia/emupedia.github.io.svg)](#-emupedia-----) [![GitHub repo size](https://img.shields.io/github/repo-size/Emupedia/emupedia.github.io.svg)](#-emupedia-----)
+## <sub><img loading="lazy" width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> Emupedia [![Contribute](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/Emupedia/emupedia.github.io/pulls) [![Discord](https://img.shields.io/discord/510149138491506688.svg?logo=discord)](https://discord.gg/wXtGQ4p) [![Gitpod - Code Now](https://img.shields.io/badge/gitpod-code%20now-blue.svg)](https://gitpod.io#https://github.com/Emupedia/emupedia.github.io) [![GitHub last commit](https://img.shields.io/github/last-commit/Emupedia/emupedia.github.io.svg)](#-emupedia-----) [![GitHub repo size](https://img.shields.io/github/repo-size/Emupedia/emupedia.github.io.svg)](#-emupedia-----)
 
 ---
 The purpose of Emupedia is to serve as a [nonprofit](https://en.wikipedia.org/wiki/Nonprofit_organization) meta-resource hub and community for those interested mainly in [video game preservation](https://en.wikipedia.org/wiki/Video_game_preservation) and computer history which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly [UI](https://en.wikipedia.org/wiki/User_interface) that [simulates](https://difference.guru/difference-between-simulator-and-emulator) several retro operating systems for educational purposes.
@@ -28,17 +28,17 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## 👀 <sub>View a Live Demo</sub>
 [![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/assets/images/icons/under-development.svg)](#-view-a-live-demo)
 
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/emupedia-48.png" /></sub> [https://emupedia.net/beta/emuos/](https://emupedia.net/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/emupedia-48.png" /></sub> [https://emupedia.org/beta/emuos/](https://emupedia.org/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/emupedia-48.png" /></sub> [https://emuos.net/beta/emuos/](https://emuos.net/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/emupedia-48.png" /></sub> [https://emuos.org/beta/emuos/](https://emuos.org/beta/emuos/)
+* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> [https://emupedia.net/beta/emuos/](https://emupedia.net/beta/emuos/)
+* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> [https://emupedia.org/beta/emuos/](https://emupedia.org/beta/emuos/)
+* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> [https://emuos.net/beta/emuos/](https://emuos.net/beta/emuos/)
+* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> [https://emuos.org/beta/emuos/](https://emuos.org/beta/emuos/)
 
 <details>
 <summary>Mirrors</summary>
 
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/emupedia-48.png" /></sub> Mirror 1 [https://emuos.redirectme.net/beta/emuos/](https://emuos.redirectme.net/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/emupedia-48.png" /></sub> Mirror 2 [https://emu.bounceme.net/beta/emuos/](https://emu.bounceme.net/beta/emuos/)
-* <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/emupedia-48.png" /></sub> Mirror 3 [https://emu.webhop.me/beta/emuos/](https://emu.webhop.me/beta/emuos/)
+* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> Mirror 1 [https://emuos.redirectme.net/beta/emuos/](https://emuos.redirectme.net/beta/emuos/)
+* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> Mirror 2 [https://emu.bounceme.net/beta/emuos/](https://emu.bounceme.net/beta/emuos/)
+* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> Mirror 3 [https://emu.webhop.me/beta/emuos/](https://emu.webhop.me/beta/emuos/)
 
 </details>
 
@@ -47,9 +47,22 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <summary>Click to reveal</summary>
 
 ---
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_24x24.png" alt="Internet Explorer" /><br />Internet<br />Explorer<br />Trident | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/edge_12-18/edge_12-18_24x24.png" alt="Edge" /><br />Edge<br />EdgeHTML<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_24x24.png" alt="Edge" /><br />Edge<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/firefox_3.5-22/firefox_3.5-22_24x24.png" alt="Firefox" /><br />Firefox<br />Gecko<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png" alt="Firefox" /><br />Firefox<br />Quantum<br />Gecko | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/pale-moon/pale-moon_24x24.png" alt="Pale Moon" /><br />Pale<br />Moon<br />Goanna | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/chrome_1-11/chrome_1-11_24x24.png" alt="Chrome" /><br />Chrome<br />WebKit<br /><br />  | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png" alt="Chrome" /><br />Chrome<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/opera_15-32/opera_15-32_24x24.png" alt="Opera" /><br />Opera<br />Presto<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png" alt="Opera" /><br />Opera<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png" alt="Safari" /><br />Safari<br />WebKit<br /><br /> |  <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/brave/brave_24x24.png" alt="Brave" /><br />Brave<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi_24x24.png" alt="Vivaldi" /><br />Vivaldi<br />Blink<br /><br /> |
-| :-------------: | :-------------: | :---: | :------------: | :---: | :------------: | :------------: | :---: | :-------------: | :---: | :---: | :---: | :---: |
-| <sup>*</sup>11+ | <sup>*</sup>12+ | 79+   | <sup>*</sup>4+ | 57+   | <sup>*</sup>4+ | <sup>*</sup>3+ | 28+   | <sup>*</sup>12+ | 15+   | 8+    | 1+    | 1+    |
+| Logo                                                                                                                                                                                    | Company               | Name              | Rendering Engine | Version         |
+| :---:                                                                                                                                                                                   | :---                  | :---              | :---             | :---:           |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11.svg" alt="Internet Explorer" /> | Microsoft             | Internet Explorer | Trident          | <sup>*</sup>11+ |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/edge_12-18/edge_12-18.svg" alt="Edge" />                                      | Microsoft             | Edge              | EdgeHTML         | <sup>*</sup>12+ |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge.svg" alt="Edge" />                                                          | Microsoft             | Edge              | Blink            | 79+             |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/firefox_3.5-22/firefox_3.5-22.png" alt="Firefox" />                           | Mozilla               | Firefox           | Gecko            | <sup>*</sup>4+  |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox.svg" alt="Firefox" />                                                 | Mozilla               | Firefox           | Quantum Gecko    | 57+             |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/pale-moon/pale-moon.png" alt="Pale Moon" />                                           | Moonchild Productions | Pale Moon         | Goanna           | <sup>*</sup>4+  |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/basilisk/basilisk.svg" alt="Basilisk" />                                              | Moonchild Productions | Basilisk          | Goanna           | <sup>*</sup>1+  |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/chrome_1-11/chrome_1-11.svg" alt="Chrome" />                                  | Google                | Chrome            | WebKit           | <sup>*</sup>3+  |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome.svg" alt="Chrome" />                                                    | Google                | Chrome            | Blink            | 28+             |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/opera_15-32/opera_15-32.png" alt="Opera" />                                   | Opera Software        | Opera             | Presto           | <sup>*</sup>12+ |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera.svg" alt="Opera" />                                                       | Opera Software        | Opera             | Blink            | 15+             |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari.png" alt="Safari" />                                                    | Apple                 | Safari            | WebKit           | 8+              |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/brave/brave.svg" alt="Brave" />                                                       | Brave Software        | Brave             | Blink            | 1+              |
+| <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi.svg" alt="Vivaldi" />                                                 | Vivaldi Technologies  | Vivaldi           | Blink            | 1+              |
 
 [![* application support may vary](https://emupedia.net/beta/emuos/assets/images/icons/ie-notice.svg)](#-browser-support)
 
@@ -59,6 +72,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## 🤖 <sub>Emulators used</sub>
 <details>
 <summary>Click to reveal</summary>
+
+This list it not always up to date
 
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
@@ -74,6 +89,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## ⚙ <sub>Apps used</sub>
 <details>
 <summary>Click to reveal</summary>
+
+This list it not always up to date
 
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
@@ -95,6 +112,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## 🕹️ <sub>Games used</sub>
 <details>
 <summary>Click to reveal</summary>
+
+This list it not always up to date
 
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
@@ -135,6 +154,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <details>
 <summary>Click to reveal</summary>
 
+This list it not always up to date
+
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                                 |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                    |
@@ -150,6 +171,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## 📚 <sub>Libraries used</sub>
 <details>
 <summary>Click to reveal</summary>
+
+This list it not always up to date
 
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |

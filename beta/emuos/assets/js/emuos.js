@@ -283,7 +283,7 @@
 					}
 
 					if (typeof $(this).data('singleinstance') !== 'undefined') {
-						if ($(this).data('singleinstance') && self.$body.find('[id^=' + $(this).data('name') + ']').length === 0) {
+						if ($(this).data('singleinstance') && self.$body.find('[id^="' + $(this).data('name') + '"]').length === 0) {
 							// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 							self.iframe({
 								title: $(this).data('name'),

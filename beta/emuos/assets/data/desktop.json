@@ -3,21 +3,23 @@
 		"version": "1.0"
 	},
 	"icons": [{
-		"name": "EmuOS v2.0",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/emupedia",
-		"link": "/beta/emuos/boot.html",
-		"width": 824,
-		"height": 624
-	} , {
-		"name": "EmuOS on GitHub",
+		"name": "Emupedia on GitHub",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/github",
 		"link": "https://github.com/Emupedia/emupedia.github.io/",
 		"target": "_blank",
 		"shortcut": true
 	} , {
+		"name": "EmuArchive",
+		"title": "Under Development",
+		"icon": "assets/images/icons/desktop/emuarchive",
+		"link": "https://archive.emupedia.net/",
+		"width": 900,
+		"height": 480,
+		"singleinstance": true
+	} , {
 		"name": "EmuChat",
+		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/emuchat",
 		"link": "/emupedia-app-emuchat/",
 		"width": 900,
@@ -142,6 +144,15 @@
 		"height": 600,
 		"shortcut": true
 	} , {
+		"name": "skribbl.io",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/skribbl.io",
+		"link": "https://skribbl.io/",
+		"credits": "Website: <a href=\"https://skribbl.io/\" target=\"_blank\">skribbl.io</a><br /><br />Suggested to be added by SMax<br /><br />All other assets<hr />Copyright skribbl.io",
+		"width": 900,
+		"height": 600,
+		"shortcut": true
+	} , {
 		"name": "Raptor: Call of the Shadows",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/raptor",
@@ -150,6 +161,15 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 400
+	} , {
+		"name": "NVolley",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/nvolley",
+		"link": "https://cojmar.github.io/nvolley/",
+		"credits": "Website: <a href=\"https://cojmar.github.io/nvolley/\" target=\"_blank\">cojmar.github.io/nvolley</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nvolley\" target=\"_blank\">github.com/cojmar/nvolley</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Arcade_Volleyball\" target=\"_blank\">Arcade Volleyball</a>",
+		"width": 640,
+		"height": 480,
+		"shortcut": true
 	} , {
 		"name": "Pikachu Volleyball",
 		"title": "Under Development",
@@ -201,6 +221,26 @@
 		"height": 715,
 		"shortcut": true
 	} , {
+		"name": "PONG",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/pong",
+		"link": "https://turbowarp.org/embed.html?autoplay#444984831",
+		"credits": "Website: <a href=\"https://scratch.mit.edu/projects/2718643/\" target=\"_blank\">scratch.mit.edu/projects/2718643</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/dixiklo\" target=\"_blank\">scratch.mit.edu/users/dixiklo</a><br /><br />Suggested to be added by SMax<br /><br />All other assets<hr />Copyright Atari, SA",
+		"disclaimer_abandoned": true,
+		"width": 720,
+		"height": 480,
+		"shortcut": true
+	} , {
+		"name": "Tetris",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/tetris",
+		"link": "https://turbowarp.org/embed.html?autoplay#31651654",
+		"credits": "Website: <a href=\"https://scratch.mit.edu/projects/31651654/\" target=\"_blank\">scratch.mit.edu/projects/31651654</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/smelly_hobbit/\" target=\"_blank\">scratch.mit.edu/users/smelly_hobbit</a><br /><br />Suggested to be added by SMax<br /><br />All other assets<hr />Copyright Nintendo Company, Ltd. and The Tetris Company, LLC",
+		"disclaimer_abandoned": true,
+		"width": 720,
+		"height": 480,
+		"shortcut": true
+	} , {
 		"name": "Clippy",
 		"icon": "assets/images/icons/desktop/clippy"
 	} , {
@@ -216,19 +256,22 @@
 		"height": 480
 	} , {
 		"name": "ASCIICKER",
-		"title": "Under Development",
+		"title": "External Website",
 		"icon": "assets/images/icons/desktop/asciicker",
-		"link": "/emupedia-demo-asciicker/",
-		"credits": "Website: <a href=\"http://asciicker.com/\" target=\"_blank\">asciicker.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
+		"link": "https://asciicker.com/",
+		"credits": "Website: <a href=\"https://asciicker.com/\" target=\"_blank\">asciicker.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"shortcut": true
 	} , {
 		"name": "ASCII PATROL",
+		"title": "External Website",
 		"icon": "assets/images/icons/desktop/ascii-patrol",
-		"link": "/emupedia-game-ascii-patrol/",
+		"link": "https://ascii-patrol.com/area54/ascii-patrol-html5.html",
 		"credits": "Website: <a href=\"https://ascii-patrol.com/\" target=\"_blank\">ascii-patrol.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br />Repository: <a href=\"https://github.com/msokalski/ascii-patrol\" target=\"_blank\">github.com/msokalski/ascii-patrol</a><br />License: <a href=\"https://github.com/msokalski/ascii-patrol/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"shortcut": true
 	} , {
 		"name": "3D Spatial Audio",
 		"icon": "assets/images/icons/desktop/joystick",
@@ -245,19 +288,12 @@
 		"height": 480
 	} , {
 		"name": "8-bit Palette Color Cycling",
-		"icon": "assets/images/icons/desktop/joystick",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/8-bit-palette-color-cycling",
 		"link": "/emupedia-app-8-bit-palette-color-cycling/",
 		"credits": "Website: <a href=\"http://effectgames.com/demos/canvascycle/\" target=\"_blank\">effectgames.com/demos/canvascycle</a><br /><br />YouTube: <a href=\"https://www.youtube.com/watch?v=aMcJ1Jvtef0\" target=\"_blank\">youtube.com/watch?v=aMcJ1Jvtef0</a><br /><br />Author: <a href=\"https://github.com/jhuckaby\" target=\"_blank\">github.com/jhuckaby</a><br />Source Code: <a href=\"http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6\" target=\"_blank\">effectgames.com</a><br />License: <a href=\"http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6\" target=\"_blank\">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href=\"http://www.markferrari.com/\" target=\"_blank\">Mark J. Ferrari</a>",
 		"width": 900,
-		"height": 550
-	} , {
-		"name": "NVolley",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/joystick",
-		"link": "https://cojmar.github.io/nvolley/",
-		"credits": "Website: <a href=\"https://cojmar.github.io/nvolley/\" target=\"_blank\">cojmar.github.io/nvolley</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nvolley\" target=\"_blank\">github.com/cojmar/nvolley</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Arcade_Volleyball\" target=\"_blank\">Arcade Volleyball</a>",
-		"width": 640,
-		"height": 480,
+		"height": 550,
 		"shortcut": true
 	} , {
 		"name": "RomCenter",
@@ -517,5 +553,14 @@
 		"width": 900,
 		"height": 610,
 		"shortcut": true
+	} , {
+		"name": "Happy Tree Friends",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/happy-tree-friends",
+		"link": "/emupedia-media-htf/",
+		"width": 900,
+		"height": 480,
+		"shortcut": true,
+		"singleinstance": true
 	}]
 }

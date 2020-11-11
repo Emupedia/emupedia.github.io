@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 emupedia-resources
+/beta/emuos/assets/themes
 
 # compiled output
 /tmp
