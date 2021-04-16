@@ -93,7 +93,7 @@
     "jquery.hotkeys": "github:jeresig/jquery.hotkeys",
     "js-dos": "^6.22.59",
     "jsonpath": "^1.1.0",
-    "jsrsasign": "^10.1.5",
+    "jsrsasign": "^10.2.0",
     "jszip": "^3.5.0",
     "less": "^4.1.1",
     "lightslider": "^1.1.6",
