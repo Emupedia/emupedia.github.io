@@ -45,7 +45,7 @@
     "buzz": "^1.2.1",
     "clippyjs": "0.0.3",
     "custom-event-polyfill": "^1.0.7",
-    "datatables.net": "^1.10.25",
+    "datatables.net": "^1.11.3",
     "datatables.net-bs4": "^1.10.25",
     "datatables.net-buttons": "^2.0.0",
     "datatables.net-buttons-bs4": "^2.0.0",
