@@ -1,4 +1,5 @@
-// noinspection DuplicatedCode
+// noinspection DuplicatedCode,JSDeprecatedSymbols
+
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery', 'router', 'toastr', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);

@@ -1,10 +1,11 @@
-// noinspection ThisExpressionReferencesGlobalObjectJS
+// noinspection ThisExpressionReferencesGlobalObjectJS,DuplicatedCode
+
 (function(global) {
 	if (typeof global['$sys'] === 'undefined') {
 		global['$sys'] = {};
 	}
 
-	var location = ~window.location.hostname.indexOf('emupedia.net') ? 'emupedia.net' : (~window.location.hostname.indexOf('emupedia.org') ? 'emupedia.org' : (~window.location.hostname.indexOf('emuos.net') ? 'emuos.net' : (~window.location.hostname.indexOf('emuos.org') ? 'emuos.org' : 'emupedia.net')))
+	var location = ~window.location.hostname.indexOf('emupedia.net') ? 'emupedia.net' : (~window.location.hostname.indexOf('emupedia.org') ? 'emupedia.org' : (~window.location.hostname.indexOf('emupedia.games') ? 'emupedia.games' : (~window.location.hostname.indexOf('emuos.net') ? 'emuos.net' : (~window.location.hostname.indexOf('emuos.org') ? 'emuos.org' : (~window.location.hostname.indexOf('emuos.games') ? 'emuos.games' : 'emupedia.net')))))
 
 	// region Libraries
 
