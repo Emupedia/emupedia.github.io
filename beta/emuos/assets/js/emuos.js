@@ -1140,6 +1140,13 @@
 		Router.navigate('/');
 
 		Router.add(/(.*)/, function(route) {
+			var params = '';
+
+			if (~route.indexOf('?')) {
+				params = route.slice(route.lastIndexOf('?') + 1);
+				route = route.slice(0, route.lastIndexOf('?'));
+			}
+
 			for (var j in self.options.icons) {
 				// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
 				var icon_options = self.options.icons[j];
@@ -1148,9 +1155,18 @@
 					var icon_link = '';
 
 					if (!~icon_options['link'].indexOf('http')) {
-						icon_link = icon_options['link'].slice(1, -1);
+						icon_link = ~icon_options['link'].indexOf('?') ? icon_options['link'].slice(0, icon_options['link'].indexOf('?')) : icon_options['link'];
+						icon_link = icon_link.substr(0, 1) === '/' ? icon_link.slice(1) : icon_link;
+						icon_link = ~icon_link.lastIndexOf('/') ? icon_link.slice(0, icon_link.lastIndexOf('/')) : icon_link;
 
 						if (route === icon_link) {
+							if (params !== '') {
+								var $icon = self.$desktop.find('a.emuos-desktop-icon span:contains("' + icon_options['name'] + '")').first().parent();
+								$icon.data('link', $icon.data('link').indexOf('?') ? $icon.data('link').slice(0, $icon.data('link').indexOf('?')) + '?' + params : $icon.data('link') + '?' + params);
+								$icon.trigger('dblclick');
+								break;
+							}
+
 							self.$desktop.find('a.emuos-desktop-icon span:contains("' + icon_options['name'] + '")').first().trigger('dblclick');
 							break;
 						}
