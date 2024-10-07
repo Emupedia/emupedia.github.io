@@ -1,72 +1,217 @@
-<!--suppress HtmlUnknownTarget -->
-<h1>Projects</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmuProjects</title>
+    <style>
+        /* Global reset for body */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<h1><a href="/beta/emuos/">EmuOS v1.0 (Work In Progress)</a></h1>
-<h1><a href="//emuos.emupedia.net/">EmuOS v2.0 (Work In Progress)</a></h1>
-<h1><a href="//emuchat.emupedia.net">EmuChat v1.0 (Work In Progress)</a></h1>
-<h1><a href="//chat.emupedia.net">EmuChat v2.0 (Work In Progress)</a></h1>
-<h1><a href="/emuarchive/">EmuArchive v1.0 (Work In Progress)</a></h1>
+        /* Retro background */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1a1a1a;
+            color: #00FF88;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: left;
+        }
 
-<h1>Apps</h1>
+        /* Container for all content */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            background: #222;
+            border: 2px solid #00FF88;
+            border-radius: 8px;
+            box-shadow: 0 0 20px #00FF88, 0 0 40px #00FF88 inset;
+        }
 
-<h1><a href="/emupedia-app-8-bit-palette-color-cycling/">8-bit Palette Color Cycling</a></h1>
-<h1><a href="/emupedia-app-dosbox/">DOSBox v0.74 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-mirc/">mIRC (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-emulator/">Emupedia Emulator (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-monaco-editor/">Monaco Editor(Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-notepad/">Notepad (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-paint/">Paint (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-pixelcraft/">PixelCraft (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-romcenter/">RomCenter (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-sandbox/">Sandbox (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-svg-editor/">SVG Editor (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-vscode/">Visual Studio Code (Work In Progress)</a></h1>
-<h1><a href="/emupedia-app-winamp/">Winamp v2.9</a></h1>
-<h1><a href="/emupedia-app-winamp-classic/">Winamp Classic (Work In Progress)</a></h1>
+        /* Headers with neon effect */
+        h1 {
+            font-size: 2rem;
+            color: #00FF88;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 0px 0px 8px #00FF88;
+        }
 
-<h1>Demos</h1>
+        /* Section titles */
+        h1.section-title {
+            border-bottom: 2px solid #00FF88;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
 
-<h1><a href="/emupedia-demo-3d-spatial-audio/">3D Spatial Audio</a></h1>
-<h1><a href="/emupedia-demo-voxel-space/">Voxel Space</a></h1>
+        /* Grid layout for links */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
 
-<h1>Games</h1>
+        /* Links style */
+        a {
+            display: block;
+            padding: 15px;
+            background-color: #333;
+            color: #00FF88;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+            border: 2px solid #00FF88;
+            box-shadow: 0 0 8px #00FF88;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-<h1><a href="/emupedia-game-agar.io/">Agar.io</a></h1>
-<h1><a href="/emupedia-game-ascii-patrol/">ASCII PATROL</a></h1>
-<h1><a href="/emupedia-game-asciicker/">ASCIICKER (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-biolab-disaster/">Biolab Disaster</a></h1>
-<h1><a href="/emupedia-game-cookie-clicker/">Cookie Clicker</a></h1>
-<h1><a href="/emupedia-game-command-and-conquer1/">Command and Conquer (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-ra2/">Command and Conquer: Red Alert 2 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-dark-reign/">Dark Reign: The Future of War (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-diablo1/">Diablo 1 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-doom1/">Doom 1 (WASM)</a></h1>
-<h1><a href="/emupedia-game-doom1/asmjs/">Doom 1 (ASM.JS)</a></h1>
-<h1><a href="/emupedia-game-doom2/">Doom 2: Hell on Earth (WASM)</a></h1>
-<h1><a href="/emupedia-game-doom2/asmjs/">Doom 2: Hell on Earth (ASM.JS)</a></h1>
-<h1><a href="/emupedia-game-doom3/">Doom 3 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-dune2/">Dune 2 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-flappy-bird/">Flappy Bird</a></h1>
-<h1><a href="/emupedia-game-geometry-dash/">Geometry Dash</a></h1>
-<h1><a href="/emupedia-game-hexen2/">Hexen 2 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-half-life1/">Half-Life 1 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-lemmings1/">Lemmings 1 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-minesweeper/">Minesweeper</a></h1>
-<h1><a href="/emupedia-game-minecraft-classic/">Minecraft (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-pikachu-volleyball/">Pikachu Volleyball (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-prince/">Prince of Persia 1 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-raptor/">Raptor: Call of the Shadows (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-skifree/">SkiFree (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-street-fighter-alpha/">Street Fighter Alpha (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-super-blob-blaster/">Super Blob Blaster</a></h1>
-<h1><a href="/emupedia-game-tomb-raider/">Tomb Raider (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-openttd/">Transport Tycoon Deluxe (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-unreal-tournament/">Unreal Tournament (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-quake1/">Quake 1 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-quake2/">Quake 2 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-quake3/">Quake 3 Arena (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-wings2/">Wings 2.0 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-wolfenstein-3d/">Wolfenstein 3D</a></h1>
-<h1><a href="/emupedia-game-wolfenstein-3d-canvas/">Wolfenstein 3D (Canvas)</a></h1>
-<h1><a href="/emupedia-game-worms2/">Worms 2 (Work In Progress)</a></h1>
-<h1><a href="/emupedia-game-xcom1/">X-COM: UFO Defense (Work In Progress)</a></h1>
+        a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        a:hover::before {
+            left: 100%;
+        }
+
+        /* Hover effects for links */
+        a:hover {
+            background-color: #00FF88;
+            color: #1a1a1a;
+            box-shadow: 0 0 20px #FF00FF, 0 0 20px #00FF88 inset;
+        }
+
+        /* Subtle hover glow animation */
+        a:hover {
+            box-shadow: 0 0 10px #FF00FF, 0 0 10px #00FF88 inset;
+        }
+
+        /* Fine-tuning for small screens */
+        @media (max-width: 768px) {
+            h1.section-title {
+                font-size: 2rem;
+            }
+
+            a {
+                font-size: 1rem;
+            }
+        }
+
+        /* Fine-tuning for extra-small screens */
+        @media (max-width: 480px) {
+            h1.section-title {
+                font-size: 1.8rem;
+            }
+
+            a {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="section-title">Projects</h1>
+    <div class="grid">
+        <a href="/beta/emuos/">EmuOS v1.0 (Work In Progress)</a>
+        <a href="//emuos.emupedia.net/">EmuOS v2.0 (Work In Progress)</a>
+        <a href="//emuchat.emupedia.net">EmuChat v1.0 (Work In Progress)</a>
+        <a href="//chat.emupedia.net">EmuChat v2.0 (Work In Progress)</a>
+        <a href="/emuarchive/">EmuArchive v1.0 (Work In Progress)</a>
+    </div>
+
+    <h1 class="section-title">Apps</h1>
+    <div class="grid">
+        <a href="/emupedia-app-8-bit-palette-color-cycling/">8-bit Palette Color Cycling</a>
+        <a href="/emupedia-app-dosbox/">DOSBox v0.74 (Work In Progress)</a>
+        <a href="/emupedia-app-mirc/">mIRC (Work In Progress)</a>
+        <a href="/emupedia-app-emulator/">Emupedia Emulator (Work In Progress)</a>
+        <a href="/emupedia-app-monaco-editor/">Monaco Editor (Work In Progress)</a>
+        <a href="/emupedia-app-notepad/">Notepad (Work In Progress)</a>
+        <a href="/emupedia-app-paint/">Paint (Work In Progress)</a>
+        <a href="/emupedia-app-pixelcraft/">PixelCraft (Work In Progress)</a>
+        <a href="/emupedia-app-romcenter/">RomCenter (Work In Progress)</a>
+        <a href="/emupedia-app-sandbox/">Sandbox (Work In Progress)</a>
+        <a href="/emupedia-app-svg-editor/">SVG Editor (Work In Progress)</a>
+        <a href="/emupedia-app-vscode/">Visual Studio Code (Work In Progress)</a>
+        <a href="/emupedia-app-winamp/">Winamp v2.9</a>
+        <a href="/emupedia-app-winamp-classic/">Winamp Classic (Work In Progress)</a>
+    </div>
+
+    <h1 class="section-title">Demos</h1>
+    <div class="grid">
+        <a href="/emupedia-demo-3d-spatial-audio/">3D Spatial Audio</a>
+        <a href="/emupedia-demo-voxel-space/">Voxel Space</a>
+    </div>
+
+    <h1 class="section-title">Games</h1>
+    <div class="grid">
+        <a href="/emupedia-game-agar.io/">Agar.io</a>
+        <a href="/emupedia-game-ascii-patrol/">ASCII PATROL</a>
+        <a href="/emupedia-game-asciicker/">ASCIICKER (Work In Progress)</a>
+        <a href="/emupedia-game-biolab-disaster/">Biolab Disaster</a>
+        <a href="/emupedia-game-cookie-clicker/">Cookie Clicker</a>
+        <a href="/emupedia-game-command-and-conquer1/">Command and Conquer (Work In Progress)</a>
+        <a href="/emupedia-game-ra2/">Command and Conquer: Red Alert 2 (Work In Progress)</a>
+        <a href="/emupedia-game-dark-reign/">Dark Reign: The Future of War (Work In Progress)</a>
+        <a href="/emupedia-game-diablo1/">Diablo 1 (Work In Progress)</a>
+        <a href="/emupedia-game-doom1/">Doom 1 (WASM)</a>
+        <a href="/emupedia-game-doom1/asmjs/">Doom 1 (ASM.JS)</a>
+        <a href="/emupedia-game-doom2/">Doom 2: Hell on Earth (WASM)</a>
+        <a href="/emupedia-game-doom2/asmjs/">Doom 2: Hell on Earth (ASM.JS)</a>
+        <a href="/emupedia-game-doom3/">Doom 3 (Work In Progress)</a>
+        <a href="/emupedia-game-dune2/">Dune 2 (Work In Progress)</a>
+        <a href="/emupedia-game-flappy-bird/">Flappy Bird</a>
+        <a href="/emupedia-game-geometry-dash/">Geometry Dash</a>
+        <a href="/emupedia-game-hexen2/">Hexen 2 (Work In Progress)</a>
+        <a href="/emupedia-game-half-life1/">Half-Life 1 (Work In Progress)</a>
+        <a href="/emupedia-game-lemmings1/">Lemmings 1 (Work In Progress)</a>
+        <a href="/emupedia-game-minesweeper/">Minesweeper</a>
+        <a href="/emupedia-game-minecraft-classic/">Minecraft (Work In Progress)</a>
+        <a href="/emupedia-game-pikachu-volleyball/">Pikachu Volleyball (Work In Progress)</a>
+        <a href="/emupedia-game-prince/">Prince of Persia 1 (Work In Progress)</a>
+        <a href="/emupedia-game-raptor/">Raptor: Call of the Shadows (Work In Progress)</a>
+        <a href="/emupedia-game-skifree/">SkiFree (Work In Progress)</a>
+        <a href="/emupedia-game-street-fighter-alpha/">Street Fighter Alpha (Work In Progress)</a>
+        <a href="/emupedia-game-super-blob-blaster/">Super Blob Blaster</a>
+        <a href="/emupedia-game-tomb-raider/">Tomb Raider (Work In Progress)</a>
+        <a href="/emupedia-game-openttd/">Transport Tycoon Deluxe (Work In Progress)</a>
+        <a href="/emupedia-game-unreal-tournament/">Unreal Tournament (Work In Progress)</a>
+        <a href="/emupedia-game-quake1/">Quake 1 (Work In Progress)</a>
+        <a href="/emupedia-game-quake2/">Quake 2 (Work In Progress)</a>
+        <a href="/emupedia-game-quake3/">Quake 3 Arena (Work In Progress)</a>
+        <a href="/emupedia-game-wings2/">Wings 2.0 (Work In Progress)</a>
+        <a href="/emupedia-game-wolfenstein-3d/">Wolfenstein 3D</a>
+        <a href="/emupedia-game-wolfenstein-3d-canvas/">Wolfenstein 3D (Canvas)</a>
+        <a href="/emupedia-game-worms2/">Worms 2 (Work In Progress)</a>
+        <a href="/emupedia-game-xcom1/">X-COM: UFO Defense (Work In Progress)</a>
+    </div>
+</div>
+
+</body>
+</html>
