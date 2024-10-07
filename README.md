@@ -1,6 +1,5 @@
 ## <sub><img loading="lazy" width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> Emupedia [![Contribute](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/Emupedia/emupedia.github.io/pulls) [![Discord](https://img.shields.io/discord/510149138491506688.svg?logo=discord)](https://discord.gg/emupedia-510149138491506688) [![GitHub last commit](https://img.shields.io/github/last-commit/Emupedia/emupedia.github.io.svg)](#-emupedia-----) [![GitHub repo size](https://img.shields.io/github/repo-size/Emupedia/emupedia.github.io.svg)](#-emupedia-----)
 
----
 The purpose of Emupedia (Emulation Encyclopedia) is to serve as a [nonprofit](https://en.wikipedia.org/wiki/Nonprofit_organization) meta-resource hub and community for those interested mainly in [video game preservation](https://en.wikipedia.org/wiki/Video_game_preservation) and computer history which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly [UI](https://en.wikipedia.org/wiki/User_interface) that [simulates](https://difference.guru/difference-between-simulator-and-emulator) several retro operating systems for educational purposes.
 
 We mainly collect content from:
