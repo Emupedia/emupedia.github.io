@@ -495,6 +495,17 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "paper-io.com v2.0",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/paper-io2",
+		"link": "https://paper-io.com/",
+		"credits": "Website: <a href=\"https://paper-io.com/\" target=\"_blank\">paper-io.com</a><br /><br />Suggested to be added by <b>Argez</b><br /><br />All other assets<hr />Copyright paper-io.com",
+		"width": 900,
+		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Raptor: Call of the Shadows",
 		"icon": "assets/images/icons/desktop/raptor",
 		"link": "/emupedia-game-raptor/",
