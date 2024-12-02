@@ -538,6 +538,17 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "BomberDude",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/bomberdude",
+		"link": "https://cojmar.github.io/bomberman/",
+		"credits": "HTML5 Port<hr />Website: <a href=\"https://cojmar.github.io/bomberman/\" target=\"_blank\">cojmar.github.io/bomberman</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/bomberman\" target=\"_blank\">github.com/cojmar/bomberman</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Bomberman\" target=\"_blank\">Bomberman aka Dyna Blaster</a>",
+		"width": 1090,
+		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Pikachu Volleyball",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/pikachu-volleyball",
