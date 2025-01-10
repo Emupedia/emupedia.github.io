@@ -307,7 +307,7 @@ You will receive a confirmation once your request has been processed.
 
 ## 📝 <sub>License</sub>
 
-Copyright © 2016 - 2024 Emupedia or its affiliates. All rights reserved.
+Copyright © 2016 - 2025 Emupedia or its affiliates. All rights reserved.
 
 The source code provided by Emupedia are for non-commercial testing and evaluation
 purposes only. Emupedia reserves all rights not expressly granted.
