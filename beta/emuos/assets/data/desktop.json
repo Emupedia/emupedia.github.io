@@ -422,7 +422,7 @@
 		"shortcut": true,
 		"share": true
 	} , {
-		"name": "agar.io",
+		"name": "Agar.io",
 		"icon": "assets/images/icons/desktop/agar.io",
 		"link": "/emupedia-game-agar.io/",
 		"credits": "Website: <a href=\"https://ogar3-demo.herokuapp.com/\" target=\"_blank\">ogar3-demo.herokuapp.com</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br />Repository: <a href=\"https://github.com/Faris90/Ogar3\" target=\"_blank\">github.com/Faris90/Ogar3</a><br />License: <a href=\"https://github.com/Faris90/Ogar3/blob/master/LICENSE.md\" target=\"_blank\">Apache-2.0</a><br /><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
@@ -432,9 +432,19 @@
 		"newtab": true,
 		"share": true
 	} , {
-		"name": "agar.io v2.0",
+		"name": "Agar.io v2.0",
 		"icon": "assets/images/icons/desktop/agar.io",
 		"link": "/emupedia-game-agar.io/cigar2/",
+		"credits": "Website: <a href=\"https://ogar3-demo.herokuapp.com/\" target=\"_blank\">ogar3-demo.herokuapp.com</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br />Repository: <a href=\"https://github.com/Faris90/Ogar3\" target=\"_blank\">github.com/Faris90/Ogar3</a><br />License: <a href=\"https://github.com/Faris90/Ogar3/blob/master/LICENSE.md\" target=\"_blank\">Apache-2.0</a><br /><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
+		"disclaimer": true,
+		"width": 900,
+		"height": 600,
+		"newtab": true,
+		"share": true
+	} , {
+		"name": "Agar.io v3.0 Beta",
+		"icon": "assets/images/icons/desktop/agar.io",
+		"link": "/emupedia-game-agar.io/agarv3/",
 		"credits": "Website: <a href=\"https://ogar3-demo.herokuapp.com/\" target=\"_blank\">ogar3-demo.herokuapp.com</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br />Repository: <a href=\"https://github.com/Faris90/Ogar3\" target=\"_blank\">github.com/Faris90/Ogar3</a><br />License: <a href=\"https://github.com/Faris90/Ogar3/blob/master/LICENSE.md\" target=\"_blank\">Apache-2.0</a><br /><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
 		"disclaimer": true,
 		"width": 900,
