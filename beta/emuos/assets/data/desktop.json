@@ -422,6 +422,18 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "Drive Mad",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/drive-mad",
+		"link": "/emupedia-game-drive-mad/",
+		"credits": "Original project<hr />Website: <a href=\"https://www.drivemad.com/\" target=\"_blank\">drivemad.com</a><br />Copyright: Fancade & Martin Magni",
+		"disclaimer": true,
+		"width": 900,
+		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "1v1.LOL",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/1v1.lol",
