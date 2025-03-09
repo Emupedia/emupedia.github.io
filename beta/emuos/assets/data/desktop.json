@@ -683,6 +683,18 @@
 		"newtab": true,
 		"share": true
 	} , {
+		"name": "The Binding of Isaac",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/binding-of-isaac",
+		"link": "/emupedia-game-binding-of-isaac/",
+		"credits": "Original project<hr />Website: <a href=\"https://store.steampowered.com/app/113204/Binding_of_Isaac_Wrath_of_the_Lamb/\" target=\"_blank\">Binding_of_Isaac_Wrath_of_the_Lamb</a><br />Copyright: Edmund McMillen & Florian Himsl",
+		"disclaimer": true,
+		"width": 800,
+		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Yume Nikki",
 		"icon": "assets/images/icons/desktop/yume-nikki",
 		"link": "/emupedia-game-yume-nikki/",
