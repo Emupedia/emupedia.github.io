@@ -422,6 +422,18 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "1v1.LOL",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/1v1.lol",
+		"link": "/emupedia-game-1v1.lol/",
+		"credits": "Original project<hr />Website: <a href=\"https://1v1.lol\" target=\"_blank\">1v1.lol</a><br />Copyright: JustPlay.LOL",
+		"disclaimer": true,
+		"width": 900,
+		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Agar.io",
 		"icon": "assets/images/icons/desktop/agar.io",
 		"link": "/emupedia-game-agar.io/",
