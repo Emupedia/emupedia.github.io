@@ -38,7 +38,7 @@
     "bson": "^4.7.0",
     "clippyjs": "0.0.3",
     "debug-logger": "^0.4.1",
-    "electron": "^20.1.1",
+    "electron": "^37.1.0",
     "electron-packager": "^16.0.0",
     "electron-winstaller": "^5.0.0",
     "es6-promise": "^4.2.8",
