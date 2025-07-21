@@ -10,16 +10,6 @@
 		"target": "_blank",
 		"shortcut": true
 	} , {
-		"name": "EmuChat",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/emuchat",
-		"link": "https://emuchat.emupedia.net/",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"singleinstance": true,
-		"share": true
-	} , {
 		"name": "Santa Tracker",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/santa",
