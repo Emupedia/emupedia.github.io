@@ -40,7 +40,7 @@
     "debug-logger": "^0.4.1",
     "electron": "^20.1.1",
     "electron-packager": "^16.0.0",
-    "electron-winstaller": "^5.0.0",
+    "electron-winstaller": "^5.4.0",
     "es6-promise": "^4.2.8",
     "fs-extra": "^10.1.0",
     "grunt-cli": "^1.4.3",
