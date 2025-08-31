@@ -2,7 +2,7 @@
 
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'router', 'toastr', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
+		define(['jquery', 'router', 'toastr', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy', 'optional!fireworks'], factory);
 	} else { // noinspection DuplicatedCode
 		if (typeof module === 'object' && module.exports) {
 			module.exports = function(root, jQuery) {
@@ -22,7 +22,7 @@
 			factory(jQuery);
 		}
 	}
-} (function ($, Router, toastr, simplestorage, moment, ga, Octokat, eSheep, clippy) {
+} (function ($, Router, toastr, simplestorage, moment, ga, Octokat, eSheep, clippy, Fireworks) {
 	var root = location.hostname === 'localhost' ? 'https://emupedia.net' : '';
 	var hash = location.hash.toString();
 	var resizeTimeout = null;
@@ -874,13 +874,42 @@
 				}
 
 				if (moment().date() === 31) {
-					newyear +=	'<div class="fireworks">' +
-									'<div class="fireworks-before"></div>' +
-									'<div class="fireworks-after"></div>' +
-								'</div>';
+					newyear += '<div class="fireworks-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>';
 				}
 
 				self.$desktop.prepend(newyear);
+
+				if (moment().date() === 31) {
+					var fireworks = new Fireworks.default($('.fireworks-container').get(0), {
+						opacity: 0.3,
+						acceleration: 1.02,
+						friction: 0.98,
+						particles: 80,
+						intensity: 20,
+						hue: {
+							min: 0,
+							max: 360
+						},
+						delay: {
+							min: 40,
+							max: 60
+						},
+						rocketsPoint: {
+							min: 40,
+							max: 60
+						},
+						brightness: {
+							min: 40,
+							max: 80
+						},
+						decay: {
+							min: 0.01,
+							max: 0.02
+						}
+					});
+
+					fireworks.start();
+				}
 
 				if (moment().date() >= 26) {
 					function timeLeft(endtime) {

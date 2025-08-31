@@ -55,6 +55,11 @@
 			'/beta/emuos/assets/js/libraries/fingerprint-3.3.5',
 			'//' + location + '/beta/emuos/assets/js/libraries/fingerprint-3.3.5'
 		],
+		'fireworks': [
+			'libraries/fireworks-2.10.8.min',
+			'/beta/emuos/assets/js/libraries/fireworks-2.10.8.min',
+			'//' + location + '/beta/emuos/assets/js/libraries/fireworks-2.10.8.min'
+		],
 		'html-imports': [
 			'libraries/html-imports-1.3.0.min',
 			'/beta/emuos/assets/js/libraries/html-imports-1.3.0.min',
