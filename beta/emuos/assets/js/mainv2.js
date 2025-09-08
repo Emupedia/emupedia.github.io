@@ -1,35 +1,5 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
 (function(global) {
-	// noinspection JSUnusedLocalSymbols,DuplicatedCode
-	define('optional', [], {
-		load: function(name, req, onload, config) {
-			var onLoadSuccess = function(moduleInstance) {
-				onload(moduleInstance);
-			};
-
-			var onLoadFailure = function(err) {
-				var failedId = err.requireModules && err.requireModules[0];
-				global.console.warn('Could not load optional module: ' + failedId);
-
-				requirejs.undef(failedId);
-
-				// noinspection JSRedundantSwitchStatement
-				switch (failedId) {
-					default:
-						define(failedId, [], function(){return {};});
-						break;
-				}
-
-				req([failedId], onLoadSuccess);
-			};
-
-			req([name], onLoadSuccess, onLoadFailure);
-		},
-		normalize: function (name, normalize) {
-			return normalize(name);
-		}
-	});
-
 	// noinspection JSFileReferences
 	requirejs.config({
 		paths: $sys.lib,
@@ -51,7 +21,7 @@
 	requirejs([
 		'jquery',
 		'jquery-ui'
-	], function($, ui, ga) {
+	], function($, ui) {
 		$(function() {
 			var $html = $('html');
 			var $body = $('body');
