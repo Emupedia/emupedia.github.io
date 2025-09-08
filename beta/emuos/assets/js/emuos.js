@@ -2,7 +2,7 @@
 
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'router', 'toastr', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy', 'optional!fireworks'], factory);
+		define(['jquery', 'router', 'toastr', 'optional!simplestorage', 'optional!moment-timezone', 'optional!octokat', 'optional!esheep', 'optional!clippy', 'optional!fireworks'], factory);
 	} else { // noinspection DuplicatedCode
 		if (typeof module === 'object' && module.exports) {
 			module.exports = function(root, jQuery) {
@@ -22,7 +22,7 @@
 			factory(jQuery);
 		}
 	}
-} (function ($, Router, toastr, simplestorage, moment, ga, Octokat, eSheep, clippy, Fireworks) {
+} (function ($, Router, toastr, simplestorage, moment, Octokat, eSheep, clippy, Fireworks) {
 	var root = location.hostname === 'localhost' ? 'https://emupedia.net' : '';
 	var hash = location.hash.toString();
 	var resizeTimeout = null;
@@ -545,14 +545,6 @@
 								credits: $(this).data('credits')
 							});
 						}
-					}
-
-					if (typeof ga === 'function') {
-						ga('send', {
-							hitType: 'pageview',
-							page: $(this).data('link'),
-							title: window.location.href
-						});
 					}
 
 					if (typeof $(this).data('singleinstance') !== 'undefined') {
