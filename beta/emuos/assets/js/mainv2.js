@@ -1,19 +1,5 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
 (function(global) {
-	global.GoogleAnalyticsObject = '__ga__';
-	global.__ga__ = function() {
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-
-			// noinspection JSUnresolvedVariable
-			if (arg.constructor === Object && arg.hitCallback) {
-				arg.hitCallback();
-			}
-		}
-	};
-	global.__ga__.q = [['create', 'UA-47896346-6', 'auto']];
-	global.__ga__.l = Date.now();
-
 	// noinspection JSUnusedLocalSymbols,DuplicatedCode
 	define('optional', [], {
 		load: function(name, req, onload, config) {
@@ -48,9 +34,6 @@
 	requirejs.config({
 		paths: $sys.lib,
 		shim: {
-			ga: {
-				exports: '__ga__'
-			},
 			'jquery-ui': {
 				deps: ['jquery']
 			}
@@ -67,18 +50,9 @@
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	requirejs([
 		'jquery',
-		'jquery-ui',
-		'optional!ga'
+		'jquery-ui'
 	], function($, ui, ga) {
 		$(function() {
-			if (typeof ga === 'function') {
-				ga('send', {
-					hitType: 'pageview',
-					page: global.location.pathname,
-					title: global.location.href
-				});
-			}
-
 			var $html = $('html');
 			var $body = $('body');
 
