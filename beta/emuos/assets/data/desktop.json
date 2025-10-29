@@ -613,6 +613,16 @@
 		"newtab": true,
 		"share": true
 	} , {
+		"name": "Boom Slingers: ReBoom",
+		"icon": "assets/images/icons/desktop/boom-slingers",
+		"link": "/emupedia-game-boom-slingers/",
+		"credits": "Website: <a href=\"https://www.boomslingers.com/\" target=\"_blank\">boomslingers.com</a><br />Copyright Boom Corp Oy",
+		"width": 900,
+		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Biolab Disaster",
 		"icon": "assets/images/icons/desktop/biolab-disaster",
 		"link": "/emupedia-game-biolab-disaster/",
