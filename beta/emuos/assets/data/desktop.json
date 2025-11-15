@@ -814,7 +814,7 @@
 		"link": "/emupedia-app-dosbox/",
 		"credits": "JS-DOS<hr />Website: <a href=\"https://js-dos.com/\" target=\"_blank\">js-dos.com</a><br /><br />Author: <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repository: <a href=\"https://github.com/caiiiycuk/js-dos\" target=\"_blank\">github.com/caiiiycuk/js-dos</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Emularity<hr />Author: <a href=\"https://github.com/db48x\" target=\"_blank\">github.com/db48x</a><br />Repository: <a href=\"https://github.com/db48x/emularity\" target=\"_blank\">github.com/db48x/emularity</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />HTML5 Port<hr />Author: <a href=\"https://github.com/dreamlayers\" target=\"_blank\">github.com/dreamlayers</a><br />Repository: <a href=\"https://github.com/dreamlayers/em-dosbox\" target=\"_blank\">github.com/dreamlayers/em-dosbox</a><br />License: <a href=\"https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Website: <a href=\"https://dosbox.com/\" target=\"_blank\">dosbox.com</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">sourceforge.net/projects/dosbox</a><br />Repository: <a href=\"https://sourceforge.net/p/dosbox/code-0/HEAD/tree\" target=\"_blank\">sourceforge.net/p/dosbox</a><br />License: <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">GPL-2.0</a>",
 		"width": 900,
-		"height": 422,
+		"height": 502,
 		"newtab": true,
 		"share": true
 	} , {
