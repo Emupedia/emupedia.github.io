@@ -410,6 +410,18 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "Happy Wheels",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/happy-wheels",
+		"link": "/emupedia-game-happy-wheels/flash/",
+		"credits": "Original project<hr />Website: <a href=\"https://totaljerkface.com/happy_wheels.tjf\" target=\"_blank\">totaljerkface.com/happy_wheels.tjf</a><br />Copyright: Fancy Force",
+		"disclaimer_abandoned": true,
+		"width": 900,
+		"height": 500,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Geometry Dash",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/geometry-dash",
@@ -418,6 +430,17 @@
 		"disclaimer": true,
 		"width": 900,
 		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
+		"name": "Five Nights at Freddy's Collection",
+		"icon": "assets/images/icons/desktop/fnaf",
+		"link": "/emupedia-game-fnaf/",
+		"credits": "HTML5 Port<hr />Website: <a href=\"https://irv77.github.io/hd_fnaf/\" target=\"_blank\">irv77.github.io/hd_fnaf</a><br /><br />Author: <a href=\"https://github.com/irv77\" target=\"_blank\">github.com/irv77</a><br />Repository: <a href=\"https://github.com/irv77/hd_fnaf/\" target=\"_blank\">github.com/irv77/hd_fnaf</a><br /><br />Game Engine<hr />Author: <a href=\"https://www.clickteam.com/\" target=\"_blank\">clickteam.com</a><br />Engine: <a href=\"https://www.clickteam.com/multimedia-fusion-2\" target=\"_blank\">clickteam.com/multimedia-fusion-2</a><br /><br />Original project<hr />Website: <a href=\"https://scottgames.com/\" target=\"_blank\">scottgames.com</a><br /><br />Author: Scott Braden Cawthon<br />Copyright ScottGames",
+		"width": 1280,
+		"height": 720,
+		"disclaimer": true,
 		"newtab": true,
 		"shortcut": true,
 		"share": true
@@ -691,17 +714,6 @@
 		"width": 640,
 		"height": 480,
 		"newtab": true,
-		"share": true
-	} , {
-		"name": "Five Nights at Freddy's Collection",
-		"icon": "assets/images/icons/desktop/fnaf",
-		"link": "/emupedia-game-fnaf/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://irv77.github.io/hd_fnaf/\" target=\"_blank\">irv77.github.io/hd_fnaf</a><br /><br />Author: <a href=\"https://github.com/irv77\" target=\"_blank\">github.com/irv77</a><br />Repository: <a href=\"https://github.com/irv77/hd_fnaf/\" target=\"_blank\">github.com/irv77/hd_fnaf</a><br /><br />Game Engine<hr />Author: <a href=\"https://www.clickteam.com/\" target=\"_blank\">clickteam.com</a><br />Engine: <a href=\"https://www.clickteam.com/multimedia-fusion-2\" target=\"_blank\">clickteam.com/multimedia-fusion-2</a><br /><br />Original project<hr />Website: <a href=\"https://scottgames.com/\" target=\"_blank\">scottgames.com</a><br /><br />Author: Scott Braden Cawthon<br />Copyright ScottGames",
-		"width": 1280,
-		"height": 720,
-		"disclaimer": true,
-		"newtab": true,
-		"shortcut": true,
 		"share": true
 	} , {
 		"name": "The Binding of Isaac",
