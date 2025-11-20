@@ -11,6 +11,8 @@
 	if (externallyFramed) {
 		try {
 			global.top.location = global.location;
-		} catch (e) {}
+		} catch (e) {
+			global.location = 'https://google.com'
+		}
 	}
 }(this));
