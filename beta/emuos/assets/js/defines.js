@@ -12,7 +12,7 @@
 		try {
 			global.top.location = global.location;
 		} catch (e) {
-			global.location = global.top.location
+			global.location = 'https://google.com'
 		}
 	}
 }(this));
