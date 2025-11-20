@@ -72,7 +72,7 @@
 		<meta charset="utf-8" />
 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data: *; style-src 'self' 'unsafe-inline'; font-src 'self' *; script-src 'self' 'unsafe-eval' 'unsafe-inline' emupedia.net *.emupedia.net emupedia.org *.emupedia.org emupedia.games *.emupedia.games emuos.net *.emuos.net emuos.org *.emuos.org emuos.games *.emuos.games google.com *.google.com gstatic.com *.gstatic.com google-analytics.com *.google-analytics.com googletagmanager.com *.googletagmanager.com doubleclick.net *.doubleclick.net; connect-src 'self' emupedia.net *.emupedia.net emupedia.org *.emupedia.org emupedia.games *.emupedia.games emuos.net *.emuos.net emuos.org *.emuos.org emuos.ganes *.emuos.ganes *; manifest-src 'self'; frame-src 'self' data: *; frame-ancestors 'none';" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data: *; style-src 'self' 'unsafe-inline'; font-src 'self' *; script-src 'self' 'unsafe-eval' 'unsafe-inline' emupedia.net *.emupedia.net emupedia.org *.emupedia.org emupedia.games *.emupedia.games emuos.net *.emuos.net emuos.org *.emuos.org emuos.games *.emuos.games google.com *.google.com gstatic.com *.gstatic.com google-analytics.com *.google-analytics.com googletagmanager.com *.googletagmanager.com doubleclick.net *.doubleclick.net; connect-src 'self' emupedia.net *.emupedia.net emupedia.org *.emupedia.org emupedia.games *.emupedia.games emuos.net *.emuos.net emuos.org *.emuos.org emuos.ganes *.emuos.ganes *; manifest-src 'self'; frame-src 'self' data: *;" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
@@ -184,10 +184,6 @@
 				margin: 0;
 				padding: 0;
 				overflow: hidden;
-			}
-
-			.grecaptcha-badge {
-				display: none;
 			}
 
 			.emuos body {
@@ -1289,7 +1285,6 @@
 
 		<audio src="assets/sounds/post.mp3"></audio>
 
-		<script src="https://www.google.com/recaptcha/api.js?render=6LfQocwpAAAAAICAAJoCrc2gm4ehGXkUf9BEYVrX"></script>
 		<script type="text/javascript" src="assets/js/libraries/babel-polyfill-7.12.1.min.js"></script>
 		<script type="text/javascript" src="assets/js/libraries/fetch-3.6.2.js"></script>
 		<script type="text/javascript" src="assets/js/libraries/css-vars-4.1.0.js"></script>
@@ -1311,6 +1306,7 @@
 			}
 
 			$sys.version = '{{ site.github.build_revision }}';
+			$sys.repo = '{{ site.github | jsonify }}';
 			$sys.date = '{{ site.github.public_repositories | where:"id", 52881539 | first | jsonify }}';
 
 			// noinspection ThisExpressionReferencesGlobalObjectJS
