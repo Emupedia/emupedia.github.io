@@ -422,11 +422,11 @@
 		"shortcut": true,
 		"share": true
 	} , {
-		"name": "Geometry Dash",
+		"name": "Geometry Dash Lite",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/geometry-dash",
 		"link": "/emupedia-game-geometry-dash/",
-		"credits": "HTML5 Unity Port<hr />Website: <a href=\"https://geometrylite.io\" target=\"_blank\">geometrylite.io</a><br />Copyright: GM Media<hr />Original project<hr />Website: <a href=\"https://www.robtopgames.com\" target=\"_blank\">robtopgames.com</a><br />Copyright: RobTop Games",
+		"credits": "HTML5 Unity Remake<hr />Website: <a href=\"https://geometrylite.io\" target=\"_blank\">geometrylite.io</a><br />Copyright: GM Media<hr />Original project<hr />Website: <a href=\"https://www.robtopgames.com\" target=\"_blank\">robtopgames.com</a><br />Copyright: RobTop Games",
 		"disclaimer": true,
 		"width": 900,
 		"height": 600,
