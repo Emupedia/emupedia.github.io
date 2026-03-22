@@ -340,11 +340,22 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "Cut the Rope for Pato",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/cut-the-rope-for-pato",
+		"link": "https://turbowarp.org/1279627479/embed",
+		"credits": "Website: <a href=\"https://sites.google.com/view/cutthisropeforpatowebsite/play-online\" target=\"_blank\">sites.google.com/view/cutthisropeforpatowebsite/play-online</a>",
+		"width": 557,
+		"height": 734,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Pudding Monsters Mobile Version",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/pudding-monsters",
 		"link": "/emupedia-game-pudding-monsters/",
-		"credits": "Website: <a href=\"https://play.gamepix.com/pudding-monsters/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"http://www.puddingmonsters.com/\" target=\"_blank\">puddingmonsters.com</a>",
+		"credits": "Website: <a href=\"https://play.gamepix.com/pudding-monsters/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://www.puddingmonsters.com/\" target=\"_blank\">puddingmonsters.com</a>",
 		"width": 557,
 		"height": 796,
 		"newtab": true,
