@@ -350,12 +350,16 @@
 		self.$desktop = $('.desktop').first();
 		self.$taskbar = $('.taskbar').first();
 		self._applyStoredCustomWallpaper();
+		self.frontend = frontend;
 
 		var desktopIcons = self._getDesktopIcons(self.options.icons, self.useFolders);
+		var renderDesktopIcons = function(iconList) {
+			self.$desktop.find('a.emuos-desktop-icon').remove();
+			self._foldersByPath = {};
 
-		for (var j in desktopIcons) {
+			for (var j in iconList) {
 			// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
-			var icon_options = desktopIcons[j];
+			var icon_options = iconList[j];
 
 			if (typeof icon_options['requires'] === 'object') {
 				var reqs = Object.keys(icon_options['requires']);
@@ -560,7 +564,7 @@
 									title: $(this).data('name'),
 									credits: $(this).data('credits'),
 									icon: $(this).data('icon'),
-									src: frontend,
+									src: self.frontend,
 									newtab: $(this).data('newtab'),
 									width: $(this).data('width'),
 									height: $(this).data('height')
@@ -571,7 +575,7 @@
 							self.iframe({
 								title: $(this).data('name'),
 								icon: $(this).data('icon'),
-								src: frontend,
+								src: self.frontend,
 								newtab: $(this).data('newtab'),
 								width: $(this).data('width'),
 								height: $(this).data('height'),
@@ -713,7 +717,11 @@
 					}
 				}
 			});
-		}
+			}
+		};
+
+		self.desktopIcons = desktopIcons;
+		renderDesktopIcons(self.desktopIcons);
 
 		// noinspection JSUnresolvedFunction
 		self.$taskbar.taskbar({
@@ -1071,45 +1079,58 @@
 			}
 		});
 
+		var hasCustomWallpaper = !!self._getCustomWallpaper();
+		var desktopMenu = [{
+			title: 'Refresh',
+			cmd: 'refresh',
+			uiIcon: 'ui-icon-refresh'
+		} , {
+			title: '----'
+		} , {
+			title: 'Custom Wallpaper',
+			cmd: 'custom-wallpaper',
+			uiIcon: 'ui-icon-image'
+		}];
+
+		if (hasCustomWallpaper) {
+			desktopMenu.push({
+				title: 'Remove Custom Wallpaper',
+				cmd: 'remove-custom-wallpaper',
+				uiIcon: 'ui-icon-trash'
+			});
+		}
+
+		desktopMenu = desktopMenu.concat([{
+			title: '----'
+		} , {
+			title: 'Themes',
+			children: [{
+				title: 'Basic',
+				cmd: 'basic'
+			} , {
+				title: 'Windows 3.1',
+				cmd: 'windows-3'
+			} , {
+				title: 'Windows 95',
+				cmd: 'windows-95'
+			} , {
+				title: 'Windows 98',
+				cmd: 'windows-98'
+			} , {
+				title: 'Windows ME',
+				cmd: 'windows-me'
+			}]
+		} , {
+			title: '----'
+		} , {
+			title: 'Use Folders',
+			cmd: 'toggle-folders',
+			uiIcon: self.useFolders ? 'ui-icon-check' : ''
+		}]);
+
 		self.$html.contextmenu({
 			delegate: '.emuos-desktop, .emuos-taskbar',
-			menu: [{
-				title: 'Refresh',
-				cmd: 'refresh',
-				uiIcon: 'ui-icon-refresh'
-			} , {
-				title: '----'
-			} , {
-				title: 'Custom Wallpaper...',
-				cmd: 'custom-wallpaper',
-				uiIcon: 'ui-icon-image'
-			} , {
-				title: '----'
-			} , {
-				title: 'Themes',
-				children: [{
-					title: 'Basic',
-					cmd: 'basic'
-				} , {
-					title: 'Windows 3.1',
-					cmd: 'windows-3'
-				} , {
-					title: 'Windows 95',
-					cmd: 'windows-95'
-				} , {
-					title: 'Windows 98',
-					cmd: 'windows-98'
-				} , {
-					title: 'Windows ME',
-					cmd: 'windows-me'
-				}]
-			} , {
-				title: '----'
-			} , {
-				title: 'Use Folders',
-				cmd: 'toggle-folders',
-				uiIcon: self.useFolders ? 'ui-icon-check' : ''
-			}],
+			menu: desktopMenu,
 			select: function(e, ui) {
 				switch (ui.cmd) {
 					case 'refresh':
@@ -1119,6 +1140,9 @@
 					case 'custom-wallpaper':
 						self._promptCustomWallpaper();
 						break;
+					case 'remove-custom-wallpaper':
+						self._clearCustomWallpaper();
+						break;
 					case 'toggle-folders':
 						self.useFolders = !self.useFolders;
 
@@ -1126,7 +1150,8 @@
 							simplestorage.set('useFolders', self.useFolders);
 						}
 
-						window.location.reload();
+						self.desktopIcons = self._getDesktopIcons(self.options.icons, self.useFolders);
+						renderDesktopIcons(self.desktopIcons);
 						break;
 					case 'basic':
 						self.$html.removeClass('theme-windows-3 theme-windows-95 theme-windows-98 theme-windows-me').addClass('theme-basic');
@@ -1227,9 +1252,9 @@
 				route = route.slice(0, route.lastIndexOf('?'));
 			}
 
-			for (var j in desktopIcons) {
+			for (var j in self.desktopIcons) {
 				// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
-				var icon_options = desktopIcons[j];
+				var icon_options = self.desktopIcons[j];
 
 				if (typeof icon_options['link'] !== 'undefined') {
 					var icon_link = '';
@@ -1288,6 +1313,21 @@
 		}
 
 		simplestorage.set('customWallpaper', dataUrl);
+	};
+
+	EmuOS.prototype._clearCustomWallpaper = function() {
+		if (typeof simplestorage !== 'undefined' && typeof simplestorage.deleteKey === 'function') {
+			simplestorage.deleteKey('customWallpaper');
+		} else if (typeof simplestorage !== 'undefined' && typeof simplestorage.set === 'function') {
+			simplestorage.set('customWallpaper', '');
+		}
+
+		this.$desktop.css({
+			'background-image': '',
+			'background-size': '',
+			'background-position': '',
+			'background-repeat': ''
+		});
 	};
 
 	EmuOS.prototype._applyCustomWallpaper = function(dataUrl) {
