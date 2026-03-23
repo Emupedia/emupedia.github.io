@@ -340,11 +340,11 @@
 		"shortcut": true,
 		"share": true
 	} , {
-		"name": "Cut the Rope for Pato",
+		"name": "Cut this Rope for Pato",
 		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope-for-pato",
+		"icon": "assets/images/icons/desktop/cut-this-rope-for-pato",
 		"link": "https://turbowarp.org/1279627479/embed",
-		"link_alternate": "/emupedia-game-cut-the-rope-for-pato/",
+		"link_alternate": "/emupedia-game-cut-this-rope-for-pato/",
 		"credits": "Website: <a href=\"https://sites.google.com/view/cutthisropeforpatowebsite/play-online\" target=\"_blank\">sites.google.com/view/cutthisropeforpatowebsite/play-online</a>",
 		"width": 700,
 		"height": 576,
