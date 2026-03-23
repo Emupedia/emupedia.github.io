@@ -91,6 +91,8 @@
 		},
 		_init: function() {
 			var self = this;
+			var nav = window.navigator || {};
+			var hasTouchInput = ('ontouchstart' in window) || (typeof nav.maxTouchPoints === 'number' && nav.maxTouchPoints > 0) || (typeof nav.msMaxTouchPoints === 'number' && nav.msMaxTouchPoints > 0);
 
 			// noinspection JSUnusedLocalSymbols
 			self.$elem.sortable({
@@ -99,6 +101,8 @@
 				opacity: 0.8,
 				scroll: false,
 				revert: true,
+				delay: hasTouchInput ? 180 : 0,
+				distance: hasTouchInput ? 14 : 1,
 				helper: 'clone',
 				start: function(event, ui) {
 					self.$elem.parent().trigger('click');
