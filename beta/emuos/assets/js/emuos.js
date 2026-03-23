@@ -1079,58 +1079,62 @@
 			}
 		});
 
-		var hasCustomWallpaper = !!self._getCustomWallpaper();
-		var desktopMenu = [{
-			title: 'Refresh',
-			cmd: 'refresh',
-			uiIcon: 'ui-icon-refresh'
-		} , {
-			title: '----'
-		} , {
-			title: 'Custom Wallpaper',
-			cmd: 'custom-wallpaper',
-			uiIcon: 'ui-icon-image'
-		}];
+		var getDesktopMenu = function() {
+			var hasCustomWallpaper = !!self._getCustomWallpaper();
+			var desktopMenu = [{
+				title: 'Refresh',
+				cmd: 'refresh',
+				uiIcon: 'ui-icon-refresh'
+			} , {
+				title: '----'
+			} , {
+				title: 'Set Custom Wallpaper',
+				cmd: 'custom-wallpaper',
+				uiIcon: 'ui-icon-image'
+			}];
 
-		if (hasCustomWallpaper) {
-			desktopMenu.push({
-				title: 'Remove Custom Wallpaper',
-				cmd: 'remove-custom-wallpaper',
-				uiIcon: 'ui-icon-trash'
-			});
-		}
+			if (hasCustomWallpaper) {
+				desktopMenu.push({
+					title: 'Remove Custom Wallpaper',
+					cmd: 'remove-custom-wallpaper',
+					uiIcon: 'ui-icon-trash'
+				});
+			}
 
-		desktopMenu = desktopMenu.concat([{
-			title: '----'
-		} , {
-			title: 'Themes',
-			children: [{
-				title: 'Basic',
-				cmd: 'basic'
+			desktopMenu = desktopMenu.concat([{
+				title: '----'
 			} , {
-				title: 'Windows 3.1',
-				cmd: 'windows-3'
+				title: 'Themes',
+				children: [{
+					title: 'Basic',
+					cmd: 'basic'
+				} , {
+					title: 'Windows 3.1',
+					cmd: 'windows-3'
+				} , {
+					title: 'Windows 95',
+					cmd: 'windows-95'
+				} , {
+					title: 'Windows 98',
+					cmd: 'windows-98'
+				} , {
+					title: 'Windows ME',
+					cmd: 'windows-me'
+				}]
 			} , {
-				title: 'Windows 95',
-				cmd: 'windows-95'
+				title: '----'
 			} , {
-				title: 'Windows 98',
-				cmd: 'windows-98'
-			} , {
-				title: 'Windows ME',
-				cmd: 'windows-me'
-			}]
-		} , {
-			title: '----'
-		} , {
-			title: 'Use Folders',
-			cmd: 'toggle-folders',
-			uiIcon: self.useFolders ? 'ui-icon-check' : ''
-		}]);
+				title: 'Use Folders',
+				cmd: 'toggle-folders',
+				uiIcon: self.useFolders ? 'ui-icon-check' : ''
+			}]);
+
+			return desktopMenu;
+		};
 
 		self.$html.contextmenu({
 			delegate: '.emuos-desktop, .emuos-taskbar',
-			menu: desktopMenu,
+			menu: getDesktopMenu(),
 			select: function(e, ui) {
 				switch (ui.cmd) {
 					case 'refresh':
@@ -1229,6 +1233,12 @@
 				}
 
 				return true;
+			}
+		});
+
+		self.$html.off('mousedown.emuosDesktopMenu').on('mousedown.emuosDesktopMenu', '.emuos-desktop, .emuos-taskbar', function(e) {
+			if (e.which === 3) {
+				self.$html.contextmenu('option', 'menu', getDesktopMenu());
 			}
 		});
 
