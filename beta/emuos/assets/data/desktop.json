@@ -20,6 +20,286 @@
 		"singleinstance": true,
 		"share": true
 	} , {
+		"name": "Emupedia TV",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Happy Tree Friends",
+			"icon": "assets/images/icons/desktop/happy-tree-friends",
+			"link": "/emupedia-media-htf/",
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"singleinstance": true,
+			"share": true
+		}]
+	} , {
+		"name": "Emupedia Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Wings 2.0",
+			"icon": "assets/images/icons/desktop/wings2",
+			"link": "/emupedia-game-wings2/",
+			"credits": "Author: <a href=\"https://github.com/ZaDarkSide\" target=\"_blank\">github.com/ZaDarkSide</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "NVolley",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/nvolley",
+			"link": "https://cojmar.github.io/nvolley/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://cojmar.github.io/nvolley/\" target=\"_blank\">cojmar.github.io/nvolley</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nvolley\" target=\"_blank\">github.com/cojmar/nvolley</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Arcade_Volleyball\" target=\"_blank\">Arcade Volleyball</a>",
+			"width": 640,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "BomberDude",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/bomberdude",
+			"link": "https://cojmar.github.io/bomberman/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://cojmar.github.io/bomberman/\" target=\"_blank\">cojmar.github.io/bomberman</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/bomberman\" target=\"_blank\">github.com/cojmar/bomberman</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Bomberman\" target=\"_blank\">Bomberman aka Dyna Blaster</a>",
+			"width": 1090,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Colossal Cave Adventure",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/ccave",
+			"link": "https://cojmar.github.io/adventure/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://cojmar.github.io/adventure/\" target=\"_blank\">cojmar.github.io/adventure</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/adventure\" target=\"_blank\">github.com/cojmar/adventure</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Colossal_Cave_Adventure\" target=\"_blank\">Colossal Cave Adventure</a>",
+			"width": 640,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		}]
+	} , {
+		"name": "Emupedia Tools",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Visual Studio Code",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/visual-studio-code",
+			"link": "/emupedia-app-vscode/",
+			"credits": "Website: <a href=\"https://code.visualstudio.com/\" target=\"_blank\">code.visualstudio.com</a><br /><br />Author: <a href=\"https://github.com/Microsoft\" target=\"_blank\">github.com/Microsoft</a><br />Repository: <a href=\"https://github.com/Microsoft/vscode\" target=\"_blank\">github.com/Microsoft/vscode</a><br />License: <a href=\"https://github.com/microsoft/vscode/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a>",
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Sandbox",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/sandbox",
+			"link": "/emupedia-app-sandbox/?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=/emupedia-app-romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E",
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "RomCenter",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/romcenter",
+			"link": "/emupedia-app-romcenter/",
+			"credits": "HTML5 Port<hr />Author: Emupedia<br /><br />Original project<hr />Website: <a href=\"https://www.romcenter.com\" target=\"_blank\">romcenter.com</a><br /><br />Author: Eric Bole-Feysot",
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Nsvg",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/svg-editor",
+			"link": "https://cojmar.github.io/nsvg",
+			"credits": "Website: <a href=\"https://cojmar.github.io/nsvg\" target=\"_blank\">cojmar.github.io/nsvg</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nsvg\" target=\"_blank\">github.com/cojmar/nsvg</a><br /><br />Inspired from<hr />Website: <a href=\"https://editor.method.ac/\" target=\"_blank\">editor.method.ac</a><br /><br />Author: <a href=\"https://github.com/methodofaction\" target=\"_blank\">github.com/methodofaction</a><br />Repository: <a href=\"https://github.com/methodofaction/Method-Draw\" target=\"_blank\">github.com/methodofaction/Method-Draw</a><br />License: <a href=\"https://github.com/methodofaction/Method-Draw/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/SVG-Edit\" target=\"_blank\">github.com/SVG-Edit</a><br />Repository: <a href=\"https://github.com/SVG-Edit/svgedit\" target=\"_blank\">github.com/SVG-Edit/svgedit</a><br />License: <a href=\"https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt\" target=\"_blank\">MIT</a>",
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		}]
+	} , {
+		"name": "Misc Demos",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "3D Spatial Audio",
+			"icon": "assets/images/icons/desktop/joystick",
+			"link": "/emupedia-demo-3d-spatial-audio/",
+			"credits": "Website: <a href=\"https://howlerjs.com/#spatial\" target=\"_blank\">howlerjs.com/#spatial</a><br /><br />Author: <a href=\"https://github.com/goldfire\" target=\"_blank\">github.com/goldfire</a><br />Repository: <a href=\"https://github.com/goldfire/howler.js/tree/master/examples/3d\" target=\"_blank\">github.com/goldfire/howler.js</a><br />License: <a href=\"https://github.com/goldfire/howler.js/blob/master/LICENSE.md\" target=\"_blank\">MIT</a>",
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Voxel Space",
+			"icon": "assets/images/icons/desktop/joystick",
+			"link": "/emupedia-demo-voxel-space/",
+			"credits": "Website: <a href=\"https://s-macke.github.io/VoxelSpace/VoxelSpace.html\" target=\"_blank\">s-macke.github.io/VoxelSpace</a><br /><br />Author: <a href=\"https://github.com/s-macke\" target=\"_blank\">github.com/s-macke</a><br />Repository: <a href=\"https://github.com/s-macke/VoxelSpace\" target=\"_blank\">github.com/s-macke/VoxelSpace</a><br />License: <a href=\"https://github.com/s-macke/VoxelSpace/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright THQ Nordic (formerly NovaLogic)",
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "8-bit Palette Color Cycling",
+			"icon": "assets/images/icons/desktop/8-bit-palette-color-cycling",
+			"link": "/emupedia-app-8-bit-palette-color-cycling/",
+			"credits": "Website: <a href=\"http://effectgames.com/demos/canvascycle/\" target=\"_blank\">effectgames.com/demos/canvascycle</a><br /><br />YouTube: <a href=\"https://www.youtube.com/watch?v=aMcJ1Jvtef0\" target=\"_blank\">youtube.com/watch?v=aMcJ1Jvtef0</a><br /><br />Author: <a href=\"https://github.com/jhuckaby\" target=\"_blank\">github.com/jhuckaby</a><br />Source Code: <a href=\"http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6\" target=\"_blank\">effectgames.com</a><br />License: <a href=\"http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6\" target=\"_blank\">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href=\"https://www.markferrari.com/\" target=\"_blank\">Mark J. Ferrari</a>",
+			"width": 900,
+			"height": 550,
+			"newtab": true,
+			"share": true
+		}]
+	} , {
+		"name": "Microsoft Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Microsoft Casual Games",
+			"title": "Folder",
+			"icon": "assets/images/icons/desktop/folder",
+			"folder": true,
+			"width": 760,
+			"height": 560,
+			"items": [{
+				"name": "Microsoft Minesweeper",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/microsoft-minesweeper",
+				"link": "https://cdn.zone.msn.com/assets/games/microsoftminesweeper/20200812T131003_1.3.22_milestones_2020_milestone_2020_005_sprint_001_1e48112_msn/default.html?hostingEnvironment=zone",
+				"target": "_blank",
+				"credits": "Website: <a href=\"https://zone.msn.com/en/msminesweeper/default.htm\" target=\"_blank\">zone.msn.com/en/msminesweeper</a>",
+				"width": 960,
+				"height": 747,
+				"newtab": true,
+				"shortcut": true
+			} , {
+				"name": "Microsoft Solitaire Collection",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/microsoft-solitaire",
+				"link": "https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2021/20210129T112048_1.8.8_release_7e1cce9_msn/solitaire/index.html?hostingEnvironment=zone",
+				"credits": "Website: <a href=\"https://zone.msn.com/en/mssolitairecollection/default.htm\" target=\"_blank\">zone.msn.com/en/mssolitairecollection</a>",
+				"width": 960,
+				"height": 540,
+				"newtab": true,
+				"shortcut": true
+			} , {
+				"name": "Microsoft Mahjong",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/microsoft-mahjong",
+				"link": "https://cdn.zone.msn.com/assets/games/microsoftmahjong/2020/20201102T1148_1.0.10_msn/game.html?hostingEnvironment=zone",
+				"credits": "Website: <a href=\"https://zone.msn.com/en/msmahjong/default.htm\" target=\"_blank\">zone.msn.com/en/msmahjong</a>",
+				"width": 960,
+				"height": 540,
+				"newtab": true,
+				"shortcut": true
+			} , {
+				"name": "Microsoft Ultimate Word Games",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/microsoft-ultimate-word-games",
+				"link": "https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/msn/2021/20210310T195233_1.1.7_release_1af5876_msn/word-games/game.html?hostingEnvironment=zone",
+				"credits": "Website: <a href=\"https://zone.msn.com/en/msultimateword/default.htm\" target=\"_blank\">zone.msn.com/en/msultimateword</a>",
+				"width": 960,
+				"height": 552,
+				"newtab": true,
+				"shortcut": true
+			} , {
+				"name": "Microsoft Bubble",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/microsoft-bubble",
+				"link": "https://cdn.zone.msn.com/assets/games/microsoftbubbleshooter/20210125T150916.534Z_1_c01b8274_V2.2.1/msngdk_simulator/testgame/index.html?gdk=true&hostingEnvironment=zone",
+				"credits": "Website: <a href=\"https://zone.msn.com/en/msbubble/default.htm\" target=\"_blank\">zone.msn.com/en/msbubble</a>",
+				"width": 960,
+				"height": 540,
+				"newtab": true,
+				"shortcut": true
+			} , {
+				"name": "Microsoft Jewel",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/microsoft-jewel",
+				"link": "https://cdn.zone.msn.com/assets/games/microsoftjewel/20200921T100924_1.0.22_milestones_2020_milestone_2020_001_sprint_001_62951b5_msn/default.html?hostingEnvironment=zone",
+				"target": "_blank",
+				"credits": "Website: <a href=\"https://zone.msn.com/en/msjewel/default.htm\" target=\"_blank\">zone.msn.com/en/msjewel</a>",
+				"width": 960,
+				"height": 540,
+				"newtab": true,
+				"shortcut": true
+			} , {
+				"name": "Microsoft Sudoku",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/microsoft-sudoku",
+				"link": "https://cdn.zone.msn.com/assets/games/microsoftsudoku/20200821T185824_1.3.33_milestones_2020_milestone_2020_013_sprint_003_d2570bc_msn/default.html?hostingEnvironment=zone",
+				"target": "_blank",
+				"credits": "Website: <a href=\"https://zone.msn.com/en/sudoku/default.htm\" target=\"_blank\">zone.msn.com/en/sudoku</a>",
+				"width": 960,
+				"height": 540,
+				"newtab": true,
+				"shortcut": true
+			} , {
+				"name": "Microsoft Jigsaw",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/microsoft-jigsaw",
+				"link": "https://cdn.zone.msn.com/assets/games/microsoftjigsaw/20200812T130936_1.3.37_milestones_2020_milestone_2020_004_sprint_001_b90aedf_msn/default.html?hostingEnvironment=zone",
+				"target": "_blank",
+				"credits": "Website: <a href=\"https://zone.msn.com/en/jigsaw/default.htm\" target=\"_blank\">zone.msn.com/en/jigsaw</a>",
+				"width": 960,
+				"height": 540,
+				"newtab": true,
+				"shortcut": true
+			}]
+		} , {
+			"name": "Minesweeper Classic",
+			"icon": "assets/images/icons/desktop/minesweeper",
+			"link": "/emupedia-game-minesweeper/",
+			"credits": "HTML5 Port<hr />Author: <a href=\"https://github.com/ziebelje\" target=\"_blank\">github.com/ziebelje</a><br />Repository: <a href=\"https://github.com/ziebelje/minesweeper\" target=\"_blank\">github.com/ziebelje/minesweeper</a><br /><br />All other assets<hr />Copyright Microsoft",
+			"newtab": true,
+			"disclaimer": true,
+			"width": 502,
+			"height": 343,
+			"share": true
+		} , {
+			"name": "Solitaire Classic",
+			"icon": "assets/images/icons/desktop/solitaire",
+			"link": "/emupedia-game-solitaire/",
+			"credits": "Enhancements<hr />Website: <a href=\"https://98.js.org/programs/js-solitaire/\" target=\"_blank\">98.js.org/programs/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/98/tree/master/programs/js-solitaire\" target=\"_blank\">github.com/1j01/98/tree/master/programs/js-solitaire</a><br /><br />HTML5 Port<hr />Website: <a href=\"https://radovanjanjic.com/js-solitaire/\" target=\"_blank\">radovanjanjic.com/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/rjanjic\" target=\"_blank\">github.com/rjanjic</a><br />Repository: <a href=\"https://github.com/rjanjic/js-solitaire\" target=\"_blank\">github.com/rjanjic/js-solitaire</a><br /><br />All other assets<hr />Copyright Microsoft",
+			"newtab": true,
+			"disclaimer": true,
+			"width": 660,
+			"height": 440,
+			"share": true
+		} , {
+			"name": "Space Cadet Pinball",
+			"icon": "assets/images/icons/desktop/space-cadet-pinball",
+			"link": "/emupedia-game-space-cadet-pinball/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://alula.github.io/SpaceCadetPinball/\" target=\"_blank\">alula.github.io/SpaceCadetPinball</a><br />Author: <a href=\"https://github.com/alula\" target=\"_blank\">github.com/alula</a><br />Repository: <a href=\"https://github.com/alula/SpaceCadetPinball\" target=\"_blank\">github.com/alula/SpaceCadetPinball</a><br /><br />Original project<hr />Author: <a href=\"https://github.com/k4zmu2a\" target=\"_blank\">github.com/k4zmu2a</a><br />Repository: <a href=\"https://github.com/k4zmu2a/SpaceCadetPinball\" target=\"_blank\">github.com/k4zmu2a/SpaceCadetPinball</a><br /><br />All other assets part of Full Tilt! Pinball<hr />Copyright Microsoft & Electronic Arts (formerly Maxis)",
+			"newtab": true,
+			"disclaimer": true,
+			"width": 600,
+			"height": 440,
+			"share": true
+		}]
+	} , {
 		"name": "Santa Tracker",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/santa",
@@ -34,13 +314,13 @@
 		"name": "Windows 93",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/windows93",
-		"link": "https://v1.windows93.net",
+		"link": "https://windows93.net",
+		"target": "_blank",
 		"credits": "Website: <a href=\"https://windows93.net\" target=\"_blank\">windows93.net</a><br /><br />Author(s): <a href=\"http://jankenpopp.com\" target=\"_blank\">Jankenpopp</a> &amp; <a href=\"https://zombect.ro\" target=\"_blank\">Zombectro</a><br />License: <a href=\"https://www.windows93.net/#!/c/TOS.html\" target=\"_blank\">CC BY-NC 4.0</a>",
 		"width": 960,
 		"height": 734,
 		"newtab": true,
-		"shortcut": true,
-		"share": true
+		"shortcut": true
 	} , {
 		"name": "Windows 96",
 		"title": "External Website",
@@ -64,139 +344,6 @@
 		"newtab": true,
 		"shortcut": true,
 		"share": true
-	} , {
-		"name": "Visual Studio Code",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/visual-studio-code",
-		"link": "/emupedia-app-vscode/",
-		"credits": "Website: <a href=\"https://code.visualstudio.com/\" target=\"_blank\">code.visualstudio.com</a><br /><br />Author: <a href=\"https://github.com/Microsoft\" target=\"_blank\">github.com/Microsoft</a><br />Repository: <a href=\"https://github.com/Microsoft/vscode\" target=\"_blank\">github.com/Microsoft/vscode</a><br />License: <a href=\"https://github.com/microsoft/vscode/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a>",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Sandbox",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/sandbox",
-		"link": "/emupedia-app-sandbox/?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=/emupedia-app-romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Space Cadet Pinball",
-		"icon": "assets/images/icons/desktop/space-cadet-pinball",
-		"link": "/emupedia-game-space-cadet-pinball/",
-		"credits": "Emscripten Port<hr />Website: <a href=\"https://alula.github.io/SpaceCadetPinball/\" target=\"_blank\">alula.github.io/SpaceCadetPinball</a><br />Author: <a href=\"https://github.com/alula\" target=\"_blank\">github.com/alula</a><br />Repository: <a href=\"https://github.com/alula/SpaceCadetPinball\" target=\"_blank\">github.com/alula/SpaceCadetPinball</a><br /><br />Original project<hr />Author: <a href=\"https://github.com/k4zmu2a\" target=\"_blank\">github.com/k4zmu2a</a><br />Repository: <a href=\"https://github.com/k4zmu2a/SpaceCadetPinball\" target=\"_blank\">github.com/k4zmu2a/SpaceCadetPinball</a><br /><br />All other assets part of Full Tilt! Pinball<hr />Copyright Microsoft & Electronic Arts (formerly Maxis)",
-		"newtab": true,
-		"disclaimer": true,
-		"width": 600,
-		"height": 440,
-		"share": true
-	} , {
-		"name": "Minesweeper Classic",
-		"icon": "assets/images/icons/desktop/minesweeper",
-		"link": "/emupedia-game-minesweeper/",
-		"credits": "HTML5 Port<hr />Author: <a href=\"https://github.com/ziebelje\" target=\"_blank\">github.com/ziebelje</a><br />Repository: <a href=\"https://github.com/ziebelje/minesweeper\" target=\"_blank\">github.com/ziebelje/minesweeper</a><br /><br />All other assets<hr />Copyright Microsoft",
-		"newtab": true,
-		"disclaimer": true,
-		"width": 502,
-		"height": 343,
-		"share": true
-	} , {
-		"name": "Solitaire Classic",
-		"icon": "assets/images/icons/desktop/solitaire",
-		"link": "/emupedia-game-solitaire/",
-		"credits": "Enhancements<hr />Website: <a href=\"https://98.js.org/programs/js-solitaire/\" target=\"_blank\">98.js.org/programs/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/98/tree/master/programs/js-solitaire\" target=\"_blank\">github.com/1j01/98/tree/master/programs/js-solitaire</a><br /><br />HTML5 Port<hr />Website: <a href=\"https://radovanjanjic.com/js-solitaire/\" target=\"_blank\">radovanjanjic.com/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/rjanjic\" target=\"_blank\">github.com/rjanjic</a><br />Repository: <a href=\"https://github.com/rjanjic/js-solitaire\" target=\"_blank\">github.com/rjanjic/js-solitaire</a><br /><br />All other assets<hr />Copyright Microsoft",
-		"newtab": true,
-		"disclaimer": true,
-		"width": 660,
-		"height": 440,
-		"share": true
-	} , {
-		"name": "Microsoft Minesweeper",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-minesweeper",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftminesweeper/20200812T131003_1.3.22_milestones_2020_milestone_2020_005_sprint_001_1e48112_msn/default.html?hostingEnvironment=zone",
-		"target": "_blank",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/msminesweeper/default.htm\" target=\"_blank\">zone.msn.com/en/msminesweeper</a>",
-		"width": 960,
-		"height": 747,
-		"newtab": true,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Solitaire Collection",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-solitaire",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2021/20210129T112048_1.8.8_release_7e1cce9_msn/solitaire/index.html?hostingEnvironment=zone",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/mssolitairecollection/default.htm\" target=\"_blank\">zone.msn.com/en/mssolitairecollection</a>",
-		"width": 960,
-		"height": 540,
-		"newtab": true,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Mahjong",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-mahjong",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftmahjong/2020/20201102T1148_1.0.10_msn/game.html?hostingEnvironment=zone",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/msmahjong/default.htm\" target=\"_blank\">zone.msn.com/en/msmahjong</a>",
-		"width": 960,
-		"height": 540,
-		"newtab": true,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Ultimate Word Games",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-ultimate-word-games",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/msn/2021/20210310T195233_1.1.7_release_1af5876_msn/word-games/game.html?hostingEnvironment=zone",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/msultimateword/default.htm\" target=\"_blank\">zone.msn.com/en/msultimateword</a>",
-		"width": 960,
-		"height": 552,
-		"newtab": true,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Bubble",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-bubble",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftbubbleshooter/20210125T150916.534Z_1_c01b8274_V2.2.1/msngdk_simulator/testgame/index.html?gdk=true&hostingEnvironment=zone",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/msbubble/default.htm\" target=\"_blank\">zone.msn.com/en/msbubble</a>",
-		"width": 960,
-		"height": 540,
-		"newtab": true,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Jewel",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-jewel",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftjewel/20200921T100924_1.0.22_milestones_2020_milestone_2020_001_sprint_001_62951b5_msn/default.html?hostingEnvironment=zone",
-		"target": "_blank",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/msjewel/default.htm\" target=\"_blank\">zone.msn.com/en/msjewel</a>",
-		"width": 960,
-		"height": 540,
-		"newtab": true,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Sudoku",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-sudoku",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftsudoku/20200821T185824_1.3.33_milestones_2020_milestone_2020_013_sprint_003_d2570bc_msn/default.html?hostingEnvironment=zone",
-		"target": "_blank",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/sudoku/default.htm\" target=\"_blank\">zone.msn.com/en/sudoku</a>",
-		"width": 960,
-		"height": 540,
-		"newtab": true,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Jigsaw",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-jigsaw",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftjigsaw/20200812T130936_1.3.37_milestones_2020_milestone_2020_004_sprint_001_b90aedf_msn/default.html?hostingEnvironment=zone",
-		"target": "_blank",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/jigsaw/default.htm\" target=\"_blank\">zone.msn.com/en/jigsaw</a>",
-		"width": 960,
-		"height": 540,
-		"newtab": true,
-		"shortcut": true
 	} , {
 		"name": "Friday Night Funkin'",
 		"title": "External Website",
@@ -234,169 +381,219 @@
 		"shortcut": true,
 		"share": true
 	} , {
-		"name": "Flappy Bird",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/flappy-bird",
-		"link": "/emupedia-game-flappy-bird/",
-		"link_alternate": "https://playcanv.as/p/2OlkUaxF/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://playcanv.as/p/2OlkUaxF/\" target=\"_blank\">playcanvas.com</a><br /><br />Original project<hr />Website: <a href=\"https://dotgears.com/games/flappybird\" target=\"_blank\">dotgears.com/games/flappybird</a><br />Copyright: .GEARS",
-		"disclaimer": true,
-		"width": 432,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut the Rope",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope",
-		"link": "/emupedia-game-cut-the-rope/",
-		"link_alternate": "https://play.gamepix.com/cut-the-rope/embed",
-		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
-		"width": 1024,
-		"height": 576,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut the Rope: Holiday Gift",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope-holiday-gift",
-		"link": "/emupedia-game-cut-the-rope-holiday-gift/",
-		"link_alternate": "https://play.gamepix.com/cut-the-rope-time-travel/embed",
-		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
-		"width": 1024,
-		"height": 576,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut the Rope: Time Travel",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope-time-travel",
-		"link": "/emupedia-game-cut-the-rope-time-travel/",
-		"link_alternate": "https://play.gamepix.com/cut-the-rope-time-travel/embed",
-		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
-		"width": 1024,
-		"height": 576,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut the Rope HD",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope-hd",
-		"link": "/emupedia-game-cut-the-rope-hd/",
-		"link_alternate": "https://play.gamepix.com/cut-the-rope/embed",
-		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
-		"width": 1024,
-		"height": 576,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut the Rope Mobile Version",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope",
-		"link": "/emupedia-game-cut-the-rope/wasm/",
-		"credits": "Website: <a href=\"https://play.gamepix.com/cut-the-rope/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
-		"width": 484,
-		"height": 734,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut the Rope: Experiments Mobile Version",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope-experiments",
-		"link": "/emupedia-game-cut-the-rope-experiments/",
-		"credits": "Website: <a href=\"https://play.gamepix.com/cut-the-rope-experiments/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
-		"width": 484,
-		"height": 734,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut the Rope 2 Mobile Version",
-		"name_alternate": "Cut the Rope 2: Om Nom's Quest",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope2",
-		"link": "/emupedia-game-cut-the-rope2/",
-		"credits": "Website: <a href=\"https://play.gamepix.com/cut-the-rope-2/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
-		"width": 557,
-		"height": 734,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut the Rope: Magic Mobile Version",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope-magic",
-		"link": "/emupedia-game-cut-the-rope-magic/",
-		"credits": "Website: <a href=\"https://play.gamepix.com/cut-the-rope-magic/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
-		"width": 557,
-		"height": 734,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut this Rope for Pato",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-this-rope-for-pato",
-		"link": "https://turbowarp.org/1279627479/embed",
-		"link_alternate": "/emupedia-game-cut-this-rope-for-pato/",
-		"credits": "Website: <a href=\"https://sites.google.com/view/cutthisropeforpatowebsite/play-online\" target=\"_blank\">sites.google.com/view/cutthisropeforpatowebsite/play-online</a>",
-		"width": 700,
-		"height": 576,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Pudding Monsters Mobile Version",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/pudding-monsters",
-		"link": "/emupedia-game-pudding-monsters/",
-		"credits": "Website: <a href=\"https://play.gamepix.com/pudding-monsters/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://www.puddingmonsters.com/\" target=\"_blank\">puddingmonsters.com</a>",
-		"width": 557,
-		"height": 796,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Temple Run 2",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/temple-run2",
-		"link": "/emupedia-game-temple-run2/",
-		"credits": "Website: <a href=\"https://imangistudios.com/thegames/temple-run-2/\" target=\"_blank\">imangistudios.com</a>",
-		"width": 1024,
-		"height": 576,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Fruit Ninja",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/fruit-ninja",
-		"link": "/emupedia-game-fruit-ninja/",
-		"link_alternate": "https://html5.gamedistribution.com/rvvASMiM/2e0f4c7c23b041768bf7869a1ed89669/",
-		"credits": "Website: <a href=\"https://www.halfbrick.com/games/fruit-ninja\" target=\"_blank\">halfbrick.com/games/fruit-ninja</a>",
-		"width": 900,
-		"height": 547,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Jetpack Joyride",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/jetpack-joyride",
-		"link": "/emupedia-game-jetpack-joyride/",
-		"link_alternate": "https://html5.gamedistribution.com/rvvASMiM/17d66951b54e4979b0f24d14cc7423b6/",
-		"credits": "Website: <a href=\"https://www.halfbrick.com/games/jetpack-joyride\" target=\"_blank\">halfbrick.com/games/jetpack-joyride</a>",
-		"width": 900,
-		"height": 547,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
+		"name": "Mobile Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Flappy Bird",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/flappy-bird",
+			"link": "/emupedia-game-flappy-bird/",
+			"link_alternate": "https://playcanv.as/p/2OlkUaxF/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://playcanv.as/p/2OlkUaxF/\" target=\"_blank\">playcanvas.com</a><br /><br />Original project<hr />Website: <a href=\"https://dotgears.com/games/flappybird\" target=\"_blank\">dotgears.com/games/flappybird</a><br />Copyright: .GEARS",
+			"disclaimer": true,
+			"width": 432,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Geometry Dash Lite",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/geometry-dash",
+			"link": "/emupedia-game-geometry-dash/",
+			"credits": "HTML5 Unity Remake<hr />Website: <a href=\"https://geometrylite.io\" target=\"_blank\">geometrylite.io</a><br />Copyright: GM Media<hr />Original project<hr />Website: <a href=\"https://www.robtopgames.com\" target=\"_blank\">robtopgames.com</a><br />Copyright: RobTop Games",
+			"disclaimer": true,
+			"width": 900,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Cut The Rope",
+			"title": "Folder",
+			"icon": "assets/images/icons/desktop/folder",
+			"folder": true,
+			"width": 760,
+			"height": 560,
+			"items": [{
+				"name": "Cut the Rope",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/cut-the-rope",
+				"link": "/emupedia-game-cut-the-rope/",
+				"link_alternate": "https://play.gamepix.com/cut-the-rope/embed",
+				"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+				"width": 1024,
+				"height": 576,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			} , {
+				"name": "Cut the Rope: Holiday Gift",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/cut-the-rope-holiday-gift",
+				"link": "/emupedia-game-cut-the-rope-holiday-gift/",
+				"link_alternate": "https://play.gamepix.com/cut-the-rope-time-travel/embed",
+				"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+				"width": 1024,
+				"height": 576,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			} , {
+				"name": "Cut the Rope: Time Travel",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/cut-the-rope-time-travel",
+				"link": "/emupedia-game-cut-the-rope-time-travel/",
+				"link_alternate": "https://play.gamepix.com/cut-the-rope-time-travel/embed",
+				"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+				"width": 1024,
+				"height": 576,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			} , {
+				"name": "Cut the Rope HD",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/cut-the-rope-hd",
+				"link": "/emupedia-game-cut-the-rope-hd/",
+				"link_alternate": "https://play.gamepix.com/cut-the-rope/embed",
+				"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+				"width": 1024,
+				"height": 576,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			} , {
+				"name": "Cut the Rope Mobile Version",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/cut-the-rope",
+				"link": "/emupedia-game-cut-the-rope/wasm/",
+				"credits": "Website: <a href=\"https://play.gamepix.com/cut-the-rope/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+				"width": 484,
+				"height": 734,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			} , {
+				"name": "Cut the Rope: Experiments Mobile Version",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/cut-the-rope-experiments",
+				"link": "/emupedia-game-cut-the-rope-experiments/",
+				"credits": "Website: <a href=\"https://play.gamepix.com/cut-the-rope-experiments/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+				"width": 484,
+				"height": 734,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			} , {
+				"name": "Cut the Rope 2 Mobile Version",
+				"name_alternate": "Cut the Rope 2: Om Nom's Quest",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/cut-the-rope2",
+				"link": "/emupedia-game-cut-the-rope2/",
+				"credits": "Website: <a href=\"https://play.gamepix.com/cut-the-rope-2/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+				"width": 557,
+				"height": 734,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			} , {
+				"name": "Cut the Rope: Magic Mobile Version",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/cut-the-rope-magic",
+				"link": "/emupedia-game-cut-the-rope-magic/",
+				"credits": "Website: <a href=\"https://play.gamepix.com/cut-the-rope-magic/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+				"width": 557,
+				"height": 734,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			} , {
+				"name": "Cut this Rope for Pato",
+				"title": "External Website",
+				"icon": "assets/images/icons/desktop/cut-this-rope-for-pato",
+				"link": "https://turbowarp.org/1279627479/embed",
+				"link_alternate": "/emupedia-game-cut-this-rope-for-pato/",
+				"credits": "Website: <a href=\"https://sites.google.com/view/cutthisropeforpatowebsite/play-online\" target=\"_blank\">sites.google.com/view/cutthisropeforpatowebsite/play-online</a>",
+				"width": 700,
+				"height": 576,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			}]
+		} , {
+			"name": "Drive Mad",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/drive-mad",
+			"link": "/emupedia-game-drive-mad/",
+			"credits": "Original project<hr />Website: <a href=\"https://www.drivemad.com/\" target=\"_blank\">drivemad.com</a><br />Copyright: Fancade & Martin Magni",
+			"disclaimer": true,
+			"width": 900,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Plants vs. Zombies 1",
+			"icon": "assets/images/icons/desktop/pvz",
+			"link": "/emupedia-game-pvz/",
+			"credits": "Flash Port<hr />Website: <a href=\"https://www.ea.com/games/plants-vs-zombies/plants-vs-zombies\" target=\"_blank\">ea.com/games/plants-vs-zombies</a><br /><br />All other assets<hr />Copyright Electronic Arts (formerly PopCap Games)",
+			"disclaimer": true,
+			"width": 540,
+			"height": 405,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Pudding Monsters Mobile Version",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/pudding-monsters",
+			"link": "/emupedia-game-pudding-monsters/",
+			"credits": "Website: <a href=\"https://play.gamepix.com/pudding-monsters/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"https://www.puddingmonsters.com/\" target=\"_blank\">puddingmonsters.com</a>",
+			"width": 557,
+			"height": 796,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Temple Run 2",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/temple-run2",
+			"link": "/emupedia-game-temple-run2/",
+			"credits": "Website: <a href=\"https://imangistudios.com/thegames/temple-run-2/\" target=\"_blank\">imangistudios.com</a>",
+			"width": 1024,
+			"height": 576,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Fruit Ninja",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/fruit-ninja",
+			"link": "/emupedia-game-fruit-ninja/",
+			"link_alternate": "https://html5.gamedistribution.com/rvvASMiM/2e0f4c7c23b041768bf7869a1ed89669/",
+			"credits": "Website: <a href=\"https://www.halfbrick.com/games/fruit-ninja\" target=\"_blank\">halfbrick.com/games/fruit-ninja</a>",
+			"width": 900,
+			"height": 547,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Jetpack Joyride",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/jetpack-joyride",
+			"link": "/emupedia-game-jetpack-joyride/",
+			"link_alternate": "https://html5.gamedistribution.com/rvvASMiM/17d66951b54e4979b0f24d14cc7423b6/",
+			"credits": "Website: <a href=\"https://www.halfbrick.com/games/jetpack-joyride\" target=\"_blank\">halfbrick.com/games/jetpack-joyride</a>",
+			"width": 900,
+			"height": 547,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		}]
 	} , {
 		"name": "Spelunky Classic",
 		"title": "External Website",
@@ -434,18 +631,6 @@
 		"shortcut": true,
 		"share": true
 	} , {
-		"name": "Geometry Dash Lite",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/geometry-dash",
-		"link": "/emupedia-game-geometry-dash/",
-		"credits": "HTML5 Unity Remake<hr />Website: <a href=\"https://geometrylite.io\" target=\"_blank\">geometrylite.io</a><br />Copyright: GM Media<hr />Original project<hr />Website: <a href=\"https://www.robtopgames.com\" target=\"_blank\">robtopgames.com</a><br />Copyright: RobTop Games",
-		"disclaimer": true,
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
 		"name": "Five Nights at Freddy's Collection",
 		"icon": "assets/images/icons/desktop/fnaf",
 		"link": "/emupedia-game-fnaf/",
@@ -453,18 +638,6 @@
 		"width": 1280,
 		"height": 720,
 		"disclaimer": true,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Drive Mad",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/drive-mad",
-		"link": "/emupedia-game-drive-mad/",
-		"credits": "Original project<hr />Website: <a href=\"https://www.drivemad.com/\" target=\"_blank\">drivemad.com</a><br />Copyright: Fancade & Martin Magni",
-		"disclaimer": true,
-		"width": 900,
-		"height": 600,
 		"newtab": true,
 		"shortcut": true,
 		"share": true
@@ -481,99 +654,116 @@
 		"shortcut": true,
 		"share": true
 	} , {
-		"name": "Agar.io",
-		"icon": "assets/images/icons/desktop/agar.io",
-		"link": "/emupedia-game-agar.io/",
-		"credits": "Website: <a href=\"https://ogar3-demo.herokuapp.com/\" target=\"_blank\">ogar3-demo.herokuapp.com</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br />Repository: <a href=\"https://github.com/Faris90/Ogar3\" target=\"_blank\">github.com/Faris90/Ogar3</a><br />License: <a href=\"https://github.com/Faris90/Ogar3/blob/master/LICENSE.md\" target=\"_blank\">Apache-2.0</a><br /><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
-		"disclaimer": true,
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Agar.io v2.0",
-		"icon": "assets/images/icons/desktop/agar.io",
-		"link": "/emupedia-game-agar.io/cigar2/",
-		"credits": "Website: <a href=\"https://ogar3-demo.herokuapp.com/\" target=\"_blank\">ogar3-demo.herokuapp.com</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br />Repository: <a href=\"https://github.com/Faris90/Ogar3\" target=\"_blank\">github.com/Faris90/Ogar3</a><br />License: <a href=\"https://github.com/Faris90/Ogar3/blob/master/LICENSE.md\" target=\"_blank\">Apache-2.0</a><br /><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
-		"disclaimer": true,
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Agar.io v3.0 Beta",
-		"icon": "assets/images/icons/desktop/agar.io",
-		"link": "/emupedia-game-agar.io/agarv3/",
-		"credits": "Website: <a href=\"https://ogar3-demo.herokuapp.com/\" target=\"_blank\">ogar3-demo.herokuapp.com</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br />Repository: <a href=\"https://github.com/Faris90/Ogar3\" target=\"_blank\">github.com/Faris90/Ogar3</a><br />License: <a href=\"https://github.com/Faris90/Ogar3/blob/master/LICENSE.md\" target=\"_blank\">Apache-2.0</a><br /><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
-		"disclaimer": true,
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "bublz.us",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/bublz",
-		"link": "https://bublz.us/",
-		"credits": "Website: <a href=\"https://bublz.us/\" target=\"_blank\">bublz.us</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
-		"disclaimer": true,
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "diep.io",
-		"icon": "assets/images/icons/desktop/diep.io",
-		"link": "/emupedia-game-diep.io/",
-		"credits": "Website: <a href=\"https://diepcustom.herokuapp.com/\" target=\"_blank\">diepcustom.herokuapp.com</a><br />Author: <a href=\"https://github.com/ABCxFF\" target=\"_blank\">ABCxFF</a><br />Repository: <a href=\"https://github.com/ABCxFF/diepcustom\" target=\"_blank\">github.com/ABCxFF/diepcustom</a><br />License: <a href=\"https://github.com/ABCxFF/diepcustom/blob/main/LICENSE\" target=\"_blank\">AGPL-3.0</a><br /><br />Original project<hr />Website: <a href=\"https://diep.io\" target=\"_blank\">diep.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
-		"disclaimer": true,
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "florr.io",
-		"icon": "assets/images/icons/desktop/florr.io",
-		"link": "https://static.florr.io/old/",
-		"credits": "Website: <a href=\"https://static.florr.io/old/\" target=\"_blank\">static.florr.io/old</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games and Matheus Valadares",
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "florr.io v2.0",
-		"icon": "assets/images/icons/desktop/florr.io",
-		"link": "https://florr.io/",
-		"credits": "Website: <a href=\"https://static.florr.io/old/\" target=\"_blank\">static.florr.io/old</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games and Matheus Valadares",
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "skribbl.io",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/skribbl.io",
-		"link": "https://skribbl.io/",
-		"credits": "Website: <a href=\"https://skribbl.io/\" target=\"_blank\">skribbl.io</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright skribbl.io",
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "paper-io.com v2.0",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/paper-io2",
-		"link": "https://paper-io.com/",
-		"credits": "Website: <a href=\"https://paper-io.com/\" target=\"_blank\">paper-io.com</a><br /><br />Suggested to be added by <b>Argez</b><br /><br />All other assets<hr />Copyright paper-io.com",
-		"width": 900,
-		"height": 680,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
+		"name": ".io Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Agar.io",
+			"title": "Folder",
+			"icon": "assets/images/icons/desktop/folder",
+			"folder": true,
+			"width": 760,
+			"height": 560,
+			"items": [{
+				"name": "Agar.io v1.0",
+				"icon": "assets/images/icons/desktop/agar.io",
+				"link": "/emupedia-game-agar.io/",
+				"credits": "Website: <a href=\"https://ogar3-demo.herokuapp.com/\" target=\"_blank\">ogar3-demo.herokuapp.com</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br />Repository: <a href=\"https://github.com/Faris90/Ogar3\" target=\"_blank\">github.com/Faris90/Ogar3</a><br />License: <a href=\"https://github.com/Faris90/Ogar3/blob/master/LICENSE.md\" target=\"_blank\">Apache-2.0</a><br /><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
+				"disclaimer": true,
+				"width": 900,
+				"height": 600,
+				"newtab": true,
+				"share": true
+			} , {
+				"name": "Agar.io v2.0",
+				"icon": "assets/images/icons/desktop/agar.io",
+				"link": "/emupedia-game-agar.io/cigar2/",
+				"credits": "Website: <a href=\"https://ogar3-demo.herokuapp.com/\" target=\"_blank\">ogar3-demo.herokuapp.com</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br />Repository: <a href=\"https://github.com/Faris90/Ogar3\" target=\"_blank\">github.com/Faris90/Ogar3</a><br />License: <a href=\"https://github.com/Faris90/Ogar3/blob/master/LICENSE.md\" target=\"_blank\">Apache-2.0</a><br /><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
+				"disclaimer": true,
+				"width": 900,
+				"height": 600,
+				"newtab": true,
+				"share": true
+			} , {
+				"name": "Agar.io v3.0 Beta",
+				"icon": "assets/images/icons/desktop/agar.io",
+				"link": "/emupedia-game-agar.io/agarv3/",
+				"credits": "Website: <a href=\"https://ogar3-demo.herokuapp.com/\" target=\"_blank\">ogar3-demo.herokuapp.com</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br />Repository: <a href=\"https://github.com/Faris90/Ogar3\" target=\"_blank\">github.com/Faris90/Ogar3</a><br />License: <a href=\"https://github.com/Faris90/Ogar3/blob/master/LICENSE.md\" target=\"_blank\">Apache-2.0</a><br /><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
+				"disclaimer": true,
+				"width": 900,
+				"height": 600,
+				"newtab": true,
+				"share": true
+			}]
+		} , {
+			"name": "bublz.us",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/bublz",
+			"link": "https://bublz.us/",
+			"credits": "Website: <a href=\"https://bublz.us/\" target=\"_blank\">bublz.us</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
+			"disclaimer": true,
+			"width": 900,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "diep.io",
+			"icon": "assets/images/icons/desktop/diep.io",
+			"link": "/emupedia-game-diep.io/",
+			"credits": "Website: <a href=\"https://diepcustom.herokuapp.com/\" target=\"_blank\">diepcustom.herokuapp.com</a><br />Author: <a href=\"https://github.com/ABCxFF\" target=\"_blank\">ABCxFF</a><br />Repository: <a href=\"https://github.com/ABCxFF/diepcustom\" target=\"_blank\">github.com/ABCxFF/diepcustom</a><br />License: <a href=\"https://github.com/ABCxFF/diepcustom/blob/main/LICENSE\" target=\"_blank\">AGPL-3.0</a><br /><br />Original project<hr />Website: <a href=\"https://diep.io\" target=\"_blank\">diep.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
+			"disclaimer": true,
+			"width": 900,
+			"height": 600,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "florr.io",
+			"icon": "assets/images/icons/desktop/florr.io",
+			"link": "https://static.florr.io/old/",
+			"target": "_blank",
+			"credits": "Website: <a href=\"https://static.florr.io/old/\" target=\"_blank\">static.florr.io/old</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games and Matheus Valadares",
+			"width": 900,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "florr.io v2.0",
+			"icon": "assets/images/icons/desktop/florr.io",
+			"link": "https://florr.io/",
+			"credits": "Website: <a href=\"https://static.florr.io/old/\" target=\"_blank\">static.florr.io/old</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games and Matheus Valadares",
+			"width": 900,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "skribbl.io",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/skribbl.io",
+			"link": "https://skribbl.io/",
+			"credits": "Website: <a href=\"https://skribbl.io/\" target=\"_blank\">skribbl.io</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright skribbl.io",
+			"width": 900,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "paper-io.com v2.0",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/paper-io2",
+			"link": "https://paper-io.com/",
+			"credits": "Website: <a href=\"https://paper-io.com/\" target=\"_blank\">paper-io.com</a><br /><br />Suggested to be added by <b>Argez</b><br /><br />All other assets<hr />Copyright paper-io.com",
+			"width": 900,
+			"height": 680,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		}]
 	} , {
 		"name": "Raptor: Call of the Shadows",
 		"icon": "assets/images/icons/desktop/raptor",
@@ -585,39 +775,6 @@
 		"height": 400,
 		"share": true
 	} , {
-		"name": "Colossal Cave Adventure",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/ccave",
-		"link": "https://cojmar.github.io/adventure/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://cojmar.github.io/adventure/\" target=\"_blank\">cojmar.github.io/adventure</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/adventure\" target=\"_blank\">github.com/cojmar/adventure</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Colossal_Cave_Adventure\" target=\"_blank\">Colossal Cave Adventure</a>",
-		"width": 640,
-		"height": 480,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "NVolley",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/nvolley",
-		"link": "https://cojmar.github.io/nvolley/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://cojmar.github.io/nvolley/\" target=\"_blank\">cojmar.github.io/nvolley</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nvolley\" target=\"_blank\">github.com/cojmar/nvolley</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Arcade_Volleyball\" target=\"_blank\">Arcade Volleyball</a>",
-		"width": 640,
-		"height": 480,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "BomberDude",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/bomberdude",
-		"link": "https://cojmar.github.io/bomberman/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://cojmar.github.io/bomberman/\" target=\"_blank\">cojmar.github.io/bomberman</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/bomberman\" target=\"_blank\">github.com/cojmar/bomberman</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Bomberman\" target=\"_blank\">Bomberman aka Dyna Blaster</a>",
-		"width": 1090,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
 		"name": "Pikachu Volleyball",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/pikachu-volleyball",
@@ -626,15 +783,6 @@
 		"disclaimer_abandoned": true,
 		"width": 432,
 		"height": 304,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Wings 2.0",
-		"icon": "assets/images/icons/desktop/wings2",
-		"link": "/emupedia-game-wings2/",
-		"credits": "Author: <a href=\"https://github.com/ZaDarkSide\" target=\"_blank\">github.com/ZaDarkSide</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
-		"width": 900,
-		"height": 480,
 		"newtab": true,
 		"share": true
 	} , {
@@ -793,43 +941,6 @@
 		"height": 480,
 		"newtab": true,
 		"shortcut": true,
-		"share": true
-	} , {
-		"name": "3D Spatial Audio",
-		"icon": "assets/images/icons/desktop/joystick",
-		"link": "/emupedia-demo-3d-spatial-audio/",
-		"credits": "Website: <a href=\"https://howlerjs.com/#spatial\" target=\"_blank\">howlerjs.com/#spatial</a><br /><br />Author: <a href=\"https://github.com/goldfire\" target=\"_blank\">github.com/goldfire</a><br />Repository: <a href=\"https://github.com/goldfire/howler.js/tree/master/examples/3d\" target=\"_blank\">github.com/goldfire/howler.js</a><br />License: <a href=\"https://github.com/goldfire/howler.js/blob/master/LICENSE.md\" target=\"_blank\">MIT</a>",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Voxel Space",
-		"icon": "assets/images/icons/desktop/joystick",
-		"link": "/emupedia-demo-voxel-space/",
-		"credits": "Website: <a href=\"https://s-macke.github.io/VoxelSpace/VoxelSpace.html\" target=\"_blank\">s-macke.github.io/VoxelSpace</a><br /><br />Author: <a href=\"https://github.com/s-macke\" target=\"_blank\">github.com/s-macke</a><br />Repository: <a href=\"https://github.com/s-macke/VoxelSpace\" target=\"_blank\">github.com/s-macke/VoxelSpace</a><br />License: <a href=\"https://github.com/s-macke/VoxelSpace/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright THQ Nordic (formerly NovaLogic)",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "8-bit Palette Color Cycling",
-		"icon": "assets/images/icons/desktop/8-bit-palette-color-cycling",
-		"link": "/emupedia-app-8-bit-palette-color-cycling/",
-		"credits": "Website: <a href=\"http://effectgames.com/demos/canvascycle/\" target=\"_blank\">effectgames.com/demos/canvascycle</a><br /><br />YouTube: <a href=\"https://www.youtube.com/watch?v=aMcJ1Jvtef0\" target=\"_blank\">youtube.com/watch?v=aMcJ1Jvtef0</a><br /><br />Author: <a href=\"https://github.com/jhuckaby\" target=\"_blank\">github.com/jhuckaby</a><br />Source Code: <a href=\"http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6\" target=\"_blank\">effectgames.com</a><br />License: <a href=\"http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6\" target=\"_blank\">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href=\"https://www.markferrari.com/\" target=\"_blank\">Mark J. Ferrari</a>",
-		"width": 900,
-		"height": 550,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "RomCenter",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/romcenter",
-		"link": "/emupedia-app-romcenter/",
-		"credits": "HTML5 Port<hr />Author: Emupedia<br /><br />Original project<hr />Website: <a href=\"https://www.romcenter.com\" target=\"_blank\">romcenter.com</a><br /><br />Author: Eric Bole-Feysot",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
 		"share": true
 	} , {
 		"name": "DOSBox",
@@ -1110,16 +1221,6 @@
 		"newtab": true,
 		"share": true
 	} , {
-		"name": "Plants vs. Zombies 1",
-		"icon": "assets/images/icons/desktop/pvz",
-		"link": "/emupedia-game-pvz/",
-		"credits": "Flash Port<hr />Website: <a href=\"https://www.ea.com/games/plants-vs-zombies/plants-vs-zombies\" target=\"_blank\">ea.com/games/plants-vs-zombies</a><br /><br />All other assets<hr />Copyright Electronic Arts (formerly PopCap Games)",
-		"disclaimer": true,
-		"width": 540,
-		"height": 405,
-		"newtab": true,
-		"share": true
-	} , {
 		"name": "Minecraft Classic",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/minecraft-classic",
@@ -1180,17 +1281,6 @@
 		"shortcut": true,
 		"share": false
 	} , {
-		"name": "Nsvg",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/svg-editor",
-		"link": "https://cojmar.github.io/nsvg",
-		"credits": "Website: <a href=\"https://cojmar.github.io/nsvg\" target=\"_blank\">cojmar.github.io/nsvg</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nsvg\" target=\"_blank\">github.com/cojmar/nsvg</a><br /><br />Inspired from<hr />Website: <a href=\"https://editor.method.ac/\" target=\"_blank\">editor.method.ac</a><br /><br />Author: <a href=\"https://github.com/methodofaction\" target=\"_blank\">github.com/methodofaction</a><br />Repository: <a href=\"https://github.com/methodofaction/Method-Draw\" target=\"_blank\">github.com/methodofaction/Method-Draw</a><br />License: <a href=\"https://github.com/methodofaction/Method-Draw/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/SVG-Edit\" target=\"_blank\">github.com/SVG-Edit</a><br />Repository: <a href=\"https://github.com/SVG-Edit/svgedit\" target=\"_blank\">github.com/SVG-Edit/svgedit</a><br />License: <a href=\"https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt\" target=\"_blank\">MIT</a>",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
 		"name": "Photopea",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/photopea",
@@ -1209,15 +1299,6 @@
 		"width": 900,
 		"height": 610,
 		"newtab": true,
-		"share": true
-	} , {
-		"name": "Happy Tree Friends",
-		"icon": "assets/images/icons/desktop/happy-tree-friends",
-		"link": "/emupedia-media-htf/",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"singleinstance": true,
 		"share": true
 	}]
 }

@@ -1,5 +1,6 @@
 /*noinspection CssUnresolvedCustomProperty,CssOverwrittenProperties,DuplicatedCode*/
-.emuos-desktop-icon i.icon.overlay:before {
+.emuos-desktop-icon i.icon.overlay:before,
+.emuos-folder-item i.icon.overlay:before {
 	display: block;
 	content: '';
 	width: 32px;
@@ -19,14 +20,16 @@
 	visibility: hidden;
 }
 
-.emuos-desktop-icon i.icon.overlay.shortcut:before {
+.emuos-desktop-icon i.icon.overlay.shortcut:before,
+.emuos-folder-item i.icon.overlay.shortcut:before {
 	background-image: url(../../../../images/icons/overlay/shortcut.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
 /*noinspection CssUnresolvedCustomProperty,CssOverwrittenProperties,DuplicatedCode*/
-.emuos-desktop-icon i.icon.ribbon:after {
+.emuos-desktop-icon i.icon.ribbon:after,
+.emuos-folder-item i.icon.ribbon:after {
 	display: block;
 	content: '';
 	width: 47px;
@@ -46,7 +49,8 @@
 	visibility: hidden;
 }
 
-.emuos-desktop-icon i.icon.ribbon.new:after {
+.emuos-desktop-icon i.icon.ribbon.new:after,
+.emuos-folder-item i.icon.ribbon.new:after {
 	background-image: url(../../../../images/icons/ribbon/new.png);
 	background-size: 48px 48px;
 	left: 1px;
@@ -55,7 +59,8 @@
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.ribbon.beta:after {
+.emuos-desktop-icon i.icon.ribbon.beta:after,
+.emuos-folder-item i.icon.ribbon.beta:after {
 	background-image: url(../../../../images/icons/ribbon/beta.png);
 	background-size: 48px 48px;
 	left: 1px;
@@ -64,7 +69,8 @@
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.ribbon.prototype:after {
+.emuos-desktop-icon i.icon.ribbon.prototype:after,
+.emuos-folder-item i.icon.ribbon.prototype:after {
 	width: 64px;
 	height: 64px;
 	background-image: url(../../../../images/icons/ribbon/prototype.png);
@@ -76,7 +82,8 @@
 }
 
 /*noinspection CssUnresolvedCustomProperty,CssOverwrittenProperties,DuplicatedCode*/
-.emuos-desktop-icon i.icon.badge:after {
+.emuos-desktop-icon i.icon.badge:after,
+.emuos-folder-item i.icon.badge:after {
 	display: block;
 	content: '';
 	width: 16px;
@@ -96,128 +103,149 @@
 	visibility: hidden;
 }
 
-.emuos-desktop-icon i.icon.badge.badge-1:after {
+.emuos-desktop-icon i.icon.badge.badge-1:after,
+.emuos-folder-item i.icon.badge.badge-1:after {
 	background-image: url(../../../../images/icons/badges/badge-1.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.badge.badge-2:after {
+.emuos-desktop-icon i.icon.badge.badge-2:after,
+.emuos-folder-item i.icon.badge.badge-2:after {
 	background-image: url(../../../../images/icons/badges/badge-2.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.badge.badge-3:after {
+.emuos-desktop-icon i.icon.badge.badge-3:after,
+.emuos-folder-item i.icon.badge.badge-3:after {
 	background-image: url(../../../../images/icons/badges/badge-3.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.badge.badge-4:after {
+.emuos-desktop-icon i.icon.badge.badge-4:after,
+.emuos-folder-item i.icon.badge.badge-4:after {
 	background-image: url(../../../../images/icons/badges/badge-4.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.badge.badge-5:after {
+.emuos-desktop-icon i.icon.badge.badge-5:after,
+.emuos-folder-item i.icon.badge.badge-5:after {
 	background-image: url(../../../../images/icons/badges/badge-5.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.badge.badge-6:after {
+.emuos-desktop-icon i.icon.badge.badge-6:after,
+.emuos-folder-item i.icon.badge.badge-6:after {
 	background-image: url(../../../../images/icons/badges/badge-6.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.badge.badge-7:after {
+.emuos-desktop-icon i.icon.badge.badge-7:after,
+.emuos-folder-item i.icon.badge.badge-7:after {
 	background-image: url(../../../../images/icons/badges/badge-7.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.badge.badge-8:after {
+.emuos-desktop-icon i.icon.badge.badge-8:after,
+.emuos-folder-item i.icon.badge.badge-8:after {
 	background-image: url(../../../../images/icons/badges/badge-8.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.badge-9:after {
+.emuos-desktop-icon i.icon.badge-9:after,
+.emuos-folder-item i.icon.badge-9:after {
 	background-image: url(../../../../images/icons/badges/badge-9.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
-.emuos-desktop-icon i.icon.badge-9-plus:after {
+.emuos-desktop-icon i.icon.badge-9-plus:after,
+.emuos-folder-item i.icon.badge-9-plus:after {
 	background-image: url(../../../../images/icons/badges/badge-9-plus.ico);
 	opacity: 1;
 	visibility: visible;
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-	.emuos-desktop-icon i.icon.overlay.shortcut:before {
+	.emuos-desktop-icon i.icon.overlay.shortcut:before,
+	.emuos-folder-item i.icon.overlay.shortcut:before {
 		background-image: url(../../../../images/icons/overlay/shortcut.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge.badge-1:after {
+	.emuos-desktop-icon i.icon.badge.badge-1:after,
+	.emuos-folder-item i.icon.badge.badge-1:after {
 		background-image: url(../../../../images/icons/badges/badge-1.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge.badge-2:after {
+	.emuos-desktop-icon i.icon.badge.badge-2:after,
+	.emuos-folder-item i.icon.badge.badge-2:after {
 		background-image: url(../../../../images/icons/badges/badge-2.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge.badge-3:after {
+	.emuos-desktop-icon i.icon.badge.badge-3:after,
+	.emuos-folder-item i.icon.badge.badge-3:after {
 		background-image: url(../../../../images/icons/badges/badge-3.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge.badge-4:after {
+	.emuos-desktop-icon i.icon.badge.badge-4:after,
+	.emuos-folder-item i.icon.badge.badge-4:after {
 		background-image: url(../../../../images/icons/badges/badge-4.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge.badge-5:after {
+	.emuos-desktop-icon i.icon.badge.badge-5:after,
+	.emuos-folder-item i.icon.badge.badge-5:after {
 		background-image: url(../../../../images/icons/badges/badge-5.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge.badge-6:after {
+	.emuos-desktop-icon i.icon.badge.badge-6:after,
+	.emuos-folder-item i.icon.badge.badge-6:after {
 		background-image: url(../../../../images/icons/badges/badge-6.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge.badge-7:after {
+	.emuos-desktop-icon i.icon.badge.badge-7:after,
+	.emuos-folder-item i.icon.badge.badge-7:after {
 		background-image: url(../../../../images/icons/badges/badge-7.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge.badge-8:after {
+	.emuos-desktop-icon i.icon.badge.badge-8:after,
+	.emuos-folder-item i.icon.badge.badge-8:after {
 		background-image: url(../../../../images/icons/badges/badge-8.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge-9:after {
+	.emuos-desktop-icon i.icon.badge-9:after,
+	.emuos-folder-item i.icon.badge-9:after {
 		background-image: url(../../../../images/icons/badges/badge-9.png);
 		opacity: 1;
 		visibility: visible;
 	}
 
-	.emuos-desktop-icon i.icon.badge-9-plus:after {
+	.emuos-desktop-icon i.icon.badge-9-plus:after,
+	.emuos-folder-item i.icon.badge-9-plus:after {
 		background-image: url(../../../../images/icons/badges/badge-9-plus.png);
 		opacity: 1;
 		visibility: visible;

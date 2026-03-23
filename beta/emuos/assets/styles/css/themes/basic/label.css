@@ -36,3 +36,7 @@
 .iframe[data-title]:after {
 	display: none;
 }
+
+.window[data-title]:after {
+	display: none;
+}
