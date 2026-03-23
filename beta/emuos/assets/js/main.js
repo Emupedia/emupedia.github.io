@@ -44,7 +44,7 @@
 				deps: ['jquery']
 			},
 			desktop: {
-				deps: ['window', 'lang', 'jquery-ui-contextmenu']
+				deps: ['window', 'lang', 'jquery-ui-contextmenu', 'jquery-ui-touch-punch']
 			},
 			chat: {
 				deps: ['jquery', 'simplestorage', 'fingerprint', 'network']
@@ -69,6 +69,9 @@
 			},
 			'jquery-ui': {
 				deps: ['jquery']
+			},
+			'jquery-ui-touch-punch': {
+				deps: ['jquery-ui']
 			},
 			'jquery-ui-contextmenu': {
 				deps: ['jquery-ui']

@@ -105,6 +105,11 @@
 			'/beta/emuos/assets/js/libraries/jquery-ui-1.13.2.min',
 			'//' + location + '/beta/emuos/assets/js/libraries/jquery-ui-1.13.2.min'
 		],
+		'jquery-ui-touch-punch': [
+			'libraries/jquery-ui-touch-punch-0.2.3.min',
+			'/beta/emuos/assets/js/libraries/jquery-ui-touch-punch-0.2.3.min',
+			'//' + location + '/beta/emuos/assets/js/libraries/jquery-ui-touch-punch-0.2.3.min'
+		],
 		'jquery-ui-contextmenu': [
 			'libraries/jquery-ui-contextmenu-1.18.1.min',
 			'/beta/emuos/assets/js/libraries/jquery-ui-contextmenu-1.18.1.min',

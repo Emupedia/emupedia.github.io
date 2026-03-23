@@ -6,6 +6,9 @@
 		shim: {
 			'jquery-ui': {
 				deps: ['jquery']
+			},
+			'jquery-ui-touch-punch': {
+				deps: ['jquery-ui']
 			}
 		},
 		map: {
@@ -20,7 +23,8 @@
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	requirejs([
 		'jquery',
-		'jquery-ui'
+		'jquery-ui',
+		'jquery-ui-touch-punch'
 	], function($, ui) {
 		$(function() {
 			var $html = $('html');

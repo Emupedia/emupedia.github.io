@@ -718,6 +718,8 @@
 				}
 			});
 			}
+
+			self._applyDesktopIconOrder();
 		};
 
 		self.desktopIcons = desktopIcons;
@@ -765,6 +767,10 @@
 		self.$desktop.desktop({
 			iconClass: '.icon',
 			parent: '.emuos-taskbar-windows-containment'
+		});
+
+		self.$desktop.off('sortupdate.emuosIconOrder sortstop.emuosIconOrder').on('sortupdate.emuosIconOrder sortstop.emuosIconOrder', function() {
+			self._saveDesktopIconOrder();
 		});
 
 		if (typeof moment === 'function') {
@@ -1303,6 +1309,58 @@
 			if (hash !== '') {
 				// noinspection JSIgnoredPromiseFromCall
 				Router.navigate(hash);
+			}
+		}
+	};
+
+	EmuOS.prototype._getDesktopIconOrderKey = function() {
+		return 'desktopIconOrder:' + (this.useFolders ? 'folders' : 'flat');
+	};
+
+	EmuOS.prototype._getStoredDesktopIconOrder = function() {
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.get !== 'function') {
+			return [];
+		}
+
+		var order = simplestorage.get(this._getDesktopIconOrderKey());
+
+		return Array.isArray(order) ? order : [];
+	};
+
+	EmuOS.prototype._saveDesktopIconOrder = function() {
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.set !== 'function') {
+			return;
+		}
+
+		var order = [];
+
+		this.$desktop.children('a.emuos-desktop-icon').each(function() {
+			var name = $(this).data('name');
+
+			if (typeof name === 'string' && name !== '') {
+				order.push(name);
+			}
+		});
+
+		simplestorage.set(this._getDesktopIconOrderKey(), order);
+	};
+
+	EmuOS.prototype._applyDesktopIconOrder = function() {
+		var order = this._getStoredDesktopIconOrder();
+		var self = this;
+
+		if (!order.length) {
+			return;
+		}
+
+		for (var i = 0; i < order.length; i++) {
+			var name = order[i];
+			var $icon = self.$desktop.children('a.emuos-desktop-icon').filter(function() {
+				return $(this).data('name') === name;
+			}).first();
+
+			if ($icon.length) {
+				self.$desktop.append($icon);
 			}
 		}
 	};
