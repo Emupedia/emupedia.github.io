@@ -300,6 +300,90 @@
 			"share": true
 		}]
 	} , {
+		"name": "Incomplete Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder-gray",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Raptor: Call of the Shadows",
+			"title": "Unfinished Game",
+			"icon": "assets/images/icons/desktop/raptor",
+			"link": "/emupedia-game-raptor/",
+			"credits": "HTML5 Port<hr />Author: <a href=\"https://github.com/robgietema\" target=\"_blank\">github.com/robgietema</a><br />Repository: <a href=\"https://github.com/robgietema/raptor\" target=\"_blank\">github.com/robgietema/raptor</a><br /><br />All other assets<hr />Copyright Apogee Software",
+			"newtab": true,
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 400,
+			"share": true
+		} , {
+			"name": "Command and Conquer: Red Alert 2",
+			"title": "Unfinished Game",
+			"icon": "assets/images/icons/desktop/red-alert2",
+			"link": "/emupedia-game-ra2/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://ra2html5.surge.sh/\" target=\"_blank\">ra2html5.surge.sh</a><br /><br />Author: Võ Thành Đạt<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)",
+			"disclaimer": true,
+			"width": 900,
+			"height": 550,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "1v1.LOL",
+			"title": "Server Offline",
+			"icon": "assets/images/icons/desktop/1v1.lol",
+			"link": "/emupedia-game-1v1.lol/",
+			"credits": "Original project<hr />Website: <a href=\"https://1v1.lol\" target=\"_blank\">1v1.lol</a><br />Copyright: JustPlay.LOL",
+			"disclaimer": true,
+			"width": 900,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		}]
+	} , {
+		"name": "Similar OS",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "98.js",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/98.js",
+			"credits": "Website: <a href=\"https://98.js.org\" target=\"_blank\">98.js.org</a><br /><br />Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/98\" target=\"_blank\">github.com/1j01/98</a>",
+			"disclaimer_abandoned": true,
+			"link": "https://98.js.org/",
+			"width": 960,
+			"height": 713,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Windows 93",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/windows93",
+			"link": "https://windows93.net",
+			"target": "_blank",
+			"credits": "Website: <a href=\"https://windows93.net\" target=\"_blank\">windows93.net</a><br /><br />Author(s): <a href=\"http://jankenpopp.com\" target=\"_blank\">Jankenpopp</a> &amp; <a href=\"https://zombect.ro\" target=\"_blank\">Zombectro</a><br />License: <a href=\"https://www.windows93.net/#!/c/TOS.html\" target=\"_blank\">CC BY-NC 4.0</a>",
+			"width": 960,
+			"height": 734,
+			"newtab": true,
+			"shortcut": true
+		} , {
+			"name": "Windows 96",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/windows96",
+			"link": "https://windows96.net",
+			"credits": "Website: <a href=\"https://windows96.net\" target=\"_blank\">windows96.net</a><br /><br />Author(s): <a href=\"https://sys36.net\" target=\"_blank\">ctrlz &amp; ziad87</a>",
+			"width": 960,
+			"height": 734,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		}]
+	} , {
 		"name": "Santa Tracker",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/santa",
@@ -310,40 +394,6 @@
 		"newtab": true,
 		"shortcut": true,
 		"xmas": true
-	} , {
-		"name": "Windows 93",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/windows93",
-		"link": "https://windows93.net",
-		"target": "_blank",
-		"credits": "Website: <a href=\"https://windows93.net\" target=\"_blank\">windows93.net</a><br /><br />Author(s): <a href=\"http://jankenpopp.com\" target=\"_blank\">Jankenpopp</a> &amp; <a href=\"https://zombect.ro\" target=\"_blank\">Zombectro</a><br />License: <a href=\"https://www.windows93.net/#!/c/TOS.html\" target=\"_blank\">CC BY-NC 4.0</a>",
-		"width": 960,
-		"height": 734,
-		"newtab": true,
-		"shortcut": true
-	} , {
-		"name": "Windows 96",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/windows96",
-		"link": "https://windows96.net",
-		"credits": "Website: <a href=\"https://windows96.net\" target=\"_blank\">windows96.net</a><br /><br />Author(s): <a href=\"https://sys36.net\" target=\"_blank\">ctrlz &amp; ziad87</a>",
-		"width": 960,
-		"height": 734,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "98.js",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/98.js",
-		"credits": "Website: <a href=\"https://98.js.org\" target=\"_blank\">98.js.org</a><br /><br />Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/98\" target=\"_blank\">github.com/1j01/98</a>",
-		"disclaimer_abandoned": true,
-		"link": "https://98.js.org/",
-		"width": 960,
-		"height": 713,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
 	} , {
 		"name": "Friday Night Funkin'",
 		"title": "External Website",
@@ -642,18 +692,6 @@
 		"shortcut": true,
 		"share": true
 	} , {
-		"name": "1v1.LOL",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/1v1.lol",
-		"link": "/emupedia-game-1v1.lol/",
-		"credits": "Original project<hr />Website: <a href=\"https://1v1.lol\" target=\"_blank\">1v1.lol</a><br />Copyright: JustPlay.LOL",
-		"disclaimer": true,
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
 		"name": ".io Games",
 		"title": "Folder",
 		"icon": "assets/images/icons/desktop/folder",
@@ -764,16 +802,6 @@
 			"shortcut": true,
 			"share": true
 		}]
-	} , {
-		"name": "Raptor: Call of the Shadows",
-		"icon": "assets/images/icons/desktop/raptor",
-		"link": "/emupedia-game-raptor/",
-		"credits": "HTML5 Port<hr />Author: <a href=\"https://github.com/robgietema\" target=\"_blank\">github.com/robgietema</a><br />Repository: <a href=\"https://github.com/robgietema/raptor\" target=\"_blank\">github.com/robgietema/raptor</a><br /><br />All other assets<hr />Copyright Apogee Software",
-		"newtab": true,
-		"disclaimer_abandoned": true,
-		"width": 640,
-		"height": 400,
-		"share": true
 	} , {
 		"name": "Pikachu Volleyball",
 		"title": "Under Development",
@@ -1154,16 +1182,6 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 535,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Command and Conquer: Red Alert 2",
-		"icon": "assets/images/icons/desktop/red-alert2",
-		"link": "/emupedia-game-ra2/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://ra2html5.surge.sh/\" target=\"_blank\">ra2html5.surge.sh</a><br /><br />Author: Võ Thành Đạt<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)",
-		"disclaimer": true,
-		"width": 900,
-		"height": 550,
 		"newtab": true,
 		"share": true
 	} , {

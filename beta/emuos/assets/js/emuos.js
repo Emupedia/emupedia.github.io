@@ -254,6 +254,7 @@
 
 		self.options = $.extend(true, {}, options);
 		self._foldersByPath = {};
+		self.useFolders = self._getUseFoldersSetting();
 
 		// noinspection FallThroughInSwitchStatementJS
 		switch (self.options.theme) {
@@ -349,9 +350,11 @@
 		self.$desktop = $('.desktop').first();
 		self.$taskbar = $('.taskbar').first();
 
-		for (var j in self.options.icons) {
+		var desktopIcons = self._getDesktopIcons(self.options.icons, self.useFolders);
+
+		for (var j in desktopIcons) {
 			// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
-			var icon_options = self.options.icons[j];
+			var icon_options = desktopIcons[j];
 
 			if (typeof icon_options['requires'] === 'object') {
 				var reqs = Object.keys(icon_options['requires']);
@@ -1093,11 +1096,26 @@
 					title: 'Windows ME',
 					cmd: 'windows-me'
 				}]
+			} , {
+				title: '----'
+			} , {
+				title: 'Use Folders',
+				cmd: 'toggle-folders',
+				uiIcon: self.useFolders ? 'ui-icon-check' : ''
 			}],
 			select: function(e, ui) {
 				switch (ui.cmd) {
 					case 'refresh':
 						// noinspection JSUnresolvedFunction
+						window.location.reload();
+						break;
+					case 'toggle-folders':
+						self.useFolders = !self.useFolders;
+
+						if (typeof simplestorage !== 'undefined' && typeof simplestorage.set === 'function') {
+							simplestorage.set('useFolders', self.useFolders);
+						}
+
 						window.location.reload();
 						break;
 					case 'basic':
@@ -1169,7 +1187,7 @@
 
 				if (typeof simplestorage !== 'undefined') {
 					if (typeof simplestorage.set === 'function') {
-						if (ui.cmd !== 'refresh') {
+						if (ui.cmd === 'basic' || ui.cmd === 'windows-3' || ui.cmd === 'windows-95' || ui.cmd === 'windows-98' || ui.cmd === 'windows-me') {
 							simplestorage.set('theme', ui.cmd);
 						}
 					}
@@ -1199,9 +1217,9 @@
 				route = route.slice(0, route.lastIndexOf('?'));
 			}
 
-			for (var j in self.options.icons) {
+			for (var j in desktopIcons) {
 				// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
-				var icon_options = self.options.icons[j];
+				var icon_options = desktopIcons[j];
 
 				if (typeof icon_options['link'] !== 'undefined') {
 					var icon_link = '';
@@ -1242,6 +1260,48 @@
 				Router.navigate(hash);
 			}
 		}
+	};
+
+	EmuOS.prototype._getUseFoldersSetting = function() {
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.get !== 'function') {
+			return true;
+		}
+
+		var value = simplestorage.get('useFolders');
+
+		return typeof value === 'boolean' ? value : true;
+	};
+
+	EmuOS.prototype._flattenDesktopIcons = function(icons) {
+		var flattened = [];
+
+		if (!Array.isArray(icons)) {
+			return flattened;
+		}
+
+		for (var i = 0; i < icons.length; i++) {
+			var icon = icons[i] || {};
+			var isFolder = icon.folder === true || Array.isArray(icon.items);
+
+			if (isFolder) {
+				var childItems = Array.isArray(icon.items) ? icon.items : [];
+				var children = this._flattenDesktopIcons(childItems);
+
+				for (var j = 0; j < children.length; j++) {
+					flattened.push(children[j]);
+				}
+
+				continue;
+			}
+
+			flattened.push(icon);
+		}
+
+		return flattened;
+	};
+
+	EmuOS.prototype._getDesktopIcons = function(icons, useFolders) {
+		return useFolders ? icons : this._flattenDesktopIcons(icons);
 	};
 
 	EmuOS.prototype._registerFolderDefinition = function(folder, path) {
@@ -1338,6 +1398,10 @@
 	};
 
 	EmuOS.prototype._restoreFolderWindows = function() {
+		if (!this.useFolders) {
+			return;
+		}
+
 		var states = this._getStoredFolderWindows();
 
 		for (var i = 0; i < states.length; i++) {
