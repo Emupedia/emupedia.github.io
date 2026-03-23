@@ -279,5 +279,4 @@
 		// Call the original $.ui.mouse destroy method
 		_mouseDestroy.call(self);
 	};
-
 })(jQuery);

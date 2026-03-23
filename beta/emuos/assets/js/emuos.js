@@ -1320,6 +1320,21 @@
 		return ('ontouchstart' in window) || (typeof nav.maxTouchPoints === 'number' && nav.maxTouchPoints > 0) || (typeof nav.msMaxTouchPoints === 'number' && nav.msMaxTouchPoints > 0);
 	};
 
+	EmuOS.prototype._shouldOpenMaximized = function(width, height) {
+		var viewportWidth = this.$window && this.$window.length ? this.$window.width() : window.innerWidth;
+		var viewportHeight = this.$window && this.$window.length ? this.$window.height() : window.innerHeight;
+		var taskbarHeight = this.$taskbar && this.$taskbar.length ? (this.$taskbar.outerHeight() || 0) : 0;
+		var availableHeight = Math.max(0, viewportHeight - taskbarHeight);
+		var numericWidth = typeof width === 'number' ? width : parseInt(width, 10);
+		var numericHeight = typeof height === 'number' ? height : parseInt(height, 10);
+
+		if (isNaN(numericWidth) || isNaN(numericHeight)) {
+			return false;
+		}
+
+		return numericWidth > viewportWidth || numericHeight > availableHeight;
+	};
+
 	EmuOS.prototype._enableTouchSingleTapOpen = function() {
 		var self = this;
 		var selector = '.emuos-desktop-icon, .emuos-folder-item';
@@ -2129,6 +2144,7 @@
 		var close = typeof options.close === 'function' ? options.close : null;
 		var dragStop = typeof options.dragStop === 'function' ? options.dragStop : null;
 		var resizeStop = typeof options.resizeStop === 'function' ? options.resizeStop : null;
+		var startMaximized = self._shouldOpenMaximized(width, height);
 
 		var win	= $('<div class="window" data-title="'+ title +'">' + content + '</div>');
 
@@ -2138,6 +2154,7 @@
 		win.window({
 			width: width,
 			height: height,
+			maximized: startMaximized,
 			position: position,
 			beforeClose: beforeClose,
 			close: close,
@@ -2147,6 +2164,18 @@
 				main: this.$html.hasClass('theme-basic') || this.$html.hasClass('theme-windows-95') || this.$html.hasClass('theme-windows-98') || this.$html.hasClass('theme-windows-me') ? (icon !== '' ? icon + ($sys.browser.isIE ? '.png' : '.ico') : null) : ''
 			}
 		});
+
+		if (startMaximized) {
+			setTimeout(function() {
+				if (win && win.length) {
+					// noinspection JSUnresolvedFunction
+					if (!win.window('maximized')) {
+						// noinspection JSUnresolvedFunction
+						win.window('maximize');
+					}
+				}
+			}, 0);
+		}
 
 		// noinspection DuplicatedCode
 		$('.emuos-window').contextmenu({
@@ -2216,6 +2245,7 @@
 		var height		= typeof options.height		!== 'undefined' ? options.height	: 400;
 		var credits		= typeof options.credits	!== 'undefined' ? options.credits	: '';
 		var newtab		= typeof options.newtab		!== 'undefined';
+		var startMaximized = self._shouldOpenMaximized(width, height);
 
 		// noinspection HtmlDeprecatedAttribute,JSUnresolvedVariable,JSUnresolvedFunction
 		var win = $('<div class="iframe" data-title="'+ title +'"><iframe id="' + title + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" referrerpolicy="same-origin" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
@@ -2265,6 +2295,7 @@
 			// group: title,
 			width: width,
 			height: height,
+			maximized: startMaximized,
 			position: {
 				my: 'center',
 				at: 'center center-' + (height/2 + 14),
@@ -2275,6 +2306,18 @@
 				main: this.$html.hasClass('theme-basic') || this.$html.hasClass('theme-windows-95') || this.$html.hasClass('theme-windows-98') || this.$html.hasClass('theme-windows-me') ? (icon !== '' ? icon + ($sys.browser.isIE ? '.png' : '.ico') : null) : ''
 			}
 		});
+
+		if (startMaximized) {
+			setTimeout(function() {
+				if (win && win.length) {
+					// noinspection JSUnresolvedFunction
+					if (!win.window('maximized')) {
+						// noinspection JSUnresolvedFunction
+						win.window('maximize');
+					}
+				}
+			}, 0);
+		}
 
 		// noinspection DuplicatedCode
 		$('.emuos-window').contextmenu({
