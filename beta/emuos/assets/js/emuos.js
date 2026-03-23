@@ -349,6 +349,7 @@
 
 		self.$desktop = $('.desktop').first();
 		self.$taskbar = $('.taskbar').first();
+		self._applyStoredCustomWallpaper();
 
 		var desktopIcons = self._getDesktopIcons(self.options.icons, self.useFolders);
 
@@ -1079,6 +1080,12 @@
 			} , {
 				title: '----'
 			} , {
+				title: 'Custom Wallpaper...',
+				cmd: 'custom-wallpaper',
+				uiIcon: 'ui-icon-image'
+			} , {
+				title: '----'
+			} , {
 				title: 'Themes',
 				children: [{
 					title: 'Basic',
@@ -1108,6 +1115,9 @@
 					case 'refresh':
 						// noinspection JSUnresolvedFunction
 						window.location.reload();
+						break;
+					case 'custom-wallpaper':
+						self._promptCustomWallpaper();
 						break;
 					case 'toggle-folders':
 						self.useFolders = !self.useFolders;
@@ -1260,6 +1270,91 @@
 				Router.navigate(hash);
 			}
 		}
+	};
+
+	EmuOS.prototype._getCustomWallpaper = function() {
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.get !== 'function') {
+			return '';
+		}
+
+		var value = simplestorage.get('customWallpaper');
+
+		return typeof value === 'string' ? value : '';
+	};
+
+	EmuOS.prototype._setCustomWallpaper = function(dataUrl) {
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.set !== 'function') {
+			return;
+		}
+
+		simplestorage.set('customWallpaper', dataUrl);
+	};
+
+	EmuOS.prototype._applyCustomWallpaper = function(dataUrl) {
+		if (!dataUrl || typeof dataUrl !== 'string') {
+			return;
+		}
+
+		this.$desktop.css({
+			'background-image': 'url(' + dataUrl + ')',
+			'background-size': 'cover',
+			'background-position': 'center center',
+			'background-repeat': 'no-repeat'
+		});
+	};
+
+	EmuOS.prototype._applyStoredCustomWallpaper = function() {
+		var wallpaper = this._getCustomWallpaper();
+
+		if (wallpaper) {
+			this._applyCustomWallpaper(wallpaper);
+		}
+	};
+
+	EmuOS.prototype._promptCustomWallpaper = function() {
+		var self = this;
+		var $picker = $('<input type="file" accept="image/*" style="display:none;" />');
+
+		self.$body.append($picker);
+
+		$picker.off('change').on('change', function() {
+			var file = this.files && this.files[0] ? this.files[0] : null;
+
+			if (!file) {
+				$picker.remove();
+				return;
+			}
+
+			if (typeof FileReader === 'undefined') {
+				toastr.error('This browser does not support custom wallpaper upload.');
+				$picker.remove();
+				return;
+			}
+
+			var reader = new FileReader();
+
+			reader.onload = function(evt) {
+				var result = evt && evt.target ? evt.target.result : '';
+
+				if (typeof result === 'string' && result.indexOf('data:image') === 0) {
+					self._setCustomWallpaper(result);
+					self._applyCustomWallpaper(result);
+				} else {
+					toastr.error('Invalid image file.');
+				}
+
+				$picker.remove();
+			};
+
+			reader.onerror = function() {
+				toastr.error('Could not read image file.');
+				$picker.remove();
+			};
+
+			reader.readAsDataURL(file);
+		});
+
+		$picker.trigger('click');
 	};
 
 	EmuOS.prototype._getUseFoldersSetting = function() {
