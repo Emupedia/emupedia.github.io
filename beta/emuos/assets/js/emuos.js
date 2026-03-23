@@ -351,6 +351,7 @@
 		self.$taskbar = $('.taskbar').first();
 		self._applyStoredCustomWallpaper();
 		self.frontend = frontend;
+		self._enableTouchSingleTapOpen();
 
 		var desktopIcons = self._getDesktopIcons(self.options.icons, self.useFolders);
 		var renderDesktopIcons = function(iconList) {
@@ -1311,6 +1312,76 @@
 				Router.navigate(hash);
 			}
 		}
+	};
+
+	EmuOS.prototype._hasTouchInput = function() {
+		var nav = window.navigator || {};
+
+		return ('ontouchstart' in window) || (typeof nav.maxTouchPoints === 'number' && nav.maxTouchPoints > 0) || (typeof nav.msMaxTouchPoints === 'number' && nav.msMaxTouchPoints > 0);
+	};
+
+	EmuOS.prototype._enableTouchSingleTapOpen = function() {
+		var self = this;
+		var selector = '.emuos-desktop-icon, .emuos-folder-item';
+		var dataKey = 'emuos-touch-start';
+		var maxDistance = 12;
+
+		if (!self._hasTouchInput()) {
+			return;
+		}
+
+		self.$body
+			.off('touchstart.emuosSingleTapOpen', selector)
+			.off('touchend.emuosSingleTapOpen', selector)
+			.off('touchcancel.emuosSingleTapOpen', selector)
+			.on('touchstart.emuosSingleTapOpen', selector, function(e) {
+				var originalEvent = e.originalEvent || e;
+				var touch = originalEvent && originalEvent.changedTouches && originalEvent.changedTouches.length ? originalEvent.changedTouches[0] : null;
+
+				if (!touch) {
+					return;
+				}
+
+				$(this).data(dataKey, {
+					x: touch.clientX,
+					y: touch.clientY
+				});
+			})
+			.on('touchcancel.emuosSingleTapOpen', selector, function() {
+				$(this).removeData(dataKey);
+			})
+			.on('touchend.emuosSingleTapOpen', selector, function(e) {
+			var originalEvent = e.originalEvent || e;
+			var touch = originalEvent && originalEvent.changedTouches && originalEvent.changedTouches.length ? originalEvent.changedTouches[0] : null;
+			var $target = $(this);
+			var start = $target.data(dataKey);
+			var dx = 0;
+			var dy = 0;
+
+			if (!touch) {
+				return;
+			}
+
+			if (!start) {
+				return;
+			}
+
+			dx = Math.abs(touch.clientX - start.x);
+			dy = Math.abs(touch.clientY - start.y);
+			$target.removeData(dataKey);
+
+			if (dx > maxDistance || dy > maxDistance) {
+				return;
+			}
+
+			if ($target.hasClass('ui-sortable-helper') || $target.hasClass('ui-draggable-dragging')) {
+				return;
+			}
+
+			e.preventDefault();
+			e.stopPropagation();
+			$target.trigger('dblclick');
+		});
 	};
 
 	EmuOS.prototype._getDesktopIconOrderKey = function() {

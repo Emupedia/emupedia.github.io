@@ -10,13 +10,16 @@
  */
 (function ($) {
 
-	// Detect touch support
-	$.support.touch = 'ontouchend' in document;
+	var nav = window.navigator || {};
+	var hasTouch = ('ontouchstart' in window) || (typeof nav.maxTouchPoints === 'number' && nav.maxTouchPoints > 0) || (typeof nav.msMaxTouchPoints === 'number' && nav.msMaxTouchPoints > 0);
+	var hasPointer = typeof window.PointerEvent !== 'undefined';
 
-	// Ignore browsers without touch support
-	if (!$.support.touch) {
+	// Ignore browsers without touch/pointer support
+	if (!hasTouch && !hasPointer) {
 		return;
 	}
+
+	$.support.touch = hasTouch;
 
 	var mouseProto = $.ui.mouse.prototype,
 		_mouseInit = mouseProto._mouseInit,
@@ -31,7 +34,7 @@
 	function simulateMouseEvent (event, simulatedType) {
 
 		// Ignore multi-touch events
-		if (event.originalEvent.touches.length > 1) {
+		if (event.originalEvent.touches && event.originalEvent.touches.length > 1) {
 			return;
 		}
 
@@ -60,6 +63,42 @@
 		);
 
 		// Dispatch the simulated event to the target element
+		event.target.dispatchEvent(simulatedEvent);
+	}
+
+	function simulatePointerMouseEvent(event, simulatedType) {
+		var originalEvent = event.originalEvent || event;
+
+		if (!originalEvent) {
+			return;
+		}
+
+		var pointerType = originalEvent.pointerType;
+
+		if (pointerType === 'mouse' || pointerType === 4) {
+			return;
+		}
+
+		var simulatedEvent = document.createEvent('MouseEvents');
+
+		simulatedEvent.initMouseEvent(
+			simulatedType,
+			true,
+			true,
+			window,
+			1,
+			originalEvent.screenX,
+			originalEvent.screenY,
+			originalEvent.clientX,
+			originalEvent.clientY,
+			false,
+			false,
+			false,
+			false,
+			0,
+			null
+		);
+
 		event.target.dispatchEvent(simulatedEvent);
 	}
 
@@ -92,6 +131,26 @@
 		simulateMouseEvent(event, 'mousedown');
 	};
 
+	mouseProto._pointerStart = function(event) {
+		var self = this;
+		var originalEvent = event.originalEvent || event;
+
+		if (!originalEvent || (originalEvent.pointerType === 'mouse' || originalEvent.pointerType === 4)) {
+			return;
+		}
+
+		if (touchHandled || !self._mouseCapture(originalEvent)) {
+			return;
+		}
+
+		touchHandled = true;
+		self._touchMoved = false;
+		simulatePointerMouseEvent(event, 'mouseover');
+		simulatePointerMouseEvent(event, 'mousemove');
+		simulatePointerMouseEvent(event, 'mousedown');
+		event.preventDefault();
+	};
+
 	/**
 	 * Handle the jQuery UI widget's touchmove events
 	 * @param {Object} event The document's touchmove event
@@ -108,6 +167,22 @@
 
 		// Simulate the mousemove event
 		simulateMouseEvent(event, 'mousemove');
+	};
+
+	mouseProto._pointerMove = function(event) {
+		var originalEvent = event.originalEvent || event;
+
+		if (!originalEvent || (originalEvent.pointerType === 'mouse' || originalEvent.pointerType === 4)) {
+			return;
+		}
+
+		if (!touchHandled) {
+			return;
+		}
+
+		this._touchMoved = true;
+		simulatePointerMouseEvent(event, 'mousemove');
+		event.preventDefault();
 	};
 
 	/**
@@ -138,6 +213,28 @@
 		touchHandled = false;
 	};
 
+	mouseProto._pointerEnd = function(event) {
+		var originalEvent = event.originalEvent || event;
+
+		if (!originalEvent || (originalEvent.pointerType === 'mouse' || originalEvent.pointerType === 4)) {
+			return;
+		}
+
+		if (!touchHandled) {
+			return;
+		}
+
+		simulatePointerMouseEvent(event, 'mouseup');
+		simulatePointerMouseEvent(event, 'mouseout');
+
+		if (!this._touchMoved) {
+			simulatePointerMouseEvent(event, 'click');
+		}
+
+		touchHandled = false;
+		event.preventDefault();
+	};
+
 	/**
 	 * A duck punch of the $.ui.mouse _mouseInit method to support touch events.
 	 * This method extends the widget with bound touch event handlers that
@@ -148,12 +245,15 @@
 
 		var self = this;
 
-		// Delegate the touch handlers to the widget's element
-		self.element.bind({
-			touchstart: $.proxy(self, '_touchStart'),
-			touchmove: $.proxy(self, '_touchMove'),
-			touchend: $.proxy(self, '_touchEnd')
-		});
+		self.element.on('touchstart.' + self.widgetName, $.proxy(self, '_touchStart'));
+		self.element.on('touchmove.' + self.widgetName, $.proxy(self, '_touchMove'));
+		self.element.on('touchend.' + self.widgetName + ' touchcancel.' + self.widgetName, $.proxy(self, '_touchEnd'));
+
+		if (hasPointer) {
+			self.element.on('pointerdown.' + self.widgetName, $.proxy(self, '_pointerStart'));
+			self.element.on('pointermove.' + self.widgetName, $.proxy(self, '_pointerMove'));
+			self.element.on('pointerup.' + self.widgetName + ' pointercancel.' + self.widgetName, $.proxy(self, '_pointerEnd'));
+		}
 
 		// Call the original $.ui.mouse init method
 		_mouseInit.call(self);
@@ -166,12 +266,15 @@
 
 		var self = this;
 
-		// Delegate the touch handlers to the widget's element
-		self.element.unbind({
-			touchstart: $.proxy(self, '_touchStart'),
-			touchmove: $.proxy(self, '_touchMove'),
-			touchend: $.proxy(self, '_touchEnd')
-		});
+		self.element.off('touchstart.' + self.widgetName);
+		self.element.off('touchmove.' + self.widgetName);
+		self.element.off('touchend.' + self.widgetName + ' touchcancel.' + self.widgetName);
+
+		if (hasPointer) {
+			self.element.off('pointerdown.' + self.widgetName);
+			self.element.off('pointermove.' + self.widgetName);
+			self.element.off('pointerup.' + self.widgetName + ' pointercancel.' + self.widgetName);
+		}
 
 		// Call the original $.ui.mouse destroy method
 		_mouseDestroy.call(self);
