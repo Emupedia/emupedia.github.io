@@ -178,136 +178,6 @@
 			"share": true
 		}]
 	} , {
-		"name": "Microsoft Games",
-		"title": "Folder",
-		"icon": "assets/images/icons/desktop/folder",
-		"folder": true,
-		"width": 760,
-		"height": 560,
-		"items": [{
-			"name": "Microsoft Casual Games",
-			"title": "Folder",
-			"icon": "assets/images/icons/desktop/folder",
-			"folder": true,
-			"width": 760,
-			"height": 560,
-			"items": [{
-				"name": "Microsoft Minesweeper",
-				"title": "External Website",
-				"icon": "assets/images/icons/desktop/microsoft-minesweeper",
-				"link": "https://cdn.zone.msn.com/assets/games/microsoftminesweeper/20200812T131003_1.3.22_milestones_2020_milestone_2020_005_sprint_001_1e48112_msn/default.html?hostingEnvironment=zone",
-				"target": "_blank",
-				"credits": "Website: <a href=\"https://zone.msn.com/en/msminesweeper/default.htm\" target=\"_blank\">zone.msn.com/en/msminesweeper</a>",
-				"width": 960,
-				"height": 747,
-				"newtab": true,
-				"shortcut": true
-			} , {
-				"name": "Microsoft Solitaire Collection",
-				"title": "External Website",
-				"icon": "assets/images/icons/desktop/microsoft-solitaire",
-				"link": "https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2021/20210129T112048_1.8.8_release_7e1cce9_msn/solitaire/index.html?hostingEnvironment=zone",
-				"credits": "Website: <a href=\"https://zone.msn.com/en/mssolitairecollection/default.htm\" target=\"_blank\">zone.msn.com/en/mssolitairecollection</a>",
-				"width": 960,
-				"height": 540,
-				"newtab": true,
-				"shortcut": true
-			} , {
-				"name": "Microsoft Mahjong",
-				"title": "External Website",
-				"icon": "assets/images/icons/desktop/microsoft-mahjong",
-				"link": "https://cdn.zone.msn.com/assets/games/microsoftmahjong/2020/20201102T1148_1.0.10_msn/game.html?hostingEnvironment=zone",
-				"credits": "Website: <a href=\"https://zone.msn.com/en/msmahjong/default.htm\" target=\"_blank\">zone.msn.com/en/msmahjong</a>",
-				"width": 960,
-				"height": 540,
-				"newtab": true,
-				"shortcut": true
-			} , {
-				"name": "Microsoft Ultimate Word Games",
-				"title": "External Website",
-				"icon": "assets/images/icons/desktop/microsoft-ultimate-word-games",
-				"link": "https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/msn/2021/20210310T195233_1.1.7_release_1af5876_msn/word-games/game.html?hostingEnvironment=zone",
-				"credits": "Website: <a href=\"https://zone.msn.com/en/msultimateword/default.htm\" target=\"_blank\">zone.msn.com/en/msultimateword</a>",
-				"width": 960,
-				"height": 552,
-				"newtab": true,
-				"shortcut": true
-			} , {
-				"name": "Microsoft Bubble",
-				"title": "External Website",
-				"icon": "assets/images/icons/desktop/microsoft-bubble",
-				"link": "https://cdn.zone.msn.com/assets/games/microsoftbubbleshooter/20210125T150916.534Z_1_c01b8274_V2.2.1/msngdk_simulator/testgame/index.html?gdk=true&hostingEnvironment=zone",
-				"credits": "Website: <a href=\"https://zone.msn.com/en/msbubble/default.htm\" target=\"_blank\">zone.msn.com/en/msbubble</a>",
-				"width": 960,
-				"height": 540,
-				"newtab": true,
-				"shortcut": true
-			} , {
-				"name": "Microsoft Jewel",
-				"title": "External Website",
-				"icon": "assets/images/icons/desktop/microsoft-jewel",
-				"link": "https://cdn.zone.msn.com/assets/games/microsoftjewel/20200921T100924_1.0.22_milestones_2020_milestone_2020_001_sprint_001_62951b5_msn/default.html?hostingEnvironment=zone",
-				"target": "_blank",
-				"credits": "Website: <a href=\"https://zone.msn.com/en/msjewel/default.htm\" target=\"_blank\">zone.msn.com/en/msjewel</a>",
-				"width": 960,
-				"height": 540,
-				"newtab": true,
-				"shortcut": true
-			} , {
-				"name": "Microsoft Sudoku",
-				"title": "External Website",
-				"icon": "assets/images/icons/desktop/microsoft-sudoku",
-				"link": "https://cdn.zone.msn.com/assets/games/microsoftsudoku/20200821T185824_1.3.33_milestones_2020_milestone_2020_013_sprint_003_d2570bc_msn/default.html?hostingEnvironment=zone",
-				"target": "_blank",
-				"credits": "Website: <a href=\"https://zone.msn.com/en/sudoku/default.htm\" target=\"_blank\">zone.msn.com/en/sudoku</a>",
-				"width": 960,
-				"height": 540,
-				"newtab": true,
-				"shortcut": true
-			} , {
-				"name": "Microsoft Jigsaw",
-				"title": "External Website",
-				"icon": "assets/images/icons/desktop/microsoft-jigsaw",
-				"link": "https://cdn.zone.msn.com/assets/games/microsoftjigsaw/20200812T130936_1.3.37_milestones_2020_milestone_2020_004_sprint_001_b90aedf_msn/default.html?hostingEnvironment=zone",
-				"target": "_blank",
-				"credits": "Website: <a href=\"https://zone.msn.com/en/jigsaw/default.htm\" target=\"_blank\">zone.msn.com/en/jigsaw</a>",
-				"width": 960,
-				"height": 540,
-				"newtab": true,
-				"shortcut": true
-			}]
-		} , {
-			"name": "Minesweeper Classic",
-			"icon": "assets/images/icons/desktop/minesweeper",
-			"link": "/emupedia-game-minesweeper/",
-			"credits": "HTML5 Port<hr />Author: <a href=\"https://github.com/ziebelje\" target=\"_blank\">github.com/ziebelje</a><br />Repository: <a href=\"https://github.com/ziebelje/minesweeper\" target=\"_blank\">github.com/ziebelje/minesweeper</a><br /><br />All other assets<hr />Copyright Microsoft",
-			"newtab": true,
-			"disclaimer": true,
-			"width": 502,
-			"height": 343,
-			"share": true
-		} , {
-			"name": "Solitaire Classic",
-			"icon": "assets/images/icons/desktop/solitaire",
-			"link": "/emupedia-game-solitaire/",
-			"credits": "Enhancements<hr />Website: <a href=\"https://98.js.org/programs/js-solitaire/\" target=\"_blank\">98.js.org/programs/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/98/tree/master/programs/js-solitaire\" target=\"_blank\">github.com/1j01/98/tree/master/programs/js-solitaire</a><br /><br />HTML5 Port<hr />Website: <a href=\"https://radovanjanjic.com/js-solitaire/\" target=\"_blank\">radovanjanjic.com/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/rjanjic\" target=\"_blank\">github.com/rjanjic</a><br />Repository: <a href=\"https://github.com/rjanjic/js-solitaire\" target=\"_blank\">github.com/rjanjic/js-solitaire</a><br /><br />All other assets<hr />Copyright Microsoft",
-			"newtab": true,
-			"disclaimer": true,
-			"width": 660,
-			"height": 440,
-			"share": true
-		} , {
-			"name": "Space Cadet Pinball",
-			"icon": "assets/images/icons/desktop/space-cadet-pinball",
-			"link": "/emupedia-game-space-cadet-pinball/",
-			"credits": "Emscripten Port<hr />Website: <a href=\"https://alula.github.io/SpaceCadetPinball/\" target=\"_blank\">alula.github.io/SpaceCadetPinball</a><br />Author: <a href=\"https://github.com/alula\" target=\"_blank\">github.com/alula</a><br />Repository: <a href=\"https://github.com/alula/SpaceCadetPinball\" target=\"_blank\">github.com/alula/SpaceCadetPinball</a><br /><br />Original project<hr />Author: <a href=\"https://github.com/k4zmu2a\" target=\"_blank\">github.com/k4zmu2a</a><br />Repository: <a href=\"https://github.com/k4zmu2a/SpaceCadetPinball\" target=\"_blank\">github.com/k4zmu2a/SpaceCadetPinball</a><br /><br />All other assets part of Full Tilt! Pinball<hr />Copyright Microsoft & Electronic Arts (formerly Maxis)",
-			"newtab": true,
-			"disclaimer": true,
-			"width": 600,
-			"height": 440,
-			"share": true
-		}]
-	} , {
 		"name": "Incomplete Games",
 		"title": "Folder",
 		"icon": "assets/images/icons/desktop/folder-gray",
@@ -414,41 +284,519 @@
 		"shortcut": true,
 		"xmas": true
 	} , {
-		"name": "Friday Night Funkin'",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/friday-night-funkin",
-		"link": "/emupedia-game-friday-night-funkin/",
-		"link_alternate": "https://v6p9d9t4.ssl.hwcdn.net/html/2876359-359162/",
-		"link_alternate2": "https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r88.zip/",
-		"credits": "Website: <a href=\"https://www.newgrounds.com/portal/view/770371\" target=\"_blank\">newgrounds.com/portal/view/770371</a><br /><br />Author(s): <a href=\"https://github.com/ninjamuffin99\" target=\"_blank\">github.com/ninjamuffin99</a><br />Repository: <a href=\"https://github.com/ninjamuffin99/Funkin\" target=\"_blank\">github.com/ninjamuffin99/Funkin</a>",
-		"width": 1280,
-		"height": 720,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
+		"name": "DOS Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "DOSBox",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/dosbox",
+			"link": "/emupedia-app-dosbox/",
+			"credits": "JS-DOS<hr />Website: <a href=\"https://js-dos.com/\" target=\"_blank\">js-dos.com</a><br /><br />Author: <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repository: <a href=\"https://github.com/caiiiycuk/js-dos\" target=\"_blank\">github.com/caiiiycuk/js-dos</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Emularity<hr />Author: <a href=\"https://github.com/db48x\" target=\"_blank\">github.com/db48x</a><br />Repository: <a href=\"https://github.com/db48x/emularity\" target=\"_blank\">github.com/db48x/emularity</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />HTML5 Port<hr />Author: <a href=\"https://github.com/dreamlayers\" target=\"_blank\">github.com/dreamlayers</a><br />Repository: <a href=\"https://github.com/dreamlayers/em-dosbox\" target=\"_blank\">github.com/dreamlayers/em-dosbox</a><br />License: <a href=\"https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Website: <a href=\"https://dosbox.com/\" target=\"_blank\">dosbox.com</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">sourceforge.net/projects/dosbox</a><br />Repository: <a href=\"https://sourceforge.net/p/dosbox/code-0/HEAD/tree\" target=\"_blank\">sourceforge.net/p/dosbox</a><br />License: <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">GPL-2.0</a>",
+			"width": 900,
+			"height": 502,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Prince Of Persia 1",
+			"icon": "assets/images/icons/desktop/prince-of-persia1",
+			"link": "/emupedia-game-prince/",
+			"credits": "HTML5 Port<hr />Websites: <a href=\"https://princejs.com\" target=\"_blank\">princejs.com</a> <a href=\"https://princejs.oklemenz.de\" target=\"_blank\">princejs.oklemenz.de</a> <a href=\"https://oklemenz.github.io/PrinceJS\" target=\"_blank\">oklemenz.github.io/PrinceJS</a> <a href=\"https://ultrabolido.github.io/PrinceJS\" target=\"_blank\">ultrabolido.github.io/PrinceJS</a><br />Authors: <a href=\"https://github.com/oklemenz\" target=\"_blank\">github.com/oklemenz</a> <a href=\"https://github.com/ultrabolido\" target=\"_blank\">github.com/ultrabolido</a><br />Repositories: <a href=\"https://github.com/oklemenz/PrinceJS\" target=\"_blank\">github.com/oklemenz/PrinceJS</a> <a href=\"https://github.com/ultrabolido/PrinceJS\" target=\"_blank\">github.com/ultrabolido/PrinceJS</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/jmechner\" target=\"_blank\">github.com/jmechner</a><br />Repository: <a href=\"https://github.com/jmechner/Prince-of-Persia-Apple-II\" target=\"_blank\">github.com/jmechner/Prince-of-Persia-Apple-II</a><br /><br />All other assets<hr />Copyright Ubisoft (formerly Broderbund Software)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 400,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Wolfenstein 3D",
+			"icon": "assets/images/icons/desktop/wolfenstein-3d",
+			"link": "/emupedia-game-wolfenstein-3d/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"http://users.atw.hu/wolf3d/\" target=\"_blank\">users.atw.hu/wolf3d</a><br /><br />Author: <a href=\"https://github.com/lazarv\" target=\"_blank\">github.com/lazarv</a><br />License: <a href=\"http://users.atw.hu/wolf3d/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />HTML Port<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/wolf3d-browser\" target=\"_blank\">github.com/id-Software/wolf3d-browser</a><br />License: <a href=\"https://github.com/id-Software/wolf3d-browser/blob/master/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/wolf3d\" target=\"_blank\">github.com/id-Software/wolf3d</a><br />License: <a href=\"https://github.com/id-Software/wolf3d/blob/master/WOLFSRC/README/LICENSE.DOC\" target=\"_blank\">LUSLA</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 400,
+			"requires": {
+				"canvas": {
+					"link": "/emupedia-game-wolfenstein-3d-canvas/",
+					"width": 960,
+					"height": 600
+				}
+			},
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Doom 1",
+			"icon": "assets/images/icons/desktop/doom1",
+			"link": "/emupedia-game-doom1/asmjs/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://wadcmd.com/\" target=\"_blank\">wadcmd.com</a><br /><br />Author: <a href=\"https://github.com/lazarv\" target=\"_blank\">github.com/lazarv</a><br />Repository: <a href=\"https://github.com/lazarv/wasm-doom\" target=\"_blank\">github.com/lazarv/wasm-doom</a><br />License: <a href=\"https://github.com/lazarv/wasm-doom/blob/master/COPYING.md\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/DOOM\" target=\"_blank\">github.com/id-Software/DOOM</a><br />License: <a href=\"https://www.gamers.org/pub/idgames/source/doomsrc.txt\" target=\"_blank\">DSL / GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 400,
+			"requires": {
+				"webassembly": {
+					"link": "/emupedia-game-doom1/"
+				}
+			},
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Doom 2: Hell on Earth",
+			"icon": "assets/images/icons/desktop/doom2",
+			"link": "/emupedia-game-doom2/asmjs/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://wadcmd.com/\" target=\"_blank\">wadcmd.com</a><br /><br />Author: <a href=\"https://github.com/lazarv\" target=\"_blank\">github.com/lazarv</a><br />Repository: <a href=\"https://github.com/lazarv/wasm-doom\" target=\"_blank\">github.com/lazarv/wasm-doom</a><br />License: <a href=\"https://github.com/lazarv/wasm-doom/blob/master/COPYING.md\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/DOOM\" target=\"_blank\">github.com/id-Software/DOOM</a><br />License: <a href=\"https://www.gamers.org/pub/idgames/source/doomsrc.txt\" target=\"_blank\">DSL / GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 400,
+			"requires": {
+				"webassembly": {
+					"link": "/emupedia-game-doom2/"
+				}
+			},
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Lemmings 1",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/lemmings1",
+			"link": "/emupedia-game-lemmings1/",
+			"credits": "HTML5 Port<hr />Websites: <a href=\"https://lemmingsjs.oklemenz.de\" target=\"_blank\">lemmingsjs.oklemenz.de</a> <a href=\"https://oklemenz.github.io/LemmingsJS\" target=\"_blank\">oklemenz.github.io/LemmingsJS</a> <a href=\"https://lemmings.hmilch.net/lemmings.html\" target=\"_blank\">lemmings.hmilch.net/lemmings.html</a><br />Authors: <a href=\"https://github.com/oklemenz\" target=\"_blank\">github.com/oklemenz</a> <a href=\"https://github.com/tomsoftware\" target=\"_blank\">github.com/tomsoftware</a><br />Repositories: <a href=\"https://github.com/oklemenz/LemmingsJS\" target=\"_blank\">github.com/oklemenz/LemmingsJS</a> <a href=\"https://github.com/tomsoftware/Lemmings.ts\" target=\"_blank\">github.com/tomsoftware/Lemmings.ts</a> <a href=\"https://github.com/tomsoftware/lemmings.js\" target=\"_blank\">github.com/tomsoftware/lemmings.js</a><br /><br />Original Project<hr />Website: <a href=\"https://www.brutaldeluxe.fr/products/apple2gs/lemmings.html\" target=\"_blank\">brutaldeluxe.fr/products/apple2gs/lemmings.html</a><br />Source Code: <a href=\"https://www.brutaldeluxe.fr/sourcecode/lemmings.html\" target=\"_blank\">brutaldeluxe.fr/sourcecode/lemmings.html</a><br /><br />All other assets<hr />Copyright Sony Computer Entertainment (formerly Psygnosis)",
+			"disclaimer_abandoned": true,
+			"width": 800,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Quake 1",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/quake1",
+			"link": "/emupedia-game-quake1/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://fte.triptohell.info/\" target=\"_blank\">fte.triptohell.info</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/fteqw/\" target=\"_blank\">sourceforge.net/projects/fteqw</a><br />Repository: <a href=\"https://sourceforge.net/p/fteqw/code/HEAD/tree/\" target=\"_blank\">sourceforge.net/projects/fteqw/code</a><br />License: GPL-2.0<br /><br />HTML5 Port<hr />Author: <a href=\"https://github.com/triang3l\" target=\"_blank\">github.com/triang3l</a><br />Repository: <a href=\"https://github.com/triang3l/webquake\" target=\"_blank\">github.com/triang3l/webquake</a><br />License: <a href=\"https://github.com/triang3l/webquake/blob/master/GNU.md\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/Quake\" target=\"_blank\">github.com/id-Software/Quake</a><br />License: <a href=\"https://github.com/id-Software/Quake/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 480,
+			"requires": {
+				"webassembly": {
+					"link": "/emupedia-game-quake1/wasm.html"
+				}
+			},
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Command and Conquer",
+			"icon": "assets/images/icons/desktop/command-and-conquer1",
+			"link": "/emupedia-game-command-and-conquer1/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://www.adityaravishankar.com/projects/games/command-and-conquer/\" target=\"_blank\">adityaravishankar.com/projects/games/command-and-conquer</a><br /><br />Author: <a href=\"https://github.com/adityaravishankar\" target=\"_blank\">github.com/adityaravishankar</a><br />Repository: <a href=\"https://github.com/adityaravishankar/command-and-conquer\" target=\"_blank\">github.com/adityaravishankar/command-and-conquer</a><br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 535,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Half-Life 1",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/half-life1",
+			"link": "/emupedia-game-half-life1/",
+			"credits": "Emscripten Port<hr />Author(s): <a href=\"https://github.com/FWGS\" target=\"_blank\">github.com/FWGS</a><br />Repository: <a href=\"https://github.com/FWGS/xash3d\" target=\"_blank\">github.com/FWGS/xash3d</a><br />License: <a href=\"https://github.com/FWGS/xash3d/blob/master/COPYING\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright Valve Software (formerly Sierra Studios)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Diablo 1",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/diablo1",
+			"link": "https://d07riv.github.io/diabloweb/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://d07riv.github.io/diabloweb/\" target=\"_blank\">d07riv.github.io/diabloweb</a><br /><br />Author: <a href=\"https://github.com/d07RiV\" target=\"_blank\">github.com/d07RiV</a><br />Repository: <a href=\"https://github.com/d07RiV/diabloweb\" target=\"_blank\">github.com/d07RiV/diabloweb</a><br /><br />Original Project<hr />Author(s): <a href=\"https://github.com/diasurgical/devilution#credits\" target=\"_blank\">github.com/diasurgical/devilution#credits</a><br />Repository: <a href=\"https://github.com/diasurgical/devilution\" target=\"_blank\">github.com/diasurgical/devilution</a><br />License: <a href=\"https://github.com/diasurgical/devilution/blob/master/LICENSE\" target=\"_blank\">Public domain</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Blizzard Entertainment)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Tomb Raider",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/tomb-raider1",
+			"link": "/emupedia-game-tomb-raider/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"http://xproger.info/projects/OpenLara/\" target=\"_blank\">xproger.info/projects/OpenLara</a><br /><br />Author: <a href=\"https://github.com/XProger\" target=\"_blank\">github.com/XProger</a><br />Repository: <a href=\"https://github.com/XProger/OpenLara\" target=\"_blank\">github.com/XProger/OpenLara</a><br />License: <a href=\"https://github.com/XProger/OpenLara/blob/master/LICENSE\" target=\"_blank\">BSD-2-Clause</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />All other assets<hr />Copyright Square Enix (formerly Eidos Interactive)",
+			"disclaimer_abandoned": true,
+			"width": 900,
+			"height": 550,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Transport Tycoon Deluxe",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/openttd",
+			"link": "/emupedia-game-openttd/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://milek7.pl/openttd-wasm/\" target=\"_blank\">milek7.pl/openttd-wasm</a><br /><br />Original Project<hr />Website: <a href=\"https://www.openttd.org/\" target=\"_blank\">openttd.org</a><br /><br />Author: <a href=\"https://github.com/OpenTTD\" target=\"_blank\">github.com/OpenTTD</a><br />Repository: <a href=\"https://github.com/OpenTTD/OpenTTD\" target=\"_blank\">github.com/OpenTTD/OpenTTD</a><br />License: <a href=\"https://github.com/OpenTTD/OpenTTD/blob/master/COPYING.md\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Take-Two Interactive (formerly Firaxis Games, MicroProse)",
+			"disclaimer_abandoned": true,
+			"width": 900,
+			"height": 550,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Dune 2: The Building of A Dynasty",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/dune2",
+			"link": "/emupedia-game-dune2/",
+			"credits": "Emscripten Port<hr />Websites: <a href=\"https://dune2js.com\" target=\"_blank\">dune2js.com</a> <a href=\"https://dune2js.oklemenz.de\" target=\"_blank\">dune2js.oklemenz.de</a> <a href=\"https://oklemenz.github.io/Dune2JS\" target=\"_blank\">oklemenz.github.io/Dune2JS</a> <a href=\"https://epicport.com/en/dune2/\" target=\"_blank\">epicport.com/en/dune2</a><br /><br />Authors: <a href=\"https://github.com/oklemenz\" target=\"_blank\">github.com/oklemenz</a> <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repositories: <a href=\"https://github.com/oklemenz/Dune2JS\" target=\"_blank\">github.com/oklemenz/Dune2JS</a> <a href=\"https://github.com/caiiiycuk/epicport\" target=\"_blank\">github.com/caiiiycuk/epicport</a> <a href=\"https://github.com/caiiiycuk/play-dune\" target=\"_blank\">github.com/caiiiycuk/play-dune</a><br />License: <a href=\"https://github.com/caiiiycuk/play-dune/blob/emscripten/C/COPYING\" target=\"_blank\">GPL-2.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />Original Project<hr />Website: <a href=\"https://www.opendune.org/\" target=\"_blank\">opendune.org</a><br /><br />Author: <a href=\"https://github.com/OpenDUNE/\" target=\"_blank\">github.com/OpenDUNE/</a><br />Repository: <a href=\"https://github.com/OpenDUNE/OpenDUNE\" target=\"_blank\">github.com/OpenDUNE/OpenDUNE</a><br />License: <a href=\"https://github.com/OpenDUNE/OpenDUNE/blob/master/COPYING\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Tencent (formerly Virgin Games, Westwood Studios)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 400,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "X-COM: UFO Defense",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/xcom1",
+			"link": "/emupedia-game-xcom1/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://epicport.com/en/xcom/\" target=\"_blank\">epicport.com/en/xcom</a><br /><br />Author: <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repository: <a href=\"https://github.com/caiiiycuk/epicport\" target=\"_blank\">github.com/caiiiycuk/epicport</a> <a href=\"https://github.com/caiiiycuk/xcom-emscripten\" target=\"_blank\">github.com/caiiiycuk/xcom-emscripten</a><br />License: <a href=\"https://github.com/caiiiycuk/xcom-emscripten/blob/master/LICENSE.txt\" target=\"_blank\">GPL-3.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />Original Project<hr />Website: <a href=\"https://openxcom.org/\" target=\"_blank\">openxcom.org</a><br /><br />Author: <a href=\"https://github.com/OpenXcom\" target=\"_blank\">github.com/OpenXcom</a><br />Repository: <a href=\"https://github.com/OpenXcom/OpenXcom/\" target=\"_blank\">github.com/OpenXcom/OpenXcom</a><br />License: <a href=\"https://github.com/OpenXcom/OpenXcom/blob/master/LICENSE.txt\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright Take-Two Interactive (formerly Firaxis Games, Atari Inc., Hasbro, Spectrum HoloByte, MicroProse)",
+			"disclaimer_abandoned": true,
+			"width": 960,
+			"height": 600,
+			"newtab": true,
+			"share": true
+		}]
 	} , {
-		"name": "2048",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/2048",
-		"link": "/emupedia-game-2048/",
-		"credits": "Website: <a href=\"https://play2048.co/\" target=\"_blank\">play2048.co</a><br /><br />Author(s): <a href=\"https://github.com/gabrielecirulli\" target=\"_blank\">github.com/gabrielecirulli</a><br />Repository: <a href=\"https://github.com/gabrielecirulli/2048\" target=\"_blank\">github.com/gabrielecirulli/2048</a><br />License: <a href=\"https://github.com/gabrielecirulli/2048/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />Original project<hr />Website: <a href=\"https://asherv.com/threes/\" target=\"_blank\">asherv.com/threes</a>",
-		"width": 836,
-		"height": 470,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
+		"name": "Console Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Pac-Man",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/pac-man",
+			"link": "https://pacman-e281c.firebaseapp.com/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://pacman-e281c.firebaseapp.com/\" target=\"_blank\">pacman-e281c.firebaseapp.com</a><br /><br />Author: <a href=\"https://github.com/luciopanepinto\" target=\"_blank\">github.com/luciopanepinto</a><br />Repository: <a href=\"https://github.com/luciopanepinto/pacman\" target=\"_blank\">github.com/luciopanepinto/pacman</a><br />License: <a href=\"https://github.com/luciopanepinto/pacman/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a>",
+			"disclaimer_abandoned": true,
+			"width": 1025,
+			"height": 715,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "PONG",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/pong",
+			"link": "https://turbowarp.org/embed.html?autoplay#444984831",
+			"credits": "Website: <a href=\"https://scratch.mit.edu/projects/2718643/\" target=\"_blank\">scratch.mit.edu/projects/2718643</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/dixiklo\" target=\"_blank\">scratch.mit.edu/users/dixiklo</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Atari, SA",
+			"disclaimer_abandoned": true,
+			"width": 720,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Tetris",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/tetris",
+			"link": "https://turbowarp.org/embed.html?autoplay#31651654",
+			"credits": "Website: <a href=\"https://scratch.mit.edu/projects/31651654/\" target=\"_blank\">scratch.mit.edu/projects/31651654</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/smelly_hobbit/\" target=\"_blank\">scratch.mit.edu/users/smelly_hobbit</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Nintendo Company, Ltd. and The Tetris Company, LLC",
+			"disclaimer_abandoned": true,
+			"width": 720,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Mario",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/mario",
+			"link": "/emupedia-game-mario/",
+			"credits": "HTML5 Port<hr />Websites: <a href=\"https://www.supermariobros.io/full-screen-mario/mario.html\" target=\"_blank\">supermariobros.io/full-screen-mario/mario.html</a> <a href=\"https://fullscreenmario.com\" target=\"_blank\">fullscreenmario.com</a><br /><br />Author: <a href=\"https://github.com/JoshuaKGoldberg\" target=\"_blank\">github.com/JoshuaKGoldberg</a><br />Repository: <a href=\"https://github.com/FullScreenShenanigans/FullScreenMario\" target=\"_blank\">github.com/FullScreenShenanigans/FullScreenMario</a><br />License: <a href=\"https://github.com/FullScreenShenanigans/FullScreenMario/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Nintendo",
+			"disclaimer_abandoned": true,
+			"width": 900,
+			"height": 576,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Zelda",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/zelda",
+			"link": "/emupedia-game-zelda/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://www.zelda30tribute.com\" target=\"_blank\">zelda30tribute.com</a><br /><br />Author: <a href=\"https://github.com/scottlininger\" target=\"_blank\">github.com/scottlininger</a><br />Repository: <a href=\"https://github.com/scottlininger/zelda30tribute\" target=\"_blank\">github.com/scottlininger/zelda30tribute</a><br />License: <a href=\"https://github.com/scottlininger/zelda30tribute/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Nintendo",
+			"disclaimer_abandoned": true,
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Street Fighter Alpha",
+			"alternate_name": "Street Fighter Alpha: Warriors' Dreams",
+			"icon": ["assets/images/icons/desktop/street-fighter/akuma", "assets/images/icons/desktop/street-fighter/balrog", "assets/images/icons/desktop/street-fighter/blanka", "assets/images/icons/desktop/street-fighter/chunli", "assets/images/icons/desktop/street-fighter/dhalsim", "assets/images/icons/desktop/street-fighter/evilryu", "assets/images/icons/desktop/street-fighter/ken", "assets/images/icons/desktop/street-fighter/makoto", "assets/images/icons/desktop/street-fighter/ryu", "assets/images/icons/desktop/street-fighter/sagat", "assets/images/icons/desktop/street-fighter/sakura", "assets/images/icons/desktop/street-fighter/zangief"],
+			"link": "/emupedia-game-street-fighter-alpha/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://gamedev8.github.io/js-sfa/default.htm\" target=\"_blank\">gamedev8.github.io/js-sfa</a><br /><br />Author: <a href=\"https://github.com/gamedev8\" target=\"_blank\">github.com/gamedev8</a><br />Repository: <a href=\"https://github.com/gamedev8/js-sfa\" target=\"_blank\">github.com/gamedev8/js-sfa</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />All other assets<hr />Copyright Capcom",
+			"disclaimer_abandoned": true,
+			"width": 1068,
+			"height": 576,
+			"newtab": true,
+			"share": true
+		}]
 	} , {
-		"name": "Cookie Clicker",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cookie-clicker",
-		"link": "/emupedia-game-cookie-clicker/",
-		"link_alternate": "https://orteil.dashnet.org/cookieclicker/",
-		"credits": "Website: <a href=\"https://orteil.dashnet.org/cookieclicker/\" target=\"_blank\">orteil.dashnet.org/cookieclicker</a><br /><br />Author(s): <a href=\"https://orteil.dashnet.org/\" target=\"_blank\">Orteil</a> &amp; <a href=\"https://orteil.dashnet.org/\" target=\"_blank\">Opti</a>",
-		"width": 1090,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
+		"name": "Windows Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Minesweeper Classic",
+			"icon": "assets/images/icons/desktop/minesweeper",
+			"link": "/emupedia-game-minesweeper/",
+			"credits": "HTML5 Port<hr />Author: <a href=\"https://github.com/ziebelje\" target=\"_blank\">github.com/ziebelje</a><br />Repository: <a href=\"https://github.com/ziebelje/minesweeper\" target=\"_blank\">github.com/ziebelje/minesweeper</a><br /><br />All other assets<hr />Copyright Microsoft",
+			"newtab": true,
+			"disclaimer": true,
+			"width": 502,
+			"height": 343,
+			"share": true
+		} , {
+			"name": "Solitaire Classic",
+			"icon": "assets/images/icons/desktop/solitaire",
+			"link": "/emupedia-game-solitaire/",
+			"credits": "Enhancements<hr />Website: <a href=\"https://98.js.org/programs/js-solitaire/\" target=\"_blank\">98.js.org/programs/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/98/tree/master/programs/js-solitaire\" target=\"_blank\">github.com/1j01/98/tree/master/programs/js-solitaire</a><br /><br />HTML5 Port<hr />Website: <a href=\"https://radovanjanjic.com/js-solitaire/\" target=\"_blank\">radovanjanjic.com/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/rjanjic\" target=\"_blank\">github.com/rjanjic</a><br />Repository: <a href=\"https://github.com/rjanjic/js-solitaire\" target=\"_blank\">github.com/rjanjic/js-solitaire</a><br /><br />All other assets<hr />Copyright Microsoft",
+			"newtab": true,
+			"disclaimer": true,
+			"width": 660,
+			"height": 440,
+			"share": true
+		} , {
+			"name": "Space Cadet Pinball",
+			"icon": "assets/images/icons/desktop/space-cadet-pinball",
+			"link": "/emupedia-game-space-cadet-pinball/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://alula.github.io/SpaceCadetPinball/\" target=\"_blank\">alula.github.io/SpaceCadetPinball</a><br />Author: <a href=\"https://github.com/alula\" target=\"_blank\">github.com/alula</a><br />Repository: <a href=\"https://github.com/alula/SpaceCadetPinball\" target=\"_blank\">github.com/alula/SpaceCadetPinball</a><br /><br />Original project<hr />Author: <a href=\"https://github.com/k4zmu2a\" target=\"_blank\">github.com/k4zmu2a</a><br />Repository: <a href=\"https://github.com/k4zmu2a/SpaceCadetPinball\" target=\"_blank\">github.com/k4zmu2a/SpaceCadetPinball</a><br /><br />All other assets part of Full Tilt! Pinball<hr />Copyright Microsoft & Electronic Arts (formerly Maxis)",
+			"newtab": true,
+			"disclaimer": true,
+			"width": 600,
+			"height": 440,
+			"share": true
+		} , {
+			"name": "SkiFree",
+			"icon": "assets/images/icons/desktop/skifree",
+			"link": "/emupedia-game-skifree/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://basicallydan.github.io/skifree.js/\" target=\"_blank\">basicallydan.github.io/skifree.js</a><br /><br />Author: <a href=\"https://github.com/basicallydan\" target=\"_blank\">github.com/basicallydan</a><br />Repository: <a href=\"https://github.com/basicallydan/skifree.js\" target=\"_blank\">github.com/basicallydan/skifree.js</a><br />License: <a href=\"https://github.com/basicallydan/skifree.js/blob/master/license.md\" target=\"_blank\">MIT</a><br /><br />Original project<hr />Website: <a href=\"https://ski.ihoc.net/\" target=\"_blank\">ski.ihoc.net</a><br /><br />Author: <a href=\"https://ski.ihoc.net/\" target=\"_blank\">Chris Pirih</a><br /><br />All other assets<hr />Copyright Microsoft",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Spelunky Classic",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/spelunky-classic",
+			"link": "/emupedia-game-spelunky-classic/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://yancharkin.github.io/SpelunkyClassicHDhtml5/\" target=\"_blank\">yancharkin.github.io/SpelunkyClassicHDhtml5</a><br /><br />Author(s): <a href=\"https://github.com/yancharkin\" target=\"_blank\">github.com/yancharkin</a><br />Repository: <a href=\"https://github.com/yancharkin/SpelunkyClassicHDhtml5\" target=\"_blank\">yancharkin/SpelunkyClassicHDhtml5</a><br />License: <a href=\"https://github.com/yancharkin/SpelunkyClassicHDhtml5/blob/master/LICENSE\" target=\"_blank\">Spelunky® User License v1.1b</a><br /><br />Native Port<hr />Website: <a href=\"https://yancharkin.itch.io/spelunky-classic-hd\" target=\"_blank\">yancharkin.itch.io/spelunky-classic-hd</a><br /><br />Author(s): <a href=\"https://github.com/yancharkin\" target=\"_blank\">github.com/yancharkin</a><br />Repository: <a href=\"https://github.com/yancharkin/SpelunkyClassicHD\" target=\"_blank\">yancharkin/SpelunkyClassicHD</a><br />License: <a href=\"https://github.com/yancharkin/SpelunkyClassicHD/blob/master/LICENSE\" target=\"_blank\">Spelunky® User License v1.1b</a><br /><br />Original Project<hr />Website: <a href=\"https://spelunkyworld.com/original.html\" target=\"_blank\">spelunkyworld.com/original.html</a><br /><br />Source Code: <a href=\"http://www.derekyu.com/games/spelunky_1_1_src.zip\" target=\"_blank\">derekyu.com/games/spelunky_1_1_src.zip</a><br />License: <a href=\"http://www.spelunkyworld.com/files/COPYING.txt\" target=\"_blank\">Spelunky® User License v1.1b</a><br /><br />Engine<hr />Website: <a href=\"https://gamemaker.io/\" target=\"_blank\">gamemaker.io</a><br /><br />All other assets<hr />Copyright Mossmouth, LLC",
+			"disclaimer": true,
+			"width": 900,
+			"height": 547,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Jazz Jackrabbit 2",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/jazz2",
+			"link": "/emupedia-game-jazz2/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://deat.tk/jazz2/\" target=\"_blank\">deat.tk/jazz2</a><br /><br />Author(s): <a href=\"https://github.com/deathkiller\" target=\"_blank\">github.com/deathkiller</a><br />Repository: <a href=\"https://github.com/deathkiller/jazz2-native\" target=\"_blank\">github.com/deathkiller/jazz2-native</a><br />License: <a href=\"https://github.com/deathkiller/jazz2-native/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Original Project<hr />Website: <a href=\"https://deat.tk/jazz2/\" target=\"_blank\">deat.tk/jazz2</a><br /><br />Author(s): <a href=\"https://github.com/deathkiller\" target=\"_blank\">github.com/deathkiller</a><br />Repository: <a href=\"https://github.com/deathkiller/jazz2/tree/pre-v1.0.0\" target=\"_blank\">github.com/deathkiller/jazz2</a><br />License: <a href=\"https://github.com/deathkiller/jazz2/blob/pre-v1.0.0/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Engine<hr />Website: <a href=\"https://ncine.github.io/\" target=\"_blank\">ncine.github.io</a><br /><br />Author(s): <a href=\"https://github.com/nCine\" target=\"_blank\">github.com/nCine</a><br />Repository: <a href=\"https://github.com/nCine/nCine\" target=\"_blank\">github.com/nCine/nCine</a><br />License: <a href=\"https://github.com/nCine/nCine/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Epic Games (formerly Epic MegaGames)",
+			"disclaimer_abandoned": true,
+			"width": 900,
+			"height": 547,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Doom 3",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/doom3",
+			"link": "/emupedia-game-doom3/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://www.continuation-labs.com/projects/d3wasm/\" target=\"_blank\">continuation-labs.com/projects/d3wasm</a><br /><br />Author: <a href=\"https://github.com/gabrielcuvillier\" target=\"_blank\">github.com/gabrielcuvillier</a><br />Repository: <a href=\"https://github.com/gabrielcuvillier/d3wasm\" target=\"_blank\">github.com/gabrielcuvillier/d3wasm</a><br />License: <a href=\"https://github.com/gabrielcuvillier/d3wasm/blob/master/COPYING.txt\" target=\"_blank\">GPL-3.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/DOOM-3\" target=\"_blank\">github.com/id-Software/DOOM-3</a><br />License: <a href=\"https://github.com/id-Software/DOOM-3/blob/master/COPYING.txt\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
+			"disclaimer": true,
+			"width": 640,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Quake 2",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/quake2",
+			"link": "/emupedia-game-quake2/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://fte.triptohell.info/\" target=\"_blank\">fte.triptohell.info</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/fteqw/\" target=\"_blank\">sourceforge.net/projects/fteqw</a><br />Repository: <a href=\"https://sourceforge.net/p/fteqw/code/HEAD/tree/\" target=\"_blank\">sourceforge.net/projects/fteqw/code</a><br />License: GPL-2.0<br /><br />HTML5 Port<hr />Website: <a href=\"https://quake2playn.appspot.com/\" target=\"_blank\">quake2playn.appspot.com</a><br /><br />Author: <a href=\"https://github.com/stefanhaustein\" target=\"_blank\">github.com/stefanhaustein</a><br />Repository: <a href=\"https://github.com/stefanhaustein/quake2-playn-port\" target=\"_blank\">github.com/stefanhaustein/quake2-playn-port</a><br />License: <a href=\"https://github.com/id-Software/Quake-2/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />GWT Java Port<hr />Author(s): <a href=\"https://sourceforge.net/projects/jake2\" target=\"_blank\">sourceforge.net/projects/jake2</a><br />Repository: <a href=\"https://sourceforge.net/p/jake2/git/ci/master/tree/\" target=\"_blank\">sourceforge.net/p/jake2</a><br />License: <a href=\"https://github.com/id-Software/Quake-2/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/Quake-2\" target=\"_blank\">github.com/id-Software/Quake-2</a><br />License: <a href=\"https://github.com/id-Software/Quake-2/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 480,
+			"requiresdisabled": {
+				"webassembly": {
+					"link": "/emupedia-game-quake2/wasm.html"
+				}
+			},
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Quake 3 Arena",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/quake3",
+			"link": "/emupedia-game-quake3/asmjs/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"http://www.quakejs.com/\" target=\"_blank\">quakejs.com</a><br /><br />Author: <a href=\"https://github.com/inolen\" target=\"_blank\">github.com/inolen</a><br />Repository: <a href=\"https://github.com/inolen/quakejs\" target=\"_blank\">github.com/inolen/quakejs</a><br />License: <a href=\"https://github.com/id-Software/Quake-III-Arena/blob/master/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />Engine Modernization<hr />Website: <a href=\"https://ioquake3.org/\" target=\"_blank\">ioquake3.org</a><br /><br />Author(s): <a href=\"https://github.com/ioquake\" target=\"_blank\">github.com/ioquake</a><br />Repository: <a href=\"https://github.com/ioquake/ioq3\" target=\"_blank\">github.com/ioquake/ioq3</a><br />License: <a href=\"https://github.com/ioquake/ioq3/blob/master/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/Quake-III-Arena\" target=\"_blank\">github.com/id-Software/Quake-III-Arena</a><br />License: <a href=\"https://github.com/id-Software/Quake-III-Arena/blob/master/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 480,
+			"requires": {
+				"webassembly": {
+					"link": "/emupedia-game-quake3/"
+				}
+			},
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Postal 1",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/postal1",
+			"link": "/emupedia-game-postal1/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://playpostal.com/\" target=\"_blank\">playpostal.com</a><br /><br />Author: <a href=\"https://github.com/OtterCodes101\" target=\"_blank\">github.com/OtterCodes101</a><br />Repository: <a href=\"https://github.com/OtterCodes101/POSTAL-WASM\" target=\"_blank\">github.com/OtterCodes101/POSTAL-WASM</a><br />License: <a href=\"https://github.com/OtterCodes101/POSTAL-WASM/blob/main/LICENSE\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author(s): <a href=\"https://github.com/RWS-Studios/\" target=\"_blank\">github.com/RWS-Studios</a><br />Repository: <a href=\"https://github.com/RWS-Studios/POSTAL-SourceCode\" target=\"_blank\">github.com/RWS-Studios/POSTAL-SourceCode</a><br />License: <a href=\"https://github.com/RWS-Studios/POSTAL-SourceCode/blob/main/LICENSE\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Running with Scissors (formerly Riedel Software Productions)",
+			"width": 800,
+			"height": 600,
+			"disclaimer": true,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Hexen 2",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/hexen2",
+			"link": "/emupedia-game-hexen2/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://fte.triptohell.info/\" target=\"_blank\">fte.triptohell.info</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/fteqw/\" target=\"_blank\">sourceforge.net/projects/fteqw</a><br />Repository: <a href=\"https://sourceforge.net/p/fteqw/code/HEAD/tree/\" target=\"_blank\">sourceforge.net/projects/fteqw/code</a><br />License: GPL-2.0<br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Raven Software)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Dark Reign: The Future of War",
+			"icon": "assets/images/icons/desktop/dark-reign",
+			"link": "/emupedia-game-dark-reign/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://qmegas.info/dark-reign-html5/\" target=\"_blank\">qmegas.info/dark-reign-html5</a><br /><br />Author: <a href=\"https://github.com/qmegas\" target=\"_blank\">github.com/qmegas</a><br />Repository: <a href=\"https://github.com/qmegas/Dark-Reign---HTML5-Version\" target=\"_blank\">github.com/qmegas/Dark-Reign---HTML5-Version</a><br />License: <a href=\"https://github.com/qmegas/Dark-Reign---HTML5-Version/blob/master/README.md#license\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Activision) and<br />N3V Games (formerly Auran Development)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Unreal Tournament",
+			"icon": "assets/images/icons/desktop/unreal-tournament",
+			"link": "/emupedia-game-unreal-tournament/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://icculus.org/ut99-emscripten/\" target=\"_blank\">icculus.org/ut99-emscripten</a><br /><br />Author: <a href=\"https://icculus.org\" target=\"_blank\">icculus</a><br /><br />All other assets<hr />Copyright Epic Games (formerly Epic MegaGames)",
+			"disclaimer_abandoned": true,
+			"width": 640,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Five Nights at Freddy's Collection",
+			"icon": "assets/images/icons/desktop/fnaf",
+			"link": "/emupedia-game-fnaf/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://irv77.github.io/hd_fnaf/\" target=\"_blank\">irv77.github.io/hd_fnaf</a><br /><br />Author: <a href=\"https://github.com/irv77\" target=\"_blank\">github.com/irv77</a><br />Repository: <a href=\"https://github.com/irv77/hd_fnaf/\" target=\"_blank\">github.com/irv77/hd_fnaf</a><br /><br />Game Engine<hr />Author: <a href=\"https://www.clickteam.com/\" target=\"_blank\">clickteam.com</a><br />Engine: <a href=\"https://www.clickteam.com/multimedia-fusion-2\" target=\"_blank\">clickteam.com/multimedia-fusion-2</a><br /><br />Original project<hr />Website: <a href=\"https://scottgames.com/\" target=\"_blank\">scottgames.com</a><br /><br />Author: Scott Braden Cawthon<br />Copyright ScottGames",
+			"width": 1280,
+			"height": 720,
+			"disclaimer": true,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Minecraft Classic",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/minecraft-classic",
+			"link": "/emupedia-game-minecraft-classic/",
+			"credits": "HTML5 Port<hr />Website: <a href=\"https://classic.minecraft.net/\" target=\"_blank\">classic.minecraft.net</a><br /><br />Author: <a href=\"https://github.com/andyhall\" target=\"_blank\">github.com/andyhall</a><br />Repository: <a href=\"https://github.com/andyhall/noa\" target=\"_blank\">github.com/andyhall/noa</a><br />License: <a href=\"https://github.com/andyhall/noa/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)",
+			"disclaimer": true,
+			"width": 900,
+			"height": 480,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Minecraft 1.8.8",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/minecraft-classic",
+			"link": "https://eaglercraft.com/play/?version=1.8.8-wasm",
+			"credits": "HTML5 Port<hr /><br />Author: <a href=\"https://github.com/lax1dude\" target=\"_blank\">github.com/lax1dude</a><br />Author: <a href=\"https://github.com/ayunami2000\" target=\"_blank\">github.com/ayunami2000</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)",
+			"width": 900,
+			"height": 480,
+			"target": "_blank",
+			"disclaimer": true,
+			"shortcut": true,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Pikachu Volleyball",
+			"title": "Under Development",
+			"icon": "assets/images/icons/desktop/pikachu-volleyball",
+			"link": "/emupedia-game-pikachu-volleyball/",
+			"credits": "HTML5 Port<hr />Author: <a href=\"https://github.com/gorisanson\" target=\"_blank\">github.com/gorisanson</a><br />Repository: <a href=\"https://github.com/gorisanson/pikachu-volleyball\" target=\"_blank\">github.com/gorisanson/pikachu-volleyball</a><br /><br />All other assets<hr />Copyright SACHI SOFT / SAWAYAKAN Programmers and Satoshi Takenouchi",
+			"disclaimer_abandoned": true,
+			"width": 432,
+			"height": 304,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Worms Armageddon",
+			"icon": "assets/images/icons/desktop/worms2",
+			"link": "/emupedia-game-worms2/armageddon/",
+			"credits": "HTML5 Port<hr />Author: Ciarán McCann<br /><br />All other assets<hr />Copyright Team17",
+			"disclaimer_abandoned": true,
+			"width": 900,
+			"height": 600,
+			"newtab": true,
+			"share": true
+		} , {
+			"name": "Yume Nikki",
+			"icon": "assets/images/icons/desktop/yume-nikki",
+			"link": "/emupedia-game-yume-nikki/",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://paracks342.github.io/yumenikki/\" target=\"_blank\">paracks342.github.io/yumenikki</a><br />Author: <a href=\"https://github.com/Paracks342\" target=\"_blank\">github.com/paracks342</a><br />Repository: <a href=\"https://github.com/Paracks342/yumenikki\" target=\"_blank\">github.com/Paracks342/yumenikki</a><br /><br />Suggested to be added by <b>eagle</b><br /><br />Game Engine<hr />Author: <a href=\"https://github.com/EasyRPG\" target=\"_blank\">github.com/EasyRPG</a><br />Repository: <a href=\"https://github.com/EasyRPG/Player\" target=\"_blank\">github.com/EasyRPG/Player</a><br /><br />All other assets<hr />Copyright kikiyama",
+			"newtab": true,
+			"disclaimer": true,
+			"width": 960,
+			"height": 720,
+			"share": true
+		}]
+	} , {
+		"name": "Flash Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 760,
+		"height": 560,
+		"items": [{
+			"name": "Happy Wheels",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/happy-wheels",
+			"link": "/emupedia-game-happy-wheels/flash/",
+			"credits": "Original project<hr />Website: <a href=\"https://totaljerkface.com/happy_wheels.tjf\" target=\"_blank\">totaljerkface.com/happy_wheels.tjf</a><br />Copyright: Fancy Force",
+			"disclaimer_abandoned": true,
+			"width": 900,
+			"height": 500,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "The Binding of Isaac",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/binding-of-isaac",
+			"link": "/emupedia-game-binding-of-isaac/",
+			"credits": "Original project<hr />Website: <a href=\"https://store.steampowered.com/app/113204/Binding_of_Isaac_Wrath_of_the_Lamb/\" target=\"_blank\">Binding_of_Isaac_Wrath_of_the_Lamb</a><br />Copyright: Edmund McMillen & Florian Himsl",
+			"disclaimer": true,
+			"width": 800,
+			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		}]
 	} , {
 		"name": "Mobile Games",
 		"title": "Folder",
@@ -674,228 +1022,185 @@
 			"share": true
 		}]
 	} , {
-		"name": "Spelunky Classic",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/spelunky-classic",
-		"link": "/emupedia-game-spelunky-classic/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://yancharkin.github.io/SpelunkyClassicHDhtml5/\" target=\"_blank\">yancharkin.github.io/SpelunkyClassicHDhtml5</a><br /><br />Author(s): <a href=\"https://github.com/yancharkin\" target=\"_blank\">github.com/yancharkin</a><br />Repository: <a href=\"https://github.com/yancharkin/SpelunkyClassicHDhtml5\" target=\"_blank\">yancharkin/SpelunkyClassicHDhtml5</a><br />License: <a href=\"https://github.com/yancharkin/SpelunkyClassicHDhtml5/blob/master/LICENSE\" target=\"_blank\">Spelunky® User License v1.1b</a><br /><br />Native Port<hr />Website: <a href=\"https://yancharkin.itch.io/spelunky-classic-hd\" target=\"_blank\">yancharkin.itch.io/spelunky-classic-hd</a><br /><br />Author(s): <a href=\"https://github.com/yancharkin\" target=\"_blank\">github.com/yancharkin</a><br />Repository: <a href=\"https://github.com/yancharkin/SpelunkyClassicHD\" target=\"_blank\">yancharkin/SpelunkyClassicHD</a><br />License: <a href=\"https://github.com/yancharkin/SpelunkyClassicHD/blob/master/LICENSE\" target=\"_blank\">Spelunky® User License v1.1b</a><br /><br />Original Project<hr />Website: <a href=\"https://spelunkyworld.com/original.html\" target=\"_blank\">spelunkyworld.com/original.html</a><br /><br />Source Code: <a href=\"http://www.derekyu.com/games/spelunky_1_1_src.zip\" target=\"_blank\">derekyu.com/games/spelunky_1_1_src.zip</a><br />License: <a href=\"http://www.spelunkyworld.com/files/COPYING.txt\" target=\"_blank\">Spelunky® User License v1.1b</a><br /><br />Engine<hr />Website: <a href=\"https://gamemaker.io/\" target=\"_blank\">gamemaker.io</a><br /><br />All other assets<hr />Copyright Mossmouth, LLC",
-		"disclaimer": true,
-		"width": 900,
-		"height": 547,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Jazz Jackrabbit 2",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/jazz2",
-		"link": "/emupedia-game-jazz2/",
-		"credits": "Emscripten Port<hr />Website: <a href=\"https://deat.tk/jazz2/\" target=\"_blank\">deat.tk/jazz2</a><br /><br />Author(s): <a href=\"https://github.com/deathkiller\" target=\"_blank\">github.com/deathkiller</a><br />Repository: <a href=\"https://github.com/deathkiller/jazz2-native\" target=\"_blank\">github.com/deathkiller/jazz2-native</a><br />License: <a href=\"https://github.com/deathkiller/jazz2-native/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Original Project<hr />Website: <a href=\"https://deat.tk/jazz2/\" target=\"_blank\">deat.tk/jazz2</a><br /><br />Author(s): <a href=\"https://github.com/deathkiller\" target=\"_blank\">github.com/deathkiller</a><br />Repository: <a href=\"https://github.com/deathkiller/jazz2/tree/pre-v1.0.0\" target=\"_blank\">github.com/deathkiller/jazz2</a><br />License: <a href=\"https://github.com/deathkiller/jazz2/blob/pre-v1.0.0/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Engine<hr />Website: <a href=\"https://ncine.github.io/\" target=\"_blank\">ncine.github.io</a><br /><br />Author(s): <a href=\"https://github.com/nCine\" target=\"_blank\">github.com/nCine</a><br />Repository: <a href=\"https://github.com/nCine/nCine\" target=\"_blank\">github.com/nCine/nCine</a><br />License: <a href=\"https://github.com/nCine/nCine/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Epic Games (formerly Epic MegaGames)",
-		"disclaimer_abandoned": true,
-		"width": 900,
-		"height": 547,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Happy Wheels",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/happy-wheels",
-		"link": "/emupedia-game-happy-wheels/flash/",
-		"credits": "Original project<hr />Website: <a href=\"https://totaljerkface.com/happy_wheels.tjf\" target=\"_blank\">totaljerkface.com/happy_wheels.tjf</a><br />Copyright: Fancy Force",
-		"disclaimer_abandoned": true,
-		"width": 900,
-		"height": 500,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Five Nights at Freddy's Collection",
-		"icon": "assets/images/icons/desktop/fnaf",
-		"link": "/emupedia-game-fnaf/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://irv77.github.io/hd_fnaf/\" target=\"_blank\">irv77.github.io/hd_fnaf</a><br /><br />Author: <a href=\"https://github.com/irv77\" target=\"_blank\">github.com/irv77</a><br />Repository: <a href=\"https://github.com/irv77/hd_fnaf/\" target=\"_blank\">github.com/irv77/hd_fnaf</a><br /><br />Game Engine<hr />Author: <a href=\"https://www.clickteam.com/\" target=\"_blank\">clickteam.com</a><br />Engine: <a href=\"https://www.clickteam.com/multimedia-fusion-2\" target=\"_blank\">clickteam.com/multimedia-fusion-2</a><br /><br />Original project<hr />Website: <a href=\"https://scottgames.com/\" target=\"_blank\">scottgames.com</a><br /><br />Author: Scott Braden Cawthon<br />Copyright ScottGames",
-		"width": 1280,
-		"height": 720,
-		"disclaimer": true,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "DOS Games",
+		"name": "Browser Games",
 		"title": "Folder",
 		"icon": "assets/images/icons/desktop/folder",
 		"folder": true,
 		"width": 760,
 		"height": 560,
 		"items": [{
-			"name": "DOSBox",
-			"title": "Under Development",
-			"icon": "assets/images/icons/desktop/dosbox",
-			"link": "/emupedia-app-dosbox/",
-			"credits": "JS-DOS<hr />Website: <a href=\"https://js-dos.com/\" target=\"_blank\">js-dos.com</a><br /><br />Author: <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repository: <a href=\"https://github.com/caiiiycuk/js-dos\" target=\"_blank\">github.com/caiiiycuk/js-dos</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Emularity<hr />Author: <a href=\"https://github.com/db48x\" target=\"_blank\">github.com/db48x</a><br />Repository: <a href=\"https://github.com/db48x/emularity\" target=\"_blank\">github.com/db48x/emularity</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />HTML5 Port<hr />Author: <a href=\"https://github.com/dreamlayers\" target=\"_blank\">github.com/dreamlayers</a><br />Repository: <a href=\"https://github.com/dreamlayers/em-dosbox\" target=\"_blank\">github.com/dreamlayers/em-dosbox</a><br />License: <a href=\"https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Website: <a href=\"https://dosbox.com/\" target=\"_blank\">dosbox.com</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">sourceforge.net/projects/dosbox</a><br />Repository: <a href=\"https://sourceforge.net/p/dosbox/code-0/HEAD/tree\" target=\"_blank\">sourceforge.net/p/dosbox</a><br />License: <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">GPL-2.0</a>",
-			"width": 900,
-			"height": 502,
-			"newtab": true,
-			"share": true
-		} , {
-			"name": "Prince Of Persia 1",
-			"icon": "assets/images/icons/desktop/prince-of-persia1",
-			"link": "/emupedia-game-prince/",
-			"credits": "HTML5 Port<hr />Websites: <a href=\"https://princejs.com\" target=\"_blank\">princejs.com</a> <a href=\"https://princejs.oklemenz.de\" target=\"_blank\">princejs.oklemenz.de</a> <a href=\"https://oklemenz.github.io/PrinceJS\" target=\"_blank\">oklemenz.github.io/PrinceJS</a> <a href=\"https://ultrabolido.github.io/PrinceJS\" target=\"_blank\">ultrabolido.github.io/PrinceJS</a><br />Authors: <a href=\"https://github.com/oklemenz\" target=\"_blank\">github.com/oklemenz</a> <a href=\"https://github.com/ultrabolido\" target=\"_blank\">github.com/ultrabolido</a><br />Repositories: <a href=\"https://github.com/oklemenz/PrinceJS\" target=\"_blank\">github.com/oklemenz/PrinceJS</a> <a href=\"https://github.com/ultrabolido/PrinceJS\" target=\"_blank\">github.com/ultrabolido/PrinceJS</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/jmechner\" target=\"_blank\">github.com/jmechner</a><br />Repository: <a href=\"https://github.com/jmechner/Prince-of-Persia-Apple-II\" target=\"_blank\">github.com/jmechner/Prince-of-Persia-Apple-II</a><br /><br />All other assets<hr />Copyright Ubisoft (formerly Broderbund Software)",
-			"disclaimer_abandoned": true,
-			"width": 640,
-			"height": 400,
-			"newtab": true,
-			"share": true
-		} , {
-			"name": "Wolfenstein 3D",
-			"icon": "assets/images/icons/desktop/wolfenstein-3d",
-			"link": "/emupedia-game-wolfenstein-3d/",
-			"credits": "HTML5 Port<hr />Website: <a href=\"http://users.atw.hu/wolf3d/\" target=\"_blank\">users.atw.hu/wolf3d</a><br /><br />Author: <a href=\"https://github.com/lazarv\" target=\"_blank\">github.com/lazarv</a><br />License: <a href=\"http://users.atw.hu/wolf3d/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />HTML Port<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/wolf3d-browser\" target=\"_blank\">github.com/id-Software/wolf3d-browser</a><br />License: <a href=\"https://github.com/id-Software/wolf3d-browser/blob/master/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/wolf3d\" target=\"_blank\">github.com/id-Software/wolf3d</a><br />License: <a href=\"https://github.com/id-Software/wolf3d/blob/master/WOLFSRC/README/LICENSE.DOC\" target=\"_blank\">LUSLA</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
-			"disclaimer_abandoned": true,
-			"width": 640,
-			"height": 400,
-			"requires": {
-				"canvas": {
-					"link": "/emupedia-game-wolfenstein-3d-canvas/",
+			"name": "Microsoft Games",
+			"title": "Folder",
+			"icon": "assets/images/icons/desktop/folder",
+			"folder": true,
+			"width": 760,
+			"height": 560,
+			"items": [{
+				"name": "Microsoft Casual Games",
+				"title": "Folder",
+				"icon": "assets/images/icons/desktop/folder",
+				"folder": true,
+				"width": 760,
+				"height": 560,
+				"items": [{
+					"name": "Microsoft Minesweeper",
+					"title": "External Website",
+					"icon": "assets/images/icons/desktop/microsoft-minesweeper",
+					"link": "https://cdn.zone.msn.com/assets/games/microsoftminesweeper/20200812T131003_1.3.22_milestones_2020_milestone_2020_005_sprint_001_1e48112_msn/default.html?hostingEnvironment=zone",
+					"target": "_blank",
+					"credits": "Website: <a href=\"https://zone.msn.com/en/msminesweeper/default.htm\" target=\"_blank\">zone.msn.com/en/msminesweeper</a>",
 					"width": 960,
-					"height": 600
-				}
-			},
+					"height": 747,
+					"newtab": true,
+					"shortcut": true
+				} , {
+					"name": "Microsoft Solitaire Collection",
+					"title": "External Website",
+					"icon": "assets/images/icons/desktop/microsoft-solitaire",
+					"link": "https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2021/20210129T112048_1.8.8_release_7e1cce9_msn/solitaire/index.html?hostingEnvironment=zone",
+					"credits": "Website: <a href=\"https://zone.msn.com/en/mssolitairecollection/default.htm\" target=\"_blank\">zone.msn.com/en/mssolitairecollection</a>",
+					"width": 960,
+					"height": 540,
+					"newtab": true,
+					"shortcut": true
+				} , {
+					"name": "Microsoft Mahjong",
+					"title": "External Website",
+					"icon": "assets/images/icons/desktop/microsoft-mahjong",
+					"link": "https://cdn.zone.msn.com/assets/games/microsoftmahjong/2020/20201102T1148_1.0.10_msn/game.html?hostingEnvironment=zone",
+					"credits": "Website: <a href=\"https://zone.msn.com/en/msmahjong/default.htm\" target=\"_blank\">zone.msn.com/en/msmahjong</a>",
+					"width": 960,
+					"height": 540,
+					"newtab": true,
+					"shortcut": true
+				} , {
+					"name": "Microsoft Ultimate Word Games",
+					"title": "External Website",
+					"icon": "assets/images/icons/desktop/microsoft-ultimate-word-games",
+					"link": "https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/msn/2021/20210310T195233_1.1.7_release_1af5876_msn/word-games/game.html?hostingEnvironment=zone",
+					"credits": "Website: <a href=\"https://zone.msn.com/en/msultimateword/default.htm\" target=\"_blank\">zone.msn.com/en/msultimateword</a>",
+					"width": 960,
+					"height": 552,
+					"newtab": true,
+					"shortcut": true
+				} , {
+					"name": "Microsoft Bubble",
+					"title": "External Website",
+					"icon": "assets/images/icons/desktop/microsoft-bubble",
+					"link": "https://cdn.zone.msn.com/assets/games/microsoftbubbleshooter/20210125T150916.534Z_1_c01b8274_V2.2.1/msngdk_simulator/testgame/index.html?gdk=true&hostingEnvironment=zone",
+					"credits": "Website: <a href=\"https://zone.msn.com/en/msbubble/default.htm\" target=\"_blank\">zone.msn.com/en/msbubble</a>",
+					"width": 960,
+					"height": 540,
+					"newtab": true,
+					"shortcut": true
+				} , {
+					"name": "Microsoft Jewel",
+					"title": "External Website",
+					"icon": "assets/images/icons/desktop/microsoft-jewel",
+					"link": "https://cdn.zone.msn.com/assets/games/microsoftjewel/20200921T100924_1.0.22_milestones_2020_milestone_2020_001_sprint_001_62951b5_msn/default.html?hostingEnvironment=zone",
+					"target": "_blank",
+					"credits": "Website: <a href=\"https://zone.msn.com/en/msjewel/default.htm\" target=\"_blank\">zone.msn.com/en/msjewel</a>",
+					"width": 960,
+					"height": 540,
+					"newtab": true,
+					"shortcut": true
+				} , {
+					"name": "Microsoft Sudoku",
+					"title": "External Website",
+					"icon": "assets/images/icons/desktop/microsoft-sudoku",
+					"link": "https://cdn.zone.msn.com/assets/games/microsoftsudoku/20200821T185824_1.3.33_milestones_2020_milestone_2020_013_sprint_003_d2570bc_msn/default.html?hostingEnvironment=zone",
+					"target": "_blank",
+					"credits": "Website: <a href=\"https://zone.msn.com/en/sudoku/default.htm\" target=\"_blank\">zone.msn.com/en/sudoku</a>",
+					"width": 960,
+					"height": 540,
+					"newtab": true,
+					"shortcut": true
+				} , {
+					"name": "Microsoft Jigsaw",
+					"title": "External Website",
+					"icon": "assets/images/icons/desktop/microsoft-jigsaw",
+					"link": "https://cdn.zone.msn.com/assets/games/microsoftjigsaw/20200812T130936_1.3.37_milestones_2020_milestone_2020_004_sprint_001_b90aedf_msn/default.html?hostingEnvironment=zone",
+					"target": "_blank",
+					"credits": "Website: <a href=\"https://zone.msn.com/en/jigsaw/default.htm\" target=\"_blank\">zone.msn.com/en/jigsaw</a>",
+					"width": 960,
+					"height": 540,
+					"newtab": true,
+					"shortcut": true
+				}]
+			}]
+		} , {
+			"name": "2048",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/2048",
+			"link": "/emupedia-game-2048/",
+			"credits": "Website: <a href=\"https://play2048.co/\" target=\"_blank\">play2048.co</a><br /><br />Author(s): <a href=\"https://github.com/gabrielecirulli\" target=\"_blank\">github.com/gabrielecirulli</a><br />Repository: <a href=\"https://github.com/gabrielecirulli/2048\" target=\"_blank\">github.com/gabrielecirulli/2048</a><br />License: <a href=\"https://github.com/gabrielecirulli/2048/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />Original project<hr />Website: <a href=\"https://asherv.com/threes/\" target=\"_blank\">asherv.com/threes</a>",
+			"width": 836,
+			"height": 470,
 			"newtab": true,
+			"shortcut": true,
 			"share": true
 		} , {
-			"name": "Doom 1",
-			"icon": "assets/images/icons/desktop/doom1",
-			"link": "/emupedia-game-doom1/asmjs/",
-			"credits": "Emscripten Port<hr />Website: <a href=\"https://wadcmd.com/\" target=\"_blank\">wadcmd.com</a><br /><br />Author: <a href=\"https://github.com/lazarv\" target=\"_blank\">github.com/lazarv</a><br />Repository: <a href=\"https://github.com/lazarv/wasm-doom\" target=\"_blank\">github.com/lazarv/wasm-doom</a><br />License: <a href=\"https://github.com/lazarv/wasm-doom/blob/master/COPYING.md\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/DOOM\" target=\"_blank\">github.com/id-Software/DOOM</a><br />License: <a href=\"https://www.gamers.org/pub/idgames/source/doomsrc.txt\" target=\"_blank\">DSL / GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
-			"disclaimer_abandoned": true,
-			"width": 640,
-			"height": 400,
-			"requires": {
-				"webassembly": {
-					"link": "/emupedia-game-doom1/"
-				}
-			},
-			"newtab": true,
-			"share": true
-		} , {
-			"name": "Doom 2: Hell on Earth",
-			"icon": "assets/images/icons/desktop/doom2",
-			"link": "/emupedia-game-doom2/asmjs/",
-			"credits": "Emscripten Port<hr />Website: <a href=\"https://wadcmd.com/\" target=\"_blank\">wadcmd.com</a><br /><br />Author: <a href=\"https://github.com/lazarv\" target=\"_blank\">github.com/lazarv</a><br />Repository: <a href=\"https://github.com/lazarv/wasm-doom\" target=\"_blank\">github.com/lazarv/wasm-doom</a><br />License: <a href=\"https://github.com/lazarv/wasm-doom/blob/master/COPYING.md\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/DOOM\" target=\"_blank\">github.com/id-Software/DOOM</a><br />License: <a href=\"https://www.gamers.org/pub/idgames/source/doomsrc.txt\" target=\"_blank\">DSL / GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
-			"disclaimer_abandoned": true,
-			"width": 640,
-			"height": 400,
-			"requires": {
-				"webassembly": {
-					"link": "/emupedia-game-doom2/"
-				}
-			},
-			"newtab": true,
-			"share": true
-		} , {
-			"name": "Lemmings 1",
-			"title": "Under Development",
-			"icon": "assets/images/icons/desktop/lemmings1",
-			"link": "/emupedia-game-lemmings1/",
-			"credits": "HTML5 Port<hr />Websites: <a href=\"https://lemmingsjs.oklemenz.de\" target=\"_blank\">lemmingsjs.oklemenz.de</a> <a href=\"https://oklemenz.github.io/LemmingsJS\" target=\"_blank\">oklemenz.github.io/LemmingsJS</a> <a href=\"https://lemmings.hmilch.net/lemmings.html\" target=\"_blank\">lemmings.hmilch.net/lemmings.html</a><br />Authors: <a href=\"https://github.com/oklemenz\" target=\"_blank\">github.com/oklemenz</a> <a href=\"https://github.com/tomsoftware\" target=\"_blank\">github.com/tomsoftware</a><br />Repositories: <a href=\"https://github.com/oklemenz/LemmingsJS\" target=\"_blank\">github.com/oklemenz/LemmingsJS</a> <a href=\"https://github.com/tomsoftware/Lemmings.ts\" target=\"_blank\">github.com/tomsoftware/Lemmings.ts</a> <a href=\"https://github.com/tomsoftware/lemmings.js\" target=\"_blank\">github.com/tomsoftware/lemmings.js</a><br /><br />Original Project<hr />Website: <a href=\"https://www.brutaldeluxe.fr/products/apple2gs/lemmings.html\" target=\"_blank\">brutaldeluxe.fr/products/apple2gs/lemmings.html</a><br />Source Code: <a href=\"https://www.brutaldeluxe.fr/sourcecode/lemmings.html\" target=\"_blank\">brutaldeluxe.fr/sourcecode/lemmings.html</a><br /><br />All other assets<hr />Copyright Sony Computer Entertainment (formerly Psygnosis)",
-			"disclaimer_abandoned": true,
-			"width": 800,
-			"height": 480,
-			"newtab": true,
-			"share": true
-		} , {
-			"name": "Quake 1",
-			"title": "Under Development",
-			"icon": "assets/images/icons/desktop/quake1",
-			"link": "/emupedia-game-quake1/",
-			"credits": "Emscripten Port<hr />Website: <a href=\"https://fte.triptohell.info/\" target=\"_blank\">fte.triptohell.info</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/fteqw/\" target=\"_blank\">sourceforge.net/projects/fteqw</a><br />Repository: <a href=\"https://sourceforge.net/p/fteqw/code/HEAD/tree/\" target=\"_blank\">sourceforge.net/projects/fteqw/code</a><br />License: GPL-2.0<br /><br />HTML5 Port<hr />Author: <a href=\"https://github.com/triang3l\" target=\"_blank\">github.com/triang3l</a><br />Repository: <a href=\"https://github.com/triang3l/webquake\" target=\"_blank\">github.com/triang3l/webquake</a><br />License: <a href=\"https://github.com/triang3l/webquake/blob/master/GNU.md\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/Quake\" target=\"_blank\">github.com/id-Software/Quake</a><br />License: <a href=\"https://github.com/id-Software/Quake/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
-			"disclaimer_abandoned": true,
-			"width": 640,
-			"height": 480,
-			"requires": {
-				"webassembly": {
-					"link": "/emupedia-game-quake1/wasm.html"
-				}
-			},
-			"newtab": true,
-			"share": true
-		} , {
-			"name": "Command and Conquer",
-			"icon": "assets/images/icons/desktop/command-and-conquer1",
-			"link": "/emupedia-game-command-and-conquer1/",
-			"credits": "HTML5 Port<hr />Website: <a href=\"https://www.adityaravishankar.com/projects/games/command-and-conquer/\" target=\"_blank\">adityaravishankar.com/projects/games/command-and-conquer</a><br /><br />Author: <a href=\"https://github.com/adityaravishankar\" target=\"_blank\">github.com/adityaravishankar</a><br />Repository: <a href=\"https://github.com/adityaravishankar/command-and-conquer\" target=\"_blank\">github.com/adityaravishankar/command-and-conquer</a><br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)",
-			"disclaimer_abandoned": true,
-			"width": 640,
-			"height": 535,
-			"newtab": true,
-			"share": true
-		} , {
-			"name": "Half-Life 1",
-			"title": "Under Development",
-			"icon": "assets/images/icons/desktop/half-life1",
-			"link": "/emupedia-game-half-life1/",
-			"credits": "Emscripten Port<hr />Author(s): <a href=\"https://github.com/FWGS\" target=\"_blank\">github.com/FWGS</a><br />Repository: <a href=\"https://github.com/FWGS/xash3d\" target=\"_blank\">github.com/FWGS/xash3d</a><br />License: <a href=\"https://github.com/FWGS/xash3d/blob/master/COPYING\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright Valve Software (formerly Sierra Studios)",
-			"disclaimer_abandoned": true,
-			"width": 640,
-			"height": 480,
-			"newtab": true,
-			"share": true
-		} , {
-			"name": "Diablo 1",
-			"title": "Under Development",
-			"icon": "assets/images/icons/desktop/diablo1",
-			"link": "https://d07riv.github.io/diabloweb/",
-			"credits": "Emscripten Port<hr />Website: <a href=\"https://d07riv.github.io/diabloweb/\" target=\"_blank\">d07riv.github.io/diabloweb</a><br /><br />Author: <a href=\"https://github.com/d07RiV\" target=\"_blank\">github.com/d07RiV</a><br />Repository: <a href=\"https://github.com/d07RiV/diabloweb\" target=\"_blank\">github.com/d07RiV/diabloweb</a><br /><br />Original Project<hr />Author(s): <a href=\"https://github.com/diasurgical/devilution#credits\" target=\"_blank\">github.com/diasurgical/devilution#credits</a><br />Repository: <a href=\"https://github.com/diasurgical/devilution\" target=\"_blank\">github.com/diasurgical/devilution</a><br />License: <a href=\"https://github.com/diasurgical/devilution/blob/master/LICENSE\" target=\"_blank\">Public domain</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Blizzard Entertainment)",
-			"disclaimer_abandoned": true,
+			"name": "ASCIICKER",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/asciicker",
+			"link": "https://asciicker.com/",
+			"credits": "Website: <a href=\"https://asciicker.com/\" target=\"_blank\">asciicker.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 			"width": 640,
 			"height": 480,
 			"newtab": true,
 			"shortcut": true,
 			"share": true
 		} , {
-			"name": "Tomb Raider",
-			"title": "Under Development",
-			"icon": "assets/images/icons/desktop/tomb-raider1",
-			"link": "/emupedia-game-tomb-raider/",
-			"credits": "Emscripten Port<hr />Website: <a href=\"http://xproger.info/projects/OpenLara/\" target=\"_blank\">xproger.info/projects/OpenLara</a><br /><br />Author: <a href=\"https://github.com/XProger\" target=\"_blank\">github.com/XProger</a><br />Repository: <a href=\"https://github.com/XProger/OpenLara\" target=\"_blank\">github.com/XProger/OpenLara</a><br />License: <a href=\"https://github.com/XProger/OpenLara/blob/master/LICENSE\" target=\"_blank\">BSD-2-Clause</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />All other assets<hr />Copyright Square Enix (formerly Eidos Interactive)",
-			"disclaimer_abandoned": true,
+			"name": "ASCII PATROL",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/ascii-patrol",
+			"link": "https://ascii-patrol.com/area54/ascii-patrol-html5.html",
+			"credits": "Emscripten Port<hr />Website: <a href=\"https://ascii-patrol.com/\" target=\"_blank\">ascii-patrol.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br />Repository: <a href=\"https://github.com/msokalski/ascii-patrol\" target=\"_blank\">github.com/msokalski/ascii-patrol</a><br />License: <a href=\"https://github.com/msokalski/ascii-patrol/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 			"width": 900,
-			"height": 550,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true
+		} , {
+			"name": "Biolab Disaster",
+			"icon": "assets/images/icons/desktop/biolab-disaster",
+			"link": "/emupedia-game-biolab-disaster/",
+			"credits": "Website: <a href=\"https://playbiolab.com\" target=\"_blank\">playbiolab.com</a><br /><br />Author: <a href=\"https://github.com/phoboslab\" target=\"_blank\">github.com/phoboslab</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
+			"width": 720,
+			"height": 480,
 			"newtab": true,
 			"share": true
 		} , {
-			"name": "Transport Tycoon Deluxe",
-			"title": "Under Development",
-			"icon": "assets/images/icons/desktop/openttd",
-			"link": "/emupedia-game-openttd/",
-			"credits": "Emscripten Port<hr />Website: <a href=\"https://milek7.pl/openttd-wasm/\" target=\"_blank\">milek7.pl/openttd-wasm</a><br /><br />Original Project<hr />Website: <a href=\"https://www.openttd.org/\" target=\"_blank\">openttd.org</a><br /><br />Author: <a href=\"https://github.com/OpenTTD\" target=\"_blank\">github.com/OpenTTD</a><br />Repository: <a href=\"https://github.com/OpenTTD/OpenTTD\" target=\"_blank\">github.com/OpenTTD/OpenTTD</a><br />License: <a href=\"https://github.com/OpenTTD/OpenTTD/blob/master/COPYING.md\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Take-Two Interactive (formerly Firaxis Games, MicroProse)",
-			"disclaimer_abandoned": true,
-			"width": 900,
-			"height": 550,
+			"name": "Friday Night Funkin'",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/friday-night-funkin",
+			"link": "/emupedia-game-friday-night-funkin/",
+			"link_alternate": "https://v6p9d9t4.ssl.hwcdn.net/html/2876359-359162/",
+			"link_alternate2": "https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r88.zip/",
+			"credits": "Website: <a href=\"https://www.newgrounds.com/portal/view/770371\" target=\"_blank\">newgrounds.com/portal/view/770371</a><br /><br />Author(s): <a href=\"https://github.com/ninjamuffin99\" target=\"_blank\">github.com/ninjamuffin99</a><br />Repository: <a href=\"https://github.com/ninjamuffin99/Funkin\" target=\"_blank\">github.com/ninjamuffin99/Funkin</a>",
+			"width": 1280,
+			"height": 720,
 			"newtab": true,
+			"shortcut": true,
 			"share": true
 		} , {
-			"name": "Dune 2: The Building of A Dynasty",
-			"title": "Under Development",
-			"icon": "assets/images/icons/desktop/dune2",
-			"link": "/emupedia-game-dune2/",
-			"credits": "Emscripten Port<hr />Websites: <a href=\"https://dune2js.com\" target=\"_blank\">dune2js.com</a> <a href=\"https://dune2js.oklemenz.de\" target=\"_blank\">dune2js.oklemenz.de</a> <a href=\"https://oklemenz.github.io/Dune2JS\" target=\"_blank\">oklemenz.github.io/Dune2JS</a> <a href=\"https://epicport.com/en/dune2/\" target=\"_blank\">epicport.com/en/dune2</a><br /><br />Authors: <a href=\"https://github.com/oklemenz\" target=\"_blank\">github.com/oklemenz</a> <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repositories: <a href=\"https://github.com/oklemenz/Dune2JS\" target=\"_blank\">github.com/oklemenz/Dune2JS</a> <a href=\"https://github.com/caiiiycuk/epicport\" target=\"_blank\">github.com/caiiiycuk/epicport</a> <a href=\"https://github.com/caiiiycuk/play-dune\" target=\"_blank\">github.com/caiiiycuk/play-dune</a><br />License: <a href=\"https://github.com/caiiiycuk/play-dune/blob/emscripten/C/COPYING\" target=\"_blank\">GPL-2.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />Original Project<hr />Website: <a href=\"https://www.opendune.org/\" target=\"_blank\">opendune.org</a><br /><br />Author: <a href=\"https://github.com/OpenDUNE/\" target=\"_blank\">github.com/OpenDUNE/</a><br />Repository: <a href=\"https://github.com/OpenDUNE/OpenDUNE\" target=\"_blank\">github.com/OpenDUNE/OpenDUNE</a><br />License: <a href=\"https://github.com/OpenDUNE/OpenDUNE/blob/master/COPYING\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Tencent (formerly Virgin Games, Westwood Studios)",
-			"disclaimer_abandoned": true,
-			"width": 640,
-			"height": 400,
-			"newtab": true,
-			"share": true
-		} , {
-			"name": "X-COM: UFO Defense",
-			"title": "Under Development",
-			"icon": "assets/images/icons/desktop/xcom1",
-			"link": "/emupedia-game-xcom1/",
-			"credits": "Emscripten Port<hr />Website: <a href=\"https://epicport.com/en/xcom/\" target=\"_blank\">epicport.com/en/xcom</a><br /><br />Author: <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repository: <a href=\"https://github.com/caiiiycuk/epicport\" target=\"_blank\">github.com/caiiiycuk/epicport</a> <a href=\"https://github.com/caiiiycuk/xcom-emscripten\" target=\"_blank\">github.com/caiiiycuk/xcom-emscripten</a><br />License: <a href=\"https://github.com/caiiiycuk/xcom-emscripten/blob/master/LICENSE.txt\" target=\"_blank\">GPL-3.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />Original Project<hr />Website: <a href=\"https://openxcom.org/\" target=\"_blank\">openxcom.org</a><br /><br />Author: <a href=\"https://github.com/OpenXcom\" target=\"_blank\">github.com/OpenXcom</a><br />Repository: <a href=\"https://github.com/OpenXcom/OpenXcom/\" target=\"_blank\">github.com/OpenXcom/OpenXcom</a><br />License: <a href=\"https://github.com/OpenXcom/OpenXcom/blob/master/LICENSE.txt\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright Take-Two Interactive (formerly Firaxis Games, Atari Inc., Hasbro, Spectrum HoloByte, MicroProse)",
-			"disclaimer_abandoned": true,
-			"width": 960,
+			"name": "Cookie Clicker",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/cookie-clicker",
+			"link": "/emupedia-game-cookie-clicker/",
+			"link_alternate": "https://orteil.dashnet.org/cookieclicker/",
+			"credits": "Website: <a href=\"https://orteil.dashnet.org/cookieclicker/\" target=\"_blank\">orteil.dashnet.org/cookieclicker</a><br /><br />Author(s): <a href=\"https://orteil.dashnet.org/\" target=\"_blank\">Orteil</a> &amp; <a href=\"https://orteil.dashnet.org/\" target=\"_blank\">Opti</a>",
+			"width": 1090,
 			"height": 600,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Super Blob Blaster",
+			"icon": "assets/images/icons/desktop/super-blob-blaster",
+			"link": "/emupedia-game-super-blob-blaster/",
+			"credits": "Website: <a href=\"https://phoboslab.org/twopointfive/\" target=\"_blank\">phoboslab.org/twopointfive</a><br /><br />Author: <a href=\"https://github.com/phoboslab\" target=\"_blank\">github.com/phoboslab</a><br />Repository: <a href=\"https://github.com/phoboslab/twopointfive\" target=\"_blank\">github.com/phoboslab/twopointfive</a><br />License: <a href=\"https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE\" target=\"_blank\">MIT</a>",
+			"width": 720,
+			"height": 480,
 			"newtab": true,
 			"share": true
 		}]
@@ -1001,284 +1306,11 @@
 			"share": true
 		}]
 	} , {
-		"name": "Pikachu Volleyball",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/pikachu-volleyball",
-		"link": "/emupedia-game-pikachu-volleyball/",
-		"credits": "HTML5 Port<hr />Author: <a href=\"https://github.com/gorisanson\" target=\"_blank\">github.com/gorisanson</a><br />Repository: <a href=\"https://github.com/gorisanson/pikachu-volleyball\" target=\"_blank\">github.com/gorisanson/pikachu-volleyball</a><br /><br />All other assets<hr />Copyright SACHI SOFT / SAWAYAKAN Programmers and Satoshi Takenouchi",
-		"disclaimer_abandoned": true,
-		"width": 432,
-		"height": 304,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Worms Armageddon",
-		"icon": "assets/images/icons/desktop/worms2",
-		"link": "/emupedia-game-worms2/armageddon/",
-		"credits": "HTML5 Port<hr />Author: Ciarán McCann<br /><br />All other assets<hr />Copyright Team17",
-		"disclaimer_abandoned": true,
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Biolab Disaster",
-		"icon": "assets/images/icons/desktop/biolab-disaster",
-		"link": "/emupedia-game-biolab-disaster/",
-		"credits": "Website: <a href=\"https://playbiolab.com\" target=\"_blank\">playbiolab.com</a><br /><br />Author: <a href=\"https://github.com/phoboslab\" target=\"_blank\">github.com/phoboslab</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
-		"width": 720,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Super Blob Blaster",
-		"icon": "assets/images/icons/desktop/super-blob-blaster",
-		"link": "/emupedia-game-super-blob-blaster/",
-		"credits": "Website: <a href=\"https://phoboslab.org/twopointfive/\" target=\"_blank\">phoboslab.org/twopointfive</a><br /><br />Author: <a href=\"https://github.com/phoboslab\" target=\"_blank\">github.com/phoboslab</a><br />Repository: <a href=\"https://github.com/phoboslab/twopointfive\" target=\"_blank\">github.com/phoboslab/twopointfive</a><br />License: <a href=\"https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE\" target=\"_blank\">MIT</a>",
-		"width": 720,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Pac-Man",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/pac-man",
-		"link": "https://pacman-e281c.firebaseapp.com/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://pacman-e281c.firebaseapp.com/\" target=\"_blank\">pacman-e281c.firebaseapp.com</a><br /><br />Author: <a href=\"https://github.com/luciopanepinto\" target=\"_blank\">github.com/luciopanepinto</a><br />Repository: <a href=\"https://github.com/luciopanepinto/pacman\" target=\"_blank\">github.com/luciopanepinto/pacman</a><br />License: <a href=\"https://github.com/luciopanepinto/pacman/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a>",
-		"disclaimer_abandoned": true,
-		"width": 1025,
-		"height": 715,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "PONG",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/pong",
-		"link": "https://turbowarp.org/embed.html?autoplay#444984831",
-		"credits": "Website: <a href=\"https://scratch.mit.edu/projects/2718643/\" target=\"_blank\">scratch.mit.edu/projects/2718643</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/dixiklo\" target=\"_blank\">scratch.mit.edu/users/dixiklo</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Atari, SA",
-		"disclaimer_abandoned": true,
-		"width": 720,
-		"height": 480,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Tetris",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/tetris",
-		"link": "https://turbowarp.org/embed.html?autoplay#31651654",
-		"credits": "Website: <a href=\"https://scratch.mit.edu/projects/31651654/\" target=\"_blank\">scratch.mit.edu/projects/31651654</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/smelly_hobbit/\" target=\"_blank\">scratch.mit.edu/users/smelly_hobbit</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Nintendo Company, Ltd. and The Tetris Company, LLC",
-		"disclaimer_abandoned": true,
-		"width": 720,
-		"height": 480,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
 		"name": "Clippy",
 		"icon": "assets/images/icons/desktop/clippy"
 	} , {
 		"name": "eSheep",
 		"icon": "assets/images/icons/desktop/esheep"
-	} , {
-		"name": "SkiFree",
-		"icon": "assets/images/icons/desktop/skifree",
-		"link": "/emupedia-game-skifree/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://basicallydan.github.io/skifree.js/\" target=\"_blank\">basicallydan.github.io/skifree.js</a><br /><br />Author: <a href=\"https://github.com/basicallydan\" target=\"_blank\">github.com/basicallydan</a><br />Repository: <a href=\"https://github.com/basicallydan/skifree.js\" target=\"_blank\">github.com/basicallydan/skifree.js</a><br />License: <a href=\"https://github.com/basicallydan/skifree.js/blob/master/license.md\" target=\"_blank\">MIT</a><br /><br />Original project<hr />Website: <a href=\"https://ski.ihoc.net/\" target=\"_blank\">ski.ihoc.net</a><br /><br />Author: <a href=\"https://ski.ihoc.net/\" target=\"_blank\">Chris Pirih</a><br /><br />All other assets<hr />Copyright Microsoft",
-		"disclaimer_abandoned": true,
-		"width": 640,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "The Binding of Isaac",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/binding-of-isaac",
-		"link": "/emupedia-game-binding-of-isaac/",
-		"credits": "Original project<hr />Website: <a href=\"https://store.steampowered.com/app/113204/Binding_of_Isaac_Wrath_of_the_Lamb/\" target=\"_blank\">Binding_of_Isaac_Wrath_of_the_Lamb</a><br />Copyright: Edmund McMillen & Florian Himsl",
-		"disclaimer": true,
-		"width": 800,
-		"height": 600,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Yume Nikki",
-		"icon": "assets/images/icons/desktop/yume-nikki",
-		"link": "/emupedia-game-yume-nikki/",
-		"credits": "Emscripten Port<hr />Website: <a href=\"https://paracks342.github.io/yumenikki/\" target=\"_blank\">paracks342.github.io/yumenikki</a><br />Author: <a href=\"https://github.com/Paracks342\" target=\"_blank\">github.com/paracks342</a><br />Repository: <a href=\"https://github.com/Paracks342/yumenikki\" target=\"_blank\">github.com/Paracks342/yumenikki</a><br /><br />Suggested to be added by <b>eagle</b><br /><br />Game Engine<hr />Author: <a href=\"https://github.com/EasyRPG\" target=\"_blank\">github.com/EasyRPG</a><br />Repository: <a href=\"https://github.com/EasyRPG/Player\" target=\"_blank\">github.com/EasyRPG/Player</a><br /><br />All other assets<hr />Copyright kikiyama",
-		"newtab": true,
-		"disclaimer": true,
-		"width": 960,
-		"height": 720,
-		"share": true
-	} , {
-		"name": "ASCIICKER",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/asciicker",
-		"link": "https://asciicker.com/",
-		"credits": "Website: <a href=\"https://asciicker.com/\" target=\"_blank\">asciicker.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
-		"width": 640,
-		"height": 480,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "ASCII PATROL",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/ascii-patrol",
-		"link": "https://ascii-patrol.com/area54/ascii-patrol-html5.html",
-		"credits": "Emscripten Port<hr />Website: <a href=\"https://ascii-patrol.com/\" target=\"_blank\">ascii-patrol.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br />Repository: <a href=\"https://github.com/msokalski/ascii-patrol\" target=\"_blank\">github.com/msokalski/ascii-patrol</a><br />License: <a href=\"https://github.com/msokalski/ascii-patrol/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"shortcut": true
-	} , {
-		"name": "Mario",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/mario",
-		"link": "/emupedia-game-mario/",
-		"credits": "HTML5 Port<hr />Websites: <a href=\"https://www.supermariobros.io/full-screen-mario/mario.html\" target=\"_blank\">supermariobros.io/full-screen-mario/mario.html</a> <a href=\"https://fullscreenmario.com\" target=\"_blank\">fullscreenmario.com</a><br /><br />Author: <a href=\"https://github.com/JoshuaKGoldberg\" target=\"_blank\">github.com/JoshuaKGoldberg</a><br />Repository: <a href=\"https://github.com/FullScreenShenanigans/FullScreenMario\" target=\"_blank\">github.com/FullScreenShenanigans/FullScreenMario</a><br />License: <a href=\"https://github.com/FullScreenShenanigans/FullScreenMario/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Nintendo",
-		"disclaimer_abandoned": true,
-		"width": 900,
-		"height": 576,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Zelda",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/zelda",
-		"link": "/emupedia-game-zelda/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://www.zelda30tribute.com\" target=\"_blank\">zelda30tribute.com</a><br /><br />Author: <a href=\"https://github.com/scottlininger\" target=\"_blank\">github.com/scottlininger</a><br />Repository: <a href=\"https://github.com/scottlininger/zelda30tribute\" target=\"_blank\">github.com/scottlininger/zelda30tribute</a><br />License: <a href=\"https://github.com/scottlininger/zelda30tribute/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Nintendo",
-		"disclaimer_abandoned": true,
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Street Fighter Alpha",
-		"alternate_name": "Street Fighter Alpha: Warriors' Dreams",
-		"icon": ["assets/images/icons/desktop/street-fighter/akuma", "assets/images/icons/desktop/street-fighter/balrog", "assets/images/icons/desktop/street-fighter/blanka", "assets/images/icons/desktop/street-fighter/chunli", "assets/images/icons/desktop/street-fighter/dhalsim", "assets/images/icons/desktop/street-fighter/evilryu", "assets/images/icons/desktop/street-fighter/ken", "assets/images/icons/desktop/street-fighter/makoto", "assets/images/icons/desktop/street-fighter/ryu", "assets/images/icons/desktop/street-fighter/sagat", "assets/images/icons/desktop/street-fighter/sakura", "assets/images/icons/desktop/street-fighter/zangief"],
-		"link": "/emupedia-game-street-fighter-alpha/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://gamedev8.github.io/js-sfa/default.htm\" target=\"_blank\">gamedev8.github.io/js-sfa</a><br /><br />Author: <a href=\"https://github.com/gamedev8\" target=\"_blank\">github.com/gamedev8</a><br />Repository: <a href=\"https://github.com/gamedev8/js-sfa\" target=\"_blank\">github.com/gamedev8/js-sfa</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />All other assets<hr />Copyright Capcom",
-		"disclaimer_abandoned": true,
-		"width": 1068,
-		"height": 576,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Doom 3",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/doom3",
-		"link": "/emupedia-game-doom3/",
-		"credits": "Emscripten Port<hr />Website: <a href=\"https://www.continuation-labs.com/projects/d3wasm/\" target=\"_blank\">continuation-labs.com/projects/d3wasm</a><br /><br />Author: <a href=\"https://github.com/gabrielcuvillier\" target=\"_blank\">github.com/gabrielcuvillier</a><br />Repository: <a href=\"https://github.com/gabrielcuvillier/d3wasm\" target=\"_blank\">github.com/gabrielcuvillier/d3wasm</a><br />License: <a href=\"https://github.com/gabrielcuvillier/d3wasm/blob/master/COPYING.txt\" target=\"_blank\">GPL-3.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/DOOM-3\" target=\"_blank\">github.com/id-Software/DOOM-3</a><br />License: <a href=\"https://github.com/id-Software/DOOM-3/blob/master/COPYING.txt\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
-		"disclaimer": true,
-		"width": 640,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Quake 2",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/quake2",
-		"link": "/emupedia-game-quake2/",
-		"credits": "Emscripten Port<hr />Website: <a href=\"https://fte.triptohell.info/\" target=\"_blank\">fte.triptohell.info</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/fteqw/\" target=\"_blank\">sourceforge.net/projects/fteqw</a><br />Repository: <a href=\"https://sourceforge.net/p/fteqw/code/HEAD/tree/\" target=\"_blank\">sourceforge.net/projects/fteqw/code</a><br />License: GPL-2.0<br /><br />HTML5 Port<hr />Website: <a href=\"https://quake2playn.appspot.com/\" target=\"_blank\">quake2playn.appspot.com</a><br /><br />Author: <a href=\"https://github.com/stefanhaustein\" target=\"_blank\">github.com/stefanhaustein</a><br />Repository: <a href=\"https://github.com/stefanhaustein/quake2-playn-port\" target=\"_blank\">github.com/stefanhaustein/quake2-playn-port</a><br />License: <a href=\"https://github.com/id-Software/Quake-2/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />GWT Java Port<hr />Author(s): <a href=\"https://sourceforge.net/projects/jake2\" target=\"_blank\">sourceforge.net/projects/jake2</a><br />Repository: <a href=\"https://sourceforge.net/p/jake2/git/ci/master/tree/\" target=\"_blank\">sourceforge.net/p/jake2</a><br />License: <a href=\"https://github.com/id-Software/Quake-2/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/Quake-2\" target=\"_blank\">github.com/id-Software/Quake-2</a><br />License: <a href=\"https://github.com/id-Software/Quake-2/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
-		"disclaimer_abandoned": true,
-		"width": 640,
-		"height": 480,
-		"requiresdisabled": {
-			"webassembly": {
-				"link": "/emupedia-game-quake2/wasm.html"
-			}
-		},
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Quake 3 Arena",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/quake3",
-		"link": "/emupedia-game-quake3/asmjs/",
-		"credits": "Emscripten Port<hr />Website: <a href=\"http://www.quakejs.com/\" target=\"_blank\">quakejs.com</a><br /><br />Author: <a href=\"https://github.com/inolen\" target=\"_blank\">github.com/inolen</a><br />Repository: <a href=\"https://github.com/inolen/quakejs\" target=\"_blank\">github.com/inolen/quakejs</a><br />License: <a href=\"https://github.com/id-Software/Quake-III-Arena/blob/master/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />Engine Modernization<hr />Website: <a href=\"https://ioquake3.org/\" target=\"_blank\">ioquake3.org</a><br /><br />Author(s): <a href=\"https://github.com/ioquake\" target=\"_blank\">github.com/ioquake</a><br />Repository: <a href=\"https://github.com/ioquake/ioq3\" target=\"_blank\">github.com/ioquake/ioq3</a><br />License: <a href=\"https://github.com/ioquake/ioq3/blob/master/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/Quake-III-Arena\" target=\"_blank\">github.com/id-Software/Quake-III-Arena</a><br />License: <a href=\"https://github.com/id-Software/Quake-III-Arena/blob/master/COPYING.txt\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
-		"disclaimer_abandoned": true,
-		"width": 640,
-		"height": 480,
-		"requires": {
-			"webassembly": {
-				"link": "/emupedia-game-quake3/"
-			}
-		},
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Postal 1",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/postal1",
-		"link": "/emupedia-game-postal1/",
-		"credits": "Emscripten Port<hr />Website: <a href=\"https://playpostal.com/\" target=\"_blank\">playpostal.com</a><br /><br />Author: <a href=\"https://github.com/OtterCodes101\" target=\"_blank\">github.com/OtterCodes101</a><br />Repository: <a href=\"https://github.com/OtterCodes101/POSTAL-WASM\" target=\"_blank\">github.com/OtterCodes101/POSTAL-WASM</a><br />License: <a href=\"https://github.com/OtterCodes101/POSTAL-WASM/blob/main/LICENSE\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author(s): <a href=\"https://github.com/RWS-Studios/\" target=\"_blank\">github.com/RWS-Studios</a><br />Repository: <a href=\"https://github.com/RWS-Studios/POSTAL-SourceCode\" target=\"_blank\">github.com/RWS-Studios/POSTAL-SourceCode</a><br />License: <a href=\"https://github.com/RWS-Studios/POSTAL-SourceCode/blob/main/LICENSE\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Running with Scissors (formerly Riedel Software Productions)",
-		"width": 800,
-		"height": 600,
-		"disclaimer": true,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Hexen 2",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/hexen2",
-		"link": "/emupedia-game-hexen2/",
-		"credits": "Emscripten Port<hr />Website: <a href=\"https://fte.triptohell.info/\" target=\"_blank\">fte.triptohell.info</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/fteqw/\" target=\"_blank\">sourceforge.net/projects/fteqw</a><br />Repository: <a href=\"https://sourceforge.net/p/fteqw/code/HEAD/tree/\" target=\"_blank\">sourceforge.net/projects/fteqw/code</a><br />License: GPL-2.0<br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Raven Software)",
-		"disclaimer_abandoned": true,
-		"width": 640,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Dark Reign: The Future of War",
-		"icon": "assets/images/icons/desktop/dark-reign",
-		"link": "/emupedia-game-dark-reign/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://qmegas.info/dark-reign-html5/\" target=\"_blank\">qmegas.info/dark-reign-html5</a><br /><br />Author: <a href=\"https://github.com/qmegas\" target=\"_blank\">github.com/qmegas</a><br />Repository: <a href=\"https://github.com/qmegas/Dark-Reign---HTML5-Version\" target=\"_blank\">github.com/qmegas/Dark-Reign---HTML5-Version</a><br />License: <a href=\"https://github.com/qmegas/Dark-Reign---HTML5-Version/blob/master/README.md#license\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Activision) and<br />N3V Games (formerly Auran Development)",
-		"disclaimer_abandoned": true,
-		"width": 640,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Unreal Tournament",
-		"icon": "assets/images/icons/desktop/unreal-tournament",
-		"link": "/emupedia-game-unreal-tournament/",
-		"credits": "Emscripten Port<hr />Website: <a href=\"https://icculus.org/ut99-emscripten/\" target=\"_blank\">icculus.org/ut99-emscripten</a><br /><br />Author: <a href=\"https://icculus.org\" target=\"_blank\">icculus</a><br /><br />All other assets<hr />Copyright Epic Games (formerly Epic MegaGames)",
-		"disclaimer_abandoned": true,
-		"width": 640,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Minecraft Classic",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/minecraft-classic",
-		"link": "/emupedia-game-minecraft-classic/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://classic.minecraft.net/\" target=\"_blank\">classic.minecraft.net</a><br /><br />Author: <a href=\"https://github.com/andyhall\" target=\"_blank\">github.com/andyhall</a><br />Repository: <a href=\"https://github.com/andyhall/noa\" target=\"_blank\">github.com/andyhall/noa</a><br />License: <a href=\"https://github.com/andyhall/noa/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)",
-		"disclaimer": true,
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "Minecraft 1.8.8",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/minecraft-classic",
-		"link": "https://eaglercraft.com/play/?version=1.8.8-wasm",
-		"credits": "HTML5 Port<hr /><br />Author: <a href=\"https://github.com/lax1dude\" target=\"_blank\">github.com/lax1dude</a><br />Author: <a href=\"https://github.com/ayunami2000\" target=\"_blank\">github.com/ayunami2000</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)",
-		"width": 900,
-		"height": 480,
-		"target": "_blank",
-		"disclaimer": true,
-		"shortcut": true,
-		"newtab": true,
-		"share": true
 	} , {
 		"name": "Winamp",
 		"title": "Under Development",
