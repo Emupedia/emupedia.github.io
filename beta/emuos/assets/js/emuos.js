@@ -1823,6 +1823,9 @@
 		var self = this;
 		var title = typeof options.title !== 'undefined' ? options.title : 'Folder';
 		var icon = self._resolveIcon(options.icon, 'assets/images/icons/desktop/folder');
+		if (icon === 'assets/images/icons/desktop/folder') {
+			icon = 'assets/images/icons/desktop/folder-open';
+		}
 		var width = typeof options.width !== 'undefined' ? options.width : 700;
 		var height = typeof options.height !== 'undefined' ? options.height : 520;
 		var path = typeof options.path !== 'undefined' ? options.path : title;
