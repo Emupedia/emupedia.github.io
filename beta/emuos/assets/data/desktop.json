@@ -1076,6 +1076,7 @@
 		"height": 480,
 		"newtab": true,
 		"share": true
+	} , {
 		"name": "Doom 3",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/doom3",
