@@ -31,6 +31,48 @@
 		"shortcut": true,
 		"xmas": true
 	} , {
+		"name": "Similar OS",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 780,
+		"height": 560,
+		"items": [{
+			"name": "98.js",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/98.js",
+			"credits": "Website: <a href=\"https://98.js.org\" target=\"_blank\">98.js.org</a><br /><br />Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/98\" target=\"_blank\">github.com/1j01/98</a>",
+			"disclaimer_abandoned": true,
+			"link": "https://98.js.org/",
+			"width": 960,
+			"height": 713,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Windows 93",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/windows93",
+			"link": "https://windows93.net",
+			"target": "_blank",
+			"credits": "Website: <a href=\"https://windows93.net\" target=\"_blank\">windows93.net</a><br /><br />Author(s): <a href=\"http://jankenpopp.com\" target=\"_blank\">Jankenpopp</a> &amp; <a href=\"https://zombect.ro\" target=\"_blank\">Zombectro</a><br />License: <a href=\"https://www.windows93.net/#!/c/TOS.html\" target=\"_blank\">CC BY-NC 4.0</a>",
+			"width": 960,
+			"height": 734,
+			"newtab": true,
+			"shortcut": true
+		} , {
+			"name": "Windows 96",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/windows96",
+			"link": "https://windows96.net",
+			"credits": "Website: <a href=\"https://windows96.net\" target=\"_blank\">windows96.net</a><br /><br />Author(s): <a href=\"https://sys36.net\" target=\"_blank\">ctrlz &amp; ziad87</a>",
+			"width": 960,
+			"height": 734,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		}]
+	} , {
 		"name": "Emupedia TV",
 		"title": "Folder",
 		"icon": "assets/images/icons/desktop/folder",
@@ -231,48 +273,6 @@
 			"width": 900,
 			"height": 600,
 			"newtab": true,
-			"share": true
-		}]
-	} , {
-		"name": "Similar OS",
-		"title": "Folder",
-		"icon": "assets/images/icons/desktop/folder",
-		"folder": true,
-		"width": 780,
-		"height": 560,
-		"items": [{
-			"name": "98.js",
-			"title": "External Website",
-			"icon": "assets/images/icons/desktop/98.js",
-			"credits": "Website: <a href=\"https://98.js.org\" target=\"_blank\">98.js.org</a><br /><br />Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/98\" target=\"_blank\">github.com/1j01/98</a>",
-			"disclaimer_abandoned": true,
-			"link": "https://98.js.org/",
-			"width": 960,
-			"height": 713,
-			"newtab": true,
-			"shortcut": true,
-			"share": true
-		} , {
-			"name": "Windows 93",
-			"title": "External Website",
-			"icon": "assets/images/icons/desktop/windows93",
-			"link": "https://windows93.net",
-			"target": "_blank",
-			"credits": "Website: <a href=\"https://windows93.net\" target=\"_blank\">windows93.net</a><br /><br />Author(s): <a href=\"http://jankenpopp.com\" target=\"_blank\">Jankenpopp</a> &amp; <a href=\"https://zombect.ro\" target=\"_blank\">Zombectro</a><br />License: <a href=\"https://www.windows93.net/#!/c/TOS.html\" target=\"_blank\">CC BY-NC 4.0</a>",
-			"width": 960,
-			"height": 734,
-			"newtab": true,
-			"shortcut": true
-		} , {
-			"name": "Windows 96",
-			"title": "External Website",
-			"icon": "assets/images/icons/desktop/windows96",
-			"link": "https://windows96.net",
-			"credits": "Website: <a href=\"https://windows96.net\" target=\"_blank\">windows96.net</a><br /><br />Author(s): <a href=\"https://sys36.net\" target=\"_blank\">ctrlz &amp; ziad87</a>",
-			"width": 960,
-			"height": 734,
-			"newtab": true,
-			"shortcut": true,
 			"share": true
 		}]
 	} , {
