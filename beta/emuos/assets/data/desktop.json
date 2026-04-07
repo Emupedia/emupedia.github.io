@@ -20,22 +20,6 @@
 		"singleinstance": true,
 		"share": true
 	} , {
-		"name": "YouTube",
-		"icon": "assets/images/icons/desktop/youtube",
-		"link": "https://youtube.com",
-		"target": "_blank",
-		"width": 1020,
-		"height": 630,
-		"share": true
-	} , {
-		"name": "TikTok",
-		"icon": "assets/images/icons/desktop/tiktok",
-		"link": "https://tiktok.com",
-		"target": "_blank",
-		"width": 1020,
-		"height": 630,
-		"share": true
-	} , {
 		"name": "Santa Tracker",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/santa",
@@ -1262,7 +1246,7 @@
 			"share": true
 		}]
 	} , {
-		"name": "Scretch Games",
+		"name": "Scratch Games",
 		"title": "Folder",
 		"icon": "assets/images/icons/desktop/folder",
 		"folder": true,
@@ -1380,6 +1364,24 @@
 		"width": 900,
 		"height": 610,
 		"newtab": true,
+		"share": true
+	} , {
+		"name": "YouTube",
+		"icon": "assets/images/icons/desktop/youtube",
+		"link": "https://youtube.com",
+		"target": "_blank",
+		"width": 1020,
+		"height": 630,
+		"shortcut": true,
+		"share": true
+	} , {
+		"name": "TikTok",
+		"icon": "assets/images/icons/desktop/tiktok",
+		"link": "https://tiktok.com",
+		"target": "_blank",
+		"width": 1020,
+		"height": 630,
+		"shortcut": true,
 		"share": true
 	}]
 }
