@@ -482,30 +482,6 @@
 			"shortcut": true,
 			"share": true
 		} , {
-			"name": "PONG",
-			"title": "External Website",
-			"icon": "assets/images/icons/desktop/pong",
-			"link": "https://turbowarp.org/embed.html?autoplay#444984831",
-			"credits": "Website: <a href=\"https://scratch.mit.edu/projects/2718643/\" target=\"_blank\">scratch.mit.edu/projects/2718643</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/dixiklo\" target=\"_blank\">scratch.mit.edu/users/dixiklo</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Atari, SA",
-			"disclaimer_abandoned": true,
-			"width": 720,
-			"height": 480,
-			"newtab": true,
-			"shortcut": true,
-			"share": true
-		} , {
-			"name": "Tetris",
-			"title": "External Website",
-			"icon": "assets/images/icons/desktop/tetris",
-			"link": "https://turbowarp.org/embed.html?autoplay#31651654",
-			"credits": "Website: <a href=\"https://scratch.mit.edu/projects/31651654/\" target=\"_blank\">scratch.mit.edu/projects/31651654</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/smelly_hobbit/\" target=\"_blank\">scratch.mit.edu/users/smelly_hobbit</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Nintendo Company, Ltd. and The Tetris Company, LLC",
-			"disclaimer_abandoned": true,
-			"width": 720,
-			"height": 480,
-			"newtab": true,
-			"shortcut": true,
-			"share": true
-		} , {
 			"name": "Mario",
 			"title": "External Website",
 			"icon": "assets/images/icons/desktop/mario",
@@ -923,18 +899,6 @@
 			"shortcut": true,
 			"share": true
 		} , {
-			"name": "Cut this Rope for Pato",
-			"title": "Fan-made Game",
-			"icon": "assets/images/icons/desktop/cut-this-rope-for-pato",
-			"link": "https://turbowarp.org/1279627479/embed",
-			"link_alternate": "/emupedia-game-cut-this-rope-for-pato/",
-			"credits": "Website: <a href=\"https://sites.google.com/view/cutthisropeforpatowebsite/play-online\" target=\"_blank\">sites.google.com/view/cutthisropeforpatowebsite/play-online</a>",
-			"width": 700,
-			"height": 576,
-			"newtab": true,
-			"shortcut": true,
-			"share": true
-		} , {
 			"name": "Drive Mad",
 			"title": "External Website",
 			"icon": "assets/images/icons/desktop/drive-mad",
@@ -1285,6 +1249,64 @@
 			"credits": "Website: <a href=\"https://paper-io.com/\" target=\"_blank\">paper-io.com</a><br /><br />Suggested to be added by <b>Argez</b><br /><br />All other assets<hr />Copyright paper-io.com",
 			"width": 900,
 			"height": 680,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		}]
+	} , {
+		"name": "Scretch Games",
+		"title": "Folder",
+		"icon": "assets/images/icons/desktop/folder",
+		"folder": true,
+		"width": 780,
+		"height": 560,
+		"items": [{
+			"name": "PONG",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/pong",
+			"link": "https://turbowarp.org/embed.html?autoplay#2718643",
+			"link_alternate": "/emupedia-game-pong/",
+			"credits": "Website: <a href=\"https://scratch.mit.edu/projects/2718643/\" target=\"_blank\">scratch.mit.edu/projects/2718643</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/dixiklo\" target=\"_blank\">scratch.mit.edu/users/dixiklo</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Atari, SA",
+			"disclaimer_abandoned": true,
+			"width": 720,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Tetris",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/tetris",
+			"link": "https://turbowarp.org/embed.html?autoplay#31651654",
+			"link_alternate": "/emupedia-game-tetris/",
+			"credits": "Website: <a href=\"https://scratch.mit.edu/projects/31651654/\" target=\"_blank\">scratch.mit.edu/projects/31651654</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/smelly_hobbit/\" target=\"_blank\">scratch.mit.edu/users/smelly_hobbit</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Nintendo Company, Ltd. and The Tetris Company, LLC",
+			"disclaimer_abandoned": true,
+			"width": 720,
+			"height": 480,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Cut this Rope for Pato",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/cut-this-rope-for-pato",
+			"link": "https://turbowarp.org/1279627479/embed",
+			"link_alternate": "/emupedia-game-cut-this-rope-for-pato/",
+			"credits": "Website: <a href=\"https://sites.google.com/view/cutthisropeforpatowebsite/play-online\" target=\"_blank\">sites.google.com/view/cutthisropeforpatowebsite/play-online</a><br /><br />Scratch: <a href=\"https://scratch.mit.edu/projects/1279627479/\" target=\"_blank\">scratch.mit.edu/projects/1279627479</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/SonicTiago1234678/\" target=\"_blank\">scratch.mit.edu/users/SonicTiago1234678/</a><br /><br />Suggested to be added by <b>SonicTiago</b>",
+			"width": 700,
+			"height": 576,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
+		} , {
+			"name": "Tappy Mister Sam",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/tappy-mister-sam",
+			"link": "https://turbowarp.org/1298774592/embed",
+			"link_alternate": "/emupedia-game-tappy-mister-sam/",
+			"credits": "Website: <a href=\"https://scratch.mit.edu/projects/31651654/\" target=\"_blank\">scratch.mit.edu/projects/1298774592</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/SonicTiago1234678/\" target=\"_blank\">scratch.mit.edu/users/SonicTiago1234678/</a><br /><br />Suggested to be added by <b>SonicTiago</b>",
+			"width": 700,
+			"height": 576,
 			"newtab": true,
 			"shortcut": true,
 			"share": true
