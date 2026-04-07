@@ -28,6 +28,14 @@
 		"height": 630,
 		"share": true
 	} , {
+		"name": "TikTok",
+		"icon": "assets/images/icons/desktop/tiktok",
+		"link": "https://tiktok.com",
+		"target": "_blank",
+		"width": 1020,
+		"height": 630,
+		"share": true
+	} , {
 		"name": "Santa Tracker",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/santa",
