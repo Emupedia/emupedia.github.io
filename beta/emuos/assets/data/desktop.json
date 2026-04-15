@@ -71,6 +71,17 @@
 			"newtab": true,
 			"shortcut": true,
 			"share": true
+		} , {
+			"name": "Windows XP Simulator",
+			"title": "External Website",
+			"icon": "assets/images/icons/desktop/windows-xp-simulator",
+			"link": "https://windows-xp.on.websim.com",
+			"credits": "Website: <a href=\"https://windows-xp.on.websim.com\" target=\"_blank\">windows-xp.on.websim.com</a><br /><br />Author(s): BookwormKevin",
+			"width": 960,
+			"height": 734,
+			"newtab": true,
+			"shortcut": true,
+			"share": true
 		}]
 	} , {
 		"name": "Emupedia TV",
