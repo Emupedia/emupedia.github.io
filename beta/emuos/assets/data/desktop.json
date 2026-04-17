@@ -86,7 +86,7 @@
 	} , {
 		"name": "Emupedia TV",
 		"title": "Folder",
-		"icon": "assets/images/icons/desktop/folder",
+		"icon": "assets/images/icons/desktop/emupedia-tv",
 		"folder": true,
 		"width": 780,
 		"height": 560,
@@ -96,6 +96,15 @@
 			"link": "/emupedia-media-htf/",
 			"width": 900,
 			"height": 480,
+			"newtab": true,
+			"singleinstance": true,
+			"share": true
+		} , {
+			"name": "Cartoons TV",
+			"icon": "assets/images/icons/desktop/cartoons-tv",
+			"link": "https://tv.emupedia.net",
+			"width": 784,
+			"height": 492,
 			"newtab": true,
 			"singleinstance": true,
 			"share": true
