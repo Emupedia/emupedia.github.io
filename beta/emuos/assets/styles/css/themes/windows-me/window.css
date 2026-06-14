@@ -197,84 +197,111 @@
 	padding: 0;
 }
 
-.theme-windows-me .emuos-folder-menubar,
-.theme-windows-me .emuos-folder-toolbar,
-.theme-windows-me .emuos-folder-addressbar,
+.theme-windows-me .emuos-folder-toolbars,
+.theme-windows-me .emuos-folder-toolbar-row.emuos-folder-menubar,
+.theme-windows-me .emuos-folder-toolbar-row.emuos-folder-toolbar,
+.theme-windows-me .emuos-folder-toolbar-row.emuos-folder-addressbar,
 .theme-windows-me .emuos-folder-status {
 	background-color: #c0c0c0;
-	box-shadow: inset 0 1px 0 #fff;
 }
 
-.theme-windows-me .emuos-folder-menubar,
-.theme-windows-me .emuos-folder-toolbar,
-.theme-windows-me .emuos-folder-addressbar {
-	border-bottom: 1px solid #808080;
+.theme-windows-me .emuos-folder-toolbar-row + .emuos-folder-toolbar-row {
+	border-top-color: #fff;
+	box-shadow: 0 -1px 0 #808080;
 }
 
 .theme-windows-me .emuos-folder-menubar-item,
 .theme-windows-me .emuos-folder-toolbar-button,
-.theme-windows-me .emuos-folder-go {
+.theme-windows-me .emuos-folder-toolbar-dropdown {
 	color: #000;
-	border: none;
-	background-color: #c0c0c0;
+	border: 1px solid transparent;
+	background-color: transparent;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;
-	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
-}
-
-.theme-windows-me .emuos-folder-menubar-item {
 	box-shadow: none;
-	padding: 1px 8px;
 }
 
-.theme-windows-me .emuos-folder-menubar-item:hover {
-	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+.theme-windows-me .emuos-folder-menubar-item:hover:not(.ui-state-active),
+.theme-windows-me .emuos-folder-toolbar-button:not(.is-disabled):hover,
+.theme-windows-me .emuos-folder-toolbar-dropdown:not(.is-disabled):hover,
+.theme-windows-me .emuos-folder-toolbar-compound:hover:not(:active) .emuos-folder-toolbar-button:not(.is-disabled),
+.theme-windows-me .emuos-folder-toolbar-compound:hover:not(:active) .emuos-folder-toolbar-dropdown:not(.is-disabled) {
+	border-color: #fff #808080 #808080 #fff;
+	background-color: #c0c0c0;
+	box-shadow: none;
+	color: #000;
 }
 
-.theme-windows-me .emuos-folder-toolbar-button:active,
-.theme-windows-me .emuos-folder-go:active {
-	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+.theme-windows-me .emuos-folder-menubar-item.ui-state-active,
+.theme-windows-me .emuos-folder-menubar-item:active,
+.theme-windows-me .emuos-folder-toolbar-button:not(.is-disabled):active,
+.theme-windows-me .emuos-folder-toolbar-compound .emuos-folder-toolbar-button:active:not(.is-disabled) ~ .emuos-folder-toolbar-dropdown:not(.is-disabled),
+.theme-windows-me .emuos-folder-toolbar-dropdown:active:not(.is-disabled) {
+	border-color: #808080 #fff #fff #808080;
+	background-color: #c0c0c0;
+	box-shadow: none;
+	color: #000;
 }
 
 .theme-windows-me .emuos-folder-toolbar-sep {
 	background: #808080;
-	box-shadow: 1px 0 0 #fff;
 }
 
-.theme-windows-me .emuos-folder-icon-size-value {
-	color: #000;
+.theme-windows-me .emuos-folder-window .emuos-folder-menu .ui-menu-item {
+	padding: 0;
+	margin: 2px;
+	height: auto;
+	border: 0;
+	font-size: 11px;
+	font-weight: normal;
 }
 
-.theme-windows-me .emuos-folder-address {
+.theme-windows-me .emuos-folder-window .emuos-folder-menu .ui-menu-item.ui-state-focus,
+.theme-windows-me .emuos-folder-window .emuos-folder-menu .ui-menu-item-wrapper.ui-state-active {
+	height: auto;
+	border: 0;
+	font-weight: normal;
+	padding-left: 0;
+}
+
+.theme-windows-me .emuos-folder-window .emuos-folder-menu .ui-menu-divider {
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #fff;
+}
+
+.theme-windows-me .emuos-folder-address-compound {
 	background: #fff;
 	border: none;
 	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #000;
-	padding: 2px 6px;
+}
+
+.theme-windows-me .emuos-folder-address-input {
+	font-size: 12px;
+}
+
+.theme-windows-me .emuos-folder-address-dropdown {
+	background-color: #c0c0c0;
+	border-color: #fff #808080 #808080 #fff;
+	color: #000;
+}
+
+.theme-windows-me .emuos-folder-address-dropdown:disabled svg {
+	filter: saturate(0%) opacity(50%);
+	filter: url("#disabled-inset-filter");
 }
 
 .theme-windows-me .emuos-folder-sidebar {
-	background: #efefef;
-	border-right: 1px solid #808080;
+	background-color: #fff;
 }
 
-.theme-windows-me .emuos-folder-sidebar-head strong {
+.theme-windows-me .emuos-folder-sidebar-title {
 	color: #000;
-	font-size: 28px;
-}
-
-.theme-windows-me .emuos-folder-sidebar-link {
-	color: #0000ee;
-}
-
-.theme-windows-me .emuos-folder-sidebar-meta {
-	border-top: 1px solid #9c9c9c;
-	padding-top: 8px;
 }
 
 .theme-windows-me .emuos-folder-splitter {
-	background: #c0c0c0;
-	border-right: 1px solid #808080;
+	background: #fff;
+	border: 0;
 }
 
 .theme-windows-me .emuos-folder-items {
@@ -285,10 +312,22 @@
 	color: #000;
 }
 
-.theme-windows-me .emuos-folder-item.ui-selected span,
-.theme-windows-me .emuos-folder-item:hover span {
+.theme-windows-me .emuos-folder-item.ui-selected span {
 	background: #000080;
 	color: #fff;
+}
+
+.theme-windows-me .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected {
+	background: #000080;
+	color: #fff;
+}
+
+.theme-windows-me .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-name .label,
+.theme-windows-me .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-size,
+.theme-windows-me .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-type,
+.theme-windows-me .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-modified {
+	background: transparent;
+	color: inherit;
 }
 
 .theme-windows-me .emuos-folder-status {

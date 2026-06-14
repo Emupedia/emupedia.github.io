@@ -195,3 +195,16 @@
 	margin: 0;
 	padding: 0;
 }
+
+.theme-windows-95 .emuos-folder-status {
+	background-color: #c0c0c0;
+	border-top: none;
+}
+
+.theme-windows-95 .emuos-folder-status-left,
+.theme-windows-95 .emuos-folder-status-middle,
+.theme-windows-95 .emuos-folder-status-right {
+	background: #c0c0c0;
+	border: none;
+	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+}

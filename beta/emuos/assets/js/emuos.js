@@ -27,6 +27,7 @@
 	var hash = location.hash.toString();
 	var resizeTimeout = null;
 	var versionCheckInterval = null;
+	var messageBoxChordAudio = null;
 	var $window = $(window);
 
 	if (typeof $.fn.hasScrollBar === 'undefined') {
@@ -133,6 +134,24 @@
 	}
 
 	window.copyToClipboard = copyToClipboard;
+
+	function youtubeEmbedUrl(src) {
+		if (typeof src !== 'string') {
+			return src;
+		}
+
+		var match = src.match(/(?:youtube\.com\/embed\/|youtube-nocookie\.com\/embed\/)([A-Za-z0-9_-]+)/);
+
+		if (!match) {
+			return src;
+		}
+
+		return 'https://www.youtube-nocookie.com/embed/' + match[1] + '?autoplay=1&rel=0&modestbranding=1';
+	}
+
+	function isYoutubeEmbed(src) {
+		return typeof src === 'string' && /youtube(-nocookie)?\.com\/embed\//.test(src);
+	}
 
 	function getEaster(year) {
 
@@ -255,6 +274,10 @@
 		self.options = $.extend(true, {}, options);
 		self._foldersByPath = {};
 		self.useFolders = self._getUseFoldersSetting();
+		self.desktopIconSize = self._getDesktopIconSizeSetting();
+		self.desktopAutoArrange = self._getDesktopAutoArrangeSetting();
+		self.desktopAlignGrid = self._getDesktopAlignGridSetting();
+		self.desktopShowIcons = self._getDesktopShowIconsSetting();
 
 		// noinspection FallThroughInSwitchStatementJS
 		switch (self.options.theme) {
@@ -289,25 +312,7 @@
 			case 'theme-windows-95':
 			case 'theme-windows-98':
 			case 'theme-windows-me':
-				self.options.start = [{
-					name: 'Windows Update'
-				} , {
-					name: 'Programs'
-				} , {
-					name: 'Documents'
-				} , {
-					name: 'Settings'
-				} , {
-					name: 'Search'
-				} , {
-					name: 'Help'
-				} , {
-					name: 'Run...'
-				} , {
-					name: 'Log Off...'
-				} , {
-					name: 'Shut Down...'
-				}];
+				self.options.start = self._getWin9xStartMenuItems();
 				break;
 		}
 
@@ -335,14 +340,7 @@
 		var chat = null;
 
 		if (typeof self.options.start !== 'undefined') {
-			start = '<ul data-menu-lang="*" data-menu-type="start">';
-
-			for (var i in self.options.start) {
-				// noinspection JSUnfilteredForInLoop
-				start += '<li>' + self.options.start[i]['name'] + '</li>';
-			}
-
-			start += '</ul>';
+			start = self._buildStartMenuHtml();
 		}
 
 		self.$body.append('<div class="desktop" tabindex="0"></div><div class="taskbar">' + start + '</div>');
@@ -523,6 +521,12 @@
 			}
 
 			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['description'] === 'string' && icon_options['description'] !== '') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('description', icon_options['description']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
 			if (typeof icon_options['xmas'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
 				$icon.attr('data-xmas', icon_options['xmas'] ? 'true' : 'false').data('xmas', icon_options['xmas']);
@@ -548,7 +552,8 @@
 						path: $(this).data('name'),
 						width: $(this).data('width'),
 						height: $(this).data('height'),
-						singleinstance: $(this).data('singleinstance')
+						singleinstance: $(this).data('singleinstance'),
+						description: $(this).data('description') || ''
 					});
 
 					return;
@@ -721,10 +726,19 @@
 			}
 
 			self._applyDesktopIconOrder();
+			self._applyDesktopIconSize(self.desktopIconSize);
+			self._applyDesktopIconVisibility();
 		};
 
 		self.desktopIcons = desktopIcons;
+		self._applyDesktopIconSize(self.desktopIconSize);
 		renderDesktopIcons(self.desktopIcons);
+
+		if (self.desktopAutoArrange) {
+			self._autoArrangeDesktopIcons();
+		}
+
+		self._applyDesktopAlignGrid();
 
 		// noinspection JSUnresolvedFunction
 		self.$taskbar.taskbar({
@@ -771,7 +785,11 @@
 		});
 
 		self.$desktop.off('sortupdate.emuosIconOrder sortstop.emuosIconOrder').on('sortupdate.emuosIconOrder sortstop.emuosIconOrder', function() {
-			self._saveDesktopIconOrder();
+			if (self.desktopAutoArrange) {
+				self._autoArrangeDesktopIcons();
+			} else {
+				self._saveDesktopIconOrder();
+			}
 		});
 
 		if (typeof moment === 'function') {
@@ -1089,6 +1107,42 @@
 		var getDesktopMenu = function() {
 			var hasCustomWallpaper = !!self._getCustomWallpaper();
 			var desktopMenu = [{
+				title: 'View',
+				children: [{
+					title: 'Huge icons',
+					cmd: 'view-huge-icons'
+				} , {
+					title: 'Extra Large icons',
+					cmd: 'view-extra-large-icons'
+				} , {
+					title: 'Large icons',
+					cmd: 'view-large-icons'
+				} , {
+					title: 'Medium icons',
+					cmd: 'view-medium-icons'
+				} , {
+					title: 'Small icons',
+					cmd: 'view-small-icons'
+				} , {
+					title: '----'
+				} , {
+					title: 'Auto arrange icons',
+					cmd: 'view-auto-arrange'
+				} , {
+					title: 'Align icons to grid',
+					cmd: 'view-align-grid'
+				} , {
+					title: 'Reset icon positions',
+					cmd: 'view-reset-icon-positions'
+				} , {
+					title: '----'
+				} , {
+					title: 'Show desktop icons',
+					cmd: 'view-show-icons'
+				}]
+			} , {
+				title: '----'
+			} , {
 				title: 'Refresh',
 				cmd: 'refresh',
 				uiIcon: 'ui-icon-refresh'
@@ -1141,9 +1195,45 @@
 
 		self.$html.contextmenu({
 			delegate: '.emuos-desktop, .emuos-taskbar',
+			addClass: 'ui-contextmenu emuos-folder-menu emuos-desktop-context-menu',
+			show: { effect: 'show', duration: 0 },
+			hide: { effect: 'hide', duration: 0 },
 			menu: getDesktopMenu(),
+			open: function(event, ui) {
+				self._decorateDesktopContextMenu(ui.menu);
+				ui.menu.width(ui.menu.outerWidth());
+			},
 			select: function(e, ui) {
 				switch (ui.cmd) {
+					case 'view-huge-icons':
+					case 'view-extra-large-icons':
+					case 'view-large-icons':
+					case 'view-medium-icons':
+					case 'view-small-icons':
+						self._setDesktopIconSizeFromCommand(ui.cmd);
+						break;
+					case 'view-auto-arrange':
+						self.desktopAutoArrange = !self.desktopAutoArrange;
+						self._saveDesktopViewSettings();
+
+						if (self.desktopAutoArrange) {
+							self._autoArrangeDesktopIcons();
+						}
+
+						break;
+					case 'view-align-grid':
+						self.desktopAlignGrid = !self.desktopAlignGrid;
+						self._saveDesktopViewSettings();
+						self._applyDesktopAlignGrid();
+						break;
+					case 'view-reset-icon-positions':
+						self._resetDesktopIconPositions();
+						break;
+					case 'view-show-icons':
+						self.desktopShowIcons = !self.desktopShowIcons;
+						self._saveDesktopViewSettings();
+						self._applyDesktopIconVisibility();
+						break;
 					case 'refresh':
 						// noinspection JSUnresolvedFunction
 						window.location.reload();
@@ -1263,7 +1353,7 @@
 
 		Router.add(/(.*)/, function(route) {
 			var params = '';
-			var routeIcons = self._flattenDesktopIcons(self.options.icons);
+			var routeIcons = self._flattenDesktopIcons(self.options.icons, { expandNoFlatten: true });
 
 			if (~route.indexOf('?')) {
 				params = route.slice(route.lastIndexOf('?') + 1);
@@ -1468,6 +1558,44 @@
 		}
 	};
 
+	EmuOS.prototype._clearStoredDesktopIconOrder = function() {
+		if (typeof simplestorage === 'undefined') {
+			return;
+		}
+
+		if (typeof simplestorage.deleteKey === 'function') {
+			simplestorage.deleteKey('desktopIconOrder:folders');
+			simplestorage.deleteKey('desktopIconOrder:flat');
+		} else if (typeof simplestorage.set === 'function') {
+			simplestorage.set('desktopIconOrder:folders', []);
+			simplestorage.set('desktopIconOrder:flat', []);
+		}
+	};
+
+	EmuOS.prototype._resetDesktopIconPositions = function() {
+		var iconList = this._getDesktopIcons(this.options.icons, this.useFolders);
+		var self = this;
+
+		this._clearStoredDesktopIconOrder();
+
+		for (var i = 0; i < iconList.length; i++) {
+			var icon = iconList[i] || {};
+			var name = icon.name;
+
+			if (typeof name !== 'string' || name === '') {
+				continue;
+			}
+
+			var $icon = self.$desktop.children('a.emuos-desktop-icon').filter(function() {
+				return $(this).data('name') === name;
+			}).first();
+
+			if ($icon.length) {
+				self.$desktop.append($icon);
+			}
+		}
+	};
+
 	EmuOS.prototype._getCustomWallpaper = function() {
 		if (typeof simplestorage === 'undefined' || typeof simplestorage.get !== 'function') {
 			return '';
@@ -1578,8 +1706,179 @@
 		return typeof value === 'boolean' ? value : true;
 	};
 
-	EmuOS.prototype._flattenDesktopIcons = function(icons) {
+	EmuOS.prototype._getDesktopIconSizePresets = function() {
+		return {
+			'view-huge-icons': { size: 128, width: 154, height: 172 },
+			'view-extra-large-icons': { size: 64, width: 90, height: 108 },
+			'view-large-icons': { size: 48, width: 74, height: 92 },
+			'view-medium-icons': { size: 32, width: 58, height: 76 },
+			'view-small-icons': { size: 24, width: 50, height: 68 }
+		};
+	};
+
+	EmuOS.prototype._getDefaultDesktopIconSizeCommand = function() {
+		return 'view-large-icons';
+	};
+
+	EmuOS.prototype._getDefaultDesktopIconSize = function() {
+		var presets = this._getDesktopIconSizePresets();
+		var preset = presets[this._getDefaultDesktopIconSizeCommand()];
+
+		return preset ? preset.size : 48;
+	};
+
+	EmuOS.prototype._getDesktopIconSizeSetting = function() {
+		var defaultSize = this._getDefaultDesktopIconSize();
+
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.get !== 'function') {
+			return defaultSize;
+		}
+
+		var value = simplestorage.get('desktopIconSize');
+
+		if (value === undefined || value === null || value === '') {
+			return defaultSize;
+		}
+
+		value = parseInt(value, 10);
+		var validSizes = [128, 64, 48, 32, 24];
+
+		return validSizes.indexOf(value) !== -1 ? value : defaultSize;
+	};
+
+	EmuOS.prototype._getDesktopAutoArrangeSetting = function() {
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.get !== 'function') {
+			return false;
+		}
+
+		var value = simplestorage.get('desktopAutoArrange');
+
+		return typeof value === 'boolean' ? value : false;
+	};
+
+	EmuOS.prototype._getDesktopAlignGridSetting = function() {
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.get !== 'function') {
+			return false;
+		}
+
+		var value = simplestorage.get('desktopAlignGrid');
+
+		return typeof value === 'boolean' ? value : false;
+	};
+
+	EmuOS.prototype._getDesktopShowIconsSetting = function() {
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.get !== 'function') {
+			return true;
+		}
+
+		var value = simplestorage.get('desktopShowIcons');
+
+		return typeof value === 'boolean' ? value : true;
+	};
+
+	EmuOS.prototype._getDesktopIconSizeCommand = function() {
+		var presets = this._getDesktopIconSizePresets();
+		var size = this.desktopIconSize;
+
+		for (var cmd in presets) {
+			if (presets[cmd].size === size) {
+				return cmd;
+			}
+		}
+
+		return this._getDefaultDesktopIconSizeCommand();
+	};
+
+	EmuOS.prototype._saveDesktopViewSettings = function() {
+		if (typeof simplestorage === 'undefined' || typeof simplestorage.set !== 'function') {
+			return;
+		}
+
+		simplestorage.set('desktopIconSize', this.desktopIconSize);
+		simplestorage.set('desktopAutoArrange', this.desktopAutoArrange);
+		simplestorage.set('desktopAlignGrid', this.desktopAlignGrid);
+		simplestorage.set('desktopShowIcons', this.desktopShowIcons);
+	};
+
+	EmuOS.prototype._applyDesktopIconSize = function(size) {
+		var presets = this._getDesktopIconSizePresets();
+		var preset = null;
+
+		for (var cmd in presets) {
+			if (presets[cmd].size === size) {
+				preset = presets[cmd];
+				break;
+			}
+		}
+
+		if (!preset) {
+			preset = presets[this._getDefaultDesktopIconSizeCommand()];
+			size = preset.size;
+		}
+
+		this.desktopIconSize = size;
+
+		if (this.$desktop && this.$desktop.length) {
+			this.$desktop.css({
+				'--desktop-icon-size': preset.size + 'px',
+				'--desktop-icon-cell-width': preset.width + 'px',
+				'--desktop-icon-cell-height': preset.height + 'px'
+			});
+		}
+	};
+
+	EmuOS.prototype._setDesktopIconSizeFromCommand = function(cmd) {
+		var presets = this._getDesktopIconSizePresets();
+		var preset = presets[cmd];
+
+		if (!preset) {
+			return;
+		}
+
+		this.desktopIconSize = preset.size;
+		this._saveDesktopViewSettings();
+		this._applyDesktopIconSize(this.desktopIconSize);
+	};
+
+	EmuOS.prototype._applyDesktopIconVisibility = function() {
+		if (!this.$desktop || !this.$desktop.length) {
+			return;
+		}
+
+		this.$desktop.children('a.emuos-desktop-icon').toggle(this.desktopShowIcons !== false);
+	};
+
+	EmuOS.prototype._applyDesktopAlignGrid = function() {
+		if (!this.$desktop || !this.$desktop.length) {
+			return;
+		}
+
+		this.$desktop.toggleClass('emuos-desktop-align-grid', !!this.desktopAlignGrid);
+	};
+
+	EmuOS.prototype._autoArrangeDesktopIcons = function() {
+		if (!this.$desktop || !this.$desktop.length) {
+			return;
+		}
+
+		var $icons = this.$desktop.children('a.emuos-desktop-icon');
+		var sorted = $icons.get().sort(function(a, b) {
+			var nameA = ($(a).data('name') || $(a).find('span').text() || '').toString().toLowerCase();
+			var nameB = ($(b).data('name') || $(b).find('span').text() || '').toString().toLowerCase();
+
+			return nameA.localeCompare(nameB);
+		});
+
+		for (var i = 0; i < sorted.length; i++) {
+			this.$desktop.append(sorted[i]);
+		}
+
+		this._saveDesktopIconOrder();
+	};
+
+	EmuOS.prototype._flattenDesktopIcons = function(icons, options) {
 		var flattened = [];
+		var expandNoFlatten = options && options.expandNoFlatten === true;
 
 		if (!Array.isArray(icons)) {
 			return flattened;
@@ -1590,8 +1889,13 @@
 			var isFolder = icon.folder === true || Array.isArray(icon.items);
 
 			if (isFolder) {
+				if (icon.no_flatten === true && !expandNoFlatten) {
+					flattened.push(icon);
+					continue;
+				}
+
 				var childItems = Array.isArray(icon.items) ? icon.items : [];
-				var children = this._flattenDesktopIcons(childItems);
+				var children = this._flattenDesktopIcons(childItems, options);
 
 				for (var j = 0; j < children.length; j++) {
 					flattened.push(children[j]);
@@ -1631,7 +1935,8 @@
 			items: hasItems ? folder.items : [],
 			width: folder.width,
 			height: folder.height,
-			singleinstance: folder.singleinstance
+			singleinstance: folder.singleinstance,
+			description: typeof folder.description === 'string' ? folder.description : ''
 		};
 
 		if (!hasItems) {
@@ -1726,6 +2031,7 @@
 				path: state.path || (definition ? definition.path : (state.title || 'Folder')),
 				width: typeof state.width !== 'undefined' ? state.width : (definition ? definition.width : undefined),
 				height: typeof state.height !== 'undefined' ? state.height : (definition ? definition.height : undefined),
+				description: definition && typeof definition.description === 'string' ? definition.description : '',
 				iconSize: state.iconSize,
 				restoreState: state,
 				singleinstance: false
@@ -1770,7 +2076,8 @@
 				path: normalizedPath,
 				width: item.width,
 				height: item.height,
-				singleinstance: item.singleinstance
+				singleinstance: item.singleinstance,
+				description: typeof item.description === 'string' ? item.description : ''
 			});
 
 			return;
@@ -1817,11 +2124,1949 @@
 		});
 	};
 
+	EmuOS.prototype._ensureDisabledInsetFilter = function() {
+		if (document.getElementById('disabled-inset-filter')) {
+			return;
+		}
+
+		var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+		svg.setAttribute('aria-hidden', 'true');
+		svg.setAttribute('style', 'position:absolute;width:0;height:0;overflow:hidden;pointer-events:none');
+
+		svg.innerHTML = '<defs>' +
+			'<filter id="disabled-inset-filter" x="0" y="0" width="1" height="1">' +
+				'<feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -2 -2 -2 4 0" result="dark-parts-isolated"></feColorMatrix>' +
+				'<feFlood result="shadow-color" flood-color="#808080"></feFlood>' +
+				'<feFlood result="hilight-color" flood-color="#ffffff"></feFlood>' +
+				'<feOffset in="dark-parts-isolated" dx="1" dy="1" result="offset"></feOffset>' +
+				'<feComposite in="hilight-color" in2="offset" operator="in" result="hilight-colored-offset"></feComposite>' +
+				'<feComposite in="shadow-color" in2="dark-parts-isolated" operator="in" result="shadow-colored"></feComposite>' +
+				'<feMerge>' +
+					'<feMergeNode in="hilight-colored-offset"></feMergeNode>' +
+					'<feMergeNode in="shadow-colored"></feMergeNode>' +
+				'</feMerge>' +
+			'</filter>' +
+		'</defs>';
+
+		document.body.appendChild(svg);
+
+		$window.off('resize.emuosDisabledInsetFilter').on('resize.emuosDisabledInsetFilter', function() {
+			var filter = document.getElementById('disabled-inset-filter');
+
+			if (filter) {
+				filter.setAttribute('x', '0');
+			}
+		});
+	};
+
+	EmuOS.prototype._formatFolderAddress = function(path) {
+		if (typeof path !== 'string' || path === '') {
+			return 'C:\\Desktop\\';
+		}
+
+		return 'C:\\Desktop\\' + path.replace(/\//g, '\\') + '\\';
+	};
+
+	EmuOS.prototype._getFolderLocation = function($folder) {
+		var location = $folder.data('folderLocation');
+
+		if (!location) {
+			return {
+				path: $folder.data('folderPath') || '',
+				title: $folder.find('.emuos-folder-sidebar-title').first().text() || '',
+				icon: 'assets/images/icons/desktop/folder-open',
+				items: $folder.data('folderItems') || [],
+				description: ''
+			};
+		}
+
+		return location;
+	};
+
+	EmuOS.prototype._findFolderLocationInTree = function(items, targetPath, basePath) {
+		var self = this;
+
+		if (!Array.isArray(items)) {
+			return null;
+		}
+
+		for (var i = 0; i < items.length; i++) {
+			var item = items[i] || {};
+			var name = typeof item.name !== 'undefined' ? item.name : '';
+			var itemPath = basePath ? basePath + '\\' + name : name;
+			var isFolder = item.folder === true || Array.isArray(item.items);
+
+			if (itemPath === targetPath && isFolder) {
+				return {
+					path: itemPath,
+					title: name,
+					icon: self._resolveIcon(item.icon, 'assets/images/icons/desktop/folder'),
+					items: Array.isArray(item.items) ? item.items : [],
+					description: typeof item.description === 'string' ? item.description : ''
+				};
+			}
+
+			if (Array.isArray(item.items)) {
+				var found = self._findFolderLocationInTree(item.items, targetPath, itemPath);
+
+				if (found) {
+					return found;
+				}
+			}
+		}
+
+		return null;
+	};
+
+	EmuOS.prototype._resolveParentFolderLocation = function($folder) {
+		var self = this;
+		var current = self._getFolderLocation($folder);
+		var home = $folder.data('folderHome') || current;
+		var currentPath = current.path || '';
+
+		if (!currentPath || currentPath === home.path) {
+			return null;
+		}
+
+		var parts = currentPath.split('\\');
+
+		parts.pop();
+
+		var parentPath = parts.join('\\');
+
+		if (parentPath === home.path || parentPath === '') {
+			return {
+				path: home.path,
+				title: home.title,
+				icon: home.icon,
+				items: home.items,
+				description: typeof home.description === 'string' ? home.description : ''
+			};
+		}
+
+		return self._findFolderLocationInTree(home.items, parentPath, home.path);
+	};
+
+	EmuOS.prototype._getFolderWindowWidget = function($folder) {
+		return $folder.closest('.emuos-window-content').first();
+	};
+
+	EmuOS.prototype._positionFolderDropdownMenu = function($folder, $anchor, $menu) {
+		var folderOffset = $folder.offset();
+		var anchorOffset = $anchor.offset();
+
+		if (!folderOffset || !anchorOffset) {
+			return;
+		}
+
+		$menu.css({
+			top: (anchorOffset.top - folderOffset.top + $anchor.outerHeight()) + 'px',
+			left: (anchorOffset.left - folderOffset.left) + 'px'
+		});
+	};
+
+	EmuOS.prototype._applyFolderLocation = function($folder, location) {
+		var self = this;
+		var icon = self._resolveIcon(location.icon, 'assets/images/icons/desktop/folder');
+
+		if (icon === 'assets/images/icons/desktop/folder') {
+			icon = 'assets/images/icons/desktop/folder-open';
+		}
+
+		var iconUrl = icon + ($sys.browser.isIE ? '.png' : '.ico');
+		var address = self._formatFolderAddress(location.path);
+
+		location = {
+			path: location.path || '',
+			title: location.title || 'Folder',
+			icon: icon,
+			items: Array.isArray(location.items) ? location.items : [],
+			description: typeof location.description === 'string' ? location.description : ''
+		};
+
+		$folder.data('folderLocation', location);
+		$folder.data('folderPath', location.path);
+		$folder.data('folderItems', location.items);
+
+		$folder.find('.emuos-folder-address-input').first().val(address);
+		$folder.find('.emuos-folder-address-icon').css('background-image', 'url(' + iconUrl + ')');
+		$folder.find('.emuos-folder-sidebar-title').first().text(location.title);
+		$folder.find('.emuos-folder-sidebar-head .icon').css('background-image', 'url(' + iconUrl + ')');
+		$folder.find('.emuos-folder-sidebar-info').empty();
+		$folder.find('.emuos-folder-sidebar-prompt').show().text('Select an item to view its description.');
+		self._setFolderSidebarDescription($folder, location.description);
+		$folder.find('.emuos-folder-status-middle').first().text('');
+
+		var $windowWidget = self._getFolderWindowWidget($folder);
+
+		if ($windowWidget.length) {
+			$windowWidget.window('option', 'title', location.title);
+		}
+
+		self._renderFolderItems($folder);
+		self._updateFolderNavButtons($folder);
+	};
+
+	EmuOS.prototype._updateFolderNavButtons = function($folder) {
+		var history = $folder.data('folderHistory') || { back: [], forward: [] };
+		var canBack = history.back.length > 0;
+		var canForward = history.forward.length > 0;
+		var canUp = this._resolveParentFolderLocation($folder) !== null;
+
+		$folder.find('.emuos-folder-btn-back, .emuos-folder-btn-back-dropdown').toggleClass('is-disabled', !canBack).attr('aria-disabled', canBack ? 'false' : 'true');
+		$folder.find('.emuos-folder-btn-forward, .emuos-folder-btn-forward-dropdown').toggleClass('is-disabled', !canForward).attr('aria-disabled', canForward ? 'false' : 'true');
+		$folder.find('.emuos-folder-btn-up').toggleClass('is-disabled', !canUp).attr('aria-disabled', canUp ? 'false' : 'true');
+	};
+
+	EmuOS.prototype._updateFolderSelectionButtons = function($folder) {
+		var hasSelection = $folder.find('.emuos-folder-item.ui-selected').length > 0;
+
+		$folder.find('.emuos-folder-btn-cut, .emuos-folder-btn-copy, .emuos-folder-btn-paste, .emuos-folder-btn-undo, .emuos-folder-btn-delete')
+			.toggleClass('is-disabled', !hasSelection)
+			.attr('aria-disabled', hasSelection ? 'false' : 'true');
+	};
+
+	EmuOS.prototype._navigateFolder = function($folder, location, action) {
+		var history = $folder.data('folderHistory');
+
+		if (!history) {
+			history = { back: [], forward: [] };
+			$folder.data('folderHistory', history);
+		}
+
+		var current = this._getFolderLocation($folder);
+
+		if (action === 'go') {
+			history.back.push(current);
+			history.forward.length = 0;
+		} else if (action === 'back') {
+			if (!history.back.length) {
+				return;
+			}
+
+			history.forward.unshift(current);
+			location = history.back.pop();
+		} else if (action === 'forward') {
+			if (!history.forward.length) {
+				return;
+			}
+
+			history.back.push(current);
+			location = history.forward.shift();
+		}
+
+		this._applyFolderLocation($folder, location);
+	};
+
+	EmuOS.prototype._jumpFolderHistory = function($folder, direction, index) {
+		var history = $folder.data('folderHistory') || { back: [], forward: [] };
+		var current = this._getFolderLocation($folder);
+		var stack = direction === 'back' ? history.back : history.forward;
+		var target = stack[index];
+
+		if (!target) {
+			return;
+		}
+
+		if (direction === 'back') {
+			history.forward = history.back.slice(index + 1).concat([current]).concat(history.forward);
+			history.back = history.back.slice(0, index);
+		} else {
+			history.back = history.back.concat([current]).concat(history.forward.slice(0, index));
+			history.forward = history.forward.slice(index + 1);
+		}
+
+		this._applyFolderLocation($folder, target);
+	};
+
+	EmuOS.prototype._initFolderNavigation = function($folder, location) {
+		$folder.data('folderHistory', { back: [], forward: [] });
+		$folder.data('folderHome', location);
+		$folder.data('folderLocation', location);
+		this._applyFolderLocation($folder, location);
+	};
+
+	EmuOS.prototype._bindFolderNavigation = function($folder, folderId, windowIcon) {
+		var self = this;
+		var namespace = '.emuosFolderNav' + folderId;
+		var $historyMenu = null;
+
+		var closeHistoryMenu = function() {
+			if ($historyMenu) {
+				$historyMenu.remove();
+				$historyMenu = null;
+			}
+		};
+
+		var openHistoryMenu = function($anchor, direction) {
+			var history = $folder.data('folderHistory') || { back: [], forward: [] };
+			var stack = direction === 'back' ? history.back.slice() : history.forward.slice();
+
+			closeHistoryMenu();
+
+			if (!stack.length) {
+				return;
+			}
+
+			stack.reverse();
+
+			$historyMenu = $('<div class="emuos-folder-views-menu emuos-folder-history-menu"></div>');
+
+			for (var i = 0; i < stack.length; i++) {
+				var entry = stack[i];
+				var label = self._formatFolderAddress(entry.path);
+				var stackIndex = stack.length - 1 - i;
+
+				$historyMenu.append(
+					'<button type="button" class="emuos-folder-history-item" data-direction="' + direction + '" data-index="' + stackIndex + '">' +
+						$('<div/>').text(label).html() +
+					'</button>'
+				);
+			}
+
+			$folder.append($historyMenu);
+			self._positionFolderDropdownMenu($folder, $anchor, $historyMenu);
+
+			$historyMenu.on('click', '.emuos-folder-history-item', function() {
+				self._jumpFolderHistory($folder, $(this).data('direction'), parseInt($(this).data('index'), 10));
+				closeHistoryMenu();
+				$folder.trigger('emuosFolderLocationChange');
+			});
+		};
+
+		$folder.off('click' + namespace, '.emuos-folder-btn-back:not(.is-disabled)');
+		$folder.on('click' + namespace, '.emuos-folder-btn-back:not(.is-disabled)', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			closeHistoryMenu();
+			self._navigateFolder($folder, null, 'back');
+			$folder.trigger('emuosFolderLocationChange');
+		});
+
+		$folder.off('click' + namespace, '.emuos-folder-btn-forward:not(.is-disabled)');
+		$folder.on('click' + namespace, '.emuos-folder-btn-forward:not(.is-disabled)', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			closeHistoryMenu();
+			self._navigateFolder($folder, null, 'forward');
+			$folder.trigger('emuosFolderLocationChange');
+		});
+
+		$folder.off('click' + namespace, '.emuos-folder-btn-back-dropdown:not(.is-disabled)');
+		$folder.on('click' + namespace, '.emuos-folder-btn-back-dropdown:not(.is-disabled)', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			closeHistoryMenu();
+			openHistoryMenu($(this).closest('.emuos-folder-toolbar-compound'), 'back');
+		});
+
+		$folder.off('click' + namespace, '.emuos-folder-btn-forward-dropdown:not(.is-disabled)');
+		$folder.on('click' + namespace, '.emuos-folder-btn-forward-dropdown:not(.is-disabled)', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			closeHistoryMenu();
+			openHistoryMenu($(this).closest('.emuos-folder-toolbar-compound'), 'forward');
+		});
+
+		$folder.off('click' + namespace, '.emuos-folder-btn-up:not(.is-disabled)');
+		$folder.on('click' + namespace, '.emuos-folder-btn-up:not(.is-disabled)', function(e) {
+			var parent = self._resolveParentFolderLocation($folder);
+
+			e.preventDefault();
+			e.stopPropagation();
+			closeHistoryMenu();
+
+			if (parent) {
+				self._navigateFolder($folder, parent, 'go');
+				$folder.trigger('emuosFolderLocationChange');
+			}
+		});
+
+		$(document).off('click.emuosFolderHistory' + folderId).on('click.emuosFolderHistory' + folderId, function(e) {
+			if ($historyMenu && !$(e.target).closest('.emuos-folder-history-menu, .emuos-folder-toolbar-compound').length) {
+				closeHistoryMenu();
+			}
+		});
+
+		$folder.off('remove' + namespace).on('remove' + namespace, function() {
+			closeHistoryMenu();
+			$(document).off('click.emuosFolderHistory' + folderId);
+			$folder.off(namespace);
+		});
+	};
+
+	EmuOS.prototype._stripHtml = function(html) {
+		if (typeof html !== 'string') {
+			return '';
+		}
+
+		return html.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '').replace(/\s+\n/g, '\n').trim();
+	};
+
+	EmuOS.prototype._formatSidebarCredits = function(credits) {
+		if (typeof credits !== 'string' || credits === '') {
+			return '';
+		}
+
+		credits = credits.replace(/^Collection:\s*(?:<a\b[^>]*>[\s\S]*?<\/a>|[^<]*)(?:\s*<br\s*\/?>\s*)+/i, '');
+
+		var $wrap = $('<div/>').html(credits);
+
+		$wrap.find('a[href]').each(function() {
+			var href = this.getAttribute('href');
+
+			if (href) {
+				$(this).text(href);
+			}
+		});
+
+		return $wrap.html();
+	};
+
+	EmuOS.prototype._setFolderSidebarDescription = function($folder, description) {
+		var $description = $folder.find('.emuos-folder-sidebar-description').first();
+
+		if (typeof description !== 'string' || description === '') {
+			$description.hide().empty();
+			return;
+		}
+
+		$description.html(description).show();
+	};
+
+	EmuOS.prototype._folderToolbarSpritePositions = [0, 1, 44, 21, 22, 23, 24, 26, 31, 38];
+
+	EmuOS.prototype._folderToolbarSpriteStyle = function(spriteIndex) {
+		return ' style="background-position:' + (-spriteIndex * 20) + 'px 0"';
+	};
+
+	EmuOS.prototype._setFolderToolbarIcons = function($folder) {
+		var sprites = this._folderToolbarSpritePositions;
+
+		$folder.find('.emuos-folder-toolbar-buttons .emuos-folder-toolbar-button').each(function(i) {
+			if (typeof sprites[i] === 'undefined') {
+				return;
+			}
+
+			$(this).find('> .emuos-folder-toolbar-icon').first().css('background-position', (-sprites[i] * 20) + 'px 0');
+		});
+	};
+
+	EmuOS.prototype._formatFolderItemSize = function(item) {
+		if (typeof item.sizeText === 'string') {
+			return item.sizeText;
+		}
+
+		if (typeof item.size === 'number') {
+			if (item.size >= 1048576) {
+				return (item.size / 1048576).toFixed(2) + ' MB';
+			}
+
+			if (item.size >= 1024) {
+				return Math.round(item.size / 1024) + ' KB';
+			}
+
+			return item.size + ' bytes';
+		}
+
+		return '';
+	};
+
+	EmuOS.prototype._getFolderItemType = function(item) {
+		if (item.folder === true || Array.isArray(item.items)) {
+			return 'File Folder';
+		}
+
+		if (typeof item.title === 'string' && item.title !== '') {
+			return item.title;
+		}
+
+		if (typeof item.link === 'string') {
+			if (~item.link.indexOf('youtube-nocookie.com') || ~item.link.indexOf('youtube.com')) {
+				return 'YouTube Video';
+			}
+
+			if (item.link.indexOf('http') === 0) {
+				return 'Internet Shortcut';
+			}
+		}
+
+		return 'Application';
+	};
+
+	EmuOS.prototype._getFolderItemModified = function(item) {
+		if (typeof item.modified === 'string' && item.modified !== '') {
+			return item.modified;
+		}
+
+		if (typeof item.credits === 'string') {
+			var match = item.credits.match(/Released:\s*([^<]+)/i);
+
+			if (match) {
+				return match[1].trim();
+			}
+		}
+
+		return '';
+	};
+
+	EmuOS.prototype._getFolderIconViewMetrics = function(viewMode) {
+		var metrics = {
+			small: { size: 16, cell: 150, row: 17 },
+			list: { size: 16, cell: 150, row: 17 },
+			medium: { size: 32, cell: 72, row: 80 },
+			large: { size: 64, cell: 96, row: 122 },
+			extralarge: { size: 96, cell: 112, row: 140 },
+			huge: { size: 128, cell: 148, row: 158 }
+		};
+
+		return metrics[viewMode] || metrics.large;
+	};
+
+	EmuOS.prototype._resolveFolderViewModeFromIconSize = function(iconSize) {
+		var size = parseInt(iconSize, 10);
+
+		if (isNaN(size) || size <= 16) {
+			return 'small';
+		}
+
+		if (size <= 32) {
+			return 'medium';
+		}
+
+		if (size <= 64) {
+			return 'large';
+		}
+
+		if (size <= 96) {
+			return 'extralarge';
+		}
+
+		return 'huge';
+	};
+
+	EmuOS.prototype._renderFolderItems = function($folder) {
+		var self = this;
+		var items = $folder.data('folderItems') || [];
+		var viewMode = $folder.attr('data-view-mode') || 'large';
+		var $items = $folder.find('.emuos-folder-items').first();
+		var itemCount = 0;
+		var iconMetrics = self._getFolderIconViewMetrics(viewMode);
+		var size = iconMetrics.size;
+		var cell = iconMetrics.cell;
+		var row = iconMetrics.row;
+
+		$items.empty().attr('data-view-mode', viewMode);
+
+		if (viewMode === 'details') {
+			var $details = $('<div class="emuos-folder-details"></div>');
+			var $header = $('<div class="emuos-folder-details-header">' +
+				'<span class="col-name">Name</span>' +
+				'<span class="col-size">Size</span>' +
+				'<span class="col-type">Type</span>' +
+				'<span class="col-modified">Modified</span>' +
+			'</div>');
+			var $body = $('<div class="emuos-folder-details-body"></div>');
+
+			$details.append($header).append($body);
+			$items.append($details);
+
+			for (var d = 0; d < items.length; d++) {
+				var detailItem = items[d] || {};
+				var detailIsFolder = detailItem.folder === true || Array.isArray(detailItem.items);
+				var detailIcon = self._resolveIcon(detailItem.icon, detailIsFolder ? 'assets/images/icons/desktop/folder' : 'assets/images/icons/desktop/joystick');
+				var detailName = typeof detailItem.name !== 'undefined' ? detailItem.name : 'Untitled';
+				var detailIconClasses = 'icon overlay ribbon' + (detailItem.shortcut ? ' shortcut' : '') + (detailItem.prototype ? ' prototype' : '') + (detailItem.beta ? ' beta' : '') + (detailItem.new ? ' new' : '');
+				var detailTitleAttr = detailItem.title ? ' data-title="' + detailItem.title + '"' : '';
+				var detailSize = self._formatFolderItemSize(detailItem);
+				var detailType = self._getFolderItemType(detailItem);
+				var detailModified = self._getFolderItemModified(detailItem);
+				var $row = $('<a class="emuos-folder-item emuos-folder-details-row" href="javascript:"' + detailTitleAttr + '>' +
+					'<span class="col-name"><i class="' + detailIconClasses + '"></i><span class="label"></span></span>' +
+					'<span class="col-size"></span>' +
+					'<span class="col-type"></span>' +
+					'<span class="col-modified"></span>' +
+				'</a>');
+
+				$row.find('i.icon').css('background-image', 'url(' + detailIcon + ($sys.browser.isIE ? '.png' : '.ico') + ')');
+				$row.find('.label').text(detailName);
+				$row.find('.col-size').text(detailSize !== '' ? detailSize : detailIsFolder ? '' : '—');
+				$row.find('.col-type').text(detailType);
+				$row.find('.col-modified').text(detailModified !== '' ? detailModified : '—');
+				$row.data('item', detailItem);
+				$body.append($row);
+				itemCount++;
+			}
+		} else {
+			$folder.get(0).style.setProperty('--folder-icon-size', size + 'px');
+			$folder.get(0).style.setProperty('--folder-cell-width', cell + 'px');
+			$folder.get(0).style.setProperty('--folder-row-height', row + 'px');
+
+			for (var i = 0; i < items.length; i++) {
+				var item = items[i] || {};
+				var isFolder = item.folder === true || Array.isArray(item.items);
+				var itemIcon = self._resolveIcon(item.icon, isFolder ? 'assets/images/icons/desktop/folder' : 'assets/images/icons/desktop/joystick');
+				var itemName = typeof item.name !== 'undefined' ? item.name : 'Untitled';
+				var iconClasses = 'icon overlay ribbon' + (item.shortcut ? ' shortcut' : '') + (item.prototype ? ' prototype' : '') + (item.beta ? ' beta' : '') + (item.new ? ' new' : '');
+				var titleAttr = item.title ? ' data-title="' + item.title + '"' : '';
+				var $item = $('<a class="emuos-folder-item" href="javascript:"' + titleAttr + '><i class="' + iconClasses + '"></i><span></span></a>');
+
+				$item.find('i.icon').css('background-image', 'url(' + itemIcon + ($sys.browser.isIE ? '.png' : '.ico') + ')');
+				$item.find('span').text(itemName);
+				$item.data('item', item);
+				$items.append($item);
+				itemCount++;
+			}
+		}
+
+		$folder.find('.emuos-folder-status-left').first().text(itemCount + ' object(s)');
+		this._updateFolderSelectionButtons($folder);
+	};
+
+	EmuOS.prototype._setFolderViewMode = function($folder, mode) {
+		$folder.attr('data-view-mode', mode);
+		this._renderFolderItems($folder);
+	};
+
+	EmuOS.prototype._buildFolderToolbarButton = function(className, label, spriteIndex) {
+		return '<button type="button" class="emuos-folder-toolbar-button lightweight ' + className + '" title="' + label + '">' +
+			'<span class="emuos-folder-toolbar-icon"' + this._folderToolbarSpriteStyle(spriteIndex) + '></span>' +
+			'<span class="emuos-folder-toolbar-label">' + label + '</span>' +
+		'</button>';
+	};
+
+	EmuOS.prototype._buildFolderToolbarSplitButton = function(mainClassName, label, dropdownClassName, spriteIndex) {
+		return '<div class="emuos-folder-toolbar-compound">' +
+			'<button type="button" class="emuos-folder-toolbar-button lightweight ' + mainClassName + '" title="' + label + '">' +
+				'<span class="emuos-folder-toolbar-icon"' + this._folderToolbarSpriteStyle(spriteIndex) + '></span>' +
+				'<span class="emuos-folder-toolbar-label">' + label + '</span>' +
+			'</button>' +
+			'<button type="button" class="emuos-folder-toolbar-dropdown lightweight ' + dropdownClassName + '" title="' + label + '" aria-haspopup="true">' +
+				'<svg class="emuos-folder-toolbar-dropdown-icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+					'<path transform="rotate(90 8 8)" d="m6 4 4 4-4 4z"></path>' +
+				'</svg>' +
+			'</button>' +
+		'</div>';
+	};
+
+	EmuOS.prototype._cycleFolderViewMode = function($folder) {
+		var modes = ['huge', 'extralarge', 'large', 'medium', 'small', 'list', 'details'];
+		var current = $folder.attr('data-view-mode') || 'large';
+		var index = modes.indexOf(current);
+		var nextIndex = index === -1 ? 0 : (index + 1) % modes.length;
+
+		this._setFolderViewMode($folder, modes[nextIndex]);
+	};
+
+	EmuOS.prototype._fitMessageBoxWindow = function($win) {
+		var $box = $win.find('.emuos-message-box').first();
+		var $titlebar = $win.find('.ui-dialog-titlebar').first();
+
+		if (!$box.length) {
+			return;
+		}
+
+		$win.css('width', 'auto');
+		$box.css('width', 'max-content');
+		var contentWidth = Math.ceil($box.outerWidth(true));
+		var contentHeight = Math.ceil($box.outerHeight(true));
+		var titlebarHeight = $titlebar.length ? $titlebar.outerHeight() : 0;
+		var chromeWidth = Math.max(0, $win.outerWidth() - $win.width());
+		var chromeHeight = Math.max(0, $win.outerHeight() - $win.height());
+		var width = Math.min(400, contentWidth + chromeWidth);
+		var height = titlebarHeight + contentHeight + chromeHeight;
+
+		$win.window('option', {
+			width: width,
+			height: height
+		});
+		$box.css('width', '100%');
+	};
+
+	EmuOS.prototype._playMessageBoxSound = function() {
+		if (!messageBoxChordAudio) {
+			messageBoxChordAudio = new Audio('assets/sounds/CHORD.WAV');
+		}
+
+		try {
+			messageBoxChordAudio.currentTime = 0;
+			var playPromise = messageBoxChordAudio.play();
+
+			if (playPromise && typeof playPromise.catch === 'function') {
+				playPromise.catch(function(error) {
+					console.log('Failed to play ' + messageBoxChordAudio.src + ': ', error);
+				});
+			}
+		} catch (error) {
+			console.log('Failed to play ' + messageBoxChordAudio.src + ': ', error);
+		}
+	};
+
+	EmuOS.prototype.messageBox = function(options) {
+		var self = this;
+		var title = typeof options.title !== 'undefined' ? options.title : 'EmuOS';
+		var message = typeof options.message !== 'undefined' ? options.message : '';
+		var icon = typeof options.icon !== 'undefined' ? options.icon : 'error';
+		var iconUrl = 'assets/images/icons/' + icon + '-32x32.svg';
+		var escapedMessage = $('<div/>').text(message).html();
+		var content = '' +
+			'<div class="emuos-message-box">' +
+				'<div class="emuos-message-box-body">' +
+					'<img class="emuos-message-box-icon" width="32" height="32" src="' + iconUrl + '" alt="">' +
+					'<p class="emuos-message-box-text">' + escapedMessage + '</p>' +
+				'</div>' +
+				'<div class="emuos-message-box-buttons">' +
+					'<button type="button" class="emuos-message-box-ok">OK</button>' +
+				'</div>' +
+			'</div>';
+		var windowIcon = typeof options.windowIcon !== 'undefined' ? options.windowIcon : 'assets/images/icons/desktop/folder-open';
+
+		self._playMessageBoxSound();
+
+		var instance = self.window({
+			title: title,
+			icon: windowIcon,
+			content: content,
+			width: 'auto',
+			height: 'auto',
+			widgetClass: 'emuos-message-box-window-preparing',
+			position: {
+				my: 'center',
+				at: 'center',
+				of: self.$window.get(0),
+				collision: 'fit'
+			}
+		});
+		var $win = instance.element;
+
+		$win.window('option', {
+			maximizable: false,
+			minimizable: false,
+			resizable: false,
+			minHeight: null,
+			minWidth: null,
+			height: 'auto'
+		});
+		$win.find('.emuos-window-content').first().addClass('emuos-message-box-window');
+
+		var $ok = $win.find('.emuos-message-box-ok').first();
+
+		$ok.on('click', function() {
+			$win.window('close');
+		});
+
+		self._fitMessageBoxWindow($win);
+		$win.window('refreshPosition');
+		$win.window('option', 'widgetClass', '');
+		$ok.trigger('focus');
+
+		return instance;
+	};
+
+	EmuOS.prototype._folderMenuNotSupported = function(title, windowIcon) {
+		this.messageBox({
+			title: title,
+			message: 'Not supported.',
+			icon: 'error',
+			windowIcon: windowIcon
+		});
+	};
+
+	EmuOS.prototype._getFolderItemContextMenu = function(item) {
+		var self = this;
+		var isFolder = item && (item.folder === true || Array.isArray(item.items));
+
+		return [
+			{
+				title: self._formatFolderMenuLabel('E&xplore'),
+				cmd: 'explore',
+				addClass: isFolder ? 'emuos-folder-context-menu-default' : ''
+			},
+			{
+				title: self._formatFolderMenuLabel('&Open'),
+				cmd: 'open',
+				addClass: !isFolder ? 'emuos-folder-context-menu-default' : ''
+			},
+			{ title: '----' },
+			{ title: self._formatFolderMenuLabel('&Find...'), cmd: 'find' },
+			{ title: self._formatFolderMenuLabel('Scan for &Viruses'), cmd: 'scan-viruses' },
+			{ title: self._formatFolderMenuLabel('Add to &Zip'), cmd: 'add-to-zip' },
+			{ title: '----' },
+			{ title: self._formatFolderMenuLabel('S&haring...'), cmd: 'sharing' },
+			{ title: '----' },
+			{
+				title: self._formatFolderMenuLabel('Send &To'),
+				cmd: 'send-to',
+				children: [
+					{ title: self._formatFolderMenuLabel('&Desktop'), cmd: 'send-to-desktop' },
+					{ title: self._formatFolderMenuLabel('3½ Floppy (A:)'), cmd: 'send-to-floppy' },
+					{ title: self._formatFolderMenuLabel('&Mail Recipient'), cmd: 'send-to-mail' }
+				]
+			},
+			{ title: '----' },
+			{ title: self._formatFolderMenuLabel('Cu&t'), cmd: 'cut' },
+			{ title: self._formatFolderMenuLabel('&Copy'), cmd: 'copy' },
+			{ title: '----' },
+			{ title: self._formatFolderMenuLabel('Create &Shortcut'), cmd: 'create-shortcut' },
+			{ title: self._formatFolderMenuLabel('&Delete'), cmd: 'delete' },
+			{ title: self._formatFolderMenuLabel('Rena&me'), cmd: 'rename' },
+			{ title: '----' },
+			{ title: self._formatFolderMenuLabel('P&roperties'), cmd: 'properties' }
+		];
+	};
+
+	EmuOS.prototype._activateFolderItem = function($folder, item, action) {
+		var self = this;
+		var name = typeof item.name !== 'undefined' ? item.name : 'Untitled';
+		var hasItems = Array.isArray(item.items);
+		var isFolder = item.folder === true || hasItems;
+		var currentPath = self._getFolderLocation($folder).path || '';
+		var normalizedPath = currentPath ? currentPath + '\\' + name : name;
+		var itemIcon = self._resolveIcon(item.icon, isFolder ? 'assets/images/icons/desktop/folder' : 'assets/images/icons/desktop/joystick');
+
+		if (action === 'explore') {
+			if (isFolder) {
+				self._launchFolderItem(item, currentPath);
+			}
+
+			return;
+		}
+
+		if (isFolder) {
+			self._navigateFolder($folder, {
+				path: normalizedPath,
+				title: name,
+				icon: itemIcon,
+				items: hasItems ? item.items : [],
+				description: typeof item.description === 'string' ? item.description : ''
+			}, 'go');
+			$folder.trigger('emuosFolderLocationChange');
+			return;
+		}
+
+		self._launchFolderItem(item, currentPath);
+	};
+
+	EmuOS.prototype._getWin9xStartMenuItems = function() {
+		return [{
+			name: 'Windows Update',
+			icon: 'update',
+			mnemonic: 'U'
+		}, {
+			separator: true
+		}, {
+			name: 'Programs',
+			icon: 'programs',
+			mnemonic: 'P',
+			hasSubmenu: true,
+			submenu: [{
+				name: 'StartUp',
+				icon: 'programs-small',
+				mnemonic: 'S'
+			}]
+		}, {
+			name: 'Favorites',
+			icon: 'favorites',
+			mnemonic: 'F',
+			hasSubmenu: true,
+			submenu: []
+		}, {
+			name: 'Documents',
+			icon: 'documents',
+			mnemonic: 'D',
+			hasSubmenu: true,
+			submenu: [{
+				name: 'My Documents',
+				icon: 'folder',
+				mnemonic: 'M'
+			}]
+		}, {
+			name: 'Settings',
+			icon: 'settings',
+			mnemonic: 'S',
+			hasSubmenu: true,
+			submenu: [{
+				name: 'Control Panel',
+				icon: 'controlpanel',
+				mnemonic: 'C'
+			}]
+		}, {
+			name: 'Find',
+			icon: 'find',
+			mnemonic: 'F',
+			hasSubmenu: true,
+			submenu: []
+		}, {
+			name: 'Help',
+			icon: 'help',
+			mnemonic: 'H'
+		}, {
+			name: 'Run',
+			icon: 'run',
+			mnemonic: 'R'
+		}, {
+			separator: true
+		}, {
+			name: 'Log Off Guest...',
+			icon: 'logoff',
+			mnemonic: 'L'
+		}, {
+			name: 'Shut Down...',
+			icon: 'shutdown',
+			mnemonic: 'u'
+		}];
+	};
+
+	EmuOS.prototype._formatStartMenuLabel = function(name, mnemonic) {
+		if (!mnemonic || !name) {
+			return name || '';
+		}
+
+		var index = -1;
+		var nameLower = name.toLowerCase();
+		var mnemonicLower = mnemonic.toLowerCase();
+		var startAt = 0;
+
+		while (startAt < name.length) {
+			index = nameLower.indexOf(mnemonicLower, startAt);
+
+			if (index === -1) {
+				break;
+			}
+
+			if (name[index] === '&') {
+				startAt = index + 1;
+				continue;
+			}
+
+			return name.slice(0, index) +
+				'<span class="emuos-start-menu-mnemonic">' + name.charAt(index) + '</span>' +
+				name.slice(index + 1);
+		}
+
+		return name;
+	};
+
+	EmuOS.prototype._appendStartMenuItemHtml = function(items) {
+		var html = '';
+		var self = this;
+
+		for (var i = 0; i < items.length; i++) {
+			var item = items[i];
+
+			if (item.separator) {
+				html += '<li class="ui-menu-divider"></li>';
+				continue;
+			}
+
+			html += '<li';
+
+			if (item.icon) {
+				html += ' data-start-icon="' + item.icon + '"';
+			}
+
+			if (item.disabled) {
+				html += ' class="ui-state-disabled" aria-disabled="true"';
+			}
+
+			html += '><span class="emuos-start-menu-item-text">' + self._formatStartMenuLabel(item.name, item.mnemonic) + '</span>';
+
+			if ((item.submenu && item.submenu.length) || item.hasSubmenu) {
+				html += '<ul>';
+
+				if (item.submenu && item.submenu.length) {
+					html += self._appendStartMenuItemHtml(item.submenu);
+				} else {
+					html += '<li class="ui-state-disabled emuos-start-menu-empty-item" aria-disabled="true">' +
+						'<span class="emuos-start-menu-item-text">(Empty)</span></li>';
+				}
+
+				html += '</ul>';
+			}
+
+			html += '</li>';
+		}
+
+		return html;
+	};
+
+	EmuOS.prototype._buildStartMenuHtml = function() {
+		var items = this.options.start;
+
+		if (!items || !items.length) {
+			return '';
+		}
+
+		return '<ul data-menu-lang="*" data-menu-type="start" class="emuos-start-menu">' +
+			this._appendStartMenuItemHtml(items) +
+			'</ul>';
+	};
+
+	EmuOS.prototype._decorateFolderContextMenu = function($menu) {
+		$menu.addClass('emuos-folder-menu emuos-folder-context-menu');
+		$menu.find('ul.ui-menu').addClass('emuos-folder-menu');
+
+		$menu.find('.ui-menu-item').each(function() {
+			var $li = $(this);
+			var $wrapper;
+
+			if ($li.hasClass('ui-menu-divider')) {
+				return;
+			}
+
+			$wrapper = $li.children('.ui-menu-item-wrapper').first();
+
+			if (!$wrapper.length) {
+				$wrapper = $li.children('div, a').first();
+			}
+
+			if (!$wrapper.length || $wrapper.find('.emuos-folder-menu-label').length) {
+				return;
+			}
+
+			var labelHtml = $wrapper.html();
+
+			$wrapper.children('.ui-icon').remove();
+			$wrapper.empty().append(
+				'<span class="emuos-folder-menu-checkbox-area" aria-hidden="true"></span>',
+				$('<span class="emuos-folder-menu-label"></span>').html(labelHtml)
+			);
+
+			if ($li.children('ul').length) {
+				$li.addClass('emuos-folder-menu-has-submenu');
+			}
+		});
+
+		this._syncFolderMenuSubmenuArrows($menu);
+	};
+
+	EmuOS.prototype._decorateDesktopContextMenu = function($menu) {
+		this._decorateFolderContextMenu($menu);
+		$menu.addClass('emuos-desktop-context-menu');
+		this._syncDesktopContextMenuStates($menu);
+	};
+
+	EmuOS.prototype._syncDesktopContextMenuStates = function($menu) {
+		var self = this;
+		var themeCommands = {
+			basic: 'theme-basic',
+			'windows-3': 'theme-windows-3',
+			'windows-95': 'theme-windows-95',
+			'windows-98': 'theme-windows-98',
+			'windows-me': 'theme-windows-me'
+		};
+		var iconSizeCommands = [
+			'view-huge-icons',
+			'view-extra-large-icons',
+			'view-large-icons',
+			'view-medium-icons',
+			'view-small-icons'
+		];
+		var currentIconSizeCmd = self._getDesktopIconSizeCommand();
+
+		$menu.find('li[data-command]').each(function() {
+			var $item = $(this);
+			var cmd = $item.attr('data-command');
+			var $checkbox = $item.find('.emuos-folder-menu-checkbox-area').first();
+
+			if (iconSizeCommands.indexOf(cmd) !== -1) {
+				$item
+					.addClass('emuos-folder-menu-radio')
+					.removeClass('emuos-folder-menu-checkable')
+					.attr('aria-checked', cmd === currentIconSizeCmd ? 'true' : 'false');
+				$checkbox.addClass('radio');
+				return;
+			}
+
+			if (cmd === 'view-auto-arrange' || cmd === 'view-align-grid' || cmd === 'view-show-icons') {
+				var checked = false;
+
+				if (cmd === 'view-auto-arrange') {
+					checked = self.desktopAutoArrange;
+				} else if (cmd === 'view-align-grid') {
+					checked = self.desktopAlignGrid;
+				} else if (cmd === 'view-show-icons') {
+					checked = self.desktopShowIcons !== false;
+				}
+
+				$item
+					.addClass('emuos-folder-menu-checkable')
+					.removeClass('emuos-folder-menu-radio')
+					.attr('aria-checked', checked ? 'true' : 'false');
+				$checkbox.removeClass('radio');
+				return;
+			}
+
+			if (cmd === 'toggle-folders') {
+				$item
+					.addClass('emuos-folder-menu-checkable')
+					.removeClass('emuos-folder-menu-radio')
+					.attr('aria-checked', self.useFolders ? 'true' : 'false');
+				$checkbox.removeClass('radio');
+				return;
+			}
+
+			if (themeCommands[cmd]) {
+				$item
+					.addClass('emuos-folder-menu-radio')
+					.removeClass('emuos-folder-menu-checkable')
+					.attr('aria-checked', self.$html.hasClass(themeCommands[cmd]) ? 'true' : 'false');
+				$checkbox.addClass('radio');
+			}
+		});
+	};
+
+	EmuOS.prototype._bindFolderItemContextMenu = function($folder, options) {
+		var self = this;
+		var folderId = options.folderId;
+		var windowTitle = options.title;
+		var windowIcon = options.icon;
+		var onSelectItem = options.onSelectItem;
+
+		if ($folder.data('folderItemContextMenuBound')) {
+			return;
+		}
+
+		$folder.contextmenu({
+			delegate: '.emuos-folder-item',
+			addClass: 'ui-contextmenu emuos-folder-menu emuos-folder-context-menu',
+			show: { effect: 'show', duration: 0 },
+			hide: { effect: 'hide', duration: 0 },
+			menu: [],
+			beforeOpen: function(event, ui) {
+				var $target = $(ui.target).closest('.emuos-folder-item');
+
+				if (!$target.length) {
+					return false;
+				}
+
+				if (typeof onSelectItem === 'function') {
+					onSelectItem($target);
+				}
+
+				$(this).contextmenu('replaceMenu', self._getFolderItemContextMenu($target.data('item') || {}));
+			},
+			open: function(event, ui) {
+				var $menu = ui.menu;
+
+				self._decorateFolderContextMenu($menu);
+				$menu.width($menu.outerWidth());
+			},
+			select: function(e, ui) {
+				var item = ui.target.data('item') || {};
+
+				switch (ui.cmd) {
+					case 'explore':
+						if (item.folder === true || Array.isArray(item.items)) {
+							self._activateFolderItem($folder, item, 'explore');
+						} else {
+							self._folderMenuNotSupported(windowTitle, windowIcon);
+						}
+						break;
+					case 'open':
+						self._activateFolderItem($folder, item, 'open');
+						break;
+					default:
+						self._folderMenuNotSupported(windowTitle, windowIcon);
+						break;
+				}
+
+				return true;
+			}
+		});
+
+		$folder.data('folderItemContextMenuBound', true);
+	};
+
+	EmuOS.prototype._formatFolderMenuLabel = function(label) {
+		if (!label) {
+			return '';
+		}
+
+		return String(label)
+			.replace(/&([^&\s])/g, '<span class="emuos-folder-menu-mnemonic">$1</span>')
+			.replace(/&&/g, '&');
+	};
+
+	EmuOS.prototype._formatFolderMenuButtonLabel = function(label) {
+		if (!label) {
+			return '';
+		}
+
+		return String(label).replace(/&([^&\s])/g, '$1').replace(/&&/g, '&');
+	};
+
+	EmuOS.prototype._isFolderMenuItemEnabled = function(item) {
+		if (!item || item.divider) {
+			return true;
+		}
+
+		if (typeof item.enabled === 'function') {
+			return item.enabled();
+		}
+
+		if (typeof item.enabled === 'boolean') {
+			return item.enabled;
+		}
+
+		return true;
+	};
+
+	EmuOS.prototype._appendFolderMenuItem = function($ul, item) {
+		var self = this;
+		var $li;
+		var $div;
+
+		if (!item) {
+			return;
+		}
+
+		if (item.divider) {
+			$ul.append('<li class="ui-menu-divider"></li>');
+			return;
+		}
+
+		if (item.radioItems) {
+			$.each(item.radioItems, function(_, radioItem) {
+				self._appendFolderMenuItem($ul, $.extend({}, radioItem, {
+					radioGroup: item
+				}));
+			});
+			return;
+		}
+
+		$li = $('<li></li>');
+		$div = $('<div></div>');
+		$div.append(
+			'<span class="emuos-folder-menu-checkbox-area' + (item.radioGroup ? ' radio' : '') + '" aria-hidden="true"></span>'
+		);
+		$div.append(
+			$('<span class="emuos-folder-menu-label"></span>').html(self._formatFolderMenuLabel(item.label || ''))
+		);
+
+		if (item.description) {
+			$li.attr('data-description', item.description);
+		}
+
+		if (item.shortcutLabel) {
+			$div.append($('<span class="emuos-folder-menu-shortcut"></span>').text(item.shortcutLabel));
+		}
+
+		if (item.checkbox) {
+			$li.addClass('emuos-folder-menu-checkable');
+		} else if (item.radioGroup) {
+			$li.addClass('emuos-folder-menu-radio');
+		}
+
+		if (!self._isFolderMenuItemEnabled(item)) {
+			$li.addClass('ui-state-disabled');
+		}
+
+		$li.data('folderMenuItem', item);
+		$li.append($div);
+
+		if (item.submenu && item.submenu.length) {
+			$li.addClass('emuos-folder-menu-has-submenu');
+			$li.append(self._buildFolderMenuList(item.submenu));
+		}
+
+		$ul.append($li);
+	};
+
+	EmuOS.prototype._buildFolderMenuList = function(items) {
+		var self = this;
+		var $ul = $('<ul></ul>');
+
+		$.each(items, function(_, item) {
+			self._appendFolderMenuItem($ul, item);
+		});
+
+		return $ul;
+	};
+
+	EmuOS.prototype._syncFolderMenuSubmenuArrows = function($menu) {
+		$menu.find('li').each(function() {
+			var $item = $(this);
+
+			if ($item.hasClass('ui-menu-divider')) {
+				return;
+			}
+
+			$item.toggleClass('emuos-folder-menu-has-submenu', $item.children('ul').length > 0);
+			$item.children('.ui-menu-icon').remove();
+			$item.children('.ui-menu-item-wrapper, div, a').first().find('.ui-menu-icon').remove();
+		});
+	};
+
+	EmuOS.prototype._refreshFolderMenuStates = function($menu) {
+		var self = this;
+
+		$menu.find('.ui-menu-item').each(function() {
+			var $item = $(this);
+			var item = $item.data('folderMenuItem');
+			var checked;
+
+			if (!item) {
+				return;
+			}
+
+			$item.toggleClass('ui-state-disabled', !self._isFolderMenuItemEnabled(item));
+
+			if (item.checkbox || item.radioGroup) {
+				checked = item.checkbox ? !!item.checkbox.check() : item.radioGroup.getValue() === item.value;
+				$item.attr('aria-checked', checked ? 'true' : 'false');
+			} else {
+				$item.removeAttr('aria-checked');
+			}
+		});
+
+		self._syncFolderMenuSubmenuArrows($menu);
+	};
+
+	EmuOS.prototype._getFolderViewsMenuItems = function($folder) {
+		var self = this;
+
+		return [
+			{
+				label: 'as &Web Page',
+				checkbox: {
+					check: function() {
+						return $folder.attr('data-web-view') === 'true';
+					},
+					toggle: function() {
+						var enabled = $folder.attr('data-web-view') !== 'true';
+
+						$folder.attr('data-web-view', enabled ? 'true' : 'false');
+					}
+				},
+				description: 'Displays items in Web View.'
+			},
+			{ divider: true },
+			{
+				radioItems: [
+					{
+						label: 'Hu&ge Icons',
+						value: 'huge',
+						description: 'Displays items using huge icons (128 x 128).'
+					},
+					{
+						label: 'E&xtra Large Icons',
+						value: 'extralarge',
+						description: 'Displays items using extra large icons (96 x 96).'
+					},
+					{
+						label: 'Lar&ge Icons',
+						value: 'large',
+						description: 'Displays items by using large icons (64 x 64).'
+					},
+					{
+						label: '&Medium Icons',
+						value: 'medium',
+						description: 'Displays items by using medium icons (32 x 32).'
+					},
+					{
+						label: 'S&mall Icons',
+						value: 'small',
+						description: 'Displays items by using small icons (16 x 16).'
+					},
+					{
+						label: '&List',
+						value: 'list',
+						description: 'Displays items in a list.'
+					},
+					{
+						label: '&Details',
+						value: 'details',
+						description: 'Displays information about each item in the window.'
+					}
+				],
+				getValue: function() {
+					return $folder.attr('data-view-mode') || 'large';
+				},
+				setValue: function(viewMode) {
+					self._setFolderViewMode($folder, viewMode);
+				}
+			}
+		];
+	};
+
+	EmuOS.prototype._buildFolderMenuDefinitions = function($folder, title, windowIcon) {
+		var self = this;
+		var viewsMenuItems = self._getFolderViewsMenuItems($folder);
+
+		return {
+			'&File': [
+				{
+					label: '&New',
+					submenu: [
+						{ label: '&Folder', enabled: false },
+						{ label: '&Shortcut', enabled: false },
+						{ divider: true },
+						{ label: 'Text Document', enabled: false },
+						{ label: 'WordPad Document', enabled: false },
+						{ label: 'Bitmap Image', enabled: false },
+						{ label: 'Wave Sound', enabled: false },
+						{ label: 'Microsoft Data Link', enabled: false }
+					]
+				},
+				{ divider: true },
+				{
+					label: 'Create &Shortcut',
+					enabled: false,
+					description: 'Creates shortcuts to the selected items.'
+				},
+				{
+					label: '&Delete',
+					enabled: false,
+					description: 'Deletes the selected items.'
+				},
+				{
+					label: 'Rena&me',
+					enabled: false,
+					description: 'Renames the selected item.'
+				},
+				{
+					label: 'P&roperties',
+					action: function() {
+						self._folderMenuNotSupported(title, windowIcon);
+					},
+					description: 'Displays the properties of the selected items.'
+				},
+				{ divider: true },
+				{
+					label: '&Work Offline',
+					checkbox: {
+						check: function() {
+							return $folder.attr('data-work-offline') === 'true';
+						},
+						toggle: function() {
+							var enabled = $folder.attr('data-work-offline') !== 'true';
+							$folder.attr('data-work-offline', enabled ? 'true' : 'false');
+						}
+					},
+					description: 'Shows Web pages without downloading them.'
+				},
+				{
+					label: '&Close',
+					action: function() {
+						self._getFolderWindowWidget($folder).window('close');
+					},
+					description: 'Closes the window.'
+				}
+			],
+			'&Edit': [
+				{
+					label: '&Undo',
+					enabled: false
+				},
+				{ divider: true },
+				{
+					label: 'Cu&t',
+					shortcutLabel: 'Ctrl+X',
+					enabled: false,
+					description: 'Removes the selected items and copies them onto the Clipboard.'
+				},
+				{
+					label: '&Copy',
+					shortcutLabel: 'Ctrl+C',
+					enabled: false,
+					description: 'Copies the selected items to the Clipboard. To put them in the new location, use the Paste command.'
+				},
+				{
+					label: '&Paste',
+					shortcutLabel: 'Ctrl+V',
+					enabled: false,
+					description: 'Inserts the items you have copied or cut into the selected location.'
+				},
+				{
+					label: 'Paste &Shortcut',
+					enabled: false,
+					description: 'Creates shortcuts to the items you have copied or cut into the selected location.'
+				},
+				{ divider: true },
+				{
+					label: 'Select &All',
+					shortcutLabel: 'Ctrl+A',
+					action: function() {
+						$folder.find('.emuos-folder-item').addClass('ui-selected');
+						$folder.find('.emuos-folder-items').first().trigger('focus');
+						self._updateFolderSelectionButtons($folder);
+					},
+					description: 'Selects all items in window.'
+				},
+				{
+					label: '&Invert Selection',
+					action: function() {
+						$folder.find('.emuos-folder-item').toggleClass('ui-selected');
+						$folder.find('.emuos-folder-items').first().trigger('focus');
+						self._updateFolderSelectionButtons($folder);
+					},
+					description: 'Reverses which items are selected and which are not.'
+				}
+			],
+			'&View': [
+				{
+					label: '&Toolbars',
+					submenu: [
+						{
+							label: '&Standard Buttons',
+							checkbox: {
+								check: function() {
+									return $folder.find('.emuos-folder-toolbar-row.emuos-folder-toolbar').is(':visible');
+								},
+								toggle: function() {
+									$folder.find('.emuos-folder-toolbar-row.emuos-folder-toolbar').toggle();
+								}
+							},
+							description: 'Displays the Standard Buttons toolbar.'
+						},
+						{
+							label: '&Address Bar',
+							checkbox: {
+								check: function() {
+									return $folder.find('.emuos-folder-toolbar-row.emuos-folder-addressbar').is(':visible');
+								},
+								toggle: function() {
+									$folder.find('.emuos-folder-toolbar-row.emuos-folder-addressbar').toggle();
+								}
+							},
+							description: 'Displays the Address bar.'
+						},
+						{
+							label: '&Links',
+							enabled: false,
+							description: 'Displays the Quick Links bar.'
+						},
+						{
+							label: '&Radio',
+							enabled: false
+						},
+						{ divider: true },
+						{
+							label: '&Text Labels',
+							checkbox: {
+								check: function() {
+									return !$folder.hasClass('emuos-folder-hide-toolbar-labels');
+								},
+								toggle: function() {
+									$folder.toggleClass('emuos-folder-hide-toolbar-labels');
+								}
+							},
+							description: 'Adds a text label under each toolbar button.'
+						}
+					],
+					description: 'Shows or hides toolbars.'
+				},
+				{
+					label: 'Status &Bar',
+					checkbox: {
+						check: function() {
+							return $folder.find('.emuos-folder-status').is(':visible');
+						},
+						toggle: function() {
+							$folder.find('.emuos-folder-status').toggle();
+						}
+					},
+					description: 'Shows or hides the status bar.'
+				},
+				{ divider: true },
+				viewsMenuItems[0],
+				viewsMenuItems[1],
+				viewsMenuItems[2],
+				{ divider: true },
+				{
+					label: '&Refresh',
+					shortcutLabel: 'F5',
+					action: function() {
+						self._renderFolderItems($folder);
+					},
+					description: 'Refreshes the contents of the current pane.'
+				},
+				{
+					label: 'Folder &Options...',
+					enabled: false,
+					description: 'Enables you to change settings.'
+				}
+			],
+			'&Go': [
+				{
+					label: '&Back',
+					shortcutLabel: 'Alt+Left Arrow',
+					action: function() {
+						self._navigateFolder($folder, null, 'back');
+						$folder.trigger('emuosFolderLocationChange');
+					},
+					enabled: function() {
+						var history = $folder.data('folderHistory') || { back: [] };
+						return history.back.length > 0;
+					},
+					description: 'Goes to the previous page.'
+				},
+				{
+					label: '&Forward',
+					shortcutLabel: 'Alt+Right Arrow',
+					action: function() {
+						self._navigateFolder($folder, null, 'forward');
+						$folder.trigger('emuosFolderLocationChange');
+					},
+					enabled: function() {
+						var history = $folder.data('folderHistory') || { forward: [] };
+						return history.forward.length > 0;
+					},
+					description: 'Goes to the next page.'
+				},
+				{
+					label: '&Up One Level',
+					action: function() {
+						var parentLocation = self._resolveParentFolderLocation($folder);
+
+						if (parentLocation) {
+							self._navigateFolder($folder, parentLocation, 'go');
+							$folder.trigger('emuosFolderLocationChange');
+						}
+					},
+					enabled: function() {
+						return self._resolveParentFolderLocation($folder) !== null;
+					},
+					description: 'Goes up one level.'
+				}
+			],
+			'F&avorites': [
+				{
+					label: '&Add to Favorites...',
+					enabled: false,
+					description: 'Adds the current page to your Favorites list.'
+				},
+				{
+					label: '&Organize Favorites...',
+					enabled: false,
+					description: 'Opens the Favorites folder.'
+				},
+				{ divider: true },
+				{
+					label: '(Empty)',
+					enabled: false
+				}
+			],
+			'&Tools': [
+				{
+					label: '&Find',
+					submenu: [
+						{ label: '&Files or Folders...', enabled: false },
+						{ label: '&Computer...', enabled: false },
+						{ label: 'On the &Internet...', enabled: false }
+					]
+				},
+				{ divider: true },
+				{
+					label: 'Map &Network Drive...',
+					enabled: false,
+					description: 'Connects to a network drive.'
+				},
+				{
+					label: '&Disconnect Network Drive...',
+					enabled: false,
+					description: 'Disconnects from a network drive.'
+				},
+				{
+					label: '&Synchronize...',
+					enabled: false,
+					description: 'Updates all offline content.'
+				}
+			],
+			'&Help': [
+				{
+					label: '&Help Topics',
+					enabled: false,
+					description: 'Opens Help.'
+				},
+				{ divider: true },
+				{
+					label: '&About EmuOS',
+					action: function() {
+						self._folderMenuNotSupported(title, windowIcon);
+					},
+					description: 'Displays program information, version number, and copyright.'
+				}
+			]
+		};
+	};
+
+	EmuOS.prototype._initFolderMenuBar = function($folder, folderId, title, windowIcon, $statusMiddle) {
+		if (!$.fn.menu) {
+			return;
+		}
+
+		var self = this;
+		var namespace = '.emuosFolderMenu' + folderId;
+		var menuDefinitions = self._buildFolderMenuDefinitions($folder, title, windowIcon);
+		var $menubar = $folder.find('.emuos-folder-menubar-items').first();
+		var $windowFrame = $folder.closest('.emuos-window').first();
+		var $menus = $();
+		var $activeButton = $();
+		var $activeMenu = $();
+
+		var decorateFolderMenuTree = function($menu) {
+			$menu.addClass('emuos-folder-menu');
+			$menu.find('ul.ui-menu').addClass('emuos-folder-menu');
+		};
+
+		var closeMenus = function() {
+			$menus.filter(':visible').each(function() {
+				var $menu = $(this);
+
+				try {
+					$menu.menu('collapseAll', true);
+				} catch (e) {}
+
+				$menu.hide();
+			});
+
+			$menubar.find('.emuos-folder-menubar-item').removeClass('ui-state-active');
+			$activeButton = $();
+			$activeMenu = $();
+			$statusMiddle.text('');
+		};
+
+		var openMenu = function($button, $menu) {
+			var wasVisible = $menu.is(':visible') && $activeMenu[0] === $menu[0];
+
+			closeMenus();
+
+			if (wasVisible) {
+				return;
+			}
+
+			self._refreshFolderMenuStates($menu);
+			$menu.menu('refresh');
+			decorateFolderMenuTree($menu);
+			self._syncFolderMenuSubmenuArrows($menu);
+
+			$button.addClass('ui-state-active');
+			$activeButton = $button;
+			$activeMenu = $menu;
+
+			$menu.show().css('zIndex', (parseInt($windowFrame.css('zIndex'), 10) || 100) + 20);
+
+			$menu.width($menu.outerWidth());
+
+			$menu.position({
+				my: 'left top',
+				at: 'left bottom',
+				of: $button,
+				collision: 'fit flip'
+			});
+		};
+
+		$menubar.empty();
+
+		$.each(menuDefinitions, function(menuKey, items) {
+			var menuId = folderId + '-menu-' + menuKey.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
+			var $button = $('<button type="button" class="emuos-folder-menubar-item lightweight"></button>')
+				.text(self._formatFolderMenuButtonLabel(menuKey))
+				.attr('data-folder-menu-id', menuId)
+				.appendTo($menubar);
+			var $menu = self._buildFolderMenuList(items)
+				.addClass('emuos-folder-menu')
+				.attr('id', menuId)
+				.hide()
+				.appendTo($folder);
+
+			$menus = $menus.add($menu);
+
+			$menu.menu({
+				role: 'menu',
+				focus: function(event, ui) {
+					var description = ui.item.attr('data-description') || '';
+
+					$statusMiddle.text(description);
+				},
+				blur: function() {
+					if (!$menus.filter(':visible').length) {
+						$statusMiddle.text('');
+					}
+				},
+				select: function(event, ui) {
+					var $item = ui.item;
+					var item = $item.data('folderMenuItem');
+
+					if (!item || $item.hasClass('ui-state-disabled')) {
+						event.preventDefault();
+						return false;
+					}
+
+					if (item.submenu && item.submenu.length) {
+						return;
+					}
+
+					if (item.checkbox) {
+						item.checkbox.toggle();
+						self._refreshFolderMenuStates($menu);
+						$menu.menu('refresh');
+						event.preventDefault();
+						return false;
+					}
+
+					if (item.radioGroup) {
+						item.radioGroup.setValue(item.value);
+						self._refreshFolderMenuStates($menu);
+						$menu.menu('refresh');
+						event.preventDefault();
+						return false;
+					}
+
+					if (typeof item.action === 'function') {
+						item.action();
+					}
+
+					closeMenus();
+				}
+			});
+
+			decorateFolderMenuTree($menu);
+
+			$button.on('mousedown' + namespace, function(e) {
+				if (e.button !== 0) {
+					return;
+				}
+
+				e.preventDefault();
+				openMenu($button, $menu);
+			});
+
+			$button.on('mouseenter' + namespace, function() {
+				if ($menus.filter(':visible').length) {
+					openMenu($button, $menu);
+				}
+			});
+		});
+
+		$(document).on('mousedown' + namespace, function(e) {
+			if ($(e.target).closest($folder.find('.emuos-folder-menubar-items, .emuos-folder-menu')).length) {
+				return;
+			}
+
+			closeMenus();
+		});
+
+		if ($windowFrame.length) {
+			$windowFrame.on('mousedown' + namespace, function(e) {
+				if (!$(e.target).closest('.emuos-folder-menubar-item, .emuos-folder-menu').length) {
+					closeMenus();
+				}
+			});
+		}
+
+		$folder.data('folderMenuApi', {
+			close: closeMenus,
+			destroy: function() {
+				closeMenus();
+				$(document).off(namespace);
+				if ($windowFrame.length) {
+					$windowFrame.off(namespace);
+				}
+				$menus.each(function() {
+					var $menu = $(this);
+
+					if ($menu.data('ui-menu')) {
+						$menu.menu('destroy');
+					}
+
+					$menu.remove();
+				});
+				$menubar.find('.emuos-folder-menubar-item').off(namespace);
+			}
+		});
+	};
+
+	EmuOS.prototype._bindFolderToolbarButtons = function($folder, folderId, title, windowIcon) {
+		var self = this;
+		var namespace = '.emuosFolderToolbar' + folderId;
+
+		$folder.off('click' + namespace, '.emuos-folder-toolbar-button:not(.emuos-folder-btn-views):not(.emuos-folder-btn-back):not(.emuos-folder-btn-forward):not(.is-disabled)');
+		$folder.on('click' + namespace, '.emuos-folder-toolbar-button:not(.emuos-folder-btn-views):not(.emuos-folder-btn-back):not(.emuos-folder-btn-forward):not(.is-disabled)', function(e) {
+			e.preventDefault();
+
+			self.messageBox({
+				title: title,
+				message: 'Not supported.',
+				icon: 'error',
+				windowIcon: windowIcon
+			});
+		});
+	};
+
+	EmuOS.prototype._bindFolderToolbarDrag = function($folder, folderId) {
+		var namespace = '.emuosFolderToolbarDrag' + folderId;
+		var $win = $(window);
+
+		$folder.off('pointerdown' + namespace, '.emuos-folder-drag-handle');
+		$folder.on('pointerdown' + namespace, '.emuos-folder-drag-handle', function(event) {
+			var originalEvent = event.originalEvent || event;
+			var pointerId = typeof event.pointerId !== 'undefined' ? event.pointerId : originalEvent.pointerId;
+			var toolbarEl = event.currentTarget.closest('.emuos-folder-toolbar-row');
+
+			if (!toolbarEl || typeof pointerId === 'undefined') {
+				return;
+			}
+
+			function releaseDrag(e) {
+				var releaseEvent = e.originalEvent || e;
+				var releasePointerId = typeof e.pointerId !== 'undefined' ? e.pointerId : releaseEvent.pointerId;
+
+				if (releasePointerId === pointerId) {
+					$win.off('pointerup' + namespace, releaseDrag);
+					$win.off('pointercancel' + namespace, releaseDrag);
+					$win.off('pointermove' + namespace, drag);
+					toolbarEl.style.cursor = '';
+				}
+			}
+
+			function drag(e) {
+				var elUnderPointer = document.elementFromPoint(e.clientX, e.clientY);
+
+				if (!elUnderPointer) {
+					return;
+				}
+
+				var toolbarElUnderPointer = elUnderPointer.closest('.emuos-folder-toolbar-row');
+
+				if (!toolbarElUnderPointer || toolbarElUnderPointer === toolbarEl || toolbarElUnderPointer.parentNode !== toolbarEl.parentNode) {
+					return;
+				}
+
+				var toolbars = toolbarEl.parentNode;
+				var toolbarElNextSibling = toolbarEl.nextElementSibling;
+				var toolbarElUnderPointerNextSibling = toolbarElUnderPointer.nextElementSibling;
+
+				toolbars.insertBefore(toolbarElUnderPointer, toolbarElNextSibling);
+				toolbars.insertBefore(toolbarEl, toolbarElUnderPointerNextSibling);
+			}
+
+			$win.on('pointerup' + namespace, releaseDrag);
+			$win.on('pointercancel' + namespace, releaseDrag);
+			$win.on('pointermove' + namespace, drag);
+			toolbarEl.style.cursor = 'move';
+
+			if (event.currentTarget.setPointerCapture) {
+				event.currentTarget.setPointerCapture(pointerId);
+			}
+
+			event.preventDefault();
+		});
+
+		$folder.off('selectstart' + namespace, '.emuos-folder-toolbar-row');
+		$folder.on('selectstart' + namespace, '.emuos-folder-toolbar-row', function(e) {
+			e.preventDefault();
+		});
+	};
+
 	EmuOS.prototype._setFolderIconSize = function($folder, size) {
 		var normalized = parseInt(size, 10);
 
 		if (isNaN(normalized)) {
-			normalized = 64;
+			normalized = 96;
 		}
 
 		normalized = Math.max(16, Math.min(128, normalized));
@@ -1838,87 +4083,191 @@
 
 	EmuOS.prototype.folder = function(options) {
 		var self = this;
+
+		self._ensureDisabledInsetFilter();
+
 		var title = typeof options.title !== 'undefined' ? options.title : 'Folder';
 		var icon = self._resolveIcon(options.icon, 'assets/images/icons/desktop/folder');
+
 		if (icon === 'assets/images/icons/desktop/folder') {
 			icon = 'assets/images/icons/desktop/folder-open';
 		}
-		var width = typeof options.width !== 'undefined' ? options.width : 700;
-		var height = typeof options.height !== 'undefined' ? options.height : 520;
+
+		var width = typeof options.width !== 'undefined' ? options.width : 780;
+		var height = typeof options.height !== 'undefined' ? options.height : 560;
 		var path = typeof options.path !== 'undefined' ? options.path : title;
 		var items = Array.isArray(options.items) ? options.items : [];
+		var description = typeof options.description === 'string' ? options.description : '';
 		var singleinstance = typeof options.singleinstance !== 'undefined' ? options.singleinstance : false;
 		var restoreState = typeof options.restoreState !== 'undefined' ? options.restoreState : null;
 		var folderId = 'folder-' + Date.now() + '-' + Math.floor(Math.random() * 100000);
 		var iconUrl = icon + ($sys.browser.isIE ? '.png' : '.ico');
+		var myComputerIconUrl = 'assets/images/themes/icons/windows-9x/my-computer.ico';
+		var address = self._formatFolderAddress(path);
 		var content = '' +
-			'<div class="emuos-folder-window" data-folder-id="' + folderId + '">' +
-				'<div class="emuos-folder-menubar">' +
-					'<button type="button" class="emuos-folder-menubar-item">File</button>' +
-					'<button type="button" class="emuos-folder-menubar-item">Edit</button>' +
-					'<button type="button" class="emuos-folder-menubar-item">View</button>' +
-					'<button type="button" class="emuos-folder-menubar-item">Favorites</button>' +
-					'<button type="button" class="emuos-folder-menubar-item">Tools</button>' +
-					'<button type="button" class="emuos-folder-menubar-item">Help</button>' +
-				'</div>' +
-				'<div class="emuos-folder-toolbar">' +
-					'<button type="button" class="emuos-folder-toolbar-button">Back</button>' +
-					'<button type="button" class="emuos-folder-toolbar-button">Up</button>' +
-					'<button type="button" class="emuos-folder-toolbar-button">Search</button>' +
-					'<button type="button" class="emuos-folder-toolbar-button">Folders</button>' +
-					'<button type="button" class="emuos-folder-toolbar-button">History</button>' +
-					'<span class="emuos-folder-toolbar-sep"></span>' +
-					'<button type="button" class="emuos-folder-toolbar-button emuos-folder-icon-size-down">-</button>' +
-					'<span class="emuos-folder-icon-size-value">64x64</span>' +
-					'<button type="button" class="emuos-folder-toolbar-button emuos-folder-icon-size-up">+</button>' +
-				'</div>' +
-				'<div class="emuos-folder-addressbar">' +
-					'<span class="emuos-folder-toolbar-label">Address</span>' +
-					'<span class="emuos-folder-address">' + path + '</span>' +
-					'<button type="button" class="emuos-folder-go">Go</button>' +
-				'</div>' +
-				'<div class="emuos-folder-main">' +
-					'<div class="emuos-folder-sidebar">' +
-						'<div class="emuos-folder-sidebar-head">' +
-							'<i class="icon" style="background-image: url(' + iconUrl + ');"></i>' +
-							'<strong>' + title + '</strong>' +
+			'<div class="emuos-folder-window" data-folder-id="' + folderId + '" data-web-view="true" data-view-mode="large" tabindex="0">' +
+				'<div class="emuos-folder-toolbars">' +
+					'<div class="emuos-folder-toolbar-row emuos-folder-menubar">' +
+						'<div class="emuos-folder-drag-handle" aria-hidden="true"></div>' +
+						'<div class="emuos-folder-menubar-items"></div>' +
+					'</div>' +
+					'<div class="emuos-folder-toolbar-row emuos-folder-toolbar">' +
+						'<div class="emuos-folder-drag-handle" aria-hidden="true"></div>' +
+						'<div class="emuos-folder-toolbar-buttons">' +
+							self._buildFolderToolbarSplitButton('emuos-folder-btn-back', 'Back', 'emuos-folder-btn-back-dropdown', 0) +
+							self._buildFolderToolbarSplitButton('emuos-folder-btn-forward', 'Forward', 'emuos-folder-btn-forward-dropdown', 1) +
+							self._buildFolderToolbarButton('emuos-folder-btn-up', 'Up', 44) +
+							'<hr class="emuos-folder-toolbar-sep" aria-orientation="vertical">' +
+							self._buildFolderToolbarButton('emuos-folder-btn-cut', 'Cut', 21) +
+							self._buildFolderToolbarButton('emuos-folder-btn-copy', 'Copy', 22) +
+							self._buildFolderToolbarButton('emuos-folder-btn-paste', 'Paste', 23) +
+							'<hr class="emuos-folder-toolbar-sep" aria-orientation="vertical">' +
+							self._buildFolderToolbarButton('emuos-folder-btn-undo', 'Undo', 24) +
+							'<hr class="emuos-folder-toolbar-sep" aria-orientation="vertical">' +
+							self._buildFolderToolbarButton('emuos-folder-btn-delete', 'Delete', 26) +
+							self._buildFolderToolbarButton('emuos-folder-btn-properties', 'Properties', 31) +
+							'<hr class="emuos-folder-toolbar-sep" aria-orientation="vertical">' +
+							self._buildFolderToolbarSplitButton('emuos-folder-btn-views', 'Views', 'emuos-folder-btn-views-dropdown', 38) +
 						'</div>' +
-						'<a class="emuos-folder-sidebar-link" href="javascript:">Hide the contents of this folder.</a>' +
-						'<p>Select an item to view its description.</p>' +
-						'<div class="emuos-folder-sidebar-meta"></div>' +
+					'</div>' +
+					'<div class="emuos-folder-toolbar-row emuos-folder-addressbar">' +
+						'<div class="emuos-folder-drag-handle" aria-hidden="true"></div>' +
+						'<div class="emuos-folder-address-wrap">' +
+							'<label for="' + folderId + '-address">Address</label>' +
+							'<div class="emuos-folder-address-compound">' +
+								'<i class="emuos-folder-address-icon" style="background-image: url(' + iconUrl + ');"></i>' +
+								'<input type="text" class="emuos-folder-address-input" id="' + folderId + '-address" value="' + address + '" readonly autocomplete="off">' +
+								'<button type="button" class="emuos-folder-address-dropdown" disabled aria-label="Address history">' +
+									'<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="fill:currentColor;display:inline-block;vertical-align:middle" aria-hidden="true"><path style="transform:rotate(90deg);transform-origin:center" d="m5 6 4 4-4 4z"></path></svg>' +
+								'</button>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+				'<div class="emuos-folder-main emuos-inset-deep">' +
+					'<div class="emuos-folder-sidebar">' +
+						'<div class="emuos-folder-sidebar-inner">' +
+							'<div class="emuos-folder-sidebar-head">' +
+								'<i class="icon" style="background-image: url(' + iconUrl + ');"></i>' +
+								'<p class="emuos-folder-sidebar-title">' + title + '</p>' +
+							'</div>' +
+							'<div class="emuos-folder-sidebar-divider"></div>' +
+							'<p class="emuos-folder-sidebar-prompt">Select an item to view its description.</p>' +
+							'<div class="emuos-folder-sidebar-description"></div>' +
+							'<div class="emuos-folder-sidebar-info"></div>' +
+						'</div>' +
 					'</div>' +
 					'<div class="emuos-folder-splitter"></div>' +
-					'<div class="emuos-folder-items"></div>' +
+					'<div class="emuos-folder-items" data-view-mode="large" tabindex="0"></div>' +
 				'</div>' +
 				'<div class="emuos-folder-status">' +
 					'<div class="emuos-folder-status-left"></div>' +
 					'<div class="emuos-folder-status-middle"></div>' +
-					'<div class="emuos-folder-status-right">My Computer</div>' +
+					'<div class="emuos-folder-status-right">' +
+						'<img class="emuos-folder-status-right-icon" src="' + myComputerIconUrl + '" width="16" height="16" alt="">' +
+						'<span class="emuos-folder-status-right-text">My Computer</span>' +
+					'</div>' +
 				'</div>' +
 			'</div>';
-		var itemCount = 0;
-		var formatItemSize = function(item) {
-			if (typeof item.sizeText === 'string') {
-				return item.sizeText;
-			}
-
-			if (typeof item.size === 'number') {
-				if (item.size >= 1048576) {
-					return (item.size / 1048576).toFixed(2) + ' MB';
-				}
-
-				if (item.size >= 1024) {
-					return Math.round(item.size / 1024) + ' KB';
-				}
-
-				return item.size + ' bytes';
-			}
-
-			return '';
+		var $viewsMenu = null;
+		var initialLocation = {
+			path: path,
+			title: title,
+			icon: icon,
+			items: items,
+			description: description
 		};
+		var updateSidebarSelection = function(item) {
+			var $info = $folder.find('.emuos-folder-sidebar-info').first();
+			var $prompt = $folder.find('.emuos-folder-sidebar-prompt').first();
+			var sizeText = self._formatFolderItemSize(item);
 
-		if (singleinstance && self.$body.find('.emuos-folder-window .emuos-folder-address').filter(function() {
-			return $(this).text() === path;
+			if (!item || typeof item.name === 'undefined') {
+				$prompt.show().text('Select an item to view its description.');
+				$info.empty();
+				self._setFolderSidebarDescription($folder, self._getFolderLocation($folder).description);
+				return;
+			}
+
+			$prompt.hide();
+			self._setFolderSidebarDescription($folder, '');
+
+			var escapedName = $('<div/>').text(item.name).html();
+			var creditsHtml = '';
+
+			if (typeof item.credits === 'string' && item.credits !== '') {
+				creditsHtml = self._formatSidebarCredits(item.credits);
+			} else if (item.title) {
+				creditsHtml = $('<div/>').text(item.title).html();
+			}
+
+			$info.html(
+				'<strong>' + escapedName + '</strong>' +
+				(sizeText !== '' ? '<br />Size: ' + $('<div/>').text(sizeText).html() : '') +
+				(creditsHtml !== '' ? '<br /><br />' + creditsHtml : '')
+			);
+		};
+		var selectFolderItem = function($itemEl) {
+			var item = $itemEl.data('item') || {};
+			var sizeText = self._formatFolderItemSize(item);
+
+			$folder.find('.emuos-folder-item').removeClass('ui-selected');
+			$itemEl.addClass('ui-selected');
+			updateSidebarSelection(item);
+			self._updateFolderSelectionButtons($folder);
+
+			if (sizeText !== '') {
+				$statusMiddle.text(sizeText);
+			} else if (item.folder === true || Array.isArray(item.items)) {
+				$statusMiddle.text('File Folder');
+			} else {
+				$statusMiddle.text(self._getFolderItemType(item));
+			}
+		};
+		var closeViewsMenu = function() {
+			if ($viewsMenu) {
+				$viewsMenu.remove();
+				$viewsMenu = null;
+			}
+		};
+		var openViewsMenu = function($anchor) {
+			var viewMode = $folder.attr('data-view-mode') || 'large';
+			var webView = $folder.attr('data-web-view') === 'true';
+
+			closeViewsMenu();
+
+			$viewsMenu = $('<div class="emuos-folder-views-menu"></div>');
+			$viewsMenu.append('<button type="button" class="emuos-folder-view-web' + (webView ? ' is-checked' : '') + '" data-action="web-view">as Web Page</button>');
+			$viewsMenu.append('<hr>');
+			$viewsMenu.append('<button type="button" class="emuos-folder-view-huge' + (viewMode === 'huge' ? ' is-active' : '') + '" data-action="huge" title="128 x 128">Huge Icons</button>');
+			$viewsMenu.append('<button type="button" class="emuos-folder-view-extralarge' + (viewMode === 'extralarge' ? ' is-active' : '') + '" data-action="extralarge" title="96 x 96">Extra Large Icons</button>');
+			$viewsMenu.append('<button type="button" class="emuos-folder-view-large' + (viewMode === 'large' ? ' is-active' : '') + '" data-action="large" title="64 x 64">Large Icons</button>');
+			$viewsMenu.append('<button type="button" class="emuos-folder-view-medium' + (viewMode === 'medium' ? ' is-active' : '') + '" data-action="medium" title="32 x 32">Medium Icons</button>');
+			$viewsMenu.append('<button type="button" class="emuos-folder-view-small' + (viewMode === 'small' ? ' is-active' : '') + '" data-action="small" title="16 x 16">Small Icons</button>');
+			$viewsMenu.append('<button type="button" class="emuos-folder-view-list' + (viewMode === 'list' ? ' is-active' : '') + '" data-action="list">List</button>');
+			$viewsMenu.append('<button type="button" class="emuos-folder-view-details' + (viewMode === 'details' ? ' is-active' : '') + '" data-action="details">Details</button>');
+
+			$folder.append($viewsMenu);
+			self._positionFolderDropdownMenu($folder, $anchor, $viewsMenu);
+
+			$viewsMenu.on('click', 'button[data-action]', function() {
+				var action = $(this).data('action');
+
+				if (action === 'web-view') {
+					var enabled = $folder.attr('data-web-view') !== 'true';
+					$folder.attr('data-web-view', enabled ? 'true' : 'false');
+				} else {
+					self._setFolderViewMode($folder, action);
+				}
+
+				closeViewsMenu();
+				syncState();
+			});
+		};
+		var syncState = function() {};
+
+		if (singleinstance && self.$body.find('.emuos-folder-address-input').filter(function() {
+			return $(this).val() === address;
 		}).length > 0) {
 			return;
 		}
@@ -1936,29 +4285,56 @@
 				syncState();
 			},
 			close: function() {
-				self._removeFolderWindowState(path);
+				closeViewsMenu();
+				var menuApi = $folder.data('folderMenuApi');
+
+				if (menuApi) {
+					if (typeof menuApi.destroy === 'function') {
+						menuApi.destroy();
+					} else if (typeof menuApi.close === 'function') {
+						menuApi.close();
+					}
+				}
+
+				var currentLocation = $folder.data('folderLocation');
+
+				self._removeFolderWindowState(currentLocation ? currentLocation.path : path);
 			}
 		});
 
 		var $folder = self.$body.find('.emuos-folder-window[data-folder-id="' + folderId + '"]').first();
 		var $windowFrame = $folder.closest('.emuos-window').first();
-		var $items = $folder.find('.emuos-folder-items').first();
-		var $statusLeft = $folder.find('.emuos-folder-status-left').first();
 		var $statusMiddle = $folder.find('.emuos-folder-status-middle').first();
-		var $sidebarMeta = $folder.find('.emuos-folder-sidebar-meta').first();
-		var syncState = function() {
+
+		syncState = function() {
+			var currentLocation = self._getFolderLocation($folder);
+
 			self._saveFolderWindowState({
-				path: path,
-				title: title,
-				icon: icon,
-				items: items,
+				path: currentLocation.path,
+				title: currentLocation.title,
+				icon: currentLocation.icon,
+				items: currentLocation.items,
 				left: parseInt($windowFrame.css('left'), 10) || 0,
 				top: parseInt($windowFrame.css('top'), 10) || 0,
 				width: Math.round($windowFrame.outerWidth()),
 				height: Math.round($windowFrame.outerHeight()),
-				iconSize: parseInt($folder.attr('data-icon-size'), 10) || 64
+				viewMode: $folder.attr('data-view-mode') || 'large',
+				webView: $folder.attr('data-web-view') === 'true'
 			});
 		};
+
+		self._initFolderNavigation($folder, initialLocation);
+		self._setFolderToolbarIcons($folder);
+		self._updateFolderSelectionButtons($folder);
+		setTimeout(function() {
+			self._setFolderToolbarIcons($folder);
+		}, 0);
+		self._bindFolderToolbarDrag($folder, folderId);
+		self._bindFolderToolbarButtons($folder, folderId, title, icon);
+		self._bindFolderNavigation($folder, folderId, icon);
+		self._initFolderMenuBar($folder, folderId, title, icon, $statusMiddle);
+
+		$folder.off('emuosFolderLocationChange').on('emuosFolderLocationChange', syncState);
 
 		if (restoreState) {
 			if (typeof restoreState.left === 'number' && typeof restoreState.top === 'number') {
@@ -1967,62 +4343,93 @@
 					top: restoreState.top + 'px'
 				});
 			}
+
+			if (typeof restoreState.webView === 'boolean') {
+				$folder.attr('data-web-view', restoreState.webView ? 'true' : 'false');
+			}
+
+			if (typeof restoreState.viewMode === 'string') {
+				self._setFolderViewMode($folder, restoreState.viewMode);
+			} else if (typeof restoreState.iconSize === 'number') {
+				self._setFolderViewMode($folder, self._resolveFolderViewModeFromIconSize(restoreState.iconSize));
+			} else {
+				self._setFolderViewMode($folder, 'large');
+			}
+		} else {
+			self._setFolderViewMode($folder, 'large');
 		}
-
-		self._setFolderIconSize($folder, typeof options.iconSize !== 'undefined' ? options.iconSize : 64);
-
-		for (var i = 0; i < items.length; i++) {
-			var item = items[i] || {};
-			var isFolder = item.folder === true || Array.isArray(item.items);
-			var itemIcon = self._resolveIcon(item.icon, isFolder ? 'assets/images/icons/desktop/folder' : 'assets/images/icons/desktop/joystick');
-			var itemName = typeof item.name !== 'undefined' ? item.name : 'Untitled';
-			var iconClasses = 'icon overlay ribbon' + (item.shortcut ? ' shortcut' : '') + (item.prototype ? ' prototype' : '') + (item.beta ? ' beta' : '') + (item.new ? ' new' : '');
-			var titleAttr = item.title ? ' data-title="' + item.title + '"' : '';
-			var $item = $('<a class="emuos-folder-item" href="javascript:"' + titleAttr + '><i class="' + iconClasses + '"></i><span></span></a>');
-
-			$item.find('i.icon').css('background-image', 'url(' + itemIcon + ($sys.browser.isIE ? '.png' : '.ico') + ')');
-			$item.find('span').text(itemName);
-			$item.data('item', item);
-
-			$items.append($item);
-			itemCount++;
-		}
-
-		$statusLeft.text(itemCount + (itemCount === 1 ? ' object' : ' objects'));
-		$sidebarMeta.text('Path: ' + path);
 
 		$folder.off('dblclick', '.emuos-folder-item').on('dblclick', '.emuos-folder-item', function(e) {
+			var item = $(this).data('item') || {};
+			var name = typeof item.name !== 'undefined' ? item.name : 'Untitled';
+			var hasItems = Array.isArray(item.items);
+			var isFolder = item.folder === true || hasItems;
+			var currentPath = self._getFolderLocation($folder).path || '';
+			var normalizedPath = currentPath ? currentPath + '\\' + name : name;
+			var itemIcon = self._resolveIcon(item.icon, isFolder ? 'assets/images/icons/desktop/folder' : 'assets/images/icons/desktop/joystick');
+
 			e.preventDefault();
-			self._launchFolderItem($(this).data('item') || {}, path);
+
+			if (isFolder) {
+				self._navigateFolder($folder, {
+					path: normalizedPath,
+					title: name,
+					icon: itemIcon,
+					items: hasItems ? item.items : [],
+					description: typeof item.description === 'string' ? item.description : ''
+				}, 'go');
+				$folder.trigger('emuosFolderLocationChange');
+				return;
+			}
+
+			self._launchFolderItem(item, currentPath);
 		});
 
 		$folder.off('click', '.emuos-folder-item').on('click', '.emuos-folder-item', function(e) {
-			var item = $(this).data('item') || {};
-			var sizeText = formatItemSize(item);
-
 			e.preventDefault();
-			$items.find('.emuos-folder-item').removeClass('ui-selected');
-			$(this).addClass('ui-selected');
+			selectFolderItem($(this));
+		});
 
-			if (sizeText !== '') {
-				$statusMiddle.text(sizeText);
-			} else if (item.folder === true || Array.isArray(item.items)) {
-				$statusMiddle.text('File Folder');
-			} else {
-				$statusMiddle.text('');
+		self._bindFolderItemContextMenu($folder, {
+			folderId: folderId,
+			title: title,
+			icon: icon,
+			onSelectItem: selectFolderItem
+		});
+
+		$folder.off('click', '.emuos-folder-btn-views').on('click', '.emuos-folder-btn-views', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			self._cycleFolderViewMode($folder);
+			syncState();
+		});
+
+		$folder.off('click', '.emuos-folder-btn-views-dropdown').on('click', '.emuos-folder-btn-views-dropdown', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			openViewsMenu($(this).closest('.emuos-folder-toolbar-compound'));
+		});
+
+		$(document).off('click.emuosFolderViews' + folderId).on('click.emuosFolderViews' + folderId, function(e) {
+			if ($viewsMenu && !$(e.target).closest('.emuos-folder-views-menu, .emuos-folder-toolbar-compound').length) {
+				closeViewsMenu();
 			}
 		});
 
-		$folder.off('click', '.emuos-folder-icon-size-down').on('click', '.emuos-folder-icon-size-down', function(e) {
-			e.preventDefault();
-			self._setFolderIconSize($folder, parseInt($folder.attr('data-icon-size'), 10) - 16);
-			syncState();
-		});
+		$folder.off('remove').on('remove', function() {
+			closeViewsMenu();
+			$(document).off('click.emuosFolderViews' + folderId);
+			$(window).off('.emuosFolderToolbarDrag' + folderId);
+			$folder.off('.emuosFolderToolbarDrag' + folderId);
+			$folder.off('.emuosFolderToolbar' + folderId);
 
-		$folder.off('click', '.emuos-folder-icon-size-up').on('click', '.emuos-folder-icon-size-up', function(e) {
-			e.preventDefault();
-			self._setFolderIconSize($folder, parseInt($folder.attr('data-icon-size'), 10) + 16);
-			syncState();
+			if ($folder.data('folderItemContextMenuBound')) {
+				try {
+					$folder.contextmenu('destroy');
+				} catch (error) {}
+
+				$folder.removeData('folderItemContextMenuBound');
+			}
 		});
 
 		syncState();
@@ -2164,6 +4571,7 @@
 		var close = typeof options.close === 'function' ? options.close : null;
 		var dragStop = typeof options.dragStop === 'function' ? options.dragStop : null;
 		var resizeStop = typeof options.resizeStop === 'function' ? options.resizeStop : null;
+		var widgetClass = typeof options.widgetClass !== 'undefined' ? options.widgetClass : '';
 		var startMaximized = self._shouldOpenMaximized(width, height);
 
 		var win	= $('<div class="window" data-title="'+ title +'">' + content + '</div>');
@@ -2176,6 +4584,7 @@
 			height: height,
 			maximized: startMaximized,
 			position: position,
+			widgetClass: widgetClass,
 			beforeClose: beforeClose,
 			close: close,
 			dragStop: dragStop,
@@ -2266,9 +4675,20 @@
 		var credits		= typeof options.credits	!== 'undefined' ? options.credits	: '';
 		var newtab		= typeof options.newtab		!== 'undefined';
 		var startMaximized = self._shouldOpenMaximized(width, height);
+		var referrerPolicy = 'same-origin';
+		var allowAttr = 'autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write';
+		var allowFullscreen = '';
+
+		src = youtubeEmbedUrl(src);
+
+		if (isYoutubeEmbed(src)) {
+			referrerPolicy = 'strict-origin-when-cross-origin';
+			allowAttr = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+			allowFullscreen = ' allowfullscreen';
+		}
 
 		// noinspection HtmlDeprecatedAttribute,JSUnresolvedVariable,JSUnresolvedFunction
-		var win = $('<div class="iframe" data-title="'+ title +'"><iframe id="' + title + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" referrerpolicy="same-origin" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
+		var win = $('<div class="iframe" data-title="'+ title +'"><iframe id="' + title + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" referrerpolicy="' + referrerPolicy + '" allowTransparency="true" allow="' + allowAttr + '"' + allowFullscreen + ' sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
 
 		self.$body.append(win);
 
@@ -2307,7 +4727,7 @@
 
 		// noinspection JSValidateTypes
 		win.window({
-			help: credits,
+			help: credits ? self._formatSidebarCredits(credits) : credits,
 			newtab: newtab,
 			newtabUrl: src,
 			fullscreen: true,

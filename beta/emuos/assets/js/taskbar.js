@@ -224,6 +224,7 @@
 			windowsContainment: 'emuos-taskbar-windows-containment',
 			windowCopy: 'emuos-taskbar-window-copy',
 			windowGroupMenu: 'emuos-taskbar-window-group-menu',
+			startMenuDetached: 'emuos-start-menu-detached',
 			windowGroupMenuScroll: 'emuos-taskbar-window-group-menu-scroll',
 			windowGroupElement: 'emuos-taskbar-window-group-element',
 			windowGroupElementActive: 'emuos-taskbar-window-group-element-active',
@@ -2305,7 +2306,7 @@
 
 		// hides custom menus
 		_hideInternals: function() {
-			this.$elem.find('[data-menu-type=start]').hide();
+			this._findStartMenus().hide();
 		},
 
 		// function for hiding some or all datepickers
@@ -2352,7 +2353,14 @@
 				// hide all menus or only the one from the current taskbar
 				$elem = options && options.own ? this.$elem : $('.' + this.classes.taskbar),
 				$menus = $elem.find('[data-menu-type], .' + this.classes.windowGroupMenu),
+				$detachedStartMenus = $('ul.' + this.classes.startMenuDetached + '[data-menu-type=start]'),
 				$startButtons = $elem.find('.' + this.classes.startButton);
+
+			if (options && options.own) {
+				$detachedStartMenus = $detachedStartMenus.filter('[data-taskbar-uuid="' + this.uuid + '"]');
+			}
+
+			$menus = $menus.add($detachedStartMenus);
 
 			if (options && options.not) {
 				self._openedElements(true);
@@ -2423,7 +2431,7 @@
 
 			// go over all menus (and datepicker) connected to taskbar,
 			// blur those buttons for which menus (or datepicker) are not visible
-			$(filter, this.$elem).each(function() {
+			$(filter, this.$elem).add($('ul.' + this.classes.startMenuDetached + '[data-menu-type=start][data-taskbar-uuid="' + this.uuid + '"]')).each(function() {
 				var $this = $(this),
 					$button = self.connectedElement($this);
 
@@ -2886,6 +2894,136 @@
 			});
 		},
 
+		_decorateStartMenu: function($menu) {
+			if (!$menu || !$menu.length) {
+				return;
+			}
+
+			var $html = $('html');
+
+			if (!$html.hasClass('theme-windows-95') && !$html.hasClass('theme-windows-98') && !$html.hasClass('theme-windows-me')) {
+				return;
+			}
+
+			$menu.addClass('emuos-start-menu');
+			$menu.find('ul.ui-menu').addClass('emuos-start-menu-submenu');
+
+			$menu.find('.ui-menu-item').each(function() {
+				var $li = $(this);
+
+				if ($li.hasClass('ui-menu-divider')) {
+					return;
+				}
+
+				var $wrapper = $li.children('.ui-menu-item-wrapper, .emuos-start-menu-item-text, div, a').first();
+				var hasSubmenu = $li.children('ul').length > 0;
+
+				$li.toggleClass('emuos-start-menu-has-submenu', hasSubmenu);
+
+				if (!$wrapper.length) {
+					return;
+				}
+
+				$wrapper.find('.emuos-start-menu-submenu-arrow').remove();
+
+				if ($li.hasClass('emuos-start-menu-empty-item')) {
+					if (!$wrapper.find('.emuos-start-menu-empty-label').length) {
+						$wrapper.children('.ui-icon, .ui-menu-icon').remove();
+						$wrapper.empty().append(
+							$('<span class="emuos-start-menu-label emuos-start-menu-empty-label"></span>').text('(Empty)')
+						);
+					}
+
+					return;
+				}
+
+				if ($wrapper.find('.emuos-start-menu-label').length) {
+					return;
+				}
+
+				var labelHtml = $wrapper.html();
+
+				$wrapper.children('.ui-icon, .ui-menu-icon').remove();
+				$wrapper.empty().append(
+					'<span class="emuos-start-menu-icon" aria-hidden="true"></span>',
+					$('<span class="emuos-start-menu-label"></span>').html(labelHtml)
+				);
+			});
+
+			$menu.find('.ui-menu-icon.ui-icon-caret-1-e').remove();
+		},
+
+		_cleanStartMenuMarkup: function($menu, $item) {
+			if (!$menu || !$menu.length) {
+				return;
+			}
+
+			var $scope = $item && $item.length ? $item : $menu;
+
+			$scope.find('.ui-menu-icon.ui-icon-caret-1-e').remove();
+		},
+
+		_fixStartMenuSubmenuPosition: function($item, $submenu) {
+			if (!$item || !$item.length || !$submenu || !$submenu.length) {
+				return;
+			}
+
+			var $root = $item.closest('.emuos-start-menu');
+
+			if (!$root.length) {
+				return;
+			}
+
+			this._copyStyles({
+				to: $submenu,
+				properties: ['top', 'left', 'right', 'bottom', 'marginLeft', 'marginTop']
+			});
+
+			$submenu.removeAttr('data-fix-menu-position');
+		},
+
+		_getStartMenuSelector: function() {
+			return '[data-menu-type=start][data-menu-lang=' + this.options.language + ']:not(.' + this.classes.menuHidden + '), [data-menu-type=start][data-menu-lang="\\*"]:not(.' + this.classes.menuHidden + ')';
+		},
+
+		_findStartMenus: function() {
+			var self = this,
+				hiddenClass = this.classes.menuHidden;
+
+			return this.$elem.find(this._getStartMenuSelector()).add(
+				$('ul.' + this.classes.startMenuDetached + '[data-menu-type=start][data-taskbar-uuid="' + this.uuid + '"]').filter(function() {
+					var $menu = $(this),
+						menuLang = $menu.attr('data-menu-lang');
+
+					return (menuLang === self.options.language || menuLang === '*') && !$menu.hasClass(hiddenClass);
+				})
+			);
+		},
+
+		_detachStartMenu: function($menu) {
+			if (!$menu || !$menu.length || $menu.hasClass(this.classes.startMenuDetached)) {
+				return $menu;
+			}
+
+			$menu
+				.attr('data-taskbar-uuid', this.uuid)
+				.addClass(this.classes.startMenuDetached)
+				.appendTo('body');
+
+			return $menu;
+		},
+
+		_positionStartMenu: function($menu, $start) {
+			if (!$menu || !$menu.length || !$start || !$start.length) {
+				return;
+			}
+
+			$menu.position(this._menuPosition({
+				of: $start,
+				elem: $menu
+			}));
+		},
+
 		// create separators for containers
 		_setSeparators: function($elem) {
 			var containerName = $elem.attr('data-container-name'), $separator = this._factory('separator').attr('data-separator-for', containerName);
@@ -3029,7 +3167,7 @@
 			var self = this,
 				$elem = this.$elem,
 				// find menus that should be treated as start menus
-				$menus = $elem.find('[data-menu-type=start][data-menu-lang=' + this.options.language + ']:not(.' + this.classes.menuHidden + '), [data-menu-type=start][data-menu-lang="\*"]:not(.' + this.classes.menuHidden + ')');
+				$menus = this._findStartMenus();
 
 			// destroy menus and return is there should be no menus or destoy
 			// is in progress
@@ -3052,7 +3190,8 @@
 
 			// use the natural order of elements to decide order of buttons
 			$menus.each(function() {
-				var $menu = $(this), name = $menu.attr('data-menu-name') || 'start';
+				var $menu = self._detachStartMenu($(this)),
+					name = $menu.attr('data-menu-name') || 'start';
 
 				if (!self._debugMenu()) {
 					return true;
@@ -3094,6 +3233,10 @@
 						floatMove = 0;
 
 					if (event.type === 'menufocus') {
+						if ($menu.hasClass('emuos-start-menu')) {
+							self._cleanStartMenuMarkup($menu, $item);
+						}
+
 						self._triggerBindedElementEvent({
 							type: 'menuItemFocus',
 							item: $item,
@@ -3112,6 +3255,48 @@
 					}
 
 					if ($submenu.length) {
+						if ($menu.hasClass('emuos-start-menu')) {
+							var fixStartSubmenu = function() {
+								if ($submenu.css('display') === 'none') {
+									return;
+								}
+
+								self._fixStartMenuSubmenuPosition($item, $submenu);
+							};
+
+							fixStartSubmenu();
+
+							var StartMenuMutationObserver = self._MutationObserver();
+
+							if (StartMenuMutationObserver) {
+								self._disconnectObservers('submenus');
+
+								$submenu.each(function() {
+									var $this = $(this);
+
+									// noinspection JSValidateTypes
+									var observer = new StartMenuMutationObserver(function() {
+										if ($this.css('display') === 'block') {
+											fixStartSubmenu();
+										}
+
+										if ($supmenu.css('display') === 'none' || $root.css('display') === 'none') {
+											self._disconnectObservers('submenus');
+										}
+									});
+
+									observer.observe(this, {
+										attributes: true,
+										attributeFilter: ['style']
+									});
+
+									self._cache.mutationObservers.submenus.push(observer);
+								});
+							}
+
+							return;
+						}
+
 						// this function will take appering submenu and position it
 						// accordingly, either as high or as low as it could go
 						// without breaking usability
@@ -3294,7 +3479,11 @@
 							event: event
 						});
 					}
-				}).position(startPosition).hide();
+				});
+
+				self._decorateStartMenu($menu);
+
+				$menu.position(startPosition).hide();
 
 				// noinspection JSUnusedLocalSymbols
 				$start.on('click.' + self._cache.uep, function(event) {
@@ -3317,7 +3506,9 @@
 
 					$menu.toggle();
 
-					if (!visible) {
+					if ($menu.is(':visible')) {
+						self._positionStartMenu($menu, $start);
+						self._decorateStartMenu($menu);
 						self._openedElements(true);
 						// last minute cleanup after previous time
 						// when menu was shown
@@ -5485,6 +5676,11 @@
 					return;
 				}
 
+				if (!icon) {
+					$this.button('option', 'icon', self.classes.uiIconBlank);
+					return;
+				}
+
 				// because of "icon", single setter cannot be used
 				if (icon.indexOf('/') !== -1 || icon.indexOf('.') !== -1) {
 					$this.button('option', 'icon', self.classes.uiIconBlank);
@@ -5508,6 +5704,11 @@
 				}).first()[0].nodeValue = $window.window('title');
 
 				$this.children('span.' + self.classes.uiIcon).remove();
+
+				if (!icon) {
+					$this.prepend($('<span></span>').addClass(self.classes.uiIcon + ' ' + self.classes.uiIconBlank));
+					return;
+				}
 
 				if (icon.indexOf('/') !== -1 || icon.indexOf('.') !== -1) {
 					$this.prepend($('<span></span>').css({
@@ -5970,7 +6171,13 @@
 
 		// return staskbar instance for a given item
 		_taskbarInstance: function($item) {
-			var $taskbar = $item.closest('.' + this.classes.taskbar);
+			var $taskbar = $item.closest('.' + this.classes.taskbar),
+				taskbarUuid = $item.attr('data-taskbar-uuid');
+
+			if (!$taskbar.length && taskbarUuid) {
+				$taskbar = $('.' + this.classes.taskbar + '[data-taskbar-uuid="' + taskbarUuid + '"]');
+			}
+
 			return $taskbar.data(this._cnst.dataPrefix + 'taskbar');
 		},
 
@@ -6308,9 +6515,14 @@
 
 		// destroy menus matching the selector
 		_destroyMenus: function(selector) {
-			var self = this;
+			var self = this,
+				$menus = this.$elem.find(selector);
 
-			this.$elem.find(selector).each(function() {
+			if (selector.indexOf('data-menu-type=start') !== -1) {
+				$menus = $menus.add($('ul.' + this.classes.startMenuDetached + '[data-taskbar-uuid="' + this.uuid + '"][data-menu-type=start]'));
+			}
+
+			$menus.each(function() {
 				var $this = $(this);
 
 				if ($this.hasClass(self.classes.uiMenu)) {
@@ -6656,6 +6868,7 @@
 			clearInterval(this._cache.timeouts.windowResize);
 
 			this._destroyMenus('[data-menu-type=start]');
+			$('ul.' + this.classes.startMenuDetached + '[data-taskbar-uuid="' + this.uuid + '"]').remove();
 
 			this._removeTaskbarPositionClasses();
 			// +

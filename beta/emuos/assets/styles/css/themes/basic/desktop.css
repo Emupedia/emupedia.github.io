@@ -1,4 +1,7 @@
 .emuos-desktop {
+	--desktop-icon-size: 48px;
+	--desktop-icon-cell-width: 74px;
+	--desktop-icon-cell-height: 92px;
 	background: #b3dced;
 	background: -moz-linear-gradient(top, #b3dced 0%, #29b8e5 50%, #bce0ee 100%); /* FF3.6-15 */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b3dced), color-stop(50%,#29b8e5), color-stop(100%,#bce0ee)); /* Chrome4-9,Safari4-5 */
@@ -26,8 +29,8 @@
 	display: block;
 	position: relative;
 	float: left;
-	width: 90px;
-	height: 108px;
+	width: var(--desktop-icon-cell-width, 74px);
+	height: var(--desktop-icon-cell-height, 92px);
 	-ms-touch-action: none;
 	touch-action: none;
 	/*background-color: #fff;*/
@@ -63,12 +66,12 @@
 	display: block;
 	position: relative;
 	margin: 0 auto 5px;
-	width: 64px;
-	height: 64px;
+	width: var(--desktop-icon-size, 48px);
+	height: var(--desktop-icon-size, 48px);
 	background-color: transparent;
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 64px 64px;
+	background-size: var(--desktop-icon-size, 48px) var(--desktop-icon-size, 48px);
 	text-decoration: none;
 	pointer-events: none;
 	/*image-rendering: optimizeSpeed;*/

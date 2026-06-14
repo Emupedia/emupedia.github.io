@@ -1,0 +1,70 @@
+.emuos-window.emuos-message-box-window-preparing {
+	visibility: hidden !important;
+}
+
+.emuos-window .emuos-window-content.emuos-message-box-window {
+	padding: 0;
+	background-color: #c0c0c0;
+	height: auto !important;
+	width: auto !important;
+}
+
+.emuos-message-box {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 368px;
+	font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+	font-size: 11px;
+	line-height: 1.3;
+	color: #000;
+	background-color: #c0c0c0;
+}
+
+.emuos-message-box-body {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 12px 12px 8px;
+	background-color: #c0c0c0;
+}
+
+.emuos-message-box-icon {
+	flex: 0 0 auto;
+	display: block;
+	margin: 0 12px 0 0;
+}
+
+.emuos-message-box-text {
+	margin: 0;
+	flex: 0 1 auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.emuos-message-box-buttons {
+	text-align: center;
+	padding: 0 12px 12px;
+	background-color: #c0c0c0;
+}
+
+.emuos-message-box-ok {
+	min-width: 75px;
+	height: 23px;
+	padding: 0 12px;
+	font: inherit;
+	color: #000;
+	background: #c0c0c0;
+	border: none;
+	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+}
+
+.emuos-message-box-ok:active {
+	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+}
+
+.emuos-message-box-ok:focus {
+	outline: 1px dotted #000;
+	outline-offset: -4px;
+}

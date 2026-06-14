@@ -83,6 +83,14 @@
 	background: #000;
 }
 
+/* turn off double buttons (flex/grid scroll containers, 98.js.org) */
+.theme-windows-me div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:start:increment,
+.theme-windows-me div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:end:decrement,
+.theme-windows-me div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:start:increment,
+.theme-windows-me div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:end:decrement {
+	display: none;
+}
+
 .theme-windows-me {
 	font-family: 'EmuOS', 'Microsoft Sans Serif', 'Arial', sans-serif;
 }
