@@ -170,6 +170,7 @@
 	height: calc(100% - 19px) !important;
 	max-height: calc(100% - 19px) !important;
 	background-color: #fff;
+	overflow: hidden;
 }
 
 .theme-windows-3 .emuos-window .emuos-window-content.emuos-window-type-help a {
@@ -184,4 +185,42 @@
 .theme-windows-3 .emuos-window .emuos-window-content p {
 	margin: 0;
 	padding: 0;
+}
+
+.theme-windows-3 .emuos-folder-toolbar-row.emuos-folder-toolbar,
+.theme-windows-3 .emuos-folder-toolbar-row.emuos-folder-addressbar {
+	display: none !important;
+}
+
+.theme-windows-3 .emuos-folder-toolbars,
+.theme-windows-3 .emuos-folder-toolbar-row.emuos-folder-menubar,
+.theme-windows-3 .emuos-folder-status {
+	background-color: #fff;
+}
+
+.theme-windows-3 .emuos-folder-toolbar-row.emuos-folder-menubar {
+	min-height: 18px;
+}
+
+.theme-windows-3 .emuos-folder-menubar-item {
+	color: #000;
+	border: 1px solid transparent;
+	background-color: transparent;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	box-shadow: none;
+	font-size: 13px;
+	font-weight: bold;
+	min-height: 18px;
+	padding: 0 6px;
+}
+
+.theme-windows-3 .emuos-folder-menubar-item:hover:not(.ui-state-active),
+.theme-windows-3 .emuos-folder-menubar-item.ui-state-active,
+.theme-windows-3 .emuos-folder-menubar-item:active {
+	border-color: #000;
+	background-color: #fff;
+	box-shadow: none;
+	color: #000;
 }

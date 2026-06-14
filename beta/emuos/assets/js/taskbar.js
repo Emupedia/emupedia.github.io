@@ -2900,8 +2900,10 @@
 			}
 
 			var $html = $('html');
+			var isWin9x = $html.hasClass('theme-windows-95') || $html.hasClass('theme-windows-98') || $html.hasClass('theme-windows-me');
+			var isWin3x = $html.hasClass('theme-windows-3');
 
-			if (!$html.hasClass('theme-windows-95') && !$html.hasClass('theme-windows-98') && !$html.hasClass('theme-windows-me')) {
+			if (!isWin9x && !isWin3x) {
 				return;
 			}
 
@@ -2944,10 +2946,18 @@
 				var labelHtml = $wrapper.html();
 
 				$wrapper.children('.ui-icon, .ui-menu-icon').remove();
-				$wrapper.empty().append(
-					'<span class="emuos-start-menu-icon" aria-hidden="true"></span>',
-					$('<span class="emuos-start-menu-label"></span>').html(labelHtml)
-				);
+				$wrapper.empty();
+
+				if (isWin9x) {
+					$wrapper.append(
+						'<span class="emuos-start-menu-icon" aria-hidden="true"></span>',
+						$('<span class="emuos-start-menu-label"></span>').html(labelHtml)
+					);
+				} else {
+					$wrapper.append(
+						$('<span class="emuos-start-menu-label"></span>').html(labelHtml)
+					);
+				}
 			});
 
 			$menu.find('.ui-menu-icon.ui-icon-caret-1-e').remove();

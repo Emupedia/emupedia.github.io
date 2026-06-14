@@ -3330,6 +3330,10 @@
 		return String(label).replace(/&([^&\s])/g, '$1').replace(/&&/g, '&');
 	};
 
+	EmuOS.prototype._isWindows3xTheme = function() {
+		return this.$html.hasClass('theme-windows-3');
+	};
+
 	EmuOS.prototype._isFolderMenuItemEnabled = function(item) {
 		if (!item || item.divider) {
 			return true;
@@ -3463,6 +3467,7 @@
 		return [
 			{
 				label: 'as &Web Page',
+				enabled: !self._isWindows3xTheme(),
 				checkbox: {
 					check: function() {
 						return $folder.attr('data-web-view') === 'true';
@@ -3644,6 +3649,7 @@
 					submenu: [
 						{
 							label: '&Standard Buttons',
+							enabled: !self._isWindows3xTheme(),
 							checkbox: {
 								check: function() {
 									return $folder.find('.emuos-folder-toolbar-row.emuos-folder-toolbar').is(':visible');
@@ -3656,6 +3662,7 @@
 						},
 						{
 							label: '&Address Bar',
+							enabled: !self._isWindows3xTheme(),
 							checkbox: {
 								check: function() {
 									return $folder.find('.emuos-folder-toolbar-row.emuos-folder-addressbar').is(':visible');
@@ -4138,8 +4145,9 @@
 		var iconUrl = icon + ($sys.browser.isIE ? '.png' : '.ico');
 		var myComputerIconUrl = 'assets/images/themes/icons/windows-9x/my-computer.ico';
 		var address = self._formatFolderAddress(path);
+		var defaultWebView = self._isWindows3xTheme() ? 'false' : 'true';
 		var content = '' +
-			'<div class="emuos-folder-window" data-folder-id="' + folderId + '" data-web-view="true" data-view-mode="large" tabindex="0">' +
+			'<div class="emuos-folder-window" data-folder-id="' + folderId + '" data-web-view="' + defaultWebView + '" data-view-mode="large" tabindex="0">' +
 				'<div class="emuos-folder-toolbars">' +
 					'<div class="emuos-folder-toolbar-row emuos-folder-menubar">' +
 						'<div class="emuos-folder-drag-handle" aria-hidden="true"></div>' +
@@ -4271,8 +4279,11 @@
 			closeViewsMenu();
 
 			$viewsMenu = $('<div class="emuos-folder-views-menu"></div>');
-			$viewsMenu.append('<button type="button" class="emuos-folder-view-web' + (webView ? ' is-checked' : '') + '" data-action="web-view">as Web Page</button>');
-			$viewsMenu.append('<hr>');
+
+			if (!self._isWindows3xTheme()) {
+				$viewsMenu.append('<button type="button" class="emuos-folder-view-web' + (webView ? ' is-checked' : '') + '" data-action="web-view">as Web Page</button>');
+				$viewsMenu.append('<hr>');
+			}
 			$viewsMenu.append('<button type="button" class="emuos-folder-view-huge' + (viewMode === 'huge' ? ' is-active' : '') + '" data-action="huge" title="128 x 128">Huge Icons</button>');
 			$viewsMenu.append('<button type="button" class="emuos-folder-view-extralarge' + (viewMode === 'extralarge' ? ' is-active' : '') + '" data-action="extralarge" title="96 x 96">Extra Large Icons</button>');
 			$viewsMenu.append('<button type="button" class="emuos-folder-view-large' + (viewMode === 'large' ? ' is-active' : '') + '" data-action="large" title="64 x 64">Large Icons</button>');
@@ -4379,7 +4390,9 @@
 			}
 
 			if (typeof restoreState.webView === 'boolean') {
-				$folder.attr('data-web-view', restoreState.webView ? 'true' : 'false');
+				$folder.attr('data-web-view', restoreState.webView && !self._isWindows3xTheme() ? 'true' : 'false');
+			} else if (self._isWindows3xTheme()) {
+				$folder.attr('data-web-view', 'false');
 			}
 
 			if (typeof restoreState.viewMode === 'string') {
