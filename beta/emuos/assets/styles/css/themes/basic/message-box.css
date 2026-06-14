@@ -6,6 +6,7 @@
 	padding: 0;
 	background-color: #c0c0c0;
 	height: auto !important;
+	max-height: none !important;
 	width: auto !important;
 }
 

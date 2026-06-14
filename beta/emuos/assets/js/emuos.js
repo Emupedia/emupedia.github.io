@@ -2759,27 +2759,34 @@
 		this._setFolderViewMode($folder, modes[nextIndex]);
 	};
 
-	EmuOS.prototype._fitMessageBoxWindow = function($win) {
-		var $box = $win.find('.emuos-message-box').first();
-		var $titlebar = $win.find('.ui-dialog-titlebar').first();
+	EmuOS.prototype._fitMessageBoxWindow = function($content) {
+		var $frame = $content.parent();
+		var $box = $content.find('.emuos-message-box').first();
 
-		if (!$box.length) {
+		if (!$box.length || !$frame.length) {
 			return;
 		}
 
-		$win.css('width', 'auto');
+		$frame.css({
+			width: 'auto',
+			height: 'auto'
+		});
+		$content.css({
+			width: 'auto',
+			height: 'auto'
+		});
 		$box.css('width', 'max-content');
+
 		var contentWidth = Math.ceil($box.outerWidth(true));
 		var contentHeight = Math.ceil($box.outerHeight(true));
-		var titlebarHeight = $titlebar.length ? $titlebar.outerHeight() : 0;
-		var chromeWidth = Math.max(0, $win.outerWidth() - $win.width());
-		var chromeHeight = Math.max(0, $win.outerHeight() - $win.height());
-		var width = Math.min(400, contentWidth + chromeWidth);
-		var height = titlebarHeight + contentHeight + chromeHeight;
+		var frameChromeWidth = Math.max(0, $frame.outerWidth() - $content.innerWidth());
+		var outerWidth = Math.min(400, contentWidth + frameChromeWidth);
 
-		$win.window('option', {
-			width: width,
-			height: height
+		// options.height is the content-pane height; window.js adds the titlebar when sizing the frame
+		$content.window('option', {
+			width: outerWidth,
+			height: contentHeight,
+			minHeight: null
 		});
 		$box.css('width', '100%');
 	};
@@ -2803,6 +2810,43 @@
 		}
 	};
 
+	EmuOS.prototype._finalizeModalDialog = function($modalContent, $ownerWin) {
+		var modalInstance = $modalContent.data('emuos-window');
+		var $modalParent = $modalContent.parent();
+		var ownerSelector = $();
+
+		if (!modalInstance || !$modalParent.length) {
+			return;
+		}
+
+		if ($ownerWin && $ownerWin.length) {
+			ownerSelector = $ownerWin;
+		}
+
+		modalInstance._removeTopClasses($('.' + modalInstance.classes.window).not($modalParent).not(ownerSelector));
+
+		modalInstance._modalZIndexes({
+			revertActive: false
+		});
+		modalInstance._setTopClasses($modalParent);
+
+		if ($ownerWin && $ownerWin.length) {
+			var taskbar = modalInstance._getTaskbarInstance();
+			var pd = taskbar._extendedPosition.call($modalParent, 'offset');
+			var wd = taskbar._extendedPosition.call($ownerWin, 'offset');
+			var css = {};
+			var scroll = modalInstance._getWindowScroll();
+
+			css.top = wd.top - scroll.y;
+			css.left = wd.left - scroll.x;
+			css.top -= (pd.height - wd.height) / 2;
+			css.left -= (pd.width - wd.width) / 2;
+			$modalParent.css(css);
+		}
+
+		$modalContent.window('refreshPosition');
+	};
+
 	EmuOS.prototype.messageBox = function(options) {
 		var self = this;
 		var title = typeof options.title !== 'undefined' ? options.title : 'EmuOS';
@@ -2821,34 +2865,60 @@
 				'</div>' +
 			'</div>';
 		var windowIcon = typeof options.windowIcon !== 'undefined' ? options.windowIcon : 'assets/images/icons/desktop/folder-open';
+		var $ownerWin = options.parent ? $(options.parent).first() : $();
+		var ownerInstance = null;
+		var resolvedIcon = self.$html.hasClass('theme-basic') || self.$html.hasClass('theme-windows-95') || self.$html.hasClass('theme-windows-98') || self.$html.hasClass('theme-windows-me') ? (windowIcon !== '' ? windowIcon + ($sys.browser.isIE ? '.png' : '.ico') : null) : '';
+		var position = {
+			my: 'center',
+			at: 'center',
+			of: self.$window.get(0),
+			collision: 'fit'
+		};
+
+		if ($ownerWin.length) {
+			ownerInstance = $ownerWin.children('.emuos-window-content').first().data('emuos-window');
+
+			if (ownerInstance) {
+				ownerInstance._placeOverlay({
+					window: true
+				});
+			}
+		}
 
 		self._playMessageBoxSound();
 
-		var instance = self.window({
+		var $content = $('<div class="window" data-title="' + title + '">' + content + '</div>');
+
+		self.$body.append($content);
+
+		$content.window({
 			title: title,
-			icon: windowIcon,
-			content: content,
 			width: 'auto',
 			height: 'auto',
 			widgetClass: 'emuos-message-box-window-preparing',
-			position: {
-				my: 'center',
-				at: 'center',
-				of: self.$window.get(0),
-				collision: 'fit'
-			}
-		});
-		var $win = instance.element;
-
-		$win.window('option', {
-			maximizable: false,
+			position: position,
+			modal: true,
+			closeOnEscape: true,
 			minimizable: false,
+			maximizable: false,
 			resizable: false,
+			help: false,
 			minHeight: null,
 			minWidth: null,
-			height: 'auto'
+			icons: {
+				main: resolvedIcon
+			},
+			close: function() {
+				if (ownerInstance) {
+					ownerInstance._unblock();
+				}
+			}
 		});
-		$win.find('.emuos-window-content').first().addClass('emuos-message-box-window');
+
+		var $win = $content;
+		var instance = $content.data('emuos-window');
+
+		$content.addClass('emuos-message-box-window');
 
 		var $ok = $win.find('.emuos-message-box-ok').first();
 
@@ -2857,19 +2927,26 @@
 		});
 
 		self._fitMessageBoxWindow($win);
-		$win.window('refreshPosition');
+		self._finalizeModalDialog($win, $ownerWin);
+		self._fitMessageBoxWindow($win);
+
+		if ($ownerWin.length) {
+			$win.parent().attr('data-message-box-for', $ownerWin.attr('id'));
+		}
+
 		$win.window('option', 'widgetClass', '');
 		$ok.trigger('focus');
 
 		return instance;
 	};
 
-	EmuOS.prototype._folderMenuNotSupported = function(title, windowIcon) {
+	EmuOS.prototype._folderMenuNotSupported = function(title, windowIcon, $ownerWin) {
 		this.messageBox({
 			title: title,
 			message: 'Not supported.',
 			icon: 'error',
-			windowIcon: windowIcon
+			windowIcon: windowIcon,
+			parent: $ownerWin
 		});
 	};
 
@@ -3261,14 +3338,14 @@
 						if (item.folder === true || Array.isArray(item.items)) {
 							self._activateFolderItem($folder, item, 'explore');
 						} else {
-							self._folderMenuNotSupported(windowTitle, windowIcon);
+							self._folderMenuNotSupported(windowTitle, windowIcon, $folder.closest('.emuos-window'));
 						}
 						break;
 					case 'open':
 						self._activateFolderItem($folder, item, 'open');
 						break;
 					default:
-						self._folderMenuNotSupported(windowTitle, windowIcon);
+						self._folderMenuNotSupported(windowTitle, windowIcon, $folder.closest('.emuos-window'));
 						break;
 				}
 
@@ -3529,7 +3606,7 @@
 				{
 					label: 'P&roperties',
 					action: function() {
-						self._folderMenuNotSupported(title, windowIcon);
+						self._folderMenuNotSupported(title, windowIcon, $folder.closest('.emuos-window'));
 					},
 					description: 'Displays the properties of the selected items.'
 				},
@@ -3785,7 +3862,7 @@
 				{
 					label: '&About EmuOS',
 					action: function() {
-						self._folderMenuNotSupported(title, windowIcon);
+						self._folderMenuNotSupported(title, windowIcon, $folder.closest('.emuos-window'));
 					},
 					description: 'Displays program information, version number, and copyright.'
 				}
@@ -3992,7 +4069,8 @@
 				title: title,
 				message: 'Not supported.',
 				icon: 'error',
-				windowIcon: windowIcon
+				windowIcon: windowIcon,
+				parent: $folder.closest('.emuos-window')
 			});
 		});
 	};
