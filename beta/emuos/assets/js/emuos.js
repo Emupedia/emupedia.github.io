@@ -2839,7 +2839,7 @@
 			icons: {
 				main: resolvedIcon
 			},
-			close: function() {
+			beforeClose: function() {
 				if (ownerInstance) {
 					ownerInstance._unblock();
 				}
@@ -2859,6 +2859,8 @@
 			ownerInstance = $ownerWin.children('.emuos-window-content').first().data('emuos-window');
 
 			if (ownerInstance) {
+				// raise parent before overlay/modal; bodyOverlayed and active modals block moveToTop later
+				ownerInstance.moveToTop(null, true);
 				ownerInstance._placeOverlay({
 					window: true
 				});

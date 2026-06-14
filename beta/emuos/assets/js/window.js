@@ -1260,6 +1260,7 @@
 
 			if (o.help) {
 				if (!this._cache.progress.help) {
+					this.moveToTop(null, true);
 					this._placeOverlay({
 						window: true
 					});
@@ -3454,6 +3455,20 @@
 			});
 			this._setTopClasses($modalParent);
 
+			if ($ownerWin && $ownerWin.length && this.overlay) {
+				var overlayZIndex = this._cache.modalOverlayZIndex || parseInt(this.overlay.css('zIndex'), 10);
+				var ownerZIndex = overlayZIndex - 1;
+				var $covered = $('.' + this.classes.coveredByOverlay + this.uuid);
+				var $otherCovered = this._sortByZIndex($covered.not($ownerWin), 'asc');
+				var nextZIndex = ownerZIndex - $otherCovered.length;
+
+				$otherCovered.each(function() {
+					$(this).css('zIndex', nextZIndex++);
+				});
+
+				$ownerWin.css('zIndex', ownerZIndex);
+			}
+
 			if ($ownerWin && $ownerWin.length) {
 				var taskbar = this._getTaskbarInstance();
 				var pd = taskbar._extendedPosition.call($modalParent, 'offset');
@@ -3713,6 +3728,14 @@
 			this._animate.call(this.overlay, props, animation);
 		},
 
+		_setEmbeddedIframeInteraction: function(allow) {
+			if (!this.options.embeddedContent) {
+				return;
+			}
+
+			this.$window.find('iframe').css('pointer-events', allow ? '' : 'none');
+		},
+
 		_placeOverlay: function(options) {
 			options = options || {};
 
@@ -3720,6 +3743,10 @@
 
 			this.$elem.removeClass(this.classes.contentOverlayed);
 			this.$windowOverlay = null;
+
+			if (this.options.embeddedContent && this.$elem.hasClass(this.classes.windowTop)) {
+				this._setEmbeddedIframeInteraction(true);
+			}
 
 			if (options && options.window === 'auto') {
 				options.window = this.$elem.hasClass(this.classes.bodyOverlay);
@@ -3761,7 +3788,15 @@
 			}
 
 			if (options.content) {
+				this._setEmbeddedIframeInteraction(false);
+
 				this.$windowOverlay.on('mousedown.' + this._cache.uep, function(event) {
+					if (event.which === 1 || event.which === 2) {
+						if (self._moveToTop(event)) {
+							self._focusTabbable();
+						}
+					}
+
 					self._clearTrigger(event);
 				});
 			}
