@@ -2785,7 +2785,7 @@
 
 	EmuOS.prototype._playMessageBoxSound = function() {
 		if (!messageBoxChordAudio) {
-			messageBoxChordAudio = new Audio('assets/sounds/CHORD.WAV');
+			messageBoxChordAudio = new Audio('assets/sounds/chord.wav');
 		}
 
 		try {
