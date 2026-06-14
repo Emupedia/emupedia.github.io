@@ -1298,38 +1298,13 @@
 
 					// this._afterConfirmCloseButtonsBuild();
 
-					var $helpWindowParent = this.$helpWindow.parent();
 					var helpInstance = this.$helpWindow.data(this._cnst.dataPrefix + 'window');
 
-					this._removeTopClasses($('.' + this.classes.window).not($helpWindowParent));
-
 					if (helpInstance) {
-						helpInstance._modalZIndexes({
-							revertActive: false
+						helpInstance._finalizeModalOpen(this.$elem, {
+							attrFor: 'data-help-window-for'
 						});
-						helpInstance._setTopClasses($helpWindowParent);
 					}
-
-					// position window on the center of it's parent window
-					var taskbar = this._getTaskbarInstance(),
-						pd = taskbar._extendedPosition.call($helpWindowParent, 'offset'),
-						wd = taskbar._extendedPosition.call(this.$elem, 'offset'),
-						css = {},
-						scroll = this._getWindowScroll();
-
-					// calculate window center
-					css.top = wd.top - scroll.y;
-					css.left = wd.left - scroll.x;
-					css.top -= (pd.height - wd.height) / 2;
-					css.left -= (pd.width - wd.width) / 2;
-
-					$helpWindowParent.css(css).attr('data-help-window-for', self.$elem.attr('id'));
-
-					// refresh position for those rare cases,
-					// where positioning on center of parent window
-					// would move confirm close window outside the containment
-					this.$helpWindow.window('refreshPosition');
-					//this._cache.progress.help = true;
 
 					return true;
 				}
@@ -3460,6 +3435,44 @@
 
 		_isCoveredByModalOverlay: function($elem) {
 			return $elem.is('[class*="' + this.classes.coveredByOverlay + '"]');
+		},
+
+		// apply modal layering and optionally center on a parent window
+		_finalizeModalOpen: function($ownerWin, options) {
+			options = options || {};
+			var $modalParent = this.$elem;
+			var ownerSelector = $();
+
+			if ($ownerWin && $ownerWin.length) {
+				ownerSelector = $ownerWin;
+			}
+
+			this._removeTopClasses($('.' + this.classes.window).not($modalParent).not(ownerSelector));
+
+			this._modalZIndexes({
+				revertActive: false
+			});
+			this._setTopClasses($modalParent);
+
+			if ($ownerWin && $ownerWin.length) {
+				var taskbar = this._getTaskbarInstance();
+				var pd = taskbar._extendedPosition.call($modalParent, 'offset');
+				var wd = taskbar._extendedPosition.call($ownerWin, 'offset');
+				var css = {};
+				var scroll = this._getWindowScroll();
+
+				css.top = wd.top - scroll.y;
+				css.left = wd.left - scroll.x;
+				css.top -= (pd.height - wd.height) / 2;
+				css.left -= (pd.width - wd.width) / 2;
+				$modalParent.css(css);
+
+				if (options.attrFor) {
+					$modalParent.attr(options.attrFor, $ownerWin.attr('id'));
+				}
+			}
+
+			this.refreshPosition();
 		},
 
 		_modalZIndexes: function(options) {
