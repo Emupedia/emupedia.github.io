@@ -356,7 +356,16 @@
 			// github.com/jquery/jquery-ui/commit/acfda4be521e48c6b61cc458a715ef163892ac36
 			// window has it's own flow of z-indexes, so we revert z-index
 			// value and use native flow manager instead
-			if (this.overlay) {
+			if (this.options.modal) {
+				if (this.overlay) {
+					this.overlay.css('zIndex', '');
+				}
+
+				this._modalZIndexes({
+					revertActive: false
+				});
+				this.moveToTop(null, true);
+			} else if (this.overlay) {
 				this.overlay.css('zIndex', '');
 				this.moveToTop(null, true);
 			}
@@ -1289,12 +1298,20 @@
 
 					// this._afterConfirmCloseButtonsBuild();
 
-					this._removeTopClasses();
-					this.$helpWindow.window('moveToTop');
+					var $helpWindowParent = this.$helpWindow.parent();
+					var helpInstance = this.$helpWindow.data(this._cnst.dataPrefix + 'window');
+
+					this._removeTopClasses($('.' + this.classes.window).not($helpWindowParent));
+
+					if (helpInstance) {
+						helpInstance._modalZIndexes({
+							revertActive: false
+						});
+						helpInstance._setTopClasses($helpWindowParent);
+					}
 
 					// position window on the center of it's parent window
-					var $helpWindowParent = this.$helpWindow.parent(),
-						taskbar = this._getTaskbarInstance(),
+					var taskbar = this._getTaskbarInstance(),
 						pd = taskbar._extendedPosition.call($helpWindowParent, 'offset'),
 						wd = taskbar._extendedPosition.call(this.$elem, 'offset'),
 						css = {},
@@ -1664,9 +1681,11 @@
 
 			this['$' + b] = $('<button></button>').button({showLabel: false}).attr('data-button-name', b).addClass(this.classes['button' + B] + ' ' + this.classes.button).on({
 				click: function() {
+					var helpOpened = false;
+
 					// trigger action
 					if (b === 'help') {
-						self._openHelp();
+						helpOpened = self._openHelp();
 					}
 
 					if (b === 'newtab') {
@@ -1687,7 +1706,7 @@
 
 					if (b === 'minimize') {
 						this.blur();
-					} else {
+					} else if (!helpOpened) {
 						self.moveToTop();
 					}
 				},
@@ -1816,11 +1835,19 @@
 				});
 			});
 
-			// set new z-indexes
+			// set new z-indexes; skip windows managed by modal overlay logic
 			$.each(windows, function(index, set) {
+				if (self._isCoveredByModalOverlay(set[1])) {
+					return;
+				}
+
 				set[1].css('zIndex', initialZIndex);
 				initialZIndex++;
 			});
+
+			if ($modal.length || this.options.modal) {
+				this._refreshActiveModalZIndexes($modal.add(this.options.modal ? this.$elem : $()));
+			}
 
 			var move;
 
@@ -3388,12 +3415,16 @@
 					set.call(this, true);
 				});
 
-				$setCover = this._sortByZIndex($setCover, 'desc');
-				var zIndexDown = zIndex;
+				var taskbar = this._getTaskbarInstance();
+				var baseZ = taskbar ? taskbar.options.windowsInitialZIndex : this._cnst.lowestPossibleZIndex;
+
+				$setCover = this._sortByZIndex($setCover, 'asc');
 
 				$setCover.each(function() {
-					$(this).css('zIndex', --zIndexDown);
+					$(this).css('zIndex', baseZ++);
 				});
+
+				zIndex = baseZ - 1;
 			}
 
 			// noinspection JSUnusedGlobalSymbols
@@ -3401,7 +3432,6 @@
 
 			if (!this.overlay) {
 				this._createOverlay();
-				this._hideOverlay(false);
 			}
 
 			if (zIndex === this._cnst.lowestPossibleZIndex) {
@@ -3425,6 +3455,11 @@
 			}
 
 			this.$elem.css('zIndex', ++zIndex);
+			this._showOverlay();
+		},
+
+		_isCoveredByModalOverlay: function($elem) {
+			return $elem.is('[class*="' + this.classes.coveredByOverlay + '"]');
 		},
 
 		_modalZIndexes: function(options) {
@@ -3434,6 +3469,25 @@
 
 			this._revertModalZIndexes();
 			this._setModalZIndexes();
+		},
+
+		_refreshActiveModalZIndexes: function($modals) {
+			var self = this;
+			var $targetModals = $modals.filter('.' + this.classes.windowTop);
+
+			if (!$targetModals.length) {
+				$targetModals = $modals;
+			}
+
+			$targetModals.each(function() {
+				var instance = $(this).children('.' + self.classes.windowContent).data(self._cnst.dataPrefix + 'window');
+
+				if (instance && instance.options.modal) {
+					instance._modalZIndexes({
+						revertActive: false
+					});
+				}
+			});
 		},
 
 		_revertModalZIndexes: function(force) {
@@ -3593,7 +3647,17 @@
 				return;
 			}
 
-			var opacity = this._getTaskbarInstance()._styleIndicator(this.classes.uiWidgetOverlay, 'opacity').opacity;
+			var taskbar = this._getTaskbarInstance();
+			var opacity = taskbar._styleIndicator(this.classes.dialogOverlay + ' ' + this.classes.uiWidgetOverlay, 'opacity').opacity;
+
+			if (!opacity || parseFloat(opacity, 10) < 0.01) {
+				opacity = taskbar._styleIndicator(this.classes.uiWidgetOverlay, 'opacity').opacity;
+			}
+
+			if (!opacity || parseFloat(opacity, 10) < 0.01) {
+				opacity = 0.3;
+			}
+
 			this.overlay.show().stop(false, true);
 
 			var props = {
