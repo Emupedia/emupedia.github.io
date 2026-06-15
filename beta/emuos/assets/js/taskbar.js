@@ -195,6 +195,10 @@
 			windowButtonsContainer: 'emuos-taskbar-window-buttons-container',
 			windowButtonsContainerFirstChild: 'emuos-taskbar-window-buttons-container-first-child',
 			windowButtonsContainerOnlyChild: 'emuos-taskbar-window-buttons-container-only-child',
+			windowButtonsContainerHasButtons: 'emuos-taskbar-window-buttons-container-has-buttons',
+			beginHint: 'emuos-taskbar-begin-hint',
+			beginHintArrow: 'emuos-taskbar-begin-hint-arrow',
+			beginHintText: 'emuos-taskbar-begin-hint-text',
 			droppableContainer: 'emuos-taskbar-droppable-container',
 			droppable: 'emuos-taskbar-droppable',
 			languageSelect: 'emuos-taskbar-language-select',
@@ -328,6 +332,7 @@
 					menuAutoOpenOnBrowse: false
 				},
 				horizontalAutoHeight: false,
+				beginHintDismissed: false,
 				windows: {},
 				groups: {},
 				windowButtons: [],
@@ -1146,6 +1151,8 @@
 			});
 
 			$(document).on('click.' + this._cache.uep, function(event) {
+				self._dismissBeginHint();
+
 				var prevents = self.$windowsContainment.data(
 					self._cnst.dataPrefix + 'preventClicks'
 				);
@@ -2517,6 +2524,10 @@
 			this.$buttonsContainer = $elem.find('.' + c.buttonsContainer);
 			this.$windowButtonsContainer = $elem.find('.' + c.windowButtonsContainer);
 
+			if (this.$windowButtonsContainer.length) {
+				this._ensureBeginHint();
+			}
+
 			this.$elem.children('[data-separator-for]').not('[data-separator-for=systemButtonsContainer]').remove();
 
 			this.$startButtonsContainer.remove();
@@ -2547,6 +2558,7 @@
 
 			if (!this.$windowButtonsContainer.length) {
 				this.$windowButtonsContainer = this._factory('windowButtonsContainer').insertAfter(this.$buttonsContainer);
+				this._ensureBeginHint();
 			}
 
 			this._initSortableWindowButtons();
@@ -2621,7 +2633,7 @@
 							forcePlaceholderSize: true,
 							cursor: 'move',
 							tolerance: 'pointer',
-							cancel: '.' + c.uiMenu,
+							cancel: '.' + c.uiMenu + ', .' + c.beginHint,
 							helper: 'clone',
 							start: function(event, ui) {
 								self._cache.progress.windowButtonsSortable = true;
@@ -4258,6 +4270,80 @@
 		_refreshWindowButtonsContainer: function() {
 			this._setwindowButtonsContainerSize();
 			this._setWindowButtonsSizes();
+			this._refreshBeginHint();
+		},
+
+		_dismissBeginHint: function() {
+			if (this._cache.beginHintDismissed || !this.$windowButtonsContainer.length) {
+				return;
+			}
+
+			var $hint = this.$windowButtonsContainer.children('.' + this.classes.beginHint);
+
+			if (!$hint.length) {
+				return;
+			}
+
+			this._cache.beginHintDismissed = true;
+			$hint.remove();
+		},
+
+		_ensureBeginHint: function() {
+			if (!this.$windowButtonsContainer.length || this._cache.beginHintDismissed) {
+				return;
+			}
+
+			var c = this.classes;
+			var $hint = this.$windowButtonsContainer.children('.' + c.beginHint).first();
+
+			if (!$hint.length) {
+				var title = this._i18n('startButton:title');
+				var label = title !== 'undefined' ? title : 'Click here to begin';
+
+				if (label.charAt(label.length - 1) !== '.') {
+					label += '.';
+				}
+
+				$hint = $('<span></span>')
+					.addClass(c.beginHint)
+					.append(
+						$('<img/>', {
+							'class': c.beginHintArrow,
+							src: 'assets/images/explorer/arrow.png',
+							alt: ''
+						}),
+						$('<span></span>')
+							.addClass(c.beginHintText)
+							.text(label)
+					)
+					.prependTo(this.$windowButtonsContainer);
+			} else if (!$hint.children('.' + c.beginHintArrow).length) {
+				var existingLabel = $hint.text();
+
+				$hint.empty()
+					.append(
+						$('<img/>', {
+							'class': c.beginHintArrow,
+							src: 'assets/images/explorer/arrow.png',
+							alt: ''
+						}),
+						$('<span></span>')
+							.addClass(c.beginHintText)
+							.text(existingLabel)
+					);
+			}
+		},
+
+		_refreshBeginHint: function() {
+			if (!this.$windowButtonsContainer.length || this._cache.beginHintDismissed) {
+				return;
+			}
+
+			this._ensureBeginHint();
+
+			var hasButtons = this.$windowButtonsContainer.children('.' + this.classes.windowButton).length > 0;
+
+			this.$windowButtonsContainer.toggleClass(this.classes.windowButtonsContainerHasButtons, hasButtons);
 		},
 
 		_setwindowButtonsContainerSize: function() {
@@ -5272,6 +5358,8 @@
 
 			this._appendWindowButton(config);
 
+			this._refreshBeginHint();
+
 			if (this._cache.horizontal) {
 				this._refreshWindowButtonsContainer();
 			}
@@ -5411,6 +5499,7 @@
 			if (buttonUnbindHappened) {
 				this._setWindowButtonsSizes();
 				this._refreshSeparators();
+				this._refreshBeginHint();
 			}
 		},
 

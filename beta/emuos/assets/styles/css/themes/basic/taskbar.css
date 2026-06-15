@@ -322,6 +322,7 @@
 .emuos-taskbar .emuos-taskbar-window-buttons-container {
 	overflow: hidden;
 	box-sizing: border-box;
+	position: relative;
 }
 
 .emuos-taskbar .emuos-taskbar-window-buttons-container .ui-button.ui-sortable-placeholder {
@@ -507,4 +508,69 @@
 
 .emuos-taskbar-droppable {
 	opacity: .70;
+}
+
+.emuos-taskbar-begin-hint {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	align-items: center;
+	gap: 4px;
+	white-space: nowrap;
+	pointer-events: none;
+	font-size: 13px;
+	/*font-weight: bold;*/
+	color: inherit;
+	line-height: 1;
+	margin-left: 0;
+	animation: emuos-begin-hint-bounce 2.5s linear 1 forwards;
+}
+
+.emuos-taskbar-begin-hint-arrow {
+	display: block;
+	width: auto;
+	height: 16px;
+	flex-shrink: 0;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+}
+
+.emuos-taskbar-horizontal .emuos-taskbar-window-buttons-container:not(.emuos-taskbar-window-buttons-container-has-buttons) .emuos-taskbar-begin-hint {
+	display: flex;
+}
+
+@keyframes emuos-begin-hint-bounce {
+	0% {
+		margin-left: 80%;
+	}
+
+	40% {
+		margin-left: 0%;
+	}
+
+	60% {
+		margin-left: 15%;
+	}
+
+	72% {
+		margin-left: 0%;
+	}
+
+	82% {
+		margin-left: 4%;
+	}
+
+	90% {
+		margin-left: 0%;
+	}
+
+	96% {
+		margin-left: 1%;
+	}
+
+	100% {
+		margin-left: 0%;
+	}
 }
