@@ -198,6 +198,15 @@
 	background-color: #fff;
 }
 
+.theme-windows-3 .emuos-folder-status-left,
+.theme-windows-3 .emuos-folder-status-middle,
+.theme-windows-3 .emuos-folder-status-right {
+	background: #fff;
+	border: none;
+	box-shadow: none;
+	color: #000;
+}
+
 .theme-windows-3 .emuos-folder-toolbar-row.emuos-folder-menubar {
 	min-height: 18px;
 }

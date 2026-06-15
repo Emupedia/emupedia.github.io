@@ -1263,6 +1263,7 @@
 							$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
+						self._syncFolderWebViewForTheme();
 						break;
 					case 'windows-3':
 						self.$html.removeClass('theme-basic theme-windows-95 theme-windows-98 theme-windows-me').addClass('theme-windows-3');
@@ -1294,6 +1295,7 @@
 							});
 						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
+						self._syncFolderWebViewForTheme();
 						break;
 					case 'windows-95':
 						self.$html.removeClass('theme-basic theme-windows-3 theme-windows-98 theme-windows-me').addClass('theme-windows-95');
@@ -1302,6 +1304,7 @@
 							$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 1).taskbar('instance')._refresh();
+						self._syncFolderWebViewForTheme();
 						break;
 					case 'windows-98':
 						self.$html.removeClass('theme-basic theme-windows-3 theme-windows-95 theme-windows-me').addClass('theme-windows-98');
@@ -1310,6 +1313,7 @@
 							$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 1).taskbar('instance')._refresh();
+						self._syncFolderWebViewForTheme();
 						break;
 					case 'windows-me':
 						self.$html.removeClass('theme-basic theme-windows-3 theme-windows-95 theme-windows-98').addClass('theme-windows-me');
@@ -1318,6 +1322,7 @@
 							$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 1).taskbar('instance')._refresh();
+						self._syncFolderWebViewForTheme();
 						break;
 				}
 
@@ -3334,6 +3339,61 @@
 		return this.$html.hasClass('theme-windows-3');
 	};
 
+	EmuOS.prototype._getFolderWebViewStored = function($folder) {
+		var stored = $folder.attr('data-web-view-stored');
+
+		if (typeof stored !== 'undefined') {
+			return stored === 'true';
+		}
+
+		return $folder.attr('data-web-view') === 'true';
+	};
+
+	EmuOS.prototype._setFolderWebViewStored = function($folder, enabled) {
+		$folder.attr('data-web-view-stored', enabled ? 'true' : 'false');
+	};
+
+	EmuOS.prototype._applyFolderWebViewDisplay = function($folder) {
+		var stored = this._getFolderWebViewStored($folder);
+
+		$folder.attr('data-web-view', this._isWindows3xTheme() ? 'false' : (stored ? 'true' : 'false'));
+	};
+
+	EmuOS.prototype._setFolderWebViewPreference = function($folder, enabled) {
+		this._setFolderWebViewStored($folder, enabled);
+		this._applyFolderWebViewDisplay($folder);
+		$folder.trigger('emuosFolderLocationChange');
+	};
+
+	EmuOS.prototype._refreshFolderMenusForTheme = function($folder) {
+		var self = this;
+
+		$folder.find('.emuos-folder-menu').each(function() {
+			var $menu = $(this);
+
+			self._refreshFolderMenuStates($menu);
+
+			if ($menu.data('ui-menu')) {
+				$menu.menu('refresh');
+			}
+		});
+	};
+
+	EmuOS.prototype._syncFolderWebViewForTheme = function() {
+		var self = this;
+
+		self.$body.find('.emuos-folder-window').each(function() {
+			var $folder = $(this);
+
+			if (typeof $folder.attr('data-web-view-stored') === 'undefined') {
+				self._setFolderWebViewStored($folder, $folder.attr('data-web-view') === 'true');
+			}
+
+			self._applyFolderWebViewDisplay($folder);
+			self._refreshFolderMenusForTheme($folder);
+		});
+	};
+
 	EmuOS.prototype._isFolderMenuItemEnabled = function(item) {
 		if (!item || item.divider) {
 			return true;
@@ -3452,6 +3512,11 @@
 
 			if (item.checkbox || item.radioGroup) {
 				checked = item.checkbox ? !!item.checkbox.check() : item.radioGroup.getValue() === item.value;
+
+				if (!self._isFolderMenuItemEnabled(item)) {
+					checked = false;
+				}
+
 				$item.attr('aria-checked', checked ? 'true' : 'false');
 			} else {
 				$item.removeAttr('aria-checked');
@@ -3467,15 +3532,15 @@
 		return [
 			{
 				label: 'as &Web Page',
-				enabled: !self._isWindows3xTheme(),
+				enabled: function() {
+					return !self._isWindows3xTheme();
+				},
 				checkbox: {
 					check: function() {
 						return $folder.attr('data-web-view') === 'true';
 					},
 					toggle: function() {
-						var enabled = $folder.attr('data-web-view') !== 'true';
-
-						$folder.attr('data-web-view', enabled ? 'true' : 'false');
+						self._setFolderWebViewPreference($folder, !self._getFolderWebViewStored($folder));
 					}
 				},
 				description: 'Displays items in Web View.'
@@ -3649,7 +3714,9 @@
 					submenu: [
 						{
 							label: '&Standard Buttons',
-							enabled: !self._isWindows3xTheme(),
+							enabled: function() {
+								return !self._isWindows3xTheme();
+							},
 							checkbox: {
 								check: function() {
 									return $folder.find('.emuos-folder-toolbar-row.emuos-folder-toolbar').is(':visible');
@@ -3662,7 +3729,9 @@
 						},
 						{
 							label: '&Address Bar',
-							enabled: !self._isWindows3xTheme(),
+							enabled: function() {
+								return !self._isWindows3xTheme();
+							},
 							checkbox: {
 								check: function() {
 									return $folder.find('.emuos-folder-toolbar-row.emuos-folder-addressbar').is(':visible');
@@ -4147,7 +4216,7 @@
 		var address = self._formatFolderAddress(path);
 		var defaultWebView = self._isWindows3xTheme() ? 'false' : 'true';
 		var content = '' +
-			'<div class="emuos-folder-window" data-folder-id="' + folderId + '" data-web-view="' + defaultWebView + '" data-view-mode="large" tabindex="0">' +
+			'<div class="emuos-folder-window" data-folder-id="' + folderId + '" data-web-view="' + defaultWebView + '" data-web-view-stored="' + defaultWebView + '" data-view-mode="large" tabindex="0">' +
 				'<div class="emuos-folder-toolbars">' +
 					'<div class="emuos-folder-toolbar-row emuos-folder-menubar">' +
 						'<div class="emuos-folder-drag-handle" aria-hidden="true"></div>' +
@@ -4299,8 +4368,7 @@
 				var action = $(this).data('action');
 
 				if (action === 'web-view') {
-					var enabled = $folder.attr('data-web-view') !== 'true';
-					$folder.attr('data-web-view', enabled ? 'true' : 'false');
+					self._setFolderWebViewPreference($folder, !self._getFolderWebViewStored($folder));
 				} else {
 					self._setFolderViewMode($folder, action);
 				}
@@ -4364,7 +4432,7 @@
 				width: Math.round($windowFrame.outerWidth()),
 				height: Math.round($windowFrame.outerHeight()),
 				viewMode: $folder.attr('data-view-mode') || 'large',
-				webView: $folder.attr('data-web-view') === 'true'
+				webView: self._getFolderWebViewStored($folder)
 			});
 		};
 
@@ -4390,10 +4458,12 @@
 			}
 
 			if (typeof restoreState.webView === 'boolean') {
-				$folder.attr('data-web-view', restoreState.webView && !self._isWindows3xTheme() ? 'true' : 'false');
+				self._setFolderWebViewStored($folder, restoreState.webView);
 			} else if (self._isWindows3xTheme()) {
-				$folder.attr('data-web-view', 'false');
+				self._setFolderWebViewStored($folder, false);
 			}
+
+			self._applyFolderWebViewDisplay($folder);
 
 			if (typeof restoreState.viewMode === 'string') {
 				self._setFolderViewMode($folder, restoreState.viewMode);

@@ -1,36 +1,253 @@
-.theme-windows-3 .ui-menu {
+/* Windows 3.x popup menus — context menus, folder menus (matches start-menu.css) */
+
+html.theme-windows-3 .emuos-folder-menu.ui-menu,
+html.theme-windows-3 .emuos-folder-menu .ui-menu,
+html.theme-windows-3 .ui-contextmenu.emuos-folder-menu,
+html.theme-windows-3 .emuos-desktop-context-menu.ui-menu,
+html.theme-windows-3 .emuos-folder-context-menu.ui-menu {
+	--folder-button-face: #fff;
+	--folder-button-hilight: #fff;
+	--folder-button-shadow: #808080;
+	--folder-button-text: #000;
+	--folder-hilight: #000;
+	--folder-hilight-text: #fff;
+
+	display: block;
+	box-sizing: border-box;
+	min-width: 148px;
+	width: max-content;
+	padding: 2px 0;
+	margin: 0;
+	list-style: none;
 	font-size: 13px;
 	font-weight: bold;
+	line-height: 1;
+	color: #000;
+	background: #fff !important;
+	border: 1px solid #000 !important;
+	border-right-width: 2px !important;
+	border-bottom-width: 2px !important;
+	box-shadow: none !important;
+	border-radius: 0;
 }
 
-/*noinspection CssOptimizeSimilarProperties,CssReplaceWithShorthandSafely*/
-.theme-windows-3 .ui-menu .ui-menu-item {
+html.theme-windows-3 .emuos-folder-menu.ui-widget-content,
+html.theme-windows-3 .emuos-folder-menu .ui-menu.ui-widget-content {
+	background: #fff !important;
+	color: #000 !important;
+	border-color: #000 !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item {
 	padding: 0;
-	padding-left: 16px;
-	height: 16px;
-	border-top: none;
-	border-bottom: none;
-}
-
-.theme-windows-3 .ui-menu .ui-menu-item.ui-state-focus {
+	margin: 0;
+	height: auto;
+	border: 0;
+	white-space: nowrap;
+	list-style-image: none;
 	font-size: 13px;
 	font-weight: bold;
+}
+
+html.theme-windows-3 .emuos-folder-menu > .ui-menu-item {
+	position: relative;
 	height: 18px;
-	border-left: 1px solid #000;
-	border-right: 1px solid #000;
-	border-top: none;
-	border-bottom: none;
+	min-height: 18px;
+	max-height: 18px;
+	box-sizing: border-box;
 }
 
-.theme-windows-3 .ui-menu .ui-menu-divider {
-	border-top: 1px solid #000;
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item-wrapper,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item > div,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item > a {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 0 18px 0 4px;
+	min-height: 18px;
+	max-height: 18px;
+	height: 18px;
+	line-height: 18px;
+	white-space: nowrap;
+	/*font-weight: bold;*/
+	color: inherit;
+	max-width: none;
+	overflow: hidden;
+	text-overflow: clip;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item:not(.emuos-folder-menu-checkable):not(.emuos-folder-menu-radio) .emuos-folder-menu-checkbox-area {
+	display: none;
+	width: 0;
+	flex: 0 0 0;
+	margin: 0;
+	padding: 0;
+}
+
+html.theme-windows-3 .emuos-folder-menu .emuos-folder-menu-checkbox-area {
+	flex: 0 0 12px;
+	width: 12px;
+	height: 12px;
+	margin-right: 2px;
+}
+
+html.theme-windows-3 .emuos-folder-menu .emuos-folder-menu-checkbox-area::after {
+	width: 12px;
+	height: 12px;
+	mask-size: 12px 12px;
+	-webkit-mask-size: 12px 12px;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item:not(.emuos-folder-menu-checkable):not(.emuos-folder-menu-radio) .ui-menu-item-wrapper,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item:not(.emuos-folder-menu-checkable):not(.emuos-folder-menu-radio) > div,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item:not(.emuos-folder-menu-checkable):not(.emuos-folder-menu-radio) > a {
+	padding-left: 16px;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item:not(.emuos-folder-menu-checkable):not(.emuos-folder-menu-radio).ui-state-focus .ui-menu-item-wrapper,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item:not(.emuos-folder-menu-checkable):not(.emuos-folder-menu-radio).ui-state-focus > div,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item:not(.emuos-folder-menu-checkable):not(.emuos-folder-menu-radio) > .ui-menu-item-wrapper.ui-state-active,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item:not(.emuos-folder-menu-checkable):not(.emuos-folder-menu-radio) > div.ui-state-active {
+	padding-left: 16px !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu .emuos-folder-menu-label {
+	flex: 1 1 auto;
+	min-width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu .ui-menu-item {
+	height: 18px;
+	min-height: 18px;
+	max-height: 18px;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu {
+	position: absolute;
+	top: -2px;
+	left: 100%;
+	margin-left: -2px;
+	z-index: 1;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-focus,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item-wrapper.ui-state-active,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-focus > div,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item > div.ui-state-active {
+	margin: 0 !important;
+	padding: 0 18px 0 4px !important;
+	height: auto;
+	border: 0 !important;
+	font-weight: bold !important;
+	background: transparent !important;
+	color: inherit !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu > .ui-menu-item.ui-state-focus,
+html.theme-windows-3 .emuos-folder-menu > .ui-menu-item:has(> .ui-menu-item-wrapper.ui-state-active),
+html.theme-windows-3 .emuos-folder-menu > .ui-menu-item.ui-state-focus > div,
+html.theme-windows-3 .emuos-folder-menu > .ui-menu-item:has(> div.ui-state-active) {
+	background: #000 !important;
+	color: #fff !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.emuos-folder-menu-has-submenu.ui-state-focus,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.emuos-folder-menu-has-submenu:has(> .ui-menu-item-wrapper.ui-state-active),
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.emuos-folder-menu-has-submenu.ui-state-focus > div,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.emuos-folder-menu-has-submenu:has(> div.ui-state-active) {
+	background: #000 !important;
+	color: #fff !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu .ui-menu-item.ui-state-focus,
+html.theme-windows-3 .emuos-folder-menu .ui-menu .ui-menu-item:has(> .ui-menu-item-wrapper.ui-state-active),
+html.theme-windows-3 .emuos-folder-menu .ui-menu .ui-menu-item.ui-state-focus > div,
+html.theme-windows-3 .emuos-folder-menu .ui-menu .ui-menu-item:has(> div.ui-state-active) {
+	background: #000 !important;
+	color: #fff !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-disabled,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-disabled .ui-menu-item-wrapper,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-disabled > div {
+	background: transparent !important;
+	color: #808080 !important;
+	opacity: 1;
+	filter: none;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-disabled.ui-state-focus,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-disabled .ui-menu-item-wrapper.ui-state-active,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-disabled.ui-state-focus > div {
+	background: transparent !important;
+	color: #808080 !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-disabled .emuos-folder-menu-label,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-disabled .emuos-folder-menu-shortcut,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item.ui-state-disabled .emuos-folder-menu-mnemonic {
+	color: #808080 !important;
+	text-shadow: none;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-icon.ui-icon,
+html.theme-windows-3 .emuos-folder-menu .ui-menu-item > .ui-icon {
+	display: none !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-icon.ui-icon-caret-1-e {
+	display: none !important;
+}
+
+html.theme-windows-3 .emuos-folder-menu-has-submenu > .ui-menu-item-wrapper::after,
+html.theme-windows-3 .emuos-folder-menu-has-submenu > div::after {
+	content: "\25B6";
+	display: block;
+	flex: 0 0 auto;
+	width: auto;
+	height: auto;
+	margin-left: 8px;
+	font-size: 8px;
+	line-height: 1;
+	mask-image: none;
+	-webkit-mask-image: none;
+	background: none;
+	color: inherit;
+}
+
+html.theme-windows-3 .emuos-folder-menu .ui-menu-divider {
+	width: auto;
 	margin: 4px 0;
+	height: 0;
+	padding: 0;
+	border: 0;
+	border-top: 1px solid #000;
+	background: transparent;
 }
 
-/*noinspection CssOptimizeSimilarProperties*/
-.theme-windows-3 .ui-contextmenu {
+html.theme-windows-3 .emuos-folder-menu-mnemonic {
+	text-decoration: underline;
+}
+
+html.theme-windows-3 .ui-contextmenu {
 	border-top: 1px solid #000;
 	border-left: 1px solid #000;
 	border-right: 2px solid #000;
 	border-bottom: 2px solid #000;
+}
+
+html.theme-windows-3 .emuos-folder-context-menu .ui-menu-item.emuos-folder-context-menu-default .ui-menu-item-wrapper,
+html.theme-windows-3 .emuos-folder-context-menu .ui-menu-item.emuos-folder-context-menu-default > a,
+html.theme-windows-3 .emuos-folder-context-menu .ui-menu-item.emuos-folder-context-menu-default > div {
+	font-weight: bold;
 }
