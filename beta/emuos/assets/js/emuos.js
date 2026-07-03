@@ -335,8 +335,7 @@
 		}
 
 		var start = '';
-		var domains = ['emupedia.net', 'emupedia.org', 'emupedia.games', 'emuos.net', 'emuos.org', 'emuos.games'];
-		var frontend = ~domains.indexOf(window.location.hostname) ? 'https://emuchat.' + domains[domains.indexOf(window.location.hostname)] + '/' : 'https://emuchat.emupedia.net/';
+		var frontend = 'https://cojmar.github.io/n_chat/';
 		var chat = null;
 
 		if (typeof self.options.start !== 'undefined') {
@@ -4784,17 +4783,17 @@
 	EmuOS.prototype.iframe = function (options) {
 		var self = this;
 
-		var title		= typeof options.title		!== 'undefined' ? options.title		: '';
-		var icon		= typeof options.icon		!== 'undefined' ? options.icon		: '';
+		var title			= typeof options.title		!== 'undefined' ? options.title		: '';
+		var icon			= typeof options.icon		!== 'undefined' ? options.icon		: '';
 		var src			= typeof options.src		!== 'undefined' ? options.src		: '';
 		var width		= typeof options.width		!== 'undefined' ? options.width		: 640;
 		var height		= typeof options.height		!== 'undefined' ? options.height	: 400;
 		var credits		= typeof options.credits	!== 'undefined' ? options.credits	: '';
-		var newtab		= typeof options.newtab		!== 'undefined';
-		var startMaximized = self._shouldOpenMaximized(width, height);
-		var referrerPolicy = 'same-origin';
-		var allowAttr = 'autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write';
-		var allowFullscreen = '';
+		var newtab			= typeof options.newtab		!== 'undefined';
+		var startMaximized			= self._shouldOpenMaximized(width, height);
+		var referrerPolicy	= 'same-origin';
+		var allowAttr		= 'autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write';
+		var allowFullscreen	= '';
 
 		src = youtubeEmbedUrl(src);
 
