@@ -50,7 +50,7 @@
 
 			setTimeout(function() {
 				// noinspection HtmlDeprecatedAttribute
-				$('body').append('<iframe id="emuchat" width="100%" height="100%" src="https://emuchat.' + location + '" frameborder="0" allowFullscreen="allowFullscreen" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>');
+				$('body').append('<iframe id="emuchat" width="100%" height="100%" src="https://cojmar.github.io/n_chat/" frameborder="0" allowFullscreen="allowFullscreen" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>');
 
 				// noinspection DuplicatedCode
 				$(document).find('iframe').first().off('load').on('load', function() {
