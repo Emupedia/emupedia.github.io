@@ -51,10 +51,13 @@
 
 .emuos-desktop-icon i.icon.ribbon.new:after,
 .emuos-folder-item i.icon.ribbon.new:after {
-	background-image: url(../../../../images/icons/ribbon/new.png);
-	background-size: 48px 48px;
-	left: 1px;
-	top: 3px;
+	background-image: url(../../../../images/icons/badges/new.png);
+	background-size: 28px 28px;
+	left: 25px;
+	top: -18px;
+	/*background-size: 48px 48px;*/
+	/*left: 1px;*/
+	/*top: 3px;*/
 	opacity: 1;
 	visibility: visible;
 }
