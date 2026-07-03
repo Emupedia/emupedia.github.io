@@ -49,8 +49,38 @@
 	visibility: hidden;
 }
 
-.emuos-desktop-icon i.icon.ribbon.new:after,
-.emuos-folder-item i.icon.ribbon.new:after {
+.emuos-desktop-icon i.icon.size-128.ribbon.new:after,
+.emuos-folder-item i.icon.size-128.ribbon.new:after {
+	background-image: url(../../../../images/icons/badges/new.png);
+	background-size: 48px 48px;
+	left: 96px;
+	top: -8px;
+	opacity: 1;
+	visibility: visible;
+}
+
+.emuos-desktop-icon i.icon.size-96.ribbon.new:after,
+.emuos-folder-item i.icon.size-96.ribbon.new:after {
+	background-image: url(../../../../images/icons/badges/new.png);
+	background-size: 48px 48px;
+	left: 70px;
+	top: -8px;
+	opacity: 1;
+	visibility: visible;
+}
+
+.emuos-desktop-icon i.icon.size-64.ribbon.new:after,
+.emuos-folder-item i.icon.size-64.ribbon.new:after {
+	background-image: url(../../../../images/icons/badges/new.png);
+	background-size: 32px 32px;
+	left: 38px;
+	top: -16px;
+	opacity: 1;
+	visibility: visible;
+}
+
+.emuos-desktop-icon i.icon.size-48.ribbon.new:after,
+.emuos-folder-item i.icon.size-48.ribbon.new:after {
 	background-image: url(../../../../images/icons/badges/new.png);
 	background-size: 28px 28px;
 	left: 25px;
@@ -58,6 +88,26 @@
 	/*background-size: 48px 48px;*/
 	/*left: 1px;*/
 	/*top: 3px;*/
+	opacity: 1;
+	visibility: visible;
+}
+
+.emuos-desktop-icon i.icon.size-32.ribbon.new:after,
+.emuos-folder-item i.icon.size-32.ribbon.new:after {
+	background-image: url(../../../../images/icons/badges/new.png);
+	background-size: 24px 24px;
+	left: 10px;
+	top: -18px;
+	opacity: 1;
+	visibility: visible;
+}
+
+.emuos-desktop-icon i.icon.size-24.ribbon.new:after,
+.emuos-folder-item i.icon.size-24.ribbon.new:after {
+	background-image: url(../../../../images/icons/badges/new.png);
+	background-size: 24px 24px;
+	left: 0;
+	top: -18px;
 	opacity: 1;
 	visibility: visible;
 }

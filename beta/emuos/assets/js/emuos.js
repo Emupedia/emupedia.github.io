@@ -413,7 +413,7 @@
 
 			// noinspection JSUnfilteredForInLoop
 			var $icon = $('<a class="emuos-desktop-icon"'+ href + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
-							'<i class="icon overlay ribbon' + (icon_options['shortcut'] ? ' shortcut' : '') + (icon_options['prototype'] ? ' prototype' : '') + (icon_options['beta'] ? ' beta' : '') + (icon_options['new'] ? ' new' : '') + '" style="background-image: url(' + icon  + ($sys.browser.isIE ? '.png' : '.ico') + ');"></i>' +
+							'<i class="' + self._buildIconClasses(icon_options, self.desktopIconSize) + '" style="background-image: url(' + icon  + ($sys.browser.isIE ? '.png' : '.ico') + ');"></i>' +
 							'<span>' + icon_options['name'] + '</span>' +
 						'</a>');
 
@@ -1828,6 +1828,7 @@
 				'--desktop-icon-cell-width': preset.width + 'px',
 				'--desktop-icon-cell-height': preset.height + 'px'
 			});
+			this._syncDesktopIconSizeClasses(size);
 		}
 	};
 
@@ -2053,6 +2054,73 @@
 		}
 
 		return icon;
+	};
+
+	EmuOS.prototype._getIconSizeClassName = function(size) {
+		size = parseInt(size, 10);
+
+		return isNaN(size) ? '' : 'size-' + size;
+	};
+
+	EmuOS.prototype._buildIconClasses = function(item, size) {
+		item = item || {};
+		var classes = 'icon overlay ribbon';
+
+		if (size) {
+			var sizeClass = this._getIconSizeClassName(size);
+
+			if (sizeClass) {
+				classes += ' ' + sizeClass;
+			}
+		}
+
+		if (item.shortcut) {
+			classes += ' shortcut';
+		}
+
+		if (item.prototype) {
+			classes += ' prototype';
+		}
+
+		if (item.beta) {
+			classes += ' beta';
+		}
+
+		if (item.new) {
+			classes += ' new';
+		}
+
+		return classes;
+	};
+
+	EmuOS.prototype._syncIconSizeClass = function($icon, size) {
+		if (!$icon || !$icon.length) {
+			return;
+		}
+
+		var sizeClass = this._getIconSizeClassName(size);
+
+		$icon.removeClass(function(index, className) {
+			return className.split(/\s+/).filter(function(name) {
+				return /^size-\d+$/.test(name);
+			}).join(' ');
+		});
+
+		if (sizeClass) {
+			$icon.addClass(sizeClass);
+		}
+	};
+
+	EmuOS.prototype._syncDesktopIconSizeClasses = function(size) {
+		var self = this;
+
+		if (!this.$desktop || !this.$desktop.length) {
+			return;
+		}
+
+		this.$desktop.find('.emuos-desktop-icon > i.icon').each(function() {
+			self._syncIconSizeClass($(this), size);
+		});
 	};
 
 	EmuOS.prototype._resolveLink = function(link) {
@@ -2681,7 +2749,7 @@
 				var detailIsFolder = detailItem.folder === true || Array.isArray(detailItem.items);
 				var detailIcon = self._resolveIcon(detailItem.icon, detailIsFolder ? 'assets/images/icons/desktop/folder' : 'assets/images/icons/desktop/joystick');
 				var detailName = typeof detailItem.name !== 'undefined' ? detailItem.name : 'Untitled';
-				var detailIconClasses = 'icon overlay ribbon' + (detailItem.shortcut ? ' shortcut' : '') + (detailItem.prototype ? ' prototype' : '') + (detailItem.beta ? ' beta' : '') + (detailItem.new ? ' new' : '');
+				var detailIconClasses = self._buildIconClasses(detailItem, 16);
 				var detailTitleAttr = detailItem.title ? ' data-title="' + detailItem.title + '"' : '';
 				var detailSize = self._formatFolderItemSize(detailItem);
 				var detailType = self._getFolderItemType(detailItem);
@@ -2712,7 +2780,7 @@
 				var isFolder = item.folder === true || Array.isArray(item.items);
 				var itemIcon = self._resolveIcon(item.icon, isFolder ? 'assets/images/icons/desktop/folder' : 'assets/images/icons/desktop/joystick');
 				var itemName = typeof item.name !== 'undefined' ? item.name : 'Untitled';
-				var iconClasses = 'icon overlay ribbon' + (item.shortcut ? ' shortcut' : '') + (item.prototype ? ' prototype' : '') + (item.beta ? ' beta' : '') + (item.new ? ' new' : '');
+				var iconClasses = self._buildIconClasses(item, size);
 				var titleAttr = item.title ? ' data-title="' + item.title + '"' : '';
 				var $item = $('<a class="emuos-folder-item" href="javascript:"' + titleAttr + '><i class="' + iconClasses + '"></i><span></span></a>');
 
