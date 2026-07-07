@@ -853,33 +853,21 @@
 								'</div>';
 				}
 
-				xmas +=		'<div class="xmas-snow" aria-hidden="true">' +
-								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❆</div></div>';
-
-				if (moment().date() >= 23 && moment().date() <= 25) {
-					xmas +=		'<div class="snowflakes"><div class="snowflake">🎄</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">🎅</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">🎄</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">🎁</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">⛄</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">🎁</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">🎅</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">🎁</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">⛄</div></div>';
-				}
-
-				xmas +=		'</div>';
+				xmas +=		'<div class="xmas-snow" aria-hidden="true"></div>';
 
 				self.$desktop.prepend(xmas);
+
+				if (typeof SnowfallEffect !== 'undefined') {
+					self.xmasSnowfall = SnowfallEffect.mount(self.$desktop.find('.xmas-snow').get(0), {
+						count: 100,
+						speed: 25,
+						spinRate: 15,
+						loop: true,
+						fixed: false
+					});
+					SnowfallEffect.preload();
+					self.xmasSnowfall.start();
+				}
 
 				if (moment().date() >= 23 && moment().date() <= 25) {
 					var currentYear = new Date().getFullYear();
@@ -4659,7 +4647,7 @@
 					widget.slideDown(300);
 					net.badge = 0;
 					var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
-					$icon.attr('class', 'icon badge');
+					$icon.attr('class', 'icon overlay shortcut badge');
 				};
 
 				net.hide = function() {
@@ -4680,7 +4668,7 @@
 					if (widget.is(':hidden')) {
 						net.badge = 0;
 						var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
-						$icon.attr('class', 'icon badge');
+						$icon.attr('class', 'icon overlay shortcut badge');
 
 						if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
 							if (typeof window['NETWORK_CONNECTION']['socket'] !== 'undefined') {
@@ -4721,7 +4709,7 @@
 				});
 
 				var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
-				$icon.attr('class', 'icon badge');
+				$icon.attr('class', 'icon overlay shortcut badge');
 
 				if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
 					// noinspection JSUnresolvedVariable
@@ -4889,7 +4877,7 @@
 						net.register_iframe(title);
 						net.badge = 0;
 						var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
-						$icon.attr('class', 'icon badge');
+						$icon.attr('class', 'icon overlay shortcut badge');
 					}
 				}
 			}
