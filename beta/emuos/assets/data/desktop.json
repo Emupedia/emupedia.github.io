@@ -47,6 +47,18 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "Dino Arena Multiplayer",
+		"alternate_name": "Dino Run",
+		"icon": "assets/images/icons/desktop/dino",
+		"link": "https://ezzeldeen.serv00.net/app",
+		"credits": "Multiplayer by vm10k<hr />Website: <a href=\"chrome://dino\" target=\"_blank\">chrome://dino</a><br /><br />Author: Google<br /><br />All other assets<hr />Copyright Google",
+		"width": 902,
+		"height": 610,
+		"new": true,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Santa Tracker",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/santa",
@@ -5138,6 +5150,17 @@
 			"height": 560,
 			"description": "Free casual puzzle games from Microsoft hosted on <a href=\"https://zone.msn.com/\" target=\"_blank\">MSN Zone</a>, including Minesweeper, Solitaire Collection, Mahjong, Sudoku, Jigsaw, Jewel, Bubble, and Ultimate Word Games.",
 			"items": [{
+				"name": "Dino Arena Multiplayer",
+				"alternate_name": "Dino Run",
+				"icon": "assets/images/icons/desktop/dino",
+				"link": "https://ezzeldeen.serv00.net/app",
+				"credits": "Multiplayer by vm10k<hr />Website: <a href=\"chrome://dino\" target=\"_blank\">chrome://dino</a><br /><br />Author: Google<br /><br />All other assets<hr />Copyright Google",
+				"width": 1068,
+				"height": 705,
+				"newtab": true,
+				"shortcut": true,
+				"share": true
+			} , {
 				"name": "Microsoft Minesweeper",
 				"title": "External Website",
 				"icon": "assets/images/icons/desktop/microsoft-minesweeper",
