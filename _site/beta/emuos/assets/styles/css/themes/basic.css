@@ -1,0 +1,52 @@
+/* region Basic */
+
+.emuos .emuos-desktop {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+
+.emuos .emuos-taskbar-bg {
+	position: absolute;
+	width: 100%;
+	height: 70px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.emuos .emuos-taskbar {
+	position: absolute;
+	width: 100%;
+	height: 69px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.emuos .emuos-taskbar-container {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.emuos .emuos-taskbar-container > div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.emuos .emuos-window {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+
+	width: 640px;
+	height: 480px;
+
+	border: 1px solid #000;
+	border-radius: 8px;
+	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.75);
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* endregion */

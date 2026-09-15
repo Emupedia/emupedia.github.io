@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Snowball Throw Effect</title>
+	<style>
+		*, *::before, *::after {
+			box-sizing: border-box;
+		}
+
+		html, body {
+			margin: 0;
+			height: 100%;
+		}
+
+		body {
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			background: linear-gradient(180deg, #0b1a2e 0%, #1a3a5c 45%, #2d5a7b 100%);
+			color: #e8f4ff;
+			overflow: hidden;
+		}
+
+		.demo-content {
+			position: relative;
+			z-index: 2;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			min-height: 100vh;
+			padding: 2rem;
+			text-align: center;
+			pointer-events: none;
+		}
+
+		.demo-content h1 {
+			margin: 0 0 0.5rem;
+			font-size: clamp(1.75rem, 4vw, 2.75rem);
+			font-weight: 600;
+			text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+		}
+
+		.demo-content p {
+			margin: 0 0 1.5rem;
+			max-width: 36rem;
+			line-height: 1.5;
+			opacity: 0.9;
+		}
+
+		.demo-controls {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			justify-content: center;
+			pointer-events: auto;
+		}
+
+		.demo-controls label,
+		.demo-controls button {
+			font: inherit;
+		}
+
+		.demo-controls label {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.55rem 0.85rem;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.12);
+			backdrop-filter: blur(8px);
+		}
+
+		.demo-controls input[type="range"] {
+			width: 7rem;
+		}
+
+		.demo-controls button {
+			padding: 0.55rem 1rem;
+			border: 0;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.92);
+			color: #12324f;
+			cursor: pointer;
+		}
+
+		.demo-controls button:hover {
+			background: #fff;
+		}
+
+		.snowball-stage {
+			animation-fill-mode: none;
+			pointer-events: none;
+			z-index: 3;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			overflow: hidden;
+			perspective: 900px;
+		}
+
+		.snowball-stage.is-fixed {
+			position: fixed;
+		}
+
+		.snowball-fragment {
+			width: 100%;
+			position: absolute;
+			pointer-events: none;
+			animation-fill-mode: none;
+		}
+
+		.snowball-container {
+			position: absolute;
+			width: 30%;
+		}
+
+		.snowball {
+			animation-name: snowball-grow;
+			animation-duration: 1s;
+			animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+			animation-fill-mode: none;
+			position: absolute;
+			opacity: 0;
+		}
+
+		.snowball-image {
+			width: 100%;
+			animation-duration: 1s;
+			animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+			animation-fill-mode: none;
+		}
+
+		.snowball-image-cw {
+			animation-name: snowball-rotate-cw;
+		}
+
+		.snowball-image-ccw {
+			animation-name: snowball-rotate-ccw;
+		}
+
+		@keyframes snowball-grow {
+			0% {
+				transform: translateY(0) rotateX(30deg) scale(0) rotateZ(0);
+				opacity: 0;
+			}
+
+			100% {
+				transform: translateY(0) rotateX(0) scale(1);
+				transform-origin: 50% -300%;
+				opacity: 1;
+			}
+		}
+
+		@keyframes snowball-rotate-cw {
+			0% { transform: rotate(-270deg); }
+			100% { transform: rotate(0deg); }
+		}
+
+		@keyframes snowball-rotate-ccw {
+			0% { transform: rotate(270deg); }
+			100% { transform: rotate(0deg); }
+		}
+
+		.snowball-path {
+			animation-duration: 1s;
+			animation-timing-function: ease-out;
+			animation-fill-mode: none;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+
+		@keyframes snowball-path-1 {
+			0% { transform: translateY(50%) rotateZ(0deg); }
+			100% { transform: translateY(0); }
+		}
+
+		@keyframes snowball-path-2 {
+			0% { transform: translateY(50%) rotateZ(30deg); }
+			100% { transform: translateY(0); }
+		}
+
+		@keyframes snowball-path-3 {
+			0% { transform: translateY(50%) rotateZ(-30deg); }
+			100% { transform: translateY(0); }
+		}
+
+		@keyframes snowball-path-4 {
+			0% { transform: translateY(50%) rotateZ(-5deg); }
+			100% { transform: translateY(0); }
+		}
+
+		@keyframes snowball-path-5 {
+			0% { transform: translateY(50%) rotateZ(10deg); }
+			100% { transform: translateY(0); }
+		}
+
+		@keyframes snowball-path-6 {
+			0% { transform: translateY(50%) rotateZ(-15deg); }
+			100% { transform: translateY(0); }
+		}
+
+		.snowball-residue {
+			animation-name: snowball-residue;
+			animation-duration: 2s;
+			animation-delay: 1.01s;
+			animation-fill-mode: none;
+			animation-timing-function: ease-out;
+			transform: scale(2);
+			position: absolute;
+			transform-origin: center;
+			opacity: 0;
+		}
+
+		@keyframes snowball-residue {
+			0% { opacity: 1; }
+			100% { opacity: 0; }
+		}
+
+		.snowball-chunk {
+			animation-duration: 2s;
+			animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			animation-delay: 1.01s;
+			animation-fill-mode: none;
+			transform: scale(0.3);
+			opacity: 0;
+		}
+
+		.snowball-chunk-1 {
+			animation-name: snowball-chunk-1;
+			animation-duration: 0.2s;
+		}
+
+		@keyframes snowball-chunk-1 {
+			0% { opacity: 1; }
+			100% {
+				transform: translateY(200%) translateX(100%) rotate(360deg);
+				opacity: 0;
+			}
+		}
+
+		.snowball-chunk-2 {
+			animation-name: snowball-chunk-2;
+			animation-duration: 1.7s;
+		}
+
+		@keyframes snowball-chunk-2 {
+			0% { opacity: 1; }
+			100% {
+				transform: translateY(200%) translateX(200%) rotate(120deg);
+				opacity: 0;
+			}
+		}
+
+		.snowball-chunk-3 {
+			animation-name: snowball-chunk-3;
+			animation-duration: 1.9s;
+		}
+
+		@keyframes snowball-chunk-3 {
+			0% { opacity: 1; }
+			100% {
+				transform: translateY(200%) translateX(-120%) rotate(60deg);
+				opacity: 0;
+			}
+		}
+
+		.snowball-chunk-4 {
+			animation-name: snowball-chunk-4;
+			animation-duration: 2s;
+		}
+
+		@keyframes snowball-chunk-4 {
+			0% { opacity: 1; }
+			100% {
+				transform: translateY(200%) translateX(-420%) rotate(-420deg);
+				opacity: 0;
+			}
+		}
+
+		.slide-out-tl {
+			animation: slide-out-tl 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+			animation-delay: 0.95s;
+		}
+
+		@keyframes slide-out-tl {
+			0% {
+				transform: translateX(0) translateY(0) scale(0);
+				opacity: 1;
+			}
+
+			100% {
+				transform-origin: top left;
+				transform: translateY(-30%) translateX(0) scale(0.3);
+				opacity: 0;
+			}
+		}
+
+		.slide-out-tr {
+			animation: slide-out-tr 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+			animation-delay: 0.95s;
+		}
+
+		@keyframes slide-out-tr {
+			0% {
+				transform: translateX(0) translateY(0) scale(0);
+				opacity: 1;
+			}
+
+			100% {
+				transform-origin: top left;
+				transform: translateY(-30%) translateX(120%) scale(0.3);
+				opacity: 0;
+			}
+		}
+
+		.slide-out-bottom {
+			animation: slide-out-bottom 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+			animation-delay: 0.95s;
+		}
+
+		@keyframes slide-out-bottom {
+			0% {
+				transform: translateX(50%) translateY(0) scale(0);
+				opacity: 1;
+			}
+
+			100% {
+				transform-origin: 0 0;
+				transform: translateY(200%) translateX(50%) scale(0.3);
+				opacity: 0;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="demo-content">
+		<h1>Snowball Throw Effect</h1>
+		<p>
+			Throw a snowball — click anywhere or press Throw.
+		</p>
+		<div class="demo-controls">
+			<label>
+				Size
+				<input id="size" type="range" min="15" max="45" step="1" value="30" />
+				<span id="size-value">30%</span>
+			</label>
+			<label for="click-throw">
+				Click to throw
+				<input id="click-throw" type="checkbox" checked />
+			</label>
+			<button id="throw" type="button">Throw snowball</button>
+			<button id="burst" type="button">Throw 3</button>
+		</div>
+	</div>
+
+	<script>
+		(function (global) {
+			"use strict";
+
+			var ASSET_BASE = "assets/images/effects/snowball/";
+			var PATH_COUNT = 6;
+			var SPLAT_COUNT = 3;
+			var CHUNK_COUNT = 4;
+			var EFFECT_DURATION_MS = 3100;
+			var preloadPromise = null;
+
+			var ASSETS = {
+				snowball: ASSET_BASE + "snowball.png",
+				slideOutTl: ASSET_BASE + "slide-out-tl.png",
+				slideOutTr: ASSET_BASE + "slide-out-tr.png",
+				slideOutBottom: ASSET_BASE + "slide-out-bottom.png",
+				splat1: ASSET_BASE + "splat1.png",
+				splat2: ASSET_BASE + "splat2.png",
+				splat3: ASSET_BASE + "splat3.png",
+				chunk1: ASSET_BASE + "snowball_1.png",
+				chunk2: ASSET_BASE + "snowball_2.png",
+				chunk3: ASSET_BASE + "snowball_3.png",
+				chunk4: ASSET_BASE + "snowball_4.png"
+			};
+
+			function random(min, max) {
+				return min + Math.random() * (max - min);
+			}
+
+			function randomInt(min, max) {
+				return Math.floor(random(min, max + 1));
+			}
+
+			function clamp(value, min, max) {
+				return Math.min(max, Math.max(min, value));
+			}
+
+			function mergeOptions(options) {
+				options = options || {};
+
+				return {
+					fixed: options.fixed !== false,
+					sizePercent: options.sizePercent != null ? options.sizePercent : 30
+				};
+			}
+
+			function mergeThrowOptions(options, defaults) {
+				options = options || {};
+				defaults = defaults || {};
+
+				var left = options.left != null ? options.left : defaults.left;
+				var top = options.top != null ? options.top : defaults.top;
+
+				if (left == null) {
+					left = random(20, 80);
+				}
+
+				if (top == null) {
+					top = random(8, 22);
+				}
+
+				return {
+					left: clamp(left, 5, 95),
+					top: clamp(top, 4, 35),
+					rotation: options.rotation != null ? options.rotation : random(-15, 15),
+					path: options.path != null ? options.path : randomInt(1, PATH_COUNT),
+					clockwise: options.clockwise != null ? options.clockwise : Math.random() < 0.5,
+					sizePercent: options.sizePercent != null ? options.sizePercent : defaults.sizePercent
+				};
+			}
+
+			function createImage(src, className) {
+				var image = document.createElement("img");
+
+				image.className = className;
+				image.src = src;
+				image.alt = "";
+				image.decoding = "async";
+				image.draggable = false;
+
+				return image;
+			}
+
+			function createRotatedSplat(src, rotation) {
+				var wrap = document.createElement("div");
+				var image = createImage(src, "snowball-residue snowball-fragment");
+
+				wrap.style.transform = "rotate(" + rotation.toFixed(3) + "deg)";
+				wrap.appendChild(image);
+
+				return wrap;
+			}
+
+			function createSnowballMarkup(config) {
+				var path = document.createElement("div");
+				var container = document.createElement("div");
+				var snowball = document.createElement("div");
+				var snowballImage = createImage(
+					ASSETS.snowball,
+					"snowball-image " + (config.clockwise ? "snowball-image-cw" : "snowball-image-ccw")
+				);
+				var splatRotations = [
+					random(0, 360),
+					random(0, 360),
+					random(0, 360)
+				];
+				var chunkSrcs = [ASSETS.chunk1, ASSETS.chunk2, ASSETS.chunk3, ASSETS.chunk4];
+				var i;
+
+				path.className = "snowball-path";
+				path.style.animationName = "snowball-path-" + config.path;
+
+				container.className = "snowball-container";
+				container.style.left = config.left.toFixed(2) + "%";
+				container.style.top = config.top.toFixed(2) + "%";
+				container.style.transform = "rotate(" + config.rotation.toFixed(2) + "deg)";
+				container.style.width = config.sizePercent + "%";
+
+				snowball.className = "snowball snowball-fragment";
+				snowball.style.display = "inline-block";
+				snowball.appendChild(snowballImage);
+
+				container.appendChild(snowball);
+				container.appendChild(createImage(ASSETS.slideOutTl, "slide-out-tl snowball-fragment"));
+				container.appendChild(createImage(ASSETS.slideOutTr, "slide-out-tr snowball-fragment"));
+				container.appendChild(createImage(ASSETS.slideOutBottom, "slide-out-bottom snowball-fragment"));
+
+				container.appendChild(createRotatedSplat(ASSETS.splat1, splatRotations[0]));
+				container.appendChild(createRotatedSplat(ASSETS.splat2, splatRotations[1]));
+				container.appendChild(createRotatedSplat(ASSETS.splat3, splatRotations[2]));
+
+				for (i = 1; i <= CHUNK_COUNT; i++) {
+					container.appendChild(createImage(chunkSrcs[i - 1], "snowball-chunk snowball-chunk-" + i + " snowball-fragment"));
+				}
+
+				path.appendChild(container);
+
+				return path;
+			}
+
+			function preloadAssets() {
+				if (preloadPromise) {
+					return preloadPromise;
+				}
+
+				preloadPromise = Promise.all(Object.keys(ASSETS).map(function (key) {
+					return new Promise(function (resolve) {
+						var image = new Image();
+
+						image.decoding = "async";
+						image.onload = image.onerror = resolve;
+						image.src = ASSETS[key];
+					});
+				}));
+
+				return preloadPromise;
+			}
+
+			function SnowballThrowEffect(root, options) {
+				this.root = root;
+				this.options = mergeOptions(options);
+				this.stage = null;
+				this.activeThrows = 0;
+				this.onPointerDown = this.onPointerDown.bind(this);
+			}
+
+			SnowballThrowEffect.prototype.ensureStage = function () {
+				if (this.stage) {
+					this.stage.className = "snowball-stage" + (this.options.fixed ? " is-fixed" : "");
+					return this.stage;
+				}
+
+				var stage = document.createElement("div");
+
+				stage.className = "snowball-stage" + (this.options.fixed ? " is-fixed" : "");
+				stage.setAttribute("aria-hidden", "true");
+				this.root.appendChild(stage);
+				this.stage = stage;
+
+				return stage;
+			};
+
+			SnowballThrowEffect.prototype.throw = function (options) {
+				var config = mergeThrowOptions(options, this.options);
+				var element = createSnowballMarkup(config);
+				var stage = this.ensureStage();
+
+				stage.appendChild(element);
+				this.activeThrows += 1;
+
+				setTimeout(function () {
+					if (element.parentNode) {
+						element.parentNode.removeChild(element);
+					}
+
+					this.activeThrows = Math.max(0, this.activeThrows - 1);
+				}.bind(this), EFFECT_DURATION_MS);
+
+				return element;
+			};
+
+			SnowballThrowEffect.prototype.throwAt = function (clientX, clientY, options) {
+				var rect = this.ensureStage().getBoundingClientRect();
+				var left = ((clientX - rect.left) / rect.width) * 100;
+				var top = ((clientY - rect.top) / rect.height) * 100;
+
+				return this.throw(Object.assign({}, options || {}, {
+					left: left,
+					top: top
+				}));
+			};
+
+			SnowballThrowEffect.prototype.setOptions = function (options) {
+				this.options = mergeOptions(Object.assign({}, this.options, options || {}));
+				return this;
+			};
+
+			SnowballThrowEffect.prototype.setClickToThrow = function (enabled) {
+				if (enabled) {
+					document.addEventListener("pointerdown", this.onPointerDown);
+				} else {
+					document.removeEventListener("pointerdown", this.onPointerDown);
+				}
+
+				return this;
+			};
+
+			SnowballThrowEffect.prototype.onPointerDown = function (event) {
+				if (event.button !== 0) {
+					return;
+				}
+
+				if (event.target.closest(".demo-controls")) {
+					return;
+				}
+
+				this.throwAt(event.clientX, event.clientY);
+			};
+
+			SnowballThrowEffect.prototype.destroy = function () {
+				this.setClickToThrow(false);
+
+				if (this.stage && this.stage.parentNode) {
+					this.stage.parentNode.removeChild(this.stage);
+				}
+
+				this.stage = null;
+				this.activeThrows = 0;
+
+				return this;
+			};
+
+			var api = {
+				mount: function (root, options) {
+					if (!root) {
+						throw new Error("SnowballThrowEffect.mount requires a root element.");
+					}
+
+					return new SnowballThrowEffect(root, options);
+				},
+				preload: preloadAssets,
+				PATH_COUNT: PATH_COUNT,
+				EFFECT_DURATION_MS: EFFECT_DURATION_MS
+			};
+
+			global.SnowballThrowEffect = api;
+
+			document.addEventListener("DOMContentLoaded", function () {
+				var sizeInput = document.getElementById("size");
+				var sizeValue = document.getElementById("size-value");
+				var clickThrowInput = document.getElementById("click-throw");
+				var throwButton = document.getElementById("throw");
+				var burstButton = document.getElementById("burst");
+
+				var effect = api.mount(document.body, { fixed: true, sizePercent: Number(sizeInput.value) });
+
+				preloadAssets().then(function () {
+					effect.throw();
+				});
+
+				effect.setClickToThrow(clickThrowInput.checked);
+
+				sizeInput.addEventListener("input", function () {
+					sizeValue.textContent = sizeInput.value + "%";
+					effect.setOptions({ sizePercent: Number(sizeInput.value) });
+				});
+
+				clickThrowInput.addEventListener("change", function () {
+					effect.setClickToThrow(clickThrowInput.checked);
+				});
+
+				throwButton.addEventListener("click", function () {
+					effect.throw();
+				});
+
+				burstButton.addEventListener("click", function () {
+					var i;
+
+					for (i = 0; i < 3; i++) {
+						setTimeout(function () {
+							effect.throw();
+						}, i * 180);
+					}
+				});
+			});
+		})(window);
+	</script>
+</body>
+</html>

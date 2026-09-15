@@ -1,0 +1,140 @@
+.emuos-desktop {
+	--desktop-icon-size: 48px;
+	--desktop-icon-cell-width: 74px;
+	--desktop-icon-cell-height: 92px;
+	background: #b3dced;
+	background: -moz-linear-gradient(top, #b3dced 0%, #29b8e5 50%, #bce0ee 100%); /* FF3.6-15 */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b3dced), color-stop(50%,#29b8e5), color-stop(100%,#bce0ee)); /* Chrome4-9,Safari4-5 */
+	background: -webkit-linear-gradient(top, #b3dced 0%,#29b8e5 50%,#bce0ee 100%); /* Chrome10-25,Safari5.1-6 */
+	background: -o-linear-gradient(top, #b3dced 0%,#29b8e5 50%,#bce0ee 100%); /* Opera 11.10-11.50 */
+	background: -ms-linear-gradient(top, #b3dced 0%,#29b8e5 50%,#bce0ee 100%); /* IE10 preview */
+	background: linear-gradient(to bottom, #b3dced 0%,#29b8e5 50%,#bce0ee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee',GradientType=0 ); /* IE6-9 */
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.emuos-desktop:focus {
+	outline: none;
+}
+
+.emuos-desktop.ui-widget-content {
+	border: none;
+}
+
+/*noinspection CssOverwrittenProperties*/
+.emuos-desktop-icon {
+	display: block;
+	position: relative;
+	float: left;
+	width: var(--desktop-icon-cell-width, 74px);
+	height: var(--desktop-icon-cell-height, 92px);
+	-ms-touch-action: none;
+	touch-action: none;
+	/*background-color: #fff;*/
+	/*background-color: rgba(255, 255, 255, 0.5);*/
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-background-clip: padding-box;
+	color: #fff;
+	/*color: #000;*/
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 1.3;
+	/*margin: 6px 1px 6px;*/
+	margin: 6px 6px 6px;
+	text-align: center;
+	text-shadow: #000 1px 1px 1px;
+	text-decoration: none;
+	/*z-index: 1;*/
+}
+
+/*noinspection CssOverwrittenProperties*/
+.emuos-desktop-icon.ui-selected,
+.emuos-desktop-icon {
+	/*background-color: #000;*/
+	/*background-color: rgba(0, 0, 0, 0.5);*/
+}
+
+/*noinspection CssOverwrittenProperties,CssInvalidPropertyValue*/
+.emuos-desktop-icon i.icon {
+	/*background-color: #000;*/
+	/*background-color: rgba(0, 0, 0, 0.5);*/
+	display: block;
+	position: relative;
+	margin: 0 auto 5px;
+	width: var(--desktop-icon-size, 48px);
+	height: var(--desktop-icon-size, 48px);
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: var(--desktop-icon-size, 48px) var(--desktop-icon-size, 48px);
+	text-decoration: none;
+	pointer-events: none;
+	/*image-rendering: optimizeSpeed;*/
+	/*image-rendering: -moz-crisp-edges;*/
+	/*image-rendering: -webkit-optimize-contrast;*/
+	/*image-rendering: -o-crisp-edges;*/
+	/*image-rendering: crisp-edges;*/
+	/*-ms-interpolation-mode: nearest-neighbor;*/
+}
+
+.emuos-desktop-icon span {
+	pointer-events: none;
+}
+
+.emuos-desktop-icon:hover {
+	background-color: #000;
+	background-color: rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 0 1px #fff;
+}
+
+.emuos-desktop-icon.ui-sortable-helper span,
+.emuos-desktop-icon.ui-draggable-dragging span,
+.emuos-desktop-icon.ui-selecting span,
+.emuos-desktop-icon.ui-selected span {
+	position: relative;
+	background-color: #000080;
+	color: #fff;
+}
+
+.emuos-desktop-icon.ui-sortable-helper span:after,
+.emuos-desktop-icon.ui-draggable-dragging span:after,
+.emuos-desktop-icon.ui-selecting span:after,
+.emuos-desktop-icon.ui-selected span:after {
+	position: absolute;
+	display: block;
+	content: '';
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	outline: 1px dotted #ffff7f;
+	outline-offset: -1px;
+}
+
+@supports (mix-blend-mode: difference) {
+	.emuos-desktop-icon.ui-sortable-helper span:after,
+	.emuos-desktop-icon.ui-draggable-dragging span:after,
+	.emuos-desktop-icon.ui-selecting span:after,
+	.emuos-desktop-icon.ui-selected span:after {
+		outline-color: #fff;
+		mix-blend-mode: difference;
+	}
+}
+
+.emuos-desktop-icon.ui-sortable-helper i,
+.emuos-desktop-icon.ui-draggable-dragging i,
+.emuos-desktop-icon.ui-selecting i,
+.emuos-desktop-icon.ui-selected i {
+	-webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+	filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+}
+
+.emuos-desktop-icon.ui-sortable-helper,
+.emuos-desktop-icon.ui-draggable-dragging {
+	border: none;
+}

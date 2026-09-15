@@ -1,0 +1,73 @@
+.theme-windows-98 .emuos-desktop {
+	background-color: #76abd5;
+	background-image: url(../../../../images/themes/wallpapers/windows-98/windows-98-remastered-1920x1080.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.theme-windows-98 .emuos-desktop-icon {
+	font-size: 13px;
+	font-weight: normal;
+	text-shadow: none;
+	/*z-index: 1;*/
+}
+
+.theme-windows-98 .emuos-desktop-icon span {
+	display: block;
+	color: #fff;
+	background-color: #3b6ea5;
+}
+
+.theme-windows-98 .emuos-desktop-icon.ui-sortable-helper span,
+.theme-windows-98 .emuos-desktop-icon.ui-draggable-dragging span,
+.theme-windows-98 .emuos-desktop-icon.ui-selecting span,
+.theme-windows-98 .emuos-desktop-icon.ui-selected span {
+	position: relative;
+	background-color: #000080;
+	color: #fff;
+}
+
+.theme-windows-98 .emuos-desktop-icon.ui-sortable-helper span:after,
+.theme-windows-98 .emuos-desktop-icon.ui-draggable-dragging span:after,
+.theme-windows-98 .emuos-desktop-icon.ui-selecting span:after,
+.theme-windows-98 .emuos-desktop-icon.ui-selected span:after {
+	position: absolute;
+	display: block;
+	content: '';
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	outline: 1px dotted #ffff7f;
+	outline-offset: -1px;
+}
+
+@supports (mix-blend-mode: difference) {
+	.theme-windows-98 .emuos-desktop-icon.ui-sortable-helper span:after,
+	.theme-windows-98 .emuos-desktop-icon.ui-draggable-dragging span:after,
+	.theme-windows-98 .emuos-desktop-icon.ui-selecting span:after,
+	.theme-windows-98 .emuos-desktop-icon.ui-selected span:after {
+		outline-color: #fff;
+		mix-blend-mode: difference;
+	}
+}
+
+.theme-windows-98 .emuos-desktop-icon.ui-sortable-helper i,
+.theme-windows-98 .emuos-desktop-icon.ui-draggable-dragging i,
+.theme-windows-98 .emuos-desktop-icon.ui-selecting i,
+.theme-windows-98 .emuos-desktop-icon.ui-selected i {
+	-webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+	filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+}
+
+.theme-windows-98 .emuos-desktop-icon:hover {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+.theme-windows-98 .emuos-desktop-icon.ui-sortable-helper,
+.theme-windows-98 .emuos-desktop-icon.ui-draggable-dragging {
+	border: none;
+}

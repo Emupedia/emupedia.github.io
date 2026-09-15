@@ -1,0 +1,27 @@
+:host {
+	position: absolute;
+	top: 25px;
+	left: 25px;
+	width: 377px;
+	height: 119px;
+	overflow: hidden;
+	font-family: "MS Sans Serif", "Segoe UI", sans-serif;
+	font-size: 11px;
+	-webkit-font-smoothing: none;
+	font-smooth: never;
+}
+
+#title {
+	/*color: #fff;*/
+	cursor: default;
+}
+
+#close {
+	float: right;
+	cursor: pointer;
+}
+
+#close.disabled {
+	color: #808080;
+	text-shadow: 1px 1px #fff;
+}

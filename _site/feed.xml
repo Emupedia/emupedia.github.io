@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emupedia</title>
+    <description></description>
+    <link>http://0.0.0.0:3000/</link>
+    <atom:link href="http://0.0.0.0:3000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 15 Sep 2026 15:42:32 +0000</pubDate>
+    <lastBuildDate>Tue, 15 Sep 2026 15:42:32 +0000</lastBuildDate>
+    <generator>Jekyll v4.4.1</generator>
+    
+      <item>
+        <title>Welcome to Emupedia!</title>
+        <description>&lt;p&gt;To be continued…&lt;/p&gt;
+</description>
+        <pubDate>Tue, 01 Mar 2016 14:12:44 +0000</pubDate>
+        <link>http://0.0.0.0:3000/jekyll/update/2016/03/01/welcome-to-emupedia.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:3000/jekyll/update/2016/03/01/welcome-to-emupedia.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+  </channel>
+</rss>

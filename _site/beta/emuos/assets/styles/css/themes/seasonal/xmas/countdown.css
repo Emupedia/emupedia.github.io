@@ -1,0 +1,57 @@
+.xmas-countdown {
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	background: #fff;
+	width: 130px;
+	text-align: center;
+	border: 2px #61ad65 solid;
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
+	-moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
+	-ms-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
+	-o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.12);
+
+	font: 80%/1.25 Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-weight: 600;
+
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+.xmas-countdown svg {
+	width: 130px;
+	position: absolute;
+	top: -40px;
+	left: 0;
+}
+
+.xmas-countdown svg .bow-shadow {
+	fill: #c13d2c;
+}
+
+.xmas-countdown svg .bow {
+	fill: #e64e3d;
+}
+
+.xmas-countdown .message {
+	font-size: 1.3em;
+	background: #61ad65;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 5px 0;
+	text-shadow: 1px 1px 1px #5a5a5a;
+}
+
+.xmas-countdown .countdown {
+	font-size: 5em;
+	color: #e64e3d;
+	line-height: 60px;
+}

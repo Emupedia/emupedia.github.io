@@ -1,0 +1,145 @@
+/*noinspection CssOverwrittenProperties*/
+.tree {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+/*noinspection DuplicatedCode*/
+.tree li input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 18px;
+	height: 18px;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.tree li input + span + ul > li {
+	display: none;
+}
+
+.tree li input:checked + span + ul > li {
+	display: block;
+}
+
+.tree ul.tree-subtree, .tree li.tree-leaf {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	position: relative;
+}
+
+.tree li.tree-leaf {
+	background-position: -108px 0;
+	background-repeat: repeat-y;
+	min-height: 18px;
+	line-height: 18px;
+}
+
+.tree li.tree-leaf::before {
+	content: '';
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	background-position: -36px 0;
+}
+
+.tree li.tree-leaf:last-child::before  {
+	background-position: -90px 0;
+}
+
+.tree li.tree-leaf li.tree-leaf {
+	margin-left: 18px;
+}
+
+.tree li.tree-leaf:last-child {
+	background-image: none !important;
+}
+
+.tree li.tree-leaf.closed ul.tree-subtree {
+	display: none;
+}
+
+.tree li.tree-leaf.tree-has-children > span.tree-toggle {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 18px;
+	height: 18px;
+	background-position: 0 0;
+}
+
+.tree li.tree-leaf.tree-has-children > input:checked + span.tree-toggle {
+	background-position: -18px 0;
+}
+
+.tree .tree-leaf-label {
+	line-height: 18px;
+	display: inline-block;
+	vertical-align: top;
+	cursor: pointer;
+	max-width: 100%;
+	margin-left: 18px;
+	padding: 0 2px;
+	text-decoration: none;
+	color: #000;
+}
+
+.tree li.tree-leaf .tree-leaf-label:hover {
+	background-color: #e7f4f9;
+	outline: 1px solid #d8f0fa;
+	outline-offset: -1px;
+}
+
+.tree li.tree-leaf .tree-leaf-label:active,
+.tree li.tree-leaf .tree-leaf-label:focus {
+	background-color: #beebff;
+	outline: 1px solid #99defd;
+	outline-offset: -1px;
+}
+
+.tree li.tree-leaf.tree-selected > .tree-leaf-label {
+	background-color: #beebff;
+	outline: 1px solid #99defd;
+	outline-offset: -1px;
+}
+
+.tree-contextmenu {
+	position: absolute;
+	z-index: 9999999;
+	border: solid 1px #ccc;
+	background: #eee;
+	padding: 0;
+	margin: 0;
+	display: none;
+}
+
+.tree-contextmenu li {
+	list-style: none;
+	padding: 1px 5px;
+	margin: 0;
+	color: #333;
+	line-height: 20px;
+	height: 20px;
+	cursor: default;
+}
+
+.tree-contextmenu li:hover {
+	color: #fff;
+	background-color: #3399ff;
+}
+
+.tree.theme-classic li.tree-leaf, .tree.theme-classic li.tree-leaf::before, .tree.theme-classic li.tree-leaf.tree-has-children > span.tree-toggle {
+	background-image: url(../../../../images/themes/tree/tree-classic.png);
+}
+
+.tree.theme-modern li.tree-leaf, .tree.theme-modern li.tree-leaf::before, .tree.theme-modern li.tree-leaf.tree-has-children > span.tree-toggle {
+	background-image: url(../../../../images/themes/tree/tree-modern.png);
+}

@@ -1,0 +1,576 @@
+.emuos-taskbar {
+	text-align: left;
+}
+
+.emuos-taskbar,
+.emuos-taskbar-droppable {
+	position: fixed;
+	z-index: 10000;
+}
+
+.emuos-taskbar,
+.emuos-taskbar-droppable,
+.emuos-taskbar-separator {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.emuos-taskbar * {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+.emuos-taskbar-droppable,
+.emuos-taskbar-button-tooltip.ui-tooltip,
+.emuos-taskbar-with-opened-elements,
+.emuos-taskbar-resizing {
+	z-index: 10001;
+}
+
+.emuos-taskbar-droppable.emuos-taskbar-vertical,
+.emuos-taskbar-helper {
+	min-width: 4em;
+}
+
+.emuos-taskbar-droppable.emuos-taskbar-horizontal,
+.emuos-taskbar-helper {
+	min-height: 1em;
+}
+
+.emuos-taskbar-windows-containment {
+	background: transparent;
+	border: 0 solid transparent;
+}
+
+.emuos-taskbar-windows-containment,
+.emuos-taskbar-window-copy {
+	position: absolute;
+	/*position: fixed;*/
+	z-index: -10000;
+}
+
+.emuos-taskbar.emuos-taskbar-empty {
+	padding: 0;
+}
+
+.emuos-taskbar.ui-state-default {
+	background-image: none;
+}
+
+.emuos-taskbar-droppable {
+	background-color: transparent;
+}
+
+.emuos-taskbar-droppabe.emuos-taskbar-droppable-over {
+	z-index: 10000;
+}
+
+.emuos-taskbar-helper {
+	z-index: 10001;
+}
+
+.emuos-hidden,
+.emuos-taskbar .emuos-hidden {
+	display: none;
+}
+
+.emuos-taskbar-stick-left {
+	left: 0;
+}
+
+.emuos-taskbar-stick-right {
+	right: 0;
+}
+
+.emuos-taskbar-stick-top {
+	top: 0;
+}
+
+.emuos-taskbar-stick-bottom {
+	bottom: 0;
+}
+
+.emuos-taskbar > .emuos-taskbar-menu > .ui-menu,
+.emuos-taskbar-vertical .emuos-taskbar-system-buttons-container,
+.emuos-taskbar-datepicker,
+.emuos-taskbar-resizable,
+.emuos-taskbar-resizable.ui-resizable,
+.emuos-taskbar [data-menu-type],
+.emuos-taskbar .emuos-taskbar-window-group-menu {
+	position: absolute;
+}
+
+.emuos-taskbar-resizable,
+.emuos-taskbar-resizable.ui-resizable,
+.emuos-taskbar-window-close {
+	z-index: 10;
+}
+
+.emuos-taskbar-window-close {
+	display: none;
+}
+
+/* jQuery UI 1.10 */
+.emuos-taskbar-window-group-menu .ui-menu-item a[role=menuitem].ui-state-focus + .emuos-taskbar-window-close,
+	/* jQuery UI 1.11+ */
+.emuos-taskbar-window-group-menu .ui-menu-item.emuos-taskbar-window-group-element-active .emuos-taskbar-window-close {
+	display: block;
+}
+
+.emuos-taskbar-horizontal .emuos-taskbar-resizable {
+	width: 100%;
+	left: 0;
+}
+
+.emuos-taskbar-vertical .emuos-taskbar-resizable {
+	height: 100%;
+	top: 0;
+}
+
+.emuos-taskbar-horizontal .emuos-taskbar-start-container,
+.emuos-taskbar-horizontal .emuos-taskbar-buttons-container,
+.emuos-taskbar-horizontal .emuos-taskbar-window-buttons-container {
+	float: left;
+}
+
+.emuos-taskbar-horizontal .emuos-taskbar-system-buttons-container {
+	float: right;
+}
+
+.emuos-taskbar [data-menu-type] {
+	z-index: 10000;
+}
+
+.emuos-taskbar [data-menu-type]:empty {
+	padding: 0;
+}
+
+/* jQuery UI 1.10 */
+.emuos-taskbar [data-menu-type].ui-corner-all .ui-menu-item,
+.emuos-taskbar .emuos-taskbar-window-group-menu.ui-corner-all .ui-menu-item {
+	white-space: nowrap;
+	font-weight: normal;
+}
+
+/* jQuery UI 1.11+ */
+.emuos-taskbar [data-menu-type]:not(.ui-corner-all) .ui-menu-item,
+.emuos-taskbar .emuos-taskbar-window-group-menu:not(.ui-corner-all) .ui-menu-item {
+	font-weight: normal;
+	white-space: nowrap;
+}
+
+.emuos-taskbar [data-menu-type]:not(.ui-corner-all) .ui-menu-item a,
+.emuos-taskbar .emuos-taskbar-window-group-menu:not(.ui-corner-all) .ui-menu-item a {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: -webkit-calc(100% - 1em);
+	max-width: -moz-calc(100% - 1em);
+	max-width: calc(100% - 1em);
+	display: inline-block;
+	line-height: 1;
+}
+
+.emuos-taskbar [data-menu-type=languageSelect]:not(.ui-corner-all) .ui-menu-item a {
+	max-width: 100%;
+	overflow: visible;
+}
+
+/* jQuery UI 1.11+ */
+
+.emuos-taskbar .ui-menu .ui-state-active a,
+.emuos-taskbar .ui-menu .ui-state-active a:link,
+.emuos-taskbar .ui-menu .ui-state-active a:visited {
+	color: inherit;
+}
+
+.emuos-taskbar-window-group-menu > .ui-menu-item {
+	list-style-image: none;
+}
+
+.emuos-taskbar-window-group-menu > .ui-menu-item > a {
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.emuos-taskbar-window-group-menu > .ui-menu-item > a {
+	padding-right: 2.4em;
+}
+
+.emuos-taskbar-window-group-menu-scroll.emuos-taskbar-window-group-menu.ui-corner-all > .ui-menu-item {
+	margin-right: 1.2em;
+}
+
+.emuos-taskbar-window-group-menu > .ui-menu-item {
+	position: relative;
+}
+
+.emuos-taskbar-window-group-menu > .ui-menu-item > span.ui-icon {
+	z-index: 1;
+	cursor: pointer;
+}
+
+/* jQuery UI 1.10 */
+.emuos-taskbar-window-group-menu.ui-corner-all > .ui-menu-item.emuos-taskbar-window-group-element-active > span.ui-icon {
+	margin-top: 1px;
+}
+
+.emuos-taskbar-window-group-menu > .ui-menu-item > .ui-button {
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	right: .1em;
+	top: 50%;
+	margin-top: -9px;
+}
+
+.emuos-taskbar-window-group-menu > .ui-menu-item > .ui-button .ui-icon {
+	top: 50%;
+	left: 50%;
+	/* margin-top and margin-left were added for jQuery UI 1.11+ */
+	margin-top: -8px;
+	margin-left: -8px;
+}
+
+.emuos-taskbar .ui-menu-item a {
+	text-decoration: none;
+}
+
+.emuos-taskbar [data-menu-type=start] .ui-menu-item > a {
+	padding-right: 1.4em;
+}
+
+.emuos-taskbar [data-menu-type=start] .ui-menu-item > a > .ui-menu-icon {
+	margin-right: -1.3em;
+}
+
+/* Fixes jQuery UI #8844 fix for IE10 (1px by 1px data URI image),
+   where ui-menu-item calculated width
+   (webkitLogicalWidth, and, as a result, width itself) would increace by 1px,
+   and stay that way despite blur occuring;
+   targets WebKit/Blink only, we don't want any collateral damage */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+	.emuos-taskbar .ui-menu .ui-menu-item {
+		list-style-image: none;
+	}
+}
+
+.emuos-taskbar-vertical .emuos-taskbar-system-buttons-container .emuos-taskbar-icon {
+	display: inline-block;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.emuos-taskbar {
+	border-style: solid;
+	border-width: 0;
+}
+
+.emuos-taskbar-system-buttons-container,
+.emuos-taskbar-start-container,
+.emuos-taskbar-buttons-container,
+.emuos-taskbar-window-buttons-container {
+	padding: .2em 0 0 .2em;
+}
+
+.emuos-taskbar-separator {
+	margin: 0 .2em .2em 0;
+	background-image: none;
+}
+
+.emuos-taskbar-horizontal .emuos-taskbar-separator {
+	display: inline-block;
+	margin: .2em 0 0;
+	vertical-align: top;
+	width: 1px;
+	line-height: normal;
+	font-size: 1.1em;
+	border-width: 0 0 0 1px;
+	border-left-style: solid;
+	height: calc(100% - .4em);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.emuos-taskbar-vertical .emuos-taskbar-separator {
+	height: 1px;
+	display: block;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+
+.emuos-taskbar-vertical .ui-button {
+	display: block;
+}
+
+.emuos-taskbar-vertical .emuos-taskbar-system-buttons-container .ui-button {
+	display: inline-block;
+}
+
+.emuos-taskbar-vertical.emuos-taskbar-window-buttons-icons-only .emuos-taskbar-window-buttons-container > .ui-button {
+	display: block;
+	width: auto;
+}
+
+.emuos-taskbar .ui-button {
+	/*margin: 0 .2em .2em 0;*/
+	margin: 0 .2em .25em 0;
+}
+
+.emuos-taskbar .emuos-taskbar-window-buttons-container {
+	overflow: hidden;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.emuos-taskbar .emuos-taskbar-window-buttons-container .ui-button.ui-sortable-placeholder {
+	/* fixes tests/functional/taskbarInteractions.html
+	   "Window buttons stay in place during sortable" */
+	vertical-align: top;
+}
+
+.emuos-taskbar-vertical .emuos-taskbar-window-buttons-container > .ui-button.ui-sortable-helper {
+	width: calc(100% - .4em - 2px);
+}
+
+.emuos-taskbar-vertical .emuos-taskbar-window-buttons-container {
+	overflow-y: auto;
+	margin-top: -.2em;
+}
+
+.emuos-taskbar-vertical .emuos-taskbar-window-buttons-container.emuos-taskbar-window-buttons-container-first-child {
+	margin-top: 0;
+}
+
+/* If you would like to change border width, you need to change the part
+   calc(.4em + 1px) to match the border width you choose */
+.emuos-taskbar.emuos-taskbar-horizontal .emuos-taskbar-window-buttons-container > .ui-button {
+	margin: 0 .2em calc(.4em + 1px) 0;
+	overflow: hidden;
+}
+
+/* See the notice a few linies above */
+.emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-top,
+.emuos-taskbar.ui-corner-br,
+.emuos-taskbar.ui-corner-bl,
+.emuos-taskbar-resizable.ui-corner-br,
+.emuos-taskbar-resizable.ui-corner-bl {
+	border-bottom-width: 1px;
+}
+
+.emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-bottom,
+.emuos-taskbar.ui-corner-tr,
+.emuos-taskbar.ui-corner-tl,
+.emuos-taskbar-resizable.ui-corner-tr,
+.emuos-taskbar-resizable.ui-corner-tl {
+	border-top-width: 1px;
+}
+
+.emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-left,
+.emuos-taskbar.ui-corner-tr,
+.emuos-taskbar.ui-corner-br,
+.emuos-taskbar-resizable.ui-corner-tr,
+.emuos-taskbar-resizable.ui-corner-br {
+	border-right-width: 1px;
+}
+
+.emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-right,
+.emuos-taskbar.ui-corner-tl,
+.emuos-taskbar.ui-corner-bl,
+.emuos-taskbar-resizable.ui-corner-tl,
+.emuos-taskbar-resizable.ui-corner-bl {
+	border-left-width: 1px;
+}
+
+.emuos-taskbar .ui-button.emuos-taskbar-button-disabled {
+	cursor: default;
+}
+
+.emuos-taskbar-vertical .ui-button .ui-button-text,
+.emuos-taskbar-window-button .ui-button-text,
+.ui-tooltip.emuos-taskbar-button-tooltip .ui-tooltip-content {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.emuos-taskbar-window-button.ui-sortable-placeholder {
+	visibility: visible !important;
+	background-image: none;
+	opacity: 0.5;
+}
+
+/* keep window button dimensions when title: "" is set to window */
+.emuos-taskbar-window-button .ui-button-text:before {
+	content: "";
+	display: inline-block;
+}
+
+.emuos-taskbar-container:empty {
+	padding: 0;
+}
+
+.emuos-taskbar-container:empty + .emuos-taskbar-separator {
+	display: none;
+}
+
+.emuos-taskbar-horizontal .emuos-taskbar-window-button {
+	max-width: 20em;
+}
+
+.emuos-taskbar-vertical .ui-button-text-only .ui-button-text {
+	padding: .4em .7em;
+}
+
+.emuos-taskbar-vertical .ui-button-text-icon-primary .ui-button-text {
+	padding: .4em .7em .4em 2.1em;
+}
+
+.emuos-taskbar .emuos-taskbar-system-buttons-container .ui-button-text-only .ui-button-text {
+	padding: .4em .6em;
+}
+
+.emuos-taskbar .emuos-taskbar-system-buttons-container .ui-button {
+	margin: 0 .2em .2em 0;
+}
+
+.emuos-taskbar-vertical .emuos-taskbar-system-buttons-container {
+	bottom: 0;
+	text-align: center;
+}
+
+.emuos-taskbar-vertical .emuos-taskbar-system-buttons-container .ui-menu .ui-menu-item {
+	text-align: left;
+}
+
+.emuos-taskbar-vertical.emuos-taskbar-stick-top .emuos-taskbar-system-buttons-container {
+	bottom: 0.1em;
+}
+
+.emuos-taskbar-window-copy {
+	top: 0;
+	left: 0;
+}
+
+.emuos-taskbar-iframe {
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border-width: 0;
+	position: absolute;
+}
+
+.emuos-taskbar-iframe-horizontal {
+	height: 0;
+	width: 100%;
+}
+
+.emuos-taskbar-iframe-vertical {
+	width: 0;
+	height: 100%;
+}
+
+.emuos-taskbar-window-group-menu-scroll {
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.emuos-menu-hidden {
+	display: none;
+}
+
+.emuos-taskbar-window-group-menu,
+.ui-tooltip.emuos-taskbar-button-tooltip {
+	max-width: 25em;
+}
+
+.emuos-taskbar-resizable {
+	/* border-style for this element should not be omitted, otherwise it would damage UX */
+	border-style: solid;
+}
+
+.emuos-taskbar-resizable.emuos-taskbar-resizable-disabled .ui-resizable-handle {
+	cursor: auto;
+}
+
+.emuos-taskbar-vertical .emuos-taskbar-separator {
+	border-width: 1px 0 0;
+	border-top-style: solid;
+	width: calc(100% - .4em);
+	margin-left: .2em;
+	margin-bottom: 1px;
+	z-index: 1;
+}
+
+.emuos-taskbar-droppable {
+	opacity: .70;
+}
+
+.emuos-taskbar-begin-hint {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	align-items: center;
+	gap: 4px;
+	white-space: nowrap;
+	pointer-events: none;
+	font-size: 13px;
+	/*font-weight: bold;*/
+	color: inherit;
+	line-height: 1;
+	margin-left: 0;
+	animation: emuos-begin-hint-bounce 2.5s linear 1 forwards;
+}
+
+.emuos-taskbar-begin-hint-arrow {
+	display: block;
+	width: auto;
+	height: 16px;
+	flex-shrink: 0;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+}
+
+.emuos-taskbar-horizontal .emuos-taskbar-window-buttons-container:not(.emuos-taskbar-window-buttons-container-has-buttons) .emuos-taskbar-begin-hint {
+	display: flex;
+}
+
+@keyframes emuos-begin-hint-bounce {
+	0% {
+		margin-left: 80%;
+	}
+
+	40% {
+		margin-left: 0%;
+	}
+
+	60% {
+		margin-left: 15%;
+	}
+
+	72% {
+		margin-left: 0%;
+	}
+
+	82% {
+		margin-left: 4%;
+	}
+
+	90% {
+		margin-left: 0%;
+	}
+
+	96% {
+		margin-left: 1%;
+	}
+
+	100% {
+		margin-left: 0%;
+	}
+}

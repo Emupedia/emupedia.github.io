@@ -1,0 +1,43 @@
+:host {
+	display: block;
+	position: fixed;
+	background: #c0c0c0;
+	overflow: hidden;
+}
+
+emuos-button {
+	width: 114px;
+	height: 21px;
+}
+
+:host-context(.bottom) {
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 25px;
+}
+
+:host-context(.top) {
+	left: 0;
+	right: 0;
+	top: 0;
+	width: 100%;
+	height: 25px;
+}
+
+:host-context(.left) {
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 25px;
+	height: 100%;
+}
+
+:host-context(.right) {
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 25px;
+	height: 100%;
+}

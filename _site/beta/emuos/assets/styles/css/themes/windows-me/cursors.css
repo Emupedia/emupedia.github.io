@@ -1,0 +1,59 @@
+html.theme-windows-me {
+	cursor: url(../../../../images/themes/cursors/windows-9x/default.cur), default;
+}
+
+.theme-windows-me p {
+	cursor: url(../../../../images/themes/cursors/windows-9x/text.cur), text;
+}
+
+.theme-windows-me .emuos-desktop-icon,
+.theme-windows-me .emuos-window .emuos-window-icon,
+.theme-windows-me .ui-button,
+.theme-windows-me .ui-menu .ui-menu-item,
+.theme-windows-me .mCustomScrollBox .mCSB_dragger .mCSB_dragger_bar,
+.theme-windows-me .mCustomScrollBox .mCSB_buttonUp,
+.theme-windows-me .mCustomScrollBox .mCSB_buttonDown {
+	cursor: url(../../../../images/themes/cursors/windows-9x/pointer.cur), pointer;
+}
+
+.theme-windows-me .emuos-taskbar-windows-containment,
+.theme-windows-me .emuos-taskbar-window-copy,
+.theme-windows-me .emuos-taskbar-resizable.emuos-taskbar-resizable-disabled .ui-resizable-handle {
+	cursor: url(../../../../images/themes/cursors/windows-9x/default.cur), default;
+}
+
+.theme-windows-me .ui-draggable .ui-dialog-titlebar {
+	cursor: url(../../../../images/themes/cursors/windows-9x/move.cur), move;
+}
+
+.theme-windows-me .ui-resizable-n {
+	cursor: url(../../../../images/themes/cursors/windows-9x/vertical.cur), n-resize;
+}
+
+.theme-windows-me .ui-resizable-e {
+	cursor: url(../../../../images/themes/cursors/windows-9x/horizontal.cur), e-resize;
+}
+
+.theme-windows-me .ui-resizable-s {
+	cursor: url(../../../../images/themes/cursors/windows-9x/vertical.cur), s-resize;
+}
+
+.theme-windows-me .ui-resizable-w {
+	cursor: url(../../../../images/themes/cursors/windows-9x/horizontal.cur), w-resize;
+}
+
+.theme-windows-me .ui-resizable-nw {
+	cursor: url(../../../../images/themes/cursors/windows-9x/diagonal1.cur), nw-resize;
+}
+
+.theme-windows-me .ui-resizable-ne {
+	cursor: url(../../../../images/themes/cursors/windows-9x/diagonal2.cur), ne-resize;
+}
+
+.theme-windows-me .ui-resizable-sw {
+	cursor: url(../../../../images/themes/cursors/windows-9x/diagonal2.cur), sw-resize;
+}
+
+.theme-windows-me .ui-resizable-se {
+	cursor: url(../../../../images/themes/cursors/windows-9x/diagonal1.cur), se-resize;
+}

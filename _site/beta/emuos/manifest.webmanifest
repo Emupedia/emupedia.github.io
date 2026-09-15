@@ -1,0 +1,85 @@
+{
+	"name": "EmuOS",
+	"short_name": "EmuOS",
+	"dir": "auto",
+	"lang": "en-US",
+	"description": "The purpose of Emupedia is to serve as a nonprofit meta-resource, hub and community for those interested mainly in video game preservation which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly UI that simulates several retro operating systems for educational purposes.",
+	"categories": ["entertainment", "education" ,"emupedia", "emulation", "emulator", "emularity", "virtual-desktop", "virtual", "desktop", "windows-desktop", "virtual-machine", "mame" ,"dosbox", "dosgame", "retrogaming", "retrocomputing", "preserve-games", "video-games", "games", "win95", "win98", "winxp"],
+	"display": "fullscreen",
+	"orientation": "landscape",
+	"theme_color": "#3b6ea5",
+	"background_color": "#008080",
+	"start_url": "index.html",
+	"serviceworker": {
+		"src": "sw.js"
+	},
+	"icons": [{
+		"src": "assets/images/logos/emupedia/emupedia-logo-16.png",
+		"sizes": "16x16",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-24.png",
+		"sizes": "24x24",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-32.png",
+		"sizes": "32x32",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-48.png",
+		"sizes": "48x48",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-58.png",
+		"sizes": "58x58",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-64.png",
+		"sizes": "64x64",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-72.png",
+		"sizes": "72x72",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-96.png",
+		"sizes": "96x96",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-114.png",
+		"sizes": "114x114",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-128.png",
+		"sizes": "128x128",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-144.png",
+		"sizes": "144x144",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-152.png",
+		"sizes": "152x152",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-168.png",
+		"sizes": "168x168",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-180.png",
+		"sizes": "180x180",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-192.png",
+		"sizes": "192x192",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-256.png",
+		"sizes": "256x256",
+		"type": "image/png"
+	} , {
+		"src": "assets/images/logos/emupedia/emupedia-logo-512.png",
+		"sizes": "512x512",
+		"type": "image/png"
+	}]
+}

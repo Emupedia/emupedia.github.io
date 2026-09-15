@@ -1,0 +1,13 @@
+/*noinspection CssUnknownTarget*/
+.emuos-april1st .emuos-desktop {
+	background-color: #f0f1e9;
+	background-image: url(../../../../../images/themes/wallpapers/seasonal/april1st.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.emuos-april1st .emuos-desktop-icon span {
+	background-color: #BD362F;
+	color: #f0f1e9;
+}

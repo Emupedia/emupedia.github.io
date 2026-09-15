@@ -1,0 +1,1601 @@
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
+╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
+╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<!DOCTYPE html>
+<!--suppress HttpUrlsUsage -->
+<html class="emuos" lang="en-us" prefix="og: http://ogp.me/ns/website#">
+	<head>
+		<title>EmuOS v1.0</title>
+
+		<!-- region Meta -->
+
+		<meta charset="utf-8" />
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data: *; style-src 'self' 'unsafe-inline'; font-src 'self' *; script-src 'self' 'unsafe-eval' 'unsafe-inline' emupedia.net *.emupedia.net emupedia.org *.emupedia.org emupedia.games *.emupedia.games emuos.net *.emuos.net emuos.org *.emuos.org emuos.games *.emuos.games cojmar.github.io google.com *.google.com gstatic.com *.gstatic.com google-analytics.com *.google-analytics.com googletagmanager.com *.googletagmanager.com doubleclick.net *.doubleclick.net; connect-src 'self' emupedia.net *.emupedia.net emupedia.org *.emupedia.org emupedia.games *.emupedia.games emuos.net *.emuos.net emuos.org *.emuos.org emuos.ganes *.emuos.ganes cojmar.github.io *; manifest-src 'self'; frame-src 'self' data: *;" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="theme-color" content="#3b6ea5" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="description" content="The purpose of Emupedia is to serve as a nonprofit meta-resource, hub and community for those interested mainly in video game preservation which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly UI that simulates several retro operating systems for educational purposes." />
+		<meta name="author" content="Emupedia" />
+		<meta name="robots" content="all" />
+		<meta name="google" value="notranslate" />
+		<meta name="googlebot" content="all" />
+		<meta name="googlebot-news" content="all" />
+
+		<!-- Facebook -->
+		<meta property="fb:app_id" content="527458061442300" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="EmuOS v1.0" />
+		<meta name="twitter:url" content="https://emupedia.net/beta/emuos/" />
+		<meta name="twitter:image" content="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo-256.png" />
+		<meta name="twitter:site" content="@EmupediaNet" />
+		<meta name="twitter:creator" content="@EmupediaNet" />
+
+		<!-- Open Graph -->
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Emupedia" />
+		<meta property="og:title" content="EmuOS v1.0" />
+		<meta property="og:description" content="The purpose of Emupedia is to serve as a nonprofit meta-resource, hub and community for those interested mainly in video game preservation which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly UI that simulates several retro operating systems for educational purposes." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://emupedia.net/beta/emuos/" />
+		<meta property="og:image" content="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo-256.png" />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="256" />
+		<meta property="og:image:height" content="256" />
+
+		<link rel="manifest" href="manifest.webmanifest" />
+
+		<!-- endregion -->
+
+		<!-- region Icons -->
+
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href="assets/images/logos/emupedia/emupedia-logo.svg" />
+		<link rel="apple-touch-icon" href="assets/images/logos/emupedia/emupedia-logo-58.png" />
+		<link rel="apple-touch-icon" sizes="57x57" href="assets/images/logos/emupedia/emupedia-logo-58.png" />
+		<link rel="apple-touch-icon" sizes="58x58" href="assets/images/logos/emupedia/emupedia-logo-58.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="assets/images/logos/emupedia/emupedia-logo-72.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="assets/images/logos/emupedia/emupedia-logo-114.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="assets/images/logos/emupedia/emupedia-logo-152.png" />
+		<link rel="apple-touch-icon" sizes="167x167" href="assets/images/logos/emupedia/emupedia-logo-168.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/images/logos/emupedia/emupedia-logo-180.png" />
+		<link rel="apple-touch-startup-image" href="assets/images/logos/emupedia/emupedia-logo-256.png" />
+
+		<!-- endregion -->
+
+		<!-- region Preload -->
+
+		<link rel="dns-prefetch" href="https://ws.emupedia.net" />
+		<link rel="dns-prefetch" href="https://ws.emupedia.org" />
+		<link rel="dns-prefetch" href="https://ws.emuos.net" />
+		<link rel="dns-prefetch" href="https://ws.emuos.org" />
+		<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+		<link rel="dns-prefetch" href="https://stats.g.doubleclick.net" />
+		<link rel="dns-prefetch" href="https://twemoji.maxcdn.com" />
+		<link rel="dns-prefetch" href="https://cloudflare.net" />
+
+		<link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" />
+		<link rel="preconnect" href="https://stats.g.doubleclick.net" crossorigin="anonymous" />
+		<link rel="preconnect" href="https://twemoji.maxcdn.com" crossorigin="anonymous" />
+		<link rel="preconnect" href="https://cloudflare.net" crossorigin="anonymous" />
+
+		<!-- endregion -->
+
+		<!-- region Styles -->
+
+		<!--suppress HtmlDeprecatedAttribute -->
+		<style type="text/css">
+			::-moz-selection {
+				background: rgba(168, 168, 168, 0.9);
+				color: #121010;
+				text-shadow: none;
+			}
+
+			/*noinspection CssInvalidPseudoSelector*/
+			::-webkit-selection {
+				background: rgba(168, 168, 168, 0.9);
+				color: #121010;
+				text-shadow: none;
+			}
+
+			::selection {
+				background: rgba(168, 168, 168, 0.9);
+				color: #121010;
+				text-shadow: none;
+			}
+
+			html {
+				height: 100%;
+			}
+
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+
+			.emuos body {
+				background-color: #333;
+				color: #333;
+			}
+
+			.emuos body::after {
+				position: absolute;
+				content: attr(build);
+				right: 0;
+				bottom: 28px;
+				color: #fff;
+				font-size: 13px;
+				text-align: right;
+				white-space: pre;
+				pointer-events: none;
+				/*text-shadow: 0 0 2px #333, 0 0 3px #333, 0 0 4px #333, 0 0 5px #333;*/
+				/*z-index: 1;*/
+			}
+
+			.emuos.has-scrollbar body::after {
+				right: 20px;
+			}
+
+			.emuos.startup body::after {
+				display: none;
+			}
+
+			.emuos.post body::after {
+				display: none;
+			}
+
+			.emuos.boot body::after {
+				display: none;
+			}
+
+			/* region Startup */
+
+			.emuos .emuos-startup {
+				display: none;
+			}
+
+			.emuos.startup .emuos-startup {
+				position: fixed;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+
+				display: block;
+				width: 100%;
+				height: 100%;
+
+				background-color: #333;
+				color: #fff;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos.startup .emuos-startup .emuos-startup-container {
+				width: 100%;
+				height: 100%;
+
+				border: none;
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos.startup .emuos-startup .emuos-startup-screen {
+				text-align: center;
+				color: #fff;
+			}
+
+			.emuos.startup .emuos-startup .emuos-startup-screen table {
+				border: 1px solid #fff;
+				margin: auto;
+			}
+
+			.emuos.startup .emuos-startup .emuos-startup-screen td {
+				text-align: left;
+				width: 320px;
+				height: 200px;
+			}
+
+			.emuos.startup .emuos-startup .emuos-startup-screen td a {
+				display: block;
+			}
+
+			.emuos.startup .emuos-startup .emuos-startup-screen img {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+
+			/* endregion */
+
+			/* region Boot */
+
+			.emuos .emuos-boot {
+				display: none;
+			}
+
+			.emuos.post .emuos-boot, .emuos.boot .emuos-boot {
+				position: fixed;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+
+				display: block;
+				width: 100%;
+				height: 100%;
+
+				background-color: #333;
+				color: #fff;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos .emuos-boot-container {
+				width: 100%;
+				height: 100%;
+
+				border: none;
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+			.emuos noscript .emuos-boot-container {
+				position: fixed;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+
+				background-color: #333;
+				color: #fff;
+			}
+
+			.emuos .emuos-boot-screen-wrapper {
+				display: block;
+
+				position: relative;
+
+				width: 800px;
+
+				margin: auto;
+				padding: 10px;
+
+				border: 2px solid #666;
+				overflow: hidden;
+
+				background-color: #121212;
+				color: #a8a8a8;
+
+				/*text-shadow: 0 0 3px #c8c8c8;*/
+
+				font-family: 'DOSVGA', monospace;
+				font-size: 16px;
+				line-height: 16px;
+				text-align: left;
+				/*white-space: pre-wrap;*/
+
+				text-rendering: optimizeLegibility;
+				-webkit-text-size-adjust: none;
+				text-size-adjust: none;
+				-webkit-font-smoothing: none;
+				-moz-osx-font-smoothing: grayscale;
+				font-smooth: never;
+
+				-webkit-tap-highlight-color: transparent;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+
+				cursor: default;
+
+				/*-webkit-animation: typewriter-end-hide 3200ms steps(38) 1s 1 normal both;*/
+				/*animation: typewriter-end-hide 3200ms steps(38) 1s 1 normal both;*/
+
+				/*-webkit-animation: typewriter-end-show 600ms steps(38) 5s 1 normal both;*/
+				/*animation: typewriter-end-show 600ms steps(38) 5s 1 normal both;*/
+			}
+
+			.emuos.boot .emuos-boot-screen-wrapper {
+				display: none;
+			}
+
+			.emuos .emuos-boot-screen {
+				width: 100%;
+				height: 100%;
+
+				-webkit-animation: turn-on 4s linear;
+				animation: turn-on 4s linear;
+				animation-fill-mode: forwards;
+			}
+
+			.emuos .emuos-boot-screen::after {
+				content: '';
+
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+
+				display: block;
+				width: 100%;
+				height: 100%;
+
+				/*background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));*/
+				/*background-size: 100% 2px, 3px 100%;*/
+				background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+				pointer-events: none;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos.post .emuos-boot-screen .emuos-boot-screen-text {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+
+				display: block;
+				width: 100%;
+				height: 100%;
+
+				white-space: -moz-pre-wrap;
+				white-space: -o-pre-wrap;
+				white-space: pre-wrap;
+			}
+
+			/*noinspection CssOverwrittenProperties,CssInvalidPropertyValue*/
+			.emuos .emuos-boot-screen img {
+				-ms-interpolation-mode: nearest-neighbor;
+				image-rendering: optimizeSpeed;
+				image-rendering: -webkit-optimize-contrast;
+				image-rendering: -moz-crisp-edges;
+				image-rendering: -o-crisp-edges;
+				image-rendering: crisp-edges;
+				image-rendering: pixelated;
+				pointer-events: none;
+			}
+
+			.emuos .emuos-boot-screen img.epa {
+				opacity: 1;
+
+				-webkit-transition: opacity 1s ease-in;
+				-moz-transition: opacity 1s ease-in;
+				-ms-transition: opacity 1s ease-in;
+				-o-transition: opacity 1s ease-in;
+				transition: opacity 1s ease-in;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos .emuos-boot-screen img.epa.fade-out {
+				opacity: 0;
+			}
+
+			.emuos .emuos-boot-screen span.cursor {
+				display: inline-block;
+				border-bottom: 2px solid rgba(168, 168, 168, 1);
+				height: 12px;
+
+				-moz-animation: blinkTextCursor 500ms infinite normal;
+				-khtml-animation: blinkTextCursor 500ms infinite normal;
+				-webkit-animation: blinkTextCursor 500ms infinite normal;
+				-ms-animation: blinkTextCursor 500ms infinite normal;
+				-o-animation: blinkTextCursor 500ms infinite normal;
+				animation: blinkTextCursor 500ms infinite normal;
+			}
+
+			/* region Windows 3 */
+
+			.emuos.boot.theme-windows-3 body {
+				background-color: #000;
+				color: #fff;
+			}
+
+			.emuos.boot.theme-windows-3 .emuos-boot {
+				background-color: #000;
+				background-image: url(assets/images/themes/boot/windows-3/win31.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: auto 90%;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos.boot.theme-windows-3 .emuos-boot .emuos-boot-container .emuos-boot-screen {
+				display: none;
+			}
+
+			/* endregion */
+
+			/* region Windows 95 */
+
+			.emuos.boot.theme-windows-95 body {
+				background-color: #76abd5;
+				color: #000;
+			}
+
+			.emuos.boot.theme-windows-95 .emuos-boot {
+				background-color: #76abd5;
+				background-image: url(assets/images/themes/boot/windows-95/background.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+			}
+
+			.emuos.boot.theme-windows-95 .emuos-boot .emuos-boot-container {
+				width: 100%;
+				height: 100%;
+
+				background-image: url(assets/images/themes/boot/windows-95/windows-95-transparent.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
+			}
+
+			.emuos.boot.theme-windows-95 .emuos-boot .emuos-boot-container::after {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+
+				display: block;
+				content: '';
+
+				width: 100%;
+				height: 28px;
+
+				background-image: linear-gradient(270deg, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8);
+				background-repeat: no-repeat;
+				background-position: 0 50%;
+				background-size: 200% 100%;
+
+				-webkit-animation: boot 5s ease infinite;
+				-moz-animation: boot 5s ease infinite;
+				-o-animation: boot 5s ease infinite;
+				animation: boot 5s ease infinite;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos.boot.theme-windows-95 .emuos-boot .emuos-boot-container .emuos-boot-screen {
+				display: none;
+			}
+
+			/* endregion */
+
+			/* region Windows 98 */
+
+			.emuos.boot.theme-windows-98 body {
+				background-color: #76abd5;
+				color: #000;
+			}
+
+			.emuos.boot.theme-windows-98 .emuos-boot {
+				background-color: #76abd5;
+				background-image: url(assets/images/themes/boot/windows-98/background.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+			}
+
+			.emuos.boot.theme-windows-98 .emuos-boot .emuos-boot-container {
+				width: 100%;
+				height: 100%;
+
+				background-image: url(assets/images/themes/boot/windows-98/windows-98-transparent.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
+			}
+
+			.emuos.boot.theme-windows-98 .emuos-boot .emuos-boot-container::after {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+
+				display: block;
+				content: '';
+
+				width: 100%;
+				height: 28px;
+
+				background-image: linear-gradient(270deg, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8);
+				background-repeat: no-repeat;
+				background-position: 0 50%;
+				background-size: 200% 100%;
+
+				-webkit-animation: boot 5s ease infinite;
+				-moz-animation: boot 5s ease infinite;
+				-o-animation: boot 5s ease infinite;
+				animation: boot 5s ease infinite;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos.boot.theme-windows-98 .emuos-boot .emuos-boot-container .emuos-boot-screen {
+				display: none;
+			}
+
+			/* endregion */
+
+			/* region Windows Me */
+
+			.emuos.boot.theme-windows-me body {
+				background-color: #fff;
+				color: #000;
+			}
+
+			.emuos.boot.theme-windows-me .emuos-boot {
+				background-color: #fff;
+				background-image: url(assets/images/themes/boot/windows-me/windows-me-transparent.png);
+				background-repeat: no-repeat, no-repeat;
+				background-position: center, center;
+				background-size: contain, cover;
+			}
+
+			.emuos.boot.theme-windows-me .emuos-boot .emuos-boot-container::after {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+
+				display: block;
+				content: '';
+				width: 100%;
+				height: 28px;
+
+				background-image: linear-gradient(270deg, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8);
+				background-repeat: no-repeat;
+				background-position: 0 50%;
+				background-size: 200% 100%;
+
+				-webkit-animation: boot 5s ease infinite;
+				-moz-animation: boot 5s ease infinite;
+				-o-animation: boot 5s ease infinite;
+				animation: boot 5s ease infinite;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos.boot.theme-windows-me .emuos-boot .emuos-boot-container .emuos-boot-screen {
+				display: none;
+			}
+
+			/* endregion */
+
+			/* region Windows 7 */
+
+			.emuos.boot.theme-windows-7 body {
+				background-color: #000;
+				color: #fff;
+			}
+
+			.emuos.boot.theme-windows-7 .emuos-boot {
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+
+				width: 200px;
+				height: 200px;
+
+				margin: auto;
+				text-align: center;
+				vertical-align: middle;
+			}
+
+			.emuos.boot.theme-windows-7 .emuos-boot::after {
+				display: block;
+				content: 'Starting Windows';
+				padding-top: 50px;
+				text-align: center;
+				font-family: 'Segoe UI', sans-serif;
+				font-size: 24px;
+			}
+
+			.emuos.boot.theme-windows-7 .emuos-boot .emuos-boot-container {
+				width: 200px;
+				height: 200px;
+				overflow: hidden;
+			}
+
+			.emuos.boot.theme-windows-7 .emuos-boot .emuos-boot-container::before {
+				display: block;
+
+				width: 200px;
+				height: 21000px;
+
+				content: '';
+
+				will-change: background-position;
+
+				background-color: #000;
+				background-image: url(assets/images/themes/boot/windows-7/boot-transparent.png);
+				background-repeat: no-repeat;
+				background-position: 0 -21000px;
+				background-size: 200px 21000px;
+
+				-webkit-animation-duration: 7s;
+				-moz-animation-duration: 7s;
+				-ms-animation-duration: 7s;
+				-o-animation-duration: 7s;
+				animation-duration: 7s;
+
+				-webkit-animation-timing-function: steps(105);
+				-moz-animation-timing-function: steps(105);
+				-ms-animation-timing-function: steps(105);
+				-o-animation-timing-function: steps(105);
+				animation-timing-function: steps(105);
+
+				-webkit-animation-iteration-count: infinite;
+				-moz-animation-iteration-count: infinite;
+				-ms-animation-iteration-count: infinite;
+				-o-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+
+				-webkit-animation-name: BackgroundPosition;
+				-moz-animation-name: BackgroundPosition;
+				-ms-animation-name: BackgroundPosition;
+				-o-animation-name: BackgroundPosition;
+				animation-name: BackgroundPosition;
+			}
+
+			/*noinspection CssUnusedSymbol*/
+			.emuos.boot.theme-windows-7 .emuos-boot .emuos-boot-container .emuos-boot-screen {
+				display: none;
+			}
+
+			/* endregion */
+
+			/* region Effects */
+
+			/* region BackgroundPosition */
+
+			@-webkit-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-moz-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-ms-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-o-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			/* endregion */
+
+			/* region boot */
+
+			@-moz-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@-khtml-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@-webkit-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@-ms-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@-o-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			/* endregion */
+
+			/* region fadeIn */
+
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+
+			@-moz-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+
+			@-ms-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+
+			@-o-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+
+			/* endregion */
+
+			@keyframes flicker {
+				0% {
+					opacity: 0.72376;
+				}
+				5% {
+					opacity: 0.0397;
+				}
+				10% {
+					opacity: 0.36593;
+				}
+				15% {
+					opacity: 0.49496;
+				}
+				20% {
+					opacity: 0.19917;
+				}
+				25% {
+					opacity: 0.65927;
+				}
+				30% {
+					opacity: 0.65098;
+				}
+				35% {
+					opacity: 0.63532;
+				}
+				40% {
+					opacity: 0.06552;
+				}
+				45% {
+					opacity: 0.87534;
+				}
+				50% {
+					opacity: 0.19338;
+				}
+				55% {
+					opacity: 0.47464;
+				}
+				60% {
+					opacity: 0.83527;
+				}
+				65% {
+					opacity: 0.25225;
+				}
+				70% {
+					opacity: 0.84123;
+				}
+				75% {
+					opacity: 0.46063;
+				}
+				80% {
+					opacity: 0.5159;
+				}
+				85% {
+					opacity: 0.02269;
+				}
+				90% {
+					opacity: 0.59581;
+				}
+				95% {
+					opacity: 0.66932;
+				}
+				100% {
+					opacity: 0.12652;
+				}
+			}
+
+			/*noinspection CssNonIntegerLengthInPixels*/
+			@keyframes textShadow {
+				0% {
+					text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				5% {
+					text-shadow: 2.7928974010788217px 0 1px rgba(0,30,255,0.5), -2.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				10% {
+					text-shadow: 0.02956275843481219px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				15% {
+					text-shadow: 0.40218538552878136px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				20% {
+					text-shadow: 3.4794037899852017px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				25% {
+					text-shadow: 1.6125630401149584px 0 1px rgba(0,30,255,0.5), -1.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				30% {
+					text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				35% {
+					text-shadow: 3.896914047650351px 0 1px rgba(0,30,255,0.5), -3.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				40% {
+					text-shadow: 3.870905614848819px 0 1px rgba(0,30,255,0.5), -3.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				45% {
+					text-shadow: 2.231056963361899px 0 1px rgba(0,30,255,0.5), -2.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				50% {
+					text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				55% {
+					text-shadow: 2.3758461067427543px 0 1px rgba(0,30,255,0.5), -2.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				60% {
+					text-shadow: 2.202193051050636px 0 1px rgba(0,30,255,0.5), -2.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				65% {
+					text-shadow: 2.8638780614874975px 0 1px rgba(0,30,255,0.5), -2.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				70% {
+					text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				75% {
+					text-shadow: 1.8948491305757957px 0 1px rgba(0,30,255,0.5), -1.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				80% {
+					text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				85% {
+					text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				90% {
+					text-shadow: 3.443339761481782px 0 1px rgba(0,30,255,0.5), -3.443339761481782px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				95% {
+					text-shadow: 2.1841838852799786px 0 1px rgba(0,30,255,0.5), -2.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				100% {
+					text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+			}
+
+			@keyframes turn-on {
+				0% {
+					-webkit-transform: scale(1, 0.8) translate3d(0, 0, 0);
+					transform: scale(1, 0.8) translate3d(0, 0, 0);
+					-webkit-filter: brightness(30);
+					filter: brightness(30);
+					opacity: 1;
+				}
+				3.5% {
+					-webkit-transform: scale(1, 0.8) translate3d(0, 100%, 0);
+					transform: scale(1, 0.8) translate3d(0, 100%, 0);
+				}
+				3.6% {
+					-webkit-transform: scale(1, 0.8) translate3d(0, -100%, 0);
+					transform: scale(1, 0.8) translate3d(0, -100%, 0);
+					opacity: 1;
+				}
+				9% {
+					-webkit-transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+					transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+					-webkit-filter: brightness(30);
+					filter: brightness(30);
+					opacity: 0;
+				}
+				11% {
+					-webkit-transform: scale(1, 1) translate3d(0, 0, 0);
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(0) brightness(0);
+					filter: contrast(0) brightness(0);
+					opacity: 0;
+				}
+				25% {
+					-webkit-transform: scale(1, 1) translate3d(0, 0, 0);
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+					filter: contrast(1) brightness(1.2) saturate(1.3);
+					opacity: 1;
+				}
+				100% {
+					-webkit-transform: scale(1, 1) translate3d(0, 0, 0);
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+					filter: contrast(1) brightness(1.2) saturate(1.3);
+					opacity: 1;
+				}
+			}
+
+			@keyframes turn-off {
+				0% {
+					-webkit-transform: scale(1, 1.3) translate3d(0, 0, 0);
+					transform: scale(1, 1.3) translate3d(0, 0, 0);
+					-webkit-filter: brightness(1);
+					filter: brightness(1);
+					opacity: 1;
+				}
+				60% {
+					-webkit-transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+					transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+					-webkit-filter: brightness(10);
+					filter: brightness(10);
+				}
+				100% {
+					animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+					-webkit-transform: scale(0, 0.0001) translate3d(0, 0, 0);
+					transform: scale(0, 0.0001) translate3d(0, 0, 0);
+					-webkit-filter: brightness(50);
+					filter: brightness(50);
+				}
+			}
+
+			@keyframes typewriter-end-hide {
+				0% {
+					height: 0;
+					visibility: visible;
+				}
+				50% {
+					height: 606px;
+				}
+				100% {
+					height: 606px;
+					visibility: hidden;
+				}
+			}
+
+			@keyframes typewriter-end-show {
+				0% {
+					height: 0;
+				}
+				100% {
+					height: 606px;
+				}
+			}
+
+			/* region blinkTextCursor */
+
+			@-moz-keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			@-webkit-keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			@-ms-keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			@-o-keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			@keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			/* endregion */
+
+			/* endregion */
+
+			/* endregion */
+		</style>
+
+		<!-- region Libraries -->
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/normalize-8.0.1.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/jquery-ui-1.13.2.min.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/jquery-customscrollbar-3.1.5.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/toastr-2.1.4.min.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/clippy-0.0.3.css" />
+
+		<!-- endregion -->
+
+		<!--region Basic Theme-->
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/reset.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/fonts.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/desktop.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/taskbar.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/start-menu.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/window.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/folder-explorer.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/desktop-context-menu.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/label.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/overlay.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/tree.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/toast.css" />
+
+		<!-- endregion -->
+
+		<!-- region Window 3 Theme-->
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-3/reset.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-3/cursors.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-3/scrollbar.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-3/menu.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-3/desktop.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-3/window.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-3/start-menu.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-3/taskbar.css" />
+
+		<!-- endregion -->
+
+		<!-- region Windows 95 Theme-->
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-95/reset.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-95/cursors.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-95/scrollbar.css" />
+		<!--<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-95/menu.css" />-->
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-95/desktop.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-95/window.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-95/taskbar.css" />
+
+		<!-- endregion -->
+
+		<!-- region Windows 98 Theme-->
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-98/reset.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-98/cursors.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-98/scrollbar.css" />
+		<!--<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-98/menu.css" />-->
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-98/desktop.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-98/window.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-98/taskbar.css" />
+
+		<!-- endregion -->
+
+		<!-- region Windows ME Theme-->
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-me/reset.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-me/cursors.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-me/scrollbar.css" />
+		<!--<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-me/menu.css" />-->
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-me/desktop.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-me/window.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-me/taskbar.css" />
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/message-box.css" />
+
+		<!-- endregion -->
+
+		<!-- region Seasonal Theme-->
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/seasonal/xmas/snowfall-effect.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/seasonal/xmas/countdown.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/seasonal/newyear/fireworks.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/seasonal/newyear/countdown.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/seasonal/valentines/background.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/seasonal/april1st/background.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/seasonal/easter/background.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/seasonal/halloween/background.css" />
+
+		<!-- endregion -->
+
+		<!-- endregion -->
+	</head>
+	<body>
+		<div class="emuos-startup">
+			<table class="emuos-startup-container">
+				<tr>
+					<td>
+						<div class="emuos-startup-screen">
+							<h1>Choose theme:</h1>
+							<table>
+								<tr>
+									<td><a class="emuos-theme" href="javascript:" onclick="$sys.setTheme('windows-95')"><img src="assets/images/themes/boot/windows-95/windows-95-remastered.png" alt="" /></a></td>
+									<td><a class="emuos-theme" href="javascript:" onclick="$sys.setTheme('windows-98')"><img src="assets/images/themes/boot/windows-98/windows-98-remastered.png" alt="" /></a></td>
+									<td><a class="emuos-theme" href="javascript:" onclick="$sys.setTheme('windows-me')"><img src="assets/images/themes/boot/windows-me/windows-me-remastered.png" alt="" /></a></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="emuos-boot">
+			<table class="emuos-boot-container">
+				<tr>
+					<td>
+						<div class="emuos-boot-screen-wrapper">
+							<div class="emuos-boot-screen">
+								<div id="emuos-boot-screen-bg" class="emuos-boot-screen-bg"><img style="float: left; margin-right: 5px;" alt="" src="assets/images/themes/bios/award-logo.png" /><img class="epa" style="float: right;" alt="" src="assets/images/themes/bios/epa-logo.png" /><span>Award Modular BIOS v4.51PG, An Energy Star Ally</span><br /><span>Copyright (C) 1984-97, Award Software, Inc.</span><br /><br />#4010A0-0105<br /><br />PENTIUM PRO-S CPU at 200MHz<br />Memory Test :  <span class="memory">   640K</span> O<span class="cursor">K</span><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><span>Press <span class="white">DEL</span> to enter SETUP</span><br /><span>12/10/97-i440FX-PI-P6NP5C-00</span></div>
+								<div id="emuos-boot-screen-text" class="emuos-boot-screen-text"></div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<audio src="assets/sounds/post.mp3"></audio>
+
+		<script type="text/javascript" src="assets/js/libraries/babel-polyfill-7.12.1.min.js"></script>
+		<script type="text/javascript" src="assets/js/libraries/fetch-3.6.2.js"></script>
+		<script type="text/javascript" src="assets/js/libraries/css-vars-4.1.0.js"></script>
+		<script type="text/javascript" src="assets/js/system.js"></script>
+		<script type="text/javascript" src="assets/js/libraries.js"></script>
+		<script type="text/javascript" src="assets/js/snowfall-effect.js"></script>
+		<script type="text/javascript" src="assets/js/defines.js"></script>
+		<script type="text/javascript">
+			if (typeof $sys === 'undefined') {
+				$sys = {
+					api: {
+						get_version: function () {
+							return 0;
+						},
+						get_date: function () {
+							return new Date(0).toLocaleString();
+						}
+					}
+				};
+			}
+
+			$sys.version = '';
+			$sys.date = 'null';
+
+			// noinspection ThisExpressionReferencesGlobalObjectJS
+			(function(global) {
+				global.$sys.setTheme = function(theme) {
+					var simpleStorage = null;
+
+					if (typeof global.localStorage.getItem === 'function') {
+						try {
+							simpleStorage = global.JSON.parse(global.localStorage.getItem('simpleStorage'));
+							simpleStorage.theme = theme;
+						} catch (e) {
+							simpleStorage = {};
+							simpleStorage.theme = theme;
+						}
+
+						var htmlElement = global.document.getElementsByTagName('html')[0];
+						htmlElement.className = 'emuos post';
+
+						if (typeof global.localStorage.setItem === 'function') {
+							try {
+								global.localStorage.setItem('simpleStorage', global.JSON.stringify(simpleStorage));
+							} catch (e) {}
+						}
+
+						boot(theme, true);
+					}
+				}
+
+				function boot(theme, first) {
+					var htmlElement = global.document.getElementsByTagName('html')[0];
+
+					if (first) {
+						global.document.getElementsByTagName('audio')[0].play();
+
+						setTimeout(function() {
+							bootProgress(function() {
+								htmlElement.className = 'emuos boot theme-' + theme;
+
+								var el = global.document.createElement('script');
+								el.type = 'text/javascript';
+								el.src = 'assets/js/libraries/requirejs-2.3.6.js';
+								el.setAttribute('data-main', 'assets/js/main');
+								global.document.body.appendChild(el);
+							});
+						}, 1000);
+					} else {
+						htmlElement.className = 'emuos boot theme-' + theme;
+
+						var el = global.document.createElement('script');
+						el.type = 'text/javascript';
+						el.src = 'assets/js/libraries/requirejs-2.3.6.js';
+						el.setAttribute('data-main', 'assets/js/main');
+						global.document.body.appendChild(el);
+					}
+				}
+
+				function bootRender(text, i, delay, cb) {
+					var screen = global.document.getElementById('emuos-boot-screen-text');
+
+					setTimeout(function() {
+						if (i === text.length) {
+							screen.innerHTML = '';
+						}
+
+						screen.innerHTML += text[text.length - i];
+
+						if (--i) {
+							bootRender(text, i, delay, cb);
+						} else {
+							if (typeof cb === 'function') {
+								cb();
+							}
+						}
+					}, delay);
+				}
+
+				function bootProgress(cb) {
+					var post1 = [
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'Award Plug and Play BIOS Extension  v1.0A<br />',
+						'Copyright (C) 1997, Award Software, Inc.<br />',
+						'  Detecting IDE Primary Master   ... EmuDisk<br />',
+						'  Detecting IDE Primary Slave    ... [Press <span class="white">F4</span> to skip]<br />',
+						'  Detecting IDE Secondary Master ... None<br />',
+						'  Detecting IDE Secondary Slave  ... None<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />'
+					];
+
+					var post2 = [
+						'                                         Award Software, Inc.<br />',
+						'                                        System Configurations<br />',
+						'╔══════════════════════════════════════════════════════════════════════════════════════════════════╗<br />',
+						'║ CPU Type           : PENTIUM PRO-S                          Base Memory        :    640K         ║<br />',
+						'║ Co-Processor       : Installed                              Extended Memory    :  15368K         ║<br />',
+						'║ CPU Clock          : 200Mhz                                 Cache Memory       :   1024K         ║<br />',
+						'║──────────────────────────────────────────────────────────────────────────────────────────────────║<br />',
+						'║ Diskette Drive   A : 1.44M, 3.5in                           Display Type       : EGA/VGA         ║<br />',
+						'║ Diskette Drive   B : 1.2M, 5.25in                           Serial Port(s)     : 3F8             ║<br />',
+						'║ Pri. Master   Disk : LBA ,Mode 4,  2112MB                   Parallel Port(s)   : 378             ║<br />',
+						'║ Pri. Slave    Disk : CDROM, Mode 4                          SDRAM at Row(s)    : 2 3             ║<br />',
+						'║ Sec. Master   Disk : None                                                                        ║<br />',
+						'║ Sec. Slave    Disk : None                                                                        ║<br />',
+						'╚══════════════════════════════════════════════════════════════════════════════════════════════════╝<br />',
+						'<br />',
+						'<br />',
+						'PCI device listing ...<br />',
+						'Bus No. Device No. Func No. Vendor ID    Device ID   Device Class                                IRQ<br />',
+						'────────────────────────────────────────────────────────────────────────────────────────────────────<br />',
+						'   0        0         5        1106         5327     I/O(X) APIC Cntrlr                           NA<br />',
+						'   0       15         0        1106         5337     IDE Cntrlr                                   11<br />',
+						'   0       15         1        1106         0571     IDE Cntrlr                                   14<br />',
+						'   0       16         0        1106         303B     USB 1.0/1.1 UHCI Cntrlr                      10<br />',
+						'   0       16         1        1106         303B     USB 1.0/1.1 UHCI Cntrlr                      11<br />',
+						'   0       16         2        1106         303B     USB 1.0/1.1 UHCI Cntrlr                      10<br />',
+						'   0       16         3        1106         303B     USB 1.0/1.1 UHCI Cntrlr                      11<br />',
+						'   0       16         4        1106         3104     USB 2.0 EHCI Cntrlr                          10<br />',
+						'   0       18         0        1106         3065     Network Cntrlr                               10<br />',
+						'   2        0         0        10DE         0A65     Display Cntrlr                                5<br />',
+						'   2        0         1        10DE         0BE3     Multimedia Device                             5<br />',
+						'   4        1         0        1106         3288     Multimedia Device                            11<br />',
+						'   5        6         0        1106         3044     Serial Bus Cntrlr                            11<br />',
+						'                                                     ACPI Controller                               9<br />',
+						'<br />',
+						'Verifying DMI Pool Data ............<br />',
+						'Boot from CD :<br />',
+						// 'DISK BOOT FAILURE, INSERT SYSTEM DISK AND PRESS ENTER<span class="cursor">&nbsp;</span><br />',
+						'Starting Windows...<span class="cursor">&nbsp;</span><br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />',
+						'<br />'
+					];
+
+					bootRender(post1, post1.length, 50, function() {
+						global.document.getElementsByClassName('epa')[0].className = 'epa fade-out';
+						setTimeout(function() {
+							global.document.getElementById('emuos-boot-screen-bg').style.visibility = 'hidden';
+							bootRender(post2, post2.length, 20, function() {
+								setTimeout(function() {
+									if (typeof cb === 'function') {
+										cb();
+									}
+								}, 3000);
+							});
+						}, 1500);
+					});
+				}
+
+				(function start() {
+					document.body.setAttribute('build', 'EmuOS v1.0 Beta\u000D\u000ABuild ' + $sys.api.get_version() + '\u000D\u000ADate ' + $sys.api.get_date());
+
+					var htmlElement = global.document.getElementsByTagName('html')[0];
+
+					if (typeof global.localStorage !== 'undefined') {
+						var simpleStorage = null;
+
+						if (typeof global.localStorage.getItem === 'function') {
+							try {
+								simpleStorage = global.JSON.parse(global.localStorage.getItem('simpleStorage'));
+
+								if (simpleStorage !== null) {
+									if (typeof simpleStorage === 'object') {
+										if (typeof simpleStorage.theme !== 'undefined') {
+											if (simpleStorage.theme !== '') {
+												htmlElement.className = 'emuos post';
+												boot(simpleStorage.theme, false);
+											} else {
+												htmlElement.className = 'emuos startup';
+											}
+										} else {
+											htmlElement.className = 'emuos startup';
+										}
+									} else {
+										htmlElement.className = 'emuos startup';
+									}
+								} else {
+									htmlElement.className = 'emuos startup';
+								}
+							} catch (e) {
+								htmlElement.className = 'emuos startup';
+							}
+						} else {
+							htmlElement.className = 'emuos startup';
+						}
+					} else {
+						htmlElement.className = 'emuos startup';
+					}
+				})();
+			})(this);
+		</script>
+
+		<noscript>
+			<table class="emuos-boot-container">
+				<tr>
+					<td>
+						<div class="emuos-boot-screen-wrapper">
+							<div class="emuos-boot-screen">
+								<div class="emuos-boot-screen-text">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Award Software, Inc.<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System Configurations<br />
+									╔══════════════════════════════════════════════════════════════════════════════════════════════════╗<br />
+									║ CPU Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: PENTIUM PRO-S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Base Memory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;640K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+									║ Co-Processor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Installed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extended Memory&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;15368K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+									║ CPU Clock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 200Mhz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cache Memory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;1024K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+									║──────────────────────────────────────────────────────────────────────────────────────────────────║<br />
+									║ Diskette Drive&nbsp;&nbsp;&nbsp;A : 1.44M, 3.5in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: EGA/VGA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+									║ Diskette Drive&nbsp;&nbsp;&nbsp;B : 1.2M, 5.25in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serial Port(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 3F8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+									║ Pri. Master&nbsp;&nbsp;&nbsp;Disk : LBA ,Mode 4,&nbsp;&nbsp;2112MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parallel Port(s)&nbsp;&nbsp;&nbsp;: 378&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+									║ Pri. Slave&nbsp;&nbsp;&nbsp;&nbsp;Disk : CDROM, Mode 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDRAM at Row(s)&nbsp;&nbsp;&nbsp;&nbsp;: 2 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+									║ Sec. Master&nbsp;&nbsp;&nbsp;Disk : None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+									║ Sec. Slave&nbsp;&nbsp;&nbsp;&nbsp;Disk : None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+									╚══════════════════════════════════════════════════════════════════════════════════════════════════╝<br />
+									<br />
+									<br />
+									PCI device listing ...<br />
+									Bus No. Device No. Func No. Vendor ID&nbsp;&nbsp;&nbsp;&nbsp;Device ID&nbsp;&nbsp;&nbsp;Device Class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IRQ<br />
+									────────────────────────────────────────────────────────────────────────────────────────────────────<br />
+									&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5327&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I/O(X)&nbsp;APIC&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NA<br />
+									&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5337&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDE&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+									&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0571&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDE&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14<br />
+									&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;303B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;1.0/1.1&nbsp;UHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br />
+									&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;303B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;1.0/1.1&nbsp;UHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+									&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;303B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;1.0/1.1&nbsp;UHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br />
+									&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;303B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;1.0/1.1&nbsp;UHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+									&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3104&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;2.0&nbsp;EHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br />
+									&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3065&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br />
+									&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10DE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0A65&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5<br />
+									&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10DE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0BE3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multimedia&nbsp;Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5<br />
+									&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3288&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multimedia&nbsp;Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+									&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3044&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serial&nbsp;Bus&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ACPI Controller&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9<br />
+									<br />
+									Verifying DMI Pool Data ............<br />
+									Boot from CD :<br />
+									DISK BOOT FAILURE, YOUR BROWSER IS TOO OLD OR IT DOES NOT SUPPORT JAVASCRIPT<span class="cursor">&nbsp;</span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</noscript>
+	</body>
+</html>

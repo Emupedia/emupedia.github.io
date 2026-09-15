@@ -1,0 +1,133 @@
+.theme-windows-95 .emuos-taskbar {
+	background-color: #c0c0c0;
+	color: #000;
+}
+
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-bottom {
+	border-top: 1px solid #dfdfdf;
+}
+
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-top {
+	border-bottom: 1px solid #000;
+}
+
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-left {
+	border-right: 1px solid #000;
+}
+
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-right {
+	border-left: 1px solid #dfdfdf;
+}
+
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-bottom .emuos-taskbar-resizable,
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-right .emuos-taskbar-resizable {
+	border-color: #fff;
+}
+
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-top .emuos-taskbar-resizable,
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-left .emuos-taskbar-resizable {
+	border-color: #dfdfdf;
+}
+
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-bottom .emuos-taskbar-resizable,
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-right .emuos-taskbar-resizable {
+	border-color: #fff;
+}
+
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-top .emuos-taskbar-resizable.emuos-taskbar-resizable-mouseover,
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-left .emuos-taskbar-resizable.emuos-taskbar-resizable-mouseover {
+	border-color: #dfdfdf;
+}
+
+/*noinspection CssReplaceWithShorthandSafely*/
+.theme-windows-95 .emuos-taskbar .emuos-taskbar-start-container {
+	padding-top: 3px;
+	padding-right: 2px;
+	padding-left: 2px;
+	padding-bottom: 2px;
+}
+
+/*noinspection CssReplaceWithShorthandSafely,DuplicatedCode*/
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-top .emuos-taskbar-separator,
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-bottom .emuos-taskbar-separator {
+	background: #fff;
+	margin-top: 3px;
+	margin-right: 0;
+	margin-left: 0;
+	margin-bottom: 0;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #808080;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #fff;
+	font-size: 13px;
+}
+
+/*noinspection CssReplaceWithShorthandSafely*/
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-left .emuos-taskbar-separator,
+.theme-windows-95 .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-right .emuos-taskbar-separator {
+	background: #fff;
+	margin-top: 0;
+	margin-right: 0;
+	margin-left: 2px;
+	margin-bottom: 1px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #808080;
+	font-size: 10px;
+}
+
+/*noinspection CssOverwrittenProperties,CssReplaceWithShorthandSafely,DuplicatedCode*/
+.theme-windows-95 .emuos-taskbar .ui-button {
+	position: relative;
+
+	margin: 0;
+	padding: 4px;
+
+	background-color: #c0c0c0;
+
+	border: none;
+
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+
+	-moz-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+	-webkit-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+
+	font-size: 12px;
+	font-weight: bold;
+	color: #000;
+
+	height: 14px;
+	line-height: 14px;
+}
+
+/*noinspection DuplicatedCode*/
+.theme-windows-95 .emuos-taskbar .ui-button:active,
+.theme-windows-95 .emuos-taskbar .ui-button:focus,
+.theme-windows-95 .emuos-taskbar .ui-button.ui-state-active {
+	border: none;
+
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+
+	-moz-box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+	-webkit-box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+
+	outline: 1px dotted #000;
+	outline-offset: -4px;
+
+	line-height: 16px;
+}
+
+.theme-windows-95 .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-icon {
+	background-image: url(../../../../images/themes/icons/windows-9x/start.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 16px 16px;
+}

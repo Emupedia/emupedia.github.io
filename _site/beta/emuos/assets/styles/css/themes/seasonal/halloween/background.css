@@ -1,0 +1,13 @@
+/*noinspection CssUnknownTarget*/
+.emuos-halloween .emuos-desktop {
+	background-color: #392562;
+	background-image: url(../../../../../images/themes/wallpapers/seasonal/halloween.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.emuos-halloween .emuos-desktop-icon span {
+	background-color: #392562;
+	color: #febc0c;
+}

@@ -1,0 +1,40 @@
+/* Windows 95/98/ME desktop right-click menu (win98-web menu-popup style) */
+
+.ui-contextmenu.emuos-desktop-context-menu.ui-menu,
+.emuos-desktop-context-menu.ui-menu {
+	z-index: 10050;
+}
+
+.ui-contextmenu.emuos-desktop-context-menu.ui-menu-icons .ui-menu-item > .ui-menu-item-wrapper > .ui-icon,
+.ui-contextmenu.emuos-desktop-context-menu.ui-menu-icons .ui-menu-item > div > .ui-icon,
+.ui-contextmenu.emuos-desktop-context-menu.ui-menu-icons .ui-menu-item > a > .ui-icon {
+	display: none;
+}
+
+/* Beat generic theme menu rules for the detached popup menu */
+html[class*="theme-"] .ui-contextmenu.emuos-desktop-context-menu.ui-menu,
+html.theme-basic .ui-contextmenu.emuos-desktop-context-menu.ui-menu {
+	font-size: 11px;
+	font-weight: normal;
+}
+
+html[class*="theme-"] .ui-contextmenu.emuos-desktop-context-menu .ui-menu-item,
+html.theme-basic .ui-contextmenu.emuos-desktop-context-menu .ui-menu-item {
+	padding: 0;
+	margin: 2px;
+	height: auto;
+	border: 0;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+html[class*="theme-"] .ui-contextmenu.emuos-desktop-context-menu .ui-menu-item.ui-state-focus,
+html[class*="theme-"] .ui-contextmenu.emuos-desktop-context-menu .ui-menu-item-wrapper.ui-state-active,
+html.theme-basic .ui-contextmenu.emuos-desktop-context-menu .ui-menu-item.ui-state-focus,
+html.theme-basic .ui-contextmenu.emuos-desktop-context-menu .ui-menu-item-wrapper.ui-state-active {
+	margin: 0;
+	padding: 1px 3px;
+	height: auto;
+	border: 0;
+	font-weight: normal;
+}

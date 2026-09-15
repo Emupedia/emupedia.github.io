@@ -1,0 +1,89 @@
+html {
+	height: 100%;
+	line-height: 1;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	cursor: inherit !important;
+}
+
+button, input, optgroup, select, textarea {
+	line-height: 1;
+}
+
+canvas:-moz-full-screen {
+	background-color: #000;
+}
+
+canvas:-webkit-full-screen {
+	background-color: #000;
+}
+
+canvas:fullscreen {
+	background-color: #000;
+}
+
+.ui-menu {
+	min-width: 150px;
+	z-index: 2147483647;
+}
+
+.emuos-window-content.iframe {
+	position: relative;
+	overflow: hidden;
+}
+
+.emuos-window-content.iframe iframe {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.emuos-desktop-icon img,
+.emuos-desktop-icon span,
+.ui-dialog-title {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.ui-button-icon-only {
+	text-indent: 0;
+	color: transparent !important;
+}
+
+.emuos-taskbar-windows-containment {
+	z-index: auto !important;
+}
+
+.ui-selectable-helper {
+	border-color: #ffff7f;
+}
+
+/*noinspection CssInvalidPropertyValue,CssOverwrittenProperties*/
+.ui-icon {
+	/*-ms-interpolation-mode: nearest-neighbor;*/
+	/*image-rendering: optimizeSpeed;*/
+	/*image-rendering: -webkit-optimize-contrast;*/
+	/*image-rendering: -moz-crisp-edges;*/
+	/*image-rendering: -o-crisp-edges;*/
+	/*image-rendering: crisp-edges;*/
+	/*image-rendering: pixelated;*/
+}
+
+@supports (mix-blend-mode: difference) {
+	.ui-selectable-helper {
+		border-color: #fff;
+		mix-blend-mode: difference;
+	}
+}

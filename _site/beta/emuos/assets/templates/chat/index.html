@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--suppress HtmlDeprecatedAttribute, JSUnresolvedLibraryURL -->
+<html lang="en-us" prefix="og: http://ogp.me/ns/website#">
+	<!--
+
+
+	╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
+	╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
+	╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
+
+
+	-->
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui" />
+		<title>EmuChat</title>
+		<link type="text/css" rel="stylesheet" href="../../css/libraries/jquery-ui.structure-1.11.4.min.css" />
+		<link type="text/css" rel="stylesheet" href="../../css/libraries/jquery-ui.theme-1.11.4.min.css" />
+		<link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+		<link type="text/css" rel="stylesheet" href="../../css/fonts.css" />
+		<link type="text/css" rel="stylesheet" href="css/main.css" />
+		<style type="text/css">
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				background-color: #fff;
+				/*background-color: #333;*/
+				background-image: url(../../images/themes/win9x/wallpapers/windows-me-remastered-1920x1080.jpg);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+				color: #fff;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+
+			::-webkit-scrollbar {
+				width: 7px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: rgba(34, 33, 33, 0.95);
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: rgba(0, 0, 0, 0.38);
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: rgba(0, 0, 0, 0.64);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="chat-window">
+			<table class="chat-window-container">
+				<thead class="chat-window-header">
+					<tr>
+						<td class="chat-window-title" colspan="2">EmuChat</td>
+						<td class="chat-window-clear">&nbsp;</td>
+						<td class="chat-window-close">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="spacer" colspan="4">&nbsp;</td>
+					</tr>
+				</thead>
+				<tbody class="chat-window-body">
+					<tr>
+						<td class="chat-ouput">
+							MESSAGES
+						</td>
+						<td class="chat-user-list" colspan="3"></td>
+					</tr>
+				</tbody>
+				<tfoot class="chat-window-footer">
+					<tr>
+						<td class="chat-input" colspan="4">
+							<button class="emoticons" type="button">😀</button><input class="text" type="text" placeholder="Type something" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="160" /><button class="send" type="button">▶️</button>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+
+		<script type="text/javascript" src="../../js/polyfills.js"></script>
+		<script type="text/javascript" src="../../js/platform.js"></script>
+		<script type="text/javascript" src="../../js/system.js"></script>
+		<script type="text/javascript" src="../../js/defines.js"></script>
+		<script type="text/javascript" src="../../js/libraries/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="../../js/libraries/jquery-ui-1.11.4.min.js"></script>
+		<script type="text/javascript" src="../../js/libraries/socket.io-2.3.0.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>

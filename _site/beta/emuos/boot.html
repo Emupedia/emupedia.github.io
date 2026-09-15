@@ -1,0 +1,684 @@
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
+╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
+╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="format-detection" content="telephone=no">
+		<title>Emupedia</title>
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/normalize-8.0.1.css" />
+		<style>
+			::selection {
+				background-color: #a8a8a8;
+				color: #121010;
+				text-shadow: none;
+			}
+
+			@font-face {
+				font-family: 'DOSVGA';
+				src: url(assets/fonts/dosvga.eot);
+				src: url(assets/fonts/dosvga.eot?#iefix) format('embedded-opentype'),
+				url(assets/fonts/dosvga.woff2) format('woff2'),
+				url(assets/fonts/dosvga.woff) format('woff'),
+				url(assets/fonts/dosvga.ttf) format('truetype'),
+				url(assets/fonts/dosvga.svg#dosvga) format('svg');
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				background-color: #333;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+
+			iframe {
+				width: 100%;
+				height: 100%;
+				border: none;
+			}
+
+			.container-wrapper {
+				position: relative;
+				padding: 10px;
+				width: 800px;
+				height: 600px;
+				margin: auto;
+				/*background-color: #000;*/
+				background-color: #121010;
+				border: 2px solid #666;
+				color: #a8a8a8;
+				overflow: hidden;
+				font-smooth: never;
+				-webkit-font-smoothing: none;
+				cursor: default;
+				/*-webkit-animation: textShadow 1.6s infinite;*/
+				/*animation: textShadow 1.6s infinite;*/
+			}
+
+			/* scanlines */
+			.container-wrapper::before {
+				content: ' ';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				/*background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));*/
+				/*background-size: 100% 2px, 3px 100%;*/
+				background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+				pointer-events: none;
+				z-index: 2;
+			}
+
+			/* flicker */
+			/*.container-wrapper::after {
+				content: ' ';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background: rgba(18, 16, 16, 0.1);
+				opacity: 0;
+				z-index: 2;
+				pointer-events: none;
+			}*/
+
+			.container {
+				display: block;
+				position: absolute;
+				width: 800px;
+				height: 600px;
+				font-family: 'DOSVGA', courier, monospace;
+				font-size: 16px;
+				line-height: 16px;
+				margin: 0;
+				white-space: pre-wrap;
+				overflow: hidden;
+				text-shadow: 0 0 3px #c8c8c8;
+			}
+
+			/*noinspection CssOverwrittenProperties,CssInvalidPropertyValue*/
+			.container img {
+				-ms-interpolation-mode: nearest-neighbor;
+				image-rendering: -webkit-optimize-contrast;
+				image-rendering: crisp-edges;
+				image-rendering: pixelated;
+				pointer-events: none;
+			}
+
+			.container span.white {
+				color: #fff;
+			}
+
+			.container span.cursor {
+				display: inline-block;
+				border-bottom: 2px solid rgba(168, 168, 168, 1);
+				height: 12px;
+			}
+
+			.no-select {
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+
+			.anim-typewriter1 {
+				-webkit-animation: typewriter-end-hide 3200ms steps(38) 1s 1 normal both;
+				animation: typewriter-end-hide 3200ms steps(38) 1s 1 normal both;
+			}
+
+			.anim-typewriter2 {
+				-webkit-animation: typewriter-end-show 600ms steps(38) 5s 1 normal both;
+				animation: typewriter-end-show 600ms steps(38) 5s 1 normal both;
+			}
+
+			.cursor {
+				-webkit-animation: blinkTextCursor 500ms infinite normal;
+				animation: blinkTextCursor 500ms infinite normal;
+			}
+
+			#switch {
+				display: none;
+			}
+
+			.switch-label {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+				display: inline-block;
+				cursor: pointer;
+				background: #fff;
+				color: #111;
+				padding: 10px;
+				border-radius: 5px;
+				box-shadow: 0 2px #666;
+				z-index: 2;
+			}
+
+			.switch-label::after {
+				content: 'OFF';
+			}
+
+			.switch-label::before {
+				content: ' ';
+				display: inline-block;
+				border-radius: 100%;
+				width: 10px;
+				height: 10px;
+				background: #003321;
+				margin-right: 10px;
+				border: 1px solid #111;
+			}
+
+			.switch-label:active {
+				box-shadow: none;
+				transform: translate3d(0, 2px, 0);
+			}
+
+			#switch:checked + .container-wrapper > .switch-label::before {
+				background: #22ff55;
+			}
+
+			#switch:checked + .container-wrapper > .switch-label::after {
+				content: 'ON';
+			}
+
+			#switch:checked ~ .container-wrapper::after {
+				-webkit-animation: flicker 0.15s infinite;
+				animation: flicker 0.15s infinite;
+			}
+
+			#switch ~ .container-wrapper > .container {
+				-webkit-animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+				animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+				animation-fill-mode: forwards;
+			}
+
+			#switch:checked ~ .container-wrapper > .container {
+				-webkit-animation: turn-on 4s linear;
+				animation: turn-on 4s linear;
+				animation-fill-mode: forwards;
+			}
+
+			.overlay {
+				color: #00FF00;
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				font-size: 60px;
+				visibility: hidden;
+				pointer-events: none;
+			}
+
+			#switch:checked ~ .container-wrapper .overlay {
+				-webkit-animation: overlay-anim 5s linear;
+				animation: overlay-anim 5s linear;
+				animation-fill-mode: forwards;
+			}
+
+			@keyframes overlay-anim {
+				0% {
+					visibility: hidden;
+				}
+				20% {
+					visibility: hidden;
+				}
+				21% {
+					visibility: visible;
+				}
+				100% {
+					visibility: hidden;
+				}
+			}
+
+			@keyframes turn-on {
+				0% {
+					-webkit-transform: scale(1, 0.8) translate3d(0, 0, 0);
+					transform: scale(1, 0.8) translate3d(0, 0, 0);
+					-webkit-filter: brightness(30);
+					filter: brightness(30);
+					opacity: 1;
+				}
+				3.5% {
+					-webkit-transform: scale(1, 0.8) translate3d(0, 100%, 0);
+					transform: scale(1, 0.8) translate3d(0, 100%, 0);
+				}
+				3.6% {
+					-webkit-transform: scale(1, 0.8) translate3d(0, -100%, 0);
+					transform: scale(1, 0.8) translate3d(0, -100%, 0);
+					opacity: 1;
+				}
+				9% {
+					-webkit-transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+					transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+					-webkit-filter: brightness(30);
+					filter: brightness(30);
+					opacity: 0;
+				}
+				11% {
+					-webkit-transform: scale(1, 1) translate3d(0, 0, 0);
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(0) brightness(0);
+					filter: contrast(0) brightness(0);
+					opacity: 0;
+				}
+				25% {
+					-webkit-transform: scale(1, 1) translate3d(0, 0, 0);
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+					filter: contrast(1) brightness(1.2) saturate(1.3);
+					opacity: 1;
+				}
+				100% {
+					-webkit-transform: scale(1, 1) translate3d(0, 0, 0);
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+					filter: contrast(1) brightness(1.2) saturate(1.3);
+					opacity: 1;
+				}
+			}
+
+			@keyframes turn-off {
+				0% {
+					-webkit-transform: scale(1, 1.3) translate3d(0, 0, 0);
+					transform: scale(1, 1.3) translate3d(0, 0, 0);
+					-webkit-filter: brightness(1);
+					filter: brightness(1);
+					opacity: 1;
+				}
+				60% {
+					-webkit-transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+					transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+					-webkit-filter: brightness(10);
+					filter: brightness(10);
+				}
+				100% {
+					animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+					-webkit-transform: scale(0, 0.0001) translate3d(0, 0, 0);
+					transform: scale(0, 0.0001) translate3d(0, 0, 0);
+					-webkit-filter: brightness(50);
+					filter: brightness(50);
+				}
+			}
+
+			@keyframes typewriter-end-hide {
+				0% {
+					height: 0;
+					visibility: visible;
+				}
+				50% {
+					height: 606px;
+				}
+				100% {
+					height: 606px;
+					visibility: hidden;
+				}
+			}
+
+			@keyframes typewriter-end-show {
+				0% {
+					height: 0;
+				}
+				100% {
+					height: 606px;
+				}
+			}
+
+			@keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			@keyframes flicker {
+				0% {
+					opacity: 0.72376;
+				}
+				5% {
+					opacity: 0.0397;
+				}
+				10% {
+					opacity: 0.36593;
+				}
+				15% {
+					opacity: 0.49496;
+				}
+				20% {
+					opacity: 0.19917;
+				}
+				25% {
+					opacity: 0.65927;
+				}
+				30% {
+					opacity: 0.65098;
+				}
+				35% {
+					opacity: 0.63532;
+				}
+				40% {
+					opacity: 0.06552;
+				}
+				45% {
+					opacity: 0.87534;
+				}
+				50% {
+					opacity: 0.19338;
+				}
+				55% {
+					opacity: 0.47464;
+				}
+				60% {
+					opacity: 0.83527;
+				}
+				65% {
+					opacity: 0.25225;
+				}
+				70% {
+					opacity: 0.84123;
+				}
+				75% {
+					opacity: 0.46063;
+				}
+				80% {
+					opacity: 0.5159;
+				}
+				85% {
+					opacity: 0.02269;
+				}
+				90% {
+					opacity: 0.59581;
+				}
+				95% {
+					opacity: 0.66932;
+				}
+				100% {
+					opacity: 0.12652;
+				}
+			}
+
+			@keyframes flicker2 {
+				0% {
+					opacity: 0.27861;
+				}
+				5% {
+					opacity: 0.34769;
+				}
+				10% {
+					opacity: 0.23604;
+				}
+				15% {
+					opacity: 0.90626;
+				}
+				20% {
+					opacity: 0.18128;
+				}
+				25% {
+					opacity: 0.83891;
+				}
+				30% {
+					opacity: 0.65583;
+				}
+				35% {
+					opacity: 0.67807;
+				}
+				40% {
+					opacity: 0.26559;
+				}
+				45% {
+					opacity: 0.84693;
+				}
+				50% {
+					opacity: 0.96019;
+				}
+				55% {
+					opacity: 0.08594;
+				}
+				60% {
+					opacity: 0.20313;
+				}
+				65% {
+					opacity: 0.71988;
+				}
+				70% {
+					opacity: 0.53455;
+				}
+				75% {
+					opacity: 0.37288;
+				}
+				80% {
+					opacity: 0.71428;
+				}
+				85% {
+					opacity: 0.70419;
+				}
+				90% {
+					opacity: 0.7003;
+				}
+				95% {
+					opacity: 0.36108;
+				}
+				100% {
+					opacity: 0.24387;
+				}
+			}
+			/*noinspection CssFloatPxLength*/
+			@keyframes textShadow {
+				0% {
+					text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				5% {
+					text-shadow: 2.7928974010788217px 0 1px rgba(0,30,255,0.5), -2.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				10% {
+					text-shadow: 0.02956275843481219px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				15% {
+					text-shadow: 0.40218538552878136px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				20% {
+					text-shadow: 3.4794037899852017px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				25% {
+					text-shadow: 1.6125630401149584px 0 1px rgba(0,30,255,0.5), -1.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				30% {
+					text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				35% {
+					text-shadow: 3.896914047650351px 0 1px rgba(0,30,255,0.5), -3.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				40% {
+					text-shadow: 3.870905614848819px 0 1px rgba(0,30,255,0.5), -3.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				45% {
+					text-shadow: 2.231056963361899px 0 1px rgba(0,30,255,0.5), -2.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				50% {
+					text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				55% {
+					text-shadow: 2.3758461067427543px 0 1px rgba(0,30,255,0.5), -2.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				60% {
+					text-shadow: 2.202193051050636px 0 1px rgba(0,30,255,0.5), -2.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				65% {
+					text-shadow: 2.8638780614874975px 0 1px rgba(0,30,255,0.5), -2.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				70% {
+					text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				75% {
+					text-shadow: 1.8948491305757957px 0 1px rgba(0,30,255,0.5), -1.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				80% {
+					text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				85% {
+					text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				90% {
+					text-shadow: 3.443339761481782px 0 1px rgba(0,30,255,0.5), -3.443339761481782px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				95% {
+					text-shadow: 2.1841838852799786px 0 1px rgba(0,30,255,0.5), -2.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				100% {
+					text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<input type="checkbox" id="switch" checked="checked" />
+		<div class="container-wrapper">
+			<pre id="screen" class="container"><img style="float: left; margin-right: 5px;" alt="" src="assets/images/themes/bios/award-logo.png" /><img style="float: right;" alt="" src="assets/images/themes/bios/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
+Copyright (C) 1984-97, Award Software, Inc.
+
+(55XWUQ0E) Intel i430VX PCIset(TM)
+
+PENTIUM-S CPU at 90MHz
+Memory Test : 131072K OK
+
+Award Plug and Play BIOS Extension  v1.0A
+Copyright (C) 1997, Award Software, Inc.
+  Detecting IDE Primary Master   ... EmuDisk
+  Detecting IDE Primary Slave    ... [Press <span class="white">F4</span> to skip]
+  Detecting IDE Secondary Slave  ... None
+  Detecting IDE Secondary Slave  ... None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Press <span class="white">DEL</span> to enter SETUP
+12/10/97-i430VX,UMC8669-2A59GH2BC-00</pre>
+			<pre class="container" style="display: none;">╚═════════════════════════════════════════════════════════════════════════════════╝
+
+
+PCI device listing ...
+Bus No. Device No. Func No. Vendor/Device Class Device Classs                                  IRQ
+───────────────────────────────────────────────────────────────────────────────────
+    0       0         5     1106   5327   0800  I/O(X) APIC Cntrlr                              NA
+    0      15         0     1106   5337   0800  IDE Cntrlr                                      11
+    0      15         1     1106   0571   0800  IDE Cntrlr                                      14
+    0      16         0     1106   303B   0800  USB 1.0/1.1 UHCI Cntrlr                         10
+    0      16         1     1106   303B   0800  USB 1.0/1.1 UHCI Cntrlr                         11
+    0      16         2     1106   303B   0800  USB 1.0/1.1 UHCI Cntrlr                         10
+    0      16         3     1106   303B   0800  USB 1.0/1.1 UHCI Cntrlr                         11
+    0      16         4     1106   3104   0800  USB 2.0 EHCI Cntrlr                             10
+    0      18         0     1106   3065   0800  Network Cntrlr                                  10
+    2       0         0     10DE   0A65   0800  Display Cntrlr                                   5
+    2       0         1     10DE   0BE3   0800  Multimedia Device                                5
+    4       1         0     1106   3288   0800  Multimedia Device                               11
+    5       6         0     1106   3044   0800  Serial Bus Cntrlr                               11
+                                                ACPI Controller                                  9
+
+Verifying DMI Pool Data ............
+Boot from CD :
+DISK BOOT FAILURE, INSERT SYSTEM DISK AND PRESS ENTER<span class="cursor">&nbsp;</span></pre>
+			<label for="switch" class="switch-label no-select"></label>
+		</div>
+		<audio src="assets/sounds/hdd.mp3" autoplay="autoplay"></audio>
+		<script type="text/javascript">
+			console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗\n' +
+						'╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n' +
+						'╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
+			setTimeout(function() {
+				document.getElementById('screen').innerHTML = '<iframe src="indexv2.html"></iframe>';
+			}, 10000);
+		</script>
+	</body>
+</html>

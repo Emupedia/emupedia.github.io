@@ -1,0 +1,13 @@
+/*noinspection CssUnknownTarget*/
+.emuos-valentines .emuos-desktop {
+	background-color: #f0f1e9;
+	background-image: url(../../../../../images/themes/wallpapers/seasonal/valentines.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.emuos-valentines .emuos-desktop-icon span {
+	background-color: #eed4d5;
+	color: #b90834;
+}

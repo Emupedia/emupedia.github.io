@@ -1,0 +1,36 @@
+:host {
+	background: green;
+	overflow: hidden;
+}
+
+button {
+	display: inline-block;
+	position: relative;
+	width: 114px;
+	height: 21px;
+	margin: 0;
+	padding: 0;
+	border: none;
+	text-align: center;
+	outline: none;
+}
+
+button:after {
+	position: absolute;
+	display: block;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	content: '';
+	outline: 1px dotted #000;
+	outline-offset: -3px;
+	pointer-events: none;
+}
+
+@supports (mix-blend-mode: difference) {
+	button:after {
+		outline-color: #fff;
+		mix-blend-mode: difference;
+	}
+}

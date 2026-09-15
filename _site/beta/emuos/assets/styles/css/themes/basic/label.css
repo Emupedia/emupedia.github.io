@@ -1,0 +1,42 @@
+[data-title] {
+	position: relative;
+	text-decoration: none;
+}
+
+[data-title]:after {
+	content: attr(data-title);
+	background-color: #ffffe1;
+	color: #000;
+	font-size: 11px;
+	font-weight: normal;
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 1px 5px 2px 5px;
+	white-space: nowrap;
+	border: 1px solid #000;
+	z-index: 99999;
+	transition: all 0.1s ease 0.5s;
+	transition-property: opacity;
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden;
+}
+
+/*noinspection CssUnresolvedCustomProperty,CssOverwrittenProperties*/
+[data-title]:hover:after {
+	left: 50%;
+	top: 50%;
+	left: calc(var(--mouse-x, 0) + 10px);
+	top: calc(var(--mouse-y, 0) - 20px);
+	opacity: 1;
+	visibility: visible;
+}
+
+.iframe[data-title]:after {
+	display: none;
+}
+
+.window[data-title]:after {
+	display: none;
+}

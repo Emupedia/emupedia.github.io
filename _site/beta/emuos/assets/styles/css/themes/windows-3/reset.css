@@ -1,0 +1,100 @@
+.theme-windows-3 div:not(.client_decoration) ::selection {
+	background: #000080;
+	color: #fff;
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-moz-selection {
+	background: #000080;
+	color: #fff;
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar,
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-thumb,
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button {
+	width: 16px;
+	height: 16px;
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-thumb,
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button {
+	background: #c0c0c0;
+	border-top: 1px solid #c0c0c0;
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	box-shadow: 1px 1px 0 #fff inset, -1px -1px 0 #707070 inset;
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:hover:active {
+	border: 1px solid #7b7b7b;
+	box-shadow: none;
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-corner {
+	background: #c0c0c0;
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button {
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.theme-windows-3 div:not(.client_decoration)::-webkit-scrollbar-button {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTM0A1t6AAAAxUlEQVRYR+3T0QrDIBBEUT/dP2/ZMAODyZrZQINQDyy05irmIW37V733D35Oud2r4lIxAUsptvibY3g1SFJOQ3pu5QVisJTTmENITrTFUkrbmNm5NO7Bck5jwqMTbTl4lNJ2djaNfcCjnBPrweMgSbGbnU/aBizfc+LjxASSVOUFCEvrcC+15OW3bWvuh7nkBxyXqryA1TK8mjtOQ5VzQ6nX2N30tHX6UN5TibV9ssdR7Q9OrAePc8ftQqV9VeUFtu03WvsCS61PICoBlBoAAAAASUVORK5CYII=);
+}
+
+.theme-windows-3 div:not(.client_decoration)::-webkit-scrollbar-button:horizontal:decrement:disabled {
+	background-position: calc(-24px + 1px) 1px; /* left */
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:increment:disabled {
+	background-position: calc(-36px + 1px) 1px; /* right */
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:decrement:disabled {
+	background-position: calc(-12px + 1px) 1px; /* up */
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:increment:disabled {
+	background-position: calc(-0px + 1px) 1px; /* down */
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:decrement {
+	background-position: calc(-24px + 1px) calc(-12px + 1px); /* left */
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:increment {
+	background-position: calc(-36px + 1px) calc(-12px + 1px); /* right */
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:decrement {
+	background-position: calc(-12px + 1px) calc(-12px + 1px); /* up */
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:increment {
+	background-position: calc(-0px + 1px) calc(-12px + 1px); /* down */
+}
+
+.theme-windows-3 div:not(.client_decoration) .theme-windows-3 ::-webkit-scrollbar {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAABlBMVEW9vb3///8EwsWUAAAADElEQVQI12NoYHAAAAHEAMFJRSpJAAAAAElFTkSuQmCC) repeat;
+}
+
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-track-piece:active {
+	background: #000;
+}
+
+/* turn off double buttons (flex/grid scroll containers, 98.js.org) */
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:start:increment,
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:end:decrement,
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:start:increment,
+.theme-windows-3 div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:end:decrement {
+	display: none;
+}
+
+.theme-windows-3 {
+	font-family: 'EmuOS', 'Microsoft Sans Serif', 'Arial', sans-serif;
+}
+
+.theme-windows-3 .emuos-desktop {
+	filter: none;
+}

@@ -1,0 +1,66 @@
+#toast-container > div {
+	width: 260px;
+	/*-moz-box-shadow: none;*/
+	/*-webkit-box-shadow: none;*/
+	/*box-shadow: none;*/
+	opacity: 1;
+	filter: none;
+	-ms-filter: none;
+	/*border: 1px #4c4c4c solid;*/
+	-moz-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+	-webkit-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+	color: #000;
+	font-family: 'EmuOS', 'MS Sans Serif', 'Arial', sans-serif;
+	border-radius: 0;
+}
+
+#toast-container > div:hover {
+	/*-moz-box-shadow: none;*/
+	/*-webkit-box-shadow: none;*/
+	/*box-shadow: none;*/
+	-moz-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+	-webkit-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+	opacity: 1;
+	filter: none;
+	-ms-filter: none;
+}
+
+.toast-close-button {
+	width: 14px;
+	height: 14px;
+	font-size: 13px;
+	text-shadow: none;
+	-moz-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+	-webkit-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+	opacity: 1;
+	color: #000;
+	font-weight: normal;
+}
+
+.toast-close-button:focus, .toast-close-button:hover {
+	color: #000;
+	opacity: 1;
+	filter: none;
+	-ms-filter: none;
+}
+
+.toast-close-button:active {
+	-moz-box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+	-webkit-box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+}
+
+#toast-container > .toast-info {
+	background-color: #c0c0c0;
+	background-image: url(../../../../images/icons/update.svg) !important;
+	background-size: 11% 100%;
+	background-position: 12px center;
+}
+
+.toast-top-right {
+	top: 5px;
+	right: 20px;
+}

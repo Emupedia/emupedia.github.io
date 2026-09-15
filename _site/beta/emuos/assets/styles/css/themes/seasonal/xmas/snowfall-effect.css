@@ -1,0 +1,56 @@
+.xmas-snow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	pointer-events: none;
+	z-index: 1;
+	overflow: visible;
+}
+
+.snowfall-container {
+	animation-fill-mode: none;
+	pointer-events: none;
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: visible;
+}
+
+.snowfall-container.is-fixed {
+	position: fixed;
+}
+
+.snowfall-container .snowfall-flake {
+	position: absolute;
+	top: -200px;
+	contain: layout style;
+}
+
+.snowfall-container .snowfall-flake img {
+	display: block;
+	pointer-events: none;
+	user-select: none;
+}
+
+.snowfall-container .snowfall-flake.has-spin {
+	transform-style: preserve-3d;
+}
+
+.snowfall-container .snowfall-flake.has-spin img {
+	animation-name: emuos-spin;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-play-state: running;
+}
+
+@keyframes emuos-spin {
+	0% { transform: rotate3d(1, 1, 1, 0deg); }
+	50% { transform: rotate3d(1, 1, 1, 180deg); }
+	100% { transform: rotate3d(1, 1, 1, 360deg); }
+}

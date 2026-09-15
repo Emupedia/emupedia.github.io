@@ -1,0 +1,429 @@
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
+╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
+╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<!DOCTYPE html>
+<html class="emuos boot theme-windows-7" lang="en-us" prefix="og: http://ogp.me/ns/website#">
+	<head>
+		<meta charset="utf-8" />
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data: *; style-src 'self' 'unsafe-inline'; font-src 'self' *; script-src 'self' 'unsafe-eval' 'unsafe-inline' emupedia.net *.emupedia.net emuos.net *.emuos.net emuos.org *.emuos.org google-analytics.com *.google-analytics.com googletagmanager.com *.googletagmanager.com doubleclick.net *.doubleclick.net; connect-src 'self' emupedia.net *.emupedia.net emuos.net *.emuos.net emuos.org *.emuos.org *; manifest-src 'self'; frame-src 'self' *;" />-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="theme-color" content="#3b6ea5" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="description" content="The purpose of Emupedia is to serve as a nonprofit meta-resource, hub and community for those interested mainly in video game preservation which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly UI that simulates several retro operating systems for educational purposes." />
+		<meta name="author" content="Emupedia" />
+		<meta name="robots" content="all" />
+		<meta name="google" value="notranslate" />
+		<meta name="googlebot" content="all" />
+		<meta name="googlebot-news" content="all" />
+
+		<!-- Facebook App -->
+		<meta property="fb:app_id" content="527458061442300" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="EmuOS" />
+		<meta name="twitter:url" content="https://emupedia.net/beta/emuos/" />
+		<meta name="twitter:image" content="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo-256.png" />
+		<meta name="twitter:site" content="@EmupediaNet" />
+		<meta name="twitter:creator" content="@EmupediaNet" />
+
+		<!-- Open Graph Data -->
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Emupedia" />
+		<meta property="og:title" content="EmuOS" />
+		<meta property="og:description" content="The purpose of Emupedia is to serve as a nonprofit meta-resource, hub and community for those interested mainly in video game preservation which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly UI that simulates several retro operating systems for educational purposes." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://emupedia.net/beta/emuos/" />
+		<meta property="og:image" content="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo-256.png" />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="256" />
+		<meta property="og:image:height" content="256" />
+
+		<title>EmuOS</title>
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/reset.css" />
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/jquery-ui.structure-1.12.1.min.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/jquery-ui.theme-1.12.1.min.css" />
+
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-7.css" />
+
+		<style>
+			html {
+				height: 100%;
+			}
+
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+
+			/* region Boot */
+
+			.emuos body {
+				background-color: #333;
+				color: #fff;
+			}
+
+			.emuos .emuos-boot {
+				display: none;
+			}
+
+			.emuos .emuos-boot::before,
+			.emuos .emuos-boot::after,
+			.emuos .emuos-boot .emuos-boot-container::before,
+			.emuos .emuos-boot .emuos-boot-container::after {
+				content: none;
+				background-image: none;
+
+				-webkit-animation: none;
+				-moz-animation: none;
+				-o-animation: none;
+				animation: none;
+			}
+
+			/* region Windows 95 */
+
+			.emuos.boot.theme-windows-95 body {
+				background-color: #76abd5;
+				color: #000;
+			}
+
+			.emuos.boot.theme-windows-95 .emuos-boot {
+				display: block;
+
+				width: 100%;
+				height: 100%;
+
+				background-image: url(assets/images/themes/wallpapers/windows-95/windows-95-remastered-1680x1050.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+			}
+
+			.emuos.boot.theme-windows-95 .emuos-boot .emuos-boot-container {
+				width: 100%;
+				height: 100%;
+
+				background-image: url(assets/images/themes/boot/windows-95/windows-95-transparent.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
+			}
+
+			.emuos.boot.theme-windows-95 .emuos-boot .emuos-boot-container::after {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+
+				display: block;
+				content: '';
+
+				width: 100%;
+				height: 28px;
+
+				background-image: linear-gradient(270deg, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8);
+				background-repeat: no-repeat;
+				background-position: 0 50%;
+				background-size: 200% 100%;
+
+				-webkit-animation: boot 5s ease infinite;
+				-moz-animation: boot 5s ease infinite;
+				-o-animation: boot 5s ease infinite;
+				animation: boot 5s ease infinite;
+			}
+
+			/* endregion */
+
+			/* region Windows Me */
+
+			.emuos.boot.theme-windows-me body {
+				background-color: #fff;
+				color: #000;
+			}
+
+			.emuos.boot.theme-windows-me .emuos-boot {
+				display: block;
+
+				width: 100%;
+				height: 100%;
+
+				background-image: url(assets/images/themes/boot/windows-me/windows-me-transparent.png);
+				background-repeat: no-repeat, no-repeat;
+				background-position: center, center;
+				background-size: contain, cover;
+			}
+
+			.emuos.boot.theme-windows-me .emuos-boot .emuos-boot-container::after {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+
+				display: block;
+				content: '';
+				width: 100%;
+				height: 28px;
+
+				background-image: linear-gradient(270deg, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8);
+				background-repeat: no-repeat;
+				background-position: 0 50%;
+				background-size: 200% 100%;
+
+				-webkit-animation: boot 5s ease infinite;
+				-moz-animation: boot 5s ease infinite;
+				-o-animation: boot 5s ease infinite;
+				animation: boot 5s ease infinite;
+			}
+
+			/* endregion */
+
+			/* region Windows 7 */
+
+			.emuos.boot.theme-windows-7 body {
+				background-color: #000;
+				color: #fff;
+			}
+
+			.emuos.boot.theme-windows-7 .emuos-boot {
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+
+				display: block;
+				width: 200px;
+				height: 200px;
+
+				margin: auto;
+				text-align: center;
+				vertical-align: middle;
+			}
+
+			.emuos.boot.theme-windows-7 .emuos-boot::after {
+				display: block;
+				content: 'Starting Windows';
+				padding-top: 50px;
+				text-align: center;
+				font-family: 'Segoe UI', sans-serif;
+				font-size: 24px;
+			}
+
+			.emuos.boot.theme-windows-7 .emuos-boot .emuos-boot-container {
+				width: 200px;
+				height: 200px;
+				overflow: hidden;
+			}
+
+			.emuos.boot.theme-windows-7 .emuos-boot .emuos-boot-container::before {
+				display: block;
+
+				width: 200px;
+				height: 21000px;
+
+				content: '';
+
+				will-change: background-position;
+
+				background-color: #000;
+				background-image: url(assets/images/themes/boot/windows-7/boot-transparent.png);
+				background-repeat: no-repeat;
+				background-position: 0 -21000px;
+				background-size: 200px 21000px;
+
+				-webkit-animation-duration: 7s;
+				-moz-animation-duration: 7s;
+				-ms-animation-duration: 7s;
+				-o-animation-duration: 7s;
+				animation-duration: 7s;
+
+				-webkit-animation-timing-function: steps(105);
+				-moz-animation-timing-function: steps(105);
+				-ms-animation-timing-function: steps(105);
+				-o-animation-timing-function: steps(105);
+				animation-timing-function: steps(105);
+
+				-webkit-animation-iteration-count: infinite;
+				-moz-animation-iteration-count: infinite;
+				-ms-animation-iteration-count: infinite;
+				-o-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+
+				-webkit-animation-name: BackgroundPosition;
+				-moz-animation-name: BackgroundPosition;
+				-ms-animation-name: BackgroundPosition;
+				-o-animation-name: BackgroundPosition;
+				animation-name: BackgroundPosition;
+			}
+
+			/* endregion */
+
+			/* region Effects */
+
+			@-webkit-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-moz-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-ms-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-o-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-webkit-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@-moz-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@-o-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			/* endregion */
+
+			/* endregion */
+		</style>
+	</head>
+	<body>
+		<div class="emuos-boot">
+			<div class="emuos-boot-container"></div>
+		</div>
+
+		<script type="text/javascript" src="assets/js/polyfills.js"></script>
+		<script type="text/javascript" src="assets/js/libraries.js"></script>
+		<script type="text/javascript" src="assets/js/system.js"></script>
+		<script type="text/javascript" src="assets/js/libraries/requirejs-2.3.6.js" data-main="assets/js/mainv2"></script>
+		<noscript>Your browser does not support JavaScript!</noscript>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+html.theme-windows-3 {
+	cursor: url(../../../../images/themes/cursors/windows-3x/default.cur), default;
+}
+
+.theme-windows-3 p {
+	cursor: url(../../../../images/themes/cursors/windows-3x/text.cur), text;
+}
+
+.theme-windows-3 .emuos-desktop-icon,
+.theme-windows-3 .ui-button,
+.theme-windows-3 .ui-menu .ui-menu-item,
+.theme-windows-3 .mCustomScrollBox .mCSB_dragger .mCSB_dragger_bar,
+.theme-windows-3 .mCustomScrollBox .mCSB_buttonUp,
+.theme-windows-3 .mCustomScrollBox .mCSB_buttonDown {
+	cursor: url(../../../../images/themes/cursors/windows-3x/pointer.cur), pointer;
+}
+
+.theme-windows-3 .emuos-taskbar-windows-containment,
+.theme-windows-3 .emuos-taskbar-window-copy,
+.theme-windows-3 .emuos-taskbar-resizable.emuos-taskbar-resizable-disabled .ui-resizable-handle {
+	cursor: url(../../../../images/themes/cursors/windows-3x/default.cur), default;
+}
+
+.theme-windows-3 .ui-draggable .ui-dialog-titlebar {
+	cursor: url(../../../../images/themes/cursors/windows-3x/move.cur), move;
+}
+
+.theme-windows-3 .ui-resizable-n {
+	cursor: url(../../../../images/themes/cursors/windows-3x/vertical.cur), n-resize;
+}
+
+.theme-windows-3 .ui-resizable-e {
+	cursor: url(../../../../images/themes/cursors/windows-3x/horizontal.cur), e-resize;
+}
+
+.theme-windows-3 .ui-resizable-s {
+	cursor: url(../../../../images/themes/cursors/windows-3x/vertical.cur), s-resize;
+}
+
+.theme-windows-3 .ui-resizable-w {
+	cursor: url(../../../../images/themes/cursors/windows-3x/horizontal.cur), w-resize;
+}
+
+.theme-windows-3 .ui-resizable-nw {
+	cursor: url(../../../../images/themes/cursors/windows-3x/diagonal1.cur), nw-resize;
+}
+
+.theme-windows-3 .ui-resizable-ne {
+	cursor: url(../../../../images/themes/cursors/windows-3x/diagonal2.cur), ne-resize;
+}
+
+.theme-windows-3 .ui-resizable-sw {
+	cursor: url(../../../../images/themes/cursors/windows-3x/diagonal2.cur), sw-resize;
+}
+
+.theme-windows-3 .ui-resizable-se {
+	cursor: url(../../../../images/themes/cursors/windows-3x/diagonal1.cur), se-resize;
+}

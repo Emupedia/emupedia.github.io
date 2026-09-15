@@ -1,0 +1,394 @@
+.emuos-window {
+	overflow: hidden;
+	position: fixed;
+	opacity: 1;
+	text-align: left;
+}
+
+.emuos-window,
+.emuos-window > .emuos-window-content {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+.emuos-window.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close,
+.emuos-window.ui-dialog .emuos-window-button {
+	width: 20px;
+	outline: none;
+}
+
+.emuos-window .emuos-hidden {
+	display: none;
+}
+
+.emuos-window.ui-dialog .emuos-window-button {
+	position: absolute;
+	top: 50%;
+	margin: -10px 0 0 0;
+	padding: 1px;
+	height: 20px;
+}
+
+.emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-storage {
+	display: none;
+}
+
+.emuos-window.ui-dialog .ui-dialog-titlebar > .ui-button[data-button-order="0"] {
+	right: .3em;
+}
+
+/* every titlebar button refresh refreshes data-button-order
+   so buttons can have the right position from the right edge */
+.emuos-window.ui-dialog .ui-dialog-titlebar > .ui-button[data-button-order="1"] {
+	right: -webkit-calc(20px * 1 + .3em * 2);
+	right: -moz-calc(20px * 1 + .3em * 2);
+	right: calc(20px * 1 + .3em * 2);
+}
+
+.emuos-window.ui-dialog .ui-dialog-titlebar > .ui-button[data-button-order="2"] {
+	right: -webkit-calc(20px * 2 + .3em * 3);
+	right: -moz-calc(20px * 2 + .3em * 3);
+	right: calc(20px * 2 + .3em * 3);
+}
+
+.emuos-window.ui-dialog .ui-dialog-titlebar > .ui-button[data-button-order="3"] {
+	right: -webkit-calc(20px * 3 + .3em * 4);
+	right: -moz-calc(20px * 3 + .3em * 4);
+	right: calc(20px * 3 + .3em * 4);
+}
+
+.emuos-window.ui-dialog .ui-dialog-titlebar > .ui-button[data-button-order="4"] {
+	right: -webkit-calc(20px * 4 + .3em * 5);
+	right: -moz-calc(20px * 4 + .3em * 5);
+	right: calc(20px * 4 + .3em * 5);
+}
+
+.emuos-window.ui-dialog .ui-dialog-titlebar > .ui-button[data-button-order="5"] {
+	right: -webkit-calc(20px * 5 + .3em * 5);
+	right: -moz-calc(20px * 5 + .3em * 5);
+	right: calc(20px * 5 + .3em * 5);
+}
+
+.emuos-window.ui-draggable.ui-draggable-disabled .ui-dialog-titlebar {
+	cursor: auto;
+}
+
+.emuos-window-minimizing .ui-dialog-titlebar .ui-button,
+.emuos-window-restoring .ui-dialog-titlebar .ui-button,
+.emuos-window-maximizing .ui-dialog-titlebar .ui-button,
+.emuos-window-showing .ui-dialog-titlebar .ui-button,
+.emuos-window.ui-draggable-dragging .ui-dialog-titlebar .ui-button {
+	pointer-events: none;
+}
+
+.emuos-window .ui-dialog-titlebar.emuos-window-titlebar-icon {
+	padding-left: 1.7em;
+	padding-left: -webkit-calc(.6em + 16px);
+	padding-left: -moz-calc(.6em + 16px);
+	padding-left: calc(.6em + 16px);
+}
+
+.emuos-window .emuos-window-icon {
+	position: absolute;
+	top: 0;
+	left: 3px;
+	margin-top: 0;
+	cursor: pointer;
+}
+
+.emuos-window-mask {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.emuos-window-state-reset.ui-state-default {
+	border-width: 0;
+}
+
+.emuos-window-overlay.ui-widget-overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	opacity: .1; /* opacity can be changed */
+}
+
+/* fixes bottom part of title being cut off */
+.emuos-window.ui-dialog .ui-dialog-title {
+	margin: -1px 0 0;
+	line-height: 1.3;
+}
+
+.emuos-window-content-overlay {
+	z-index: 90;
+}
+
+.emuos-window-content-overlay + .ui-dialog-titlebar {
+	z-index: 100;
+}
+
+.emuos-window-content-overlay {
+	z-index: 90;
+}
+
+.emuos-window-body-overlay + .ui-dialog-titlebar {
+	z-index: 80;
+}
+
+.emuos-window-dialog-overlay.ui-widget-overlay {
+	background: #000;
+	opacity: .3;
+}
+
+/* for consistency, those two classes shouldn't have diffrenct transition times */
+.emuos-taskbar-window-minimize-all-hover,
+.emuos-taskbar-window-minimize-all-unhover {
+	-webkit-transition: opacity 0.15s;
+	-moz-transition: opacity 0.15s;
+	-ms-transition: opacity 0.15s;
+	-o-transition: opacity 0.15s;
+	transition: opacity 0.15s;
+}
+
+.emuos-taskbar-window-minimize-all-hover {
+	opacity: 0.15;
+}
+
+.emuos-taskbar-window-minimize-all-hover.emuos-taskbar-window-minimize-all-unhover,
+.emuos-taskbar-window-minimize-all-unhover {
+	opacity: 1;
+}
+
+/* keep titlebar dimensions when title: "" is set to window */
+.emuos-window.ui-dialog .ui-dialog-title:before,
+/* keep buttonpane buttons dimensions where title is empty */
+.emuos-window .ui-dialog-buttonset .ui-button .ui-button-text:before {
+	content: '';
+	display: inline-block;
+}
+
+/* confirm close window */
+.emuos-window-type-confirm-close {
+}
+
+.emuos-window-type-confirm-close .emuos-window-type-confirm-close-text {
+	font-size: 1.2em;
+	text-align: center;
+	margin: 0 0 1em;
+}
+
+.emuos-window-type-confirm-close .emuos-window-type-confirm-close-buttons {
+	float: right;
+}
+
+.emuos-window-type-confirm-close .emuos-window-type-confirm-close-no {
+	margin-right: 0.6em;
+}
+
+.ui-dialog .ui-dialog-content.emuos-window-type-confirm-close {
+	padding: 1em 1em 0;
+}
+
+/* confirm close window */
+
+.emuos-window .ui-dialog-buttonpane {
+	position: absolute;
+	width: calc(100% - 1.9em);
+	bottom: 0;
+	left: .3em;
+}
+
+.emuos-folder-window {
+	--folder-icon-size: 96px;
+	--folder-cell-width: 96px;
+	--folder-row-height: 122px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	font-size: 13px;
+	line-height: 1.2;
+	color: #000;
+}
+
+.emuos-folder-toolbar-button,
+.emuos-folder-go {
+	margin: 0;
+	padding: 1px 8px;
+	border: 1px solid #aaa;
+	background: #f5f5f5;
+	font: inherit;
+	line-height: 1.1;
+}
+
+.emuos-folder-toolbar-sep {
+	display: inline-block;
+	width: 1px;
+	height: 16px;
+	background: #999;
+	margin: 0 2px;
+}
+
+.emuos-folder-icon-size-value {
+	display: inline-block;
+	min-width: 52px;
+	text-align: center;
+	font-size: 12px;
+}
+
+.emuos-folder-toolbar-label {
+	font-size: 12px;
+}
+
+.emuos-folder-address {
+	flex: 1;
+	padding: 2px 6px;
+	border: 1px solid #999;
+	background: #fff;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.emuos-folder-main {
+	display: flex;
+	flex: 1;
+	min-height: 0;
+}
+
+.emuos-folder-sidebar {
+	width: 190px;
+	background: #fff;
+	padding: 8px;
+	overflow: auto;
+}
+
+.emuos-folder-sidebar-head {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 8px;
+	font-size: 22px;
+	font-weight: bold;
+	line-height: 1;
+}
+
+.emuos-folder-sidebar-head i.icon {
+	display: block;
+	width: 32px;
+	height: 32px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 32px 32px;
+	flex-shrink: 0;
+}
+
+.emuos-folder-sidebar-head strong {
+	font-size: 28px;
+	line-height: 1;
+	font-weight: bold;
+	letter-spacing: -1px;
+	word-break: break-word;
+}
+
+.emuos-folder-sidebar p {
+	margin: 8px 0;
+}
+
+.emuos-folder-sidebar-meta {
+	margin-top: 16px;
+	font-size: 12px;
+	color: #222;
+}
+
+.emuos-folder-splitter {
+	width: 3px;
+	background: #fff;
+	border: 0;
+}
+
+.emuos-folder-items {
+	flex: 1;
+	overflow: auto;
+	padding: 8px;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	align-items: flex-start;
+}
+
+.emuos-folder-item {
+	display: block;
+	width: var(--folder-cell-width);
+	min-height: var(--folder-row-height);
+	margin: 2px 6px 10px;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+}
+
+.emuos-folder-item i.icon {
+	display: block;
+	position: relative;
+	width: var(--folder-icon-size);
+	height: var(--folder-icon-size);
+	margin: 0 auto 6px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: var(--folder-icon-size) var(--folder-icon-size);
+}
+
+.emuos-folder-item span {
+	display: inline-block;
+	max-width: 100%;
+	word-break: break-word;
+}
+
+.emuos-folder-item.ui-selected span,
+.emuos-folder-item:hover span {
+	background: #000080;
+	color: #fff;
+}
+
+.emuos-folder-status {
+	display: flex;
+	align-items: center;
+	gap: 2px;
+	padding: 2px;
+	border-top: 1px solid #bbb;
+	background-color: #efefef;
+}
+
+.emuos-folder-status-left,
+.emuos-folder-status-middle,
+.emuos-folder-status-right {
+	min-height: 18px;
+	display: flex;
+	align-items: center;
+	padding: 0 6px;
+	background: #f4f4f4;
+	border: 1px solid #bbb;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.emuos-folder-status-left {
+	flex: 2;
+}
+
+.emuos-folder-status-middle {
+	flex: 1;
+}
+
+.emuos-folder-status-right {
+	flex: 1;
+	justify-content: flex-start;
+}

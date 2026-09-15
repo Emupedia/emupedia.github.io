@@ -1,0 +1,13 @@
+/*noinspection CssUnknownTarget*/
+.emuos-easter .emuos-desktop {
+	background-color: #f0f1e9;
+	background-image: url(../../../../../images/themes/wallpapers/seasonal/easter.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.emuos-easter .emuos-desktop-icon span {
+	background-color: #00A378;
+	color: #f0f1e9;
+}

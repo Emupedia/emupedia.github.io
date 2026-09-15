@@ -1,0 +1,224 @@
+/*body::after {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: block;
+	content: '';
+	width: 100%;
+	height: 28px;
+	background-image: linear-gradient(270deg, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8);
+	background-repeat: no-repeat;
+	background-position: 0 50%;
+	background-size: 200% 100%;
+
+	-webkit-animation: boot 5s ease infinite;
+	-moz-animation: boot 5s ease infinite;
+	-o-animation: boot 5s ease infinite;
+	animation: boot 5s ease infinite;
+}
+
+.emuos body {
+	background-image: none;
+}
+
+.emuos body::after {
+	background-image: none;
+
+	-webkit-animation: none;
+	-moz-animation: none;
+	-o-animation: none;
+	animation: none;
+}
+
+@-webkit-keyframes boot {
+	0% {
+		background-position: 0 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0 50%
+	}
+}
+
+@-moz-keyframes boot {
+	0% {
+		background-position: 0 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0 50%
+	}
+}
+
+@-o-keyframes boot {
+	0% {
+		background-position: 0 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0 50%
+	}
+}
+
+@keyframes boot {
+	0% {
+		background-position: 0 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0 50%
+	}
+}*/
+
+.blur {
+	backdrop-filter: blur(4px);
+	transition: background-image 0.5s ease-in-out, filter 0.5s linear, backdrop-filter 0.5s linear;
+	overflow: hidden;
+}
+
+@supports not (backdrop-filter: blur(4px)) {
+	.blur::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		content: '';
+		background-image: url(../../../images/themes/desktop/windows-7/logo.png), url(../../../images/themes/desktop/windows-7/default.png);
+		background-repeat: no-repeat, no-repeat;
+		background-position: center, center bottom;
+		background-size: auto, cover;
+		background-attachment: fixed, fixed;
+		transition: background-image 0.5s ease-in-out, filter 0.5s linear, backdrop-filter 0.5s linear;
+		filter: blur(4px);
+		opacity: 0.7;
+	}
+}
+
+.ui-icon-gripsmall-diagonal-se {
+	background-image: none;
+}
+
+/* region Windows 7 */
+
+.emuos.theme-windows-7 .emuos-desktop {
+	background-image: url(../../../images/themes/desktop/windows-7/logo.png), url(../../../images/themes/desktop/windows-7/default.png);
+	background-repeat: no-repeat, no-repeat;
+	background-position: center, center bottom;
+	background-size: auto, cover;
+}
+
+.emuos.theme-windows-7 .emuos-taskbar-bg {
+}
+
+.emuos.theme-windows-7 .emuos-taskbar {
+	border-top: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.emuos.theme-windows-7 .emuos-taskbar-container {
+	border-top: 1px solid rgba(255, 255, 255, 0.4);
+	background-color: rgba(116, 184, 252, 0.6);
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3) 10%, rgba(0, 0, 0, 0.3) 90%, rgba(0, 0, 0, 0.7));
+	/*background-blend-mode: multiply;*/
+}
+
+.emuos.theme-windows-7 .emuos-taskbar-container > div {
+
+}
+
+.emuos.theme-windows-7 .emuos-start {
+	width: 106px;
+	height: 100%;
+	/*background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.3) 100%);*/
+}
+
+.emuos.theme-windows-7 .emuos-start-button {
+	position: absolute;
+	left: 0;
+	top: -20px;
+
+	display: block;
+	width: 106px;
+	height: 106px;
+
+	background-color: transparent;
+	/*background-image: url(images/start-button-normal.png);*/
+	background-image: url(../../../images/themes/desktop/windows-7/start-button-106.png);
+	background-repeat: no-repeat;
+	/*background-position: center;*/
+	background-position: 0 0;
+	/*background-size: contain;*/
+	background-size: 100% 300%;
+	/*mix-blend-mode: color;*/
+
+	margin: 0;
+	padding: 0;
+
+	border: none;
+	outline: none;
+
+	cursor: pointer;
+}
+
+.emuos.theme-windows-7 .emuos-start-button:hover {
+	background-position: 0 50%;
+	/*background-blend-mode: difference;*/
+	/*mix-blend-mode: color-burn;*/
+	/*background-image: url(images/start-button-hover.png);*/
+}
+
+.emuos.theme-windows-7 .emuos-start-button:active {
+	background-position: 0 100%;
+	/*background-image: url(images/start-button-pressed.png);*/
+}
+
+/*noinspection CssOverwrittenProperties*/
+.emuos.theme-windows-7 .emuos-apps {
+	width: calc(100% - 210px);
+	height: 100%;
+	/*background-color: rgba(0, 0, 0, 0.3);*/
+}
+
+.emuos.theme-windows-7 .emuos-tray {
+	width: 120px;
+	height: 100%;
+	/*background-image: linear-gradient(270deg, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0.3) 100%);*/
+	padding-left: 32px;
+	text-align: right;
+}
+
+.emuos.theme-windows-7 .emuos-window {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+
+	width: 640px;
+	height: 480px;
+
+	border: 1px solid #000;
+	border-radius: 8px;
+	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.75);
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.emuos.theme-windows-7 .emuos-window.active {
+
+}
+
+.emuos.theme-windows-7 .emuos-window-container {
+	width: calc(100% - 2px);
+	height: calc(100% - 2px);
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 8px;
+}
+
+/* endregion */

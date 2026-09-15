@@ -1,0 +1,736 @@
+/*noinspection DuplicatedCode*/
+.xmas-snow .snowflakes {
+	position: fixed;
+	top: -10%;
+
+	-webkit-animation-name: snowflakes-fall, snowflakes-shake;
+	-webkit-animation-duration: 10s, 3s;
+	-webkit-animation-timing-function: linear, ease-in-out;
+	-webkit-animation-iteration-count: infinite, infinite;
+	-webkit-animation-play-state: running, running;
+
+	-moz-animation-name: snowflakes-fall, snowflakes-shake;
+	-moz-animation-duration: 10s, 3s;
+	-moz-animation-timing-function: linear, ease-in-out;
+	-moz-animation-iteration-count: infinite, infinite;
+	-moz-animation-play-state: running, running;
+
+	-ms-animation-name: snowflakes-fall, snowflakes-shake;
+	-ms-animation-duration: 10s, 3s;
+	-ms-animation-timing-function: linear, ease-in-out;
+	-ms-animation-iteration-count: infinite, infinite;
+	-ms-animation-play-state: running, running;
+
+	-o-animation-name: snowflakes-fall, snowflakes-shake;
+	-o-animation-duration: 10s, 3s;
+	-o-animation-timing-function: linear, ease-in-out;
+	-o-animation-iteration-count: infinite, infinite;
+	-o-animation-play-state: running, running;
+
+	animation-name: snowflakes-fall, snowflakes-shake;
+	animation-duration: 10s, 3s;
+	animation-timing-function: linear, ease-in-out;
+	animation-iteration-count: infinite, infinite;
+	animation-play-state: running, running;
+
+	transform-style: preserve-3d;
+	z-index: 1;
+}
+
+/*noinspection DuplicatedCode*/
+.xmas-snow .snowflakes .snowflake {
+	color: #fff;
+	font-size: 2em;
+	font-family: Arial, sans-serif;
+
+	-webkit-animation-name: snowflake-spin;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-play-state: running;
+
+	-moz-animation-name: snowflake-spin;
+	-moz-animation-duration: 2s;
+	-moz-animation-timing-function: linear;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-play-state: running;
+
+	-ms-animation-name: snowflake-spin;
+	-ms-animation-duration: 2s;
+	-ms-animation-timing-function: linear;
+	-ms-animation-iteration-count: infinite;
+	-ms-animation-play-state: running;
+
+	-o-animation-name: snowflake-spin;
+	-o-animation-duration: 2s;
+	-o-animation-timing-function: linear;
+	-o-animation-iteration-count: infinite;
+	-o-animation-play-state: running;
+
+	animation-name: snowflake-spin;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-play-state: running;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+
+	pointer-events: none;
+	cursor: default;
+}
+
+.xmas-snow .snowflakes:nth-of-type(0) {
+	left: 1%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 0s, 0s;
+	-moz-animation-delay: 0s, 0s;
+	-ms-animation-delay: 0s, 0s;
+	-o-animation-delay: 0s, 0s;
+	animation-delay: 0s, 0s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(1) {
+	left: 10%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 1s, 1s;
+	-moz-animation-delay: 1s, 1s;
+	-ms-animation-delay: 1s, 1s;
+	-o-animation-delay: 1s, 1s;
+	animation-delay: 1s, 1s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(2) {
+	left: 20%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 6s, .5s;
+	-moz-animation-delay: 6s, .5s;
+	-ms-animation-delay: 6s, .5s;
+	-o-animation-delay: 6s, .5s;
+	animation-delay: 6s, .5s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(3) {
+	left: 30%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 4s, 2s;
+	-moz-animation-delay: 4s, 2s;
+	-ms-animation-delay: 4s, 2s;
+	-o-animation-delay: 4s, 2s;
+	animation-delay: 4s, 2s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(4) {
+	left: 40%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 2s, 2s;
+	-moz-animation-delay: 2s, 2s;
+	-ms-animation-delay: 2s, 2s;
+	-o-animation-delay: 2s, 2s;
+	animation-delay: 2s, 2s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(5) {
+	left: 50%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 8s, 3s;
+	-moz-animation-delay: 8s, 3s;
+	-ms-animation-delay: 8s, 3s;
+	-o-animation-delay: 8s, 3s;
+	animation-delay: 8s, 3s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(6) {
+	left: 60%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 6s, 2s;
+	-moz-animation-delay: 6s, 2s;
+	-ms-animation-delay: 6s, 2s;
+	-o-animation-delay: 6s, 2s;
+	animation-delay: 6s, 2s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(7) {
+	left: 70%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 2.5s, 1s;
+	-moz-animation-delay: 2.5s, 1s;
+	-ms-animation-delay: 2.5s, 1s;
+	-o-animation-delay: 2.5s, 1s;
+	animation-delay: 2.5s, 1s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(8) {
+	left: 80%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 1s, 0s;
+	-moz-animation-delay: 1s, 0s;
+	-ms-animation-delay: 1s, 0s;
+	-o-animation-delay: 1s, 0s;
+	animation-delay: 1s, 0s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(9) {
+	left: 90%;
+	text-shadow: 0 0 5px #000;
+
+	-webkit-animation-delay: 3s, 1.5s;
+	-moz-animation-delay: 3s, 1.5s;
+	-ms-animation-delay: 3s, 1.5s;
+	-o-animation-delay: 3s, 1.5s;
+	animation-delay: 3s, 1.5s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(10) {
+	left: 5%;
+
+	-webkit-animation-delay: 3s, 1.5s;
+	-moz-animation-delay: 3s, 1.5s;
+	-ms-animation-delay: 3s, 1.5s;
+	-o-animation-delay: 3s, 1.5s;
+	animation-delay: 3s, 1.5s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(11) {
+	left: 15%;
+
+	-webkit-animation-delay: 1s, 0s;
+	-moz-animation-delay: 1s, 0s;
+	-ms-animation-delay: 1s, 0s;
+	-o-animation-delay: 1s, 0s;
+	animation-delay: 1s, 0s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(12) {
+	left: 25%;
+
+	-webkit-animation-delay: 2.5s, 1s;
+	-moz-animation-delay: 2.5s, 1s;
+	-ms-animation-delay: 2.5s, 1s;
+	-o-animation-delay: 2.5s, 1s;
+	animation-delay: 2.5s, 1s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(13) {
+	left: 35%;
+
+	-webkit-animation-delay: 6s, 2s;
+	-moz-animation-delay: 6s, 2s;
+	-ms-animation-delay: 6s, 2s;
+	-o-animation-delay: 6s, 2s;
+	animation-delay: 6s, 2s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(14) {
+	left: 45%;
+
+	-webkit-animation-delay: 8s, 3s;
+	-moz-animation-delay: 8s, 3s;
+	-ms-animation-delay: 8s, 3s;
+	-o-animation-delay: 8s, 3s;
+	animation-delay: 8s, 3s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(15) {
+	left: 55%;
+
+	-webkit-animation-delay: 2s, 2s;
+	-moz-animation-delay: 2s, 2s;
+	-ms-animation-delay: 2s, 2s;
+	-o-animation-delay: 2s, 2s;
+	animation-delay: 2s, 2s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(16) {
+	left: 65%;
+
+	-webkit-animation-delay: 4s, 2s;
+	-moz-animation-delay: 4s, 2s;
+	-ms-animation-delay: 4s, 2s;
+	-o-animation-delay: 4s, 2s;
+	animation-delay: 4s, 2s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(17) {
+	left: 75%;
+
+	-webkit-animation-delay: 6s, .5s;
+	-moz-animation-delay: 6s, .5s;
+	-ms-animation-delay: 6s, .5s;
+	-o-animation-delay: 6s, .5s;
+	animation-delay: 6s, .5s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(18) {
+	left: 85%;
+
+	-webkit-animation-delay: 1s, 1s;
+	-moz-animation-delay: 1s, 1s;
+	-ms-animation-delay: 1s, 1s;
+	-o-animation-delay: 1s, 1s;
+	animation-delay: 1s, 1s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(0) .snowflake {
+	-webkit-animation-delay: 0s;
+	-moz-animation-delay: 0s;
+	-ms-animation-delay: 0s;
+	-o-animation-delay: 0s;
+	animation-delay: 0s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(1) .snowflake {
+	-webkit-animation-delay: 1s;
+	-moz-animation-delay: 1s;
+	-ms-animation-delay: 1s;
+	-o-animation-delay: 1s;
+	animation-delay: 1s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(2) .snowflake {
+	-webkit-animation-delay: 6s;
+	-moz-animation-delay: 6s;
+	-ms-animation-delay: 6s;
+	-o-animation-delay: 6s;
+	animation-delay: 6s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(3) .snowflake {
+	-webkit-animation-delay: 4s;
+	-moz-animation-delay: 4s;
+	-ms-animation-delay: 4s;
+	-o-animation-delay: 4s;
+	animation-delay: 4s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(4) .snowflake {
+	-webkit-animation-delay: 2s;
+	-moz-animation-delay: 2s;
+	-ms-animation-delay: 2s;
+	-o-animation-delay: 2s;
+	animation-delay: 2s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(5) .snowflake {
+	-webkit-animation-delay: 8s;
+	-moz-animation-delay: 8s;
+	-ms-animation-delay: 8s;
+	-o-animation-delay: 8s;
+	animation-delay: 8s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(6) .snowflake {
+	-webkit-animation-delay: 6s;
+	-moz-animation-delay: 6s;
+	-ms-animation-delay: 6s;
+	-o-animation-delay: 6s;
+	animation-delay: 6s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(7) .snowflake {
+	-webkit-animation-delay: 2.5s;
+	-moz-animation-delay: 2.5s;
+	-ms-animation-delay: 2.5s;
+	-o-animation-delay: 2.5s;
+	animation-delay: 2.5s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(8) .snowflake {
+	-webkit-animation-delay: 1s;
+	-moz-animation-delay: 1s;
+	-ms-animation-delay: 1s;
+	-o-animation-delay: 1s;
+	animation-delay: 1s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(9) .snowflake {
+	-webkit-animation-delay: 3s;
+	-moz-animation-delay: 3s;
+	-ms-animation-delay: 3s;
+	-o-animation-delay: 3s;
+	animation-delay: 3s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(10) .snowflake {
+	-webkit-animation-delay: 3s;
+	-moz-animation-delay: 3s;
+	-ms-animation-delay: 3s;
+	-o-animation-delay: 3s;
+	animation-delay: 3s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(11) .snowflake {
+	-webkit-animation-delay: 1s;
+	-moz-animation-delay: 1s;
+	-ms-animation-delay: 1s;
+	-o-animation-delay: 1s;
+	animation-delay: 1s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(12) .snowflake {
+	-webkit-animation-delay: 2.5s;
+	-moz-animation-delay: 2.5s;
+	-ms-animation-delay: 2.5s;
+	-o-animation-delay: 2.5s;
+	animation-delay: 2.5s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(13) .snowflake {
+	-webkit-animation-delay: 6s;
+	-moz-animation-delay: 6s;
+	-ms-animation-delay: 6s;
+	-o-animation-delay: 6s;
+	animation-delay: 6s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(14) .snowflake {
+	-webkit-animation-delay: 8s;
+	-moz-animation-delay: 8s;
+	-ms-animation-delay: 8s;
+	-o-animation-delay: 8s;
+	animation-delay: 8s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(15) .snowflake {
+	-webkit-animation-delay: 2s;
+	-moz-animation-delay: 2s;
+	-ms-animation-delay: 2s;
+	-o-animation-delay: 2s;
+	animation-delay: 2s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(16) .snowflake {
+	-webkit-animation-delay: 4s;
+	-moz-animation-delay: 4s;
+	-ms-animation-delay: 4s;
+	-o-animation-delay: 4s;
+	animation-delay: 4s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(17) .snowflake {
+	-webkit-animation-delay: 6s;
+	-moz-animation-delay: 6s;
+	-ms-animation-delay: 6s;
+	-o-animation-delay: 6s;
+	animation-delay: 6s;
+}
+
+.xmas-snow .snowflakes:nth-of-type(18) .snowflake {
+	-webkit-animation-delay: 1s;
+	-moz-animation-delay: 1s;
+	-ms-animation-delay: 1s;
+	-o-animation-delay: 1s;
+	animation-delay: 1s;
+}
+
+/*noinspection DuplicatedCode*/
+@-webkit-keyframes snowflakes-fall {
+	0% {
+		top: -10%;
+	}
+	100% {
+		top: 100%;
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-moz-keyframes snowflakes-fall {
+	0% {
+		top: -10%;
+	}
+	100% {
+		top: 100%;
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-ms-keyframes snowflakes-fall {
+	0% {
+		top: -10%;
+	}
+	100% {
+		top: 100%;
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-o-keyframes snowflakes-fall {
+	0% {
+		top: -10%;
+	}
+	100% {
+		top: 100%;
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@keyframes snowflakes-fall {
+	0% {
+		top: -10%;
+	}
+	100% {
+		top: 100%;
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-webkit-keyframes snowflakes-shake {
+	0% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	50% {
+		-webkit-transform: translateX(80px);
+		-moz-transform: translateX(80px);
+		-ms-transform: translateX(80px);
+		-o-transform: translateX(80px);
+		transform: translateX(80px);
+	}
+	100% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-moz-keyframes snowflakes-shake {
+	0% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	50% {
+		-webkit-transform: translateX(80px);
+		-moz-transform: translateX(80px);
+		-ms-transform: translateX(80px);
+		-o-transform: translateX(80px);
+		transform: translateX(80px);
+	}
+	100% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-ms-keyframes snowflakes-shake {
+	0% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	50% {
+		-webkit-transform: translateX(80px);
+		-moz-transform: translateX(80px);
+		-ms-transform: translateX(80px);
+		-o-transform: translateX(80px);
+		transform: translateX(80px);
+	}
+	100% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-o-keyframes snowflakes-shake {
+	0% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	50% {
+		-webkit-transform: translateX(80px);
+		-moz-transform: translateX(80px);
+		-ms-transform: translateX(80px);
+		-o-transform: translateX(80px);
+		transform: translateX(80px);
+	}
+	100% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@keyframes snowflakes-shake {
+	0% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	50% {
+		-webkit-transform: translateX(80px);
+		-moz-transform: translateX(80px);
+		-ms-transform: translateX(80px);
+		-o-transform: translateX(80px);
+		transform: translateX(80px);
+	}
+	100% {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		-o-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-webkit-keyframes snowflake-spin {
+	0% {
+		-webkit-transform: rotate3d(1, 1, 1, 0deg);
+		-moz-transform: rotate3d(1, 1, 1, 0deg);
+		-ms-transform: rotate3d(1, 1, 1, 0deg);
+		-o-transform: rotate3d(1, 1, 1, 0deg);
+		transform: rotate3d(1, 1, 1, 0deg);
+	}
+	50% {
+		-webkit-transform: rotate3d(1, 1, 1, 180deg);
+		-moz-transform: rotate3d(1, 1, 1, 180deg);
+		-ms-transform: rotate3d(1, 1, 1, 180deg);
+		-o-transform: rotate3d(1, 1, 1, 180deg);
+		transform: rotate3d(1, 1, 1, 180deg);
+	}
+	100% {
+		-webkit-transform: rotate3d(1, 1, 1, 360deg);
+		-moz-transform: rotate3d(1, 1, 1, 360deg);
+		-ms-transform: rotate3d(1, 1, 1, 360deg);
+		-o-transform: rotate3d(1, 1, 1, 360deg);
+		transform: rotate3d(1, 1, 1, 360deg);
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-moz-keyframes snowflake-spin {
+	0% {
+		-webkit-transform: rotate3d(1, 1, 1, 0deg);
+		-moz-transform: rotate3d(1, 1, 1, 0deg);
+		-ms-transform: rotate3d(1, 1, 1, 0deg);
+		-o-transform: rotate3d(1, 1, 1, 0deg);
+		transform: rotate3d(1, 1, 1, 0deg);
+	}
+	50% {
+		-webkit-transform: rotate3d(1, 1, 1, 180deg);
+		-moz-transform: rotate3d(1, 1, 1, 180deg);
+		-ms-transform: rotate3d(1, 1, 1, 180deg);
+		-o-transform: rotate3d(1, 1, 1, 180deg);
+		transform: rotate3d(1, 1, 1, 180deg);
+	}
+	100% {
+		-webkit-transform: rotate3d(1, 1, 1, 360deg);
+		-moz-transform: rotate3d(1, 1, 1, 360deg);
+		-ms-transform: rotate3d(1, 1, 1, 360deg);
+		-o-transform: rotate3d(1, 1, 1, 360deg);
+		transform: rotate3d(1, 1, 1, 360deg);
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-ms-keyframes snowflake-spin {
+	0% {
+		-webkit-transform: rotate3d(1, 1, 1, 0deg);
+		-moz-transform: rotate3d(1, 1, 1, 0deg);
+		-ms-transform: rotate3d(1, 1, 1, 0deg);
+		-o-transform: rotate3d(1, 1, 1, 0deg);
+		transform: rotate3d(1, 1, 1, 0deg);
+	}
+	50% {
+		-webkit-transform: rotate3d(1, 1, 1, 180deg);
+		-moz-transform: rotate3d(1, 1, 1, 180deg);
+		-ms-transform: rotate3d(1, 1, 1, 180deg);
+		-o-transform: rotate3d(1, 1, 1, 180deg);
+		transform: rotate3d(1, 1, 1, 180deg);
+	}
+	100% {
+		-webkit-transform: rotate3d(1, 1, 1, 360deg);
+		-moz-transform: rotate3d(1, 1, 1, 360deg);
+		-ms-transform: rotate3d(1, 1, 1, 360deg);
+		-o-transform: rotate3d(1, 1, 1, 360deg);
+		transform: rotate3d(1, 1, 1, 360deg);
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-o-keyframes snowflake-spin {
+	0% {
+		-webkit-transform: rotate3d(1, 1, 1, 0deg);
+		-moz-transform: rotate3d(1, 1, 1, 0deg);
+		-ms-transform: rotate3d(1, 1, 1, 0deg);
+		-o-transform: rotate3d(1, 1, 1, 0deg);
+		transform: rotate3d(1, 1, 1, 0deg);
+	}
+	50% {
+		-webkit-transform: rotate3d(1, 1, 1, 180deg);
+		-moz-transform: rotate3d(1, 1, 1, 180deg);
+		-ms-transform: rotate3d(1, 1, 1, 180deg);
+		-o-transform: rotate3d(1, 1, 1, 180deg);
+		transform: rotate3d(1, 1, 1, 180deg);
+	}
+	100% {
+		-webkit-transform: rotate3d(1, 1, 1, 360deg);
+		-moz-transform: rotate3d(1, 1, 1, 360deg);
+		-ms-transform: rotate3d(1, 1, 1, 360deg);
+		-o-transform: rotate3d(1, 1, 1, 360deg);
+		transform: rotate3d(1, 1, 1, 360deg);
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@keyframes snowflake-spin {
+	0% {
+		-webkit-transform: rotate3d(1, 1, 1, 0deg);
+		-moz-transform: rotate3d(1, 1, 1, 0deg);
+		-ms-transform: rotate3d(1, 1, 1, 0deg);
+		-o-transform: rotate3d(1, 1, 1, 0deg);
+		transform: rotate3d(1, 1, 1, 0deg);
+	}
+	50% {
+		-webkit-transform: rotate3d(1, 1, 1, 180deg);
+		-moz-transform: rotate3d(1, 1, 1, 180deg);
+		-ms-transform: rotate3d(1, 1, 1, 180deg);
+		-o-transform: rotate3d(1, 1, 1, 180deg);
+		transform: rotate3d(1, 1, 1, 180deg);
+	}
+	100% {
+		-webkit-transform: rotate3d(1, 1, 1, 360deg);
+		-moz-transform: rotate3d(1, 1, 1, 360deg);
+		-ms-transform: rotate3d(1, 1, 1, 360deg);
+		-o-transform: rotate3d(1, 1, 1, 360deg);
+		transform: rotate3d(1, 1, 1, 360deg);
+	}
+}

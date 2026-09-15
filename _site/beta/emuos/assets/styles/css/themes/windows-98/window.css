@@ -1,0 +1,344 @@
+.theme-windows-98 .emuos-window {
+	padding: 4px;
+
+	background-color: #c0c0c0;
+
+	border: none;
+
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+
+	-moz-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+	-webkit-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-button {
+	background-color: #c0c0c0;
+
+	border: none;
+
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+
+	-moz-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+	-webkit-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+}
+
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-button-icon {
+	width: 16px;
+	height: 14px;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-button-icon-only {
+	width: 16px;
+	height: 14px;
+
+	padding: 0;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-button-icon-only:active,
+.theme-windows-98 .emuos-window.ui-dialog .ui-button-icon-only.ui-state-active
+{
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+
+	-moz-box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+	-webkit-box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+}
+
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .ui-button-icon-only {
+	top: 12px;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+	right: 2px !important;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore {
+	right: 20px !important;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize {
+	right: 36px !important;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-newtab {
+	right: 56px !important;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-fullscreen {
+	right: 72px !important;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-help {
+	right: 88px !important;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon-closethick {
+	background-image: url(../../../../images/themes/icons/windows-9x/close.gif) !important;
+	background-position: 1px 2px !important;
+	background-repeat: no-repeat !important;
+}
+
+/*noinspection CssOverwrittenProperties*/
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-icon-newwin {
+	background-image: url(../../../../images/themes/icons/windows-9x/maximize.gif) !important;
+	background-position: 1px 2px !important;
+	background-repeat: no-repeat !important;
+}
+
+/*noinspection CssOverwrittenProperties*/
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-icon-arrow-4-diag {
+	background-image: url(../../../../images/themes/icons/windows-9x/restore.gif) !important;
+	background-position: 1px 2px !important;
+	background-repeat: no-repeat !important;
+}
+
+/*noinspection CssOverwrittenProperties*/
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-icon-minusthick {
+	background-image: url(../../../../images/themes/icons/windows-9x/minimize.gif) !important;
+	background-position: 1px 2px !important;
+	background-repeat: no-repeat !important;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-help .ui-icon-help {
+	background-image: url(../../../../images/themes/icons/windows-9x/help.gif) !important;
+	background-position: 1px 2px !important;
+	background-repeat: no-repeat !important;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-fullscreen .ui-icon-arrow-4-diag {
+	background-image: url(../../../../images/themes/icons/windows-9x/fullscreen.gif) !important;
+	background-position: 1px 2px !important;
+	background-repeat: no-repeat !important;
+}
+
+/*noinspection CssOverwrittenProperties*/
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-newtab .ui-icon-extlink {
+	background-image: url(../../../../images/themes/icons/windows-9x/newtab.gif) !important;
+	background-position: 1px 2px !important;
+	background-repeat: no-repeat !important;
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssReplaceWithShorthandSafely,DuplicatedCode*/
+.theme-windows-98 .emuos-window .ui-dialog-titlebar {
+	background-color: #808080;
+	background: -webkit-gradient(linear, left top, right top, color-stop(0, #808080), color-stop(100%, #c0c0c0)) !important;
+	background: -webkit-linear-gradient(left, #808080, #c0c0c0) !important;
+	border-radius: 0;
+	font-size: 13px;
+	font-weight: bold;
+	/*text-align: center;*/
+	border: none;
+	border-bottom: 1px solid #c0c0c0;
+	padding: 0;
+	padding-left: 19px;
+	height: 18px;
+	color: #d4d0c8;
+	overflow: hidden;
+}
+
+.theme-windows-98 .emuos-window .ui-dialog-titlebar.ui-state-active {
+	/*background-color: #000080;*/
+	background-color: #0a246a;
+	background: -webkit-gradient(linear, left top, right top, color-stop(0, #0a246a), color-stop(100%, #a6caf0)) !important;
+	background: -webkit-linear-gradient(left, #0a246a, #a6caf0) !important;
+	border: none;
+	border-bottom: 1px solid #c0c0c0;
+	color: #fff;
+}
+
+.theme-windows-98 .emuos-window .ui-dialog-titlebar .ui-dialog-title {
+	line-height: 19px;
+	/*margin: -2px 0 0;*/
+	margin-left: 2px;
+}
+
+.theme-windows-98 .emuos-window .emuos-window-content {
+	padding: 0;
+	font-size: 13px;
+	line-height: 16px;
+	height: calc(100% - 19px) !important;
+	/*max-height: calc(100% - 19px) !important;*/
+	background-color: #fff;
+}
+
+.theme-windows-98 .emuos-window .emuos-window-content.emuos-window-type-help {
+	background-color: #c0c0c0;
+	padding: 10px;
+}
+
+.theme-windows-98 .emuos-window .emuos-window-content.emuos-window-type-help a {
+	color: #0000ee;
+}
+
+.theme-windows-98 .emuos-window .emuos-window-content.emuos-window-type-help a:visited {
+	color: #551a8b;
+}
+
+.theme-windows-98 .emuos-window .emuos-window-content.emuos-window-type-help a:active {
+	color: #ee0000;
+}
+
+.theme-windows-98 .emuos-window .emuos-window-content hr {
+	border-top-color: #9a9a9a;
+	border-bottom-color: #eee;
+}
+
+.theme-windows-98 .emuos-window .emuos-window-content p {
+	margin: 0;
+	padding: 0;
+}
+
+.theme-windows-98 .emuos-folder-toolbars,
+.theme-windows-98 .emuos-folder-toolbar-row.emuos-folder-menubar,
+.theme-windows-98 .emuos-folder-toolbar-row.emuos-folder-toolbar,
+.theme-windows-98 .emuos-folder-toolbar-row.emuos-folder-addressbar,
+.theme-windows-98 .emuos-folder-status {
+	background-color: #c0c0c0;
+}
+
+.theme-windows-98 .emuos-folder-toolbar-row + .emuos-folder-toolbar-row {
+	border-top-color: #fff;
+	box-shadow: 0 -1px 0 #808080;
+}
+
+.theme-windows-98 .emuos-folder-menubar-item,
+.theme-windows-98 .emuos-folder-toolbar-button,
+.theme-windows-98 .emuos-folder-toolbar-dropdown {
+	color: #000;
+	border: 1px solid transparent;
+	background-color: transparent;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.theme-windows-98 .emuos-folder-menubar-item:hover:not(.ui-state-active),
+.theme-windows-98 .emuos-folder-toolbar-button:not(.is-disabled):hover,
+.theme-windows-98 .emuos-folder-toolbar-dropdown:not(.is-disabled):hover,
+.theme-windows-98 .emuos-folder-toolbar-compound:hover:not(:active) .emuos-folder-toolbar-button:not(.is-disabled),
+.theme-windows-98 .emuos-folder-toolbar-compound:hover:not(:active) .emuos-folder-toolbar-dropdown:not(.is-disabled) {
+	border-color: #fff #808080 #808080 #fff;
+	background-color: #c0c0c0;
+	box-shadow: none;
+	color: #000;
+}
+
+.theme-windows-98 .emuos-folder-menubar-item.ui-state-active,
+.theme-windows-98 .emuos-folder-menubar-item:active,
+.theme-windows-98 .emuos-folder-toolbar-button:not(.is-disabled):active,
+.theme-windows-98 .emuos-folder-toolbar-compound .emuos-folder-toolbar-button:active:not(.is-disabled) ~ .emuos-folder-toolbar-dropdown:not(.is-disabled),
+.theme-windows-98 .emuos-folder-toolbar-dropdown:active:not(.is-disabled) {
+	border-color: #808080 #fff #fff #808080;
+	background-color: #c0c0c0;
+	box-shadow: none;
+	color: #000;
+}
+
+.theme-windows-98 .emuos-folder-toolbar-sep {
+	background: #808080;
+}
+
+.theme-windows-98 .emuos-folder-window .emuos-folder-menu .ui-menu-item {
+	padding: 0;
+	margin: 2px;
+	height: auto;
+	border: 0;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.theme-windows-98 .emuos-folder-window .emuos-folder-menu .ui-menu-item.ui-state-focus,
+.theme-windows-98 .emuos-folder-window .emuos-folder-menu .ui-menu-item-wrapper.ui-state-active {
+	height: auto;
+	border: 0;
+	font-weight: normal;
+	padding-left: 0;
+}
+
+.theme-windows-98 .emuos-folder-window .emuos-folder-menu .ui-menu-divider {
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #fff;
+}
+
+.theme-windows-98 .emuos-folder-address-compound {
+	background: #fff;
+	border: none;
+	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #000;
+}
+
+.theme-windows-98 .emuos-folder-address-input {
+	font-size: 12px;
+}
+
+.theme-windows-98 .emuos-folder-address-dropdown {
+	background-color: #c0c0c0;
+	border-color: #fff #808080 #808080 #fff;
+	color: #000;
+}
+
+.theme-windows-98 .emuos-folder-address-dropdown:disabled svg {
+	filter: saturate(0%) opacity(50%);
+	filter: url("#disabled-inset-filter");
+}
+
+.theme-windows-98 .emuos-folder-sidebar {
+	background-color: #fff;
+}
+
+.theme-windows-98 .emuos-folder-sidebar-title {
+	color: #000;
+}
+
+.theme-windows-98 .emuos-folder-splitter {
+	background: #fff;
+	border: 0;
+}
+
+.theme-windows-98 .emuos-folder-items {
+	background: #fff;
+}
+
+.theme-windows-98 .emuos-folder-item {
+	color: #000;
+}
+
+.theme-windows-98 .emuos-folder-item.ui-selected span {
+	background: #000080;
+	color: #fff;
+}
+
+.theme-windows-98 .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected {
+	background: #000080;
+	color: #fff;
+}
+
+.theme-windows-98 .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-name .label,
+.theme-windows-98 .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-size,
+.theme-windows-98 .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-type,
+.theme-windows-98 .emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-modified {
+	background: transparent;
+	color: inherit;
+}
+
+.theme-windows-98 .emuos-folder-status {
+	border-top: none;
+}
+
+.theme-windows-98 .emuos-folder-status-left,
+.theme-windows-98 .emuos-folder-status-middle,
+.theme-windows-98 .emuos-folder-status-right {
+	background: #c0c0c0;
+	border: none;
+	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+}

@@ -1,0 +1,203 @@
+html {
+	font-family: "Segoe UI", sans-serif;
+	font-size: 12px;
+	background: #333;
+}
+
+body {
+	overflow: visible !important;
+}
+
+/**:hover {
+	background-color: greenyellow;
+}
+
+*:active {
+	background-color: blue !important;
+}
+
+*:focus {
+	background-color: red !important;
+}*/
+
+div.menu ul.menu-items {
+	background-color: #c0c0c0;
+	height: 17px;
+	overflow: hidden;
+}
+
+div.menu ul {
+	position: relative;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+div.menu ul button {
+	height: 17px;
+	text-align: left;
+	background: none;
+	border: none;
+	padding: 2px 5px;
+	margin: 0;
+	min-width: 10px;
+	max-width: 200px;
+	outline: none;
+	vertical-align: top;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+div.menu ul li {
+	display: block;
+	position: relative;
+	float: left;
+	color: #000;
+}
+
+div.menu li ul {
+	display: none;
+	background-color: #c0c0c0;
+	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+	z-index: 100;
+}
+
+/*noinspection DuplicatedCode*/
+div.menu li li.check:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 16px;
+	height: 16px;
+	background-image: url(../../../../images/themes/icons/windows-9x/menu-check-black.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	pointer-events: none;
+}
+
+div.menu li li.check:hover:before {
+	background-image: url(../../../../images/themes/icons/windows-9x/menu-check-white.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/*noinspection DuplicatedCode*/
+div.menu li li.dot:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 16px;
+	height: 16px;
+	background-image: url(../../../../images/themes/icons/windows-9x/menu-dot-black.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	pointer-events: none;
+}
+
+div.menu li li.dot:hover:before {
+	background-image: url(../../../../images/themes/icons/windows-9x/menu-dot-white.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+div.menu li li.child:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: block;
+	width: 40px;
+	height: 16px;
+	background-image: url(../../../../images/themes/icons/windows-9x/menu-arrow-black.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	pointer-events: none;
+}
+
+div.menu li li.child:hover:after {
+	background-image: url(../../../../images/themes/icons/windows-9x/menu-arrow-white.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+div.menu ul.menu-items > li > button:hover {
+	box-shadow: 1px 1px 0 #fff inset, -1px -1px 0 #808080 inset;
+}
+
+div.menu.active ul.menu-items > li > button.active,
+div.menu.active ul.menu-items > li > button:hover,
+div.menu ul.menu-items > li > button:active,
+div.menu ul.menu-items > li > button:focus {
+	box-shadow: 1px 1px 0 #808080 inset, -1px -1px 0 #fff inset;
+}
+
+div.menu button:focus + ul,
+div.menu ul.menu-items li li:hover > ul,
+div.menu.active li:hover > ul,
+div.menu.active button.active + ul
+{
+	display: block;
+	position: absolute;
+}
+
+div.menu.active button.active + ul li,
+div.menu button:focus + ul li,
+div.menu li:hover li
+{
+	float: none;
+}
+
+div.menu ul > li:hover li:hover {
+	background-color: #000080;
+	color: #fff;
+}
+
+div.menu ul li li {
+	padding: 0 50px 0 22px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+div.menu ul li li span {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+div.menu ul li li:first-child {
+	margin-top: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+div.menu ul li li:last-child {
+	margin-bottom: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+div.menu ul.menu-items li ul {
+	position: fixed;
+	min-width: 10px;
+	max-width: 200px;
+}
+
+div.menu ul ul ul {
+	left: 100%;
+	top: 0;
+}
+
+div.menu ul.menu-items:before, ul.menu-items:after {
+	content: '';
+	display: table;
+}
+
+div.menu ul.menu-items:after {
+	clear: both;
+}

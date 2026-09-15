@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!--
+
+
+	╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
+	╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
+	╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
+
+
+	-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="format-detection" content="telephone=no">
+		<title>Emupedia</title>
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/normalize-8.0.1.css" />
+		<style>
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				background-color: rgba(0, 153, 255, 1);
+				/*background-image: url(images/emupedia-logo.png);*/
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
+				animation: bg-color-cycle 16087ms ease-in alternate infinite;
+				overflow: hidden;
+			}
+
+			.loader {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				width: 50px;
+				height: 50px;
+				margin: auto;
+			}
+
+			.loader .circle {
+				position: absolute;
+				width: 38px;
+				height: 38px;
+				opacity: 0;
+				transform: rotate(225deg);
+				animation-iteration-count: infinite;
+				animation-name: orbit;
+				animation-duration: 5.5s;
+			}
+
+			.loader .circle:after {
+				content: '';
+				position: absolute;
+				width: 6px;
+				height: 6px;
+				border-radius: 5px;
+				background: #fff;
+				/*box-shadow: 0 0 9px rgba(255, 255, 255, .7);*/
+			}
+
+			.loader .circle:nth-child(2) {
+				animation-delay: 240ms;
+			}
+
+			.loader .circle:nth-child(3) {
+				animation-delay: 480ms;
+			}
+
+			.loader .circle:nth-child(4) {
+				animation-delay: 720ms;
+			}
+
+			.loader .circle:nth-child(5) {
+				animation-delay: 960ms;
+			}
+
+			@keyframes bg-color-cycle {
+				0% {
+					background-color: rgba(0, 153, 255, 1);
+				}
+				50% {
+					background-color: rgba(41, 255, 121, 1);
+				}
+				100% {
+					background-color: rgba(255, 74, 88, 1);
+				}
+			}
+
+			@keyframes orbit {
+				0% {
+					transform: rotate(225deg);
+					opacity: 1;
+					animation-timing-function: ease-out;
+				}
+				7% {
+					transform: rotate(345deg);
+					animation-timing-function: linear;
+				}
+				30% {
+					transform: rotate(455deg);
+					animation-timing-function: ease-in-out;
+				}
+				39% {
+					transform: rotate(690deg);
+					animation-timing-function: linear;
+				}
+				70% {
+					transform: rotate(815deg);
+					opacity: 1;
+					animation-timing-function: ease-out;
+				}
+				75% {
+					transform: rotate(945deg);
+					animation-timing-function: ease-out;
+				}
+				76% {
+					transform: rotate(945deg);
+					opacity: 0;
+				}
+				100% {
+					transform: rotate(945deg);
+					opacity: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="loader">
+			<div class="circle"></div>
+			<div class="circle"></div>
+			<div class="circle"></div>
+			<div class="circle"></div>
+			<div class="circle"></div>
+		</div>
+
+		<script id="libraries" type="text/javascript" src="assets/js/libraries.js"></script>
+		<script id="system" type="text/javascript" src="assets/js/system.js" data-main="assets/js/components.js" defer="defer"></script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+/*noinspection CssOverwrittenProperties*/
+.theme-windows-3 .emuos-desktop {
+	background-color: #008080;
+	background: url(../../../../images/themes/wallpapers/windows-3x/castle.bmp);
+	background: url(../../../../images/themes/wallpapers/windows-3x/winlogo.svg) center no-repeat, url(../../../../images/themes/wallpapers/windows-3x/castle.bmp);
+	background-size: auto;
+	background-size: 40% 40%, auto;
+}
+
+.theme-windows-3 .emuos-desktop-icon {
+	font-size: 13px;
+	font-weight: normal;
+	text-shadow: none;
+	/*z-index: 1;*/
+}
+
+.theme-windows-3 .emuos-desktop-icon span {
+	display: block;
+	color: #000;
+	background-color: #fff;
+}
+
+.theme-windows-3 .emuos-desktop-icon.ui-sortable-helper span,
+.theme-windows-3 .emuos-desktop-icon.ui-draggable-dragging span,
+.theme-windows-3 .emuos-desktop-icon.ui-selecting span,
+.theme-windows-3 .emuos-desktop-icon.ui-selected span {
+	background-color: #000080;
+	color: #fff;
+	outline: 1px dotted #ffff7f;
+	outline-offset: -1px;
+}
+
+.theme-windows-3 .emuos-desktop-icon.ui-sortable-helper img,
+.theme-windows-3 .emuos-desktop-icon.ui-draggable-dragging img,
+.theme-windows-3 .emuos-desktop-icon.ui-selecting img,
+.theme-windows-3 .emuos-desktop-icon.ui-selected img {
+	-webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+	filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+}
+
+.theme-windows-3 .emuos-desktop-icon:hover {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+.theme-windows-3 .emuos-desktop-icon.ui-sortable-helper,
+.theme-windows-3 .emuos-desktop-icon.ui-draggable-dragging {
+	border: none;
+}

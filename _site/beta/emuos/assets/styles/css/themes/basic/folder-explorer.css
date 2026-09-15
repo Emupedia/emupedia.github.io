@@ -1,0 +1,1052 @@
+/* Explorer-style folder windows (inspired by 98.js) */
+
+.emuos-folder-window {
+	--folder-icon-size: 64px;
+	--folder-cell-width: 96px;
+	--folder-row-height: 122px;
+	--folder-button-face: #c0c0c0;
+	--folder-button-hilight: #fff;
+	--folder-button-shadow: #808080;
+	--folder-button-text: #000;
+	--folder-window-bg: #fff;
+	--folder-hilight: #000080;
+	--folder-hilight-text: #fff;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	outline: none;
+	font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+	font-size: 11px;
+	line-height: 1.2;
+	color: var(--folder-button-text);
+	background: var(--folder-button-face);
+}
+
+.emuos-folder-toolbars {
+	display: flex;
+	flex-direction: column;
+	padding: 1px;
+	margin-top: 1px;
+	margin-bottom: 4px;
+	border: 1px solid var(--folder-button-shadow);
+	box-shadow: 0 1px 0 var(--folder-button-hilight), inset 0 1px 0 var(--folder-button-hilight);
+	flex-shrink: 0;
+}
+
+.emuos-folder-toolbar-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	min-height: 0;
+	overflow: hidden;
+	position: relative;
+}
+
+.emuos-folder-toolbar-row + .emuos-folder-toolbar-row {
+	border-top: 1px solid var(--folder-button-hilight);
+	box-shadow: 0 -1px 0 var(--folder-button-shadow);
+	margin-top: 2px;
+}
+
+.emuos-folder-drag-handle {
+	flex: 0 0 auto;
+	width: 10px;
+	align-self: stretch;
+	position: relative;
+	touch-action: none;
+	cursor: move;
+}
+
+.emuos-folder-drag-handle::before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	width: 4px;
+	bottom: 1px;
+	box-sizing: border-box;
+	border: 1px solid;
+	border-color: var(--folder-button-hilight) var(--folder-button-shadow) var(--folder-button-shadow) var(--folder-button-hilight);
+}
+
+.emuos-folder-menubar-items,
+.emuos-folder-toolbar-buttons,
+.emuos-folder-address-wrap {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex: 1;
+	min-width: 0;
+}
+
+.emuos-folder-menubar-items {
+	min-height: 20px;
+}
+
+.emuos-folder-menubar-item,
+.emuos-folder-toolbar-button {
+	outline: none;
+	border: 1px solid transparent;
+	background: transparent;
+}
+
+.emuos-folder-menubar-item {
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 18px;
+	margin: 1px 0;
+	padding: 2px 5px;
+	font-family: inherit;
+	font-size: 12px !important;
+	line-height: 1;
+	color: inherit;
+}
+
+.emuos-folder-menubar-item:hover:not(.ui-state-active) {
+	border-color: var(--folder-button-hilight) var(--folder-button-shadow) var(--folder-button-shadow) var(--folder-button-hilight);
+	background: var(--folder-button-face);
+	color: var(--folder-button-text);
+}
+
+.emuos-folder-menubar-item.ui-state-active,
+.emuos-folder-menubar-item:active {
+	border-color: var(--folder-button-shadow) var(--folder-button-hilight) var(--folder-button-hilight) var(--folder-button-shadow);
+	background: var(--folder-button-face);
+	color: var(--folder-button-text);
+}
+
+/* Beat jQuery UI .ui-state-active white text/blue background on menubar buttons */
+.emuos-folder-window .emuos-folder-menubar-item.ui-state-active,
+.emuos-folder-window .emuos-folder-menubar-item:hover,
+.emuos-folder-window .emuos-folder-menubar-item.ui-state-hover {
+	color: var(--folder-button-text);
+	background: var(--folder-button-face);
+}
+
+.emuos-folder-menu.ui-menu {
+	display: none;
+	position: absolute;
+}
+
+.emuos-folder-menu.ui-menu,
+.emuos-folder-menu .ui-menu {
+	--folder-button-face: #c0c0c0;
+	--folder-button-hilight: #fff;
+	--folder-button-shadow: #808080;
+	--folder-button-text: #000;
+	--folder-hilight: #000080;
+	--folder-hilight-text: #fff;
+	min-width: 12em;
+	padding: 2px;
+	margin: 0;
+	list-style: none;
+	font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	line-height: 1.2;
+	color: var(--folder-button-text);
+	background: var(--folder-button-face);
+	border-top: 1px solid var(--folder-button-face);
+	border-left: 1px solid var(--folder-button-face);
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	box-shadow: 1px 1px 0 var(--folder-button-hilight) inset, -1px -1px 0 var(--folder-button-shadow) inset;
+}
+
+.emuos-folder-menu.ui-widget-content,
+.emuos-folder-menu .ui-menu.ui-widget-content {
+	background: var(--folder-button-face);
+	color: var(--folder-button-text);
+	border-color: var(--folder-button-face) var(--folder-button-face) #000 #000;
+}
+
+.emuos-folder-menu .ui-menu-item {
+	padding: 0;
+	margin: 2px;
+	height: auto;
+	border: 0;
+	white-space: nowrap;
+}
+
+.emuos-folder-menu .ui-menu-item-wrapper {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	margin: 0;
+	padding: 1px 3px;
+	min-height: 17px;
+	line-height: 17px;
+	white-space: nowrap;
+	font-weight: normal;
+}
+
+.emuos-folder-menu-label {
+	flex: 0 1 auto;
+	white-space: nowrap;
+}
+
+.emuos-folder-menu .ui-menu-item.ui-state-focus,
+.emuos-folder-menu .ui-menu-item-wrapper.ui-state-active {
+	margin: 0;
+	padding: 1px 3px;
+	border: 0;
+	background: var(--folder-hilight);
+	color: var(--folder-hilight-text);
+	font-weight: normal;
+}
+
+.emuos-folder-menu-checkbox-area {
+	flex: 0 0 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.emuos-folder-menu-checkbox-area::after {
+	content: "";
+	display: block;
+	width: 16px;
+	height: 16px;
+}
+
+.emuos-folder-menu-checkable[aria-checked="true"] .emuos-folder-menu-checkbox-area::after {
+	mask-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7v3l2 2 5-5V4L7 9Z'/%3E%3C/svg%3E");
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7v3l2 2 5-5V4L7 9Z'/%3E%3C/svg%3E");
+	mask-size: 16px 16px;
+	-webkit-mask-size: 16px 16px;
+	mask-repeat: no-repeat;
+	-webkit-mask-repeat: no-repeat;
+	mask-position: center;
+	-webkit-mask-position: center;
+	background: currentColor;
+}
+
+.emuos-folder-menu-radio[aria-checked="true"] .emuos-folder-menu-checkbox-area.radio::after {
+	mask-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
+	mask-size: 16px 16px;
+	-webkit-mask-size: 16px 16px;
+	mask-repeat: no-repeat;
+	-webkit-mask-repeat: no-repeat;
+	mask-position: center;
+	-webkit-mask-position: center;
+	background: currentColor;
+}
+
+.emuos-folder-menu .ui-menu-item.ui-state-disabled,
+.emuos-folder-menu .ui-menu-item.ui-state-disabled .ui-menu-item-wrapper,
+.emuos-folder-menu .ui-menu-item.ui-state-disabled > div {
+	opacity: 1;
+	filter: none;
+	color: var(--folder-button-shadow);
+	text-shadow: 0.8px 0.8px 0 var(--folder-button-hilight);
+	cursor: default;
+}
+
+.emuos-folder-menu .ui-menu-item.ui-state-disabled .emuos-folder-menu-label,
+.emuos-folder-menu .ui-menu-item.ui-state-disabled .emuos-folder-menu-shortcut,
+.emuos-folder-menu .ui-menu-item.ui-state-disabled .emuos-folder-menu-mnemonic {
+	color: inherit;
+	text-shadow: inherit;
+}
+
+.emuos-folder-menu .ui-menu-item.ui-state-disabled.ui-state-focus,
+.emuos-folder-menu .ui-menu-item.ui-state-disabled .ui-menu-item-wrapper.ui-state-active,
+.emuos-folder-menu .ui-menu-item.ui-state-disabled.ui-state-focus > div {
+	padding: 1px 3px;
+	border: 0;
+	background: transparent;
+	color: var(--folder-button-shadow);
+	text-shadow: 0.8px 0.8px 0 var(--folder-button-hilight);
+}
+
+.emuos-folder-menu .ui-menu-item.ui-state-disabled.ui-state-focus {
+	margin: 2px;
+}
+
+.emuos-folder-menu .ui-menu-icon.ui-icon {
+	display: none;
+}
+
+.emuos-folder-menu-has-submenu > .ui-menu-item-wrapper::after,
+.emuos-folder-menu-has-submenu > div::after {
+	content: "";
+	display: block;
+	flex: 0 0 16px;
+	width: 16px;
+	height: 16px;
+	margin-left: auto;
+	mask-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m6 4 4 4-4 4z'/%3E%3C/svg%3E");
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m6 4 4 4-4 4z'/%3E%3C/svg%3E");
+	mask-size: 16px 16px;
+	-webkit-mask-size: 16px 16px;
+	mask-repeat: no-repeat;
+	-webkit-mask-repeat: no-repeat;
+	mask-position: center;
+	-webkit-mask-position: center;
+	background: currentColor;
+}
+
+.emuos-folder-menu-shortcut {
+	margin-left: auto;
+	padding-left: 12px;
+}
+
+.emuos-folder-menu .ui-menu-divider {
+	margin: 3px 0 4px;
+	height: 0;
+	border: 0;
+	border-top: 1px solid var(--folder-button-shadow);
+	border-bottom: 1px solid var(--folder-button-hilight);
+	background: transparent;
+}
+
+.emuos-folder-menu-mnemonic {
+	display: inline;
+	text-decoration: underline;
+}
+
+.emuos-folder-context-menu.ui-menu,
+.emuos-folder-context-menu .ui-menu {
+	z-index: 10050;
+}
+
+.emuos-folder-context-menu .ui-menu-item.emuos-folder-context-menu-default .ui-menu-item-wrapper,
+.emuos-folder-context-menu .ui-menu-item.emuos-folder-context-menu-default > a,
+.emuos-folder-context-menu .ui-menu-item.emuos-folder-context-menu-default > div {
+	font-weight: bold;
+}
+
+/* Beat generic theme .ui-menu / .ui-contextmenu rules for menus outside .emuos-folder-window */
+html[class*="theme-"] .emuos-folder-menu.ui-menu,
+html.theme-basic .emuos-folder-menu.ui-menu {
+	font-size: 11px;
+	font-weight: normal;
+}
+
+html[class*="theme-"] .emuos-folder-menu .ui-menu-item,
+html.theme-basic .emuos-folder-menu .ui-menu-item {
+	padding: 0;
+	margin: 2px;
+	height: auto;
+	border: 0;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+html[class*="theme-"] .emuos-folder-menu .ui-menu-item.ui-state-focus,
+html[class*="theme-"] .emuos-folder-menu .ui-menu-item-wrapper.ui-state-active,
+html.theme-basic .emuos-folder-menu .ui-menu-item.ui-state-focus,
+html.theme-basic .emuos-folder-menu .ui-menu-item-wrapper.ui-state-active {
+	margin: 0;
+	padding: 1px 3px;
+	height: auto;
+	border: 0;
+	font-weight: normal;
+	background: var(--folder-hilight);
+	color: var(--folder-hilight-text);
+}
+
+html[class*="theme-"] .ui-contextmenu.emuos-folder-menu,
+html.theme-basic .ui-contextmenu.emuos-folder-menu,
+html[class*="theme-"] .emuos-folder-context-menu.ui-menu,
+html.theme-basic .emuos-folder-context-menu.ui-menu {
+	border-top: 1px solid var(--folder-button-face);
+	border-left: 1px solid var(--folder-button-face);
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	box-shadow: 1px 1px 0 var(--folder-button-hilight) inset, -1px -1px 0 var(--folder-button-shadow) inset;
+}
+
+.emuos-folder-toolbar-row.emuos-folder-menubar {
+	padding: 0;
+	gap: 0;
+	border-bottom: none;
+	background: transparent;
+	min-height: 20px;
+}
+
+.emuos-folder-toolbar-row.emuos-folder-toolbar {
+	padding: 0;
+	gap: 0;
+	border-bottom: none;
+	background: transparent;
+}
+
+.emuos-folder-toolbar-row.emuos-folder-addressbar {
+	padding: 0;
+	gap: 0;
+	border-bottom: none;
+	background: transparent;
+}
+
+.emuos-folder-toolbar-button {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	width: 58px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
+	line-height: 11px;
+	color: inherit;
+	box-sizing: border-box;
+}
+
+.emuos-folder-toolbar-button:hover:not(.is-disabled) {
+	border-color: var(--folder-button-hilight) var(--folder-button-shadow) var(--folder-button-shadow) var(--folder-button-hilight);
+	background: var(--folder-button-face);
+}
+
+.emuos-folder-toolbar-button:active:not(.is-disabled) {
+	border-color: var(--folder-button-shadow) var(--folder-button-hilight) var(--folder-button-hilight) var(--folder-button-shadow);
+}
+
+.emuos-folder-toolbar-button:not(.is-disabled):hover .emuos-folder-toolbar-icon {
+	background-image: url("../../../../images/explorer/browse-ui-icons.png");
+}
+
+.emuos-folder-toolbar-button.is-disabled,
+.emuos-folder-toolbar-dropdown.is-disabled {
+	color: var(--folder-button-shadow);
+	text-shadow: 1px 1px 0 var(--folder-button-hilight);
+	cursor: default;
+}
+
+.emuos-folder-toolbar-button.is-disabled .emuos-folder-toolbar-icon,
+.emuos-folder-toolbar-compound:hover .emuos-folder-toolbar-button.is-disabled .emuos-folder-toolbar-icon {
+	background-image: url("../../../../images/explorer/browse-ui-icons-grayscale.png");
+}
+
+.emuos-folder-toolbar-button.is-disabled .emuos-folder-toolbar-icon {
+	filter: saturate(0%) opacity(50%);
+	filter: url("#disabled-inset-filter");
+}
+
+.emuos-folder-toolbar-dropdown.is-disabled .emuos-folder-toolbar-dropdown-icon {
+	filter: saturate(0%) opacity(50%);
+	filter: url("#disabled-inset-filter");
+}
+
+.emuos-folder-toolbar-compound:hover:not(:active) .emuos-folder-toolbar-button.is-disabled,
+.emuos-folder-toolbar-compound:hover:not(:active) .emuos-folder-toolbar-dropdown.is-disabled {
+	border-color: transparent;
+	background: transparent;
+	box-shadow: none;
+}
+
+.emuos-folder-toolbar-icon {
+	position: absolute;
+	top: 2px;
+	left: 50%;
+	width: 20px;
+	height: 20px;
+	margin-left: -10px;
+	background-image: url("../../../../images/explorer/browse-ui-icons-grayscale.png");
+	background-repeat: no-repeat;
+}
+
+.emuos-folder-toolbar-label {
+	display: block;
+	width: 100%;
+	margin-top: 24px;
+	padding: 0 1px;
+	box-sizing: border-box;
+	white-space: nowrap;
+	font-weight: normal;
+	text-align: center;
+}
+
+.emuos-folder-hide-toolbar-labels .emuos-folder-toolbar-label {
+	display: none;
+}
+
+.emuos-folder-hide-toolbar-labels .emuos-folder-toolbar-button {
+	width: 27px;
+	height: 26px;
+}
+
+.emuos-folder-hide-toolbar-labels .emuos-folder-toolbar-dropdown {
+	width: 13px;
+	height: 26px;
+	line-height: 24px;
+}
+
+.emuos-folder-hide-toolbar-labels .emuos-folder-toolbar-icon {
+	top: 1px;
+}
+
+.emuos-folder-hide-toolbar-labels .emuos-folder-toolbar-dropdown-icon {
+	width: 12px;
+	height: 12px;
+}
+
+.emuos-folder-hide-toolbar-labels .emuos-folder-toolbar-sep {
+	height: 22px;
+}
+
+.emuos-folder-hide-toolbar-labels .emuos-folder-toolbar-row.emuos-folder-toolbar {
+	min-height: 27px;
+}
+
+.emuos-folder-toolbar-compound {
+	display: flex;
+	flex-direction: row;
+}
+
+.emuos-folder-toolbar-compound .emuos-folder-toolbar-button {
+	flex: 0 0 auto;
+}
+
+.emuos-folder-toolbar-dropdown {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 16px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid transparent;
+	background: transparent;
+	color: inherit;
+	box-sizing: border-box;
+}
+
+.emuos-folder-toolbar-dropdown-icon {
+	display: block;
+	width: 12px;
+	height: 12px;
+	fill: currentColor;
+}
+
+.emuos-folder-toolbar-compound:hover:not(:active) .emuos-folder-toolbar-button:not(.is-disabled),
+.emuos-folder-toolbar-compound:hover:not(:active) .emuos-folder-toolbar-dropdown:not(.is-disabled) {
+	border-color: var(--folder-button-hilight) var(--folder-button-shadow) var(--folder-button-shadow) var(--folder-button-hilight);
+	background: var(--folder-button-face);
+}
+
+.emuos-folder-toolbar-compound:hover .emuos-folder-toolbar-button:not(.is-disabled) .emuos-folder-toolbar-icon {
+	background-image: url("../../../../images/explorer/browse-ui-icons.png");
+}
+
+.emuos-folder-toolbar-compound .emuos-folder-toolbar-button:active:not(.is-disabled) ~ .emuos-folder-toolbar-dropdown:not(.is-disabled),
+.emuos-folder-toolbar-dropdown:active:not(.is-disabled) {
+	border-color: var(--folder-button-shadow) var(--folder-button-hilight) var(--folder-button-hilight) var(--folder-button-shadow);
+	background: var(--folder-button-face);
+}
+
+.emuos-folder-toolbar-sep {
+	display: block;
+	width: 0;
+	height: 36px;
+	margin: 0 2px;
+	border: 0;
+	border-left: 1px solid var(--folder-button-shadow);
+	border-right: 1px solid var(--folder-button-hilight);
+}
+
+.emuos-folder-address-wrap {
+	flex: 1;
+	padding: 1px 4px 1px 0;
+}
+
+.emuos-folder-address-wrap > label {
+	margin-right: 5px;
+	font-weight: normal;
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+.emuos-folder-address-compound {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	min-width: 0;
+	min-height: 23px;
+	margin: 1px 0;
+	background: var(--folder-window-bg);
+	color: #000;
+	box-shadow: inset -1px -1px 0 var(--folder-button-hilight), inset 1px 1px 0 var(--folder-button-shadow), inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #000;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.emuos-folder-address-icon {
+	width: 16px;
+	height: 16px;
+	margin: 0px 4px 0px 4px;
+	flex-shrink: 0;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 16px 16px;
+}
+
+.emuos-folder-address-compound .emuos-folder-address-input,
+.emuos-folder-address-input {
+	flex: 1;
+	min-width: 0;
+	width: 0;
+	border: 0;
+	outline: 0;
+	padding: 0;
+	background: transparent;
+	font-family: inherit;
+	font-size: 12px;
+	line-height: 1;
+	color: inherit;
+}
+
+.emuos-folder-address-dropdown {
+	display: block;
+	width: 17px;
+	height: 19px;
+	margin: 0 2px 0 0;
+	padding-left: 1px;
+	box-sizing: border-box;
+	border-style: solid;
+	border-width: 1px;
+	border-color: var(--folder-button-hilight) var(--folder-button-shadow) var(--folder-button-shadow) var(--folder-button-hilight);
+	background: var(--folder-button-face);
+	color: var(--folder-button-text);
+	font: inherit;
+	line-height: 1;
+}
+
+.emuos-folder-address-dropdown svg {
+	fill: currentColor;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.emuos-folder-address-dropdown:disabled svg {
+	filter: saturate(0%) opacity(50%);
+	filter: url("#disabled-inset-filter");
+}
+
+/* Win98 sunken panel (98.js #content.inset-deep) */
+.emuos-inset-deep {
+	position: relative;
+	box-sizing: border-box;
+	border-style: solid;
+	border-width: 2px;
+	border-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256px%22%20height%3D%22256px%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%09%09%09%0A%09%09%3Cpath%20d%3D%22M0%200h224v32h-192v192h-32v-224z%22%20fill%3D%22%20rgb(0%2C%200%2C%200)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M224%200h32v256h-256v-32h224v-224z%22%20fill%3D%22%20rgb(255%2C%20255%2C%20255)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h160v32h-128v128h-32v-160z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M192%2032h32v192h-192v-32h160v-160z%22%20fill%3D%22%20rgb(223%2C%20223%2C%20223)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E") 64 / 2px;
+	border-color: var(--folder-button-shadow) var(--folder-button-hilight) var(--folder-button-hilight) var(--folder-button-shadow);
+}
+
+.emuos-folder-main {
+	display: flex;
+	flex: 1;
+	min-width: 0;
+	min-height: 0;
+	margin: 0 2px;
+	background: var(--folder-window-bg);
+	color: var(--folder-button-text);
+}
+
+.emuos-folder-window:not([data-web-view="true"]) .emuos-folder-sidebar,
+.emuos-folder-window:not([data-web-view="true"]) .emuos-folder-splitter {
+	display: none;
+}
+
+.emuos-folder-sidebar {
+	width: 30%;
+	min-width: 140px;
+	max-width: 240px;
+	padding: 0;
+	overflow: auto;
+	background-color: #fff;
+	background-image: url("../../../../images/explorer/wvleft.bmp");
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+}
+
+.emuos-folder-sidebar-inner {
+	padding: 8px 12px 12px;
+}
+
+.emuos-folder-sidebar-head {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 4px;
+}
+
+.emuos-folder-sidebar-head i.icon {
+	display: block;
+	width: 32px;
+	height: 32px;
+	flex-shrink: 0;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 32px 32px;
+}
+
+.emuos-folder-sidebar-title {
+	margin: 0;
+	font-size: 16pt;
+	font-weight: bold;
+	line-height: 1.1;
+	font-family: Verdana, "MS Sans Serif", sans-serif;
+	word-break: break-word;
+}
+
+.emuos-folder-sidebar-divider {
+	height: 1px;
+	margin: 8px 0;
+	background: url("../../../../images/explorer/wvline.gif") repeat-x left center;
+}
+
+.emuos-folder-sidebar-prompt,
+.emuos-folder-sidebar-description,
+.emuos-folder-sidebar-info {
+	margin: 0;
+	font-family: Verdana, "MS Sans Serif", sans-serif;
+	font-size: 8pt;
+	line-height: 10pt;
+}
+
+.emuos-folder-sidebar-description {
+	display: none;
+	margin-top: 8px;
+}
+
+.emuos-folder-sidebar-description a,
+.emuos-folder-sidebar-info a {
+	color: #0000ee;
+	text-decoration: underline;
+}
+
+.emuos-folder-sidebar-description a:visited,
+.emuos-folder-sidebar-info a:visited {
+	color: #800080;
+}
+
+.emuos-folder-splitter {
+	width: 3px;
+	flex-shrink: 0;
+	background: #fff;
+	border: 0;
+}
+
+.emuos-folder-items {
+	flex: 1;
+	overflow: auto;
+	padding: 4px;
+	background: var(--folder-window-bg);
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	align-items: flex-start;
+	outline: none;
+}
+
+/* WebKit duplicates scrollbar buttons on display:flex overflow containers (98.js.org) */
+.emuos-folder-items::-webkit-scrollbar-button:vertical:start:increment,
+.emuos-folder-items::-webkit-scrollbar-button:vertical:end:decrement,
+.emuos-folder-items::-webkit-scrollbar-button:horizontal:start:increment,
+.emuos-folder-items::-webkit-scrollbar-button:horizontal:end:decrement {
+	display: none;
+}
+
+.emuos-folder-items[data-view-mode="list"] .emuos-folder-item,
+.emuos-folder-items[data-view-mode="small"] .emuos-folder-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 150px;
+	height: 17px;
+	min-height: 17px;
+	margin: 0;
+	padding: 0 2px;
+	text-align: left;
+}
+
+.emuos-folder-items[data-view-mode="list"] .emuos-folder-item i.icon,
+.emuos-folder-items[data-view-mode="small"] .emuos-folder-item i.icon {
+	width: 16px;
+	height: 16px;
+	min-width: 16px;
+	margin: 0 4px 0 0;
+	background-size: 16px 16px;
+}
+
+.emuos-folder-items[data-view-mode="list"] .emuos-folder-item span,
+.emuos-folder-items[data-view-mode="small"] .emuos-folder-item span {
+	display: block;
+	flex: 1;
+	min-width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left;
+}
+
+.emuos-folder-item {
+	display: block;
+	width: var(--folder-cell-width);
+	min-height: var(--folder-row-height);
+	margin: 0;
+	padding: 2px;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+	cursor: default;
+}
+
+.emuos-folder-item i.icon {
+	display: block;
+	position: relative;
+	width: var(--folder-icon-size);
+	height: var(--folder-icon-size);
+	margin: 0 auto 4px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: var(--folder-icon-size) var(--folder-icon-size);
+}
+
+.emuos-folder-item span {
+	display: inline-block;
+	max-width: 100%;
+	padding: 1px 2px;
+	word-break: break-word;
+	font-size: 8pt;
+	line-height: 1.2;
+	font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+}
+
+.emuos-folder-items[data-view-mode="details"] {
+	display: block;
+	padding: 0;
+	flex-wrap: nowrap;
+}
+
+.emuos-folder-details {
+	display: flex;
+	flex-direction: column;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.emuos-folder-details-header,
+.emuos-folder-details-row {
+	display: grid;
+	grid-template-columns: minmax(180px, 1fr) 72px 140px 96px;
+	align-items: center;
+	column-gap: 8px;
+	padding: 0 4px;
+	height: 17px;
+	line-height: 17px;
+	font-size: 8pt;
+	font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+}
+
+.emuos-folder-details-header {
+	background: var(--folder-window-bg);
+	border-bottom: 1px solid var(--folder-button-shadow);
+	flex-shrink: 0;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+.emuos-folder-details-header .col-name,
+.emuos-folder-details-header .col-size,
+.emuos-folder-details-header .col-type,
+.emuos-folder-details-header .col-modified {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.emuos-folder-details-body {
+	display: block;
+}
+
+.emuos-folder-details-row {
+	display: grid;
+	width: 100%;
+	min-width: 0;
+	margin: 0;
+	padding: 0 4px;
+	text-decoration: none;
+	color: #000;
+	box-sizing: border-box;
+}
+
+.emuos-folder-details-row .col-name {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	min-width: 0;
+}
+
+.emuos-folder-details-row .col-name i.icon {
+	display: block;
+	width: 16px;
+	height: 16px;
+	min-width: 16px;
+	margin: 0;
+	background-size: 16px 16px;
+}
+
+.emuos-folder-details-row .col-name .label {
+	display: block;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: 0;
+	background: transparent;
+}
+
+.emuos-folder-details-row .col-size,
+.emuos-folder-details-row .col-type,
+.emuos-folder-details-row .col-modified {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected {
+	background: var(--folder-hilight);
+	color: var(--folder-hilight-text);
+}
+
+.emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-name .label,
+.emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-size,
+.emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-type,
+.emuos-folder-items[data-view-mode="details"] .emuos-folder-item.ui-selected .col-modified {
+	background: transparent;
+	color: inherit;
+}
+
+.emuos-folder-items:focus-within .emuos-folder-item.ui-selected span,
+.emuos-folder-item.ui-selected span {
+	background: var(--folder-hilight);
+	color: var(--folder-hilight-text);
+}
+
+.emuos-folder-status {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 2px;
+	height: 18px;
+	margin-top: 2px;
+	padding: 1px 2px 0px;
+	flex-shrink: 0;
+}
+
+.emuos-folder-status-left,
+.emuos-folder-status-middle,
+.emuos-folder-status-right {
+	display: flex;
+	align-items: center;
+	height: 16px;
+	padding: 0 4px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	box-shadow: inset -1px -1px 0 var(--folder-button-hilight), inset 1px 1px 0 var(--folder-button-shadow);
+}
+
+.emuos-folder-status-left {
+	width: 34%;
+	min-width: 120px;
+}
+
+.emuos-folder-status-middle {
+	flex: 1;
+	min-width: 0;
+}
+
+.emuos-folder-status-right {
+	width: 28%;
+	min-width: 100px;
+	justify-content: flex-start;
+	gap: 3px;
+}
+
+.emuos-folder-status-right-icon {
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
+}
+
+.emuos-folder-status-right-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.emuos-folder-history-menu button {
+	padding-left: 8px;
+	white-space: nowrap;
+}
+
+.emuos-folder-views-menu {
+	position: absolute;
+	z-index: 10000;
+	min-width: 188px;
+	padding: 2px;
+	background: var(--folder-button-face);
+	color: var(--folder-button-text);
+	border-top: 1px solid var(--folder-button-face);
+	border-left: 1px solid var(--folder-button-face);
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	box-shadow: 1px 1px 0 var(--folder-button-hilight) inset, -1px -1px 0 var(--folder-button-shadow) inset;
+	font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+	font-size: 11px;
+	line-height: 1.2;
+}
+
+.emuos-folder-views-menu button {
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 3px 18px 3px 24px;
+	border: 0;
+	background: transparent;
+	text-align: left;
+	font: inherit;
+	color: inherit;
+	position: relative;
+}
+
+.emuos-folder-views-menu button:hover {
+	background: var(--folder-hilight);
+	color: var(--folder-hilight-text);
+}
+
+.emuos-folder-views-menu button.is-checked::before {
+	content: "\2713";
+	position: absolute;
+	left: 6px;
+}
+
+.emuos-folder-views-menu button.is-active::before {
+	content: "\2022";
+	position: absolute;
+	left: 8px;
+	font-weight: bold;
+}
+
+.emuos-folder-views-menu button:disabled {
+	color: var(--folder-button-shadow);
+}
+
+.emuos-folder-views-menu hr {
+	margin: 3px 0 4px;
+	border: 0;
+	border-top: 1px solid var(--folder-button-shadow);
+	border-bottom: 1px solid var(--folder-button-hilight);
+	background: transparent;
+	box-shadow: none;
+}

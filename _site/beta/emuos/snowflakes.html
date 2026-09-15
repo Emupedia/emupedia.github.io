@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Snowflakes Effect</title>
+	<style>
+		*, *::before, *::after {
+			box-sizing: border-box;
+		}
+
+		html, body {
+			margin: 0;
+			height: 100%;
+		}
+
+		body {
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			background: linear-gradient(180deg, #0b1a2e 0%, #1a3a5c 45%, #2d5a7b 100%);
+			color: #e8f4ff;
+		}
+
+		.demo-content {
+			position: relative;
+			z-index: 2;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			min-height: 100vh;
+			padding: 2rem;
+			text-align: center;
+			pointer-events: none;
+		}
+
+		.demo-content h1 {
+			margin: 0 0 0.5rem;
+			font-size: clamp(1.75rem, 4vw, 2.75rem);
+			font-weight: 600;
+			text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+		}
+
+		.demo-content p {
+			margin: 0 0 1.5rem;
+			max-width: 36rem;
+			line-height: 1.5;
+			opacity: 0.9;
+		}
+
+		.demo-controls {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			justify-content: center;
+			pointer-events: auto;
+		}
+
+		.demo-controls label,
+		.demo-controls button,
+		.demo-controls select {
+			font: inherit;
+		}
+
+		.demo-controls label {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.55rem 0.85rem;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.12);
+			backdrop-filter: blur(8px);
+		}
+
+		.demo-controls input[type="range"] {
+			width: 7rem;
+		}
+
+		.demo-controls select {
+			padding: 0.35rem 0.65rem;
+			border: 0;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.92);
+			color: #12324f;
+			cursor: pointer;
+		}
+
+		.demo-controls button {
+			padding: 0.55rem 1rem;
+			border: 0;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.92);
+			color: #12324f;
+			cursor: pointer;
+		}
+
+		.demo-controls button:hover {
+			background: #fff;
+		}
+
+		.snowfall-container {
+			animation-fill-mode: none;
+			pointer-events: none;
+			z-index: 1;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			overflow: visible;
+		}
+
+		.snowfall-container.is-fixed {
+			position: fixed;
+		}
+
+		/* ── Generic v1 + Generic v2 ── */
+		.snowfall-container.mode-generic-v1 .generic-flake,
+		.snowfall-container.mode-generic-v2 .generic-flake {
+			position: absolute;
+			top: -200px;
+			animation-fill-mode: forwards;
+		}
+
+		.snowfall-container.mode-generic-v1 .generic-flake {
+			animation-timing-function: ease-out;
+		}
+
+		.snowfall-container.mode-generic-v2 .generic-flake {
+			animation-timing-function: linear;
+		}
+
+		.snowfall-container.mode-generic-v2 .generic-v2-flake {
+			position: absolute;
+			top: -200px;
+			animation-name: emuos-shake;
+			animation-duration: 3s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+			animation-play-state: running;
+		}
+
+		.snowfall-container.mode-generic-v2 .generic-v2-flake .generic-flake {
+			position: relative;
+			top: auto;
+			left: auto;
+		}
+
+		.snowfall-container.mode-generic-v1 .generic-flake img,
+		.snowfall-container.mode-generic-v2 .generic-flake img {
+			display: block;
+			pointer-events: none;
+			user-select: none;
+		}
+
+		.snowfall-container.mode-generic-v1 .generic-flake-rotate,
+		.snowfall-container.mode-generic-v2 .generic-flake-rotate,
+		.snowfall-container.mode-emuos .emuos-snowflake-rotate,
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake-rotate {
+			display: inline-block;
+			animation-name: flake-2d-tumble;
+			animation-timing-function: linear;
+			animation-fill-mode: forwards;
+			animation-play-state: running;
+		}
+
+		.snowfall-container.mode-generic-v1 .generic-flake.has-spin,
+		.snowfall-container.mode-generic-v2 .generic-flake.has-spin {
+			transform-style: preserve-3d;
+		}
+
+		.snowfall-container.mode-generic-v1 .generic-flake.has-spin img,
+		.snowfall-container.mode-generic-v2 .generic-flake.has-spin img {
+			animation-name: emuos-spin;
+			animation-duration: 2s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-play-state: running;
+		}
+
+		.snowfall-container.mode-generic-v1 .generic-flake-0,
+		.snowfall-container.mode-generic-v2 .generic-flake-0 { animation-name: generic-path-0; }
+		.snowfall-container.mode-generic-v1 .generic-flake-1,
+		.snowfall-container.mode-generic-v2 .generic-flake-1 { animation-name: generic-path-1; }
+		.snowfall-container.mode-generic-v1 .generic-flake-2,
+		.snowfall-container.mode-generic-v2 .generic-flake-2 { animation-name: generic-path-2; }
+		.snowfall-container.mode-generic-v1 .generic-flake-3,
+		.snowfall-container.mode-generic-v2 .generic-flake-3 { animation-name: generic-path-3; }
+		.snowfall-container.mode-generic-v1 .generic-flake-4,
+		.snowfall-container.mode-generic-v2 .generic-flake-4 { animation-name: generic-path-4; }
+		.snowfall-container.mode-generic-v1 .generic-flake-5,
+		.snowfall-container.mode-generic-v2 .generic-flake-5 { animation-name: generic-path-5; }
+		.snowfall-container.mode-generic-v1 .generic-flake-6,
+		.snowfall-container.mode-generic-v2 .generic-flake-6 { animation-name: generic-path-6; }
+		.snowfall-container.mode-generic-v1 .generic-flake-7,
+		.snowfall-container.mode-generic-v2 .generic-flake-7 { animation-name: generic-path-7; }
+		.snowfall-container.mode-generic-v1 .generic-flake-8,
+		.snowfall-container.mode-generic-v2 .generic-flake-8 { animation-name: generic-path-8; }
+		.snowfall-container.mode-generic-v1 .generic-flake-9,
+		.snowfall-container.mode-generic-v2 .generic-flake-9 { animation-name: generic-path-9; }
+		.snowfall-container.mode-generic-v1 .generic-flake-10,
+		.snowfall-container.mode-generic-v2 .generic-flake-10 { animation-name: generic-path-10; }
+		.snowfall-container.mode-generic-v1 .generic-flake-11,
+		.snowfall-container.mode-generic-v2 .generic-flake-11 { animation-name: generic-path-11; }
+		.snowfall-container.mode-generic-v1 .generic-flake-12,
+		.snowfall-container.mode-generic-v2 .generic-flake-12 { animation-name: generic-path-12; }
+		.snowfall-container.mode-generic-v1 .generic-flake-13,
+		.snowfall-container.mode-generic-v2 .generic-flake-13 { animation-name: generic-path-13; }
+		.snowfall-container.mode-generic-v1 .generic-flake-14,
+		.snowfall-container.mode-generic-v2 .generic-flake-14 { animation-name: generic-path-14; }
+		.snowfall-container.mode-generic-v1 .generic-flake-15,
+		.snowfall-container.mode-generic-v2 .generic-flake-15 { animation-name: generic-path-15; }
+		.snowfall-container.mode-generic-v1 .generic-flake-16,
+		.snowfall-container.mode-generic-v2 .generic-flake-16 { animation-name: generic-path-16; }
+		.snowfall-container.mode-generic-v1 .generic-flake-17,
+		.snowfall-container.mode-generic-v2 .generic-flake-17 { animation-name: generic-path-17; }
+		.snowfall-container.mode-generic-v1 .generic-flake-18,
+		.snowfall-container.mode-generic-v2 .generic-flake-18 { animation-name: generic-path-18; }
+		.snowfall-container.mode-generic-v1 .generic-flake-19,
+		.snowfall-container.mode-generic-v2 .generic-flake-19 { animation-name: generic-path-19; }
+		.snowfall-container.mode-generic-v1 .generic-flake-20,
+		.snowfall-container.mode-generic-v2 .generic-flake-20 { animation-name: generic-path-20; }
+
+		@keyframes generic-path-0 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(73px, 130vh) rotate(-349deg); }
+		}
+
+		@keyframes generic-path-1 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(188px, 130vh) rotate(423deg); }
+		}
+
+		@keyframes generic-path-2 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(120px, 130vh) rotate(140deg); }
+		}
+
+		@keyframes generic-path-3 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-8px, 130vh) rotate(311deg); }
+		}
+
+		@keyframes generic-path-4 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(3px, 130vh) rotate(114deg); }
+		}
+
+		@keyframes generic-path-5 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(67px, 130vh) rotate(394deg); }
+		}
+
+		@keyframes generic-path-6 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(131px, 130vh) rotate(162deg); }
+		}
+
+		@keyframes generic-path-7 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-53px, 130vh) rotate(-4deg); }
+		}
+
+		@keyframes generic-path-8 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-79px, 130vh) rotate(-260deg); }
+		}
+
+		@keyframes generic-path-9 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-179px, 130vh) rotate(405deg); }
+		}
+
+		@keyframes generic-path-10 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(155px, 130vh) rotate(370deg); }
+		}
+
+		@keyframes generic-path-11 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-184px, 130vh) rotate(278deg); }
+		}
+
+		@keyframes generic-path-12 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-4px, 130vh) rotate(440deg); }
+		}
+
+		@keyframes generic-path-13 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-42px, 130vh) rotate(-265deg); }
+		}
+
+		@keyframes generic-path-14 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-114px, 130vh) rotate(-393deg); }
+		}
+
+		@keyframes generic-path-15 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-10px, 130vh) rotate(-333deg); }
+		}
+
+		@keyframes generic-path-16 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-108px, 130vh) rotate(192deg); }
+		}
+
+		@keyframes generic-path-17 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-138px, 130vh) rotate(-172deg); }
+		}
+
+		@keyframes generic-path-18 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-64px, 130vh) rotate(185deg); }
+		}
+
+		@keyframes generic-path-19 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(88px, 130vh) rotate(241deg); }
+		}
+
+		@keyframes generic-path-20 {
+			from { transform: translate(0, 0) rotate(0deg); }
+			to { transform: translate(-120px, 130vh) rotate(341deg); }
+		}
+
+		/* ── Generic v3: lightweight continuous PNG flakes ── */
+		.snowfall-container.mode-generic-v3 .generic-v3-flake {
+			position: absolute;
+			top: -200px;
+			contain: layout style;
+		}
+
+		.snowfall-container.mode-generic-v3 .generic-v3-flake img {
+			display: block;
+			pointer-events: none;
+			user-select: none;
+		}
+
+		.snowfall-container.mode-generic-v3 .generic-v3-flake.has-spin {
+			transform-style: preserve-3d;
+		}
+
+		.snowfall-container.mode-generic-v3 .generic-v3-flake.has-spin img {
+			animation-name: emuos-spin;
+			animation-duration: 2s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-play-state: running;
+		}
+
+		/* ── EmuOS mode (from assets/styles/css/themes/seasonal/xmas/snowflakes.css) ── */
+		.snowfall-container.mode-emuos .emuos-snowflakes {
+			position: fixed;
+			top: -10%;
+			animation-name: emuos-fall, emuos-shake;
+			animation-duration: 10s, 3s;
+			animation-timing-function: linear, ease-in-out;
+			animation-play-state: running, running;
+			transform-style: preserve-3d;
+			z-index: 1;
+		}
+
+		.snowfall-container.mode-emuos .emuos-snowflakes.is-once {
+			animation-iteration-count: 1, infinite;
+		}
+
+		.snowfall-container.mode-emuos .emuos-snowflakes.is-loop {
+			animation-iteration-count: infinite, infinite;
+		}
+
+		.snowfall-container.mode-emuos .emuos-snowflake {
+			color: #fff;
+			font-size: 2em;
+			font-family: Arial, sans-serif;
+			user-select: none;
+			pointer-events: none;
+			cursor: default;
+		}
+
+		.snowfall-container.mode-emuos .emuos-snowflake.has-spin {
+			animation-name: emuos-spin;
+			animation-duration: 2s;
+			animation-timing-function: linear;
+			animation-play-state: running;
+		}
+
+		.snowfall-container.mode-emuos .emuos-snowflakes.is-once .emuos-snowflake.has-spin {
+			animation-iteration-count: 1;
+		}
+
+		.snowfall-container.mode-emuos .emuos-snowflakes.is-loop .emuos-snowflake.has-spin {
+			animation-iteration-count: infinite;
+		}
+
+		.snowfall-container.mode-emuos .emuos-snowflakes.has-shadow {
+			text-shadow: 0 0 5px #000;
+		}
+
+		.snowfall-container.mode-emuos .emuos-snowflakes.is-once .emuos-snowflake-rotate {
+			animation-iteration-count: 1;
+		}
+
+		.snowfall-container.mode-emuos .emuos-snowflakes.is-loop .emuos-snowflake-rotate {
+			animation-iteration-count: infinite;
+		}
+
+		/* ── EmuOS v2: EmuOS motion with one PNG per flake ── */
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake {
+			position: fixed;
+			top: -10%;
+			animation-name: emuos-v2-fall, emuos-v2-shake;
+			animation-duration: 10s, 3s;
+			animation-timing-function: linear, ease-in-out;
+			animation-play-state: running, running;
+			transform-style: preserve-3d;
+			z-index: 1;
+		}
+
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake.is-once {
+			animation-iteration-count: 1, infinite;
+		}
+
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake.is-loop {
+			animation-iteration-count: infinite, infinite;
+		}
+
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake.has-spin img,
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake img.has-spin {
+			display: block;
+			animation-name: emuos-v2-spin;
+			animation-duration: 2s;
+			animation-timing-function: linear;
+			animation-play-state: running;
+			user-select: none;
+			pointer-events: none;
+		}
+
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake-rotate {
+			display: inline-block;
+		}
+
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake-rotate img {
+			display: block;
+			pointer-events: none;
+			user-select: none;
+		}
+
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake.is-once .emuos-v2-flake-rotate {
+			animation-iteration-count: 1;
+		}
+
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake.is-loop .emuos-v2-flake-rotate {
+			animation-iteration-count: infinite;
+		}
+
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake.is-once img.has-spin {
+			animation-iteration-count: 1;
+		}
+
+		.snowfall-container.mode-emuos-v2 .emuos-v2-flake.is-loop img.has-spin {
+			animation-iteration-count: infinite;
+		}
+
+		@keyframes emuos-fall {
+			0% { top: -10%; }
+			100% { top: 100%; }
+		}
+
+		@keyframes emuos-shake {
+			0% { transform: translateX(0); }
+			50% { transform: translateX(80px); }
+			100% { transform: translateX(0); }
+		}
+
+		@keyframes emuos-spin {
+			0% { transform: rotate3d(1, 1, 1, 0deg); }
+			50% { transform: rotate3d(1, 1, 1, 180deg); }
+			100% { transform: rotate3d(1, 1, 1, 360deg); }
+		}
+
+		@keyframes emuos-v2-fall {
+			0% { top: -10%; }
+			100% { top: 100%; }
+		}
+
+		@keyframes emuos-v2-shake {
+			0% { transform: translateX(0); }
+			50% { transform: translateX(80px); }
+			100% { transform: translateX(0); }
+		}
+
+		@keyframes flake-2d-tumble {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(var(--fall-rotate, 360deg)); }
+		}
+
+		@keyframes emuos-v2-spin {
+			0% { transform: rotate3d(1, 1, 1, 0deg); }
+			50% { transform: rotate3d(1, 1, 1, 180deg); }
+			100% { transform: rotate3d(1, 1, 1, 360deg); }
+		}
+	</style>
+</head>
+<body>
+	<div class="demo-content">
+		<h1>Snowflakes Effect</h1>
+		<p id="mode-description">
+			PNG snowfall or EmuOS desktop xmas snow — switch modes below.
+		</p>
+		<div class="demo-controls">
+			<label>
+				Mode
+				<select id="mode">
+					<option value="generic-v1" selected>Generic v1</option>
+					<option value="generic-v2">Generic v2</option>
+					<option value="generic-v3">Generic v3</option>
+					<option value="emuos">EmuOS</option>
+					<option value="emuos-v2">EmuOS v2</option>
+				</select>
+			</label>
+			<label>
+				Flakes
+				<input id="count" type="range" min="1" max="500" step="5" value="21" />
+				<span id="count-value">21</span>
+			</label>
+			<label>
+				Speed
+				<input id="speed" type="range" min="10" max="100" step="5" value="50" />
+				<span id="speed-value">50</span>
+			</label>
+			<label>
+				Rotate3D
+				<input id="spin-rate" type="range" min="0" max="100" step="5" value="25" />
+				<span id="spin-rate-value">25%</span>
+			</label>
+			<label for="loop">
+				Loop
+				<input id="loop" type="checkbox" checked />
+			</label>
+			<button id="restart" type="button">Restart</button>
+			<button id="stop" type="button">Stop</button>
+		</div>
+	</div>
+
+	<script>
+		(function (global) {
+			"use strict";
+
+			var PATH_COUNT = 21;
+			var FLAKE_BASE = "assets/images/effects/snowflakes/flake_";
+			var MIN_2D_ROTATION = 25;
+			var SLIGHT_2D_ROTATION_MAX = 90;
+			var FULL_2D_ROTATION_MAX = 440;
+			var GENERIC_V3_MIN_2D_ROTATION = 90;
+			var GENERIC_V3_SLIGHT_2D_ROTATION_MAX = 240;
+			var GENERIC_V3_SHAKE_PERIOD = 3;
+			var GENERIC_V3_SHAKE_AMPLITUDE = 80;
+			var GENERIC_V3_SAMPLE_INTERVAL = 0.3;
+			var GENERIC_V3_KEYFRAME_CACHE_LIMIT = 512;
+			var genericV3KeyframeCache = {};
+			var genericV3KeyframeCacheKeys = [];
+			var flakePreload = [];
+			var flakePreloadPromise = null;
+
+			var EMUOS_GLYPHS = ["❅", "❆"];
+			var EMUOS_PRESETS = [
+				{ left: "1%", fallDelay: "0s", shakeDelay: "0s", spinDelay: "0s", shadow: true },
+				{ left: "10%", fallDelay: "1s", shakeDelay: "1s", spinDelay: "1s", shadow: true },
+				{ left: "20%", fallDelay: "6s", shakeDelay: "0.5s", spinDelay: "6s", shadow: true },
+				{ left: "30%", fallDelay: "4s", shakeDelay: "2s", spinDelay: "4s", shadow: true },
+				{ left: "40%", fallDelay: "2s", shakeDelay: "2s", spinDelay: "2s", shadow: true },
+				{ left: "50%", fallDelay: "8s", shakeDelay: "3s", spinDelay: "8s", shadow: true },
+				{ left: "60%", fallDelay: "6s", shakeDelay: "2s", spinDelay: "6s", shadow: true },
+				{ left: "70%", fallDelay: "2.5s", shakeDelay: "1s", spinDelay: "2.5s", shadow: true },
+				{ left: "80%", fallDelay: "1s", shakeDelay: "0s", spinDelay: "1s", shadow: true },
+				{ left: "90%", fallDelay: "3s", shakeDelay: "1.5s", spinDelay: "3s", shadow: true },
+				{ left: "5%", fallDelay: "3s", shakeDelay: "1.5s", spinDelay: "3s", shadow: false },
+				{ left: "15%", fallDelay: "1s", shakeDelay: "0s", spinDelay: "1s", shadow: false },
+				{ left: "25%", fallDelay: "2.5s", shakeDelay: "1s", spinDelay: "2.5s", shadow: false },
+				{ left: "35%", fallDelay: "6s", shakeDelay: "2s", spinDelay: "6s", shadow: false },
+				{ left: "45%", fallDelay: "8s", shakeDelay: "3s", spinDelay: "8s", shadow: false },
+				{ left: "55%", fallDelay: "2s", shakeDelay: "2s", spinDelay: "2s", shadow: false },
+				{ left: "65%", fallDelay: "4s", shakeDelay: "2s", spinDelay: "4s", shadow: false },
+				{ left: "75%", fallDelay: "6s", shakeDelay: "0.5s", spinDelay: "6s", shadow: false },
+				{ left: "85%", fallDelay: "1s", shakeDelay: "1s", spinDelay: "1s", shadow: false }
+			];
+
+			function random(min, max) {
+				return min + Math.random() * (max - min);
+			}
+
+			function getSpeedMultiplier(speed) {
+				return 50 / speed;
+			}
+
+			function shouldSpin3d(spinRate) {
+				return Math.random() * 100 < spinRate;
+			}
+
+			function randomSignedDegrees(minAbs, maxAbs) {
+				var sign = Math.random() < 0.5 ? -1 : 1;
+
+				return sign * Math.round(random(minAbs, maxAbs));
+			}
+
+			function randomFallRotate2d(spin3d) {
+				if (spin3d) {
+					return randomSignedDegrees(180, FULL_2D_ROTATION_MAX);
+				}
+
+				return randomSignedDegrees(MIN_2D_ROTATION, SLIGHT_2D_ROTATION_MAX);
+			}
+
+			function randomGenericV3FallRotate2d(spin3d) {
+				if (spin3d) {
+					return randomSignedDegrees(180, FULL_2D_ROTATION_MAX);
+				}
+
+				return randomSignedDegrees(GENERIC_V3_MIN_2D_ROTATION, GENERIC_V3_SLIGHT_2D_ROTATION_MAX);
+			}
+
+			function createFlakeRotateWrap(className, duration, delay) {
+				var wrap = document.createElement("div");
+				var rotate = randomSignedDegrees(MIN_2D_ROTATION, FULL_2D_ROTATION_MAX);
+
+				wrap.className = className;
+				wrap.style.animationDuration = duration;
+				wrap.style.animationDelay = delay;
+				wrap.style.setProperty("--fall-rotate", rotate + "deg");
+
+				return wrap;
+			}
+
+			function normalizeMode(mode) {
+				if (mode === "generic-v3") {
+					return "generic-v3";
+				}
+
+				if (mode === "generic-v2") {
+					return "generic-v2";
+				}
+
+				if (mode === "emuos") {
+					return "emuos";
+				}
+
+				if (mode === "emuos-v2") {
+					return "emuos-v2";
+				}
+
+				if (mode === "generic-v1") {
+					return "generic-v1";
+				}
+
+				return "generic-v1";
+			}
+
+			function isGenericMode(mode) {
+				return mode === "generic-v1" || mode === "generic-v2" || mode === "generic-v3";
+			}
+
+			function getFlakeSrc(flakeIndex) {
+				return FLAKE_BASE + flakeIndex + ".png";
+			}
+
+			function preloadFlakeImages() {
+				if (flakePreloadPromise) {
+					return flakePreloadPromise;
+				}
+
+				flakePreloadPromise = Promise.all([1, 2, 3, 4, 5].map(function (flakeIndex) {
+					return new Promise(function (resolve) {
+						var image = new Image();
+
+						image.decoding = "async";
+						image.onload = image.onerror = function () {
+							flakePreload[flakeIndex] = getFlakeSrc(flakeIndex);
+							resolve();
+						};
+						image.src = getFlakeSrc(flakeIndex);
+					});
+				}));
+
+				return flakePreloadPromise;
+			}
+
+			function applyFlakeSrc(image, flakeIndex) {
+				var src = getFlakeSrc(flakeIndex);
+				var indexKey = String(flakeIndex);
+
+				if (image.dataset.flakeIndex !== indexKey) {
+					image.dataset.flakeIndex = indexKey;
+					image.src = src;
+				}
+			}
+
+
+			function createFlakeImage(flakeIndex) {
+				var image = document.createElement("img");
+				var size = random(12, 38);
+				var opacity = random(0.5, 1.3);
+
+				applyFlakeSrc(image, flakeIndex);
+				image.alt = "";
+				image.decoding = "async";
+				image.draggable = false;
+				image.style.opacity = opacity.toFixed(5);
+				image.style.width = size.toFixed(4) + "px";
+				image.style.height = size.toFixed(4) + "px";
+
+				return image;
+			}
+
+			function mergeOptions(options) {
+				options = options || {};
+
+				return {
+					mode: normalizeMode(options.mode),
+					count: options.count != null ? options.count : 21,
+					speed: options.speed != null ? options.speed : 50,
+					spinRate: options.spinRate != null ? options.spinRate : 25,
+					loop: options.loop !== false,
+					fixed: options.fixed !== false
+				};
+			}
+
+			function createGenericV1Flake(pathIndex, spin3d, speed, delay) {
+				var flake = document.createElement("div");
+				var duration = random(4, 7) * getSpeedMultiplier(speed);
+				var left = random(0, 100);
+				var firstIndex = 1 + Math.floor(Math.random() * 5);
+				var secondIndex;
+
+				if (delay == null) {
+					delay = random(0, 5);
+				}
+
+				flake.className = "generic-flake generic-flake-" + (pathIndex % PATH_COUNT);
+				flake.style.left = left.toFixed(4) + "%";
+				flake.style.animationDuration = duration.toFixed(5) + "s";
+				flake.style.animationDelay = Math.max(0, delay).toFixed(5) + "s";
+
+				do {
+					secondIndex = 1 + Math.floor(Math.random() * 5);
+				} while (secondIndex === firstIndex);
+
+				if (spin3d) {
+					flake.classList.add("has-spin");
+				}
+
+				[firstIndex, secondIndex].forEach(function (flakeIndex) {
+					var rotateWrap = createFlakeRotateWrap(
+						"generic-flake-rotate",
+						duration.toFixed(5) + "s",
+						Math.max(0, delay).toFixed(5) + "s"
+					);
+					var image = createFlakeImage(flakeIndex);
+					image.style.margin = random(15, 44).toFixed(4) + "px";
+
+					if (spin3d) {
+						image.style.animationDelay = random(0, 2).toFixed(2) + "s";
+					}
+
+					rotateWrap.appendChild(image);
+					flake.appendChild(rotateWrap);
+				});
+
+				return flake;
+			}
+
+			function createGenericV2Flake(spin3d, speed, delay) {
+				var wrapper = document.createElement("div");
+				var flake = document.createElement("div");
+				var duration = random(4, 7) * getSpeedMultiplier(speed);
+				var left = random(0, 100);
+				var pathIndex = Math.floor(Math.random() * PATH_COUNT);
+				var image = createFlakeImage(1 + Math.floor(Math.random() * 5));
+
+				if (delay == null) {
+					delay = 0;
+				}
+
+				wrapper.className = "generic-v2-flake";
+				wrapper.style.left = left.toFixed(4) + "%";
+				wrapper.style.animationDelay = random(0, 3).toFixed(2) + "s";
+
+				flake.className = "generic-flake generic-flake-" + pathIndex;
+				flake.style.left = "0";
+				flake.style.animationDuration = duration.toFixed(5) + "s";
+				flake.style.animationDelay = Math.max(0, delay).toFixed(5) + "s";
+
+				if (spin3d) {
+					flake.classList.add("has-spin");
+					image.style.animationDelay = random(0, 2).toFixed(2) + "s";
+				}
+
+				var rotateWrap = createFlakeRotateWrap(
+					"generic-flake-rotate",
+					duration.toFixed(5) + "s",
+					Math.max(0, delay).toFixed(5) + "s"
+				);
+
+				rotateWrap.appendChild(image);
+				flake.appendChild(rotateWrap);
+				wrapper.appendChild(flake);
+				return wrapper;
+			}
+
+			function createGenericV3FlakeElement() {
+				var flake = document.createElement("div");
+				var image = document.createElement("img");
+
+				flake.className = "generic-v3-flake";
+				image.alt = "";
+				image.decoding = "async";
+				image.draggable = false;
+				flake.appendChild(image);
+
+				return flake;
+			}
+
+			function bucketGenericV3Motion(duration, rotateEnd, shakeOffset, leftPercent) {
+				return {
+					duration: Math.round(duration * 4) / 4,
+					rotateEnd: Math.round(rotateEnd / 15) * 15,
+					shakeOffset: Math.round(shakeOffset * 4) / 4,
+					leftPercent: Math.round(leftPercent / 5) * 5
+				};
+			}
+
+			function setGenericV3SpinState(flake, spin3d, image) {
+				if (spin3d) {
+					flake.classList.add("has-spin");
+					image.style.animationDelay = random(0, 2).toFixed(2) + "s";
+					image.style.animationPlayState = "running";
+				} else {
+					flake.classList.remove("has-spin");
+					image.style.animationDelay = "";
+					image.style.animation = "";
+				}
+			}
+
+			function smoothstep(value) {
+				return value * value * (3 - 2 * value);
+			}
+
+			function genericV3ShakeX(elapsedSec) {
+				var phase = elapsedSec % GENERIC_V3_SHAKE_PERIOD;
+
+				if (phase < 0) {
+					phase += GENERIC_V3_SHAKE_PERIOD;
+				}
+
+				var half = GENERIC_V3_SHAKE_PERIOD * 0.5;
+
+				if (phase <= half) {
+					return GENERIC_V3_SHAKE_AMPLITUDE * smoothstep(phase / half);
+				}
+
+				return GENERIC_V3_SHAKE_AMPLITUDE * (1 - smoothstep((phase - half) / half));
+			}
+
+			function normalizeGenericV3Flake(flake) {
+				if (!flake || !isGenericV3Flake(flake)) {
+					return createGenericV3FlakeElement();
+				}
+
+				var image = flake.querySelector("img");
+
+				if (flake.querySelector(".generic-v3-flake-shake") && image) {
+					while (flake.firstChild) {
+						flake.removeChild(flake.firstChild);
+					}
+
+					flake.appendChild(image);
+				}
+
+				if (!flake.querySelector("img")) {
+					return createGenericV3FlakeElement();
+				}
+
+				return flake;
+			}
+
+			function getGenericV3FallKeyframes(duration, rotateEnd, shakeOffset, leftPercent) {
+				var cacheKey = duration.toFixed(2) + "|" + rotateEnd + "|" +
+					shakeOffset.toFixed(2) + "|" + leftPercent;
+
+				if (genericV3KeyframeCache[cacheKey]) {
+					return genericV3KeyframeCache[cacheKey];
+				}
+
+				var keyframes = [];
+				var steps = Math.max(4, Math.ceil(duration / GENERIC_V3_SAMPLE_INTERVAL));
+				var i;
+
+				for (i = 0; i <= steps; i++) {
+					var t = i / steps;
+					var elapsed = t * duration + shakeOffset;
+					var x = genericV3ShakeX(elapsed);
+					var yVh = (t * 130).toFixed(2);
+					var rotate = (rotateEnd * t).toFixed(2);
+
+					keyframes.push({
+						offset: t,
+						transform: "translate3d(calc(" + leftPercent + "vw + " + x.toFixed(2) +
+							"px), " + yVh + "vh, 0) rotate(" + rotate + "deg)"
+					});
+				}
+
+				genericV3KeyframeCache[cacheKey] = keyframes;
+				genericV3KeyframeCacheKeys.push(cacheKey);
+
+				if (genericV3KeyframeCacheKeys.length > GENERIC_V3_KEYFRAME_CACHE_LIMIT) {
+					delete genericV3KeyframeCache[genericV3KeyframeCacheKeys.shift()];
+				}
+
+				return keyframes;
+			}
+
+			function configureGenericV3Flake(flake, spin3d, speed, delay) {
+				var image = flake.querySelector("img");
+
+				if (!image) {
+					return null;
+				}
+
+				var duration = random(4, 7) * getSpeedMultiplier(speed);
+				var left = random(0, 100);
+				var rotateEnd = randomGenericV3FallRotate2d(spin3d);
+				var shakeOffset = random(0, 3);
+				var flakeIndex = 1 + Math.floor(Math.random() * 5);
+				var size = random(12, 38);
+				var opacity = random(0.5, 1.3);
+				var motion = bucketGenericV3Motion(duration, rotateEnd, shakeOffset, left);
+
+				if (delay == null) {
+					delay = 0;
+				}
+
+				flake.className = "generic-v3-flake";
+				flake.style.left = "0";
+				flake.style.transform = "";
+
+				setGenericV3SpinState(flake, spin3d, image);
+				applyFlakeSrc(image, flakeIndex);
+				image.style.opacity = opacity.toFixed(5);
+				image.style.width = size.toFixed(4) + "px";
+				image.style.height = size.toFixed(4) + "px";
+
+				return {
+					duration: motion.duration,
+					delay: Math.max(0, delay),
+					rotateEnd: motion.rotateEnd,
+					shakeOffset: motion.shakeOffset,
+					leftPercent: motion.leftPercent
+				};
+			}
+
+			function startGenericV3FlakeAnimation(flake, config, onFinish) {
+				if (flake._v3Animation) {
+					flake._v3Animation.cancel();
+					flake._v3Animation = null;
+				}
+
+				flake._v3Animation = flake.animate(
+					getGenericV3FallKeyframes(
+						config.duration,
+						config.rotateEnd,
+						config.shakeOffset,
+						config.leftPercent
+					),
+					{
+						duration: config.duration * 1000,
+						delay: config.delay * 1000,
+						fill: "forwards",
+						easing: "linear"
+					}
+				);
+
+				flake._v3Animation.onfinish = function () {
+					onFinish(flake);
+				};
+			}
+
+			function pauseGenericV3Flake(flake) {
+				if (flake._v3Animation && flake._v3Animation.playState === "running") {
+					flake._v3Animation.pause();
+				}
+
+				var image = flake.querySelector("img");
+
+				if (image && flake.classList.contains("has-spin")) {
+					image.style.animationPlayState = "paused";
+				}
+			}
+
+			function resumeGenericV3Flake(flake) {
+				if (flake._v3Animation && flake._v3Animation.playState === "paused") {
+					flake._v3Animation.play();
+				}
+
+				var image = flake.querySelector("img");
+
+				if (image && flake.classList.contains("has-spin")) {
+					image.style.animationPlayState = "running";
+				}
+			}
+
+			function stopGenericV3FlakeAnimation(flake) {
+				if (flake._v3Animation) {
+					flake._v3Animation.cancel();
+					flake._v3Animation = null;
+				}
+
+				flake.classList.remove("has-spin");
+
+				var image = flake.querySelector("img");
+
+				if (image) {
+					image.style.animationDelay = "";
+					image.style.animation = "";
+				}
+			}
+
+			function isGenericV3Flake(element) {
+				return element.classList.contains("generic-v3-flake");
+			}
+
+			function getPathFlake(element) {
+				if (element.classList.contains("generic-flake")) {
+					return element;
+				}
+
+				return element.querySelector(".generic-flake");
+			}
+
+			function getTrackedFlake(pathFlake) {
+				if (pathFlake.parentNode && pathFlake.parentNode.classList.contains("generic-v2-flake")) {
+					return pathFlake.parentNode;
+				}
+
+				return pathFlake;
+			}
+
+			function createEmuosFlake(index, loop, speed, spin3d) {
+				var preset = EMUOS_PRESETS[index % EMUOS_PRESETS.length];
+				var wrapper = document.createElement("div");
+				var glyph = document.createElement("div");
+				var fallDuration = 10 * getSpeedMultiplier(speed);
+
+				wrapper.className = "emuos-snowflakes " + (loop ? "is-loop" : "is-once");
+				wrapper.style.left = preset.left;
+				wrapper.style.animationDuration = fallDuration.toFixed(2) + "s, 3s";
+				wrapper.style.animationDelay = preset.fallDelay + ", " + preset.shakeDelay;
+
+				if (preset.shadow) {
+					wrapper.classList.add("has-shadow");
+				}
+
+				glyph.className = "emuos-snowflake" + (spin3d ? " has-spin" : "");
+				if (spin3d) {
+					glyph.style.animationDelay = preset.spinDelay;
+				}
+				glyph.textContent = EMUOS_GLYPHS[index % EMUOS_GLYPHS.length];
+
+				var rotateWrap = createFlakeRotateWrap(
+					"emuos-snowflake-rotate",
+					fallDuration.toFixed(2) + "s",
+					preset.fallDelay
+				);
+
+				rotateWrap.appendChild(glyph);
+				wrapper.appendChild(rotateWrap);
+
+				return wrapper;
+			}
+
+			function createEmuosV2Flake(loop, speed, spin3d) {
+				var flake = document.createElement("div");
+				var rotateWrap = document.createElement("div");
+				var image = createFlakeImage(1 + Math.floor(Math.random() * 5));
+				var fallDelay = random(0, 8);
+				var shakeDelay = random(0, 3);
+				var spinDelay = random(0, 6);
+				var fallDuration = random(8, 12) * getSpeedMultiplier(speed);
+				var fallRotate = randomSignedDegrees(MIN_2D_ROTATION, FULL_2D_ROTATION_MAX);
+				var left = random(0, 100);
+
+				flake.className = "emuos-v2-flake " + (loop ? "is-loop" : "is-once");
+				flake.style.left = left.toFixed(2) + "%";
+				flake.style.animationDuration = fallDuration.toFixed(2) + "s, 3s";
+				flake.style.animationDelay = fallDelay.toFixed(2) + "s, " + shakeDelay.toFixed(2) + "s";
+
+				rotateWrap.className = "emuos-v2-flake-rotate";
+				rotateWrap.style.animationDuration = fallDuration.toFixed(2) + "s";
+				rotateWrap.style.animationDelay = fallDelay.toFixed(2) + "s";
+				rotateWrap.style.setProperty("--fall-rotate", fallRotate + "deg");
+
+				if (spin3d) {
+					image.classList.add("has-spin");
+					image.style.animationDelay = spinDelay.toFixed(2) + "s";
+				}
+
+				image.style.filter = "drop-shadow(0 0 4px rgba(0, 0, 0, 0.45))";
+
+				rotateWrap.appendChild(image);
+				flake.appendChild(rotateWrap);
+				return flake;
+			}
+
+			function SnowfallEffect(root, options) {
+				this.root = root;
+				this.options = mergeOptions(options);
+				this.container = null;
+				this.activeFlakes = [];
+				this.genericV3Pool = [];
+				this.running = false;
+				this.pendingRestart = null;
+				this.pathCounter = 0;
+				this.onGenericV3Finish = this.onGenericV3Finish.bind(this);
+				this.onPathAnimationEnd = this.onPathAnimationEnd.bind(this);
+				this.onVisibilityChange = this.onVisibilityChange.bind(this);
+				document.addEventListener("visibilitychange", this.onVisibilityChange);
+			}
+
+			SnowfallEffect.prototype.ensureContainer = function () {
+				if (this.container) {
+					this.container.className = "snowfall-container mode-" + this.options.mode +
+						(this.options.fixed ? " is-fixed" : "");
+					return this.container;
+				}
+
+				var container = document.createElement("div");
+				container.className = "snowfall-container mode-" + this.options.mode;
+				container.setAttribute("aria-hidden", "true");
+
+				if (this.options.fixed) {
+					container.classList.add("is-fixed");
+				}
+
+				this.root.appendChild(container);
+				this.container = container;
+				return container;
+			};
+
+			SnowfallEffect.prototype.ensureGenericV3DomPool = function (targetSize) {
+				while (this.genericV3Pool.length < targetSize) {
+					this.genericV3Pool.push(createGenericV3FlakeElement());
+				}
+			};
+
+			SnowfallEffect.prototype.pauseGenericV3Animations = function () {
+				this.activeFlakes.forEach(function (flake) {
+					if (isGenericV3Flake(flake)) {
+						pauseGenericV3Flake(flake);
+					}
+				});
+			};
+
+			SnowfallEffect.prototype.resumeGenericV3Animations = function () {
+				if (!this.running || this.options.mode !== "generic-v3") {
+					return;
+				}
+
+				this.activeFlakes.forEach(function (flake) {
+					if (isGenericV3Flake(flake)) {
+						resumeGenericV3Flake(flake);
+					}
+				});
+			};
+
+			SnowfallEffect.prototype.onVisibilityChange = function () {
+				if (this.options.mode !== "generic-v3" || !this.running) {
+					return;
+				}
+
+				if (document.hidden) {
+					this.pauseGenericV3Animations();
+				} else {
+					this.resumeGenericV3Animations();
+				}
+			};
+
+			SnowfallEffect.prototype.clearFlakes = function (discardV3Pool) {
+				if (this.pendingRestart) {
+					clearTimeout(this.pendingRestart);
+					this.pendingRestart = null;
+				}
+
+				var poolV3 = !discardV3Pool && this.options.mode === "generic-v3";
+
+				this.activeFlakes.slice().forEach(function (flake) {
+					if (isGenericV3Flake(flake)) {
+						stopGenericV3FlakeAnimation(flake);
+
+						if (flake.parentNode) {
+							flake.parentNode.removeChild(flake);
+						}
+
+						if (poolV3) {
+							this.genericV3Pool.push(flake);
+						}
+
+						return;
+					}
+
+					var pathFlake = getPathFlake(flake);
+
+					if (pathFlake) {
+						pathFlake.removeEventListener("animationend", this.onPathAnimationEnd);
+					}
+
+					if (flake.parentNode) {
+						flake.parentNode.removeChild(flake);
+					}
+				}, this);
+
+				this.activeFlakes = [];
+
+				if (discardV3Pool) {
+					this.genericV3Pool = [];
+				}
+			};
+
+			SnowfallEffect.prototype.recycleGenericV3Flake = function (flake) {
+				stopGenericV3FlakeAnimation(flake);
+				flake.style.transform = "";
+
+				if (flake.parentNode) {
+					flake.parentNode.removeChild(flake);
+				}
+
+				if (this.options.mode === "generic-v3") {
+					this.genericV3Pool.push(flake);
+				}
+			};
+
+			SnowfallEffect.prototype.onGenericV3Finish = function (flake) {
+				if (this.options.mode !== "generic-v3" || !this.running) {
+					return;
+				}
+
+				var index = this.activeFlakes.indexOf(flake);
+				if (index !== -1) {
+					this.activeFlakes.splice(index, 1);
+				}
+
+				this.recycleGenericV3Flake(flake);
+
+				if (this.options.loop) {
+					this.mountGenericV3Flake(this.spawnGenericV3Flake(0));
+					this.fillGenericV3Pool();
+				}
+			};
+
+			SnowfallEffect.prototype.spawnGenericV3Flake = function (delay) {
+				var flake = this.genericV3Pool.pop();
+
+				flake = normalizeGenericV3Flake(flake);
+
+				var spin3d = shouldSpin3d(this.options.spinRate);
+				var config = configureGenericV3Flake(flake, spin3d, this.options.speed, delay);
+
+				if (!config) {
+					flake = createGenericV3FlakeElement();
+					config = configureGenericV3Flake(flake, spin3d, this.options.speed, delay);
+				}
+
+				this.activeFlakes.push(flake);
+				return { flake: flake, config: config };
+			};
+
+			SnowfallEffect.prototype.mountGenericV3Flake = function (entry) {
+				this.ensureContainer().appendChild(entry.flake);
+				startGenericV3FlakeAnimation(entry.flake, entry.config, this.onGenericV3Finish);
+				return entry.flake;
+			};
+
+			SnowfallEffect.prototype.fillGenericV3Pool = function () {
+				while (this.running && this.options.loop && this.activeFlakes.length < this.options.count) {
+					this.ensureGenericV3DomPool(1);
+					this.mountGenericV3Flake(this.spawnGenericV3Flake(0));
+				}
+			};
+
+			SnowfallEffect.prototype.spawnGenericV3Burst = function () {
+				var avgDuration = 5.5 * getSpeedMultiplier(this.options.speed);
+				var container = this.ensureContainer();
+				var fragment = document.createDocumentFragment();
+				var entries = [];
+				var i;
+
+				this.ensureGenericV3DomPool(this.options.count);
+
+				for (i = 0; i < this.options.count; i++) {
+					entries.push(this.spawnGenericV3Flake((i / this.options.count) * avgDuration));
+					fragment.appendChild(entries[entries.length - 1].flake);
+				}
+
+				container.appendChild(fragment);
+
+				for (i = 0; i < entries.length; i++) {
+					startGenericV3FlakeAnimation(
+						entries[i].flake,
+						entries[i].config,
+						this.onGenericV3Finish
+					);
+				}
+			};
+
+			SnowfallEffect.prototype.spawnGenericV1Flake = function (delay) {
+				var spin3d = shouldSpin3d(this.options.spinRate);
+				var element = this.options.mode === "generic-v2"
+					? createGenericV2Flake(spin3d, this.options.speed, delay)
+					: createGenericV1Flake(this.pathCounter++, spin3d, this.options.speed, delay);
+				var pathFlake = getPathFlake(element);
+
+				pathFlake.addEventListener("animationend", this.onPathAnimationEnd);
+				this.activeFlakes.push(element);
+				this.ensureContainer().appendChild(element);
+				return element;
+			};
+
+			SnowfallEffect.prototype.fillGenericV2Pool = function () {
+				while (this.running && this.options.loop && this.activeFlakes.length < this.options.count) {
+					this.spawnGenericV1Flake(0);
+				}
+			};
+
+			SnowfallEffect.prototype.spawnGenericV2Burst = function () {
+				var avgDuration = 5.5 * getSpeedMultiplier(this.options.speed);
+				var i;
+
+				for (i = 0; i < this.options.count; i++) {
+					this.spawnGenericV1Flake((i / this.options.count) * avgDuration);
+				}
+			};
+
+			SnowfallEffect.prototype.spawnBurst = function () {
+				var container = this.ensureContainer();
+				var i;
+
+				this.clearFlakes();
+				this.pathCounter = 0;
+
+				for (i = 0; i < this.options.count; i++) {
+					if (this.options.mode === "emuos") {
+						this.activeFlakes.push(createEmuosFlake(
+							i,
+							this.options.loop,
+							this.options.speed,
+							shouldSpin3d(this.options.spinRate)
+						));
+						container.appendChild(this.activeFlakes[this.activeFlakes.length - 1]);
+					} else if (this.options.mode === "emuos-v2") {
+						this.activeFlakes.push(createEmuosV2Flake(
+							this.options.loop,
+							this.options.speed,
+							shouldSpin3d(this.options.spinRate)
+						));
+						container.appendChild(this.activeFlakes[this.activeFlakes.length - 1]);
+					} else if (this.options.mode === "generic-v2") {
+						this.spawnGenericV2Burst();
+						break;
+					} else if (this.options.mode === "generic-v3") {
+						this.spawnGenericV3Burst();
+						break;
+					} else if (this.options.mode === "generic-v1") {
+						this.spawnGenericV1Flake();
+					}
+				}
+			};
+
+			SnowfallEffect.prototype.onPathAnimationEnd = function (event) {
+				if (!isGenericMode(this.options.mode) || this.options.mode === "generic-v3") {
+					return;
+				}
+
+				var pathFlake = event.currentTarget;
+				var tracked = getTrackedFlake(pathFlake);
+
+				if (event.animationName.indexOf("generic-path-") !== 0) {
+					return;
+				}
+
+				pathFlake.removeEventListener("animationend", this.onPathAnimationEnd);
+
+				var index = this.activeFlakes.indexOf(tracked);
+				if (index !== -1) {
+					this.activeFlakes.splice(index, 1);
+				}
+
+				if (tracked.parentNode) {
+					tracked.parentNode.removeChild(tracked);
+				}
+
+				if (!this.running) {
+					return;
+				}
+
+				if (this.options.mode === "generic-v2") {
+					if (this.options.loop) {
+						this.spawnGenericV1Flake(0);
+						this.fillGenericV2Pool();
+					}
+
+					return;
+				}
+
+				if (this.activeFlakes.length === 0 && this.options.loop) {
+					this.pendingRestart = setTimeout(function () {
+						this.pendingRestart = null;
+						if (this.running) {
+							this.spawnBurst();
+						}
+					}.bind(this), 250);
+				}
+			};
+
+			SnowfallEffect.prototype.start = function () {
+				if (this.running) {
+					return this;
+				}
+
+				this.running = true;
+
+				if (this.options.mode === "generic-v3") {
+					preloadFlakeImages().then(function () {
+						if (this.running) {
+							this.spawnBurst();
+						}
+					}.bind(this));
+					return this;
+				}
+
+				this.spawnBurst();
+				return this;
+			};
+
+			SnowfallEffect.prototype.stop = function () {
+				this.running = false;
+				this.clearFlakes();
+				return this;
+			};
+
+			SnowfallEffect.prototype.restart = function () {
+				this.running = false;
+				this.clearFlakes();
+				this.running = true;
+
+				if (this.options.mode === "generic-v3") {
+					preloadFlakeImages().then(function () {
+						if (this.running) {
+							this.spawnBurst();
+						}
+					}.bind(this));
+					return this;
+				}
+
+				this.spawnBurst();
+				return this;
+			};
+
+			SnowfallEffect.prototype.setOptions = function (options) {
+				var next = mergeOptions(Object.assign({}, this.options, options || {}));
+				var modeChanged = next.mode !== this.options.mode;
+
+				this.options = next;
+
+				if (modeChanged) {
+					this.clearFlakes(true);
+
+					if (this.container && this.container.parentNode) {
+						this.container.parentNode.removeChild(this.container);
+					}
+
+					this.container = null;
+				}
+
+				return this;
+			};
+
+			SnowfallEffect.prototype.destroy = function () {
+				document.removeEventListener("visibilitychange", this.onVisibilityChange);
+				this.stop();
+				this.genericV3Pool = [];
+
+				if (this.container && this.container.parentNode) {
+					this.container.parentNode.removeChild(this.container);
+				}
+
+				this.container = null;
+				return this;
+			};
+
+			var api = {
+				mount: function (root, options) {
+					if (!root) {
+						throw new Error("SnowfallEffect.mount requires a root element.");
+					}
+
+					return new SnowfallEffect(root, options);
+				},
+				preload: preloadFlakeImages
+			};
+
+			global.SnowfallEffect = api;
+
+			var SETTINGS_STORAGE_KEY = "snowflakes-demo-settings";
+
+			function loadSettings() {
+				var defaults = {
+					mode: "generic-v1",
+					count: 21,
+					speed: 50,
+					spinRate: 25,
+					loop: true
+				};
+
+				try {
+					var saved = JSON.parse(localStorage.getItem(SETTINGS_STORAGE_KEY));
+
+					if (!saved || typeof saved !== "object") {
+						return defaults;
+					}
+
+					return {
+						mode: normalizeMode(saved.mode),
+						count: Math.min(500, Math.max(1, Number(saved.count) || defaults.count)),
+						speed: Math.min(100, Math.max(10, Number(saved.speed) || defaults.speed)),
+						spinRate: Math.min(100, Math.max(0, Number(saved.spinRate) || defaults.spinRate)),
+						loop: saved.loop !== false
+					};
+				} catch (error) {
+					return defaults;
+				}
+			}
+
+			function saveSettings(settings) {
+				try {
+					localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+				} catch (error) {
+					// ignore quota / privacy errors
+				}
+			}
+
+			document.addEventListener("DOMContentLoaded", function () {
+				var savedSettings = loadSettings();
+
+				var modeSelect = document.getElementById("mode");
+				var modeDescription = document.getElementById("mode-description");
+				var countInput = document.getElementById("count");
+				var countValue = document.getElementById("count-value");
+				var speedInput = document.getElementById("speed");
+				var speedValue = document.getElementById("speed-value");
+				var spinRateInput = document.getElementById("spin-rate");
+				var spinRateValue = document.getElementById("spin-rate-value");
+				var loopInput = document.getElementById("loop");
+				var restartButton = document.getElementById("restart");
+				var stopButton = document.getElementById("stop");
+
+				var modeDescriptions = {
+					"generic-v1": "Path-based PNG snowfall — flakes on 21 fixed fall paths.",
+					"generic-v2": "Continuous individual PNG flakes with EmuOS sway — one image per flake, random path and placement.",
+					"generic-v3": "Performance Generic v2 — pooled DOM, cached motion paths, preloaded PNGs, pauses when tab hidden.",
+					emuos: "EmuOS desktop xmas snow — unicode flakes with fall, shake, and spin.",
+					"emuos-v2": "EmuOS motion with PNG flakes — 2D path rotation on every flake, optional rotate3d."
+				};
+
+				function applySettingsToUI(settings) {
+					modeSelect.value = settings.mode;
+					countInput.value = String(settings.count);
+					countValue.textContent = String(settings.count);
+					speedInput.value = String(settings.speed);
+					speedValue.textContent = String(settings.speed);
+					spinRateInput.value = String(settings.spinRate);
+					spinRateValue.textContent = settings.spinRate + "%";
+					loopInput.checked = settings.loop;
+					modeDescription.textContent = modeDescriptions[settings.mode];
+				}
+
+				function readOptions() {
+					return {
+						mode: modeSelect.value,
+						count: Number(countInput.value),
+						speed: Number(speedInput.value),
+						spinRate: Number(spinRateInput.value),
+						loop: loopInput.checked
+					};
+				}
+
+				function persistSettings() {
+					saveSettings(readOptions());
+				}
+
+				applySettingsToUI(savedSettings);
+				preloadFlakeImages();
+
+				var effect = api.mount(document.body, Object.assign({ fixed: true }, savedSettings));
+				effect.start();
+
+				modeSelect.addEventListener("change", function () {
+					modeDescription.textContent = modeDescriptions[modeSelect.value];
+					effect.setOptions(readOptions());
+					persistSettings();
+					effect.restart();
+				});
+
+				countInput.addEventListener("input", function () {
+					countValue.textContent = countInput.value;
+					persistSettings();
+				});
+
+				speedInput.addEventListener("input", function () {
+					speedValue.textContent = speedInput.value;
+					effect.setOptions({ speed: Number(speedInput.value) });
+					persistSettings();
+					if (effect.running) {
+						effect.restart();
+					}
+				});
+
+				spinRateInput.addEventListener("input", function () {
+					spinRateValue.textContent = spinRateInput.value + "%";
+					effect.setOptions({ spinRate: Number(spinRateInput.value) });
+					persistSettings();
+					if (effect.running) {
+						effect.restart();
+					}
+				});
+
+				loopInput.addEventListener("change", function () {
+					effect.setOptions({ loop: loopInput.checked });
+					persistSettings();
+					if (effect.running) {
+						effect.restart();
+					}
+				});
+
+				restartButton.addEventListener("click", function () {
+					effect.setOptions(readOptions());
+					persistSettings();
+					effect.restart();
+				});
+
+				stopButton.addEventListener("click", function () {
+					effect.stop();
+				});
+			});
+		})(window);
+	</script>
+</body>
+</html>

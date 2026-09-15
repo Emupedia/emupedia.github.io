@@ -1,0 +1,15 @@
+{
+	"format": {
+		"version": "1.0"
+	},
+	"drives": [{
+		"name": "(A:)",
+		"icon": ""
+	} , {
+		"name": "(C:)",
+		"icon": ""
+	} , {
+		"name": "(D:)",
+		"icon": ""
+	}]
+}

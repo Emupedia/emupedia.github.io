@@ -1,0 +1,33 @@
+/*noinspection CssOverwrittenProperties*/
+:host {
+	display: inline-block;
+	width: 100%;
+	/*width: calc(100% - 2px);*/
+	min-width: 5px;
+	height: 100%;
+	/*height: calc(100% - 2px);*/
+	min-height: 5px;
+	background: #c0c0c0;
+	/*border-left: 1px solid #dfdfdf;*/
+	/*border-top: 1px solid #dfdfdf;*/
+	/*border-bottom: 1px solid #000;*/
+	/*border-right: 1px solid #000;*/
+	/*box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;*/
+	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf;
+	font-family: 'MS Sans Serif', 'Segoe UI', sans-serif;
+	font-size: 12px;
+	line-height: 12px;
+	color: #000;
+	user-select: none;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+:host-context(emuos-button:active),
+:host-context(emuos-button.down) {
+	/*border-left: 1px solid #000;*/
+	/*border-top: 1px solid #000;*/
+	/*border-bottom: 1px solid #dfdfdf;*/
+	/*border-right: 1px solid #dfdfdf;*/
+	box-shadow: inset -1px -1px 0 #dfdfdf, inset 1px 1px 0 #000;
+}

@@ -1,0 +1,580 @@
+/* Windows 95/98/ME Start menu */
+
+/* Detached from taskbar so the tall menu does not affect taskbar layout */
+.theme-windows-95 [data-menu-type=start].emuos-start-menu.emuos-start-menu-detached,
+.theme-windows-98 [data-menu-type=start].emuos-start-menu.emuos-start-menu-detached,
+.theme-windows-me [data-menu-type=start].emuos-start-menu.emuos-start-menu-detached {
+	position: fixed;
+	z-index: 9999;
+}
+
+.theme-windows-95 [data-menu-type=start].emuos-start-menu,
+.theme-windows-98 [data-menu-type=start].emuos-start-menu,
+.theme-windows-me [data-menu-type=start].emuos-start-menu {
+	--start-menu-face: #c0c0c0;
+	--start-menu-hilight: #fff;
+	--start-menu-shadow: #808080;
+	--start-menu-text: #000;
+	--start-menu-selection: #000080;
+	--start-menu-selection-text: #fff;
+	--start-menu-sidebar: #000080;
+
+	display: grid;
+	grid-template-columns: minmax(146px, max-content);
+	grid-auto-rows: auto;
+	align-content: start;
+	box-sizing: border-box;
+	position: relative;
+	width: fit-content;
+	min-width: 178px;
+	padding: 1px 2px 1px 23px;
+	margin: 0;
+	list-style: none;
+	font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	line-height: 1;
+	color: var(--start-menu-text);
+	background: var(--start-menu-face);
+	border: 0;
+	border-top: 1px solid var(--start-menu-face);
+	border-left: 1px solid var(--start-menu-face);
+	border-right: 2px solid #000;
+	border-bottom: 2px solid #000;
+	box-shadow: 1px 1px 0 var(--start-menu-hilight) inset, -1px -1px 0 var(--start-menu-shadow) inset;
+	border-radius: 0;
+}
+
+.theme-windows-95 [data-menu-type=start].emuos-start-menu:not([style*="display: none"]),
+.theme-windows-98 [data-menu-type=start].emuos-start-menu:not([style*="display: none"]),
+.theme-windows-me [data-menu-type=start].emuos-start-menu:not([style*="display: none"]) {
+	display: grid !important;
+}
+
+.theme-windows-95 [data-menu-type=start].emuos-start-menu::before,
+.theme-windows-98 [data-menu-type=start].emuos-start-menu::before,
+.theme-windows-me [data-menu-type=start].emuos-start-menu::before {
+	content: "";
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	bottom: 2px;
+	width: 21px;
+	background-color: var(--start-menu-sidebar);
+	background-image:
+		url(../../../../images/themes/windows-98/win98start.png),
+		linear-gradient(
+			to bottom,
+			var(--start-menu-sidebar) 0%,
+			var(--start-menu-sidebar) 60%,
+			#1084d0 85%,
+			var(--start-menu-sidebar) 100%
+		);
+	background-repeat: no-repeat, no-repeat;
+	background-position: bottom left, center;
+	background-size: 21px auto, 100% 100%;
+	pointer-events: none;
+}
+
+.theme-windows-95 [data-menu-type=start].emuos-start-menu > .ui-menu-item,
+.theme-windows-95 [data-menu-type=start].emuos-start-menu > .ui-menu-divider,
+.theme-windows-98 [data-menu-type=start].emuos-start-menu > .ui-menu-item,
+.theme-windows-98 [data-menu-type=start].emuos-start-menu > .ui-menu-divider,
+.theme-windows-me [data-menu-type=start].emuos-start-menu > .ui-menu-item,
+.theme-windows-me [data-menu-type=start].emuos-start-menu > .ui-menu-divider {
+	grid-column: 1;
+}
+
+.theme-windows-95 .emuos-start-menu .ui-menu-item,
+.theme-windows-98 .emuos-start-menu .ui-menu-item,
+.theme-windows-me .emuos-start-menu .ui-menu-item {
+	padding: 0;
+	margin: 0;
+	height: auto;
+	border: 0;
+	white-space: nowrap;
+	list-style-image: none;
+}
+
+.theme-windows-95 .emuos-start-menu > .ui-menu-item,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item,
+.theme-windows-me .emuos-start-menu > .ui-menu-item {
+	margin: 0;
+	position: relative;
+	height: 32px;
+	min-height: 32px;
+	max-height: 32px;
+	box-sizing: border-box;
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .ui-menu-item,
+.theme-windows-98 .emuos-start-menu-submenu > .ui-menu-item,
+.theme-windows-me .emuos-start-menu-submenu > .ui-menu-item {
+	margin: 1px 2px;
+	padding: 0;
+	position: relative;
+	width: auto;
+	height: auto;
+	min-height: 0;
+	max-height: none;
+}
+
+.theme-windows-95 .emuos-start-menu .ui-menu-item.emuos-start-menu-has-submenu > .emuos-start-menu-submenu,
+.theme-windows-98 .emuos-start-menu .ui-menu-item.emuos-start-menu-has-submenu > .emuos-start-menu-submenu,
+.theme-windows-me .emuos-start-menu .ui-menu-item.emuos-start-menu-has-submenu > .emuos-start-menu-submenu {
+	position: absolute !important;
+	top: -2px !important;
+	left: 100% !important;
+	right: auto !important;
+	bottom: auto !important;
+	margin-left: -2px !important;
+	margin-top: 0 !important;
+	z-index: 1;
+}
+
+.theme-windows-95 .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper,
+.theme-windows-me .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 0 2px 0 0;
+	min-height: 32px;
+	max-height: 32px;
+	height: 32px;
+	line-height: 16px;
+	white-space: nowrap;
+	font-weight: normal;
+	color: inherit;
+	max-width: none;
+	overflow: hidden;
+	text-overflow: clip;
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper,
+.theme-windows-98 .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper,
+.theme-windows-me .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 2px 4px 2px 2px;
+	min-height: 18px;
+	max-height: 18px;
+	height: 18px;
+	line-height: 16px;
+	white-space: nowrap;
+	font-weight: normal;
+	color: inherit;
+	max-width: none;
+	overflow: hidden;
+	text-overflow: clip;
+}
+
+/* Cancel jQuery UI menu margin/border shift and theme-blue active styles */
+.theme-windows-95 .emuos-start-menu.ui-menu .ui-state-focus,
+.theme-windows-98 .emuos-start-menu.ui-menu .ui-state-focus,
+.theme-windows-me .emuos-start-menu.ui-menu .ui-state-focus,
+.theme-windows-95 .emuos-start-menu.ui-menu .ui-state-active,
+.theme-windows-98 .emuos-start-menu.ui-menu .ui-state-active,
+.theme-windows-me .emuos-start-menu.ui-menu .ui-state-active,
+.theme-windows-95 .emuos-start-menu-submenu.ui-menu .ui-state-focus,
+.theme-windows-98 .emuos-start-menu-submenu.ui-menu .ui-state-focus,
+.theme-windows-me .emuos-start-menu-submenu.ui-menu .ui-state-focus,
+.theme-windows-95 .emuos-start-menu-submenu.ui-menu .ui-state-active,
+.theme-windows-98 .emuos-start-menu-submenu.ui-menu .ui-state-active,
+.theme-windows-me .emuos-start-menu-submenu.ui-menu .ui-state-active {
+	margin: 0;
+	border: 0 !important;
+	font-weight: normal !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover),
+.theme-windows-98 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover),
+.theme-windows-me .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover) {
+	margin: 1px 2px;
+	padding: 0;
+	background: var(--start-menu-selection);
+	color: var(--start-menu-selection-text);
+}
+
+.theme-windows-95 .emuos-start-menu > .ui-menu-item:not(.emuos-start-menu-has-submenu).ui-state-focus,
+.theme-windows-95 .emuos-start-menu > .ui-menu-item:not(.emuos-start-menu-has-submenu):has(> .ui-menu-item-wrapper.ui-state-active),
+.theme-windows-98 .emuos-start-menu > .ui-menu-item:not(.emuos-start-menu-has-submenu).ui-state-focus,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item:not(.emuos-start-menu-has-submenu):has(> .ui-menu-item-wrapper.ui-state-active),
+.theme-windows-me .emuos-start-menu > .ui-menu-item:not(.emuos-start-menu-has-submenu).ui-state-focus,
+.theme-windows-me .emuos-start-menu > .ui-menu-item:not(.emuos-start-menu-has-submenu):has(> .ui-menu-item-wrapper.ui-state-active) {
+	margin: 0;
+	padding: 0;
+	background: var(--start-menu-selection);
+	color: var(--start-menu-selection-text);
+}
+
+.theme-windows-95 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu.ui-state-focus,
+.theme-windows-95 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu:has(> .ui-menu-item-wrapper.ui-state-active),
+.theme-windows-98 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu.ui-state-focus,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu:has(> .ui-menu-item-wrapper.ui-state-active),
+.theme-windows-me .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu.ui-state-focus,
+.theme-windows-me .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu:has(> .ui-menu-item-wrapper.ui-state-active) {
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	color: var(--start-menu-text);
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover) > .ui-menu-item-wrapper,
+.theme-windows-98 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover) > .ui-menu-item-wrapper,
+.theme-windows-me .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover) > .ui-menu-item-wrapper {
+	margin: 0;
+	padding: 2px 4px 2px 2px;
+	background: transparent !important;
+	color: inherit !important;
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .ui-menu-item.ui-state-focus:not(:has(> .ui-menu-item-wrapper:hover)),
+.theme-windows-98 .emuos-start-menu-submenu > .ui-menu-item.ui-state-focus:not(:has(> .ui-menu-item-wrapper:hover)),
+.theme-windows-me .emuos-start-menu-submenu > .ui-menu-item.ui-state-focus:not(:has(> .ui-menu-item-wrapper:hover)),
+.theme-windows-95 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper.ui-state-active):not(:has(> .ui-menu-item-wrapper:hover)),
+.theme-windows-98 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper.ui-state-active):not(:has(> .ui-menu-item-wrapper:hover)),
+.theme-windows-me .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper.ui-state-active):not(:has(> .ui-menu-item-wrapper:hover)) {
+	background: transparent;
+	color: var(--start-menu-text);
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper.ui-state-active:not(:hover),
+.theme-windows-98 .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper.ui-state-active:not(:hover),
+.theme-windows-me .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper.ui-state-active:not(:hover) {
+	background: transparent !important;
+	color: var(--start-menu-text) !important;
+}
+
+.theme-windows-95 .emuos-start-menu > .ui-menu-item.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-me .emuos-start-menu > .ui-menu-item.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-95 .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper.ui-state-active,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper.ui-state-active,
+.theme-windows-me .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper.ui-state-active {
+	margin: 0;
+	padding: 0 2px 0 0;
+	background: transparent !important;
+	color: inherit !important;
+}
+
+.theme-windows-95 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-95 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu > .ui-menu-item-wrapper.ui-state-active,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu > .ui-menu-item-wrapper.ui-state-active,
+.theme-windows-me .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-me .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu > .ui-menu-item-wrapper.ui-state-active {
+	background: var(--start-menu-selection) !important;
+	color: var(--start-menu-selection-text) !important;
+}
+
+.theme-windows-95 .emuos-start-menu .ui-menu-item.ui-state-disabled,
+.theme-windows-95 .emuos-start-menu .ui-menu-item.ui-state-disabled .ui-menu-item-wrapper,
+.theme-windows-98 .emuos-start-menu .ui-menu-item.ui-state-disabled,
+.theme-windows-98 .emuos-start-menu .ui-menu-item.ui-state-disabled .ui-menu-item-wrapper,
+.theme-windows-me .emuos-start-menu .ui-menu-item.ui-state-disabled,
+.theme-windows-me .emuos-start-menu .ui-menu-item.ui-state-disabled .ui-menu-item-wrapper {
+	opacity: 1;
+	color: var(--start-menu-shadow);
+}
+
+.theme-windows-95 .emuos-start-menu .ui-menu-item.ui-state-disabled.ui-state-focus,
+.theme-windows-98 .emuos-start-menu .ui-menu-item.ui-state-disabled.ui-state-focus,
+.theme-windows-me .emuos-start-menu .ui-menu-item.ui-state-disabled.ui-state-focus {
+	background: transparent;
+	color: var(--start-menu-shadow);
+}
+
+.theme-windows-95 .emuos-start-menu .ui-menu-icon.ui-icon,
+.theme-windows-98 .emuos-start-menu .ui-menu-icon.ui-icon,
+.theme-windows-me .emuos-start-menu .ui-menu-icon.ui-icon {
+	display: none;
+}
+
+.theme-windows-95 .emuos-start-menu .ui-menu-icon.ui-icon-caret-1-e,
+.theme-windows-98 .emuos-start-menu .ui-menu-icon.ui-icon-caret-1-e,
+.theme-windows-me .emuos-start-menu .ui-menu-icon.ui-icon-caret-1-e {
+	display: none !important;
+}
+
+.theme-windows-95 .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-me .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper > .emuos-start-menu-icon {
+	flex: 0 0 32px;
+	width: 32px;
+	height: 32px;
+	margin-right: 7px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 32px 32px;
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-98 .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-me .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper > .emuos-start-menu-icon {
+	flex: 0 0 16px;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 16px 16px;
+}
+
+.theme-windows-95 .emuos-start-menu-label,
+.theme-windows-98 .emuos-start-menu-label,
+.theme-windows-me .emuos-start-menu-label {
+	flex: 1 1 auto;
+	min-width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.theme-windows-95 .emuos-start-menu-item-text,
+.theme-windows-98 .emuos-start-menu-item-text,
+.theme-windows-me .emuos-start-menu-item-text {
+	white-space: nowrap;
+}
+
+.theme-windows-95 .emuos-start-menu-mnemonic,
+.theme-windows-98 .emuos-start-menu-mnemonic,
+.theme-windows-me .emuos-start-menu-mnemonic {
+	text-decoration: underline;
+}
+
+.theme-windows-95 .emuos-start-menu-has-submenu > .ui-menu-item-wrapper::after,
+.theme-windows-98 .emuos-start-menu-has-submenu > .ui-menu-item-wrapper::after,
+.theme-windows-me .emuos-start-menu-has-submenu > .ui-menu-item-wrapper::after {
+	content: "";
+	display: block;
+	flex: 0 0 16px;
+	width: 16px;
+	height: 16px;
+	margin-left: auto;
+	mask-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m6 4 4 4-4 4z'/%3E%3C/svg%3E");
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m6 4 4 4-4 4z'/%3E%3C/svg%3E");
+	mask-size: 16px 16px;
+	-webkit-mask-size: 16px 16px;
+	mask-repeat: no-repeat;
+	-webkit-mask-repeat: no-repeat;
+	mask-position: center;
+	-webkit-mask-position: center;
+	background: currentColor;
+}
+
+.theme-windows-95 .emuos-start-menu > .ui-menu-divider,
+.theme-windows-98 .emuos-start-menu > .ui-menu-divider,
+.theme-windows-me .emuos-start-menu > .ui-menu-divider {
+	width: 148px;
+	margin: 0 3px;
+	height: 0;
+	border: 0;
+	border-top: 1px solid var(--start-menu-shadow);
+	border-bottom: 1px solid var(--start-menu-hilight);
+	background: transparent;
+}
+
+.theme-windows-95 .emuos-start-menu-submenu.ui-menu,
+.theme-windows-98 .emuos-start-menu-submenu.ui-menu,
+.theme-windows-me .emuos-start-menu-submenu.ui-menu {
+	display: none;
+	position: absolute;
+	min-width: 88px;
+	width: max-content;
+	padding: 2px;
+	margin: 0;
+	list-style: none;
+	font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	line-height: 1;
+	color: var(--start-menu-text);
+	background: var(--start-menu-face);
+	border-top: 1px solid var(--start-menu-face);
+	border-left: 1px solid var(--start-menu-face);
+	border-right: 2px solid #000;
+	border-bottom: 2px solid #000;
+	box-shadow: 1px 1px 0 var(--start-menu-hilight) inset, -1px -1px 0 var(--start-menu-shadow) inset;
+	border-radius: 0;
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .emuos-start-menu-empty-item,
+.theme-windows-98 .emuos-start-menu-submenu > .emuos-start-menu-empty-item,
+.theme-windows-me .emuos-start-menu-submenu > .emuos-start-menu-empty-item {
+	margin: 1px 2px;
+	padding: 0;
+	pointer-events: none;
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .emuos-start-menu-empty-item > .ui-menu-item-wrapper,
+.theme-windows-98 .emuos-start-menu-submenu > .emuos-start-menu-empty-item > .ui-menu-item-wrapper,
+.theme-windows-me .emuos-start-menu-submenu > .emuos-start-menu-empty-item > .ui-menu-item-wrapper {
+	display: block;
+	margin: 0;
+	padding: 1px 4px;
+	min-height: 17px;
+	max-height: 17px;
+	height: 17px;
+	line-height: 17px;
+	white-space: nowrap;
+	color: var(--start-menu-shadow);
+	text-shadow: 0.8px 0.8px 0 var(--start-menu-hilight);
+}
+
+.theme-windows-95 .emuos-start-menu-empty-label,
+.theme-windows-98 .emuos-start-menu-empty-label,
+.theme-windows-me .emuos-start-menu-empty-label {
+	display: block;
+	white-space: nowrap;
+}
+
+.theme-windows-95 .emuos-start-menu-submenu > .emuos-start-menu-empty-item.ui-state-focus,
+.theme-windows-98 .emuos-start-menu-submenu > .emuos-start-menu-empty-item.ui-state-focus,
+.theme-windows-me .emuos-start-menu-submenu > .emuos-start-menu-empty-item.ui-state-focus,
+.theme-windows-95 .emuos-start-menu-submenu > .emuos-start-menu-empty-item.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-98 .emuos-start-menu-submenu > .emuos-start-menu-empty-item.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-me .emuos-start-menu-submenu > .emuos-start-menu-empty-item.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-95 .emuos-start-menu-submenu > .emuos-start-menu-empty-item > .ui-menu-item-wrapper.ui-state-active,
+.theme-windows-98 .emuos-start-menu-submenu > .emuos-start-menu-empty-item > .ui-menu-item-wrapper.ui-state-active,
+.theme-windows-me .emuos-start-menu-submenu > .emuos-start-menu-empty-item > .ui-menu-item-wrapper.ui-state-active {
+	margin: 0;
+	padding: 1px 4px;
+	border: 0;
+	background: transparent;
+	color: var(--start-menu-shadow);
+	text-shadow: 0.8px 0.8px 0 var(--start-menu-hilight);
+}
+
+.theme-windows-95 .emuos-start-menu-submenu.ui-menu:not([style*="display: none"]),
+.theme-windows-98 .emuos-start-menu-submenu.ui-menu:not([style*="display: none"]),
+.theme-windows-me .emuos-start-menu-submenu.ui-menu:not([style*="display: none"]) {
+	display: block !important;
+}
+
+.theme-windows-95 .emuos-start-menu > .ui-menu-item.ui-state-focus > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-95 .emuos-start-menu > .ui-menu-item:has(> .ui-menu-item-wrapper.ui-state-active) > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item.ui-state-focus > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-98 .emuos-start-menu > .ui-menu-item:has(> .ui-menu-item-wrapper.ui-state-active) > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-me .emuos-start-menu > .ui-menu-item.ui-state-focus > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-me .emuos-start-menu > .ui-menu-item:has(> .ui-menu-item-wrapper.ui-state-active) > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-95 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover) > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-98 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover) > .ui-menu-item-wrapper > .emuos-start-menu-icon,
+.theme-windows-me .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover) > .ui-menu-item-wrapper > .emuos-start-menu-icon {
+	-webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+	filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+}
+
+.theme-windows-95 .emuos-start-menu .ui-state-active a,
+.theme-windows-95 .emuos-start-menu .ui-state-active a:link,
+.theme-windows-95 .emuos-start-menu .ui-state-active a:visited,
+.theme-windows-98 .emuos-start-menu .ui-state-active a,
+.theme-windows-98 .emuos-start-menu .ui-state-active a:link,
+.theme-windows-98 .emuos-start-menu .ui-state-active a:visited,
+.theme-windows-me .emuos-start-menu .ui-state-active a,
+.theme-windows-me .emuos-start-menu .ui-state-active a:link,
+.theme-windows-me .emuos-start-menu .ui-state-active a:visited {
+	color: inherit;
+}
+
+/* Start menu item icons */
+.theme-windows-95 [data-start-icon="update"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="update"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="update"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_47-32.png);
+}
+
+.theme-windows-95 [data-start-icon="programs"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="programs"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="programs"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_20-32.png);
+}
+
+.theme-windows-95 [data-start-icon="programs-small"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="programs-small"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="programs-small"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_20-16.png);
+}
+
+.theme-windows-95 [data-start-icon="favorites"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="favorites"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="favorites"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_44-32.png);
+}
+
+.theme-windows-95 [data-start-icon="documents"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="documents"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="documents"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_21-32.png);
+}
+
+.theme-windows-95 [data-start-icon="folder"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="folder"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="folder"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/directory_open_file_mydocs-1.png);
+}
+
+.theme-windows-95 [data-start-icon="settings"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="settings"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="settings"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_22-32.png);
+}
+
+.theme-windows-95 [data-start-icon="controlpanel"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="controlpanel"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="controlpanel"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/directory_control_panel-2.png);
+}
+
+.theme-windows-95 [data-start-icon="find"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="find"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="find"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_23-32.png);
+}
+
+.theme-windows-95 [data-start-icon="help"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="help"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="help"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_24-32.png);
+}
+
+.theme-windows-95 [data-start-icon="run"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="run"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="run"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_25-32.png);
+}
+
+.theme-windows-95 [data-start-icon="logoff"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="logoff"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="logoff"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_45-32.png);
+}
+
+.theme-windows-95 [data-start-icon="shutdown"] .emuos-start-menu-icon,
+.theme-windows-98 [data-start-icon="shutdown"] .emuos-start-menu-icon,
+.theme-windows-me [data-start-icon="shutdown"] .emuos-start-menu-icon {
+	background-image: url(../../../../images/themes/icons/start-menu/SHELL32_28-32.png);
+}
+
+/* Override generic taskbar start menu rules */
+.theme-windows-95 [data-menu-type=start] .ui-menu-item > a,
+.theme-windows-98 [data-menu-type=start] .ui-menu-item > a,
+.theme-windows-me [data-menu-type=start] .ui-menu-item > a {
+	padding-right: 0;
+	max-width: none;
+}
+
+.theme-windows-95 [data-menu-type=start] .ui-menu-item > a > .ui-menu-icon,
+.theme-windows-98 [data-menu-type=start] .ui-menu-item > a > .ui-menu-icon,
+.theme-windows-me [data-menu-type=start] .ui-menu-item > a > .ui-menu-icon {
+	margin-right: 0;
+}

@@ -1,0 +1,18 @@
+:host {
+	position: absolute;
+	display: inline-block;
+	top: 0;
+	left: 0;
+	width: calc(100% - 7px);
+	height: 18px;
+	margin: 2px;
+	padding-left: 3px;
+	background: #000080;
+	font-weight: bold;
+	/*color: #000080;*/
+	color: #fff;
+	line-height: 18px;
+	user-select: none;
+	cursor: move;
+	overflow: hidden;
+}

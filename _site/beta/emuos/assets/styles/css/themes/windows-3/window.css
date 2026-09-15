@@ -1,0 +1,235 @@
+.theme-windows-3 .emuos-window {
+	border-radius: 0;
+	border: 1px solid #000;
+	background-color: #c0c0c0;
+	padding: 3px;
+}
+
+.theme-windows-3 .emuos-window::before {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	display: block;
+	content: '';
+	width: calc(100% - 6px);
+	height: calc(100% - 6px);
+	border: 1px solid #000;
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+.theme-windows-3 .emuos-window .emuos-window-icon {
+	top: 0;
+	left: 0;
+	width: 19px;
+	height: 18px;
+	border: none;
+	border-right: 1px solid #000;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+	background-color: #c0c0c0 !important;
+	background-image: url(../../../../images/themes/icons/windows-3x/menu.png) !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+	background-size: auto !important;
+	/*image-rendering: -moz-crisp-edges;*/
+	/*image-rendering: -o-crisp-edges;*/
+	/*image-rendering: -webkit-optimize-contrast;*/
+	/*image-rendering: pixelated;*/
+	/*-ms-interpolation-mode: nearest-neighbor;*/
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+.theme-windows-3 .emuos-window .emuos-window-icon:active,
+.theme-windows-3 .emuos-window .emuos-window-icon:focus {
+	background-color: #3f3f3f !important;
+	background-image: url(../../../../images/themes/icons/windows-3x/menu-pressed.png) !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+	background-size: auto !important;
+	/*image-rendering: -moz-crisp-edges;*/
+	/*image-rendering: -o-crisp-edges;*/
+	/*image-rendering: -webkit-optimize-contrast;*/
+	/*image-rendering: pixelated;*/
+	/*-ms-interpolation-mode: nearest-neighbor;*/
+}
+
+/*noinspection CssReplaceWithShorthandSafely*/
+.theme-windows-3 .emuos-window .ui-dialog-titlebar {
+	background-color: #c0c0c0;
+	border-radius: 0;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid #000;
+	padding: 0;
+	padding-left: 19px;
+	height: 18px;
+}
+
+.theme-windows-3 .emuos-window .ui-dialog-titlebar .ui-dialog-title {
+	line-height: 21px;
+	margin: -2px 0 0;
+}
+
+.theme-windows-3 .emuos-window .ui-dialog-titlebar.ui-state-active {
+	background-color: #000080;
+	border: none;
+	border-bottom: 1px solid #000;
+}
+
+.theme-windows-3 .emuos-window .ui-dialog-titlebar .ui-dialog-titlebar-close {
+	display: none;
+}
+
+
+/*noinspection CssOverwrittenProperties,CssReplaceWithShorthandSafely*/
+.theme-windows-3 .emuos-window.ui-dialog .ui-button-icon-only {
+	top: 0;
+
+	width: 19px;
+	height: 18px;
+
+	padding: 0;
+	margin: 0;
+
+	border: none;
+	border-left: 1px solid #000;
+
+	border-radius: 0;
+
+	background-color: #808080;
+	background-image: none;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.theme-windows-3 .emuos-window.ui-dialog .ui-button-icon-only .ui-button-icon {
+	top: 0;
+	left: 0;
+
+	width: 15px;
+	height: 15px;
+
+	padding: 0;
+	margin: 0;
+
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+
+	background-color: #c0c0c0;
+}
+
+.theme-windows-3 .emuos-window.ui-dialog .ui-button-icon-only:active .ui-button-icon,
+.theme-windows-3 .emuos-window.ui-dialog .ui-button-icon-only.ui-state-active .ui-button-icon {
+	top: 1px;
+	left: 1px;
+
+	border-top: 1px solid #808080;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+}
+
+.theme-windows-3 .emuos-window.ui-dialog .ui-button-icon-only.emuos-window-button-minimize {
+	right: 19px;
+}
+
+.theme-windows-3 .emuos-window.ui-dialog .ui-button-icon-only.emuos-window-button-minimize .ui-button-icon {
+	background-image: url(../../../../images/themes/icons/windows-3x/minimize.png) !important;
+	background-position: 4px 6px;
+	background-repeat: no-repeat;
+}
+
+.theme-windows-3 .emuos-window.ui-dialog .ui-button-icon-only.emuos-window-button-maximize-restore {
+	right: 0;
+}
+
+.theme-windows-3 .emuos-window.ui-dialog .ui-button-icon-only.emuos-window-button-maximize-restore .ui-button-icon {
+	background-image: url(../../../../images/themes/icons/windows-3x/maximize.png) !important;
+	background-position: 4px 5px;
+	background-repeat: no-repeat;
+}
+
+.theme-windows-3 .emuos-window.emuos-window-maximized.ui-dialog .ui-button-icon-only.emuos-window-button-maximize-restore {
+	right: 0;
+}
+
+.theme-windows-3 .emuos-window.emuos-window-maximized.ui-dialog .ui-button-icon-only.emuos-window-button-maximize-restore .ui-button-icon {
+	background-image: url(../../../../images/themes/icons/windows-3x/restore.png) !important;
+	background-position: 4px 3px;
+	background-repeat: no-repeat;
+}
+
+.theme-windows-3 .emuos-window .emuos-window-content {
+	padding: 0;
+	font-size: 13px;
+	line-height: 16px;
+	height: calc(100% - 19px) !important;
+	max-height: calc(100% - 19px) !important;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.theme-windows-3 .emuos-window .emuos-window-content.emuos-window-type-help a {
+	color: #00bf34;
+}
+
+.theme-windows-3 .emuos-window .emuos-window-content hr {
+	border-top-color: #9a9a9a;
+	border-bottom-color: #eee;
+}
+
+.theme-windows-3 .emuos-window .emuos-window-content p {
+	margin: 0;
+	padding: 0;
+}
+
+.theme-windows-3 .emuos-folder-toolbar-row.emuos-folder-toolbar,
+.theme-windows-3 .emuos-folder-toolbar-row.emuos-folder-addressbar {
+	display: none !important;
+}
+
+.theme-windows-3 .emuos-folder-toolbars,
+.theme-windows-3 .emuos-folder-toolbar-row.emuos-folder-menubar,
+.theme-windows-3 .emuos-folder-status {
+	background-color: #fff;
+}
+
+.theme-windows-3 .emuos-folder-status-left,
+.theme-windows-3 .emuos-folder-status-middle,
+.theme-windows-3 .emuos-folder-status-right {
+	background: #fff;
+	border: none;
+	box-shadow: none;
+	color: #000;
+}
+
+.theme-windows-3 .emuos-folder-toolbar-row.emuos-folder-menubar {
+	min-height: 18px;
+}
+
+.theme-windows-3 .emuos-folder-menubar-item {
+	color: #000;
+	border: 1px solid transparent;
+	background-color: transparent;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	box-shadow: none;
+	font-size: 13px;
+	font-weight: bold;
+	min-height: 18px;
+	padding: 0 6px;
+}
+
+.theme-windows-3 .emuos-folder-menubar-item:hover:not(.ui-state-active),
+.theme-windows-3 .emuos-folder-menubar-item.ui-state-active,
+.theme-windows-3 .emuos-folder-menubar-item:active {
+	border-color: #000;
+	background-color: #fff;
+	box-shadow: none;
+	color: #000;
+}

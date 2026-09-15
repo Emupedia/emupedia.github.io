@@ -1,0 +1,254 @@
+/* Windows 3.1 Start menu — text-only popup menus (no Start menu existed in Win 3.x) */
+
+.theme-windows-3 [data-menu-type=start].emuos-start-menu.emuos-start-menu-detached {
+	position: fixed;
+	z-index: 9999;
+}
+
+.theme-windows-3 [data-menu-type=start].emuos-start-menu {
+	display: block;
+	box-sizing: border-box;
+	position: relative;
+	width: max-content;
+	min-width: 148px;
+	padding: 2px 0;
+	margin: 0;
+	list-style: none;
+	/*font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;*/
+	font-size: 13px;
+	/*font-weight: bold;*/
+	line-height: 1;
+	color: #000;
+	background: #fff;
+	border: 1px solid #000;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+.theme-windows-3 [data-menu-type=start].emuos-start-menu:not([style*="display: none"]) {
+	display: block !important;
+}
+
+.theme-windows-3 .emuos-start-menu .ui-menu-item {
+	padding: 0;
+	margin: 0;
+	height: auto;
+	border: 0;
+	white-space: nowrap;
+	list-style-image: none;
+}
+
+.theme-windows-3 .emuos-start-menu > .ui-menu-item {
+	position: relative;
+	height: 18px;
+	min-height: 18px;
+	max-height: 18px;
+	box-sizing: border-box;
+}
+
+.theme-windows-3 .emuos-start-menu-submenu > .ui-menu-item {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: auto;
+	height: auto;
+	min-height: 0;
+	max-height: none;
+}
+
+.theme-windows-3 .emuos-start-menu .ui-menu-item.emuos-start-menu-has-submenu > .emuos-start-menu-submenu {
+	position: absolute !important;
+	top: -2px !important;
+	left: 100% !important;
+	right: auto !important;
+	bottom: auto !important;
+	margin-left: -2px !important;
+	margin-top: 0 !important;
+	z-index: 1;
+}
+
+.theme-windows-3 .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 0 18px 0 16px;
+	min-height: 18px;
+	max-height: 18px;
+	height: 18px;
+	line-height: 18px;
+	white-space: nowrap;
+	font-weight: bold;
+	color: inherit;
+	max-width: none;
+	overflow: hidden;
+	text-overflow: clip;
+}
+
+.theme-windows-3 .emuos-start-menu-submenu > .ui-menu-item > .ui-menu-item-wrapper {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 0 18px 0 16px;
+	min-height: 18px;
+	max-height: 18px;
+	height: 18px;
+	line-height: 18px;
+	white-space: nowrap;
+	font-weight: bold;
+	color: inherit;
+	max-width: none;
+	overflow: hidden;
+	text-overflow: clip;
+}
+
+.theme-windows-3 .emuos-start-menu.ui-menu .ui-state-focus,
+.theme-windows-3 .emuos-start-menu.ui-menu .ui-state-active,
+.theme-windows-3 .emuos-start-menu-submenu.ui-menu .ui-state-focus,
+.theme-windows-3 .emuos-start-menu-submenu.ui-menu .ui-state-active {
+	margin: 0;
+	border: 0 !important;
+	font-weight: bold !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+.theme-windows-3 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover),
+.theme-windows-3 .emuos-start-menu > .ui-menu-item:not(.emuos-start-menu-has-submenu).ui-state-focus,
+.theme-windows-3 .emuos-start-menu > .ui-menu-item:not(.emuos-start-menu-has-submenu):has(> .ui-menu-item-wrapper.ui-state-active) {
+	background: #000;
+	color: #fff;
+}
+
+.theme-windows-3 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu.ui-state-focus,
+.theme-windows-3 .emuos-start-menu > .ui-menu-item.emuos-start-menu-has-submenu:has(> .ui-menu-item-wrapper.ui-state-active) {
+	background: #000;
+	color: #fff;
+}
+
+.theme-windows-3 .emuos-start-menu-submenu > .ui-menu-item.ui-state-focus:not(:has(> .ui-menu-item-wrapper:hover)),
+.theme-windows-3 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper.ui-state-active):not(:has(> .ui-menu-item-wrapper:hover)) {
+	background: transparent;
+	color: #000;
+}
+
+.theme-windows-3 .emuos-start-menu-submenu > .ui-menu-item:has(> .ui-menu-item-wrapper:hover) > .ui-menu-item-wrapper,
+.theme-windows-3 .emuos-start-menu > .ui-menu-item.ui-state-focus > .ui-menu-item-wrapper,
+.theme-windows-3 .emuos-start-menu > .ui-menu-item > .ui-menu-item-wrapper.ui-state-active {
+	background: transparent !important;
+	color: inherit !important;
+}
+
+.theme-windows-3 .emuos-start-menu .ui-menu-item.ui-state-disabled,
+.theme-windows-3 .emuos-start-menu .ui-menu-item.ui-state-disabled .ui-menu-item-wrapper {
+	background: transparent !important;
+	color: #808080 !important;
+}
+
+.theme-windows-3 .emuos-start-menu .ui-menu-item.ui-state-disabled.ui-state-focus {
+	background: transparent !important;
+	color: #808080 !important;
+}
+
+.theme-windows-3 .emuos-start-menu .ui-menu-icon.ui-icon {
+	display: none;
+}
+
+.theme-windows-3 .emuos-start-menu .ui-menu-icon.ui-icon-caret-1-e {
+	display: none !important;
+}
+
+.theme-windows-3 .emuos-start-menu .emuos-start-menu-icon {
+	display: none !important;
+}
+
+.theme-windows-3 .emuos-start-menu-label {
+	flex: 1 1 auto;
+	min-width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.theme-windows-3 .emuos-start-menu-item-text {
+	white-space: nowrap;
+}
+
+.theme-windows-3 .emuos-start-menu-mnemonic {
+	text-decoration: underline;
+}
+
+.theme-windows-3 .emuos-start-menu-has-submenu > .ui-menu-item-wrapper::after {
+	content: "\25B6";
+	display: block;
+	flex: 0 0 auto;
+	font-size: 8px;
+	line-height: 1;
+	margin-left: 8px;
+}
+
+.theme-windows-3 .emuos-start-menu > .ui-menu-divider {
+	width: auto;
+	margin: 4px 0;
+	height: 0;
+	border: 0;
+	border-top: 1px solid #000;
+	background: transparent;
+}
+
+.theme-windows-3 .emuos-start-menu-submenu.ui-menu {
+	display: none;
+	position: absolute;
+	min-width: 88px;
+	width: max-content;
+	padding: 2px 0;
+	margin: 0;
+	list-style: none;
+	/*font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;*/
+	font-size: 13px;
+	/*font-weight: bold;*/
+	line-height: 1;
+	color: #000;
+	background: #fff;
+	border-top: 1px solid #000;
+	border-left: 1px solid #000;
+	border-right: 2px solid #000;
+	border-bottom: 2px solid #000;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+.theme-windows-3 .emuos-start-menu-submenu > .emuos-start-menu-empty-item {
+	margin: 0;
+	padding: 0;
+	pointer-events: none;
+}
+
+.theme-windows-3 .emuos-start-menu-submenu > .emuos-start-menu-empty-item > .ui-menu-item-wrapper {
+	display: block;
+	margin: 0;
+	padding: 0 16px;
+	min-height: 18px;
+	max-height: 18px;
+	height: 18px;
+	line-height: 18px;
+	white-space: nowrap;
+	color: #808080;
+}
+
+.theme-windows-3 .emuos-start-menu-submenu.ui-menu:not([style*="display: none"]) {
+	display: block !important;
+}
+
+.theme-windows-3 .emuos-start-menu .ui-state-active a,
+.theme-windows-3 .emuos-start-menu .ui-state-active a:link,
+.theme-windows-3 .emuos-start-menu .ui-state-active a:visited {
+	color: inherit;
+}

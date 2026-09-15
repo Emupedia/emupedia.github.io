@@ -1,0 +1,40 @@
+@font-face {
+	font-family: 'EmuOS';
+	src: url(../../../../fonts/emuos.eot);
+	src: url(../../../../fonts/emuos.eot?#iefix) format('embedded-opentype'),
+	url(../../../../fonts/emuos.woff2) format('woff2'),
+	url(../../../../fonts/emuos.woff) format('woff'),
+	url(../../../../fonts/emuos.ttf) format('truetype'),
+	url(../../../../fonts/emuos.svg#emuos) format('svg'),
+	local('Microsoft Sans Serif');
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DOSVGA';
+	src: url(../../../../fonts/dosvga.eot);
+	src: url(../../../../fonts/dosvga.eot?#iefix) format('embedded-opentype'),
+	url(../../../../fonts/dosvga.woff2) format('woff2'),
+	url(../../../../fonts/dosvga.woff) format('woff'),
+	url(../../../../fonts/dosvga.ttf) format('truetype'),
+	url(../../../../fonts/dosvga.svg#dosvga) format('svg');
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FIXEDSYS';
+	src: url(../../../../fonts/fixedsys.eot);
+	src: url(../../../../fonts/fixedsys.eot?#iefix) format('embedded-opentype'),
+	url(../../../../fonts/fixedsys.woff2) format('woff2'),
+	url(../../../../fonts/fixedsys.woff) format('woff'),
+	url(../../../../fonts/fixedsys.ttf) format('truetype'),
+	url(../../../../fonts/fixedsys.svg#fixedsys) format('svg'),
+	local('FIXEDSYS');
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,36 @@
+.theme-windows-95 .ui-menu {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssReplaceWithShorthandSafely*/
+.theme-windows-95 .ui-menu .ui-menu-item {
+	padding: 0;
+	padding-left: 16px;
+	height: 16px;
+	border-top: none;
+	border-bottom: none;
+}
+
+.theme-windows-95 .ui-menu .ui-menu-item.ui-state-focus {
+	font-size: 13px;
+	font-weight: bold;
+	height: 18px;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-top: none;
+	border-bottom: none;
+}
+
+.theme-windows-95 .ui-menu .ui-menu-divider {
+	border-top: 1px solid #000;
+	margin: 4px 0;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.theme-windows-95 .ui-contextmenu {
+	border-top: 1px solid #000;
+	border-left: 1px solid #000;
+	border-right: 2px solid #000;
+	border-bottom: 2px solid #000;
+}
