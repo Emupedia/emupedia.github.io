@@ -72,6 +72,19 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "Starcraft Multiplayer",
+		"alternate_name": "Starcraft",
+		"icon": "assets/images/icons/desktop/starcraft",
+		"link": "https://starcraft.floospart.serv00.net/",
+		"credits": "Multiplayer by vm10k<hr />Website: <a href=\"https://www.nvhae.com/starcraft/\" target=\"_blank\">nvhae.com/starcraft</a><br /><br />Author: <a href=\"https://github.com/gloomyson\" target=\"_blank\">github.com/gloomyson</a><br />Repository: <a href=\"https://github.com/gloomyson/SC_Js\" target=\"_blank\">github.com/gloomyson/SC_Js</a><br />License: <a href=\"https://github.com/gloomyson/SC_Js/blob/master/LICENSE.md\" target=\"_blank\">MIT</a><br />All other assets<hr />Copyright Blizzard Entertainment, Inc",
+		"width": 902,
+		"height": 610,
+		"disclaimer": true,
+		"new": true,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Santa Tracker",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/santa",
